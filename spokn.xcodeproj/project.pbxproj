@@ -39,12 +39,7 @@
 		8B93028A1011EDFA004BDA41 /* loginviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302721011EDFA004BDA41 /* loginviewcontroller.m */; };
 		8B93028B1011EDFA004BDA41 /* loginview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302731011EDFA004BDA41 /* loginview.xib */; };
 		8B93028C1011EDFA004BDA41 /* LtpTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302751011EDFA004BDA41 /* LtpTimer.m */; };
-		8B93028D1011EDFA004BDA41 /* ltpdump.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302761011EDFA004BDA41 /* ltpdump.c */; };
-		8B93028E1011EDFA004BDA41 /* LtpInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302781011EDFA004BDA41 /* LtpInterface.c */; };
-		8B93028F1011EDFA004BDA41 /* netlayer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B93027A1011EDFA004BDA41 /* netlayer.c */; };
-		8B9302901011EDFA004BDA41 /* playrecordpcm.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B93027C1011EDFA004BDA41 /* playrecordpcm.c */; };
 		8B9302911011EDFA004BDA41 /* spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B93027E1011EDFA004BDA41 /* spokn.png */; };
-		8B9302921011EDFA004BDA41 /* vmsplayrecord.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B93027F1011EDFA004BDA41 /* vmsplayrecord.c */; };
 		8B9302B01011EEBE004BDA41 /* blowfish.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302AA1011EEBE004BDA41 /* blowfish.c */; };
 		8B9302B11011EEBE004BDA41 /* ezxml.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302AB1011EEBE004BDA41 /* ezxml.c */; };
 		8B9302B21011EEBE004BDA41 /* ltpmobile.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302AC1011EEBE004BDA41 /* ltpmobile.c */; };
@@ -77,6 +72,11 @@
 		8BCAF7F0101EC488009FC391 /* vmsRecordPlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCAF7EE101EC488009FC391 /* vmsRecordPlay.xib */; };
 		8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */; };
 		8BCEEB2D104AD235001DF4AC /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCEEB2C104AD235001DF4AC /* OverlayView.xib */; };
+		8BE6DF5D104BC54700703BE8 /* vmsplayrecord.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */; };
+		8BE6DF5E104BC54700703BE8 /* playrecordpcm.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF56104BC54700703BE8 /* playrecordpcm.c */; };
+		8BE6DF5F104BC54700703BE8 /* netlayer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF58104BC54700703BE8 /* netlayer.c */; };
+		8BE6DF60104BC54700703BE8 /* LtpInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF5A104BC54700703BE8 /* LtpInterface.c */; };
+		8BE6DF61104BC54700703BE8 /* ltpdump.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF5C104BC54700703BE8 /* ltpdump.c */; };
 		8BF729B4103562B400C124B0 /* spoknalert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF729B3103562B400C124B0 /* spoknalert.m */; };
 /* End PBXBuildFile section */
 
@@ -101,7 +101,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* spokn_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spokn_Prefix.pch; sourceTree = "<group>"; };
 		8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcclassmodel; path = spokn_1.xcclassmodel; sourceTree = "<group>"; };
-		8B10088F1042C08700D3A63B /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows.h; sourceTree = SOURCE_ROOT; };
 		8B177BE8104674E000E42923 /* missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = missed.png; path = rsc/missed.png; sourceTree = "<group>"; };
 		8B177BEA104674E000E42923 /* callout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callout.png; path = rsc/callout.png; sourceTree = "<group>"; };
 		8B177BEB104674E000E42923 /* callin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callin.png; path = rsc/callin.png; sourceTree = "<group>"; };
@@ -136,17 +135,7 @@
 		8B9302731011EDFA004BDA41 /* loginview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = loginview.xib; sourceTree = "<group>"; };
 		8B9302741011EDFA004BDA41 /* LtpTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LtpTimer.h; sourceTree = "<group>"; };
 		8B9302751011EDFA004BDA41 /* LtpTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LtpTimer.m; sourceTree = "<group>"; };
-		8B9302761011EDFA004BDA41 /* ltpdump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltpdump.c; sourceTree = "<group>"; };
-		8B9302771011EDFA004BDA41 /* ltpdump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltpdump.h; sourceTree = "<group>"; };
-		8B9302781011EDFA004BDA41 /* LtpInterface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LtpInterface.c; sourceTree = "<group>"; };
-		8B9302791011EDFA004BDA41 /* LtpInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LtpInterface.h; sourceTree = "<group>"; };
-		8B93027A1011EDFA004BDA41 /* netlayer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = netlayer.c; sourceTree = "<group>"; };
-		8B93027B1011EDFA004BDA41 /* netlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netlayer.h; sourceTree = "<group>"; };
-		8B93027C1011EDFA004BDA41 /* playrecordpcm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = playrecordpcm.c; sourceTree = "<group>"; };
-		8B93027D1011EDFA004BDA41 /* playrecordpcm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playrecordpcm.h; sourceTree = "<group>"; };
 		8B93027E1011EDFA004BDA41 /* spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spokn.png; sourceTree = "<group>"; };
-		8B93027F1011EDFA004BDA41 /* vmsplayrecord.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vmsplayrecord.c; sourceTree = "<group>"; };
-		8B9302801011EDFA004BDA41 /* vmsplayrecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmsplayrecord.h; sourceTree = "<group>"; };
 		8B9302A41011EEBE004BDA41 /* blowfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blowfish.h; sourceTree = "<group>"; };
 		8B9302A51011EEBE004BDA41 /* ezxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezxml.h; sourceTree = "<group>"; };
 		8B9302A61011EEBE004BDA41 /* ltpmobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltpmobile.h; sourceTree = "<group>"; };
@@ -195,6 +184,17 @@
 		8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = overlayviewcontroller.m; sourceTree = "<group>"; };
 		8BCEEAED104ACC87001DF4AC /* overlayviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = overlayviewcontroller.h; sourceTree = "<group>"; };
 		8BCEEB2C104AD235001DF4AC /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		8BE6DF52104BC54700703BE8 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = windows.h; path = interface/windows.h; sourceTree = "<group>"; };
+		8BE6DF53104BC54700703BE8 /* vmsplayrecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vmsplayrecord.h; path = interface/vmsplayrecord.h; sourceTree = "<group>"; };
+		8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vmsplayrecord.c; path = interface/vmsplayrecord.c; sourceTree = "<group>"; };
+		8BE6DF55104BC54700703BE8 /* playrecordpcm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = playrecordpcm.h; path = interface/playrecordpcm.h; sourceTree = "<group>"; };
+		8BE6DF56104BC54700703BE8 /* playrecordpcm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = playrecordpcm.c; path = interface/playrecordpcm.c; sourceTree = "<group>"; };
+		8BE6DF57104BC54700703BE8 /* netlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = netlayer.h; path = interface/netlayer.h; sourceTree = "<group>"; };
+		8BE6DF58104BC54700703BE8 /* netlayer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = netlayer.c; path = interface/netlayer.c; sourceTree = "<group>"; };
+		8BE6DF59104BC54700703BE8 /* LtpInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LtpInterface.h; path = interface/LtpInterface.h; sourceTree = "<group>"; };
+		8BE6DF5A104BC54700703BE8 /* LtpInterface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LtpInterface.c; path = interface/LtpInterface.c; sourceTree = "<group>"; };
+		8BE6DF5B104BC54700703BE8 /* ltpdump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpdump.h; path = interface/ltpdump.h; sourceTree = "<group>"; };
+		8BE6DF5C104BC54700703BE8 /* ltpdump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpdump.c; path = interface/ltpdump.c; sourceTree = "<group>"; };
 		8BF729B2103562B400C124B0 /* spoknalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknalert.h; sourceTree = "<group>"; };
 		8BF729B3103562B400C124B0 /* spoknalert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknalert.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -350,16 +350,17 @@
 		8B8EC6B2101211570036D419 /* interface */ = {
 			isa = PBXGroup;
 			children = (
-				8B9302761011EDFA004BDA41 /* ltpdump.c */,
-				8B9302771011EDFA004BDA41 /* ltpdump.h */,
-				8B9302781011EDFA004BDA41 /* LtpInterface.c */,
-				8B9302791011EDFA004BDA41 /* LtpInterface.h */,
-				8B93027A1011EDFA004BDA41 /* netlayer.c */,
-				8B93027B1011EDFA004BDA41 /* netlayer.h */,
-				8B93027C1011EDFA004BDA41 /* playrecordpcm.c */,
-				8B93027D1011EDFA004BDA41 /* playrecordpcm.h */,
-				8B93027F1011EDFA004BDA41 /* vmsplayrecord.c */,
-				8B9302801011EDFA004BDA41 /* vmsplayrecord.h */,
+				8BE6DF52104BC54700703BE8 /* windows.h */,
+				8BE6DF53104BC54700703BE8 /* vmsplayrecord.h */,
+				8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */,
+				8BE6DF55104BC54700703BE8 /* playrecordpcm.h */,
+				8BE6DF56104BC54700703BE8 /* playrecordpcm.c */,
+				8BE6DF57104BC54700703BE8 /* netlayer.h */,
+				8BE6DF58104BC54700703BE8 /* netlayer.c */,
+				8BE6DF59104BC54700703BE8 /* LtpInterface.h */,
+				8BE6DF5A104BC54700703BE8 /* LtpInterface.c */,
+				8BE6DF5B104BC54700703BE8 /* ltpdump.h */,
+				8BE6DF5C104BC54700703BE8 /* ltpdump.c */,
 			);
 			name = interface;
 			sourceTree = "<group>";
@@ -393,7 +394,6 @@
 				8B9302AB1011EEBE004BDA41 /* ezxml.c */,
 				8B9302AC1011EEBE004BDA41 /* ltpmobile.c */,
 				8B9302AF1011EEBE004BDA41 /* ua.c */,
-				8B10088F1042C08700D3A63B /* windows.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -526,11 +526,6 @@
 				8B9302871011EDFA004BDA41 /* Incommingcallviewcontroller.m in Sources */,
 				8B93028A1011EDFA004BDA41 /* loginviewcontroller.m in Sources */,
 				8B93028C1011EDFA004BDA41 /* LtpTimer.m in Sources */,
-				8B93028D1011EDFA004BDA41 /* ltpdump.c in Sources */,
-				8B93028E1011EDFA004BDA41 /* LtpInterface.c in Sources */,
-				8B93028F1011EDFA004BDA41 /* netlayer.c in Sources */,
-				8B9302901011EDFA004BDA41 /* playrecordpcm.c in Sources */,
-				8B9302921011EDFA004BDA41 /* vmsplayrecord.c in Sources */,
 				8B9302B01011EEBE004BDA41 /* blowfish.c in Sources */,
 				8B9302B11011EEBE004BDA41 /* ezxml.c in Sources */,
 				8B9302B21011EEBE004BDA41 /* ltpmobile.c in Sources */,
@@ -559,6 +554,11 @@
 				8BAAB29E1042DA1800F3EE73 /* DECODE.c in Sources */,
 				8BCA77351043C3E90018419C /* customcell.m in Sources */,
 				8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */,
+				8BE6DF5D104BC54700703BE8 /* vmsplayrecord.c in Sources */,
+				8BE6DF5E104BC54700703BE8 /* playrecordpcm.c in Sources */,
+				8BE6DF5F104BC54700703BE8 /* netlayer.c in Sources */,
+				8BE6DF60104BC54700703BE8 /* LtpInterface.c in Sources */,
+				8BE6DF61104BC54700703BE8 /* ltpdump.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
