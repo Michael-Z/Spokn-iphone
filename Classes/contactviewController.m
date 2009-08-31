@@ -57,7 +57,7 @@
 	{
 		return;
 	}
-	[self reloadLocal:upString];
+	[self reloadLocal:upString :0];
 }
 - (void) doneSearching_Clicked:(id)sender {
 	
@@ -239,7 +239,7 @@ titleForHeaderInSection:(NSInteger)section
 			 searchbar.delegate = self;
 			 searchbar.text = @"";
 			
-			 [self reloadLocal:nil];
+			 [self reloadLocal:nil :0];
 			 
 		 }
 			 break;
@@ -299,15 +299,17 @@ titleForHeaderInSection:(NSInteger)section
 }
 -(void) reload
 {
-	if([self reloadLocal:nil])
+	int firstSection = 1;
+	if([self reloadLocal:nil :&firstSection])
 	{	
 	//- (void)scrollToRowAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
-
-		[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		//printf("\n section%d",firstSection);
+		[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:firstSection] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 	}	
 }
-- (int) reloadLocal:(NSString *)searchStrP {
+- (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP {
 	int count = 0; 
+	int fIndexfindInt = -1;
 	if(segmentedControl.selectedSegmentIndex==0)//different view
 	{
 		return 0;
@@ -382,8 +384,12 @@ titleForHeaderInSection:(NSInteger)section
 			rangeStringP = 	[[CellIdentifier substringToIndex:1] uppercaseString];
 			////NSLog(rangeStringP);
 			NSRange range = [ALPHA rangeOfString:rangeStringP];
-			if (range.location != NSNotFound) 
+			if (range.location != NSNotFound && range.location <MAXSEC) 
 			{	
+				if(fIndexfindInt==-1)
+				{
+					fIndexfindInt = range.location;
+				}
 				setTypeP = [sectionArray objectAtIndex:range.location];
 				if(searchStrP)
 				{	
@@ -439,6 +445,10 @@ titleForHeaderInSection:(NSInteger)section
 	    action: @selector(startEditing) ] autorelease ];	
 	}
 		[ self->tableView reloadData ];
+	if(firstSectionP)
+	{
+		*firstSectionP = fIndexfindInt;
+	}
 	return count;
 }
 - (void) startEditing {
@@ -544,7 +554,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	int section = [indexPath section];
 	sectionData *secP;
 	sectionType *setTypeP;
-	struct AddressBook *addressP;
+	//struct AddressBook *addressP;
 	setTypeP = [sectionArray objectAtIndex:section] ;
 	
 	// Set up the cell by coloring its text

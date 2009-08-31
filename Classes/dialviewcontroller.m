@@ -52,7 +52,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	numberFieldP.text = @"19176775362";
+	//numberFieldP.text = @"19176775362";
 	//numberFieldP.text = @"19176775335";
 	//numberFieldP.text = @"919967358084";
 	

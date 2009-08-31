@@ -133,12 +133,14 @@ titleForHeaderInSection:(NSInteger)section
 	if ((!firstName) && !(lastName)) 
 	{
 		if (biz) return biz;
-		return @"[No name supplied]";
+		return @" ";
 	}
 	
 	if (!lastName) lastName = @"";
 	if (!firstName) firstName = @"";
 	
+	firstName = [firstName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	lastName =  [lastName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
 }
 
@@ -281,6 +283,7 @@ titleForHeaderInSection:(NSInteger)section
 {
 	sectionType *setTypeP;
 	int i;
+	
 	NSString *upString = [matchString uppercaseString];
 	//if (searchArray) [searchArray release];
 	while(sectionArray.count)
@@ -306,9 +309,15 @@ titleForHeaderInSection:(NSInteger)section
 	for (NSString *person in peopleArray)
 	{
 	
-		NSRange range = [ALPHA rangeOfString:[[[self getName:person] substringToIndex:1] uppercaseString]];
-		setTypeP = [sectionArray objectAtIndex:range.location];
 		
+		NSRange range = [ALPHA rangeOfString:[[[self getName:person] substringToIndex:1] uppercaseString]];
+		
+		
+		if (range.location == NSNotFound || range.location >=MAXSEC )
+		{
+			continue;
+		}
+		setTypeP = [sectionArray objectAtIndex:range.location];
 		if(matchString)
 		{	
 			if([matchString length]>1)
@@ -423,7 +432,7 @@ titleForHeaderInSection:(NSInteger)section
 		if(peopleArray)
 		{
 			//now move head on top
-			[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+			//[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 
 		}
 	}

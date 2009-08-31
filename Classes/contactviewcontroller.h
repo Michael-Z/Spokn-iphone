@@ -47,6 +47,6 @@
 - (void) startEditing;
 - (void) stopEditing;
 -(void)setObjType:(UAObjectType)luaObj;
-- (int) reloadLocal:(NSString *)searchStrP;
+- (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP ;
 - (void) doneSearching_Clicked:(id)sender;
 @end
