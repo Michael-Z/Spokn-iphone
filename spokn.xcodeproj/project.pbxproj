@@ -1,0 +1,689 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* spoknAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* spoknAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		8B0B3EAC103AD39900150C5B /* spokn_1.xcclassmodel in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */; };
+		8B177BF0104674E000E42923 /* missed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BE8104674E000E42923 /* missed.png */; };
+		8B177BF2104674E000E42923 /* callout.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEA104674E000E42923 /* callout.png */; };
+		8B177BF3104674E000E42923 /* callin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEB104674E000E42923 /* callin.png */; };
+		8B1AE44B1042EC4500A83773 /* libspeexlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1AE44A1042EC4500A83773 /* libspeexlib.a */; };
+		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
+		8B7EEBD2104834F8007EE771 /* vmail_out_newHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7EEBCC104834F8007EE771 /* vmail_out_newHigh.png */; };
+		8B7EEBD3104834F8007EE771 /* vm_icons_outgoing_undelivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7EEBCD104834F8007EE771 /* vm_icons_outgoing_undelivered.png */; };
+		8B7EEBD4104834F8007EE771 /* vm_icons_outgoing_delivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7EEBCE104834F8007EE771 /* vm_icons_outgoing_delivered.png */; };
+		8B7EEBD5104834F8007EE771 /* vm_icons_incoming_read.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7EEBCF104834F8007EE771 /* vm_icons_incoming_read.png */; };
+		8B7EEBD6104834F8007EE771 /* vm_icons_incoming_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7EEBD0104834F8007EE771 /* vm_icons_incoming_new.png */; };
+		8B7EEC1910483D81007EE771 /* vms_out_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7EEC1810483D81007EE771 /* vms_out_Active.png */; };
+		8B81B3F910317A2900A18DA1 /* addressbookcontact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B81B3F810317A2900A18DA1 /* addressbookcontact.m */; };
+		8B81B4AD10318AC300A18DA1 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */; };
+		8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4B010318ADB00A18DA1 /* AddressBook.framework */; };
+		8B9302811011EDFA004BDA41 /* contactDetailsviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */; };
+		8B9302821011EDFA004BDA41 /* contactDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302661011EDFA004BDA41 /* contactDetails.xib */; };
+		8B9302831011EDFA004BDA41 /* contactviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302681011EDFA004BDA41 /* contactviewController.m */; };
+		8B9302841011EDFA004BDA41 /* contact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302691011EDFA004BDA41 /* contact.xib */; };
+		8B9302851011EDFA004BDA41 /* dialviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93026B1011EDFA004BDA41 /* dialviewcontroller.m */; };
+		8B9302861011EDFA004BDA41 /* dialview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B93026C1011EDFA004BDA41 /* dialview.xib */; };
+		8B9302871011EDFA004BDA41 /* Incommingcallviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93026E1011EDFA004BDA41 /* Incommingcallviewcontroller.m */; };
+		8B9302881011EDFA004BDA41 /* incommingcall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B93026F1011EDFA004BDA41 /* incommingcall.xib */; };
+		8B93028A1011EDFA004BDA41 /* loginviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302721011EDFA004BDA41 /* loginviewcontroller.m */; };
+		8B93028B1011EDFA004BDA41 /* loginview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302731011EDFA004BDA41 /* loginview.xib */; };
+		8B93028C1011EDFA004BDA41 /* LtpTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302751011EDFA004BDA41 /* LtpTimer.m */; };
+		8B93028D1011EDFA004BDA41 /* ltpdump.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302761011EDFA004BDA41 /* ltpdump.c */; };
+		8B93028E1011EDFA004BDA41 /* LtpInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302781011EDFA004BDA41 /* LtpInterface.c */; };
+		8B93028F1011EDFA004BDA41 /* netlayer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B93027A1011EDFA004BDA41 /* netlayer.c */; };
+		8B9302901011EDFA004BDA41 /* playrecordpcm.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B93027C1011EDFA004BDA41 /* playrecordpcm.c */; };
+		8B9302911011EDFA004BDA41 /* spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B93027E1011EDFA004BDA41 /* spokn.png */; };
+		8B9302921011EDFA004BDA41 /* vmsplayrecord.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B93027F1011EDFA004BDA41 /* vmsplayrecord.c */; };
+		8B9302B01011EEBE004BDA41 /* blowfish.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302AA1011EEBE004BDA41 /* blowfish.c */; };
+		8B9302B11011EEBE004BDA41 /* ezxml.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302AB1011EEBE004BDA41 /* ezxml.c */; };
+		8B9302B21011EEBE004BDA41 /* ltpmobile.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302AC1011EEBE004BDA41 /* ltpmobile.c */; };
+		8B9302B51011EEBE004BDA41 /* ua.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302AF1011EEBE004BDA41 /* ua.c */; };
+		8B9302E31011EFC6004BDA41 /* Add.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302CD1011EFC6004BDA41 /* Add.c */; };
+		8B9302E41011EFC6004BDA41 /* CODE.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302CE1011EFC6004BDA41 /* CODE.c */; };
+		8B9302E61011EFC6004BDA41 /* GSM_CREA.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302D21011EFC6004BDA41 /* GSM_CREA.c */; };
+		8B9302E71011EFC6004BDA41 /* GSM_DECO.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302D31011EFC6004BDA41 /* GSM_DECO.c */; };
+		8B9302E81011EFC6004BDA41 /* GSM_DEST.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302D41011EFC6004BDA41 /* GSM_DEST.c */; };
+		8B9302E91011EFC6004BDA41 /* GSM_ENCO.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302D51011EFC6004BDA41 /* GSM_ENCO.c */; };
+		8B9302EA1011EFC6004BDA41 /* GSM_EXPL.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302D61011EFC6004BDA41 /* GSM_EXPL.c */; };
+		8B9302EB1011EFC6004BDA41 /* GSM_IMPL.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302D71011EFC6004BDA41 /* GSM_IMPL.c */; };
+		8B9302EC1011EFC6004BDA41 /* Long_ter.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302D81011EFC6004BDA41 /* Long_ter.c */; };
+		8B9302ED1011EFC6004BDA41 /* Lpc.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302D91011EFC6004BDA41 /* Lpc.c */; };
+		8B9302EE1011EFC6004BDA41 /* Preproce.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302DB1011EFC6004BDA41 /* Preproce.c */; };
+		8B9302EF1011EFC6004BDA41 /* Rpe.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302DE1011EFC6004BDA41 /* Rpe.c */; };
+		8B9302F01011EFC6004BDA41 /* SHORT_TE.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302DF1011EFC6004BDA41 /* SHORT_TE.c */; };
+		8B9302F11011EFC6004BDA41 /* STRING.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302E01011EFC6004BDA41 /* STRING.c */; };
+		8B9302F21011EFC6004BDA41 /* Table.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302E11011EFC6004BDA41 /* Table.c */; };
+		8B9303A61011F11B004BDA41 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9303A51011F11B004BDA41 /* AudioToolbox.framework */; };
+		8BA8E3A11027EF800022801E /* addeditcontactviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */; };
+		8BA8E3A21027EF800022801E /* addeditcontact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E3A01027EF800022801E /* addeditcontact.xib */; };
+		8BA8E558102835BC0022801E /* vmailview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E555102835BC0022801E /* vmailview.xib */; };
+		8BA8E559102835BC0022801E /* vmailviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8E556102835BC0022801E /* vmailviewcontroller.m */; };
+		8BA9F5E01026E50D0082B6AE /* calllogviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9F5DE1026E50D0082B6AE /* calllogviewcontroller.m */; };
+		8BA9F5E11026E50D0082B6AE /* calllog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA9F5DF1026E50D0082B6AE /* calllog.xib */; };
+		8BAAB29E1042DA1800F3EE73 /* DECODE.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BAAB29D1042DA1800F3EE73 /* DECODE.c */; };
+		8BCA77351043C3E90018419C /* customcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCA77341043C3E90018419C /* customcell.m */; };
+		8BCAF7EF101EC488009FC391 /* vmsrecordplayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCAF7ED101EC488009FC391 /* vmsrecordplayviewcontroller.m */; };
+		8BCAF7F0101EC488009FC391 /* vmsRecordPlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCAF7EE101EC488009FC391 /* vmsRecordPlay.xib */; };
+		8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */; };
+		8BCEEB2D104AD235001DF4AC /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCEEB2C104AD235001DF4AC /* OverlayView.xib */; };
+		8BF729B4103562B400C124B0 /* spoknalert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF729B3103562B400C124B0 /* spoknalert.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8B889B121042E75E00D6A6D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B889B0B1042E75E00D6A6D2 /* speexlib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = speexlib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* spoknAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* spoknAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* spokn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spokn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* spokn_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spokn_Prefix.pch; sourceTree = "<group>"; };
+		8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcclassmodel; path = spokn_1.xcclassmodel; sourceTree = "<group>"; };
+		8B10088F1042C08700D3A63B /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows.h; sourceTree = SOURCE_ROOT; };
+		8B177BE8104674E000E42923 /* missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = missed.png; path = rsc/missed.png; sourceTree = "<group>"; };
+		8B177BEA104674E000E42923 /* callout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callout.png; path = rsc/callout.png; sourceTree = "<group>"; };
+		8B177BEB104674E000E42923 /* callin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callin.png; path = rsc/callin.png; sourceTree = "<group>"; };
+		8B1AE44A1042EC4500A83773 /* libspeexlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspeexlib.a; path = ../lib/speex/macos/build/libspeexlib.a; sourceTree = SOURCE_ROOT; };
+		8B6739E2101209E900849952 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
+		8B7EEBCC104834F8007EE771 /* vmail_out_newHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vmail_out_newHigh.png; path = rsc/vmail_out_newHigh.png; sourceTree = "<group>"; };
+		8B7EEBCD104834F8007EE771 /* vm_icons_outgoing_undelivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vm_icons_outgoing_undelivered.png; path = rsc/vm_icons_outgoing_undelivered.png; sourceTree = "<group>"; };
+		8B7EEBCE104834F8007EE771 /* vm_icons_outgoing_delivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vm_icons_outgoing_delivered.png; path = rsc/vm_icons_outgoing_delivered.png; sourceTree = "<group>"; };
+		8B7EEBCF104834F8007EE771 /* vm_icons_incoming_read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vm_icons_incoming_read.png; path = rsc/vm_icons_incoming_read.png; sourceTree = "<group>"; };
+		8B7EEBD0104834F8007EE771 /* vm_icons_incoming_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vm_icons_incoming_new.png; path = rsc/vm_icons_incoming_new.png; sourceTree = "<group>"; };
+		8B7EEC1810483D81007EE771 /* vms_out_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vms_out_Active.png; path = rsc/vms_out_Active.png; sourceTree = "<group>"; };
+		8B81B3F710317A2900A18DA1 /* addressbookcontact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addressbookcontact.h; sourceTree = "<group>"; };
+		8B81B3F810317A2900A18DA1 /* addressbookcontact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addressbookcontact.m; sourceTree = "<group>"; };
+		8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		8B81B4B010318ADB00A18DA1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		8B889B0B1042E75E00D6A6D2 /* speexlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = speexlib.xcodeproj; path = ../lib/speex/macos/speexlib.xcodeproj; sourceTree = SOURCE_ROOT; };
+		8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDetailsviewcontroller.h; sourceTree = "<group>"; };
+		8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDetailsviewcontroller.m; sourceTree = "<group>"; };
+		8B9302661011EDFA004BDA41 /* contactDetails.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contactDetails.xib; sourceTree = "<group>"; };
+		8B9302671011EDFA004BDA41 /* contactviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactviewcontroller.h; sourceTree = "<group>"; };
+		8B9302681011EDFA004BDA41 /* contactviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactviewController.m; sourceTree = "<group>"; };
+		8B9302691011EDFA004BDA41 /* contact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contact.xib; sourceTree = "<group>"; };
+		8B93026A1011EDFA004BDA41 /* dialviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dialviewcontroller.h; sourceTree = "<group>"; };
+		8B93026B1011EDFA004BDA41 /* dialviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dialviewcontroller.m; sourceTree = "<group>"; };
+		8B93026C1011EDFA004BDA41 /* dialview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = dialview.xib; sourceTree = "<group>"; };
+		8B93026D1011EDFA004BDA41 /* Incommingcallviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Incommingcallviewcontroller.h; sourceTree = "<group>"; };
+		8B93026E1011EDFA004BDA41 /* Incommingcallviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Incommingcallviewcontroller.m; sourceTree = "<group>"; };
+		8B93026F1011EDFA004BDA41 /* incommingcall.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = incommingcall.xib; sourceTree = "<group>"; };
+		8B9302701011EDFA004BDA41 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B9302711011EDFA004BDA41 /* loginviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginviewcontroller.h; sourceTree = "<group>"; };
+		8B9302721011EDFA004BDA41 /* loginviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginviewcontroller.m; sourceTree = "<group>"; };
+		8B9302731011EDFA004BDA41 /* loginview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = loginview.xib; sourceTree = "<group>"; };
+		8B9302741011EDFA004BDA41 /* LtpTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LtpTimer.h; sourceTree = "<group>"; };
+		8B9302751011EDFA004BDA41 /* LtpTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LtpTimer.m; sourceTree = "<group>"; };
+		8B9302761011EDFA004BDA41 /* ltpdump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltpdump.c; sourceTree = "<group>"; };
+		8B9302771011EDFA004BDA41 /* ltpdump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltpdump.h; sourceTree = "<group>"; };
+		8B9302781011EDFA004BDA41 /* LtpInterface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LtpInterface.c; sourceTree = "<group>"; };
+		8B9302791011EDFA004BDA41 /* LtpInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LtpInterface.h; sourceTree = "<group>"; };
+		8B93027A1011EDFA004BDA41 /* netlayer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = netlayer.c; sourceTree = "<group>"; };
+		8B93027B1011EDFA004BDA41 /* netlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netlayer.h; sourceTree = "<group>"; };
+		8B93027C1011EDFA004BDA41 /* playrecordpcm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = playrecordpcm.c; sourceTree = "<group>"; };
+		8B93027D1011EDFA004BDA41 /* playrecordpcm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playrecordpcm.h; sourceTree = "<group>"; };
+		8B93027E1011EDFA004BDA41 /* spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spokn.png; sourceTree = "<group>"; };
+		8B93027F1011EDFA004BDA41 /* vmsplayrecord.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vmsplayrecord.c; sourceTree = "<group>"; };
+		8B9302801011EDFA004BDA41 /* vmsplayrecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmsplayrecord.h; sourceTree = "<group>"; };
+		8B9302A41011EEBE004BDA41 /* blowfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blowfish.h; sourceTree = "<group>"; };
+		8B9302A51011EEBE004BDA41 /* ezxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ezxml.h; sourceTree = "<group>"; };
+		8B9302A61011EEBE004BDA41 /* ltpmobile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ltpmobile.h; sourceTree = "<group>"; };
+		8B9302A81011EEBE004BDA41 /* ua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ua.h; sourceTree = "<group>"; };
+		8B9302AA1011EEBE004BDA41 /* blowfish.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = blowfish.c; sourceTree = "<group>"; };
+		8B9302AB1011EEBE004BDA41 /* ezxml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ezxml.c; sourceTree = "<group>"; };
+		8B9302AC1011EEBE004BDA41 /* ltpmobile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ltpmobile.c; sourceTree = "<group>"; };
+		8B9302AF1011EEBE004BDA41 /* ua.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ua.c; sourceTree = "<group>"; };
+		8B9302CD1011EFC6004BDA41 /* Add.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Add.c; path = ../lib/gsm/Add.c; sourceTree = SOURCE_ROOT; };
+		8B9302CE1011EFC6004BDA41 /* CODE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = CODE.c; path = ../lib/gsm/CODE.c; sourceTree = SOURCE_ROOT; };
+		8B9302CF1011EFC6004BDA41 /* CONFIG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CONFIG.h; path = ../lib/gsm/CONFIG.h; sourceTree = SOURCE_ROOT; };
+		8B9302D11011EFC6004BDA41 /* GSM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GSM.h; path = ../lib/gsm/GSM.h; sourceTree = SOURCE_ROOT; };
+		8B9302D21011EFC6004BDA41 /* GSM_CREA.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = GSM_CREA.c; path = ../lib/gsm/GSM_CREA.c; sourceTree = SOURCE_ROOT; };
+		8B9302D31011EFC6004BDA41 /* GSM_DECO.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = GSM_DECO.c; path = ../lib/gsm/GSM_DECO.c; sourceTree = SOURCE_ROOT; };
+		8B9302D41011EFC6004BDA41 /* GSM_DEST.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = GSM_DEST.c; path = ../lib/gsm/GSM_DEST.c; sourceTree = SOURCE_ROOT; };
+		8B9302D51011EFC6004BDA41 /* GSM_ENCO.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = GSM_ENCO.c; path = ../lib/gsm/GSM_ENCO.c; sourceTree = SOURCE_ROOT; };
+		8B9302D61011EFC6004BDA41 /* GSM_EXPL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = GSM_EXPL.c; path = ../lib/gsm/GSM_EXPL.c; sourceTree = SOURCE_ROOT; };
+		8B9302D71011EFC6004BDA41 /* GSM_IMPL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = GSM_IMPL.c; path = ../lib/gsm/GSM_IMPL.c; sourceTree = SOURCE_ROOT; };
+		8B9302D81011EFC6004BDA41 /* Long_ter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Long_ter.c; path = ../lib/gsm/Long_ter.c; sourceTree = SOURCE_ROOT; };
+		8B9302D91011EFC6004BDA41 /* Lpc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Lpc.c; path = ../lib/gsm/Lpc.c; sourceTree = SOURCE_ROOT; };
+		8B9302DA1011EFC6004BDA41 /* MYSTRING.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MYSTRING.h; path = ../lib/gsm/MYSTRING.h; sourceTree = SOURCE_ROOT; };
+		8B9302DB1011EFC6004BDA41 /* Preproce.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Preproce.c; path = ../lib/gsm/Preproce.c; sourceTree = SOURCE_ROOT; };
+		8B9302DC1011EFC6004BDA41 /* PRIVATE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PRIVATE.h; path = ../lib/gsm/PRIVATE.h; sourceTree = SOURCE_ROOT; };
+		8B9302DD1011EFC6004BDA41 /* PROTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PROTO.h; path = ../lib/gsm/PROTO.h; sourceTree = SOURCE_ROOT; };
+		8B9302DE1011EFC6004BDA41 /* Rpe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Rpe.c; path = ../lib/gsm/Rpe.c; sourceTree = SOURCE_ROOT; };
+		8B9302DF1011EFC6004BDA41 /* SHORT_TE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SHORT_TE.c; path = ../lib/gsm/SHORT_TE.c; sourceTree = SOURCE_ROOT; };
+		8B9302E01011EFC6004BDA41 /* STRING.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = STRING.c; path = ../lib/gsm/STRING.c; sourceTree = SOURCE_ROOT; };
+		8B9302E11011EFC6004BDA41 /* Table.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Table.c; path = ../lib/gsm/Table.c; sourceTree = SOURCE_ROOT; };
+		8B9302E21011EFC6004BDA41 /* UNPROTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UNPROTO.h; path = ../lib/gsm/UNPROTO.h; sourceTree = SOURCE_ROOT; };
+		8B9303A51011F11B004BDA41 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
+		8BA8E39E1027EF800022801E /* addeditcontactviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addeditcontactviewcontroller.h; sourceTree = "<group>"; };
+		8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addeditcontactviewcontroller.m; sourceTree = "<group>"; };
+		8BA8E3A01027EF800022801E /* addeditcontact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addeditcontact.xib; sourceTree = "<group>"; };
+		8BA8E555102835BC0022801E /* vmailview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = vmailview.xib; sourceTree = "<group>"; };
+		8BA8E556102835BC0022801E /* vmailviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = vmailviewcontroller.m; sourceTree = "<group>"; };
+		8BA8E557102835BC0022801E /* vmailviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmailviewcontroller.h; sourceTree = "<group>"; };
+		8BA9F5DD1026E50D0082B6AE /* calllogviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calllogviewcontroller.h; sourceTree = "<group>"; };
+		8BA9F5DE1026E50D0082B6AE /* calllogviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calllogviewcontroller.m; sourceTree = "<group>"; };
+		8BA9F5DF1026E50D0082B6AE /* calllog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = calllog.xib; sourceTree = "<group>"; };
+		8BAAB29D1042DA1800F3EE73 /* DECODE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DECODE.c; path = ../lib/gsm/DECODE.c; sourceTree = SOURCE_ROOT; };
+		8BCA77331043C3E90018419C /* customcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customcell.h; sourceTree = "<group>"; };
+		8BCA77341043C3E90018419C /* customcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customcell.m; sourceTree = "<group>"; };
+		8BCAF7EC101EC488009FC391 /* vmsrecordplayviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmsrecordplayviewcontroller.h; sourceTree = "<group>"; };
+		8BCAF7ED101EC488009FC391 /* vmsrecordplayviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = vmsrecordplayviewcontroller.m; sourceTree = "<group>"; };
+		8BCAF7EE101EC488009FC391 /* vmsRecordPlay.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = vmsRecordPlay.xib; sourceTree = "<group>"; };
+		8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = overlayviewcontroller.m; sourceTree = "<group>"; };
+		8BCEEAED104ACC87001DF4AC /* overlayviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = overlayviewcontroller.h; sourceTree = "<group>"; };
+		8BCEEB2C104AD235001DF4AC /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		8BF729B2103562B400C124B0 /* spoknalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknalert.h; sourceTree = "<group>"; };
+		8BF729B3103562B400C124B0 /* spoknalert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknalert.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				8B9303A61011F11B004BDA41 /* AudioToolbox.framework in Frameworks */,
+				8B81B4AD10318AC300A18DA1 /* AddressBookUI.framework in Frameworks */,
+				8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */,
+				8B1AE44B1042EC4500A83773 /* libspeexlib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8BCEEB2C104AD235001DF4AC /* OverlayView.xib */,
+				8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */,
+				8BCEEAED104ACC87001DF4AC /* overlayviewcontroller.h */,
+				8BA8E555102835BC0022801E /* vmailview.xib */,
+				8BA8E556102835BC0022801E /* vmailviewcontroller.m */,
+				8BA8E557102835BC0022801E /* vmailviewcontroller.h */,
+				8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */,
+				8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */,
+				8B9302661011EDFA004BDA41 /* contactDetails.xib */,
+				8B9302671011EDFA004BDA41 /* contactviewcontroller.h */,
+				8B9302681011EDFA004BDA41 /* contactviewController.m */,
+				8B9302691011EDFA004BDA41 /* contact.xib */,
+				8B93026A1011EDFA004BDA41 /* dialviewcontroller.h */,
+				8B93026B1011EDFA004BDA41 /* dialviewcontroller.m */,
+				8B93026C1011EDFA004BDA41 /* dialview.xib */,
+				8B93026D1011EDFA004BDA41 /* Incommingcallviewcontroller.h */,
+				8B93026E1011EDFA004BDA41 /* Incommingcallviewcontroller.m */,
+				8B93026F1011EDFA004BDA41 /* incommingcall.xib */,
+				8B9302701011EDFA004BDA41 /* Info.plist */,
+				8B9302711011EDFA004BDA41 /* loginviewcontroller.h */,
+				8B9302721011EDFA004BDA41 /* loginviewcontroller.m */,
+				8B9302731011EDFA004BDA41 /* loginview.xib */,
+				8B9302741011EDFA004BDA41 /* LtpTimer.h */,
+				8B9302751011EDFA004BDA41 /* LtpTimer.m */,
+				1D3623240D0F684500981E51 /* spoknAppDelegate.h */,
+				1D3623250D0F684500981E51 /* spoknAppDelegate.m */,
+				8BCAF7EC101EC488009FC391 /* vmsrecordplayviewcontroller.h */,
+				8BCAF7ED101EC488009FC391 /* vmsrecordplayviewcontroller.m */,
+				8BCAF7EE101EC488009FC391 /* vmsRecordPlay.xib */,
+				8BA9F5DD1026E50D0082B6AE /* calllogviewcontroller.h */,
+				8BA9F5DE1026E50D0082B6AE /* calllogviewcontroller.m */,
+				8BA9F5DF1026E50D0082B6AE /* calllog.xib */,
+				8BA8E39E1027EF800022801E /* addeditcontactviewcontroller.h */,
+				8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */,
+				8BA8E3A01027EF800022801E /* addeditcontact.xib */,
+				8B81B3F710317A2900A18DA1 /* addressbookcontact.h */,
+				8B81B3F810317A2900A18DA1 /* addressbookcontact.m */,
+				8BF729B2103562B400C124B0 /* spoknalert.h */,
+				8BF729B3103562B400C124B0 /* spoknalert.m */,
+				8BCA77331043C3E90018419C /* customcell.h */,
+				8BCA77341043C3E90018419C /* customcell.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* spokn.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				8B1AE44A1042EC4500A83773 /* libspeexlib.a */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8B8EC6B2101211570036D419 /* interface */,
+				8B9302A21011EEBE004BDA41 /* common */,
+				32CA4F630368D1EE00C91783 /* spokn_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8B177BE3104674A600E42923 /* image */,
+				8B6739E2101209E900849952 /* spokn-Info.plist */,
+				8B93027E1011EDFA004BDA41 /* spokn.png */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B889B0B1042E75E00D6A6D2 /* speexlib.xcodeproj */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				8B81B4B010318ADB00A18DA1 /* AddressBook.framework */,
+				8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */,
+				8B9303A51011F11B004BDA41 /* AudioToolbox.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B177BE3104674A600E42923 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				8B7EEC1810483D81007EE771 /* vms_out_Active.png */,
+				8B7EEBCC104834F8007EE771 /* vmail_out_newHigh.png */,
+				8B7EEBCD104834F8007EE771 /* vm_icons_outgoing_undelivered.png */,
+				8B7EEBCE104834F8007EE771 /* vm_icons_outgoing_delivered.png */,
+				8B7EEBCF104834F8007EE771 /* vm_icons_incoming_read.png */,
+				8B7EEBD0104834F8007EE771 /* vm_icons_incoming_new.png */,
+				8B177BE8104674E000E42923 /* missed.png */,
+				8B177BEA104674E000E42923 /* callout.png */,
+				8B177BEB104674E000E42923 /* callin.png */,
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
+		8B889B0C1042E75E00D6A6D2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8B889B131042E75E00D6A6D2 /* libspeexlib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8B8EC6B2101211570036D419 /* interface */ = {
+			isa = PBXGroup;
+			children = (
+				8B9302761011EDFA004BDA41 /* ltpdump.c */,
+				8B9302771011EDFA004BDA41 /* ltpdump.h */,
+				8B9302781011EDFA004BDA41 /* LtpInterface.c */,
+				8B9302791011EDFA004BDA41 /* LtpInterface.h */,
+				8B93027A1011EDFA004BDA41 /* netlayer.c */,
+				8B93027B1011EDFA004BDA41 /* netlayer.h */,
+				8B93027C1011EDFA004BDA41 /* playrecordpcm.c */,
+				8B93027D1011EDFA004BDA41 /* playrecordpcm.h */,
+				8B93027F1011EDFA004BDA41 /* vmsplayrecord.c */,
+				8B9302801011EDFA004BDA41 /* vmsplayrecord.h */,
+			);
+			name = interface;
+			sourceTree = "<group>";
+		};
+		8B9302A21011EEBE004BDA41 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				8B9302A91011EEBE004BDA41 /* src */,
+				8B9302CB1011EF6E004BDA41 /* gsm */,
+				8B9302A31011EEBE004BDA41 /* include */,
+			);
+			name = common;
+			path = ../lib/common;
+			sourceTree = SOURCE_ROOT;
+		};
+		8B9302A31011EEBE004BDA41 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				8B9302A41011EEBE004BDA41 /* blowfish.h */,
+				8B9302A51011EEBE004BDA41 /* ezxml.h */,
+				8B9302A61011EEBE004BDA41 /* ltpmobile.h */,
+				8B9302A81011EEBE004BDA41 /* ua.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		8B9302A91011EEBE004BDA41 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				8B9302AA1011EEBE004BDA41 /* blowfish.c */,
+				8B9302AB1011EEBE004BDA41 /* ezxml.c */,
+				8B9302AC1011EEBE004BDA41 /* ltpmobile.c */,
+				8B9302AF1011EEBE004BDA41 /* ua.c */,
+				8B10088F1042C08700D3A63B /* windows.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		8B9302CB1011EF6E004BDA41 /* gsm */ = {
+			isa = PBXGroup;
+			children = (
+				8BAAB29D1042DA1800F3EE73 /* DECODE.c */,
+				8B9302CD1011EFC6004BDA41 /* Add.c */,
+				8B9302CE1011EFC6004BDA41 /* CODE.c */,
+				8B9302CF1011EFC6004BDA41 /* CONFIG.h */,
+				8B9302D11011EFC6004BDA41 /* GSM.h */,
+				8B9302D21011EFC6004BDA41 /* GSM_CREA.c */,
+				8B9302D31011EFC6004BDA41 /* GSM_DECO.c */,
+				8B9302D41011EFC6004BDA41 /* GSM_DEST.c */,
+				8B9302D51011EFC6004BDA41 /* GSM_ENCO.c */,
+				8B9302D61011EFC6004BDA41 /* GSM_EXPL.c */,
+				8B9302D71011EFC6004BDA41 /* GSM_IMPL.c */,
+				8B9302D81011EFC6004BDA41 /* Long_ter.c */,
+				8B9302D91011EFC6004BDA41 /* Lpc.c */,
+				8B9302DA1011EFC6004BDA41 /* MYSTRING.h */,
+				8B9302DB1011EFC6004BDA41 /* Preproce.c */,
+				8B9302DC1011EFC6004BDA41 /* PRIVATE.h */,
+				8B9302DD1011EFC6004BDA41 /* PROTO.h */,
+				8B9302DE1011EFC6004BDA41 /* Rpe.c */,
+				8B9302DF1011EFC6004BDA41 /* SHORT_TE.c */,
+				8B9302E01011EFC6004BDA41 /* STRING.c */,
+				8B9302E11011EFC6004BDA41 /* Table.c */,
+				8B9302E21011EFC6004BDA41 /* UNPROTO.h */,
+			);
+			name = gsm;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* spokn */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "spokn" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = spokn;
+			productName = spokn;
+			productReference = 1D6058910D05DD3D006BFB54 /* spokn.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "spokn" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8B889B0C1042E75E00D6A6D2 /* Products */;
+					ProjectRef = 8B889B0B1042E75E00D6A6D2 /* speexlib.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* spokn */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8B889B131042E75E00D6A6D2 /* libspeexlib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libspeexlib.a;
+			remoteRef = 8B889B121042E75E00D6A6D2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				8B9302821011EDFA004BDA41 /* contactDetails.xib in Resources */,
+				8B9302841011EDFA004BDA41 /* contact.xib in Resources */,
+				8B9302861011EDFA004BDA41 /* dialview.xib in Resources */,
+				8B9302881011EDFA004BDA41 /* incommingcall.xib in Resources */,
+				8B93028B1011EDFA004BDA41 /* loginview.xib in Resources */,
+				8B9302911011EDFA004BDA41 /* spokn.png in Resources */,
+				8B6739E3101209E900849952 /* spokn-Info.plist in Resources */,
+				8BCAF7F0101EC488009FC391 /* vmsRecordPlay.xib in Resources */,
+				8BA9F5E11026E50D0082B6AE /* calllog.xib in Resources */,
+				8BA8E3A21027EF800022801E /* addeditcontact.xib in Resources */,
+				8BA8E558102835BC0022801E /* vmailview.xib in Resources */,
+				8B0B3EAC103AD39900150C5B /* spokn_1.xcclassmodel in Resources */,
+				8B177BF0104674E000E42923 /* missed.png in Resources */,
+				8B177BF2104674E000E42923 /* callout.png in Resources */,
+				8B177BF3104674E000E42923 /* callin.png in Resources */,
+				8B7EEBD2104834F8007EE771 /* vmail_out_newHigh.png in Resources */,
+				8B7EEBD3104834F8007EE771 /* vm_icons_outgoing_undelivered.png in Resources */,
+				8B7EEBD4104834F8007EE771 /* vm_icons_outgoing_delivered.png in Resources */,
+				8B7EEBD5104834F8007EE771 /* vm_icons_incoming_read.png in Resources */,
+				8B7EEBD6104834F8007EE771 /* vm_icons_incoming_new.png in Resources */,
+				8B7EEC1910483D81007EE771 /* vms_out_Active.png in Resources */,
+				8BCEEB2D104AD235001DF4AC /* OverlayView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* spoknAppDelegate.m in Sources */,
+				8B9302811011EDFA004BDA41 /* contactDetailsviewcontroller.m in Sources */,
+				8B9302831011EDFA004BDA41 /* contactviewController.m in Sources */,
+				8B9302851011EDFA004BDA41 /* dialviewcontroller.m in Sources */,
+				8B9302871011EDFA004BDA41 /* Incommingcallviewcontroller.m in Sources */,
+				8B93028A1011EDFA004BDA41 /* loginviewcontroller.m in Sources */,
+				8B93028C1011EDFA004BDA41 /* LtpTimer.m in Sources */,
+				8B93028D1011EDFA004BDA41 /* ltpdump.c in Sources */,
+				8B93028E1011EDFA004BDA41 /* LtpInterface.c in Sources */,
+				8B93028F1011EDFA004BDA41 /* netlayer.c in Sources */,
+				8B9302901011EDFA004BDA41 /* playrecordpcm.c in Sources */,
+				8B9302921011EDFA004BDA41 /* vmsplayrecord.c in Sources */,
+				8B9302B01011EEBE004BDA41 /* blowfish.c in Sources */,
+				8B9302B11011EEBE004BDA41 /* ezxml.c in Sources */,
+				8B9302B21011EEBE004BDA41 /* ltpmobile.c in Sources */,
+				8B9302B51011EEBE004BDA41 /* ua.c in Sources */,
+				8B9302E31011EFC6004BDA41 /* Add.c in Sources */,
+				8B9302E41011EFC6004BDA41 /* CODE.c in Sources */,
+				8B9302E61011EFC6004BDA41 /* GSM_CREA.c in Sources */,
+				8B9302E71011EFC6004BDA41 /* GSM_DECO.c in Sources */,
+				8B9302E81011EFC6004BDA41 /* GSM_DEST.c in Sources */,
+				8B9302E91011EFC6004BDA41 /* GSM_ENCO.c in Sources */,
+				8B9302EA1011EFC6004BDA41 /* GSM_EXPL.c in Sources */,
+				8B9302EB1011EFC6004BDA41 /* GSM_IMPL.c in Sources */,
+				8B9302EC1011EFC6004BDA41 /* Long_ter.c in Sources */,
+				8B9302ED1011EFC6004BDA41 /* Lpc.c in Sources */,
+				8B9302EE1011EFC6004BDA41 /* Preproce.c in Sources */,
+				8B9302EF1011EFC6004BDA41 /* Rpe.c in Sources */,
+				8B9302F01011EFC6004BDA41 /* SHORT_TE.c in Sources */,
+				8B9302F11011EFC6004BDA41 /* STRING.c in Sources */,
+				8B9302F21011EFC6004BDA41 /* Table.c in Sources */,
+				8BCAF7EF101EC488009FC391 /* vmsrecordplayviewcontroller.m in Sources */,
+				8BA9F5E01026E50D0082B6AE /* calllogviewcontroller.m in Sources */,
+				8BA8E3A11027EF800022801E /* addeditcontactviewcontroller.m in Sources */,
+				8BA8E559102835BC0022801E /* vmailviewcontroller.m in Sources */,
+				8B81B3F910317A2900A18DA1 /* addressbookcontact.m in Sources */,
+				8BF729B4103562B400C124B0 /* spoknalert.m in Sources */,
+				8BAAB29E1042DA1800F3EE73 /* DECODE.c in Sources */,
+				8BCA77351043C3E90018419C /* customcell.m in Sources */,
+				8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = spokn_Prefix.pch;
+				GENERATE_PROFILING_CODE = YES;
+				INFOPLIST_FILE = "spokn-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../speexlib/build\"",
+					"\"$(SRCROOT)/../lib/speex/macos/build\"",
+				);
+				PRODUCT_NAME = spokn;
+				PROVISIONING_PROFILE = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
+				SDKROOT = iphonesimulator2.2;
+				SKIP_INSTALL = NO;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = spokn_Prefix.pch;
+				INFOPLIST_FILE = "spokn-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../speexlib/build\"",
+					"\"$(SRCROOT)/../lib/speex/macos/build\"",
+				);
+				PRODUCT_NAME = spokn;
+				PROVISIONING_PROFILE = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../lib/common,
+					"../speexlib/include/**",
+					"../lib/common/**",
+					"../lib/gsm/**",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = "1E1D55B3-B0D8-45A0-BEFD-F121B982C9DF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E1D55B3-B0D8-45A0-BEFD-F121B982C9DF";
+				SDKROOT = iphonesimulator2.2.1;
+				SKIP_INSTALL = NO;
+				STRIP_INSTALLED_PRODUCT = YES;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"spokn/**",
+					../lib/common,
+					"../speexlib/include/**",
+					"../lib/common/**",
+					"../lib/gsm/**",
+				);
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
+				SDKROOT = iphoneos2.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "spokn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "spokn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
