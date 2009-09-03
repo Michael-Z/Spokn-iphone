@@ -34,6 +34,7 @@
 {
 	[super touchesBegan:touches withEvent:event];
 	[self dismissKeyboard:numberFieldP];
+	
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
 {
@@ -259,22 +260,37 @@
 - (void) handleCallTimer: (id) timer
 {
 	self->timecallduration++;
-	time_t timeP;
+	time_t timeP = {0};
+	struct tm  tmLoc;
 	struct tm *tmP=0;
 	//readSocketData(self->ltpInterfacesP);//read socket
+	
 	timeP = self->timecallduration;
-	tmP = localtime(&timeP);
-	if(tmP)
+	
+	if(sec>59)
+	{
+		min++;
+		sec=0;
+	}
+	if(min>59)
+	{
+		min = 0;
+		hour++;
+	}
+	//	tmLoc.tm_sec = 
+	//tmP = localtime(&timeP);
+	//if(tmP)
 	{	
 		char s1[20];
 		NSString *stringStrP;
-		sprintf(s1,"%02d:%02d:%02d",tmP->tm_hour,tmP->tm_min,tmP->tm_sec);
-			stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
+		//sprintf(s1,"%02d:%02d:%02d",tmLoc.tm_hour,tmLoc.tm_min,tmLoc.tm_sec);
+		sprintf(s1,"%02d:%02d:%02d",hour,min,sec);
+		stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
 		[statusLabelP setText:stringStrP];
 		[stringStrP release];
 		
 	}
-	
+	sec++;
 }
 - (void) handleCallTimerEnd: (id) timer
 {
@@ -343,7 +359,11 @@
 													selector: @selector(handleCallTimer:)
 													userInfo: nil
 													 repeats: YES];
-				timecallduration = time(0);
+				//timecallduration = time(0);
+				timecallduration = 0;
+				hour = 0;
+				min = 0;
+				sec = 0;
 				
 			}	
 			

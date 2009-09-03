@@ -393,9 +393,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	vmsviewP.ltpInterfacesP = ltpInterfacesP;
 	//callviewP.ltpInterfacesP = ltpInterfacesP;
     [ window makeKeyAndVisible ];
-	tabBarController.selectedViewController = vmsNavigationController;
-	tabBarController.selectedViewController = contactNavigationController;
-	tabBarController.selectedViewController = calllogNavigationController;
+	//tabBarController.selectedViewController = vmsNavigationController;
+	//tabBarController.selectedViewController = contactNavigationController;
+	//tabBarController.selectedViewController = calllogNavigationController;
 	tabBarController.selectedViewController = dialNavigationController;
 
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];

@@ -17,7 +17,6 @@
 		8B177BF0104674E000E42923 /* missed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BE8104674E000E42923 /* missed.png */; };
 		8B177BF2104674E000E42923 /* callout.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEA104674E000E42923 /* callout.png */; };
 		8B177BF3104674E000E42923 /* callin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEB104674E000E42923 /* callin.png */; };
-		8B1AE44B1042EC4500A83773 /* libspeexlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1AE44A1042EC4500A83773 /* libspeexlib.a */; };
 		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
 		8B7EEBD2104834F8007EE771 /* vmail_out_newHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7EEBCC104834F8007EE771 /* vmail_out_newHigh.png */; };
 		8B7EEBD3104834F8007EE771 /* vm_icons_outgoing_undelivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7EEBCD104834F8007EE771 /* vm_icons_outgoing_undelivered.png */; };
@@ -67,6 +66,7 @@
 		8BA9F5E01026E50D0082B6AE /* calllogviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9F5DE1026E50D0082B6AE /* calllogviewcontroller.m */; };
 		8BA9F5E11026E50D0082B6AE /* calllog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA9F5DF1026E50D0082B6AE /* calllog.xib */; };
 		8BAAB29E1042DA1800F3EE73 /* DECODE.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BAAB29D1042DA1800F3EE73 /* DECODE.c */; };
+		8BB54917104BF25B00BD6C22 /* libspeexlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB54916104BF25B00BD6C22 /* libspeexlib.a */; };
 		8BCA77351043C3E90018419C /* customcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCA77341043C3E90018419C /* customcell.m */; };
 		8BCAF7EF101EC488009FC391 /* vmsrecordplayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCAF7ED101EC488009FC391 /* vmsrecordplayviewcontroller.m */; };
 		8BCAF7F0101EC488009FC391 /* vmsRecordPlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCAF7EE101EC488009FC391 /* vmsRecordPlay.xib */; };
@@ -81,9 +81,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8B889B121042E75E00D6A6D2 /* PBXContainerItemProxy */ = {
+		8BB54930104BF2F300BD6C22 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8B889B0B1042E75E00D6A6D2 /* speexlib.xcodeproj */;
+			containerPortal = 8BB5492C104BF2F300BD6C22 /* speexlib.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = speexlib;
@@ -104,7 +104,6 @@
 		8B177BE8104674E000E42923 /* missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = missed.png; path = rsc/missed.png; sourceTree = "<group>"; };
 		8B177BEA104674E000E42923 /* callout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callout.png; path = rsc/callout.png; sourceTree = "<group>"; };
 		8B177BEB104674E000E42923 /* callin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callin.png; path = rsc/callin.png; sourceTree = "<group>"; };
-		8B1AE44A1042EC4500A83773 /* libspeexlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspeexlib.a; path = ../lib/speex/macos/build/libspeexlib.a; sourceTree = SOURCE_ROOT; };
 		8B6739E2101209E900849952 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B7EEBCC104834F8007EE771 /* vmail_out_newHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vmail_out_newHigh.png; path = rsc/vmail_out_newHigh.png; sourceTree = "<group>"; };
 		8B7EEBCD104834F8007EE771 /* vm_icons_outgoing_undelivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vm_icons_outgoing_undelivered.png; path = rsc/vm_icons_outgoing_undelivered.png; sourceTree = "<group>"; };
@@ -116,7 +115,6 @@
 		8B81B3F810317A2900A18DA1 /* addressbookcontact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addressbookcontact.m; sourceTree = "<group>"; };
 		8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		8B81B4B010318ADB00A18DA1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		8B889B0B1042E75E00D6A6D2 /* speexlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = speexlib.xcodeproj; path = ../lib/speex/macos/speexlib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDetailsviewcontroller.h; sourceTree = "<group>"; };
 		8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDetailsviewcontroller.m; sourceTree = "<group>"; };
 		8B9302661011EDFA004BDA41 /* contactDetails.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contactDetails.xib; sourceTree = "<group>"; };
@@ -176,6 +174,8 @@
 		8BA9F5DE1026E50D0082B6AE /* calllogviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calllogviewcontroller.m; sourceTree = "<group>"; };
 		8BA9F5DF1026E50D0082B6AE /* calllog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = calllog.xib; sourceTree = "<group>"; };
 		8BAAB29D1042DA1800F3EE73 /* DECODE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DECODE.c; path = ../lib/gsm/DECODE.c; sourceTree = SOURCE_ROOT; };
+		8BB54916104BF25B00BD6C22 /* libspeexlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspeexlib.a; path = ../lib/speex/macos/build/libspeexlib.a; sourceTree = SOURCE_ROOT; };
+		8BB5492C104BF2F300BD6C22 /* speexlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = speexlib.xcodeproj; path = ../lib/speex/macos/speexlib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		8BCA77331043C3E90018419C /* customcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customcell.h; sourceTree = "<group>"; };
 		8BCA77341043C3E90018419C /* customcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customcell.m; sourceTree = "<group>"; };
 		8BCAF7EC101EC488009FC391 /* vmsrecordplayviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmsrecordplayviewcontroller.h; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 				8B9303A61011F11B004BDA41 /* AudioToolbox.framework in Frameworks */,
 				8B81B4AD10318AC300A18DA1 /* AddressBookUI.framework in Frameworks */,
 				8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */,
-				8B1AE44B1042EC4500A83773 /* libspeexlib.a in Frameworks */,
+				8BB54917104BF25B00BD6C22 /* libspeexlib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +276,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				8B1AE44A1042EC4500A83773 /* libspeexlib.a */,
+				8BB54916104BF25B00BD6C22 /* libspeexlib.a */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -312,7 +312,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8B889B0B1042E75E00D6A6D2 /* speexlib.xcodeproj */,
+				8BB5492C104BF2F300BD6C22 /* speexlib.xcodeproj */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				8B81B4B010318ADB00A18DA1 /* AddressBook.framework */,
 				8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */,
@@ -337,14 +337,6 @@
 				8B177BEB104674E000E42923 /* callin.png */,
 			);
 			name = image;
-			sourceTree = "<group>";
-		};
-		8B889B0C1042E75E00D6A6D2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8B889B131042E75E00D6A6D2 /* libspeexlib.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		8B8EC6B2101211570036D419 /* interface */ = {
@@ -427,6 +419,14 @@
 			name = gsm;
 			sourceTree = "<group>";
 		};
+		8BB5492D104BF2F300BD6C22 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8BB54931104BF2F300BD6C22 /* libspeexlib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -459,8 +459,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 8B889B0C1042E75E00D6A6D2 /* Products */;
-					ProjectRef = 8B889B0B1042E75E00D6A6D2 /* speexlib.xcodeproj */;
+					ProductGroup = 8BB5492D104BF2F300BD6C22 /* Products */;
+					ProjectRef = 8BB5492C104BF2F300BD6C22 /* speexlib.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -471,11 +471,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		8B889B131042E75E00D6A6D2 /* libspeexlib.a */ = {
+		8BB54931104BF2F300BD6C22 /* libspeexlib.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libspeexlib.a;
-			remoteRef = 8B889B121042E75E00D6A6D2 /* PBXContainerItemProxy */;
+			remoteRef = 8BB54930104BF2F300BD6C22 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -607,8 +607,8 @@
 					"\"$(SRCROOT)/../lib/speex/macos/build\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
+				PROVISIONING_PROFILE = "CA446A64-1065-487C-86EE-1B24BBCCD12A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CA446A64-1065-487C-86EE-1B24BBCCD12A";
 			};
 			name = Release;
 		};
@@ -620,7 +620,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -646,6 +646,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -656,8 +657,8 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
+				PROVISIONING_PROFILE = "CA446A64-1065-487C-86EE-1B24BBCCD12A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CA446A64-1065-487C-86EE-1B24BBCCD12A";
 				SDKROOT = iphoneos2.2;
 			};
 			name = Release;

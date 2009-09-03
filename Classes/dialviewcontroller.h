@@ -31,6 +31,7 @@
 	NSTimer *calltimerP;//this timer for call duration
 	Boolean onLineB;
 	long timecallduration;
+	int hour,min,sec;
 	
 }
 
