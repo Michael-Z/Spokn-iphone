@@ -132,7 +132,9 @@
 		[ [self navigationController] popToRootViewControllerAnimated:YES ];
 		contactID = -1;
 		profileResync();
+		
 	}
+	
 	else
 	{										 
 		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 

@@ -39,8 +39,12 @@
 					<object class="IBUIButton" id="1009097956">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{47, 134}, {72, 37}}</string>
+						<string key="NSFrame">{{61, 395}, {103, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAxIDAAA</bytes>
+						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -50,39 +54,46 @@
 							<double key="NSSize">1.500000e+01</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Accept</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="67647974">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleColor">
+						<object class="NSColor" key="IBUINormalTitleColor" id="115714445">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+							<bytes key="NSRGB">MSAxIDEAA</bytes>
 						</object>
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="699729417">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">answer.png</string>
+						</object>
 					</object>
 					<object class="IBUIButton" id="316396064">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{173, 134}, {72, 37}}</string>
+						<string key="NSFrame">{{187, 395}, {108, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MSAwIDAAA</bytes>
+						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="762981669"/>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Regect</string>
+						<string key="IBUINormalTitle">decline</string>
 						<reference key="IBUIHighlightedTitleColor" ref="67647974"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="115714445"/>
 						<reference key="IBUINormalTitleShadowColor" ref="699729417"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">decline.png</string>
+						</object>
 					</object>
 					<object class="IBUILabel" id="297661062">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -184,10 +195,10 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="1009097956"/>
-							<reference ref="316396064"/>
 							<reference ref="297661062"/>
 							<reference ref="859959590"/>
+							<reference ref="1009097956"/>
+							<reference ref="316396064"/>
 						</object>
 						<reference key="parent" ref="317526666"/>
 					</object>
@@ -241,7 +252,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>IncommingCallViewController</string>
 					<string>UIResponder</string>
-					<string>{{520, 376}, {320, 480}}</string>
+					<string>{{347, 376}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

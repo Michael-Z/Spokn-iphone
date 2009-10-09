@@ -21,9 +21,11 @@
 
 #import "CalllogViewController.h"
 #import "vmailviewcontroller.h"
+#import "spoknviewcontroller.h"
+
 //#import "NSFileManager.h"
 @implementation SpoknAppDelegate
-
+/*
 @synthesize window;
 @synthesize dialviewP;
 
@@ -32,8 +34,8 @@
 @synthesize vmsviewP;
 @synthesize callviewP;
 @synthesize vmsRPViewP;
-
-@synthesize dialNavigationController;
+*/
+//@synthesize dialNavigationController;
 @synthesize vmsNavigationController;
 @synthesize calllogNavigationController;
 @synthesize contactNavigationController;
@@ -73,6 +75,8 @@
 			#endif
 			self->onLineB = true;
 				[dialviewP setStatusText: @"online" :ALERT_ONLINE :0 ];
+			[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
+			
 			//[self performSelectorOnMainThread : @ selector(popLoginView: ) withObject:nil waitUntilDone:YES];
 
 			profileResync();
@@ -81,6 +85,8 @@
 			break;
 		case ALERT_OFFLINE:
 			self->onLineB = false;
+			[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
+			
 				switch(self->subID)
 				{
 					case LOGIN_STATUS_OFFLINE:
@@ -104,7 +110,7 @@
 			[self performSelectorOnMainThread : @ selector(vmsDeinitRecordPlay: ) withObject:nil waitUntilDone:YES];
 			break;
 		case VMS_RECORD_KILL:	
-			vmsDeInit(&vmsP);
+			//vmsDeInit(&vmsP);
 			
 			////printf("\n delete record object");
 			[self performSelectorOnMainThread : @ selector(vmsDeinitRecordPlay: ) withObject:nil waitUntilDone:YES];
@@ -134,7 +140,12 @@
 				case REFRESH_CONTACT:
 					[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:contactviewP waitUntilDone:YES];
 					//refresh cradit
+					//balance = getBalance();
 					[dialviewP setStatusText: nil :UA_ALERT :REFRESH_CONTACT ];
+					[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
+					
+
+					
 					break;
 				
 				case REFRESH_VMAIL:
@@ -159,7 +170,8 @@
 					loginViewP = [[LoginViewController alloc] initWithNibName:@"loginview" bundle:[NSBundle mainBundle]];
 					loginViewP.ltpInterfacesP  = ltpInterfacesP;
 					[loginViewP setObject:self];
-					[ [self dialNavigationController] pushViewController:loginViewP animated: YES ];
+					[tabBarController presentModalViewController:loginViewP animated:YES];
+					//[ [self dialNavigationController] pushViewController:loginViewP animated: YES ];
 					
 					//NSLog(@"retainCount:%d", [addeditviewP retainCount]);
 					if([loginViewP retainCount]>1)
@@ -179,46 +191,41 @@
 }
 -(void)vmsDeinitRecordPlay:(id)object
 {
-	Boolean recordB = true;
-	if(vmsP)
-	{	
-		recordB = vmsP->recordB ;	
-	}
 	vmsDeInit(&vmsP);
-	
-	//UINavigationController *tmp;
-	if(recordB)
-	{	
-		recordB = [vmsRPViewP vmsUIStop];
-		if(recordB==false)
-		{	
-			//[ vmsController popToViewController: vmsviewP animated: YES ];
-			[ vmsNavigationController popViewControllerAnimated: YES ];
+	[VmsProtocolP VmsStop];
+		
 			
-		}
-	}
-	else
-	{
-		[vmsviewP stopvmsPlay];
-	}
 	
-			
-	//tmp = tabBarController.selectedViewController;
-	//tabBarController.selectedViewController = navigationController;	
-	//tabBarController.selectedViewController = tmp;
-	//tabBarController.selectedViewController = navigationController;
-
+}
+-(void)SendDTMF:(char*)dtmfP
+{
+		SendDTMF(ltpInterfacesP,0,dtmfP);
 }
 -(void)popLoginView:(id)object
 {
-	[ dialNavigationController popViewControllerAnimated:YES ];
-	//[self changeView];
+	//[ dialNavigationController popViewControllerAnimated:YES ];
+	[self changeView];
 }
 -(void)newBadgeArrived:(id)object
 {
+	
+	NSString *stringStrP;
 	UINavigationController *controllerP;
 	controllerP = object;
-	controllerP.tabBarItem.badgeValue= @"";
+	char s1[30];
+	
+	sprintf(s1,"%d",newVMailCount());
+	stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
+	controllerP.tabBarItem.badgeValue= stringStrP;
+
+	[stringStrP release];
+	
+	
+	
+	}
+-(void)updateSpoknView:(id)object
+{
+	[spoknViewControllerP setDetails:getTitle() :self->onLineB :getBalance() :getForwardNo() :getDidNo() ];
 }
 -(void)LoadContactView:(id)object
 {
@@ -234,13 +241,15 @@
 	[inCommingCallViewP setIncommingData:self->incommingCallList[self->lineID]];
 	[inCommingCallViewP setObject:self];
 	
-	[ dialNavigationController pushViewController: inCommingCallViewP animated: YES ];
+	//[ dialNavigationController pushViewController: inCommingCallViewP animated: YES ];
 	
-	
-	//NSLog(@"retainCount:%d", [addeditviewP retainCount]);
+		//NSLog(@"retainCount:%d", [addeditviewP retainCount]);
+	[tabBarController presentModalViewController:inCommingCallViewP animated:YES];
 	if([inCommingCallViewP retainCount]>1)
 		[inCommingCallViewP release];
 	
+
+	//tabBarController.selectedViewController = dialNavigationController;
 	
 //	[ dialNavigationController pushViewController: inCommingCallViewP animated: YES ];
 	[self changeView];
@@ -307,15 +316,32 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[ window addSubview: viewController.view ];
 	//[ window addSubview: viewController->usernameP ];
 	//[ window addSubview: viewController->passwordP ];
+	char *userNameCharP;
+	char *passwordCharP;
+	NSMutableArray *viewControllers;
+	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	dialviewP = [[DialviewController alloc] initWithNibName:@"dialview" bundle:[NSBundle mainBundle]];
 	
-	
-	vmsP = 0;
-	dialNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: dialviewP ];
-	contactNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: contactviewP ];
-	vmsNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: vmsviewP ];
-	calllogNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: callviewP ];
 
+
+	contactviewP = [[ContactViewController alloc] initWithNibName:@"contact" bundle:[NSBundle mainBundle]];
+	vmsviewP = [[VmailViewController alloc] initWithNibName:@"vmailview" bundle:[NSBundle mainBundle]];
+	callviewP = [[CalllogViewController alloc] initWithNibName:@"calllog" bundle:[NSBundle mainBundle]];
 	
+	spoknViewControllerP = [[SpoknViewController alloc] initWithNibName:@"spoknviewcontroller" bundle:[NSBundle mainBundle]];	
+	vmsP = 0;
+	//dialNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: dialviewP ];
+	contactNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: contactviewP ];
+	[contactviewP release];
+	vmsNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: vmsviewP ];
+	[vmsviewP release];
+	calllogNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: callviewP ];
+	[callviewP release];
+	
+	
+	spoknViewNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: spoknViewControllerP ];
+	[spoknViewControllerP release];
+	[spoknViewControllerP setObject:self];
 	[dialviewP setObject:self];
 	[contactviewP setObject:self];
 	contactviewP.uaObject = GETCONTACTLIST;
@@ -327,7 +353,6 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[vmsviewP setObjType:GETVMAILLIST];
 
 	[vmsviewP setObject:self];
-	[vmsRPViewP setObject:self];
 	//callviewP.uaObject = GETCALLLOGLIST;
 	[callviewP setObject:self];
 	[callviewP setObjType:GETCALLLOGLIST];
@@ -340,29 +365,34 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	viewControllers = [[NSMutableArray alloc] init];
 	//[viewControllers addObject:loginViewP];
-	[viewControllers addObject:dialNavigationController];
-	[viewControllers addObject:calllogNavigationController];
 	[viewControllers addObject:contactNavigationController];
-	[viewControllers addObject:vmsNavigationController];
+	[contactNavigationController release];
 	
-	tabBarController = [ [ UITabBarController alloc ] init ];
-	tabBarController.viewControllers = viewControllers;
-	
-	//[window addSubview:navigationController.view];
-	dialNavigationController.tabBarItem = [UITabBarItem alloc];
-	[dialNavigationController.tabBarItem initWithTitle:@"Dial" image:nil tag:1];
-	contactNavigationController.tabBarItem = [UITabBarItem alloc];
-	[contactNavigationController.tabBarItem initWithTitle:@"Contact" image:nil tag:3];
-	
-	vmsNavigationController.tabBarItem = [UITabBarItem alloc];
-	[vmsNavigationController.tabBarItem initWithTitle:@"Vms" image:nil tag:4];
-	
-	
-	calllogNavigationController.tabBarItem = [UITabBarItem alloc];
-	[calllogNavigationController.tabBarItem initWithTitle:@"Calllog" image:nil tag:4];
+	[viewControllers addObject:calllogNavigationController];
+	[calllogNavigationController release];
 
+
+	[viewControllers addObject:dialviewP];
+	[dialviewP release];
+	
+	[viewControllers addObject:vmsNavigationController];
+	[vmsNavigationController release];
+	
+	[viewControllers addObject:spoknViewNavigationController];
+	[spoknViewNavigationController release];
+	tabBarController = [ [ UITabBarController alloc ] init ];
+	printf("\n tab retain count %d",[tabBarController retainCount]);
+	tabBarController.viewControllers = viewControllers;
+	[viewControllers release];
+	
+	printf("\n dialviewP retain count %d",[dialviewP retainCount]);
+
+	printf("\n tab retain count %d",[tabBarController retainCount]);
+	
+	tabBarController.delegate = self; 	
 	[window addSubview:tabBarController.view];
-	ltpTimerP = nil;	
+	printf("\n \n add tab retain count %d",[tabBarController retainCount]);
+		ltpTimerP = nil;	
 	#ifndef _OWN_THREAD_
 		ltpTimerP = [[LtpTimer alloc] init];
 	#endif	
@@ -375,6 +405,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		ltpInterfacesP = startLtp(alertNotiFication,(unsigned long)self);
 	}
 	setLtpServer(ltpInterfacesP,"64.49.236.88");
+	//setLtpServer(ltpInterfacesP,"64.49.244.225");
+
 	//start ua 
 	UACallBackType uaCallback = {0};
 	uaCallback.uData = self;
@@ -393,16 +425,37 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	vmsviewP.ltpInterfacesP = ltpInterfacesP;
 	//callviewP.ltpInterfacesP = ltpInterfacesP;
     [ window makeKeyAndVisible ];
-	//tabBarController.selectedViewController = vmsNavigationController;
-	//tabBarController.selectedViewController = contactNavigationController;
-	//tabBarController.selectedViewController = calllogNavigationController;
-	tabBarController.selectedViewController = dialNavigationController;
-
+	//tabBarController.selectedViewController = dialviewP;
+	
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc addObserver:self selector:@selector(alertAction:) name:@"ALERTNOTIFICATION" object:nil];
 	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	//[nc postNotificationName:@"DEQUEUEAUDIO" object:idP userInfo:nil];
 	cdrLoad();
+	NSString *idValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"id_prefrence"];
+	NSString *passValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"pass_prefrence"];
+	char *idValueCharP;
+	char *idPasswordCharP;
+	idValueCharP =(char*) [idValue cStringUsingEncoding:1];
+	idPasswordCharP = (char*)[passValue cStringUsingEncoding:1];
+	
+	userNameCharP = getLtpUserName(ltpInterfacesP);
+	if(idValueCharP)
+	{	
+		if(strlen(userNameCharP)==0 || (strlen(idValueCharP)>0 && strcmp(userNameCharP,idValueCharP)!=0 ) )
+		{
+			printf("\n%s %s",idValueCharP,idPasswordCharP);
+			setLtpUserName(ltpInterfacesP, idValueCharP);
+			setLtpPassword(ltpInterfacesP, idPasswordCharP);
+			
+		}
+	}	
+	free(userNameCharP);
+	[idValue release];
+	[passValue release];
+	//setLtpUserName(ltpInterfacesP, "");
+	//setLtpPassword(ltpInterfacesP, "");
+	//NSString *ltpValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"protocol_prefrence"];
 	if(DoLtpLogin(ltpInterfacesP))//mean error ask dial to load login view
 	{
 		alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self,0);
@@ -412,32 +465,47 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[self LoadContactView:vmsviewP];
 	[self LoadContactView:callviewP];
 	*/	
+
+	printf("\n tab retain count %d",[tabBarController retainCount]);
+	printf("\n after %d %d",[callviewP retainCount],[dialviewP retainCount]	);
+	//tabBarController.selectedViewController = vmsNavigationController;
+	[vmsviewP.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
+	tabBarController.selectedViewController = spoknViewNavigationController;
 	
+
 		
 }
+-(void)logOut
+{
+	logOut(ltpInterfacesP);
+}
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+	//[super applicationWillTerminate:application];
+	[ltpTimerP stopTimer ];
+	logOut(ltpInterfacesP);
+	endLtp(ltpInterfacesP);
+	printf("\n  count %d tab %d",[dialviewP retainCount],[tabBarController retainCount]);
+	[tabBarController release];
+	
+	//[contactNavigationController release];
+	//[vmsNavigationController release];
+	//[calllogNavigationController release];
+	//[dialviewP release];
+	
+	
+	
+	
 
+	
 
+}
 - (void)dealloc {
  //   [viewController release];
-	[ltpTimerP stopTimer ];
+	
 	//[navigationController.tabBarItem release];
-	
-	endLtp(ltpInterfacesP);
-	ltpInterfacesP = 0;
-	[ltpTimerP release ];
-	
-	[dialviewP release];
-	[contactviewP release];
-
-	
-	[tabBarController release];
-	[viewControllers release];
-	[dialNavigationController.tabBarItem release];
-	[contactNavigationController.tabBarItem release];
-	[contactNavigationController release];
-		
-    [window release];
-    [super dealloc];
+		[window release];
+	  [super dealloc];
 }
 -(IBAction)loginLtp:(id)sender
 {
@@ -462,7 +530,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 -(void)popLoginView
 {
-	[dialNavigationController popToRootViewControllerAnimated:TRUE];
+//	[dialNavigationController popToRootViewControllerAnimated:TRUE];
+	[tabBarController dismissModalViewControllerAnimated:YES];
+	//[self changeView];
+
 
 }
 -(void)changeView
@@ -470,8 +541,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[ navigationController pushViewController: dialviewP animated: YES ];
 	//[navigationController setViewControllers: dialviewP animated: YES ];
 	//tabBarController.selectedViewController = dialviewP;
-	
-	tabBarController.selectedViewController = dialNavigationController;
+	tabBarController.selectedViewController = dialviewP;
+	//tabBarController.selectedViewController = dialNavigationController;
 }
 //call by incomming method
 -(void)AcceptCall:(IncommingCallType*) inComP
@@ -480,7 +551,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	self->incommingCallList[inComP->lineid] = 0;
 	free(inComP);
 	dialviewP.currentView = 1;//mean show hang button
-	[ dialNavigationController popToViewController: dialviewP animated: YES ];
+	[tabBarController dismissModalViewControllerAnimated:YES];
+
+	//[ dialNavigationController popToViewController: dialviewP animated: YES ];
+	[self changeView];
 	
 
 }
@@ -489,7 +563,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	RejectInterface(ltpInterfacesP, inComP->lineid);
 	self->incommingCallList[inComP->lineid] = 0;
 	free(inComP);
-	[ dialNavigationController popToViewController: dialviewP animated: YES ];
+	//[ dialNavigationController popToViewController: dialviewP animated: YES ];
+	[tabBarController dismissModalViewControllerAnimated:YES];
+	[self changeView];
 
 
 }
@@ -499,6 +575,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	NSMutableString *tempStringP;
 	NSString *strP;
 	Boolean retB = false;
+	
 	if(self->onLineB)
 	{	
 		strP = [[NSString alloc] initWithUTF8String:noCharP] ;
@@ -513,6 +590,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		retB = callLtpInterface(self->ltpInterfacesP,noCharP);
 	//[]
+		NSLog(@"\n%@",tempStringP);
 		[dialviewP setStatusText:tempStringP :TRYING_CALL :0];
 	//[tempStringP release];
 		[tempStringP release ];
@@ -530,6 +608,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 	hangLtpInterface(self->ltpInterfacesP);
 	[dialviewP setStatusText: @"call end" :0 :0];
+	[tabBarController dismissModalViewControllerAnimated:YES];
+
 	return true;
 }
 
@@ -548,6 +628,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 		return 2;
 	}
+	printf("\n");
+	printf(fileName);
 	vmsP = vmsInit((unsigned long )self, alertNotiFication,false);
 	if(vmsP==0)
 	{
@@ -562,12 +644,16 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	*sizeP = sz;
 	//printf("\nvms play");
-	[self VmsStreamStart: false];
+	//[self VmsStreamStart: false];
 	//[ vmsController pushViewController: vmsRPViewP animated: YES ];
 	//tabBarController.selectedViewController = vmsController;
 	//[vmsRPViewP vmsPlayStart:sz];
 	//printf("\nvms start play");
 	return 0;
+}
+-(void)setVmsDelegate :(id)deligateP
+{
+	VmsProtocolP = deligateP;
 }
 -(int)VmsStreamStart:(Boolean)recordB
 {
@@ -600,10 +686,54 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	return 0;
 }
--(int) vmsRecordStart:(char*)noCharP
+-(int) vmsShowRecordScreen : (char*)noCharP
+{
+	struct AddressBook * addressP;
+	char type[30];
+	int max = 20;
+	
+		printf("\nname  %s",noCharP );
+	addressP = getContactAndTypeCall(noCharP,type);	
+	if(addressP)
+	{
+		VmShowViewController     *vmShowViewControllerP;	
+		printf("\n %s %s",type,noCharP);
+		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
+		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
+		[vmShowViewControllerP setFileName: "temp" :0];
+		[vmShowViewControllerP setvmsDetail: noCharP : addressP->title :type :false :max :0];
+		[vmShowViewControllerP setObject:self];
+		
+		[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];
+		
+		if([vmShowViewControllerP retainCount]>1)
+			[vmShowViewControllerP release];
+		printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);
+		
+	}
+	else
+	{
+		VmShowViewController     *vmShowViewControllerP;	
+		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
+		[vmShowViewControllerP setFileName: "temp" :0];
+		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
+		[vmShowViewControllerP setvmsDetail: noCharP : noCharP :"mobile" :false :max : 0];
+		[vmShowViewControllerP setObject:self];
+		
+		[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];
+		
+		if([vmShowViewControllerP retainCount]>1)
+			[vmShowViewControllerP release];
+		printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);	
+	}
+	tabBarController.selectedViewController = vmsNavigationController;	
+	
+	return 0;
+}
+-(int) vmsRecordStart:(char*)fileNameP
 {
 	
-	char nameP[200];
+	char *nameP=0;
 	if(vmsP)
 	{
 		return 2;
@@ -613,27 +743,64 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 		return 1;
 	}
-	makeVmsFileName("temp",nameP);
+	if(fileNameP==0)
+	{
+		fileNameP="temp";
+	}
+	makeVmsFileName(fileNameP,&nameP);
 	
 	if(vmsSetFileRecord(vmsP, nameP))
 	{
 		vmsDeInit(&vmsP);
+		if(nameP)
+		free(nameP);
 		return 1;
 	}
-	else
-	{
-		[ vmsNavigationController pushViewController: vmsRPViewP animated: YES ];
-		tabBarController.selectedViewController = vmsNavigationController;
-		[vmsRPViewP vmsRecordStart:20 :noCharP];
-	}
-	
+	if(nameP)
+	free(nameP);	
 	return 0;
 }
--(int) vmsSend:(char*)numberP
+-(int) vmsSend:(char*)numberP :(char*)fileNameCharP
 {
-	char nameP[200];
-	makeVmsFileName("temp",nameP);
-	return sendVms(numberP,nameP);
+	int er = 0;
+	char *nameP=0;
+	if(fileNameCharP==0)
+	{
+		fileNameCharP="temp";
+	}
+	makeVmsFileName(fileNameCharP,&nameP);
+	er =  sendVms(numberP,nameP);
+	if(nameP)
+		free(nameP);
+	return er;
 	
 }
+-(int)getFileSize:(char*)fileNameP :(unsigned long *)noSecP
+{
+	long sz;
+	printf("\n");
+	printf(fileNameP);
+	FILE *fp;
+	fp = fopen(fileNameP,"rb");
+	if(fp)
+	{
+		
+		*noSecP = 20;
+		fseek(fp,0,SEEK_END);
+		sz = ftell(fp);
+		*noSecP = sz/(1650);
+		fclose(fp);
+		if(*noSecP==0)
+		{	
+			printf("\n file size %ld ",sz);
+			return 1;
+			
+		}
+	}	
+	return 0;
+		
+
+
+}
+
 @end

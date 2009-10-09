@@ -113,7 +113,7 @@ int CloseDumpFile(LtpRtpDumpType **ltprtpDumpP,int pcmB)
 }
 int ConvertFileToWav(char *srcFileP,char *destFileP,int codec)
 {
-	
+	return 0;
 }
 int InitRiffHeader (RiffHeaderType* riffHeader)
 {

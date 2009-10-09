@@ -67,7 +67,7 @@
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         // Initialization code
 		
-		CGRect cellFrame = CGRectMake(0.0, 0.0, self.contentView.bounds.size.width, self.contentView.bounds.size.height);
+		CGRect cellFrame = CGRectMake(5.0, 5.0, self.contentView.bounds.size.width-8.0, self.contentView.bounds.size.height-8.0);
 		spoknSubCellP = [[SpoknSubCell alloc] initWithFrame:cellFrame];
 		
 		spoknSubCellP.autoresizingMask = (UIViewAutoresizingFlexibleHeight | 
@@ -256,11 +256,12 @@
 -(void)dealloc
 {
 	//[elementP release];
+	//printf("\n dealloc called");
 	while(elementP.count)
 	{
 		
 		id iD;
-		////printf("\n element count %d",elementP.count);
+	//	printf("\n element count %d",elementP.count);
 		//NSMutableArray *tmpObj;
 		iD = [elementP objectAtIndex:0];
 		[iD release];

@@ -131,15 +131,18 @@
 
 	
 
-/*
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
+		[self.tabBarItem   initWithTabBarSystemItem: 
+												  UITabBarSystemItemContacts tag:1];
+
     }
     return self;
 }
-*/
+
 
 // Add a title for each section 
 
@@ -177,6 +180,7 @@ titleForHeaderInSection:(NSInteger)section
 - (void)viewDidLoad {
     [super viewDidLoad];
 		searchbar.delegate = self;
+	
 	//CGRect cellFrame ;
 	//cellFrame = searchbar.bounds;
 	//cellFrame.size.width-=30;
@@ -271,6 +275,7 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
+	printf("\n contact dealloc");
 	[ovController release];	
 	[addressBookTableDelegate release];
     [super dealloc];
@@ -285,7 +290,7 @@ titleForHeaderInSection:(NSInteger)section
 }
 - (void) addContactUI {
 
-	AddEditcontactViewController     *addeditviewP;	
+	/*AddEditcontactViewController     *addeditviewP;	
 	addeditviewP = [[AddEditcontactViewController alloc] initWithNibName:@"addeditcontact" bundle:[NSBundle mainBundle]];
 	[ [self navigationController] pushViewController:addeditviewP animated: YES ];
 	[addeditviewP setContactDetail:nil];
@@ -293,6 +298,21 @@ titleForHeaderInSection:(NSInteger)section
 	//NSLog(@"retainCount:%d", [addeditviewP retainCount]);
 	if([addeditviewP retainCount]>1)
 		[addeditviewP release];
+	 */
+	ContactDetailsViewController     *ContactControllerDetailsviewP;	
+	ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+	[ContactControllerDetailsviewP setObject:self->ownerobject];
+	[ContactControllerDetailsviewP setAddressBook:0 editable:true :CONTACTADDVIEWENUM];
+	
+
+	[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+		
+	
+	
+	if([ContactControllerDetailsviewP retainCount]>1)
+		[ContactControllerDetailsviewP release];
+	printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+	
 	
 	//[ ownerobject.ContactControllerController pushViewController:ownerobject->addeditviewP animated: YES ];
 	//[ownerobject->addeditviewP setContactDetail:nil];
@@ -414,10 +434,11 @@ titleForHeaderInSection:(NSInteger)section
 				}
 			}	
 			// Add the name to the proper array
-		
+			[secP release];
 			
 			[CellIdentifier release];
 		}
+		
 	////printf("\n session count %d",sectionArray.count);
 		for(i=0;i<sectionArray.count;++i)
 		{
@@ -593,13 +614,14 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
-		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
-		[ContactControllerDetailsviewP setAddressBook:addressP];
+		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
 		[ContactControllerDetailsviewP setObject:self->ownerobject];
-		
+
+		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+				
 		if([ContactControllerDetailsviewP retainCount]>1)
 			[ContactControllerDetailsviewP release];
-		
+		printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 		
 		
 		
@@ -628,7 +650,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	switch(luaObj)
 	{
 		case GETCONTACTLIST:
-			[self setTitle:@"Contact"];
+			[self setTitle:@"Contacts"];
 			break;
 		case GETVMAILLIST:
 			[self setTitle:@"VMail"];

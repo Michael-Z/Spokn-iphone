@@ -92,5 +92,6 @@ void AudioSessionInterruptionListenerLocal(
 										   void *                  inClientData,
 										   UInt32                  inInterruptionState);
 void SetAudioType(void *uData,int type);
+int SetSpeakerOnOrOff(void *uData,Boolean onB);
 #endif
 

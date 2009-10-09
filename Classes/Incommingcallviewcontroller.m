@@ -34,6 +34,10 @@
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"IncommingCall" image:nil tag:2];
 	[incomingStatusLabelP setText:textProP];
+	[self.view setBackgroundColor:[[[UIColor alloc] 
+							   initWithPatternImage:[UIImage defaultDesktopImage]]
+							  autorelease]];
+	
 	//self.incomingStatusLabelP.text =textProP;
 	//[incomingStatusLabelP performSelectorOnMainThread : @ selector(setText: ) withObject:textProP waitUntilDone:YES];
 

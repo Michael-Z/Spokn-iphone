@@ -12,20 +12,43 @@
 #import "SpoknAppDelegate.h"
 #import "spoknalert.h"
 #include "time.h"
-
+#import "keypadview.h"
+#import "callviewcontroller.h"
 @implementation DialviewController
 
 @synthesize ltpInterfacesP;
 @synthesize currentView;
-/*
+- (void)keyPressedDown:(NSString *)stringkey keycode:(int)keyVal
+{
+		
+	//NSLog(@"%@   %d",stringkey ,keyVal);
+	NSString *curText = [numberlebelP text];
+	int length = [curText length];
+	
+	if(length==0)
+	{	
+		statusLabel1P.hidden = YES;
+		statusLabel2P.hidden = YES;
+	}
+	[numberlebelP setText: [curText stringByAppendingString: stringkey]];
+
+}
+- (void)keyPressedUp:(NSString *)stringkey keycode:(int)keyVal
+{
+
+}
+
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
+		[self.tabBarItem initWithTitle:@"Keypad" image:[UIImage imageNamed:@"Dial.png"] tag:3];
+		callingstringP = nil;
     }
     return self;
 }
-*/
+
 - (IBAction)valueChanged: (id)sender
 {
 	
@@ -33,7 +56,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
-	[self dismissKeyboard:numberFieldP];
+//	[self dismissKeyboard:numberFieldP];
 	
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
@@ -52,7 +75,7 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    [super viewDidLoad];
+  //  [super viewDidLoad];
 	//numberFieldP.text = @"19176775362";
 	//numberFieldP.text = @"19176775335";
 	//numberFieldP.text = @"919967358084";
@@ -65,10 +88,15 @@
 		 target: self
 		 action: @selector(LoginPressed) ] autorelease ];
 	currentView = 0;
-	onLineB = false;
-	[statusLabelP setText:@"not loged in"];
+	
+	//[statusLabelP setText:@"not logged in"];
 	[activityIndicator stopAnimating]; 
-	statusLabelP.textAlignment=UITextAlignmentCenter;
+	//statusLabelP.textAlignment=UITextAlignmentCenter;
+	keypadmain.objectId = 0;
+	//keypadmain.dataStringP = @"mukesh\nsharma";
+	[keypadmain setImage:@"dialerkeypad.png" : @"dialerkeypad_pressed.png"];
+	[keypadmain setElement:3 :4];
+	keypadmain.keypadProtocolP = self;
 	
 	/*
 	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
@@ -85,7 +113,20 @@
 	status = 0;
 	subStatus = 0;
 	//[numberFieldP becomeFirstResponder];
-	numberFieldP.delegate = self;
+	//numberFieldP.delegate = self;
+	/*
+	[callButton setImage:[UIImage imageNamed:@"answer.png"] 
+				 forState: UIControlStateNormal];
+	callButton.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
+	[callButton setTitle:@"Sip" forState:UIControlStateNormal];
+	callButton.titleShadowOffset = CGSizeMake(0,-1);
+	[callButton setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+	[callButton setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
+	[callButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+	[callButton setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+	callButton.font = [UIFont boldSystemFontOfSize:26];
+	callButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"call.png"]];
+	*/
 
 }
 -(void) LoginPressed {
@@ -98,8 +139,8 @@
 -(void) LogoutPressed {
 	
 	logOut(ltpInterfacesP);
-	statusLabelP. textAlignment=UITextAlignmentCenter;
-	[statusLabelP setText:@""];
+	//statusLabelP. textAlignment=UITextAlignmentCenter;
+	//[statusLabelP setText:@""];
 	[self.navigationItem.leftBarButtonItem initWithTitle: @"Login" style:UIBarButtonItemStylePlain
 	 target: self
 	 action: @selector(LoginPressed) ] ;
@@ -155,9 +196,11 @@
 
 
 - (void)dealloc {
+	printf("\n dialview dealloc");
 	[calltimerP release];
-	[statusLabelP release];
-	[numberFieldP release];
+	[callingstringP release]; 
+	//[statusLabelP release];
+	//[numberFieldP release];
     [super dealloc];
 }
 -(void)setObject:(id) object 
@@ -179,22 +222,31 @@
 	
 
 }
+-(IBAction)backkeyPressed:(id)sender
+{
+	NSString *curText = [numberlebelP text];
+	int length = [curText length];
+	if(length > 0)
+	{
+		[numberlebelP setText: [curText substringToIndex:(length-1)]];
+		length = [curText length];
+	}
+	if(length==0)
+	{
+		statusLabel1P.hidden = NO;
+		statusLabel2P.hidden = NO;
+	}
+	
+}
 -(IBAction)callLtp:(id)sender
 {
 	//[self->ownerobject->navigationController pushViewController: ownerobject.inCommingCallViewP animated: YES ];
+	printf("\n %d %d",onLineB,self->onLineB);
 	if(onLineB)
 	{	
 		char *numbercharP;
-		NSMutableString *tempStringP;
-		tempStringP = [[NSMutableString alloc] init] ;
-		[tempStringP setString:@"Calling "];
-		[tempStringP appendString:[numberFieldP text] ];
-		[self->ownerobject showText:tempStringP];
-		numbercharP = (char*)[[numberFieldP text] cStringUsingEncoding:1];
+		numbercharP = (char*)[[numberlebelP text] cStringUsingEncoding:1];
 		[ownerobject makeCall:numbercharP];
-		//callLtpInterface(ltpInterfacesP,numbercharP);
-		[tempStringP release];
-		[self dismissKeyboard:numberFieldP];
 		currentView = 1;
 		[hangUpButtonP setTitle:@"Hang" forState:UIControlStateNormal];
 	}
@@ -208,7 +260,7 @@
 							  ];
 		[ alert show ];
 		[alert release];
-		[self dismissKeyboard:numberFieldP];
+		//[self dismissKeyboard:numberFieldP];
 
 		
 	}
@@ -221,20 +273,20 @@
 		if(currentView==1)
 		{	
 			hangLtpInterface(ltpInterfacesP);
-			[self dismissKeyboard:numberFieldP];
+			//[self dismissKeyboard:numberFieldP];
 			currentView = 0;
-			[hangUpButtonP setTitle:@"Vms" forState:UIControlStateNormal];
+		//	[hangUpButtonP setTitle:@"Vms" forState:UIControlStateNormal];
 		}
 		else
 		{
 			char *numbercharP;
-			numbercharP = (char*)[[numberFieldP text] cStringUsingEncoding:1];
+			numbercharP = (char*)[[numberlebelP text] cStringUsingEncoding:1];
 			if(strlen(numbercharP)>5)
 			{	
-				char *numcharP;
-				numcharP = malloc(strlen(numbercharP)+10);
-				strcpy(numcharP,numbercharP);
-				[ownerobject vmsRecordStart:numcharP];
+				//char *numcharP;
+				//numcharP = malloc(strlen(numbercharP)+10);
+				//strcpy(numcharP,numbercharP);
+				[ownerobject vmsShowRecordScreen:numbercharP];
 			}	
 		}
 	}
@@ -248,7 +300,7 @@
 							  ];
 		[ alert show ];
 		[alert release];
-		[self dismissKeyboard:numberFieldP];
+	//	[self dismissKeyboard:numberFieldP];
 
 		
 	
@@ -286,7 +338,7 @@
 		//sprintf(s1,"%02d:%02d:%02d",tmLoc.tm_hour,tmLoc.tm_min,tmLoc.tm_sec);
 		sprintf(s1,"%02d:%02d:%02d",hour,min,sec);
 		stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
-		[statusLabelP setText:stringStrP];
+		//[statusLabelP setText:stringStrP];
 		[stringStrP release];
 		
 	}
@@ -294,7 +346,7 @@
 }
 - (void) handleCallTimerEnd: (id) timer
 {
-	[statusLabelP setText:@"end call"];
+	//[statusLabelP setText:@"end call"];
 	timecallduration = 0;
 	[(NSTimer*)timer invalidate];
 	profileResync();//to get balance
@@ -304,7 +356,7 @@
 	switch(self->status)
 	{
 		case START_LOGIN:
-			statusLabelP. textAlignment=UITextAlignmentLeft;
+			//statusLabelP. textAlignment=UITextAlignmentLeft;
 
 			[activityIndicator startAnimating];
 			[self.navigationItem.leftBarButtonItem initWithTitle: @"Cancel" style:UIBarButtonItemStylePlain
@@ -322,24 +374,26 @@
 				{	
 					
 					stringStrP = [[NSString alloc] initWithUTF8String:unameP ];
-					[ltpNameLabelP setText:stringStrP];
+					//[ltpNameLabelP setText:stringStrP];
 					[stringStrP release];
 					free(unameP);
 				
 				}	
 			
-				statusLabelP. textAlignment=UITextAlignmentCenter;
+				//statusLabelP. textAlignment=UITextAlignmentCenter;
 		
 				[self.navigationItem.leftBarButtonItem initWithTitle: @"Logout" style:UIBarButtonItemStylePlain
 				 target: self
 				 action: @selector(LogoutPressed) ] ;
 				[self->ownerobject popLoginView];
+				printf("\n online code");
 				onLineB = true;
+				printf("\n %d",self->onLineB);
 				[activityIndicator stopAnimating];
 			}	
 			break;
 		case ALERT_OFFLINE:
-			statusLabelP. textAlignment=UITextAlignmentCenter;
+		//	statusLabelP. textAlignment=UITextAlignmentCenter;
 						
 
 			[self.navigationItem.leftBarButtonItem initWithTitle: @"Login" style:UIBarButtonItemStylePlain
@@ -348,33 +402,47 @@
 			[self->ownerobject popLoginView];
 			[self setViewButton:0];
 			[activityIndicator stopAnimating];
-
+			printf("\n offline code");
 			onLineB = false;
 			break;
 		case ALERT_CONNECTED:
 			if(calltimerP==nil)
 			{	
-				calltimerP = [NSTimer scheduledTimerWithTimeInterval: 1
+				/*calltimerP = [NSTimer scheduledTimerWithTimeInterval: 1
 													  target: self
 													selector: @selector(handleCallTimer:)
 													userInfo: nil
-													 repeats: YES];
+													 repeats: YES];*/
 				//timecallduration = time(0);
 				timecallduration = 0;
 				hour = 0;
 				min = 0;
 				sec = 0;
-				
+				[callViewControllerP startTimer];
 			}	
 			
 		case TRYING_CALL:
 		
 			[self setViewButton:1];
+			if(callViewControllerP==0)
+			{	
+				callViewControllerP = [[CallViewController alloc] initWithNibName:@"callviewcontroller" bundle:[NSBundle mainBundle]];
+				[callViewControllerP setObject:self->ownerobject];
+				[callViewControllerP setLabel:callingstringP];
+				[self presentModalViewController:callViewControllerP animated:YES];
+				if([callViewControllerP retainCount]>1)
+					[callViewControllerP release];
+			}	
+			[numberlebelP setText:@""];
+
 			break;
 		case ALERT_DISCONNECTED:
 			
 			[self setViewButton:0];
 			[calltimerP invalidate];
+			timecallduration = [callViewControllerP stopTimer];
+			[self dismissModalViewControllerAnimated:NO];
+			callViewControllerP = 0;
 			//printf("\ndisconnected");
 			calltimerP = nil;
 			//again for show time for sec
@@ -407,7 +475,7 @@
 				NSString *stringStrP;
 				sprintf(s1,"$ %.2f",balfloat);
 				stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
-				[balanceLabelP setText:stringStrP];
+				//[balanceLabelP setText:stringStrP];
 				[stringStrP release];
 				
 				
@@ -420,12 +488,15 @@
 -(void)setStatusText:(NSString *)strP :(int)lstatus :(int)lsubStatus
 {
 	//statusLabelP.text = strP;
-	//[statusLabelP performSelector:@selector(setText:) withObject:@"Updated Text" afterDelay:0.1f];
+		//[statusLabelP performSelector:@selector(setText:) withObject:@"Updated Text" afterDelay:0.1f];
 	if(lstatus !=ALERT_DISCONNECTED || timecallduration==0 )
 	{	
 		if(strP)
 		{	
-			[statusLabelP performSelectorOnMainThread : @ selector(setText: ) withObject:strP waitUntilDone:YES];
+			[callingstringP release]; 
+			callingstringP = [[NSString alloc] initWithString:strP];
+
+			//[statusLabelP performSelectorOnMainThread : @ selector(setText: ) withObject:strP waitUntilDone:YES];
 		}	
 	}
 		//[statusLabelP drawRect];

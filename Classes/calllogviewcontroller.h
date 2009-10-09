@@ -12,7 +12,7 @@
 #import "customCell.h"
 
 @class SpoknAppDelegate;
-@interface CalllogViewController : UIViewController< UITableViewDelegate,UITableViewDataSource> {
+@interface CalllogViewController : UIViewController< UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate> {
 	IBOutlet UITableView *tableView;
 	SpoknAppDelegate *ownerobject;	
 	UAObjectType uaObject;
@@ -21,6 +21,8 @@
 	UIImage  *outImageP;
 	CellObjectContainer *cellofcalllogP;
 	UIFont *fontGloP;
+	int showMisscallInt;
+	UISegmentedControl *segmentedControl;
 	
 }
 -(void)setObject:(id) object ;

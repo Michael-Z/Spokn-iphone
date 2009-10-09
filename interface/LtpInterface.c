@@ -283,6 +283,11 @@ void *PollThread(void *PollThreadP)
 	
 	while(1)
 	{
+		if(gP->pthreadstopB==true) 
+		{
+			gP->pthreadstopB = false;
+			break;
+		}
 		if(DoPolling(gP)!=0)
 		{	
 			//sleep(1);
@@ -350,8 +355,13 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 	ltpInterfaceP->playbackP = 0;
 	ltpInterfaceP->recordP = 0;
 	#ifdef _OWN_THREAD_
-
-		pthread_exit(ltpInterfaceP->pthObj);
+		ltpInterfaceP->pthreadstopB = true;
+		while(ltpInterfaceP->pthreadstopB)
+		{
+			sleep(1);
+		}
+		//pthread_cancel(ltpInterfaceP->pthObj);
+		//pthread_exit(ltpInterfaceP->pthObj);
 		ltpInterfaceP->pthObj = 0;
 	#endif
 	free(ltpInterfaceP->ltpObjectP);
@@ -373,7 +383,7 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 		return -2;
 	}
 	restartSocket(&ltpInterfaceP->socketID);
-////printf("\n%s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
+printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
 	ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
 	ltpInterfaceP->alertNotifyP(START_LOGIN,0,0,ltpInterfaceP->userData,0);
 	

@@ -19,15 +19,16 @@
 @class CalllogViewController;
 @class AddEditcontactViewController;
 #include "vmsplayrecord.h"
+#import "vmshowviewcontroller.h"
 
 #define LOAD_VIEW 1000
 #define LOAD_LOGIN_VIEW 1
 #define TRYING_CALL 4000
 
 @class VmailViewController;
+@class SpoknViewController;
 
-
-@interface SpoknAppDelegate : NSObject <UIApplicationDelegate> {
+@interface SpoknAppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate> {
   //  @public
 	UIWindow *window;
 	
@@ -37,21 +38,25 @@
 	ContactViewController     *contactviewP;
 	VmailViewController     *vmsviewP;
 	CalllogViewController     *callviewP;
-	VmsRecordPlayViewController *vmsRPViewP;
-	UINavigationController *dialNavigationController;
+	//VmsRecordPlayViewController *vmsRPViewP;
+	SpoknViewController			*spoknViewControllerP;
+//	UINavigationController *dialNavigationController;
 	UINavigationController *vmsNavigationController;
 	UINavigationController *calllogNavigationController;
 	UINavigationController *contactNavigationController;
-
-	NSMutableArray *viewControllers;
+	UINavigationController *spoknViewNavigationController;
+	
+	
 	UITabBarController *tabBarController;
 	LtpInterfaceType *ltpInterfacesP;
 	VmsPlayRecordType *vmsP;
 	Boolean onLineB;
+	float balance;
 //	@public
 	int status;
 	int subID;
 	int lineID;
+	id<VmsProtocol> VmsProtocolP;
 	IncommingCallType *incommingCallList[MAXINCALL];
 //
 	
@@ -70,15 +75,18 @@
 -(void)AcceptCall:(IncommingCallType *)inComP;
 -(void)RejectCall:(IncommingCallType *)inComP;
 -(void)LoadContactView:(id)object;
-
+-(void)SendDTMF:(char *)dtmfVapP;
+-(void)logOut;
+-(void)updateSpoknView:(id)object;
+/*
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet DialviewController *dialviewP;
-@property (nonatomic, retain) IBOutlet ContactViewController *contactviewP;
-@property (nonatomic, retain) IBOutlet VmailViewController *vmsviewP;
-@property (nonatomic, retain) IBOutlet VmsRecordPlayViewController *vmsRPViewP;
-@property (nonatomic, retain) IBOutlet CalllogViewController *callviewP;
+@property (nonatomic, assign) IBOutlet DialviewController *dialviewP;
+@property (nonatomic, assign) IBOutlet ContactViewController *contactviewP;
+@property (nonatomic, assign) IBOutlet VmailViewController *vmsviewP;
+@property (nonatomic, assign) IBOutlet VmsRecordPlayViewController *vmsRPViewP;
+@property (nonatomic, assign) IBOutlet CalllogViewController *callviewP;
 
-@property (nonatomic, assign) IBOutlet UINavigationController *dialNavigationController;
+*/
 @property (nonatomic, assign) IBOutlet UINavigationController *vmsNavigationController;
 @property (nonatomic, assign) IBOutlet UINavigationController *calllogNavigationController;
 @property (nonatomic, assign) IBOutlet UINavigationController *contactNavigationController;
@@ -93,9 +101,13 @@ changed:(BOOL)changed;
 -(Boolean)endCall:(int)lineid;
 -(int) vmsPlayStart:(char *)fileName :(unsigned long *)fileszP;
 -(int) vmsStop:(Boolean)recordB;
--(int) vmsRecordStart:(char*)numberP;
--(int) vmsSend:(char*)numberP;
+-(int) vmsRecordStart:(char*)namecharP;
+-(int) vmsSend:(char*)numberP :(char*)fileNameCharP;
 -(void)popLoginView;
 -(int)VmsStreamStart:(Boolean)recordB;
+-(void)setVmsDelegate :(id)deligateP;
+-(int)getFileSize:(char*)fileNameP :(unsigned long *)noSecP;
+-(int) vmsShowRecordScreen : (char*)noCharP;
+
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);

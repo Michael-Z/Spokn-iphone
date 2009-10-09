@@ -14,7 +14,14 @@
 @implementation LoginViewController
 
 @synthesize ltpInterfacesP;
-
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[super touchesBegan:touches withEvent:event];
+	[usernameFieldP resignFirstResponder];
+	[passwordFieldP resignFirstResponder];
+	
+	
+}
 
  
 
@@ -49,6 +56,14 @@
 		[uNameStringP release];
 		[passwordStringP release];
 	}
+	/*[passwordFieldP becomeFirstResponder];
+	passwordFieldP.delegate = self;
+
+	[usernameFieldP becomeFirstResponder];
+	usernameFieldP.delegate = self;
+	[usernameFieldP resignFirstResponder];
+	[passwordFieldP resignFirstResponder];*/
+	
 	//usernameFieldP.text = @"dhpatil1";
 	//passwordFieldP.text = @"deepak123";
 
@@ -86,8 +101,8 @@
 
 - (void)dealloc {
 	//printf("\ndalloc");
-	[usernameFieldP release];
-	[passwordFieldP release];
+	//[usernameFieldP release];
+	//[passwordFieldP release];
     [super dealloc];
 }
 -(IBAction)loginLtp:(id)sender
@@ -110,9 +125,11 @@
 	
 	
 }
--(IBAction)cancelLtp:(id)sender
+-(IBAction)openUrl:(id)sender
 {
 	//[self->ownerobject popLoginView];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.spokn.com/cgi-bin/signup.cgi"]];
+
 
 }
 -(void)setObject:(id) object 

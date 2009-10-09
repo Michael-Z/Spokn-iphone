@@ -153,11 +153,18 @@ int vmsSetFilePlay(VmsPlayRecordType *vmsP,char *nameP,unsigned long *noSecP)
 	//printf(nameP);
 	if(openPlayRecordFile(vmsP,nameP,"rb")==0)
 	{
+		
 		*noSecP = 20;
 		fseek(vmsP->playRecordFP,0,SEEK_END);
 		sz = ftell(vmsP->playRecordFP);
 		*noSecP = sz/(1650);
 		fseek(vmsP->playRecordFP,0,SEEK_SET);
+		if(*noSecP==0)
+		{	
+			printf("\n file size %ld ",sz);
+			return 1;
+		
+		}	
 		return 0;
 	}
 	return 1;

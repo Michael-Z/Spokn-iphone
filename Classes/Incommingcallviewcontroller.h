@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #include "LtpInterface.h"
 @class SpoknAppDelegate;
-IncommingCallType *ownerobject;
+
+//IncommingCallType *ownerobject;
 @interface IncommingCallViewController : UIViewController {
 	IBOutlet UILabel *incomingStatusLabelP;
 	SpoknAppDelegate *ownerobject;

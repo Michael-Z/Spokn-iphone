@@ -11,7 +11,7 @@
 #import "LtpInterface.h"
 
 @class SpoknAppDelegate;
-@interface LoginViewController : UIViewController {
+@interface LoginViewController : UIViewController<UITextFieldDelegate> {
 	IBOutlet UITextField*usernameFieldP;
 	IBOutlet UITextField *passwordFieldP;
 	//LtpTimer *ltpTimerP;
@@ -26,7 +26,7 @@
 
 -(void)setObject:(id) object ;
 -(IBAction)loginLtp:(id)sender;
--(IBAction)cancelLtp:(id)sender;
+-(IBAction)openUrl:(id)sender;
 
 
 @end

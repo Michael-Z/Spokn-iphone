@@ -12,6 +12,7 @@
 #import "SpoknAppDelegate.h"
 #include "contactviewcontroller.h"
 #import "customcell.h"
+#import "vmshowviewcontroller.h"
 @implementation VmailViewController
 @synthesize ltpInterfacesP;
 
@@ -51,8 +52,54 @@
 	
 
 }
--(void)startVmsProgress:(int) max
+-(void)startVmsProgress:(char*)fileNameCharP :(int) max :(struct VMail *)vmailP
 {
+	
+#define _TEST_VMAIL_
+#ifdef _TEST_VMAIL_
+	struct AddressBook * addressP;
+	char type[30];
+	printf("\n max time %d",max);
+	viewPlayResult = 0;
+	addressP = getContactAndTypeCall(vmailP->userid,type);	
+	if(addressP)
+	{
+		VmShowViewController     *vmShowViewControllerP;	
+		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
+		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
+		[vmShowViewControllerP setFileName: fileNameCharP :&viewPlayResult];
+		[vmShowViewControllerP setvmsDetail: vmailP->userid : addressP->title :type :true :max :vmailP];
+		[vmShowViewControllerP setObject:self->ownerobject];
+		
+		[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];
+		
+		if([vmShowViewControllerP retainCount]>1)
+			[vmShowViewControllerP release];
+		printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);
+		
+	}
+	else
+	{
+		VmShowViewController     *vmShowViewControllerP;	
+		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
+		[vmShowViewControllerP setFileName: fileNameCharP :&viewPlayResult];
+		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
+		[vmShowViewControllerP setvmsDetail: vmailP->userid : vmailP->userid :"mobile" :true :max : vmailP];
+		[vmShowViewControllerP setObject:self->ownerobject];
+		
+		[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];
+		
+		if([vmShowViewControllerP retainCount]>1)
+			[vmShowViewControllerP release];
+		printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);	
+	}
+	return;
+#endif
+	
+	
+	
+	
+	
 	amt = 0.0;
 	maxtime = max*2;
 	//CGRect rectSheet;
@@ -64,6 +111,8 @@
 			otherButtonTitles:nil, nil, nil];
 	//rectSheet = uiActionSheetP.bounds;
 	//rectSheet.size.height = 50;
+	
+	//[uiActionSheetP addButtonWithTitle:@"Test" ];
 	uiProgressP = [[UIProgressView alloc] initWithFrame:
 			   
 			   CGRectMake(10.0f, 10.0f, 300.0f, 10.0f)];
@@ -100,15 +149,23 @@
 	
 }
 
-/*
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
+		//[self.tabBarItem   initWithTabBarSystemItem: 
+		// UITabBarSystemItemFavorites tag:4];
+		//[self.tabBarItem initWithTitle:@"Dial" image:[UIImage imageNamed:@"Dial.png"] tag:1];
+	//	[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
+		//self.tabBarItem = [UITabBarItem alloc];
+		//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
+		//self.title = @"Voicemail";
+		//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
     }
     return self;
 }
-*/
+
 
 -(void)setObject:(id) object 
 {
@@ -129,7 +186,7 @@
 {
 	int count;
 	/*return [[UIFont	familyNames] count];*/
-	count = GetTotalCount(GETVMAILLIST);
+	count = GetTotalCount(showFailInt);
 	//printf("\n mukesh sharma %d",count);
 		return count;
 }
@@ -147,7 +204,7 @@
 {
 	struct AddressBook *addressP;
 	void *objP;
-	
+	char *typeCallP = 0;
 	char *objStrP=0;
 	char *secObjStrP = 0;
 	struct tm *tmP=0;
@@ -160,31 +217,104 @@
 	
 	////printf("\n index = %d\n",index);
 	
-	objP = GetObjectAtIndex(GETVMAILLIST ,index);
+	objP = GetObjectAtIndex(showFailInt ,index);
 	if(objP)
 	{
 		//	NSString *CellIdentifier;
 		struct VMail *vmailP;
 		vmailP =(struct VMail*) objP;
 		objStrP = vmailP->userid;
+		printf("\n %s\n",objStrP);
 		addressP = getContactOf(objStrP);
 		if(addressP)
 		{
+			
+			if (!strcmp(addressP->mobile, objStrP))
+			{
+				typeCallP = "mobile";
+			}
+			
+			if (!strcmp(addressP->home, objStrP))
+			{
+				typeCallP = "home";
+			}
+			
+			if (!strcmp(addressP->business, objStrP))
+			{
+				typeCallP = "business";
+			}	
+			if (!strcmp(addressP->spoknid, objStrP))
+			{
+				typeCallP = "spokn";
+			}	
+			if (!strcmp(addressP->other, objStrP))
+			{
+				typeCallP = "other";
+			}
+			
+			if (!strcmp(addressP->email, objStrP))
+			{
+				typeCallP = "email";
+			}
 			objStrP = addressP->title;
+			
 		}
 		timeP = vmailP->date;
 		tmP = localtime(&timeP);
+		
 		if(tmP)
 		{	
+			char *days[7]={"Sunday","Monday","Tuesday","Wednesday","Thusday","Friday","Sutarday"};
 			
-			sprintf(s1,"%02d:%02d %3s %02d",tmP->tm_hour,tmP->tm_min,month[tmP->tm_mon],tmP->tm_mday);
+			time_t todaytime;
+			long difftime;
+			struct tm tmP1,tmP2;
+			tmP1 = *tmP;
+			todaytime = time(0);
+			tmP =localtime(&todaytime);
+			tmP2 = *tmP;
+			
+			difftime = tmP2.tm_yday -tmP1.tm_yday;
+			
+			
+			if(difftime<0)
+			{
+				difftime = difftime*(-1);
+			}	
+			
+			if(difftime==0)
+			{
+				sprintf(s1,"%02d:%02d",tmP1.tm_hour,tmP1.tm_min);
+				
+			}
+			if(difftime==1)
+			{
+				sprintf(s1,"Yesterday");
+			}
+			else
+			{
+				if(difftime<7)
+				{
+					sprintf(s1,days[tmP1.tm_wday]);
+				}
+				else
+				{
+					sprintf(s1,"%3s %02d",month[tmP1.tm_mon],tmP1.tm_mday);
+				}
+			}
+			
+			
 			//sprintf(disp,"%-20s %12s",objStrP,s1);
+			//free(tmP);
 			strcpy(disp,objStrP);
 			//free(tmP);
 			objStrP = disp;
 			secObjStrP = s1;
 			
 		}
+		
+		
+		
 		
 			
 		
@@ -204,7 +334,7 @@
 			dispP.top = 0;
 			if(secObjStrP)
 			{	
-				dispP.width = 60;
+				dispP.width = 70;
 			}
 			else
 			{
@@ -287,7 +417,7 @@
 				dispP = [ [displayData alloc] init];
 				dispP.left = 0;
 				dispP.top = 0;
-				dispP.width = 40;
+				dispP.width = 30;
 				
 				dispP.height = 100;
 				if(vmailP->status==VMAIL_FAILED)
@@ -310,7 +440,23 @@
 				
 				// [cell setNeedsDisplay];
 			}	
+			if(typeCallP)
+			{	
+				dispP = [ [displayData alloc] init];
+				dispP.left = 20;
+				dispP.top = 0;
+				dispP.width = 70;
+				dispP.row = 1;
+				dispP.height = 40;
+				stringStrP = [[NSString alloc] initWithUTF8String:typeCallP ];
+				dispP.dataP = stringStrP;
+				[stringStrP release];
+				dispP.colorP = [UIColor lightGrayColor];
 			
+				dispP.fntSz = 14;
+				[dispP.colorP release];
+				[secLocP->elementP addObject:dispP];
+			}
 			if(sectionPP==0)//mean we dont need to return section object
 			{
 				[self->cellofvmsP addObject:secLocP];	
@@ -418,16 +564,16 @@
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
 	
 	struct VMail *vmailP;
-	char fName[200];
+	char *fNameP=0;
 	unsigned long timeTotal=0;
 	secLocP = cell.spoknSubCellP.userData;
 	vmailP =(struct VMail*) secLocP->userData;
-	if(GetVmsFileName(vmailP,fName)==0)
+	if(GetVmsFileName(vmailP,&fNameP)==0)
 	{
 		int er;
 		UIAlertView *alert;
-		
-		er = [ownerobject vmsPlayStart:fName :&timeTotal];
+	//	er = [ownerobject vmsPlayStart:fName :&timeTotal];
+		er = [ownerobject getFileSize:fNameP :&timeTotal];
 		switch(er)
 		{
 			case 0:
@@ -435,12 +581,29 @@
 				{
 					vmailP->status=VMAIL_DELIVERED;
 					vmailP->dirty=1;
-					
+					newVMailCountdecrease();
 					
 					profileResync();
 				}
-				[self navigationController].tabBarItem.badgeValue= nil;
-				[self startVmsProgress:timeTotal];
+				NSString *stringStrP;
+				char s1[30];
+				int count;
+				
+				count = newVMailCount();
+				if(count)
+				{	
+					sprintf(s1,"%d",count);
+					stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
+					[self navigationController].tabBarItem.badgeValue= stringStrP;
+				
+					[stringStrP release];
+				}
+				else
+				{
+					[self navigationController].tabBarItem.badgeValue= nil;
+				}
+				
+				[self startVmsProgress:fNameP :timeTotal :vmailP];
 				
 
 				break;
@@ -474,6 +637,10 @@
 		
 		
 	}	
+	if(fNameP)
+	{
+		free(fNameP);
+	}
 		
 
 }
@@ -523,11 +690,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }
 
 - (void) reload {
-	self.navigationItem.rightBarButtonItem 
-	= [ [ [ UIBarButtonItem alloc ]
-		 initWithBarButtonSystemItem: UIBarButtonSystemItemEdit
-		 target: self
-		 action: @selector(startEditing) ] autorelease ];	
+	
 	
 		//sectionType *secP;
 		
@@ -553,23 +716,38 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[ self->tableView reloadData ];
 }
 - (void) startEditing {
-	[ self->tableView setEditing: YES animated: YES ];
+/*	NSIndexPath * indexPath;
+	sectionType *secLocP;
+	indexPath = self->tableView.indexPathForSelectedRow;
+	if(indexPath)
+	{	
+		SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
 	
-	self.navigationItem.rightBarButtonItem 
-	= [ [ [ UIBarButtonItem alloc ]
-		 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
-		 target: self
-		 action: @selector(stopEditing) ] autorelease ];	
+		struct VMail *vmailP;
+		//char *fNameP=0;
+		//unsigned long timeTotal=0;
+		if(cell)
+		{	
+			secLocP = cell.spoknSubCellP.userData;
+			vmailP =(struct VMail*) secLocP->userData;
+			[ownerobject vmsShowRecordScreen:vmailP->userid];
+		}
+	}	
+	
+	*/
+	[ownerobject changeView];
+	
+
 }
 
 - (void) stopEditing {
-	[ self->tableView setEditing: NO animated: YES ];
+/*	[ self->tableView setEditing: NO animated: YES ];
 	
 	self.navigationItem.rightBarButtonItem  
 	= [ [ [ UIBarButtonItem alloc ]
 		 initWithBarButtonSystemItem: UIBarButtonSystemItemEdit
 		 target: self
-		 action: @selector(startEditing) ] autorelease ];
+		 action: @selector(startEditing) ] autorelease ];*/
 }
 
 
@@ -582,7 +760,59 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
  return self;
  }
  */
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if(buttonIndex==0)
+	{
+		
+		[self->tableView reloadData];
+		
+	}
+	printf("\n button %d",buttonIndex);
+	
+}
+-(void) clearPressed {
+	
+	UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+													   message: [ NSString stringWithString:@"Are u sure u want to clear vmail?" ]
+													  delegate: self
+											 cancelButtonTitle: nil
+											 otherButtonTitles: @"OK", nil];
+	[alert addButtonWithTitle:@"Cancel"];
+	[ alert show ];
+	
+}
+
+- (void)controlPressed:(id) sender {
+	int index = segmentedControl.selectedSegmentIndex;
+	switch(index)
+	{
+		case 0:
+			showFailInt = GETVMAILLIST;
+			
+			break;
+		case  2:
+		{
+			showFailInt = GETVMAILUNDILEVERD;
+			
+		}
+			break;
+			
+	}
+	[ self->tableView reloadData ];
+}
+
 #define TABLE_VIEW_TAG			2000
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	if(viewPlayResult)
+	{
+		viewPlayResult = 0;
+		printf("\n make changes");
+		[ self->tableView reloadData ];
+	}
+}	
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -592,8 +822,10 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	failedImageP=[UIImage imageNamed:@"vm_icons_outgoing_undelivered.png"];
 	vnewImageP=[UIImage imageNamed:@"vm_icons_incoming_new.png"];
 	readImageP=[UIImage imageNamed:@"vm_icons_incoming_read.png"];
+	//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
+	
 	//self.tabBarItem = [UITabBarItem alloc];
-	//[self.tabBarItem initWithTitle:@"vmail" image:nil tag:2];
+	//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 	//self->tablesz = 0;
 	//////printf("\n table = %d",self->tablesz);
 	tableView.delegate = self;
@@ -602,10 +834,37 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	//tableView.tag = TABLE_VIEW_TAG;
 	tableView.clearsContextBeforeDrawing = YES;
 	[tableView reloadData];
-	[self setTitle:@"vmail"];
+	//[self setTitle:@"vmail"];
 	nsTimerP = nil;
 	uiProgressP = nil;
 	uiActionSheetP = nil;
+	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
+	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+	
+	[ segmentedControl insertSegmentWithTitle: @"All" atIndex: 0 animated: YES ];
+	[ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: YES ];
+	[ segmentedControl insertSegmentWithTitle: @"Undelivered" atIndex: 2 animated: YES ];
+	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
+	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
+	showFailInt = GETVMAILLIST;
+	[ segmentedControl addTarget: self action: @selector(controlPressed:) forControlEvents:UIControlEventValueChanged ];
+	
+	self.navigationItem.titleView = segmentedControl;
+	segmentedControl.selectedSegmentIndex = 0;
+	self.navigationItem.leftBarButtonItem 
+	= [ [ [ UIBarButtonItem alloc ]
+		 initWithTitle: @"Clear" style:UIBarButtonItemStylePlain
+		 target: self
+		 action: @selector(clearPressed) ] autorelease ];
+	self.navigationItem.rightBarButtonItem 
+	= [ [ [ UIBarButtonItem alloc ]
+		 initWithBarButtonSystemItem: UIBarButtonSystemItemCompose
+		 target: self
+		 action: @selector(startEditing) ] autorelease ];	
+	
+	
+
+
 	
 }
 
@@ -636,6 +895,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 
 
 - (void)dealloc {
+	printf("\n vmail dealloc");
     [super dealloc];
 }
 -(void)setObjType:(UAObjectType)luaObj

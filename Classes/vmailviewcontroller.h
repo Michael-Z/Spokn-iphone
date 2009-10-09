@@ -28,12 +28,16 @@
 	NSTimer        *nsTimerP;
 	float maxtime;
 	float amt;
+	int showFailInt;
+	UISegmentedControl *segmentedControl;
+	int viewPlayResult;
+
 
 }
 -(void)setObject:(id) object ;
 -(void)setObjType:(UAObjectType)luaObj;
 - (void)addRow: (int )index sectionObject:(sectionType **)sectionPP;
 -(void)stopvmsPlay;
--(void)startVmsProgress:(int) max;
+-(void)startVmsProgress:(char*)fileNameCharP :(int) max :(struct VMail *)vmailP;
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 @end

@@ -141,7 +141,7 @@ titleForHeaderInSection:(NSInteger)section
 	
 	firstName = [firstName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	lastName =  [lastName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+	return [NSString stringWithFormat:@"%@ %@", firstName, lastName] ;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -290,9 +290,9 @@ titleForHeaderInSection:(NSInteger)section
 	{
 		setTypeP = [sectionArray objectAtIndex:0];
 		//lsz = setTypeP->elementP.count;
-		while(setTypeP->elementP.count)
+		/*while(setTypeP->elementP.count)
 			//for(j = 0;j<lsz;++j)
-			[setTypeP->elementP removeObjectAtIndex:0];
+			[setTypeP->elementP removeObjectAtIndex:0];*/
 		[setTypeP release];
 		[sectionArray removeObjectAtIndex:0];
 	}

@@ -15,6 +15,18 @@
 #include "playrecordpcm.h"
 #include "LtpInterface.h"
 #import <AudioToolbox/AudioToolbox.h>
+int SetSpeakerOnOrOff(void *uData,Boolean onB)
+{
+	UInt32 route;
+	
+	
+	route = onB ? kAudioSessionOverrideAudioRoute_Speaker : 
+	kAudioSessionOverrideAudioRoute_None;
+	AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, 
+							 sizeof(route), &route);
+	return 0;
+
+}	
 int removePcmData(void *libData)
 {
 	int i;

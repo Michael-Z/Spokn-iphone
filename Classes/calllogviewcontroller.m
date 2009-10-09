@@ -16,19 +16,39 @@
 #import "customcell.h"
 @implementation CalllogViewController
 
-/*
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
+		[self.tabBarItem initWithTabBarSystemItem:UITabBarSystemItemRecents tag:2];
     }
     return self;
 }
-*/
+
+- (void)controlPressed:(id) sender {
+	int index = segmentedControl.selectedSegmentIndex;
+	switch(index)
+	{
+		case 0:
+				showMisscallInt = GETCALLLOGLIST;
+			
+			break;
+		case  2:
+		{
+			showMisscallInt = GETCALLLOGMISSEDLIST;
+			
+		}
+			break;
+			
+	}
+	[ self->tableView reloadData ];
+}
 
 -(void)setObject:(id) object 
 {
 	self->ownerobject = object;
+	
 }
 
 /*
@@ -45,7 +65,7 @@
 {
 	int count;
 	/*return [[UIFont	familyNames] count];*/
-	count = GetTotalCount(GETCALLLOGLIST);
+	count = GetTotalCount(showMisscallInt);
 	//////printf("\n mukesh sharma %d\n",count);
 	return count;
 }
@@ -133,16 +153,16 @@
 	char *objStrP=0;
 	char *secObjStrP = 0;
 	struct tm *tmP=0;
+	struct tm tmP1,tmP2;
 	time_t timeP;
 	char disp[200];
 	char s1[30];
 	//int index;
 	NSString *stringStrP;
 	char *month[12]={"jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-	
 	//////printf("\n index = %d\n",index);
 	
-	objP = GetObjectAtIndex(GETCALLLOGLIST ,index);
+	objP = GetObjectAtIndex(showMisscallInt ,index);
 	if(objP)
 	{
 	//	NSString *CellIdentifier;
@@ -150,6 +170,7 @@
 		//char tmpidentifier[50];
 		cdrP =(struct CDR*) objP;
 		objStrP = cdrP->userid;
+		
 		addressP = getContactOf(objStrP);
 		//
 		if(addressP)
@@ -185,10 +206,52 @@
 			objStrP = addressP->title;
 		}
 		timeP = cdrP->date;
+		
 		tmP = localtime(&timeP);
+		
+		
 		if(tmP)
 		{	
-			sprintf(s1,"%02d:%02d %3s %02d",tmP->tm_hour,tmP->tm_min,month[tmP->tm_mon],tmP->tm_mday);
+			char *days[7]={"Sunday","Monday","Tuesday","Wednesday","Thusday","Friday","Sutarday"};
+			
+			time_t todaytime;
+			long difftime;
+			struct tm tmP1,tmP2;
+			tmP1 = *tmP;
+			todaytime = time(0);
+			tmP =localtime(&todaytime);
+			tmP2 = *tmP;
+
+			difftime = tmP2.tm_yday -tmP1.tm_yday;
+			
+			
+			if(difftime<0)
+			{
+				difftime = difftime*(-1);
+			}	
+			
+			if(difftime==0)
+			{
+				sprintf(s1,"%02d:%02d",tmP1.tm_hour,tmP1.tm_min);
+				
+			}
+			if(difftime==1)
+			{
+				sprintf(s1,"Yesterday");
+			}
+			else
+			{
+				if(difftime<7)
+				{
+					sprintf(s1,days[tmP1.tm_wday]);
+				}
+				else
+				{
+						sprintf(s1,"%3s %02d",month[tmP1.tm_mon],tmP1.tm_mday);
+				}
+			}
+				
+			
 			//sprintf(disp,"%-20s %12s",objStrP,s1);
 			//free(tmP);
 			strcpy(disp,objStrP);
@@ -213,16 +276,52 @@
 			dispP = [ [displayData alloc] init];
 			dispP.left = 0;
 			dispP.top = 0;
+			dispP.width = 10;
+			dispP.height = 100;
+			if(cdrP->direction & CALLTYPE_MISSED)
+			{	
+				
+				dispP.uiImageP = missImageP;
+			}
+			else
+			{
+				
+				if(cdrP->direction & CALLTYPE_OUT)
+				{
+					dispP.uiImageP = outImageP;
+				}
+				if(cdrP->direction & CALLTYPE_IN)
+				{
+					dispP.uiImageP = inImageP;
+				}
+			}
+			
+			
+			[secLocP->elementP addObject:dispP];
+			
+			dispP = [ [displayData alloc] init];
+			dispP.left = 0;
+			dispP.top = 0;
 			if(secObjStrP)
 			{	
-				dispP.width = 60;
+				dispP.width = 70;
 			}
 			else
 			{
 				dispP.width = 100;
 			}
 			dispP.height = 50;
-			dispP.colorP = [UIColor blackColor];
+			if(cdrP->direction & CALLTYPE_MISSED)
+			{	
+				dispP.colorP = [UIColor redColor];
+				
+			}
+			else
+			{
+				dispP.colorP = [UIColor blackColor];
+			}
+			
+			
 			dispP.fntSz = 16;
 			//dispP.fontP =  [self->fontGloP fontWithSize:16];
 			//[dispP.fontP retain];
@@ -231,7 +330,7 @@
 			dispP.dataP = stringStrP;
 			[stringStrP release];
 			[dispP.colorP release];
-			dispP.fntSz = 16;
+			
 			[secLocP->elementP addObject:dispP];
 			
 			if(secObjStrP)
@@ -239,13 +338,13 @@
 				dispP = [ [displayData alloc] init];
 				dispP.left = 0;
 				dispP.top = 0;
-				dispP.width = 40;
+				dispP.width = 30;
 			
 				dispP.height = 100;
 				stringStrP = [[NSString alloc] initWithUTF8String:secObjStrP ];
 				dispP.dataP = stringStrP;
 				[stringStrP release];
-				dispP.colorP = [UIColor blueColor];
+				dispP.colorP = [UIColor blackColor];
 				dispP.fntSz = 14;
 				[dispP.colorP release];
 				[secLocP->elementP addObject:dispP];
@@ -254,7 +353,7 @@
 			}	
 			
 			dispP = [ [displayData alloc] init];
-			dispP.left = 0;
+			dispP.left = 20;
 			dispP.top = 0;
 			dispP.width = 70;
 			dispP.row = 1;
@@ -266,29 +365,8 @@
 			
 			dispP.fntSz = 14;
 			[dispP.colorP release];
-						//now set image
-			
-			
-			if(cdrP->direction & CALLTYPE_OUT)
-			{
-				dispP.uiImageP = outImageP;
-			}
-			else
-		//now set image
-				if(cdrP->direction & CALLTYPE_IN)
-				{
-					dispP.uiImageP = inImageP;
-				}
-				else
-				if(cdrP->direction & CALLTYPE_MISSED)
-				{
-					dispP.uiImageP = missImageP;
-				}
-				else
-				{
-					dispP.uiImageP = outImageP;
-				}
-			////////printf("\n retain count  image %d",[dispP.uiImageP retainCount]);
+					
+		
 			[secLocP->elementP addObject:dispP];
 			if(sectionPP==0)
 			{	
@@ -326,7 +404,7 @@
 		addressP = getContactOf(cdrP->userid);
 		if(addressP)
 		{
-			AddEditcontactViewController     *addeditviewP;	
+			/*AddEditcontactViewController     *addeditviewP;	
 			addeditviewP = [[AddEditcontactViewController alloc] initWithNibName:@"addeditcontact" bundle:[NSBundle mainBundle]];
 			
 			[ [self navigationController] pushViewController:addeditviewP animated: YES ];
@@ -334,7 +412,22 @@
 			[addeditviewP setObject:self->ownerobject];	
 			////NSLog(@"retainCount:%d", [addeditviewP retainCount]);
 			if([addeditviewP retainCount]>1)
-				[addeditviewP release];
+				[addeditviewP release];*/
+			ContactDetailsViewController     *ContactControllerDetailsviewP;	
+			ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+			[ContactControllerDetailsviewP setObject:self->ownerobject];
+			[ContactControllerDetailsviewP setCdr:cdrP];
+			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
+			
+			
+			[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+			
+			
+			
+			if([ContactControllerDetailsviewP retainCount]>1)
+				[ContactControllerDetailsviewP release];
+			printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+			
 			
 			
 			return;
@@ -342,7 +435,7 @@
 		}
 		else
 		{
-			addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));
+			/*addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));
 			memset(addressP,0,sizeof(struct AddressBook));
 			addressP->id = -1;
 			strcpy(addressP->mobile,cdrP->userid);
@@ -353,7 +446,27 @@
 			[addeditviewP  setContactDetail:addressP];
 			free(addressP);
 			if([addeditviewP retainCount]>1)
-				[addeditviewP release];
+				[addeditviewP release];*/
+			
+			addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));
+			memset(addressP,0,sizeof(struct AddressBook));
+			addressP->id = -1;
+			strcpy(addressP->title,cdrP->userid);
+			ContactDetailsViewController     *ContactControllerDetailsviewP;	
+			ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+			[ContactControllerDetailsviewP setObject:self->ownerobject];
+			[ContactControllerDetailsviewP setCdr:cdrP];
+			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
+			
+			
+			[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+			
+			
+			
+			if([ContactControllerDetailsviewP retainCount]>1)
+				[ContactControllerDetailsviewP release];
+			
+			
 			return;
 		}
 		
@@ -378,6 +491,7 @@
 	if(cdrP==0) return;
 	if(self->tableView.editing==NO)
 	{	
+		
 		[self->ownerobject makeCall:cdrP->userid];
 		[self->ownerobject changeView];
 	}
@@ -514,15 +628,35 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
  }
  */
 #define TABLE_VIEW_TAG			2010
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if(buttonIndex==0)
+	{
+		cdrRemoveAll();
+		[self->tableView reloadData];
+		
+	}
+	
+}
+-(void) clearPressed {
+	
+UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+message: [ NSString stringWithString:@"Are u sure u want to clear calllog?" ]
+delegate: self
+cancelButtonTitle: nil
+										 otherButtonTitles: @"OK", nil];
+[alert addButtonWithTitle:@"Cancel"];
+	[ alert show ];
 
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Calllog" image:nil tag:2];
-	missImageP = [UIImage imageNamed:@"missed.png"];
+	missImageP = [UIImage imageNamed:@"missedvms.png"];
 	inImageP = [UIImage imageNamed:@"callin.png"];
-	outImageP = [UIImage imageNamed:@"callout.png"];
+	outImageP = [UIImage imageNamed:@"incomming.png"];
 	
 	 
 	
@@ -540,6 +674,25 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 //	tableView.tag = TABLE_VIEW_TAG;
 	[tableView reloadData];
 	[self setTitle:@"Calllog"];
+	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
+	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+	
+	[ segmentedControl insertSegmentWithTitle: @"All" atIndex: 0 animated: YES ];
+	[ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: YES ];
+	[ segmentedControl insertSegmentWithTitle: @"Missed" atIndex: 2 animated: YES ];
+	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
+	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
+	showMisscallInt = GETCALLLOGLIST;
+	[ segmentedControl addTarget: self action: @selector(controlPressed:) forControlEvents:UIControlEventValueChanged ];
+	
+	self.navigationItem.titleView = segmentedControl;
+	segmentedControl.selectedSegmentIndex = 0;
+	self.navigationItem.leftBarButtonItem 
+	= [ [ [ UIBarButtonItem alloc ]
+		 initWithTitle: @"Clear" style:UIBarButtonItemStylePlain
+		 target: self
+		 action: @selector(clearPressed) ] autorelease ];
+	
 	
 	}
 
@@ -570,7 +723,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[missImageP release];
 	[inImageP release];
 	[outImageP release];
-
+	printf("\n calllog dealloc");
 
     [super dealloc];
 }
