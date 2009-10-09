@@ -23,6 +23,8 @@
 	UIFont *fontGloP;
 	int showMisscallInt;
 	UISegmentedControl *segmentedControl;
+	int resultInt;
+	struct CDR *gcdrP;
 	
 }
 -(void)setObject:(id) object ;

@@ -35,13 +35,17 @@
 	NSMutableArray *searchArray;
 	IBOutlet UISearchBar *searchbar;
 	OverlayViewController *ovController;
-		
+	int *returnPtr;
+	char *numberCharP;
+	int parentView;//this variable distinguish between different parent view
+	
 	
 
 }
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 
 @property (readwrite,assign) UAObjectType uaObject;
+@property(readwrite,assign) int parentView;
 -(void)setObject:(id) object ;
 - (void) reload;
 - (void) startEditing;
@@ -49,4 +53,5 @@
 -(void)setObjType:(UAObjectType)luaObj;
 - (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP ;
 - (void) doneSearching_Clicked:(id)sender;
+-(void) setReturnVariable:(char *) numberCharP : (int *)valP;
 @end

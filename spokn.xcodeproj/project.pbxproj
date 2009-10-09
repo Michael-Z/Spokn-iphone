@@ -28,7 +28,6 @@
 		8B413C501075ED71005A400F /* spoknviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */; };
 		8B413CAD1075FE01005A400F /* spokntab.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B413CAC1075FE01005A400F /* spokntab.png */; };
 		8B47D83210720BA400EEEF61 /* callviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B47D83010720BA400EEEF61 /* callviewcontroller.m */; };
-		8B47D83310720BA400EEEF61 /* callviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B47D83110720BA400EEEF61 /* callviewcontroller.xib */; };
 		8B47D865107212BE00EEEF61 /* speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47D856107212BE00EEEF61 /* speaker.png */; };
 		8B47D866107212BE00EEEF61 /* sixsqbuttonsel_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47D857107212BE00EEEF61 /* sixsqbuttonsel_6.png */; };
 		8B47D867107212BE00EEEF61 /* sixsqbuttonsel_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47D858107212BE00EEEF61 /* sixsqbuttonsel_5.png */; };
@@ -99,6 +98,9 @@
 		8BA9F5E11026E50D0082B6AE /* calllog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA9F5DF1026E50D0082B6AE /* calllog.xib */; };
 		8BAAB29E1042DA1800F3EE73 /* DECODE.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BAAB29D1042DA1800F3EE73 /* DECODE.c */; };
 		8BB54917104BF25B00BD6C22 /* libspeexlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB54916104BF25B00BD6C22 /* libspeexlib.a */; };
+		8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD86B4107F5222008FD911 /* WebViewController.m */; };
+		8BBD86B7107F5222008FD911 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD86B5107F5222008FD911 /* WebViewController.xib */; };
+		8BBD8A91107F7FBE008FD911 /* callviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD8A90107F7FBE008FD911 /* callviewcontroller.xib */; };
 		8BCA77351043C3E90018419C /* customcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCA77341043C3E90018419C /* customcell.m */; };
 		8BCAF7EF101EC488009FC391 /* vmsrecordplayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCAF7ED101EC488009FC391 /* vmsrecordplayviewcontroller.m */; };
 		8BCAF7F0101EC488009FC391 /* vmsRecordPlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCAF7EE101EC488009FC391 /* vmsRecordPlay.xib */; };
@@ -192,7 +194,6 @@
 		8B413CAC1075FE01005A400F /* spokntab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spokntab.png; path = rsc/spokntab.png; sourceTree = "<group>"; };
 		8B47D82F10720BA400EEEF61 /* callviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callviewcontroller.h; sourceTree = "<group>"; };
 		8B47D83010720BA400EEEF61 /* callviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callviewcontroller.m; sourceTree = "<group>"; };
-		8B47D83110720BA400EEEF61 /* callviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = callviewcontroller.xib; sourceTree = "<group>"; };
 		8B47D856107212BE00EEEF61 /* speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker.png; sourceTree = "<group>"; };
 		8B47D857107212BE00EEEF61 /* sixsqbuttonsel_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sixsqbuttonsel_6.png; sourceTree = "<group>"; };
 		8B47D858107212BE00EEEF61 /* sixsqbuttonsel_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sixsqbuttonsel_5.png; sourceTree = "<group>"; };
@@ -286,6 +287,10 @@
 		8BAAB29D1042DA1800F3EE73 /* DECODE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DECODE.c; path = ../lib/gsm/DECODE.c; sourceTree = SOURCE_ROOT; };
 		8BB54916104BF25B00BD6C22 /* libspeexlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libspeexlib.a; path = ../lib/speex/macos/build/libspeexlib.a; sourceTree = SOURCE_ROOT; };
 		8BB5492C104BF2F300BD6C22 /* speexlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = speexlib.xcodeproj; path = ../lib/speex/macos/speexlib.xcodeproj; sourceTree = SOURCE_ROOT; };
+		8BBD86B3107F5222008FD911 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		8BBD86B4107F5222008FD911 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		8BBD86B5107F5222008FD911 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		8BBD8A90107F7FBE008FD911 /* callviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = callviewcontroller.xib; sourceTree = "<group>"; };
 		8BCA77331043C3E90018419C /* customcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customcell.h; sourceTree = "<group>"; };
 		8BCA77341043C3E90018419C /* customcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customcell.m; sourceTree = "<group>"; };
 		8BCAF7EC101EC488009FC391 /* vmsrecordplayviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmsrecordplayviewcontroller.h; sourceTree = "<group>"; };
@@ -373,6 +378,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8BBD8A90107F7FBE008FD911 /* callviewcontroller.xib */,
 				8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */,
 				8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */,
 				8BCEEB2C104AD235001DF4AC /* OverlayView.xib */,
@@ -420,13 +426,15 @@
 				F249AAB6106F6A340024AE84 /* keypadview.m */,
 				8B47D82F10720BA400EEEF61 /* callviewcontroller.h */,
 				8B47D83010720BA400EEEF61 /* callviewcontroller.m */,
-				8B47D83110720BA400EEEF61 /* callviewcontroller.xib */,
 				8B413C4C1075ED71005A400F /* spoknviewcontroller.h */,
 				8B413C4D1075ED71005A400F /* spoknviewcontroller.m */,
 				8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */,
 				8B39FFC5107C910200073950 /* vmshowviewcontroller.h */,
 				8B39FFC6107C910200073950 /* vmshowviewcontroller.m */,
 				8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */,
+				8BBD86B3107F5222008FD911 /* WebViewController.h */,
+				8BBD86B4107F5222008FD911 /* WebViewController.m */,
+				8BBD86B5107F5222008FD911 /* WebViewController.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -785,7 +793,6 @@
 				F270709F10710F2200DA61E9 /* bottombargreen_pressed.png in Resources */,
 				F27070A010710F2200DA61E9 /* bottombarred_pressed.png in Resources */,
 				F27070A110710F2200DA61E9 /* decline.png in Resources */,
-				8B47D83310720BA400EEEF61 /* callviewcontroller.xib in Resources */,
 				8B47D865107212BE00EEEF61 /* speaker.png in Resources */,
 				8B47D866107212BE00EEEF61 /* sixsqbuttonsel_6.png in Resources */,
 				8B47D867107212BE00EEEF61 /* sixsqbuttonsel_5.png in Resources */,
@@ -817,6 +824,8 @@
 				8B8024DD1078D29C00C02F5F /* backview.png in Resources */,
 				8B39FFC9107C910200073950 /* vmshowviewcontroller.xib in Resources */,
 				8B1B8FDD107E0D3F00C77E3F /* spoknlog.png in Resources */,
+				8BBD86B7107F5222008FD911 /* WebViewController.xib in Resources */,
+				8BBD8A91107F7FBE008FD911 /* callviewcontroller.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -873,6 +882,7 @@
 				8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */,
 				8B39FFC8107C910200073950 /* vmshowviewcontroller.m in Sources */,
 				8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */,
+				8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

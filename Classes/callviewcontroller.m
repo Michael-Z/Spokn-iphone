@@ -47,6 +47,7 @@
 									autorelease]];	*/
 	[self->viewMenuP setBackgroundColor:[UIColor clearColor]];
 	[self->viewKeypadP setBackgroundColor:[UIColor clearColor]];
+	callnoLabelP.numberOfLines = 2;
 	[callnoLabelP setText:labelStrP];
 	self->viewKeypadP.hidden = YES;
 	self->hideKeypadButtonP.hidden = YES;

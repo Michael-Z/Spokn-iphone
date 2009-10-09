@@ -67,6 +67,8 @@ typedef enum ViewTypeEnum
 	Boolean loadedB;
 	int viewResult;
 	int updatecontact;
+	int *retValP;
+	
 }
 - (void)addRow: (int)lsection:(int )row sectionObject:(sectionType **)sectionPP;
 -(void)setObject:(id) object ;
@@ -77,4 +79,5 @@ typedef enum ViewTypeEnum
 -(IBAction)deletePressed:(id)sender;
 -(IBAction)changeNamePressed:(id)sender;
 - (void) presentSheet:(bool)callB;
+-(void)setReturnValue:(int*)lretValB;
 @end

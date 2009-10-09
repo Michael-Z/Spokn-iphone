@@ -108,6 +108,7 @@ changed:(BOOL)changed;
 -(void)setVmsDelegate :(id)deligateP;
 -(int)getFileSize:(char*)fileNameP :(unsigned long *)noSecP;
 -(int) vmsShowRecordScreen : (char*)noCharP;
+-(int)showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP;
 
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);

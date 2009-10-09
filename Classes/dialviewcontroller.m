@@ -30,6 +30,7 @@
 		statusLabel1P.hidden = YES;
 		statusLabel2P.hidden = YES;
 	}
+	if([curText length]<NUMBER_RANGE)
 	[numberlebelP setText: [curText stringByAppendingString: stringkey]];
 
 }

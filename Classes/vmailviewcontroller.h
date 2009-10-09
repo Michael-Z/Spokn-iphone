@@ -31,6 +31,8 @@
 	int showFailInt;
 	UISegmentedControl *segmentedControl;
 	int viewPlayResult;
+	int openVmsCompose;
+	char vmsNoChar[100];
 
 
 }

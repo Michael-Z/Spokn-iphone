@@ -9,9 +9,12 @@
 
 #import "AddeditcellController.h"
 #import "contactDetailsviewcontroller.h"
-
+#include "ua.h"
 @implementation AddeditcellController
-
+-(void) shiftToRoot:(Boolean ) rootB
+{
+	self->shiftRootB = rootB;
+}
 -(void)setObject:(id) object 
 {
 	self->ownerobject = object;
@@ -20,11 +23,18 @@
 {
 	NSLog(@"Cancel");
 	[txtField resignFirstResponder];
+	
 	[[self navigationController]  popViewControllerAnimated:YES];
+}
+
+-(void) SetkeyBoardType:(UIKeyboardType) type : (int) maxCharInt
+{
+	keyboardtype = type;
+	fieldRangeInt = maxCharInt ;
 }
 -(IBAction)savePressed
 {
-	NSLog(@"Save");
+	
 	char *TempP;
 	TempP = (char*)[[txtField text] cStringUsingEncoding:1];
 	NSLog([txtField text]);
@@ -35,10 +45,18 @@
 	}
 	//addressDataP->dirty = true;
 
-
-	[[self navigationController]  popViewControllerAnimated:YES];
+	if(self->shiftRootB==false)
+	{	
+		[[self navigationController]  popViewControllerAnimated:YES];
+	}	
+	else
+	{
+		NSLog(@"Save");
+		[[self navigationController]  popToRootViewControllerAnimated:YES];
+	}
 }
--(void)setData:/*out parameter*/(char *)lvalueCharP value:(char*)fieldP /*out parameter*/returnValue:(int *)lreturnP
+-(void)setData:/*out parameter*/(char *)lvalueCharP value:(char*)fieldP placeHolder:(char*)lplaceHolderP/*out parameter*/returnValue:(int *)lreturnP;
+
 
 {
 		
@@ -46,6 +64,8 @@
 	returnP = lreturnP;
 	StringP = [[NSString alloc] initWithUTF8String:lvalueCharP];
 	typeP = [[NSString alloc] initWithUTF8String:fieldP];
+	placeHolderP = [[NSString alloc] initWithUTF8String:lplaceHolderP];
+	
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -71,13 +91,16 @@
 	{	
 		self.title = @"Edit";
 	}
-	CGRect LabelFrame2 = CGRectMake(5, 5, 300, 40);
+	CGRect LabelFrame2 = CGRectMake(0, 5, 320, 60);
 	headLabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
 	headLabelP.textAlignment = UITextAlignmentCenter;
 	headLabelP.tag = 1;
+	headLabelP.numberOfLines = 2;
 	self.tableView.tableHeaderView = headLabelP;
 	[headLabelP release];
-	
+	self->shiftRootB  = false;
+	keyboardtype = UIKeyboardTypePhonePad;
+	fieldRangeInt = NUMBER_RANGE;
 	//self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	return self;
 }
@@ -104,6 +127,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+	
+	NSString *usernameString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    return !([usernameString length] > fieldRangeInt);
+	
+	}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return 1;
@@ -132,16 +162,9 @@
 						[cell.contentView addSubview:txtField]; 
 						[txtField becomeFirstResponder];
 						[txtField release];
-						if([typeP isEqualToString:@"Email"])
-						{	
-							txtField.keyboardType = UIKeyboardTypeEmailAddress;
-							
-						}
-						else
-						{
-							txtField.keyboardType = UIKeyboardTypeNumberPad;
-						}	
-						txtField.placeholder = typeP;
+						txtField.keyboardType = keyboardtype;
+						txtField.delegate = self;
+						txtField.placeholder = placeHolderP;
 						if(StringP)
 						{	
 							txtField.text =StringP;
@@ -213,8 +236,9 @@
 }
 
 - (void)dealloc {
-	[headLabelP release];
-	[txtField release];
+	[placeHolderP release];
+	//[headLabelP release];
+	//[txtField release];
 	[StringP release];
 	[typeP release];
     [super dealloc];

@@ -276,7 +276,7 @@
 			dispP = [ [displayData alloc] init];
 			dispP.left = 0;
 			dispP.top = 0;
-			dispP.width = 10;
+			dispP.width = 0;
 			dispP.height = 100;
 			if(cdrP->direction & CALLTYPE_MISSED)
 			{	
@@ -297,9 +297,9 @@
 			}
 			
 			
-			[secLocP->elementP addObject:dispP];
+			//[secLocP->elementP addObject:dispP];
 			
-			dispP = [ [displayData alloc] init];
+			//dispP = [ [displayData alloc] init];
 			dispP.left = 0;
 			dispP.top = 0;
 			if(secObjStrP)
@@ -395,8 +395,10 @@
 	
 	struct CDR *cdrP;
 	sectionType *secLocP;
+
 	secLocP = cell.spoknSubCellP.userData;
 	cdrP =(struct CDR*)  secLocP->userData;
+	gcdrP = cdrP;
 	if(cdrP)
 	{
 		struct AddressBook *addressP;
@@ -416,7 +418,10 @@
 			ContactDetailsViewController     *ContactControllerDetailsviewP;	
 			ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 			[ContactControllerDetailsviewP setObject:self->ownerobject];
+			resultInt = 0;
+			[ContactControllerDetailsviewP setReturnValue:&resultInt];
 			[ContactControllerDetailsviewP setCdr:cdrP];
+			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
 			
 			
@@ -455,6 +460,8 @@
 			ContactDetailsViewController     *ContactControllerDetailsviewP;	
 			ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 			[ContactControllerDetailsviewP setObject:self->ownerobject];
+			resultInt = 0;
+			[ContactControllerDetailsviewP setReturnValue:&resultInt];
 			[ContactControllerDetailsviewP setCdr:cdrP];
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
 			
@@ -649,14 +656,32 @@ cancelButtonTitle: nil
 	[ alert show ];
 
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	if(resultInt)
+	{
+		printf("\nhello view deleted\n");
+		resultInt = 0;
+		
+		if(gcdrP)
+		{	
+			cdrRemove(gcdrP);
+		}
+		[tableView reloadData];
+				
+		
+	}
+}	
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Calllog" image:nil tag:2];
 	missImageP = [UIImage imageNamed:@"missedvms.png"];
-	inImageP = [UIImage imageNamed:@"callin.png"];
-	outImageP = [UIImage imageNamed:@"incomming.png"];
+	inImageP = [UIImage imageNamed:@"incomming.png"];
+	outImageP = [UIImage imageNamed:@"outgoing.png"];
 	
 	 
 	

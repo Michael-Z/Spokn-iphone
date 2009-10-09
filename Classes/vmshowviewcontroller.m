@@ -671,7 +671,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 - (void)dealloc {
-	[nsTimerP invalidate];
+	if(nsTimerP)
+	{	
+		[nsTimerP invalidate];
+		[ownerobject vmsStop:!playB];
+	}
 	if(fileNameCharP)
 	{
 		free(fileNameCharP);

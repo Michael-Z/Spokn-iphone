@@ -15,6 +15,7 @@
 #import "AddEditcontactViewController.h"
 #import "addressBookContact.h"
 #import "OverlayViewController.h"
+#import "AddeditcellController.h"
 //#import <UITableViewIndex.h>
 #import "customcell.h"
 /*
@@ -38,6 +39,7 @@
 
 @synthesize ltpInterfacesP;
 @synthesize  uaObject;
+@synthesize parentView;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	//printf("\n touch");
@@ -138,6 +140,7 @@
         // Custom initialization
 		[self.tabBarItem   initWithTabBarSystemItem: 
 												  UITabBarSystemItemContacts tag:1];
+		parentView = 0;
 
     }
     return self;
@@ -209,9 +212,9 @@ titleForHeaderInSection:(NSInteger)section
 	 segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	 segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	 
-	 [ segmentedControl insertSegmentWithTitle: @"PhoneContact" atIndex: 0 animated: YES ];
+	 [ segmentedControl insertSegmentWithTitle: @"Phone" atIndex: 0 animated: YES ];
 	 [ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: YES ];
-	 [ segmentedControl insertSegmentWithTitle: @"SpoknContact" atIndex: 2 animated: YES ];
+	 [ segmentedControl insertSegmentWithTitle: @"Spokn" atIndex: 2 animated: YES ];
 	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
 	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
 	 
@@ -280,6 +283,12 @@ titleForHeaderInSection:(NSInteger)section
 	[addressBookTableDelegate release];
     [super dealloc];
 }
+-(void) setReturnVariable :(char *) lnumberCharP : (int *)lvalP
+{
+	numberCharP = lnumberCharP;
+	returnPtr = lvalP;
+	
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //return 1;
 
@@ -287,6 +296,23 @@ titleForHeaderInSection:(NSInteger)section
 	return [sectionArray count];
 	return 1;
 
+}
+- (void) showNumberScreen {
+	
+	AddeditcellController     *AddeditcellControllerviewP;	
+	AddeditcellControllerviewP = [[AddeditcellController alloc]init];
+	[AddeditcellControllerviewP setObject:self->ownerobject];
+	//viewResult = 0;
+	if(returnPtr)
+	{	
+		*returnPtr = 0;
+	}
+	[AddeditcellControllerviewP setData:numberCharP value:"Type a 7-digit Spokn ID or phone number\n with the country code" placeHolder:"Spokn ID or Phone number" returnValue:returnPtr];
+	[ AddeditcellControllerviewP shiftToRoot:true];
+	[  [self navigationController]  pushViewController:AddeditcellControllerviewP animated: YES ];
+	
+	[AddeditcellControllerviewP release];
+	
 }
 - (void) addContactUI {
 
@@ -339,11 +365,23 @@ titleForHeaderInSection:(NSInteger)section
 	{
 		if(self.navigationItem.rightBarButtonItem==nil)
 		{	
-			self.navigationItem.rightBarButtonItem 
-			= [ [ [ UIBarButtonItem alloc ]
-			 initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
-			 target: self
-			 action: @selector(addContactUI) ] autorelease ];	
+			if(parentView==0)
+			{	
+				self.navigationItem.rightBarButtonItem 
+				= [ [ [ UIBarButtonItem alloc ]
+					 initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
+					 target: self
+					 action: @selector(addContactUI) ] autorelease ];	
+			}
+			else
+			{
+				self.navigationItem.rightBarButtonItem 
+				= [ [ [ UIBarButtonItem alloc ]
+					 initWithTitle: @"Number" style:UIBarButtonItemStyleDone 
+					 target: self
+					 action: @selector(showNumberScreen) ] autorelease ];	
+			
+			}
 		}	
 
 		struct AddressBook *addressP;

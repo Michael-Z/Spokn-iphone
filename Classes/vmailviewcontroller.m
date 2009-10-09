@@ -735,7 +735,12 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}	
 	
 	*/
-	[ownerobject changeView];
+	openVmsCompose = 0;
+	
+	vmsNoChar[0] = 0;
+	//showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP
+	[ownerobject showContactScreen:self returnnumber:vmsNoChar result:&openVmsCompose];
+	//[ownerobject changeView];
 	
 
 }
@@ -811,6 +816,14 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		viewPlayResult = 0;
 		printf("\n make changes");
 		[ self->tableView reloadData ];
+	}
+	if(openVmsCompose)
+	{
+			printf("\n make changes");
+		openVmsCompose = 0;
+		[ownerobject vmsShowRecordScreen:vmsNoChar];
+		vmsNoChar[0] = 0;
+	
 	}
 }	
 

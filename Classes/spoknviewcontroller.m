@@ -11,6 +11,7 @@
 #import "LtpInterface.h"
 #define ALPHA @"123"
 #import  "AddeditcellController.h"
+#import "WebViewController.h"
 @implementation SpoknViewController
 // Build a section/row list 
 - (void) createSectionList: (id) wordArray
@@ -46,11 +47,11 @@
 		AddeditcellControllerviewP = [[AddeditcellController alloc]init];
 		[AddeditcellControllerviewP setObject:self->ownerobject];
 		viewResult = 0;
-		[AddeditcellControllerviewP setData:forwardNoCharP value:"Enter forward no" returnValue:&viewResult];
+		[AddeditcellControllerviewP setData:forwardNoCharP value:"Enter forward no" placeHolder:"Enter forward no" returnValue:&viewResult];
 		
 		[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
 		
-
+			[AddeditcellControllerviewP release];
 	}
 	else
 	{
@@ -421,15 +422,21 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	int row = [indexPath row];
 	int section = [indexPath section];
+	if(section==0 && row==1 )
+	{	
+		WebViewController     *WebViewControllerviewP;	
+		WebViewControllerviewP = [WebViewController alloc];
+		[WebViewControllerviewP setObject:self->ownerobject];
+		[ [self navigationController] pushViewController:WebViewControllerviewP animated: YES ];
+		[WebViewControllerviewP release];	
 	
-	
-	
+	}
 	
 }
 
 -(IBAction)buyCredit:(id)sender
 {
-	
+
 }
 
 @end

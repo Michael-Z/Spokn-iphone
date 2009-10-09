@@ -11,6 +11,7 @@
 #import "Ltptimer.h"
 #import "LtpInterface.h"
 #import "SpoknAppDelegate.h"
+#include "ua.h"
 @implementation LoginViewController
 
 @synthesize ltpInterfacesP;
@@ -23,7 +24,20 @@
 	
 }
 
- 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+	
+	if(textField==usernameFieldP)
+	{	
+		NSString *usernameString = [usernameFieldP.text stringByReplacingCharactersInRange:range withString:string];
+		return !([usernameString length] > USERNAME_RANGE);
+	}
+	else
+	{	
+		NSString *passwordString = [passwordFieldP.text stringByReplacingCharactersInRange:range withString:string];
+		return !([passwordString length] > PASSWORD_RANGE );
+	}	
+}
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -56,6 +70,8 @@
 		[uNameStringP release];
 		[passwordStringP release];
 	}
+	usernameFieldP.delegate = self;
+	passwordFieldP.delegate = self;
 	/*[passwordFieldP becomeFirstResponder];
 	passwordFieldP.delegate = self;
 

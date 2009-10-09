@@ -155,7 +155,9 @@
 					if(prvRow< displayDataP.row)
 					{
 						prvRow = displayDataP.row;
-						stX = rect.origin.x;
+						stX = displayDataP.left;//rect.origin.x;
+						if(displayDataP.left)
+						stX = displayDataP.left;//rect.origin.x;
 						height = (rect.size.height/100)*displayDataP.height;
 						//////printf("\nheight%d",height);
 						stY = rect.origin.y+height;
@@ -205,10 +207,12 @@
 					{
 						
 						CGRect rec1;
+						rec.origin.y = stY+ displayDataP.top + 5;
 						rec1 = rec;
 						rec1.size.width = displayDataP.uiImageP.size.width;
 						rec1.size.height = displayDataP.uiImageP.size.height;
 						[displayDataP.uiImageP drawInRect:rec1 ];	
+						rec.origin.y += height/4;
 						//[displayDataP.uiImageP drawInRect:rec1 blendMode: kCGBlendModeNormal alpha: 1.0];
 						rec.origin.x+= displayDataP.uiImageP.size.width +2;
 						

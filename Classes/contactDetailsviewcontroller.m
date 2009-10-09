@@ -247,9 +247,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		AddeditcellControllerviewP = [[AddeditcellController alloc]init];
 		[AddeditcellControllerviewP setObject:self->ownerobject];
 		viewResult = 0;
-		[AddeditcellControllerviewP setData:sectionArray[section].dataforSection[row].elementP value:sectionArray[section].dataforSection[row].nameofRow returnValue:&viewResult];
+		if(section==1)
+		{
+			[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypeEmailAddress :EMAIL_RANGE];
+		}
+		else
+		{
+			if(sectionArray[section].dataforSection[row].elementP == addressDataP->spoknid)
+			{
+				[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :SPOKN_ID_RANGE];
+			}
+		
+		}
+		[AddeditcellControllerviewP setData:sectionArray[section].dataforSection[row].elementP value:sectionArray[section].dataforSection[row].nameofRow placeHolder:sectionArray[section].dataforSection[row].nameofRow returnValue:&viewResult];
 		
 		[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
+		[AddeditcellControllerviewP release];
 		
 	}
 }
@@ -262,9 +275,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
 		loadedB = false;
+		sectionCount = 1;
 	}
     return self;
 }
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+{
+
+	
+	//[alertView release];
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
  {
 	 
@@ -449,11 +471,36 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 -(IBAction)deletePressed:(id)sender
 {
+	if(retValP)
+	{	
+		*retValP = 1;
+	}	
+	
+	[ [self navigationController] popViewControllerAnimated:YES ];
 	
 }
 -(IBAction)changeNamePressed:(id)sender
 {
+	AddeditcellController     *AddeditcellControllerviewP;	
+	AddeditcellControllerviewP = [[AddeditcellController alloc]init];
+	[AddeditcellControllerviewP setObject:self->ownerobject];
+	viewResult = 0;
+	
+	[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypeNamePhonePad :CONTACT_RANGE];
+	
 
+	[AddeditcellControllerviewP setData:addressDataP->title value:"Name of person" placeHolder:"First Last" returnValue:&viewResult];
+	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
+	
+	[AddeditcellControllerviewP release];
+	
+}
+-(IBAction)cancelClicked
+{
+	NSLog(@"Cancel");
+	
+	
+	[[self navigationController]  popViewControllerAnimated:YES];
 }
 -(IBAction)doneClicked
 {
@@ -469,27 +516,31 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	free(addressDataTmpP);
 	 */
 	struct AddressBook *addrP ;
+	Boolean popupB = true;
 	if(updatecontact)
 	{	
+		printf("\n udate contact");
 		if(viewEnum==CONTACTADDVIEWENUM)
 		{	
 			if(  strlen(addressDataP->title)&&(  strlen(addressDataP->mobile) ||  strlen(addressDataP->business)|| strlen(addressDataP->home)||  strlen(addressDataP->email) ) )
 				
 				
-				{										 
+				{		printf("\n add contact");									 
 					addContact(addressDataP->title,addressDataP->mobile,addressDataP->home,addressDataP->business,0,addressDataP->email,addressDataP->spoknid);
 					
 				}
 				else
 				{	
+						printf("\n alert contact");
 					UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
 																	   message: [ NSString stringWithString:@"invalid contact" ]
-																	  delegate: nil
+																	  delegate: self
 															 cancelButtonTitle: nil
 															 otherButtonTitles: @"OK", nil
 										  ];
 					[ alert show ];
 					[alert release];
+					popupB = false;
 					
 				}	
 		}
@@ -510,9 +561,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	//[ [self navigationController] popToRootViewControllerAnimated:YES ];
 	//contactID = -1;
 	//profileResync();
+		if(popupB)
 		profileResync();
 	}
-	
+	if(popupB)
 	[ [self navigationController] popToRootViewControllerAnimated:YES ];
 	//contactID = -1;
 		
@@ -532,9 +584,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	 [self setAddressBook:addressDataTmpP editable:false :viewEnum];
 	 free(addressDataTmpP);
 	 */
+	if(retValP)
+	{	
+		*retValP = 1;
+	}
+	
 	[ [self navigationController] popToRootViewControllerAnimated:YES ];
 	//contactID = -1;
-	profileResync();
+	//profileResync();
 	
 	
 }
@@ -631,7 +688,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 				= [ [ [ UIBarButtonItem alloc ]
 					 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
 					 target: self
-					 action: @selector(doneClicked) ] autorelease ];	
+					 action: @selector(doneClicked) ] autorelease ];
+				self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+														   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+														   target: self
+														   action: @selector(cancelClicked) ] autorelease ];	
 			}	
 		}	
 		
@@ -656,7 +717,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	[nsp release];
 	//[userNameP release];
 	[self setTitle:@"Info"];
-	sectionCount = 1;
+	
 	printf("\n secion  %d",sectionCount);
 	if(editableB)
 	{	
@@ -929,6 +990,7 @@ titleForHeaderInSection:(NSInteger)section
 	{
 		if(leditableB)
 		{
+			printf("\n email ");
 			sectionArray[1].dataforSection[0].section = 0;
 			strcpy(sectionArray[1].dataforSection[0].nameofRow,"Add email");
 			sectionArray[1].dataforSection[0].elementP = addressDataP->email;
@@ -955,6 +1017,7 @@ titleForHeaderInSection:(NSInteger)section
 			
 			if(editableB)
 			{	
+				printf("\n edit clocked");
 				[ self->tableView setEditing: YES animated: YES ];
 				self->tableView.allowsSelectionDuringEditing = YES;
 				self->delButtonP.hidden = NO;
@@ -976,6 +1039,12 @@ titleForHeaderInSection:(NSInteger)section
 				//setTitle:(NSString *)title forState:(UIControlState)state
 				[changeNameButtonP setTitle:userNameP.text forState:UIControlStateNormal];
 				tableView.tableHeaderView = changeNameButtonP;
+				
+				
+				self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+														   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+														   target: self
+														   action: @selector(cancelClicked) ] autorelease ];	
 						
 			}	
 			else
@@ -1037,5 +1106,8 @@ titleForHeaderInSection:(NSInteger)section
 	 [super dealloc];
 }
 
-
+-(void)setReturnValue:(int*)lretValP
+{
+	retValP = lretValP;
+}
 @end

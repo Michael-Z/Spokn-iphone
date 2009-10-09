@@ -80,6 +80,7 @@
 			//[self performSelectorOnMainThread : @ selector(popLoginView: ) withObject:nil waitUntilDone:YES];
 
 			profileResync();
+			cdrEmpty();
 			cdrLoad();
 			[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 			break;
@@ -346,7 +347,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[contactviewP setObject:self];
 	contactviewP.uaObject = GETCONTACTLIST;
 	[contactviewP setObjType:GETCONTACTLIST];
-
+	
 	
 	
 	//vmsviewP.uaObject = GETVMAILLIST;
@@ -575,17 +576,41 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	NSMutableString *tempStringP;
 	NSString *strP;
 	Boolean retB = false;
-	
+	char typeP[30];
+	struct AddressBook *addressP;
 	if(self->onLineB)
 	{	
-		strP = [[NSString alloc] initWithUTF8String:noCharP] ;
+		tempStringP = [[NSMutableString alloc] init] ;
+		addressP = getContactAndTypeCall(noCharP,typeP);
+		if(addressP)
+		{
+			strP = [[NSString alloc] initWithUTF8String:addressP->title] ;
+			[tempStringP setString:strP];
+			[strP release];
+			strP = [[NSString alloc] initWithUTF8String:typeP] ;
+			[tempStringP appendString:@"\n calling " ];
+			[tempStringP appendString:strP];
+			[strP release ];
+		}
+		else
+		{
+			strP = [[NSString alloc] initWithUTF8String:noCharP] ;
+			
+			[tempStringP appendString:strP ];
+			//[tempStringP setString:addressP->title];
+			[tempStringP appendString:@"\n calling..." ];
+			//[tempStringP appendString:strP];
+			[strP release ];
+			
+		}
+		//strP = [[NSString alloc] initWithUTF8String:noCharP] ;
 		//[strP setString:@"Calling "];
 	
-		tempStringP = [[NSMutableString alloc] init] ;
-		[tempStringP setString:@"Calling "];
+		
+		
 
 		//	tempStringP = [NSMutableString stringWithString:@"calling "]	;
-		[tempStringP appendString:strP ];
+		
 		
 		
 		retB = callLtpInterface(self->ltpInterfacesP,noCharP);
@@ -594,7 +619,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[dialviewP setStatusText:tempStringP :TRYING_CALL :0];
 	//[tempStringP release];
 		[tempStringP release ];
-		[strP release ];
+	//	[strP release ];
 		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 	}	
 	
@@ -686,6 +711,21 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	return 0;
 }
+-(int)showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP
+{
+	ContactViewController *contactP;
+	contactP = [[ContactViewController alloc] initWithNibName:@"contact" bundle:[NSBundle mainBundle]];
+	contactP.parentView = 1;
+	[contactP setObject:self];
+	contactP.uaObject = GETCONTACTLIST;
+	[contactP setObjType:GETCONTACTLIST];
+	contactP.ltpInterfacesP = ltpInterfacesP;
+	[contactP setReturnVariable :noCharP :resultP];
+	[ [navObject navigationController] pushViewController:contactP animated: YES ];
+	[contactP release];
+	printf("\n retain countact details count %d\n",[contactviewP retainCount]);
+	return 0;
+}
 -(int) vmsShowRecordScreen : (char*)noCharP
 {
 	struct AddressBook * addressP;
@@ -708,7 +748,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		if([vmShowViewControllerP retainCount]>1)
 			[vmShowViewControllerP release];
-		printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);
+		
 		
 	}
 	else

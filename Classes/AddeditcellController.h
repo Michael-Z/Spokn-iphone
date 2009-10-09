@@ -22,14 +22,21 @@
 	Boolean editable;
 	NSString *StringP;
 	NSString *typeP;
+	NSString *placeHolderP;
 	int contactID;
 	int *returnP;
 	char *rvalueCharP;
+	Boolean shiftRootB;
+	UIKeyboardType keyboardtype;
+	int fieldRangeInt;
 	
 }
--(void)setData:/*out parameter*/(char *)valueCharP value:(char*)fieldP /*out parameter*/returnValue:(int *)returnP;
+-(void)setData:/*out parameter*/(char *)valueCharP value:(char*)fieldP placeHolder:(char*)placeHolderP/*out parameter*/returnValue:(int *)returnP;
 -(IBAction)cancelPressed;
 -(IBAction)savePressed;
 -(void)setObject:(id) object;
+-(void) shiftToRoot:(Boolean ) rootB;
+-(void) SetkeyBoardType:(UIKeyboardType) type : (int) maxCharInt;
 @end
+
 
