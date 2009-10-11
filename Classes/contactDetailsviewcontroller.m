@@ -22,109 +22,6 @@
 {
 	self->ownerobject = object;
 }
-
-/*
- *   Table Data Source
- */
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	return 10.0;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-/*	if(section == 0)
-		return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spokn.png"]];
-	else
-		return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spokn.png"]];*/
-	return nil;
-}
-- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	int row = [indexPath row];
-	int section = [indexPath section];
-	sectionType *secLocP;
-	NSString *CellIdentifier = [[NSString alloc] initWithUTF8String:"any cell"];
-	SpoknUITableViewCell *cell = (SpoknUITableViewCell *) [ tableView dequeueReusableCellWithIdentifier: CellIdentifier ];
-	if (cell == nil) {
-		
-		//	secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
-		//	if(secLocP)
-		{	
-			CGRect cellRect = CGRectMake(0, 0, 320, 50);
-			
-			cell = [ [ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
-			//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
-			[self addRow:section :row sectionObject:&secLocP];
-			
-		}	
-	}	
-	else
-	{	
-		secLocP = cell.spoknSubCellP.userData;
-		[secLocP release];
-		
-		[self addRow:section :row sectionObject:&secLocP];
-		//secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
-	}
-	if(secLocP==0) return nil;
-	cell.spoknSubCellP.userData = secLocP;
-	cell.spoknSubCellP.dataArrayP = secLocP->elementP;
-	cell.spoknSubCellP.ownerDrawB = true;
-	cell.spoknSubCellP.rowHeight = 50;
-	if(editableB)
-	{
-	//	cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;//UITableViewCellAccessoryDetailDisclosureButton; 
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		cell.hidesAccessoryWhenEditing = NO;
-	}
-	else
-	{
-		cell.accessoryType = UITableViewCellAccessoryNone;
-		//cell.editingAccessoryType = UITableViewCellAccessoryNone;//UITableViewCellAccessoryDetailDisclosureButton; 
-
-	}
-	//cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-	[CellIdentifier release];
-	//cell.hidesAccessoryWhenEditing = YES;
-	return cell;
-	
-	
-}
--(void)tableView:(UITableView *)ltableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
-forRowAtIndexPath:(NSIndexPath *)indexPath 
-   {
-	       // If row is deleted, remove it from the list.
-	       if (editingStyle == UITableViewCellEditingStyleDelete) 
-		       {
-			          // [dataController removeDataAtIndex:indexPath.row-1];
-			           [ltableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
-										  withRowAnimation:UITableViewRowAnimationFade];
-		       }
-	       else if(editingStyle == UITableViewCellEditingStyleInsert)
-		       {
-			         //  [dataController addData:@"New Row Added"];
-				   printf("\n add clicked");
-			          // [tableView reloadData];        
-		       }
-   }
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:
-(NSIndexPath *)indexPath
-  {
-	  int row = [indexPath row];
-	  int section = [indexPath section];
-	  if(editableB)
-	  {	
-		  if(sectionArray[section].dataforSection[row].addNewB)
-		  {
-			  return UITableViewCellEditingStyleInsert;
-		  }
-		  else
-		  {
-			  return UITableViewCellEditingStyleDelete;
-		  }
-	  }	
-
-	  return UITableViewCellEditingStyleDelete;
-  }
 /*
  *   Table Delegate
  */
@@ -222,60 +119,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 
-- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
-{
-	//selection = [[[UIFont familyNames] objectAtIndex:[newIndexPath row]] retain];
-	int row = [newIndexPath row];
-	int section = [newIndexPath section];
-
-	if(editableB==false)
-	{	
-		if(strstr( sectionArray[section].dataforSection[row].elementP,"@")==0)
-		{	
-			[self->ownerobject makeCall:sectionArray[section].dataforSection[row].elementP];
-			[self->ownerobject changeView];
-		}	
-		else
-		{
-			[ownerobject vmsRecordStart:sectionArray[section].dataforSection[row].elementP];
-		}
-	}	
-	else
-	{
-				
-		AddeditcellController     *AddeditcellControllerviewP;	
-		AddeditcellControllerviewP = [[AddeditcellController alloc]init];
-		[AddeditcellControllerviewP setObject:self->ownerobject];
-		viewResult = 0;
-		if(section==1)
-		{
-			[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypeEmailAddress :EMAIL_RANGE];
-		}
-		else
-		{
-			if(sectionArray[section].dataforSection[row].elementP == addressDataP->spoknid)
-			{
-				[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :SPOKN_ID_RANGE];
-			}
-		
-		}
-		[AddeditcellControllerviewP setData:sectionArray[section].dataforSection[row].elementP value:sectionArray[section].dataforSection[row].nameofRow placeHolder:sectionArray[section].dataforSection[row].nameofRow returnValue:&viewResult];
-		
-		[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
-		[AddeditcellControllerviewP release];
-		
-	}
-}
-
-
-
-
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
 		loadedB = false;
 		sectionCount = 1;
+		[self setTitle:@"Info"];
+		msgLabelP = 0;
 	}
     return self;
 }
@@ -294,6 +145,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	{	
 		if(callActionSheetB)
 		{
+			printf("\nname %s\n",stringSelected[buttonIndex]);
 			[self->ownerobject makeCall:stringSelected[buttonIndex]];
 			[self->ownerobject changeView];
 		 
@@ -384,7 +236,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		if(strlen(addressDataP->mobile)>0)
 		{	
 			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","Mobile", addressDataP->mobile] ];
-			stringSelected[i++] = addressDataP->business;
+			stringSelected[i++] = addressDataP->mobile;
 		}	
 
 		
@@ -425,7 +277,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		if(strlen(addressDataP->mobile)>0)
 		{	
 			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","Mobile", addressDataP->mobile] ];
-			stringSelected[i++] = addressDataP->business;
+			stringSelected[i++] = addressDataP->mobile;
 		}	
 		
 		
@@ -445,7 +297,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		
 		if(strlen(addressDataP->email)>0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s -%-15s","Email", addressDataP->email] ];
+			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","Email", addressDataP->email] ];
 		
 			stringSelected[i++] = addressDataP->email;
 		}	
@@ -486,7 +338,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	[AddeditcellControllerviewP setObject:self->ownerobject];
 	viewResult = 0;
 	
-	[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypeNamePhonePad :CONTACT_RANGE];
+	[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypeNamePhonePad :CONTACT_RANGE buttonType:0];
 	
 
 	[AddeditcellControllerviewP setData:addressDataP->title value:"Name of person" placeHolder:"First Last" returnValue:&viewResult];
@@ -680,7 +532,57 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			{	
 				self.navigationItem.rightBarButtonItem 
 				= [ [ [ UIBarButtonItem alloc ] initWithTitle:@"Delete" style:UIBarButtonItemStyleDone target:self action:@selector(deleteClicked)] autorelease];
-		
+				struct tm tmP1,*tmP=0;
+				time_t timeP;
+				char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+				
+				//char *month[12]={"January","February","March","April","May","June","July","August","September","October","November","December"};
+				
+			
+				CGRect LabelFrame2 = CGRectMake(0, 5, 320, 40);
+				msgLabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
+				msgLabelP.textAlignment = UITextAlignmentLeft;
+				msgLabelP.tag = 1;
+				msgLabelP.numberOfLines = 2;
+				msgLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+				//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+				
+				
+				//[msgLabelP release];
+				
+				char s1[200];
+				if(cdrP)
+				{	
+					timeP = cdrP->date;
+					tmP = localtime(&timeP);
+					tmP1 = *tmP;
+					
+					if(tmP1.tm_hour<12)
+					{	
+						sprintf(s1,"%02d:%02d AM on  %02d %3s %d",(tmP1.tm_hour)?tmP1.tm_hour:12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
+					}
+					else
+					{	
+						sprintf(s1,"%02d:%02d PM on  %02d %3s %d",(tmP1.tm_hour-12)?(tmP1.tm_hour-12):12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
+					}
+					if(cdrP->direction&CALLTYPE_IN)
+					{	
+						if(cdrP->direction&CALLTYPE_MISSED)
+						{	
+							[msgLabelP setText:[NSString stringWithFormat:@"Incoming call\n%s", s1]];
+						}	
+						else
+						{
+							[msgLabelP setText:[NSString stringWithFormat:@"Incoming call\n%s", s1]];
+						}
+					}
+					else
+					{
+						[msgLabelP setText:[NSString stringWithFormat:@"Outgoing call\n%s", s1]];
+					}
+					
+				}	
+				
 			}
 			else
 			{
@@ -700,17 +602,35 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	}	
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	if(viewEnum==CONTACTADDVIEWENUM)
+	if(viewEnum==CONTACTADDVIEWENUM || viewEnum == CONTACTFORWARDVMS)
 	{
 		viewP.hidden = YES;
 		tableView.tableFooterView = viewP;
+		[viewP release];
+		if(viewEnum == CONTACTFORWARDVMS)
+		{
+			[self setTitle:@"Select number for vms"];
+		}
 
 	}
 	else
 	{
 		tableView.tableFooterView = viewP;
+		[viewP release];
+		
 
 	}
+	struct AddressBook *addressDataTmpP;
+	
+	
+	addressDataTmpP = addressDataP;
+	addressDataP = 0;
+	[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
+	free(addressDataTmpP);
+	
+	[ self->tableView reloadData ];
+	
+	/*
 	NSString *nsp;
 	nsp = [[NSString alloc] initWithUTF8String:(const char*)addressDataP->title ];
 	[userNameP setText:nsp];
@@ -753,11 +673,167 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		tableView.tableHeaderView = userNameP;
 		
 	}
-	
+*/	
 	//[tableView reloadData];
 
 }
 // Add a title for each section 
+
+
+#pragma mark Table view methods
+/*
+ *   Table Data Source
+ */
+
+- (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	int row = [indexPath row];
+	int section = [indexPath section];
+	sectionType *secLocP;
+	NSString *CellIdentifier = [[NSString alloc] initWithUTF8String:"any cell"];
+	SpoknUITableViewCell *cell = (SpoknUITableViewCell *) [ tableView dequeueReusableCellWithIdentifier: CellIdentifier ];
+	if (cell == nil) {
+		
+		//	secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
+		//	if(secLocP)
+		{	
+			CGRect cellRect = CGRectMake(0, 0, 320, 50);
+			
+			cell = [ [ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
+			//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
+			[self addRow:section :row sectionObject:&secLocP];
+			
+		}	
+	}	
+	else
+	{	
+		secLocP = cell.spoknSubCellP.userData;
+		[secLocP release];
+		
+		[self addRow:section :row sectionObject:&secLocP];
+		//secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
+	}
+	if(secLocP==0) return nil;
+	cell.spoknSubCellP.userData = secLocP;
+	cell.spoknSubCellP.dataArrayP = secLocP->elementP;
+	cell.spoknSubCellP.ownerDrawB = true;
+	cell.spoknSubCellP.rowHeight = 50;
+	if(editableB)
+	{
+		//	cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;//UITableViewCellAccessoryDetailDisclosureButton; 
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.hidesAccessoryWhenEditing = NO;
+	}
+	else
+	{
+		cell.accessoryType = UITableViewCellAccessoryNone;
+		//cell.editingAccessoryType = UITableViewCellAccessoryNone;//UITableViewCellAccessoryDetailDisclosureButton; 
+		
+	}
+	//cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+	[CellIdentifier release];
+	//cell.hidesAccessoryWhenEditing = YES;
+	return cell;
+	
+	
+}
+-(void)tableView:(UITableView *)ltableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
+forRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+	// If row is deleted, remove it from the list.
+	if (editingStyle == UITableViewCellEditingStyleDelete) 
+	{
+		// [dataController removeDataAtIndex:indexPath.row-1];
+		[ltableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+						  withRowAnimation:UITableViewRowAnimationFade];
+	}
+	else if(editingStyle == UITableViewCellEditingStyleInsert)
+	{
+		//  [dataController addData:@"New Row Added"];
+		printf("\n add clicked");
+		// [tableView reloadData];        
+	}
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:
+(NSIndexPath *)indexPath
+{
+	int row = [indexPath row];
+	int section = [indexPath section];
+	if(editableB)
+	{	
+		if(sectionArray[section].dataforSection[row].addNewB)
+		{
+			return UITableViewCellEditingStyleInsert;
+		}
+		else
+		{
+			return UITableViewCellEditingStyleDelete;
+		}
+	}	
+	
+	return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
+{
+	//selection = [[[UIFont familyNames] objectAtIndex:[newIndexPath row]] retain];
+	int row = [newIndexPath row];
+	int section = [newIndexPath section];
+	
+	if(editableB==false)
+	{	
+		if(viewEnum == CONTACTFORWARDVMS)
+		{
+			if(retValP)
+			{
+				*retValP = 1;
+				strcpy(numberCharP,sectionArray[section].dataforSection[row].elementP);
+				if(self->rootObjectP)
+				{
+					[[self navigationController]  popToViewController:self->rootObjectP animated:NO];
+				}
+			}
+			return;
+		}
+		if(strstr( sectionArray[section].dataforSection[row].elementP,"@")==0)
+		{	
+			[self->ownerobject makeCall:sectionArray[section].dataforSection[row].elementP];
+			[self->ownerobject changeView];
+		}	
+		else
+		{
+			[ownerobject vmsShowRecordScreen:sectionArray[section].dataforSection[row].elementP];
+		}
+	}	
+	else
+	{
+		
+		AddeditcellController     *AddeditcellControllerviewP;	
+		AddeditcellControllerviewP = [[AddeditcellController alloc]init];
+		[AddeditcellControllerviewP setObject:self->ownerobject];
+		viewResult = 0;
+		if(section==1)
+		{
+			[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypeEmailAddress :EMAIL_RANGE buttonType:0];
+		}
+		else
+		{
+			if(sectionArray[section].dataforSection[row].elementP == addressDataP->spoknid)
+			{
+				[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :SPOKN_ID_RANGE buttonType:0];
+			}
+			
+		}
+		[AddeditcellControllerviewP setData:sectionArray[section].dataforSection[row].elementP value:sectionArray[section].dataforSection[row].nameofRow placeHolder:sectionArray[section].dataforSection[row].nameofRow returnValue:&viewResult];
+		
+		[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
+		[AddeditcellControllerviewP release];
+		
+	}
+}
+
+
+
 
 - (NSString *)tableView:(UITableView *)tableView 
 titleForHeaderInSection:(NSInteger)section 
@@ -772,13 +848,22 @@ titleForHeaderInSection:(NSInteger)section
  } 
  */
 
-#pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
 	if(sectionCount)
 	return  sectionCount;
 	return 1;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+	return sectionArray[section].height;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+	/*	if(section == 0)
+	 return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spokn.png"]];
+	 else
+	 return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spokn.png"]];*/
+	return sectionArray[section].sectionView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -827,6 +912,10 @@ titleForHeaderInSection:(NSInteger)section
 	{
 		memset(&sectionArray[i],0,sizeof(SectionContactType));
 	}
+	
+	sectionArray[0].sectionView = msgLabelP;
+	sectionArray[0].height = 50;
+
 	sectionCount = 1;
 	addressDataP = malloc(sizeof(struct AddressBook)+4);//extra 4 for padding
 	memset(addressDataP,0,sizeof(struct AddressBook));
@@ -1039,6 +1128,7 @@ titleForHeaderInSection:(NSInteger)section
 				//setTitle:(NSString *)title forState:(UIControlState)state
 				[changeNameButtonP setTitle:userNameP.text forState:UIControlStateNormal];
 				tableView.tableHeaderView = changeNameButtonP;
+				[changeNameButtonP release];
 				
 				
 				self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
@@ -1054,6 +1144,16 @@ titleForHeaderInSection:(NSInteger)section
 				self->callButtonP.hidden = NO;
 				changeNameButtonP.hidden = YES;
 				tableView.tableHeaderView = userNameP;
+				[userNameP release];
+				if(CONTACTPHONEDETAIL==viewEnum)
+				{
+					self.navigationItem.rightBarButtonItem = nil;
+				}
+				if(CONTACTFORWARDVMS == viewEnum)
+				{
+					self.navigationItem.rightBarButtonItem = nil;
+
+				}
 							
 			}
 			if(tableView)
@@ -1093,6 +1193,7 @@ titleForHeaderInSection:(NSInteger)section
 
 - (void)dealloc {
 	
+	[msgLabelP release];
 	if(self->cdrP)
 	{
 		free(self->cdrP);
@@ -1106,8 +1207,11 @@ titleForHeaderInSection:(NSInteger)section
 	 [super dealloc];
 }
 
--(void)setReturnValue:(int*)lretValP
+-(void)setReturnValue:(int*)lretValP selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
 {
 	retValP = lretValP;
+	numberCharP = lnumberCharP;
+	rootObjectP = lrootObjectP;
+	
 }
 @end

@@ -29,14 +29,16 @@
 	Boolean shiftRootB;
 	UIKeyboardType keyboardtype;
 	int fieldRangeInt;
+	id navRootObject;
+	int buttonType;
 	
 }
 -(void)setData:/*out parameter*/(char *)valueCharP value:(char*)fieldP placeHolder:(char*)placeHolderP/*out parameter*/returnValue:(int *)returnP;
 -(IBAction)cancelPressed;
 -(IBAction)savePressed;
 -(void)setObject:(id) object;
--(void) shiftToRoot:(Boolean ) rootB;
--(void) SetkeyBoardType:(UIKeyboardType) type : (int) maxCharInt;
+-(void) shiftToRoot:(id)lnavRootObject :(Boolean ) rootB;
+-(void) SetkeyBoardType:(UIKeyboardType) type : (int) maxCharInt buttonType:(int)lbuttonType;
 @end
 
 

@@ -213,7 +213,7 @@
 	char s1[30];
 	//int index;
 	NSString *stringStrP;
-	char *month[12]={"jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	
 	////printf("\n index = %d\n",index);
 	
@@ -819,7 +819,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}
 	if(openVmsCompose)
 	{
-			printf("\n make changes");
+			printf("\n make changes 123");
 		openVmsCompose = 0;
 		[ownerobject vmsShowRecordScreen:vmsNoChar];
 		vmsNoChar[0] = 0;

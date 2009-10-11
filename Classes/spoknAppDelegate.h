@@ -15,7 +15,7 @@
 @class ContactDetailsViewController;
 @class ContactViewController;
 @class  IncommingCallViewController;
-@class VmsRecordPlayViewController;
+
 @class CalllogViewController;
 @class AddEditcontactViewController;
 #include "vmsplayrecord.h"
@@ -109,6 +109,6 @@ changed:(BOOL)changed;
 -(int)getFileSize:(char*)fileNameP :(unsigned long *)noSecP;
 -(int) vmsShowRecordScreen : (char*)noCharP;
 -(int)showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP;
-
+-(int) vmsForward:(char*)numberP :(char*)fileNameCharP;
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);

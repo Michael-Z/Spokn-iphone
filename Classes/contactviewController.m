@@ -211,17 +211,18 @@ titleForHeaderInSection:(NSInteger)section
 	
 	 segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	 segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	 
-	 [ segmentedControl insertSegmentWithTitle: @"Phone" atIndex: 0 animated: YES ];
+	  [ segmentedControl insertSegmentWithTitle: @"Spokn" atIndex: 0 animated: YES ];
+	
 	 [ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: YES ];
-	 [ segmentedControl insertSegmentWithTitle: @"Spokn" atIndex: 2 animated: YES ];
+	 [ segmentedControl insertSegmentWithTitle: @"Phone" atIndex: 2 animated: YES ];
+	
 	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
 	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
 	 
 	 [ segmentedControl addTarget: self action: @selector(controlPressed:) forControlEvents:UIControlEventValueChanged ];
 	 
 	 self.navigationItem.titleView = segmentedControl;
-	 segmentedControl.selectedSegmentIndex = 2;
+	 segmentedControl.selectedSegmentIndex = 0;
 		
 	
 	[ self reload ];
@@ -233,13 +234,13 @@ titleForHeaderInSection:(NSInteger)section
  	 int index = segmentedControl.selectedSegmentIndex;
 	 switch(index)
 	 {
-		 case 0:
+		 case 2:
 			searchbar.text = @"";
 			 [addressBookTableDelegate setSearchBarAndTable:searchbar  :tableView PerentObject:self OverlayView :&ovController];
 			 
 			
 			 break;
-		 case  2:
+		 case  0:
 		 {
 			 tableView.delegate = self;
 			 tableView.dataSource = self;
@@ -283,10 +284,11 @@ titleForHeaderInSection:(NSInteger)section
 	[addressBookTableDelegate release];
     [super dealloc];
 }
--(void) setReturnVariable :(char *) lnumberCharP : (int *)lvalP
+-(void) setReturnVariable:(id) rootObject :(char *) lnumberCharP : (int *)lvalP
 {
 	numberCharP = lnumberCharP;
 	returnPtr = lvalP;
+	rootControllerObject = rootObject;
 	
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -308,7 +310,9 @@ titleForHeaderInSection:(NSInteger)section
 		*returnPtr = 0;
 	}
 	[AddeditcellControllerviewP setData:numberCharP value:"Type a 7-digit Spokn ID or phone number\n with the country code" placeHolder:"Spokn ID or Phone number" returnValue:returnPtr];
-	[ AddeditcellControllerviewP shiftToRoot:true];
+	[ AddeditcellControllerviewP  shiftToRoot:rootControllerObject :true];
+	[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :CONTACT_RANGE buttonType:1];
+
 	[  [self navigationController]  pushViewController:AddeditcellControllerviewP animated: YES ];
 	
 	[AddeditcellControllerviewP release];
@@ -356,7 +360,7 @@ titleForHeaderInSection:(NSInteger)section
 - (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP {
 	int count = 0; 
 	int fIndexfindInt = -1;
-	if(segmentedControl.selectedSegmentIndex==0)//different view
+	if(segmentedControl.selectedSegmentIndex==2)//different view
 	{
 		return 0;
 	}
@@ -412,6 +416,7 @@ titleForHeaderInSection:(NSInteger)section
 			setTypeP = [[sectionType alloc] init];
 			setTypeP->index = i;
 			[sectionArray addObject: setTypeP] ;
+			printf("\n%d",i);
 		}
 		count = GetTotalCount(uaObject);
 		//for(int i=0;i<sectionArray)
@@ -467,7 +472,14 @@ titleForHeaderInSection:(NSInteger)section
 				}
 				else
 				{
-					[ setTypeP->elementP addObject:secP];
+					if(setTypeP)
+					{	
+						[ setTypeP->elementP addObject:secP];
+					}
+					else
+					{
+						printf("\n error");
+					}
 
 				}
 			}	
@@ -650,9 +662,24 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	if(addressP)
 	{
 		
+			
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
-		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
+		if(parentView)
+		{	
+			if(returnPtr)
+			{
+				*returnPtr = 0;
+			}
+			[ContactControllerDetailsviewP setReturnValue:returnPtr selectedContact:numberCharP  rootObject:rootControllerObject] ;
+		
+			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
+		}
+		else
+		{
+			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
+			
+		}
 		[ContactControllerDetailsviewP setObject:self->ownerobject];
 
 		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];

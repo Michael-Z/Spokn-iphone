@@ -14,7 +14,21 @@
 -(IBAction)sendPressed:(id)sender
 {
 	printf("\n send pressed");
-	[ownerobject vmsSend:noCharP :fileNameCharP];
+	if(playB)
+	{
+		openForwardNo = 0;
+		
+		forwardNoChar[0] = 0;
+		//showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP
+		[ownerobject showContactScreen:self returnnumber:forwardNoChar result:&openForwardNo];
+		
+		
+		
+	}
+	else
+	{	
+		[ownerobject vmsSend:noCharP :fileNameCharP];
+	}	
 }
 -(IBAction)deleteClicked
 {
@@ -67,6 +81,7 @@
 	amt = 0.0;
 	previewButtonP.enabled  = YES;
 	sendButtonP.enabled  = YES;
+	sliderP.value = 0.0f;
 
 	
 }
@@ -76,7 +91,14 @@
 	if(amt<maxTime)
 	{	
 		amt += 1;
+	#ifdef PROGRESS_VIEW
+
 		[uiProgBarP setProgress: (amt / maxTimeLoc)];
+	#else
+		
+		sliderP.value = (amt / maxTimeLoc);
+
+	#endif	
 		self->maxtimeDouble--;
 		[secondLabelP setText:[NSString stringWithFormat:@"%d", self->maxtimeDouble]];
 		//	if (amt > maxtime) { [timer invalidate];}
@@ -130,6 +152,9 @@
 	[PlayButtonP addTarget:self action:@selector(stopButtonPressed:) forControlEvents: UIControlEventTouchUpInside];
 	[PlayButtonP setTitle:@"Stop" forState:UIControlStateNormal];
 	[PlayButtonP setTitle:@"Stop" forState:UIControlStateHighlighted];
+	previewButtonP.enabled  = NO;
+	sendButtonP.enabled  = NO;
+
 	
 
 }
@@ -182,7 +207,11 @@
 
 }
 #pragma mark Table view methods
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 50;
+	
+}
 /*
  *   Table Data Source
  */
@@ -250,7 +279,11 @@
 		//secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
 		}	
 	}
-	if(secLocP==0) return nil;
+	if(secLocP==0)
+	{
+		[CellIdentifier release];
+		return cell;
+	}	
 	if(sectionArray[section].dataforSection[row].customViewP==0)
 	{	
 		cell.spoknSubCellP.userData = secLocP;
@@ -325,8 +358,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	//int index;
 	NSString *stringStrP;
 	
-	objStrP = sectionArray[lsection].dataforSection[row].nameofRow;
-	secObjStrP = sectionArray[lsection].dataforSection[row].elementP;
+	//objStrP = sectionArray[lsection].dataforSection[row].nameofRow;
+	objStrP = sectionArray[lsection].dataforSection[row].elementP;
 	typeCallP = sectionArray[lsection].dataforSection[row].secRowP;
 	
 	{
@@ -372,7 +405,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			if(secObjStrP)
 			{	
 				dispP = [ [displayData alloc] init];
-				dispP.left = 0;
+				dispP.left = 10;
 				dispP.top = 0;
 				dispP.width = 60;
 				
@@ -398,7 +431,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			if(typeCallP)
 			{	
 				dispP = [ [displayData alloc] init];
-				dispP.left = 20;
+				dispP.left = 5;
 				dispP.top = 0;
 				dispP.width = 70;
 				dispP.row = 1;
@@ -463,23 +496,150 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	return sectionArray[section].count;
 	//return [ fileList count ];
 }
+#ifndef PROGRESS_VIEW
+CGContextRef MyCreateBitmapContext (int pixelsWide,
+									int pixelsHigh)
+{
+    CGContextRef    context = NULL;
+    CGColorSpaceRef colorSpace;
+    void *          bitmapData;
+    int             bitmapByteCount;
+    int             bitmapBytesPerRow;
+	
+    bitmapBytesPerRow   = (pixelsWide * 4);
+    bitmapByteCount     = (bitmapBytesPerRow * pixelsHigh);
+	
+    colorSpace = CGColorSpaceCreateDeviceRGB();
+    bitmapData = malloc( bitmapByteCount );
+    if (bitmapData == NULL)
+    {
+        fprintf (stderr, "Memory not allocated!");
+        return NULL;
+    }
+    context = CGBitmapContextCreate (bitmapData,
+									 pixelsWide,
+									 pixelsHigh,
+									 8,
+									 bitmapBytesPerRow,
+									 colorSpace,
+									 kCGImageAlphaPremultipliedLast);
+    if (context== NULL)
+    {
+        free (bitmapData);
+        fprintf (stderr, "Context not created!");
+        return NULL;
+    }
+    CGColorSpaceRelease( colorSpace );
+	
+    return context;
+}
+
+// Build a thumb image based on the grayscale percentage
+id createImage(float percentage)
+{
+	CGRect aRect = CGRectMake(0.0f, 0.0f, 48.0f, 48.0f);
+	CGContextRef context = MyCreateBitmapContext(48, 48);
+	CGContextClearRect(context, aRect);
+	
+	// Outer gray circle
+	CGContextSetFillColorWithColor(context, [[UIColor lightGrayColor] CGColor]);
+	CGContextFillEllipseInRect(context, aRect);
+	
+	// Inner circle with feedback levels
+	CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:percentage green:0.0f blue:0.0f alpha:1.0f] CGColor]);
+	CGContextFillEllipseInRect(context, CGRectInset(aRect, 4.0f, 4.0f));
+	
+	// Inner gray circle
+	CGContextSetFillColorWithColor(context, [[UIColor lightGrayColor] CGColor]);
+	CGContextFillEllipseInRect(context, CGRectInset(aRect, 16.0f, 16.0f));
+	
+	CGImageRef myRef = CGBitmapContextCreateImage (context);
+	free(CGBitmapContextGetData(context));
+	CGContextRelease(context);
+	
+	return [UIImage imageWithCGImage:myRef];
+}
+
+
+
+- (void) updateValue: (UISlider *) slider
+{
+	//[valueLabel setText:[NSString stringWithFormat:@"%3.1f", [slider value]]];
+	
+	//CGImageRef oldknobref = [knob CGImage];
+	//knob = createImage([slider value] / 100.0f);
+//	[slider setThumbImage:knob forState:UIControlStateNormal];
+	//[slider setThumbImage:knob forState:UIControlStateHighlighted];
+//	CFRelease(oldknobref);
+}
+#endif
+
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
+	#ifdef PROGRESS_VIEW
 		uiProgBarP = [[UIProgressView alloc] initWithFrame:
-					   
-					   CGRectMake(10.0f, 30.0f, 280.0f, 10.0f)];
-		
+					  			   
+					   CGRectMake(10.0f, 17.0f, 280.0f, 20.0f)];
+		//[uiProgBarP backgroundColor:[UIColor redColor]];
+		uiProgBarP.progressViewStyle = UIProgressViewStyleBar;
 		//uiProgBarP.backgroundColor = uiActionSheetP.backgroundColor;//[UIColor blueColor];
 		uiProgBarP.progressViewStyle= UIProgressViewStyleBar;
 		uiProgBarP.tag = 12;
+	#else
+		sliderP = [[UISlider alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 280.0f, 30.0f)];
+		sliderP.backgroundColor = [UIColor clearColor];
+		//activeImageP=[UIImage imageNamed:@"vms_out_Active.png"];
+		//dileverImageP=[UIImage imageNamed:@"vmail_out_newHigh.png"];
+		
+		sliderP.minimumValueImage = [UIImage imageNamed:@"vmsprogressleft.png"];
+		[sliderP.minimumValueImage release];
+		sliderP.maximumValueImage = [UIImage imageNamed:@"vmsprogressleft.png"];
+		[sliderP.maximumValueImage release];
+		sliderP.minimumValue = 0.0f;
+		sliderP.maximumValue = 1.0f;
+		sliderP.continuous = NO;
+		sliderP.value = 0.0f;
+		//sliderP.enabled  = NO;
+		
+		// Add the custom knob
+	//	knob = createImage(0.5);
+	//	[sliderP setThumbImage:knob forState:UIControlStateNormal];
+		//[sliderP setThumbImage:knob forState:UIControlStateHighlighted];
+		
+		[sliderP addTarget:self action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
+		//[contentView addSubview: slider];
+		//[sliderP release];
+		
+	#endif		
 		
     }
     return self;
 }
 
-
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	if(openForwardNo)
+	{
+		printf("\n make changes");
+		openForwardNo = 0;
+		[ownerobject vmsForward:forwardNoChar :fileNameCharP];		
+		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+														   message: [ NSString  stringWithFormat:@" vmail is sent to %s", forwardNoChar]
+														  delegate: nil
+												 cancelButtonTitle: nil
+												 otherButtonTitles: @"OK", nil
+							  ];
+		[ alert show ];
+		[alert release];
+		
+		
+		forwardNoChar[0] = 0;
+	}
+}	
 
 -(void)setObject:(id) object 
 {
@@ -493,7 +653,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	if(playB)
 	{
 		char s1[50];
-		char *month[12]={"jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+		char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 		
 		//char *month[12]={"January","February","March","April","May","June","July","August","September","October","November","December"};
 		[PlayButtonP setTitle:@"Play" forState:UIControlStateNormal];
@@ -512,11 +672,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			
 			if(tmP1.tm_hour<12)
 			{	
-				sprintf(s1,"  %02d:%02d AM on  %02d %3s %d",(tmP1.tm_hour)?tmP1.tm_hour:12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
+				sprintf(s1,"%02d:%02d AM on  %02d %3s %d",(tmP1.tm_hour)?tmP1.tm_hour:12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
 			}
 			else
 			{	
-				sprintf(s1,"  %02d:%02d PM on  %02d %3s %d",(tmP1.tm_hour-12)?(tmP1.tm_hour-12):12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
+				sprintf(s1,"%02d:%02d PM on  %02d %3s %d",(tmP1.tm_hour-12)?(tmP1.tm_hour-12):12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
 			}
 			if(vmailP->direction&VMAIL_IN)
 			{	
@@ -538,7 +698,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	{
 		
 		
-		[msgLabelP setText:@"Press the record button to record a \n20 second long VMS "];
+		[msgLabelP setText:@"Press the record button to record a\n20 second long VMS "];
 		[secondLabelP setText:[NSString stringWithFormat:@"%d", self->maxTime]];
 		previewButtonP.enabled  = NO;
 		sendButtonP.enabled  = NO;
@@ -626,8 +786,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	sectionArray[1].sectionView = firstSectionviewP;
 	
 	sectionArray[1].count=0;
-	
+	#ifdef PROGRESS_VIEW
 	sectionArray[2].dataforSection[tablesz].customViewP = uiProgBarP;//addressDataP->home;
+	#else
+	sectionArray[2].dataforSection[tablesz].customViewP = sliderP;//addressDataP->home;
+
+	#endif
 	sectionArray[2].dataforSection[tablesz].secRowP = 0;
 	sectionArray[2].height = 30;
 	sectionArray[2].sectionView = 0;

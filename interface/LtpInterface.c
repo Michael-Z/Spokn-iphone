@@ -374,6 +374,8 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 {
 	
+	printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
+
 	if(ltpInterfaceP->ltpObjectP==0)
 	{
 		return -1;
@@ -383,7 +385,7 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 		return -2;
 	}
 	restartSocket(&ltpInterfaceP->socketID);
-printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
+//printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
 	ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
 	ltpInterfaceP->alertNotifyP(START_LOGIN,0,0,ltpInterfaceP->userData,0);
 	

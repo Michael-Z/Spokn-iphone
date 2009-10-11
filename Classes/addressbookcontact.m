@@ -11,6 +11,7 @@
 #import "SpoknAppDelegate.h"
 #import "customcell.h"
 #import "OverlayViewController.h"
+#include "ua.h"
 @implementation AddressBookContact
 -(void)setObject:(id) object 
 {
@@ -205,7 +206,7 @@ titleForHeaderInSection:(NSInteger)section
 	//NSString* mobile=@"";
 	NSString* numberStringP;
 	char *numbercharP;
-//	//printf("\nidentifire = %ld\n",identifier);
+printf("\nidentifire = %ld\n",property);
 	for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
 	{
 		
@@ -222,7 +223,7 @@ titleForHeaderInSection:(NSInteger)section
 			}	
 			else
 			{
-				[ownerobject vmsRecordStart:numbercharP];
+				[ownerobject vmsShowRecordScreen:numbercharP];
 			}
 			[numberStringP release];
 			
@@ -261,8 +262,9 @@ titleForHeaderInSection:(NSInteger)section
 	
 	int row = [newIndexPath row];
 	int section = [newIndexPath section];
-	
+	struct AddressBook *addressP;
 	sectionType *setTypeP;
+	char *numbercharP=0;
 	
 	setTypeP = [sectionArray objectAtIndex:section] ;
 	
@@ -272,11 +274,102 @@ titleForHeaderInSection:(NSInteger)section
 	//secP = (sectionData*)[dataP objectAtIndex:0];
 	id person  = [setTypeP->elementP objectAtIndex:row]; 
 		
-	
+	/*
 	ABPersonViewController *pvc = [[ABPersonViewController alloc] init];
 	pvc.displayedPerson = person;
 	pvc.personViewDelegate = self;
 	[[controllerP navigationController] pushViewController:pvc animated:YES];
+*/
+	NSString *numberStringP;
+	NSString *labelStringP;
+	NSString *nameP;
+	ABMultiValueRef name1 ;
+	addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook)+10);
+	memset(addressP,0,sizeof(struct AddressBook));
+	nameP = [self getName:person];
+	NSLog(nameP);
+	numbercharP = (char*)[nameP  cStringUsingEncoding:1];
+	strncpy(addressP->title,numbercharP,98);
+	//ABMultiValueRef name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
+	name1 =(NSString*)ABRecordCopyValue(person,kABRealPropertyType);
+	if(name1)
+	{	
+		for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
+		{
+			numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
+			labelStringP=(NSString*)ABMultiValueCopyLabelAtIndex(name1,i);
+			if(numberStringP==0 || labelStringP==0)
+			{
+				continue;
+			}
+			if([labelStringP isEqualToString:@"_$!<Mobile>!$_"])
+			{
+				numbercharP = (char*)[numberStringP  cStringUsingEncoding:1];
+				strcpy(addressP->mobile,numbercharP);
+			}
+			else
+			{	
+				if([labelStringP isEqualToString:@"_$!<Home>!$_"])
+				{
+					numbercharP = (char*)[numberStringP  cStringUsingEncoding:1];
+					strcpy(addressP->home,numbercharP);
+				}
+				else
+					if([labelStringP isEqualToString:@"_$!<Business>!$_"])
+					{
+						numbercharP = (char*)[numberStringP  cStringUsingEncoding:1];
+						strcpy(addressP->business,numbercharP);
+					}
+					else
+					{
+						numbercharP = (char*)[numberStringP  cStringUsingEncoding:1];
+						strcpy(addressP->other,numbercharP);
+
+					}
+			}
+			NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
+			[numberStringP release];
+			[labelStringP release];
+		}
+		[name1 release];
+	}	
+	
+	name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
+	if(name1)
+	{	
+		for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
+		{
+			numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
+			labelStringP=(NSString*)ABMultiValueCopyLabelAtIndex(name1,i);
+			if(numberStringP==0 || labelStringP==0)
+			{
+				continue;
+			}
+			numbercharP = (char*)[numberStringP  cStringUsingEncoding:1];
+			strcpy(addressP->email,numbercharP);
+		//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
+			[numberStringP release];
+			[labelStringP release];
+		}
+		[name1 release];
+	}	
+	
+	
+	 
+	 
+	 ContactDetailsViewController     *ContactControllerDetailsviewP;	
+	 ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+	 [ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTPHONEDETAIL];
+	 [ContactControllerDetailsviewP setObject:self->ownerobject];
+	 
+	 [ ownerobject.contactNavigationController pushViewController:ContactControllerDetailsviewP animated: YES ];
+	 
+	 if([ContactControllerDetailsviewP retainCount]>1)
+	 [ContactControllerDetailsviewP release];
+	free(addressP);
+	 printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+	 
+	 
 }
 
 - (void) buildSearchArrayFrom: (NSString *) matchString

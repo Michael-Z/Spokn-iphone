@@ -17,7 +17,6 @@
 #import "IncommingCallViewController.h"
 #include "ua.h"
 #include "vmsplayrecord.h"
-#import "VmsRecordPlayViewController.h"
 
 #import "CalllogViewController.h"
 #import "vmailviewcontroller.h"
@@ -433,6 +432,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	//[nc postNotificationName:@"DEQUEUEAUDIO" object:idP userInfo:nil];
 	cdrLoad();
+	/*
 	NSString *idValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"id_prefrence"];
 	NSString *passValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"pass_prefrence"];
 	char *idValueCharP;
@@ -453,7 +453,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}	
 	free(userNameCharP);
 	[idValue release];
-	[passValue release];
+	[passValue release];*/
 	//setLtpUserName(ltpInterfacesP, "");
 	//setLtpPassword(ltpInterfacesP, "");
 	//NSString *ltpValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"protocol_prefrence"];
@@ -484,7 +484,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 	//[super applicationWillTerminate:application];
 	[ltpTimerP stopTimer ];
-	logOut(ltpInterfacesP);
+	//logOut(ltpInterfacesP);
 	endLtp(ltpInterfacesP);
 	printf("\n  count %d tab %d",[dialviewP retainCount],[tabBarController retainCount]);
 	[tabBarController release];
@@ -720,7 +720,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	contactP.uaObject = GETCONTACTLIST;
 	[contactP setObjType:GETCONTACTLIST];
 	contactP.ltpInterfacesP = ltpInterfacesP;
-	[contactP setReturnVariable :noCharP :resultP];
+	[contactP setReturnVariable:navObject :noCharP :resultP];
 	[ [navObject navigationController] pushViewController:contactP animated: YES ];
 	[contactP release];
 	printf("\n retain countact details count %d\n",[contactviewP retainCount]);
@@ -732,7 +732,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	char type[30];
 	int max = 20;
 	
-		printf("\nname  %s",noCharP );
+	
 	addressP = getContactAndTypeCall(noCharP,type);	
 	if(addressP)
 	{
@@ -757,7 +757,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
 		[vmShowViewControllerP setFileName: "temp" :0];
 		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
-		[vmShowViewControllerP setvmsDetail: noCharP : noCharP :"mobile" :false :max : 0];
+		[vmShowViewControllerP setvmsDetail: noCharP : noCharP :"" :false :max : 0];
 		[vmShowViewControllerP setObject:self];
 		
 		[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];
@@ -799,6 +799,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(nameP)
 	free(nameP);	
 	return 0;
+}
+-(int) vmsForward:(char*)numberP :(char*)fileNameCharP
+{
+	return sendVms(numberP,fileNameCharP);
 }
 -(int) vmsSend:(char*)numberP :(char*)fileNameCharP
 {

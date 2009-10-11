@@ -16,7 +16,7 @@
 - (void)VmsStop;
 
 @end
-
+//#define PROGRESS_VIEW
 @class SpoknAppDelegate;
 @interface VmShowViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,VmsProtocol> {
 	IBOutlet UITableView *tableView;
@@ -45,7 +45,10 @@
 	NSTimer        *nsTimerP;
 	char *fileNameCharP;
 	int *returnValLongP;
-	
+	int openForwardNo;
+	char forwardNoChar[100];
+	UISlider *sliderP;
+	UIImage *knob;
 	
 	
 	

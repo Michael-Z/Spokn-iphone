@@ -159,7 +159,7 @@
 	char s1[30];
 	//int index;
 	NSString *stringStrP;
-	char *month[12]={"jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	//////printf("\n index = %d\n",index);
 	
 	objP = GetObjectAtIndex(showMisscallInt ,index);
@@ -278,12 +278,7 @@
 			dispP.top = 0;
 			dispP.width = 0;
 			dispP.height = 100;
-			if(cdrP->direction & CALLTYPE_MISSED)
-			{	
-				
-				dispP.uiImageP = missImageP;
-			}
-			else
+			
 			{
 				
 				if(cdrP->direction & CALLTYPE_OUT)
@@ -292,7 +287,15 @@
 				}
 				if(cdrP->direction & CALLTYPE_IN)
 				{
-					dispP.uiImageP = inImageP;
+					if(cdrP->direction & CALLTYPE_MISSED)
+					{	
+						
+						dispP.uiImageP = missImageP;
+					}
+					else
+					{	
+						dispP.uiImageP = inImageP;
+					}	
 				}
 			}
 			
@@ -311,7 +314,7 @@
 				dispP.width = 100;
 			}
 			dispP.height = 50;
-			if(cdrP->direction & CALLTYPE_MISSED)
+			if((cdrP->direction & CALLTYPE_IN) && (cdrP->direction & CALLTYPE_MISSED))
 			{	
 				dispP.colorP = [UIColor redColor];
 				
@@ -419,7 +422,8 @@
 			ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 			[ContactControllerDetailsviewP setObject:self->ownerobject];
 			resultInt = 0;
-			[ContactControllerDetailsviewP setReturnValue:&resultInt];
+			//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
+			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0] ;
 			[ContactControllerDetailsviewP setCdr:cdrP];
 			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
@@ -461,7 +465,7 @@
 			ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 			[ContactControllerDetailsviewP setObject:self->ownerobject];
 			resultInt = 0;
-			[ContactControllerDetailsviewP setReturnValue:&resultInt];
+			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0] ;
 			[ContactControllerDetailsviewP setCdr:cdrP];
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
 			

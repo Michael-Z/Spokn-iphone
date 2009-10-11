@@ -38,6 +38,7 @@
 	int *returnPtr;
 	char *numberCharP;
 	int parentView;//this variable distinguish between different parent view
+	id rootControllerObject;
 	
 	
 
@@ -53,5 +54,5 @@
 -(void)setObjType:(UAObjectType)luaObj;
 - (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP ;
 - (void) doneSearching_Clicked:(id)sender;
--(void) setReturnVariable:(char *) numberCharP : (int *)valP;
+-(void) setReturnVariable:(id) rootObject :(char *) numberCharP : (int *)valP;
 @end

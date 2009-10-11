@@ -11,9 +11,11 @@
 #import "contactDetailsviewcontroller.h"
 #include "ua.h"
 @implementation AddeditcellController
--(void) shiftToRoot:(Boolean ) rootB
+-(void) shiftToRoot: (id)lrootObject :(Boolean ) rootB
 {
+	self->navRootObject = lrootObject;
 	self->shiftRootB = rootB;
+	printf("\n i am here");
 }
 -(void)setObject:(id) object 
 {
@@ -27,10 +29,12 @@
 	[[self navigationController]  popViewControllerAnimated:YES];
 }
 
--(void) SetkeyBoardType:(UIKeyboardType) type : (int) maxCharInt
+-(void) SetkeyBoardType:(UIKeyboardType) type : (int) maxCharInt buttonType:(int)lbuttonType
+
 {
 	keyboardtype = type;
 	fieldRangeInt = maxCharInt ;
+	buttonType = lbuttonType;
 }
 -(IBAction)savePressed
 {
@@ -44,7 +48,7 @@
 		*returnP = 1;
 	}
 	//addressDataP->dirty = true;
-
+NSLog(@"\nSave123");
 	if(self->shiftRootB==false)
 	{	
 		[[self navigationController]  popViewControllerAnimated:YES];
@@ -52,7 +56,14 @@
 	else
 	{
 		NSLog(@"Save");
-		[[self navigationController]  popToRootViewControllerAnimated:YES];
+		if(self->navRootObject)
+		{
+			[[self navigationController]  popToViewController:self->navRootObject animated:NO];
+		}
+		else
+		{	
+			[[self navigationController]  popToRootViewControllerAnimated:YES];
+		}	
 	}
 }
 -(void)setData:/*out parameter*/(char *)lvalueCharP value:(char*)fieldP placeHolder:(char*)lplaceHolderP/*out parameter*/returnValue:(int *)lreturnP;
@@ -74,16 +85,38 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	// Add right button
+	printf("\n load");
 	self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 											   target: self
 											   action: @selector(cancelPressed) ] autorelease ];	
-	self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
-												initWithBarButtonSystemItem: UIBarButtonSystemItemSave
-												target: self
-												action: @selector(savePressed) ] autorelease ];
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	if(self->shiftRootB==false || buttonType==0)
+	{	
+		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+													initWithBarButtonSystemItem: UIBarButtonSystemItemSave
+													target: self
+													action: @selector(savePressed) ] autorelease ];
+	}
+	else
+	{
+		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+													initWithBarButtonSystemItem: UIBarButtonSystemItemDone
+													target: self
+													action: @selector(savePressed) ] autorelease ];
+		
+	}
+	
+	headLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	
+	[headLabelP setText:typeP];
+	
 
+}	
 
 - (AddeditcellController *) init
 {
@@ -91,6 +124,7 @@
 	{	
 		self.title = @"Edit";
 	}
+	buttonType = 0;
 	CGRect LabelFrame2 = CGRectMake(0, 5, 320, 60);
 	headLabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
 	headLabelP.textAlignment = UITextAlignmentCenter;
@@ -217,16 +251,6 @@
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
-}
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-	headLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-
-	[headLabelP setText:typeP];
-//	[self.tableView reloadData];
-
 }
 
 

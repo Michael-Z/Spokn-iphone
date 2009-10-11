@@ -12,6 +12,7 @@
 #define ALPHA @"123"
 #import  "AddeditcellController.h"
 #import "WebViewController.h"
+#include "ua.h"
 @implementation SpoknViewController
 // Build a section/row list 
 - (void) createSectionList: (id) wordArray
@@ -45,11 +46,12 @@
 
 		AddeditcellController     *AddeditcellControllerviewP;	
 		AddeditcellControllerviewP = [[AddeditcellController alloc]init];
+		[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :NUMBER_RANGE buttonType:0];
 		[AddeditcellControllerviewP setObject:self->ownerobject];
 		viewResult = 0;
 		[AddeditcellControllerviewP setData:forwardNoCharP value:"Enter forward no" placeHolder:"Enter forward no" returnValue:&viewResult];
 		
-		[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
+		[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: NO ];
 		
 			[AddeditcellControllerviewP release];
 	}

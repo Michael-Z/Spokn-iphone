@@ -39,7 +39,9 @@ typedef enum ViewTypeEnum
 		CONTACTDETAILVIEWENUM,
 		CONTACTEDITVIEWENUM,
 		CONTACTADDVIEWENUM,
-		CALLLOGDETAILVIEWENUM
+		CALLLOGDETAILVIEWENUM,
+		CONTACTPHONEDETAIL,
+		CONTACTFORWARDVMS
 		
 	}ViewTypeEnum;
 @interface ContactDetailsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate> {
@@ -68,8 +70,12 @@ typedef enum ViewTypeEnum
 	int viewResult;
 	int updatecontact;
 	int *retValP;
+	UILabel *msgLabelP;
+	char *numberCharP;
+	id rootObjectP;
 	
 }
+
 - (void)addRow: (int)lsection:(int )row sectionObject:(sectionType **)sectionPP;
 -(void)setObject:(id) object ;
 -(void)setCdr:(struct CDR *)lcdrP;
@@ -79,5 +85,5 @@ typedef enum ViewTypeEnum
 -(IBAction)deletePressed:(id)sender;
 -(IBAction)changeNamePressed:(id)sender;
 - (void) presentSheet:(bool)callB;
--(void)setReturnValue:(int*)lretValB;
+-(void)setReturnValue:(int*)lretValB selectedContact:(char*)lnumberCharP rootObject:(id)rootObject;
 @end
