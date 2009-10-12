@@ -77,8 +77,9 @@
 		}
 		[ alert show ];
 		[alert release];
+		return;
 	}	
-	return;
+	
 	
 	
 	TempP = (char*)[[txtField text] cStringUsingEncoding:1];
