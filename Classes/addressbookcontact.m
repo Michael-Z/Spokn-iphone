@@ -356,7 +356,7 @@ printf("\nidentifire = %ld\n",property);
 	
 	
 	 
-	 
+	/* 
 	 ContactDetailsViewController     *ContactControllerDetailsviewP;	
 	 ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 	 [ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTPHONEDETAIL];
@@ -366,8 +366,10 @@ printf("\nidentifire = %ld\n",property);
 	 
 	 if([ContactControllerDetailsviewP retainCount]>1)
 	 [ContactControllerDetailsviewP release];
+	 */
+	 
+	[(ContactViewController*) controllerP showContactDetailScreen:addressP];
 	free(addressP);
-	 printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 	 
 	 
 }

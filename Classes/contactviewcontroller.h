@@ -11,9 +11,9 @@
 #import "LtpInterface.h"
 #include "ua.h"
 #include "vmsplayrecord.h"
-#define MAXSEC 27
-#define ALPHA @"!ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-#define ALPHA_ARRAY [NSArray arrayWithObjects: @"", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R",@"S",@"T", @"U", @"V", @"W", @"X", @"Y",@"Z" , nil] 
+#define MAXSEC 28
+#define ALPHA @"!ABCDEFGHIJKLMNOPQRSTUVWXYZ#"
+#define ALPHA_ARRAY [NSArray arrayWithObjects: @"", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R",@"S",@"T", @"U", @"V", @"W", @"X", @"Y",@"Z",@"#" , nil] 
 
 @class SpoknAppDelegate;
 
@@ -55,4 +55,5 @@
 - (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP ;
 - (void) doneSearching_Clicked:(id)sender;
 -(void) setReturnVariable:(id) rootObject :(char *) numberCharP : (int *)valP;
+-(int)  showContactDetailScreen: (struct AddressBook * )addressP;
 @end

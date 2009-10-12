@@ -591,10 +591,13 @@
 					 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
 					 target: self
 					 action: @selector(doneClicked) ] autorelease ];
-				self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+				if(viewEnum!=CONTACTFORWARDVMS)
+				{	
+					self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 														   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 														   target: self
 														   action: @selector(cancelClicked) ] autorelease ];	
+				}	
 			}	
 		}	
 		

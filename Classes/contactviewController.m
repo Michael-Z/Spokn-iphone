@@ -299,6 +299,47 @@ titleForHeaderInSection:(NSInteger)section
 	return 1;
 
 }
+-(int)  showContactDetailScreen: (struct AddressBook * )addressP
+{
+	
+	if(addressP)
+	{
+		
+		
+		ContactDetailsViewController     *ContactControllerDetailsviewP;	
+		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+		if(parentView)
+		{	
+			if(returnPtr)
+			{
+				*returnPtr = 0;
+			}
+			[ContactControllerDetailsviewP setReturnValue:returnPtr selectedContact:numberCharP  rootObject:rootControllerObject] ;
+			
+			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
+		}
+		else
+		{
+			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
+			
+		}
+		[ContactControllerDetailsviewP setObject:self->ownerobject];
+		
+		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+		
+		if([ContactControllerDetailsviewP retainCount]>1)
+			[ContactControllerDetailsviewP release];
+		printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+		
+		
+		
+		
+		return 0;
+		
+	}
+	return 1;
+	
+}
 - (void) showNumberScreen {
 	
 	AddeditcellController     *AddeditcellControllerviewP;	
@@ -659,42 +700,8 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	//secP = (sectionData*)[dataP objectAtIndex:0];
 	secP = (sectionData*)[setTypeP->elementP objectAtIndex:row]; 
 	addressP = (struct AddressBook *)getContact( secP->recordid);
-	if(addressP)
-	{
-		
-			
-		ContactDetailsViewController     *ContactControllerDetailsviewP;	
-		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
-		if(parentView)
-		{	
-			if(returnPtr)
-			{
-				*returnPtr = 0;
-			}
-			[ContactControllerDetailsviewP setReturnValue:returnPtr selectedContact:numberCharP  rootObject:rootControllerObject] ;
-		
-			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
-		}
-		else
-		{
-			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
-			
-		}
-		[ContactControllerDetailsviewP setObject:self->ownerobject];
-
-		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
-				
-		if([ContactControllerDetailsviewP retainCount]>1)
-			[ContactControllerDetailsviewP release];
-		printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
-		
-		
-		
-				
-		return;
-		
-	}
 	
+	[self showContactDetailScreen :addressP ];
 		
 
 
