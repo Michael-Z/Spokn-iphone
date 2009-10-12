@@ -51,7 +51,7 @@
 				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 											  message: [ NSString stringWithString:@"number can not be blanked" ]
 										 delegate: self
-								cancelButtonTitle: @"cancel"
+								cancelButtonTitle: nil
 								otherButtonTitles: @"OK", nil
 			 ];
 				break;
@@ -59,7 +59,7 @@
 				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 													  message: [ NSString stringWithString:@"name can not be blanked" ]
 													 delegate: self
-											cancelButtonTitle: @"cancel"
+											cancelButtonTitle: nil
 											otherButtonTitles: @"OK", nil
 						 ];
 				break;
@@ -68,7 +68,7 @@
 				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 													  message: [ NSString stringWithString:@"email can not be blanked" ]
 													 delegate: self
-											cancelButtonTitle: @"cancel"
+											cancelButtonTitle: nil
 											otherButtonTitles: @"OK", nil
 						 ];
 				break;
