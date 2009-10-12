@@ -207,6 +207,7 @@
 
 }
 #pragma mark Table view methods
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return 50;
@@ -216,7 +217,7 @@
  *   Table Data Source
  */
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	return sectionArray[section].height;
+	return sectionArray[section].sectionheight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -330,8 +331,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:
 (NSIndexPath *)indexPath
 {
-	int row = [indexPath row];
-	int section = [indexPath section];
+	//int row = [indexPath row];
+	//int section = [indexPath section];
 	/*if(editableB)
 	{	
 		if(sectionArray[section].dataforSection[row].addNewB)
@@ -344,7 +345,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		}
 	}	
 	*/
-	return UITableViewCellEditingStyleDelete;
+	return UITableViewCellEditingStyleNone;
 }
 /*
  *   Table Delegate
@@ -714,7 +715,7 @@ id createImage(float percentage)
 	amt = 0.0;
 	maxtimeDouble = maxTime;
 	[ownerobject setVmsDelegate:self];
-	printf("\n maxtime download %d",self->maxTime);
+//	printf("\n maxtime download %d",self->maxTime);
 	
 
 
@@ -782,7 +783,7 @@ id createImage(float percentage)
 	
 	sectionArray[1].dataforSection[tablesz].elementP = 0;//addressDataP->home;
 	sectionArray[1].dataforSection[tablesz].secRowP = 0;
-	sectionArray[1].height = 100;
+	sectionArray[1].sectionheight = 100;
 	sectionArray[1].sectionView = firstSectionviewP;
 	
 	sectionArray[1].count=0;
@@ -793,13 +794,13 @@ id createImage(float percentage)
 
 	#endif
 	sectionArray[2].dataforSection[tablesz].secRowP = 0;
-	sectionArray[2].height = 30;
+	sectionArray[2].sectionheight = 30;
 	sectionArray[2].sectionView = 0;
 	sectionArray[2].count++;
 	
 	sectionArray[3].dataforSection[tablesz].customViewP = 0;//addressDataP->home;
 	sectionArray[3].dataforSection[tablesz].secRowP = 0;
-	sectionArray[3].height = 150;
+	sectionArray[3].sectionheight = 150;
 	sectionArray[3].sectionView = secondSectionviewP;
 	
 	sectionCount = 4;

@@ -29,6 +29,7 @@
 	UISwitch *switchView;
 	int viewResult;
 	char *forwardNoCharP;
+	int viewCallB;
 	
 
 }

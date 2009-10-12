@@ -457,16 +457,20 @@
 			if([addeditviewP retainCount]>1)
 				[addeditviewP release];*/
 			
+			
 			addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));
 			memset(addressP,0,sizeof(struct AddressBook));
 			addressP->id = -1;
 			strcpy(addressP->title,cdrP->userid);
+			strcpy(addressP->other,cdrP->userid);
 			ContactDetailsViewController     *ContactControllerDetailsviewP;	
 			ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 			[ContactControllerDetailsviewP setObject:self->ownerobject];
 			resultInt = 0;
+			//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
 			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0] ;
 			[ContactControllerDetailsviewP setCdr:cdrP];
+			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
 			
 			
@@ -476,8 +480,9 @@
 			
 			if([ContactControllerDetailsviewP retainCount]>1)
 				[ContactControllerDetailsviewP release];
+			printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 			
-			
+			free(addressP);
 			return;
 		}
 		

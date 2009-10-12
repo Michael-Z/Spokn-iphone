@@ -49,6 +49,7 @@
 		[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :NUMBER_RANGE buttonType:0];
 		[AddeditcellControllerviewP setObject:self->ownerobject];
 		viewResult = 0;
+		viewCallB = true;
 		[AddeditcellControllerviewP setData:forwardNoCharP value:"Enter forward no" placeHolder:"Enter forward no" returnValue:&viewResult];
 		
 		[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: NO ];
@@ -108,10 +109,12 @@
 -(void) LogoutPressed {
 	
 	[ownerobject logOut];
-		[self.navigationItem.rightBarButtonItem initWithTitle: @"Sign-in" style:UIBarButtonItemStylePlain
+	//alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
+	/*	[self.navigationItem.rightBarButtonItem initWithTitle: @"Sign-in" style:UIBarButtonItemStylePlain
 	 target: self
 	 action: @selector(LoginPressed) ] ;
-	
+	*/
+	[self LoginPressed];
 	//[activityIndicator startAnimating];
 	
 	
@@ -171,6 +174,16 @@
 		}
 		//[ self->tableView reloadData ];
 	}
+	else
+	{
+		if(viewCallB)
+		{
+			//printf("\n control on");
+			viewCallB = false;
+			[switchView setOn:NO animated:NO]; 
+		}
+	}
+	
 }	
 
 /*
@@ -227,7 +240,11 @@ titleForHeaderInSection:(NSInteger)section
 	return nil;
 }
 #pragma mark Table view methods
-
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Detemine if it's in editing mode
+   
+    return UITableViewCellEditingStyleNone;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if([listOfItems count])
 	return [listOfItems count];
@@ -374,18 +391,20 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			
 			label2 = labelForword ;
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		}
 		else if([temp isEqualToString:@"Spokn Number"])
 		{
 			
 			label2 = labelSpoknNo ;
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		}
 		
 				
 	
 		if([temp isEqualToString:@"Call Forwarding"])
 		{
-			
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 			[cell addSubview:switchView]; 
 			[switchView release];
 		}
@@ -400,6 +419,7 @@ titleForHeaderInSection:(NSInteger)section
 	{
 		printf("\n error ");
 	}
+	
     return cell;
 }
 - (void)tableView:(UITableView *)tableView 
@@ -421,7 +441,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)ltableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	int row = [indexPath row];
 	int section = [indexPath section];
 	if(section==0 && row==1 )
@@ -433,12 +453,20 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		[WebViewControllerviewP release];	
 	
 	}
+	[ltableView deselectRowAtIndexPath : indexPath animated:YES];
 	
 }
 
 -(IBAction)buyCredit:(id)sender
 {
-
+	char *tmp;
+	NSString *srtrP;
+	tmp = getCreditsPage();
+	srtrP = [[NSString alloc] initWithUTF8String:tmp];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:srtrP]];
+	 free(tmp);
+	 [ srtrP release];
+	 
 }
 
 @end

@@ -34,6 +34,7 @@
 	NSString *stringStrP;
 	objStrP = sectionArray[lsection].dataforSection[row].nameofRow;
 	secObjStrP = sectionArray[lsection].dataforSection[row].elementP;
+	printf("\n %s %s",objStrP,secObjStrP);
 	
 	{
 				
@@ -489,7 +490,7 @@
 		addressDataP = 0;
 		[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
 		free(addressDataTmpP);
-		
+		//printf("\n erroer  ");
 		[ self->tableView reloadData ];
 	}
 }	
@@ -520,11 +521,22 @@
 	{	
 		if(viewEnum==CONTACTDETAILVIEWENUM)
 		{	
-			self.navigationItem.rightBarButtonItem 
-			= [ [ [ UIBarButtonItem alloc ]
+			if(editableB==false)
+			{	
+				self.navigationItem.rightBarButtonItem 
+				= [ [ [ UIBarButtonItem alloc ]
 				 initWithBarButtonSystemItem: UIBarButtonSystemItemEdit
 				 target: self
 				 action: @selector(editClicked) ] autorelease ];	
+			}
+			else
+			{
+				self.navigationItem.rightBarButtonItem 
+				= [ [ [ UIBarButtonItem alloc ]
+					 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
+					 target: self
+					 action: @selector(doneClicked) ] autorelease ];
+			}
 		}
 		else
 		{	
@@ -608,6 +620,7 @@
 	if(viewEnum==CONTACTADDVIEWENUM || viewEnum == CONTACTFORWARDVMS)
 	{
 		viewP.hidden = YES;
+		printf("\n viewEnum");
 		tableView.tableFooterView = viewP;
 		[viewP release];
 		if(viewEnum == CONTACTFORWARDVMS)
@@ -628,6 +641,7 @@
 	
 	addressDataTmpP = addressDataP;
 	addressDataP = 0;
+	printf("\n edit %d",self->editableB);
 	[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
 	free(addressDataTmpP);
 	
@@ -684,6 +698,7 @@
 
 
 #pragma mark Table view methods
+
 /*
  *   Table Data Source
  */
@@ -743,9 +758,19 @@
 -(void)tableView:(UITableView *)ltableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
 forRowAtIndexPath:(NSIndexPath *)indexPath 
 {
+	
+	int row = [indexPath row];
+	int section = [indexPath section];
+	
 	// If row is deleted, remove it from the list.
 	if (editingStyle == UITableViewCellEditingStyleDelete) 
 	{
+		sectionArray[section].count--;
+		if(sectionArray[section].dataforSection[row].elementP)
+		{
+			strcpy(sectionArray[section].dataforSection[row].elementP,"\0");//mean row is deleted
+			updatecontact = 1;
+		}
 		// [dataController removeDataAtIndex:indexPath.row-1];
 		[ltableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
 						  withRowAnimation:UITableViewRowAnimationFade];
@@ -774,7 +799,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		}
 	}	
 	
-	return UITableViewCellEditingStyleDelete;
+	return UITableViewCellEditingStyleNone;
 }
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
@@ -854,12 +879,13 @@ titleForHeaderInSection:(NSInteger)section
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
+	printf("\n %d",sectionCount);
 	if(sectionCount)
 	return  sectionCount;
 	return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-	return sectionArray[section].height;
+	return sectionArray[section].sectionheight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 	/*	if(section == 0)
@@ -871,6 +897,7 @@ titleForHeaderInSection:(NSInteger)section
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
+	printf("\n%d",sectionArray[section].count);
 	return sectionArray[section].count;
 	//return [ fileList count ];
 }
@@ -908,6 +935,7 @@ titleForHeaderInSection:(NSInteger)section
 	}	
 	self->viewEnum = lviewEnum;
 	self->editableB = leditableB;
+	printf("\n %d",self->editableB);
 	self->tablesz = 0;
 	addressDataP = 0;
 	
@@ -917,9 +945,10 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	
 	sectionArray[0].sectionView = msgLabelP;
-	sectionArray[0].height = 50;
+	sectionArray[0].sectionheight = 50;
 
 	sectionCount = 1;
+	
 	addressDataP = malloc(sizeof(struct AddressBook)+4);//extra 4 for padding
 	memset(addressDataP,0,sizeof(struct AddressBook));
 	if(laddressDataP)
@@ -1067,15 +1096,23 @@ titleForHeaderInSection:(NSInteger)section
 			
 		}
 	}
+	if(tablesz==0)
+	{
+		sectionCount = 0;
+		
+	}
 	if(strlen(addressDataP->email)>0)
 	{
 		//element[tablesz++] = addressDataP->email;
-		sectionArray[1].dataforSection[0].section = 0;
-		strcpy(sectionArray[1].dataforSection[0].nameofRow,"Email");
-		sectionArray[1].dataforSection[0].elementP = addressDataP->email;
-		sectionArray[1].count++;
+		sectionArray[sectionCount].dataforSection[0].section = 0;
+		strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"Email");
+		sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
+		sectionArray[sectionCount].count++;
 		//tablesz++;
-		sectionCount = 2;
+		if(sectionCount)	
+			sectionCount = 2;
+		else
+			sectionCount = 1;
 		
 	}
 	else
@@ -1083,26 +1120,40 @@ titleForHeaderInSection:(NSInteger)section
 		if(leditableB)
 		{
 			printf("\n email ");
-			sectionArray[1].dataforSection[0].section = 0;
-			strcpy(sectionArray[1].dataforSection[0].nameofRow,"Add email");
-			sectionArray[1].dataforSection[0].elementP = addressDataP->email;
-			sectionArray[1].count++;
-			sectionArray[1].dataforSection[0].addNewB = true;
-				
-			sectionCount = 2;
+			sectionArray[sectionCount].dataforSection[0].section = 0;
+			strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"Add email");
+			sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
+			sectionArray[sectionCount].count++;
+			sectionArray[sectionCount].dataforSection[0].addNewB = true;
+			if(sectionCount)	
+				sectionCount = 2;
+			else
+				sectionCount = 1;
 			
 		}
 	}
-	
+	if(sectionCount==0)
+	{
+		editableB = true;
+	}
+	else
+	{
+		if(tablesz==0) //need to display table
+			tablesz = 1;
+	}
 	
 	
 		
 	
 	if(loadedB)
 	{
+		printf("\n  up to");
 		nsp = [[NSString alloc] initWithUTF8String:(const char*)addressDataP->title ];
+		NSLog(@"%@",nsp);
+		
 		[userNameP setText:nsp];
 		[nsp release];
+		printf("\n noerror up to");
 		if(tablesz)
 		{
 				
@@ -1131,7 +1182,7 @@ titleForHeaderInSection:(NSInteger)section
 				//setTitle:(NSString *)title forState:(UIControlState)state
 				[changeNameButtonP setTitle:userNameP.text forState:UIControlStateNormal];
 				tableView.tableHeaderView = changeNameButtonP;
-				[changeNameButtonP release];
+				//[changeNameButtonP release];
 				
 				
 				self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
@@ -1147,7 +1198,7 @@ titleForHeaderInSection:(NSInteger)section
 				self->callButtonP.hidden = NO;
 				changeNameButtonP.hidden = YES;
 				tableView.tableHeaderView = userNameP;
-				[userNameP release];
+			//	[userNameP release];
 				if(CONTACTPHONEDETAIL==viewEnum)
 				{
 					self.navigationItem.rightBarButtonItem = nil;
@@ -1196,6 +1247,8 @@ titleForHeaderInSection:(NSInteger)section
 
 - (void)dealloc {
 	
+	[changeNameButtonP release];
+	[userNameP release];
 	[msgLabelP release];
 	if(self->cdrP)
 	{

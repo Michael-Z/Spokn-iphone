@@ -400,7 +400,7 @@
 			[self.navigationItem.leftBarButtonItem initWithTitle: @"Login" style:UIBarButtonItemStylePlain
 			 target: self
 			 action: @selector(LoginPressed) ] ;
-			[self->ownerobject popLoginView];
+			//[self->ownerobject popLoginView];
 			[self setViewButton:0];
 			[activityIndicator stopAnimating];
 			printf("\n offline code");

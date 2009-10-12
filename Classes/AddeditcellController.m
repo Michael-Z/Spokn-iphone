@@ -40,6 +40,47 @@
 {
 	
 	char *TempP;
+	if([[txtField text] length]==0)
+	{	
+		UIAlertView *alert;
+		switch(keyboardtype)
+		{
+				
+			case UIKeyboardTypePhonePad:
+		
+				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+											  message: [ NSString stringWithString:@"number can not be blanked" ]
+										 delegate: self
+								cancelButtonTitle: @"cancel"
+								otherButtonTitles: @"OK", nil
+			 ];
+				break;
+			case UIKeyboardTypeNamePhonePad:
+				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+													  message: [ NSString stringWithString:@"name can not be blanked" ]
+													 delegate: self
+											cancelButtonTitle: @"cancel"
+											otherButtonTitles: @"OK", nil
+						 ];
+				break;
+				
+			case UIKeyboardTypeEmailAddress:		
+				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+													  message: [ NSString stringWithString:@"email can not be blanked" ]
+													 delegate: self
+											cancelButtonTitle: @"cancel"
+											otherButtonTitles: @"OK", nil
+						 ];
+				break;
+				
+				
+		}
+		[ alert show ];
+		[alert release];
+	}	
+	return;
+	
+	
 	TempP = (char*)[[txtField text] cStringUsingEncoding:1];
 	NSLog([txtField text]);
 	strcpy(rvalueCharP,TempP);

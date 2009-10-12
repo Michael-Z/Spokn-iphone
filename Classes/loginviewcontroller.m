@@ -23,6 +23,15 @@
 	
 	
 }
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+
+	//printf("\n return pressed");
+	//[super textFieldShouldReturn:textField];
+	[usernameFieldP resignFirstResponder];
+	[passwordFieldP resignFirstResponder];
+	return YES;
+}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -57,6 +66,7 @@
 	NSString *passwordStringP;
 	char *unameP;
 	char *passwordP;
+	
 	if(ltpInterfacesP)
 	{	
 		unameP = getLtpUserName(ltpInterfacesP);
@@ -125,6 +135,37 @@
 {
 	char *userNamecharP;
 	char *passwordcharP;
+	UIAlertView *alert;
+	if([usernameFieldP.text length]==0)
+	{
+		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
+											  message: [ NSString stringWithString:@"user name can not be empty" ]
+											 delegate: self
+									cancelButtonTitle: @"cancel"
+									otherButtonTitles: @"OK", nil
+				 ];
+		
+		[ alert show ];
+		[alert release];
+		return;
+	}
+	else
+	{
+		if([passwordFieldP.text length]==0)
+		{
+			alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
+												  message: [ NSString stringWithString:@"password can not be empty" ]
+												 delegate: self
+										cancelButtonTitle: @"cancel"
+										otherButtonTitles: @"OK", nil
+					 ];
+			
+			[ alert show ];
+			[alert release];
+			return;
+		}
+		
+	}
 	
 	//dataP = [pathP cStringUsingEncoding:1];
 	userNamecharP = (char*)[[usernameFieldP text] cStringUsingEncoding:1];
@@ -135,7 +176,7 @@
 		setLtpPassword(ltpInterfacesP,passwordcharP);
 		DoLtpLogin(ltpInterfacesP);
 		
-		[self->ownerobject changeView];
+		//[self->ownerobject changeView];
 		[self->ownerobject popLoginView];
 	}	
 	

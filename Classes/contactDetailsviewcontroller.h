@@ -11,6 +11,7 @@
 #import "LtpInterface.h"
 #include "ua.h"
 #import "customcell.h"
+#import "custombutton.h"
 #define MAX_COUNT 7
 #define MAX_SECTION 2
 @class SpoknAppDelegate;
@@ -28,7 +29,7 @@ typedef struct DataForSection
 typedef struct SectionContactType
 	{
 		int count;
-		int height;
+		int sectionheight;
 		UIView *sectionView;
 		//int rowHeight;
 		DataForSection dataforSection[MAX_COUNT];
@@ -49,9 +50,9 @@ typedef enum ViewTypeEnum
 	IBOutlet UITableView *tableView;
 	IBOutlet UIView *viewP;
 	
-	IBOutlet UIButton  *delButtonP;
-	IBOutlet UIButton  *vmsButtonP;
-	IBOutlet UIButton  *callButtonP;
+	IBOutlet CustomButton  *delButtonP;
+	IBOutlet CustomButton  *vmsButtonP;
+	IBOutlet CustomButton  *callButtonP;
 	IBOutlet UIButton  *changeNameButtonP;
 	int sectionCount;
 	int tablesz;
