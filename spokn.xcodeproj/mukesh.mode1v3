@@ -247,6 +247,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -301,11 +303,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>173</integer>
+									<integer>58</integer>
+									<integer>2</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {305, 653}}</string>
+							<string>{{0, 475}, {305, 653}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -335,14 +339,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AddeditcellController.m</string>
+								<string>custombutton.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -350,11 +352,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>AddeditcellController.m</string>
+										<string>custombutton.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8B8D1FD310839C0F001DD6C9</string>
+										<string>8B862601108443DF00718D16</string>
 										<key>history</key>
 										<array>
 											<string>8B84B79A101480B800836F86</string>
@@ -643,8 +645,6 @@
 											<string>8BCB065C1082F8A500468EC7</string>
 											<string>8BCB06D01083052C00468EC7</string>
 											<string>8BCB06D11083052C00468EC7</string>
-											<string>8BCB06FB1083085B00468EC7</string>
-											<string>8BCB06FC1083085B00468EC7</string>
 											<string>8BCB07001083085B00468EC7</string>
 											<string>8BCB074D10830CBF00468EC7</string>
 											<string>8BCB074E10830CBF00468EC7</string>
@@ -676,7 +676,9 @@
 											<string>8BA534FD1083736900A1D4AA</string>
 											<string>8B8D1FB7108398CA001DD6C9</string>
 											<string>8B8D1FB8108398CA001DD6C9</string>
-											<string>8BA534F0108372D500A1D4AA</string>
+											<string>8B8625FD108443DF00718D16</string>
+											<string>8B8625FE108443DF00718D16</string>
+											<string>8BCB06FC1083085B00468EC7</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -754,6 +756,8 @@
 											<string>8BA534D010836F3200A1D4AA</string>
 											<string>8B8D1FB9108398CA001DD6C9</string>
 											<string>8B8D1FBA108398CA001DD6C9</string>
+											<string>8B8625FF108443DF00718D16</string>
+											<string>8B862600108443DF00718D16</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -811,9 +815,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8B8D1FBC108398CA001DD6C9</string>
+				<string>8B862602108443DF00718D16</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8B8D1FBD108398CA001DD6C9</string>
+				<string>8B862603108443DF00718D16</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -952,7 +956,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>277060623.23654699</real>
+	<real>277103521.26629001</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -967,11 +971,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>8B8D1FCC10839A60001DD6C9</string>
-		<string>8B8D1FC6108398CA001DD6C9</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>8B93025A1011EBB8004BDA41</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/mukesh/mygit/iphone/spokn.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
