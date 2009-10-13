@@ -201,11 +201,7 @@
 {
 		SendDTMF(ltpInterfacesP,0,dtmfP);
 }
--(void)popLoginView:(id)object
-{
-	//[ dialNavigationController popViewControllerAnimated:YES ];
-	[self changeView];
-}
+
 -(void)newBadgeArrived:(id)object
 {
 	
@@ -225,7 +221,7 @@
 	}
 -(void)updateSpoknView:(id)object
 {
-	[spoknViewControllerP setDetails:getTitle() :self->onLineB :getBalance() :getForwardNo() :getDidNo() ];
+	[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :getForwardNo() :getDidNo() ];
 }
 -(void)LoadContactView:(id)object
 {
@@ -533,6 +529,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 //	[dialNavigationController popToRootViewControllerAnimated:TRUE];
 	[tabBarController dismissModalViewControllerAnimated:YES];
+	[ spoknViewControllerP startProgress];//start animation
 	//[self changeView];
 
 

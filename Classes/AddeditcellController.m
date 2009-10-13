@@ -136,7 +136,7 @@ NSLog(@"\nSave123");
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	if(self->shiftRootB==false || buttonType==0)
+	if(buttonType==0)
 	{	
 		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 													initWithBarButtonSystemItem: UIBarButtonSystemItemSave

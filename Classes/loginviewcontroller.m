@@ -141,7 +141,7 @@
 		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
 											  message: [ NSString stringWithString:@"user name can not be empty" ]
 											 delegate: self
-									cancelButtonTitle: @"cancel"
+									cancelButtonTitle: nil
 									otherButtonTitles: @"OK", nil
 				 ];
 		
@@ -156,7 +156,7 @@
 			alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
 												  message: [ NSString stringWithString:@"password can not be empty" ]
 												 delegate: self
-										cancelButtonTitle: @"cancel"
+										cancelButtonTitle: nil
 										otherButtonTitles: @"OK", nil
 					 ];
 			

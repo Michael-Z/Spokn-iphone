@@ -23,8 +23,14 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
 //	[super drawRect:rect];
-	printf("\n draw");
-	[self CGContextAddRoundRect : rect :5.0];
+	
+	CGRect rect1;
+	rect1 = rect;
+	rect1.origin.x-=2;
+	rect1.origin.y-=2;
+	rect1.size.width+=4;
+	rect1.size.height+=4;
+	[self CGContextAddRoundRect : rect1 :5.0];
 	
 }
 
@@ -47,10 +53,30 @@
 	CGContextAddLineToPoint(context, rect.origin.x + radius, rect.origin.y);
 	CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + radius, radius, 
 					-M_PI / 2, M_PI, 1);
+	printf("\n draw");
 }
 
 - (void)dealloc {
     [super dealloc];
+}
++(void)setImages:	(UIButton *)buttonObjectP
+image:(UIImage *)image
+imagePressed:(UIImage *)imagePressed
+
+{	
+	buttonObjectP.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+	buttonObjectP.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+	
+	UIImage *newImage = [image stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+	[buttonObjectP setBackgroundImage:newImage forState:UIControlStateNormal];
+	
+	UIImage *newPressedImage = [imagePressed stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+	[buttonObjectP setBackgroundImage:newPressedImage forState:UIControlStateHighlighted];
+	
+	   // in case the parent view draws with a custom color or gradient, use a transparent color
+	buttonObjectP.backgroundColor = [UIColor clearColor];
+	
+	//return button;
 }
 
 

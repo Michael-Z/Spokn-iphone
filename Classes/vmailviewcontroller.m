@@ -825,6 +825,12 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		vmsNoChar[0] = 0;
 	
 	}
+	NSIndexPath *nsP;
+	nsP = [self->tableView indexPathForSelectedRow];
+	if(nsP)
+	{
+		[self->tableView deselectRowAtIndexPath : nsP animated:NO];
+	}
 }	
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

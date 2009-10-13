@@ -39,6 +39,9 @@
 	char *numberCharP;
 	int parentView;//this variable distinguish between different parent view
 	id rootControllerObject;
+	long contactID;
+	int resultInt;
+		
 	
 	
 

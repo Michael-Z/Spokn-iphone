@@ -27,7 +27,7 @@
 	
 	SpoknAppDelegate *ownerobject;
 	LtpInterfaceType *ltpInterfacesP;
-	IBOutlet UIActivityIndicatorView *activityIndicator;
+	//IBOutlet UIActivityIndicatorView *activityIndicator;
 	//UISegmentedControl *segmentedControl;
 	int status;
 	int subStatus;

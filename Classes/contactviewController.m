@@ -229,6 +229,38 @@ titleForHeaderInSection:(NSInteger)section
 	
 
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	if(resultInt)
+	{
+		printf("\nhello view deleted\n");
+		resultInt = 0;
+		if(segmentedControl.selectedSegmentIndex==0)//different view
+		{	
+			deleteContactLocal(contactID);
+		}	
+		NSIndexPath *nsP;
+		nsP = [self->tableView indexPathForSelectedRow];
+		if(nsP)
+		{
+			[self->tableView deselectRowAtIndexPath : nsP animated:NO];
+		}	
+		[self reload];
+		
+		
+	}
+	else
+	{	
+		NSIndexPath *nsP;
+		nsP = [self->tableView indexPathForSelectedRow];
+		if(nsP)
+		{
+			[self->tableView deselectRowAtIndexPath : nsP animated:NO];
+		}	
+	}
+
+}	
 
  - (void)controlPressed:(id) sender {
  	 int index = segmentedControl.selectedSegmentIndex;
@@ -320,6 +352,11 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		else
 		{
+			resultInt = 0;
+			//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
+			contactID = addressP->id;
+			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0] ;
+			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
 			
 		}
@@ -330,6 +367,7 @@ titleForHeaderInSection:(NSInteger)section
 		if([ContactControllerDetailsviewP retainCount]>1)
 			[ContactControllerDetailsviewP release];
 		printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+		
 		
 		
 		

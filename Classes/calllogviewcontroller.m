@@ -681,6 +681,12 @@ cancelButtonTitle: nil
 				
 		
 	}
+	NSIndexPath *nsP;
+	nsP = [self->tableView indexPathForSelectedRow];
+	if(nsP)
+	{
+		[self->tableView deselectRowAtIndexPath : nsP animated:NO];
+	}
 }	
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

@@ -91,7 +91,7 @@
 	currentView = 0;
 	
 	//[statusLabelP setText:@"not logged in"];
-	[activityIndicator stopAnimating]; 
+//	[activityIndicator stopAnimating]; 
 	//statusLabelP.textAlignment=UITextAlignmentCenter;
 	keypadmain.objectId = 0;
 	//keypadmain.dataStringP = @"mukesh\nsharma";
@@ -145,7 +145,7 @@
 	[self.navigationItem.leftBarButtonItem initWithTitle: @"Login" style:UIBarButtonItemStylePlain
 	 target: self
 	 action: @selector(LoginPressed) ] ;
-	[activityIndicator stopAnimating]; 
+	//[activityIndicator stopAnimating]; 
 	//[activityIndicator startAnimating];
 	
 	
@@ -352,6 +352,18 @@
 	[(NSTimer*)timer invalidate];
 	profileResync();//to get balance
 }
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+{
+	
+	//	printf("\n%d",buttonIndex);
+	if(buttonIndex==0)
+	{	
+		alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
+	}
+	
+	//[alertView release];
+}
+
 -(void) setButton:(id) sender
 {
 	switch(self->status)
@@ -359,7 +371,7 @@
 		case START_LOGIN:
 			//statusLabelP. textAlignment=UITextAlignmentLeft;
 
-			[activityIndicator startAnimating];
+		//	[activityIndicator startAnimating];
 			[self.navigationItem.leftBarButtonItem initWithTitle: @"Cancel" style:UIBarButtonItemStylePlain
 			 target: self
 			 action: @selector(LogoutPressed) ] ;
@@ -386,23 +398,33 @@
 				[self.navigationItem.leftBarButtonItem initWithTitle: @"Logout" style:UIBarButtonItemStylePlain
 				 target: self
 				 action: @selector(LogoutPressed) ] ;
-				[self->ownerobject popLoginView];
+				//[self->ownerobject popLoginView];
 				printf("\n online code");
 				onLineB = true;
 				printf("\n %d",self->onLineB);
-				[activityIndicator stopAnimating];
+			//	[activityIndicator stopAnimating];
 			}	
 			break;
 		case ALERT_OFFLINE:
 		//	statusLabelP. textAlignment=UITextAlignmentCenter;
 						
-
-			[self.navigationItem.leftBarButtonItem initWithTitle: @"Login" style:UIBarButtonItemStylePlain
-			 target: self
-			 action: @selector(LoginPressed) ] ;
+			if(self->subStatus==LOGIN_STATUS_FAILED)
+			{
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+									   message: [ NSString stringWithString:@"Authentication failed" ]
+									  delegate: self
+				 					 cancelButtonTitle: nil
+									 otherButtonTitles: @"OK", nil
+									  ];
+				//[alert addButtonWithTitle:@"Cancel"];
+				[ alert show ];
+				[alert release];
+				
+			
+			}
 			//[self->ownerobject popLoginView];
 			[self setViewButton:0];
-			[activityIndicator stopAnimating];
+		//	[activityIndicator stopAnimating];
 			printf("\n offline code");
 			onLineB = false;
 			break;

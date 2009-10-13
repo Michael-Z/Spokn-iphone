@@ -128,13 +128,26 @@
 		sectionCount = 1;
 		[self setTitle:@"Info"];
 		msgLabelP = 0;
+		// white button:
+			
+		
 	}
     return self;
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 {
-
+	
+//	printf("\n%d",buttonIndex);
+	if(buttonIndex==0)
+	{	
+		if(retValP)
+		{	
+			*retValP = 1;
+		}
+	
+		[ [self navigationController] popToRootViewControllerAnimated:YES ];
+	}
 	
 	//[alertView release];
 }
@@ -324,12 +337,18 @@
 }
 -(IBAction)deletePressed:(id)sender
 {
-	if(retValP)
-	{	
-		*retValP = 1;
-	}	
 	
-	[ [self navigationController] popViewControllerAnimated:YES ];
+	UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+													   message: [ NSString stringWithString:@"Are you sure you want to delete contact?" ]
+													  delegate: self
+											 cancelButtonTitle: nil
+											 otherButtonTitles: @"OK", nil
+						  ];
+	[alert addButtonWithTitle:@"Cancel"];
+	[ alert show ];
+	[alert release];
+	
+
 	
 }
 -(IBAction)changeNamePressed:(id)sender
@@ -437,12 +456,17 @@
 	 [self setAddressBook:addressDataTmpP editable:false :viewEnum];
 	 free(addressDataTmpP);
 	 */
-	if(retValP)
-	{	
-		*retValP = 1;
-	}
+		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+													   message: [ NSString stringWithString:@"Are you sure you want to delete calllog?" ]
+													  delegate: self
+											 cancelButtonTitle: nil
+											 otherButtonTitles: @"OK", nil
+						  ];
+	[alert addButtonWithTitle:@"Cancel"];
+	[ alert show ];
+	[alert release];
 	
-	[ [self navigationController] popToRootViewControllerAnimated:YES ];
+	//[ [self navigationController] popToRootViewControllerAnimated:YES ];
 	//contactID = -1;
 	//profileResync();
 	
@@ -493,6 +517,13 @@
 		//printf("\n erroer  ");
 		[ self->tableView reloadData ];
 	}
+	NSIndexPath *nsP;
+	nsP = [self->tableView indexPathForSelectedRow];
+	if(nsP)
+	{
+		[self->tableView deselectRowAtIndexPath : nsP animated:NO];
+	}
+	
 }	
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
@@ -516,6 +547,15 @@
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	loadedB = true;
+	UIImage *buttonBackground = [UIImage imageNamed:@"bottombargreen.png"];
+	UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
+	[CustomButton setImages:callButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
+	buttonBackground = [UIImage imageNamed:@"bottombarred_pressed.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
+	[CustomButton setImages:delButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
+	
 	//tableView.tag = TABLE_VIEW_TAG;
 	if(self.navigationItem.rightBarButtonItem==nil)
 	{	

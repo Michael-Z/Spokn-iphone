@@ -46,7 +46,7 @@
 
 		AddeditcellController     *AddeditcellControllerviewP;	
 		AddeditcellControllerviewP = [[AddeditcellController alloc]init];
-		[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :NUMBER_RANGE buttonType:0];
+		[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :NUMBER_RANGE buttonType:1];
 		[AddeditcellControllerviewP setObject:self->ownerobject];
 		viewResult = 0;
 		viewCallB = true;
@@ -89,6 +89,11 @@
 		switchView = [[UISwitch alloc] initWithFrame: CGRectMake(210.0f, 10, 20.0f, 28.0f)]; 
 		[switchView setTag:3]; 
 		[switchView addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
+		activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
+		[activityIndicator setCenter:CGPointMake(160.0f, 208.0f)];
+		[activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+		activityIndicator.tag = 7;
+		
 		//[switchView addTarget:self action:@selector(switchChange) forControlEvents:UIControlEventValueChanged];
 		//cell.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spoknlog" ofType:@"png" inDirectory:@"/"]];
 		
@@ -101,10 +106,7 @@
 
 -(void) LoginPressed {
 	alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
-	[self.navigationItem.rightBarButtonItem initWithTitle: @"Sign-out" style:UIBarButtonItemStylePlain
-	 target: self
-	 action: @selector(LogoutPressed) ] ;
-	
+	self.navigationItem.rightBarButtonItem = nil;	
 }
 -(void) LogoutPressed {
 	
@@ -119,19 +121,30 @@
 	
 	
 }	
+-(void)startProgress
+{
+	self.navigationItem.titleView = activityIndicator;
+	[activityIndicator startAnimating];
+
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	tableView.scrollsToTop = YES;
 	tableView.delegate = self;
 	tableView.dataSource = self;
+	   	
 	forwardNoCharP = malloc(100);
 	memset(forwardNoCharP,0,100);
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+	self.navigationItem.titleView = activityIndicator;
+	[activityIndicator startAnimating];
+	//self.navigationItem.leftBarButtonItem = activityIndicator;
+	[activityIndicator startAnimating];
+	/*self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 											   initWithTitle:@"Sign-out" 
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
-											   action:@selector(LogoutPressed)] autorelease];
+											   action:@selector(LogoutPressed)] autorelease];*/
 	//[buttonCtlP setBackgroundColor:[UIColor greenColor]];
 	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn Number";
 	NSArray *wordArray = [wordstring componentsSeparatedByString:@"\n"] ;
@@ -216,6 +229,7 @@
 	{
 		free(forwardNoCharP);
 	}
+	[activityIndicator release];
     [super dealloc];
 }
 // Add a title for each section 
@@ -267,7 +281,7 @@ titleForHeaderInSection:(NSInteger)section
 	return 50;
 	
 }
--(void)setDetails:(char *) titleCharP :(int )statusInt :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP
+-(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP
 {
 	balance = balance/100;
 	char s1[20];
@@ -302,14 +316,38 @@ titleForHeaderInSection:(NSInteger)section
 	switch(statusInt)
 	{
 		case 0:
-			[labelStatus setText:@"Offline  "];
-			[self.navigationItem.rightBarButtonItem initWithTitle: @"Sign-in" style:UIBarButtonItemStylePlain
-			 target: self
-			 action: @selector(LoginPressed) ] ;
+			self.navigationItem.titleView = 0;
+			[activityIndicator stopAnimating];
+			switch(statusInt)
+			{
+				case LOGIN_STATUS_FAILED:
+					[labelStatus setText:@"Authentication failed"];
+					break;
+				case LOGIN_STATUS_NO_ACCESS:
+					[labelStatus setText:@"no access  "];
+					break;
+				default:
+					[labelStatus setText:@"Offline  "];	
+			}
+			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+													   initWithTitle:@"Sign-in" 
+													   style:UIBarButtonItemStylePlain 
+													   target:self 
+													   action:@selector(LoginPressed)] autorelease];
+			
+			
 			
 			break;
 		case 1:
+			self.navigationItem.titleView = 0;
+			[activityIndicator stopAnimating];
 			[labelStatus setText:@"Online  "];
+			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+													   initWithTitle:@"Sign-out" 
+													   style:UIBarButtonItemStylePlain 
+													   target:self 
+													   action:@selector(LogoutPressed)] autorelease];
+			
 			break;
 			
 	
