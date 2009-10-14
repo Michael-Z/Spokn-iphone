@@ -288,6 +288,25 @@ void *PollThread(void *PollThreadP)
 			gP->pthreadstopB = false;
 			break;
 		}
+		if(gP->currentTime==0)
+		{
+			gP->currentTime = time(NULL);
+		}
+		else
+		{
+			long diff;
+			diff = time(NULL) - gP->currentTime;
+			if(diff>MAXTIME_RESYNC)
+			{
+				gP->currentTime = time(NULL);
+				printf("\n resync Called");
+				if(gP->ltpObjectP->call[gP->ltpObjectP->activeLine].ltpState = CALL_IDLE)
+				{	
+					profileResync();
+				}	
+			}
+		
+		}
 		if(DoPolling(gP)!=0)
 		{	
 			//sleep(1);

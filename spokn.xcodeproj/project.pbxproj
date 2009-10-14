@@ -111,6 +111,8 @@
 		8BD3E5D01078B4CD00300343 /* missedvms.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3E5CD1078B4CD00300343 /* missedvms.png */; };
 		8BD3E5D11078B4CD00300343 /* incomming.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3E5CE1078B4CD00300343 /* incomming.png */; };
 		8BE35075107761CA00C2729A /* vmstab.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE35074107761CA00C2729A /* vmstab.png */; };
+		8BE3E2F11084D100008CB625 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3E2EF1084D100008CB625 /* Reachability.m */; };
+		8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */; };
 		8BE447B01080924400EB3A4A /* vmsprogressleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE447AF1080924400EB3A4A /* vmsprogressleft.png */; };
 		8BE6DF5D104BC54700703BE8 /* vmsplayrecord.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */; };
 		8BE6DF5E104BC54700703BE8 /* playrecordpcm.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF56104BC54700703BE8 /* playrecordpcm.c */; };
@@ -306,6 +308,9 @@
 		8BD3E5CD1078B4CD00300343 /* missedvms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missedvms.png; sourceTree = "<group>"; };
 		8BD3E5CE1078B4CD00300343 /* incomming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = incomming.png; sourceTree = "<group>"; };
 		8BE35074107761CA00C2729A /* vmstab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmstab.png; sourceTree = "<group>"; };
+		8BE3E2EF1084D100008CB625 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		8BE3E2F01084D100008CB625 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8BE447AF1080924400EB3A4A /* vmsprogressleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmsprogressleft.png; sourceTree = "<group>"; };
 		8BE6DF52104BC54700703BE8 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = windows.h; path = interface/windows.h; sourceTree = "<group>"; };
 		8BE6DF53104BC54700703BE8 /* vmsplayrecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vmsplayrecord.h; path = interface/vmsplayrecord.h; sourceTree = "<group>"; };
@@ -373,6 +378,7 @@
 				8B81B4AD10318AC300A18DA1 /* AddressBookUI.framework in Frameworks */,
 				8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */,
 				8BB54917104BF25B00BD6C22 /* libspeexlib.a in Frameworks */,
+				8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +388,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8BE3E2EF1084D100008CB625 /* Reachability.m */,
+				8BE3E2F01084D100008CB625 /* Reachability.h */,
 				8BBD8A90107F7FBE008FD911 /* callviewcontroller.xib */,
 				8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */,
 				8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */,
@@ -490,6 +498,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */,
 				8BB5492C104BF2F300BD6C22 /* speexlib.xcodeproj */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				8B81B4B010318ADB00A18DA1 /* AddressBook.framework */,
@@ -891,6 +900,7 @@
 				8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */,
 				8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */,
 				8BCB06B21083020A00468EC7 /* custombutton.m in Sources */,
+				8BE3E2F11084D100008CB625 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

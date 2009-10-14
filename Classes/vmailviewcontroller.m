@@ -13,6 +13,7 @@
 #include "contactviewcontroller.h"
 #import "customcell.h"
 #import "vmshowviewcontroller.h"
+#include "ua.h"
 @implementation VmailViewController
 @synthesize ltpInterfacesP;
 
@@ -418,7 +419,7 @@
 				dispP.left = 0;
 				dispP.top = 0;
 				dispP.width = 30;
-				
+				dispP.textAlignmentType = UITextAlignmentRight;
 				dispP.height = 100;
 				if(vmailP->status==VMAIL_FAILED)
 				{
@@ -652,7 +653,7 @@
 			profileResync();
 			break;
 	}
-	//printf("\n%d",buttonIndex);
+	printf("\n%d",buttonIndex);
 }
 - (void)tableView:(UITableView *)tableView 
 commitEditingStyle:(UITableViewCellEditingStyle) editingStyle 
@@ -769,7 +770,8 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 {
 	if(buttonIndex==0)
 	{
-		
+		vmailDeleteAll();
+		profileResync();
 		[self->tableView reloadData];
 		
 	}

@@ -241,6 +241,7 @@ NSLog(@"\nSave123");
 						txtField.keyboardType = keyboardtype;
 						txtField.delegate = self;
 						txtField.placeholder = placeHolderP;
+						txtField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 						if(StringP)
 						{	
 							txtField.text =StringP;

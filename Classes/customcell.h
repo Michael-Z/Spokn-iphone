@@ -30,11 +30,13 @@
 	Boolean percent;//data given as persent
 	NSString *dataP;
 	UIImage  *uiImageP;
+	UITextAlignment textAlignmentType;
 //	@public
 	int fountCount;
 	
 	
 }
+@property (readwrite,assign) UITextAlignment textAlignmentType;
 @property (readwrite,assign) Boolean percent;
 @property (readwrite,assign) int left;
 @property (readwrite,assign) int top;

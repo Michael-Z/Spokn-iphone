@@ -140,11 +140,11 @@
 	[activityIndicator startAnimating];
 	//self.navigationItem.leftBarButtonItem = activityIndicator;
 	[activityIndicator startAnimating];
-	/*self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithTitle:@"Sign-out" 
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+											   initWithTitle:@"Sign-in" 
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
-											   action:@selector(LogoutPressed)] autorelease];*/
+											   action:@selector(LoginPressed)] autorelease];
 	//[buttonCtlP setBackgroundColor:[UIColor greenColor]];
 	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn Number";
 	NSArray *wordArray = [wordstring componentsSeparatedByString:@"\n"] ;

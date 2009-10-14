@@ -23,6 +23,7 @@
 @synthesize fountCount;
 @synthesize fntSz;
 @synthesize fntNameP;
+@synthesize textAlignmentType;
 -(id)init
 {
 	self = [super init];
@@ -36,6 +37,7 @@
 	colorP = nil;
 	uiImageP = nil;
 	fountCount = 0;
+	textAlignmentType = UITextAlignmentLeft;
 	return self;
 	
 }
@@ -216,9 +218,11 @@
 						//[displayDataP.uiImageP drawInRect:rec1 blendMode: kCGBlendModeNormal alpha: 1.0];
 						rec.origin.x+= displayDataP.uiImageP.size.width +2;
 						
-					}	
-					
-					[displayDataP.dataP drawInRect:rec withFont:fontlP];
+					}
+				//	- (CGSize)drawInRect:(CGRect)rect withFont:(UIFont *)font lineBreakMode:(UILineBreakMode)lineBreakMode alignment:(UITextAlignment)alignment;
+
+					[displayDataP.dataP drawInRect:rec withFont:fontlP lineBreakMode:UILineBreakModeTailTruncation alignment:displayDataP.textAlignmentType];
+					//[displayDataP.dataP drawInRect:rec withFont:fontlP];
 					stX+=width;
 					//stY+=height;
 					[txtColor release];

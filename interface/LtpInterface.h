@@ -20,6 +20,7 @@
 	#define START_LOGIN        6000 
 	#define MAXDATA 2000
 	#define MAXINCALL 15 
+	#define MAXTIME_RESYNC 180 //this is in sec 
 	#define _OWN_THREAD_
   #include <pthread.h>
 typedef void (*AlertNotificationCallbackP)(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherInfoP);
@@ -48,6 +49,7 @@ typedef struct IncommingCallType
 			AQCallbackStruct *playbackP;
 			AQCallbackStruct *recordP;
 			int pthreadstopB;
+			long currentTime;
 			pthread_t pthObj;
 			
 			

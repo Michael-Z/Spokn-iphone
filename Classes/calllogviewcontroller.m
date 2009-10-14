@@ -342,7 +342,7 @@
 				dispP.left = 0;
 				dispP.top = 0;
 				dispP.width = 30;
-			
+				dispP.textAlignmentType = UITextAlignmentRight;
 				dispP.height = 100;
 				stringStrP = [[NSString alloc] initWithUTF8String:secObjStrP ];
 				dispP.dataP = stringStrP;
