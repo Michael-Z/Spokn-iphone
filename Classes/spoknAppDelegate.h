@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #include "ltptimer.h"
 #include "LtpInterface.h"
+#import "Reachability.h"
 @class LoginViewController;
 
 @class DialviewController;
@@ -59,7 +60,8 @@
 	id<VmsProtocol> VmsProtocolP;
 	IncommingCallType *incommingCallList[MAXINCALL];
 //
-	
+	Reachability* hostReach;
+    Reachability* wifiReach;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -110,5 +112,8 @@ changed:(BOOL)changed;
 -(int) vmsShowRecordScreen : (char*)noCharP;
 -(int)showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP;
 -(int) vmsForward:(char*)numberP :(char*)fileNameCharP;
+- (void) updateReachabilityStatus: (Reachability*) curReach;
+-(void) startCheckNetwork;
+-(void) stopCheckNetwork;
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);

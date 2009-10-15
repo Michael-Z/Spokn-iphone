@@ -211,11 +211,32 @@ int StopAudio(void *uData,Boolean inImmediateB)
 		return 1 ;
 	AQCallbackStruct *aqcP;
 	int err;
+	UInt32		isRunning;
 	aqcP = (AQCallbackStruct*)uData;
 	aqcP->stopB = true;
 	//AudioQueuePause (aqcP->queue);
 	//AudioQueueFlush(aqcP->queue);
+	UInt32		propertySize = sizeof (UInt32);
+	
+	OSStatus	result;
+	result =	AudioQueueGetProperty (
+									   aqcP->queue,
+									   kAudioQueueProperty_IsRunning,
+									   &isRunning,
+									   &propertySize
+									   );
+		
+	
 	err = AudioQueueStop(aqcP->queue, inImmediateB);
+	if(isRunning==false)
+	{
+		aqcP->stopB = true;
+		if(aqcP->CallBackUIP)
+		{	
+			aqcP->CallBackUIP(aqcP->uData,aqcP->playBackB);
+		}	
+	}
+	
 	return err;
 	
 	
@@ -470,7 +491,9 @@ void AudioQueuePropertyListenerFunction(
 	
 	UInt32		isRunning;
 	UInt32		propertySize = sizeof (UInt32);
+	
 	OSStatus	result;
+	
 	AQCallbackStruct *aqcP;
 	aqcP = (AQCallbackStruct *) inUserData;
 	
@@ -486,12 +509,12 @@ void AudioQueuePropertyListenerFunction(
 		if (result == noErr) {
 			if(isRunning)
 			{	
-				//printf("\nrunning");
+				printf("\nrunning");
 				
 			}
 			else
 			{
-				//printf("\nstop");
+				printf("\nstop");
 				aqcP->stopB = true;
 				if(aqcP->CallBackUIP)
 				{	

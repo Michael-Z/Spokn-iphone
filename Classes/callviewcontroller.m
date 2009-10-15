@@ -10,6 +10,7 @@
 #import "keypadview.h"
 #import "spoknAppDelegate.h"
 #include "playrecordpcm.h"
+#include "custombutton.h"
 @implementation CallViewController
 
 /*
@@ -39,6 +40,8 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	UIImage *buttonBackground;
+	UIImage *buttonBackgroundPressed;
 	[self.view setBackgroundColor:[[[UIColor alloc] 
 									initWithPatternImage:[UIImage defaultDesktopImage]]
 								   autorelease]];
@@ -55,6 +58,24 @@
 	[viewKeypadP setImage:@"dialerkeypad.png" : @"dialerkeypad_pressed.png"];
 	[viewKeypadP setElement:3 :4];
 	viewKeypadP.keypadProtocolP = self;
+	buttonBackground = [UIImage imageNamed:@"red.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
+	[CustomButton setImages:endCallButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
+	
+	buttonBackground = [UIImage imageNamed:@"red.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
+	[CustomButton setImages:hideKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
+	
+	buttonBackground = [UIImage imageNamed:@"red.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
+	[CustomButton setImages:endCallKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
+	
 	
 
 

@@ -106,7 +106,12 @@
 
 -(void) LoginPressed {
 	alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
-	self.navigationItem.rightBarButtonItem = nil;	
+	//self.navigationItem.rightBarButtonItem = nil;	
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+											   initWithTitle:@"Sign-in" 
+											   style:UIBarButtonItemStylePlain 
+											   target:self 
+											   action:@selector(LoginPressed)] autorelease];
 }
 -(void) LogoutPressed {
 	
@@ -318,7 +323,7 @@ titleForHeaderInSection:(NSInteger)section
 		case 0:
 			self.navigationItem.titleView = 0;
 			[activityIndicator stopAnimating];
-			switch(statusInt)
+			switch(subStatus)
 			{
 				case LOGIN_STATUS_FAILED:
 					[labelStatus setText:@"Authentication failed"];

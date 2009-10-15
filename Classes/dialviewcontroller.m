@@ -230,6 +230,7 @@
 	if(length > 0)
 	{
 		[numberlebelP setText: [curText substringToIndex:(length-1)]];
+		curText = [numberlebelP text];
 		length = [curText length];
 	}
 	if(length==0)
@@ -282,12 +283,13 @@
 		{
 			char *numbercharP;
 			numbercharP = (char*)[[numberlebelP text] cStringUsingEncoding:1];
-			if(strlen(numbercharP)>5)
+			//if(strlen(numbercharP)>5)
 			{	
 				//char *numcharP;
 				//numcharP = malloc(strlen(numbercharP)+10);
 				//strcpy(numcharP,numbercharP);
 				[ownerobject vmsShowRecordScreen:numbercharP];
+				numberlebelP.text = @"";
 			}	
 		}
 	}
@@ -425,7 +427,7 @@
 			//[self->ownerobject popLoginView];
 			[self setViewButton:0];
 		//	[activityIndicator stopAnimating];
-			printf("\n offline code");
+			//printf("\n offline code");
 			onLineB = false;
 			break;
 		case ALERT_CONNECTED:

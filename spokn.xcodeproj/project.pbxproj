@@ -120,6 +120,9 @@
 		8BE6DF60104BC54700703BE8 /* LtpInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF5A104BC54700703BE8 /* LtpInterface.c */; };
 		8BE6DF61104BC54700703BE8 /* ltpdump.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF5C104BC54700703BE8 /* ltpdump.c */; };
 		8BF729B4103562B400C124B0 /* spoknalert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF729B3103562B400C124B0 /* spoknalert.m */; };
+		8BF795391085F76F00DBFC51 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF795361085F76F00DBFC51 /* red.png */; };
+		8BF7953A1085F76F00DBFC51 /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF795371085F76F00DBFC51 /* orange.png */; };
+		8BF7953B1085F76F00DBFC51 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF795381085F76F00DBFC51 /* green.png */; };
 		F249AAB7106F6A340024AE84 /* keypadview.m in Sources */ = {isa = PBXBuildFile; fileRef = F249AAB6106F6A340024AE84 /* keypadview.m */; };
 		F249AB58106F7B9B0024AE84 /* keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = F249AB56106F7B9B0024AE84 /* keypad.png */; };
 		F249AB59106F7B9B0024AE84 /* keypad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F249AB57106F7B9B0024AE84 /* keypad_pressed.png */; };
@@ -325,6 +328,9 @@
 		8BE6DF5C104BC54700703BE8 /* ltpdump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpdump.c; path = interface/ltpdump.c; sourceTree = "<group>"; };
 		8BF729B2103562B400C124B0 /* spoknalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknalert.h; sourceTree = "<group>"; };
 		8BF729B3103562B400C124B0 /* spoknalert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknalert.m; sourceTree = "<group>"; };
+		8BF795361085F76F00DBFC51 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		8BF795371085F76F00DBFC51 /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
+		8BF795381085F76F00DBFC51 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		F249AAB5106F6A340024AE84 /* keypadview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keypadview.h; sourceTree = "<group>"; };
 		F249AAB6106F6A340024AE84 /* keypadview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = keypadview.m; sourceTree = "<group>"; };
 		F249AB56106F7B9B0024AE84 /* keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = keypad.png; path = rsc/keypad.png; sourceTree = "<group>"; };
@@ -629,6 +635,9 @@
 		F2730CAF1070A9B300DF8852 /* rsc */ = {
 			isa = PBXGroup;
 			children = (
+				8BF795361085F76F00DBFC51 /* red.png */,
+				8BF795371085F76F00DBFC51 /* orange.png */,
+				8BF795381085F76F00DBFC51 /* green.png */,
 				8B8626BD1084504C00718D16 /* whiteButton.png */,
 				8B0723AB1075150300C1D1A4 /* Default.png */,
 				8BE35074107761CA00C2729A /* vmstab.png */,
@@ -843,6 +852,9 @@
 				8BE447B01080924400EB3A4A /* vmsprogressleft.png in Resources */,
 				8BBF6C671083530D00E57ABE /* blueButton.png in Resources */,
 				8B8626BE1084504C00718D16 /* whiteButton.png in Resources */,
+				8BF795391085F76F00DBFC51 /* red.png in Resources */,
+				8BF7953A1085F76F00DBFC51 /* orange.png in Resources */,
+				8BF7953B1085F76F00DBFC51 /* green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

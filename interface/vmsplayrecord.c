@@ -201,8 +201,8 @@ int vmsStopPlay(VmsPlayRecordType *vmsP)
 	{
 		return 1;
 	}
-	StopAudio(vmsP->aqRecordPlayPcm,false);	
-	return 0;
+	return StopAudio(vmsP->aqRecordPlayPcm,false);	
+	
 }
 int vmsSetFileRecord(VmsPlayRecordType *vmsP,char *nameP)
 {
@@ -236,8 +236,8 @@ int vmsStartRecord(VmsPlayRecordType *vmsP)
 
 int vmsStopRecord(VmsPlayRecordType *vmsP)
 {
-	vmsStopPlay(vmsP);//both having same fp
-	return 0;
+	return vmsStopPlay(vmsP);//both having same fp
+	
 }
 void vmsDeInit(VmsPlayRecordType **vmspP)
 {

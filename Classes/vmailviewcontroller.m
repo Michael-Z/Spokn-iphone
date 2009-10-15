@@ -418,7 +418,7 @@
 				dispP = [ [displayData alloc] init];
 				dispP.left = 0;
 				dispP.top = 0;
-				dispP.width = 30;
+				dispP.width = 25;
 				dispP.textAlignmentType = UITextAlignmentRight;
 				dispP.height = 100;
 				if(vmailP->status==VMAIL_FAILED)
@@ -444,7 +444,7 @@
 			if(typeCallP)
 			{	
 				dispP = [ [displayData alloc] init];
-				dispP.left = 20;
+				dispP.left = 12;
 				dispP.top = 0;
 				dispP.width = 70;
 				dispP.row = 1;
@@ -872,11 +872,12 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	self.navigationItem.titleView = segmentedControl;
 	segmentedControl.selectedSegmentIndex = 0;
+	/*
 	self.navigationItem.leftBarButtonItem 
 	= [ [ [ UIBarButtonItem alloc ]
 		 initWithTitle: @"Clear" style:UIBarButtonItemStylePlain
 		 target: self
-		 action: @selector(clearPressed) ] autorelease ];
+		 action: @selector(clearPressed) ] autorelease ];*/
 	self.navigationItem.rightBarButtonItem 
 	= [ [ [ UIBarButtonItem alloc ]
 		 initWithBarButtonSystemItem: UIBarButtonSystemItemCompose

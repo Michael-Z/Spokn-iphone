@@ -547,21 +547,29 @@
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	loadedB = true;
-	UIImage *buttonBackground = [UIImage imageNamed:@"bottombargreen.png"];
+	UIImage *buttonBackground = [UIImage imageNamed:@"green.png"];
 	UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
 	[CustomButton setImages:callButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
-	buttonBackground = [UIImage imageNamed:@"bottombarred_pressed.png"];
+	buttonBackground = [UIImage imageNamed:@"red.png"];
 	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
 	[CustomButton setImages:delButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
+	
+	buttonBackground = [UIImage imageNamed:@"orange.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
+	[CustomButton setImages:vmsButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
 	
 	//tableView.tag = TABLE_VIEW_TAG;
 	if(self.navigationItem.rightBarButtonItem==nil)
 	{	
-		if(viewEnum==CONTACTDETAILVIEWENUM)
+		if(viewEnum==CONTACTDETAILVIEWENUM ||viewEnum == CONTACTPHONEADDRESSBOOKDETAIL)
 		{	
-			if(editableB==false)
+			if(editableB==false && viewEnum==CONTACTDETAILVIEWENUM )
 			{	
 				self.navigationItem.rightBarButtonItem 
 				= [ [ [ UIBarButtonItem alloc ]
@@ -1210,7 +1218,7 @@ titleForHeaderInSection:(NSInteger)section
 				if([[userNameP text] length]==0)
 				{
 				//	[userNameP setTextColor:[UIColor grayColor]];
-					[userNameP setText:@"First Last"];
+					[userNameP setText:@"    First Last"];
 				}
 				else
 				{

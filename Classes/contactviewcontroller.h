@@ -11,9 +11,10 @@
 #import "LtpInterface.h"
 #include "ua.h"
 #include "vmsplayrecord.h"
+#import "contactDetailsviewcontroller.h"
 #define MAXSEC 28
 #define ALPHA @"!ABCDEFGHIJKLMNOPQRSTUVWXYZ#"
-#define ALPHA_ARRAY [NSArray arrayWithObjects: @"", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R",@"S",@"T", @"U", @"V", @"W", @"X", @"Y",@"Z",@"#" , nil] 
+#define ALPHA_ARRAY [NSArray arrayWithObjects: @"{search}" , @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R",@"S",@"T", @"U", @"V", @"W", @"X", @"Y",@"Z",@"#" , nil] 
 
 @class SpoknAppDelegate;
 
@@ -41,7 +42,8 @@
 	id rootControllerObject;
 	long contactID;
 	int resultInt;
-		
+	int firstSection;	
+	CGRect gframe;
 	
 	
 
@@ -58,5 +60,6 @@
 - (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP ;
 - (void) doneSearching_Clicked:(id)sender;
 -(void) setReturnVariable:(id) rootObject :(char *) numberCharP : (int *)valP;
--(int)  showContactDetailScreen: (struct AddressBook * )addressP;
+-(int)  showContactDetailScreen: (struct AddressBook * )addressP :(ViewTypeEnum) viewEnum;
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
 @end

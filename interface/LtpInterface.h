@@ -50,6 +50,7 @@ typedef struct IncommingCallType
 			AQCallbackStruct *recordP;
 			int pthreadstopB;
 			long currentTime;
+			int connectionActiveByte;
 			pthread_t pthObj;
 			
 			
@@ -82,6 +83,7 @@ typedef struct IncommingCallType
 	void AcceptInterface(LtpInterfaceType *ltpInterfaceP,int lineID);
 	void RejectInterface(LtpInterfaceType *ltpInterfaceP,int lineID);
     void SendDTMF(LtpInterfaceType *ltpInterfaceP,int lineid, char *dtmfMsgP);
-void readSocketData(LtpInterfaceType *localLtpInterfaceObjectP);
+	void readSocketData(LtpInterfaceType *localLtpInterfaceObjectP);
+	void SetConnection( LtpInterfaceType *ltpInterfaceP,int activeB);
 
 #endif

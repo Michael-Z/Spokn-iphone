@@ -65,6 +65,7 @@
 {
 	[nsTimerP invalidate];
 	nsTimerP = 0;
+	printf("\n stop");
 	[PlayButtonP addTarget:self action:@selector(playPressed:) forControlEvents: UIControlEventTouchUpInside];
 	if(playB)
 	{	
@@ -118,7 +119,11 @@
 -(IBAction)stopButtonPressed:(id)sender
 {
 	printf("\n stop pressed");
-	[ownerobject vmsStop:!playB];
+	if([ownerobject vmsStop:!playB])
+	{
+		printf("\n error");
+		[self VmsStop];
+	}
 	
 }
 
@@ -130,7 +135,19 @@
 	{
 		if([ownerobject vmsPlayStart:fileNameCharP :&sz])
 			return;
-		[ownerobject VmsStreamStart:false];
+		if([ownerobject VmsStreamStart:false])
+		{
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+															   message: [ NSString  stringWithFormat:@" can not play vms", forwardNoChar]
+															  delegate: nil
+													 cancelButtonTitle: nil
+													 otherButtonTitles: @"OK", nil
+								  ];
+			[ alert show ];
+			[alert release];
+			return;
+			
+		}
 	}
 	else
 	{
@@ -138,7 +155,18 @@
 		{
 			return;
 		}
-		[ownerobject VmsStreamStart:true];
+		if([ownerobject VmsStreamStart:true])
+		{
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+															   message: [ NSString  stringWithFormat:@" can not play vms", forwardNoChar]
+															  delegate: nil
+													 cancelButtonTitle: nil
+													 otherButtonTitles: @"OK", nil
+								  ];
+			[ alert show ];
+			[alert release];
+			return;
+		}
 	}
 	nsTimerP = [NSTimer scheduledTimerWithTimeInterval: 1.0
 				
@@ -206,6 +234,11 @@
 
 
 }
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 #pragma mark Table view methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -291,8 +324,9 @@
 		cell.spoknSubCellP.dataArrayP = secLocP->elementP;
 		cell.spoknSubCellP.ownerDrawB = true;
 		cell.spoknSubCellP.rowHeight = 50;
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}	
+	//[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	/*if(editableB)
 	{
 		//	cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;//UITableViewCellAccessoryDetailDisclosureButton; 
@@ -468,8 +502,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
 {
+	printf("\n preeesed select");
+	[self->tableView deselectRowAtIndexPath : newIndexPath animated:NO];
 	//selection = [[[UIFont familyNames] objectAtIndex:[newIndexPath row]] retain];
-	int row = [newIndexPath row];
+/*	int row = [newIndexPath row];
 	int section = [newIndexPath section];
 	
 	if(sectionArray[section].dataforSection[row].customViewP==0)
@@ -483,7 +519,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		{
 			[ownerobject vmsRecordStart:sectionArray[section].dataforSection[row].elementP];
 		}
-	}	
+	}	*/
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

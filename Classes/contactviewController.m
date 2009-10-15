@@ -61,8 +61,23 @@
 	}
 	[self reloadLocal:upString :0];
 }
+-(void)cancelSearch
+{
+	[self doneSearching_Clicked:nil];
+	if(segmentedControl.selectedSegmentIndex==0)//different view
+	{	
+		[self reload];
+	}
+	else
+	{
+		searchbar.text = @"";
+		[addressBookTableDelegate setSearchBarAndTable:searchbar  :tableView PerentObject:self OverlayView :&ovController];
+		
+	}
+}
 - (void) doneSearching_Clicked:(id)sender {
 	
+//	printf("\n mukesh");
 	searchbar.text = @"";
 	[searchbar resignFirstResponder];
 	
@@ -71,8 +86,50 @@
 	[ovController.view removeFromSuperview];
 	[ovController release];
 	ovController = nil;
+	if(parentView==0)
+	{	
+		self.navigationItem.rightBarButtonItem 
+		= [ [ [ UIBarButtonItem alloc ]
+			 initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
+			 target: self
+			 action: @selector(addContactUI) ] autorelease ];	
+	}
+	else
+	{
+		self.navigationItem.rightBarButtonItem 
+		= [ [ [ UIBarButtonItem alloc ]
+			 initWithTitle: @"Number" style:UIBarButtonItemStyleDone 
+			 target: self
+			 action: @selector(showNumberScreen) ] autorelease ];	
+		
+	}
+	
+	self.navigationItem.titleView = segmentedControl;
+	CGRect lframe;
+	lframe = gframe;
+	
+	//lframe.size.width+=40;
+	searchbar.frame = lframe; 
+	tableView.tableHeaderView = searchbar;
 	
 	
+}
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+	//("\nkeyboard");
+	tableView.tableHeaderView = 0;
+	CGRect lframe;
+	lframe = gframe;
+	lframe.size.width-=40;
+	searchBar.frame = lframe; 
+	 self.navigationItem.titleView = searchBar;
+	self.navigationItem.rightBarButtonItem 
+	= [ [ [ UIBarButtonItem alloc ]
+		 initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+		 target: self
+		 action: @selector(cancelSearch) ] autorelease ];
+	//[self->tableView reloadData];
+	return YES;
 }
 - (void) searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
 	
@@ -86,12 +143,13 @@
 	if(ovController == nil)
 		ovController = [[OverlayViewController alloc] initWithNibName:@"OverlayView" bundle:[NSBundle mainBundle]];
 	
-	CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
+	//CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
 	CGFloat width = self.view.frame.size.width;
 	CGFloat height = self.view.frame.size.height;
-	
+	//CGRect frame = CGRectMake(0, yaxis, width, height);
+
 	//Parameters x = origion on x-axis, y = origon on y-axis.
-	CGRect frame = CGRectMake(0, yaxis, width, height);
+	CGRect frame = CGRectMake(0, 0, width, height);
 	ovController.view.frame = frame;	
 	ovController.view.backgroundColor = [UIColor grayColor];
 	ovController.view.alpha = 0.5;
@@ -191,6 +249,7 @@ titleForHeaderInSection:(NSInteger)section
 	searchbar.placeholder = @"Search";
 	searchbar.autocorrectionType = UITextAutocorrectionTypeNo;
 	searchbar.autocapitalizationType = UITextAutocapitalizationTypeNone;		
+	gframe = searchbar.frame;
 		
 	UITextField *searchField = [[searchbar subviews] lastObject];
 	[searchField setReturnKeyType:UIReturnKeyDone];
@@ -226,7 +285,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 	
 	[ self reload ];
-	
+		
 
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -234,11 +293,12 @@ titleForHeaderInSection:(NSInteger)section
 	[super viewDidAppear:animated];
 	if(resultInt)
 	{
-		printf("\nhello view deleted\n");
+		//("\nhello view deleted\n");
 		resultInt = 0;
 		if(segmentedControl.selectedSegmentIndex==0)//different view
 		{	
 			deleteContactLocal(contactID);
+			profileResync();
 		}	
 		NSIndexPath *nsP;
 		nsP = [self->tableView indexPathForSelectedRow];
@@ -259,6 +319,22 @@ titleForHeaderInSection:(NSInteger)section
 			[self->tableView deselectRowAtIndexPath : nsP animated:NO];
 		}	
 	}
+	if(firstSection>=0)
+	{	
+		NSIndexPath *nsP;
+		nsP = [NSIndexPath indexPathForRow:0 inSection:firstSection] ;
+		if(nsP)
+		{	
+			UITableViewCell *uicellP;
+			uicellP =[tableView cellForRowAtIndexPath:nsP];
+			if(uicellP)
+			{	
+				[tableView scrollToRowAtIndexPath:nsP atScrollPosition:UITableViewScrollPositionTop animated:NO];
+			}	
+		}	
+		firstSection = -1;
+	}	
+	
 
 }	
 
@@ -311,7 +387,7 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
-	printf("\n contact dealloc");
+	//printf("\n contact dealloc");
 	[ovController release];	
 	[addressBookTableDelegate release];
     [super dealloc];
@@ -331,7 +407,10 @@ titleForHeaderInSection:(NSInteger)section
 	return 1;
 
 }
--(int)  showContactDetailScreen: (struct AddressBook * )addressP
+
+
+
+-(int)  showContactDetailScreen: (struct AddressBook * )addressP :(ViewTypeEnum) viewEnum
 {
 	
 	if(addressP)
@@ -357,7 +436,7 @@ titleForHeaderInSection:(NSInteger)section
 			contactID = addressP->id;
 			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0] ;
 			
-			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
+			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :viewEnum];
 			
 		}
 		[ContactControllerDetailsviewP setObject:self->ownerobject];
@@ -366,7 +445,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 		if([ContactControllerDetailsviewP retainCount]>1)
 			[ContactControllerDetailsviewP release];
-		printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+		//printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 		
 		
 		
@@ -420,7 +499,7 @@ titleForHeaderInSection:(NSInteger)section
 	
 	if([ContactControllerDetailsviewP retainCount]>1)
 		[ContactControllerDetailsviewP release];
-	printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+	//printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 	
 	
 	//[ ownerobject.ContactControllerController pushViewController:ownerobject->addeditviewP animated: YES ];
@@ -428,13 +507,29 @@ titleForHeaderInSection:(NSInteger)section
 }
 -(void) reload
 {
-	int firstSection = 1;
-	if([self reloadLocal:nil :&firstSection])
+	//int firstSection = 1;
+	firstSection = 1;
+//	printf("\nreload called");
+	NSString *searchStrP;
+	searchStrP = searchbar.text;
+	if([searchStrP length]==0 ||searchStrP == 0)
 	{	
-	//- (void)scrollToRowAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
-		//printf("\n section%d",firstSection);
-		[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:firstSection] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		if([self reloadLocal:nil :&firstSection])
+		{	
+			//- (void)scrollToRowAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
+		//	printf("\n section%d",firstSection);
+			//	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:firstSection] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		}
+		else
+		{
+			firstSection = -1;
+		}
 	}	
+	else
+	{
+		firstSection = -1;
+	}
+	
 }
 - (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP {
 	int count = 0; 
@@ -495,7 +590,7 @@ titleForHeaderInSection:(NSInteger)section
 			setTypeP = [[sectionType alloc] init];
 			setTypeP->index = i;
 			[sectionArray addObject: setTypeP] ;
-			printf("\n%d",i);
+			//("\n%d",i);
 		}
 		count = GetTotalCount(uaObject);
 		//for(int i=0;i<sectionArray)
@@ -557,7 +652,7 @@ titleForHeaderInSection:(NSInteger)section
 					}
 					else
 					{
-						printf("\n error");
+					//	printf("\n error");
 					}
 
 				}
@@ -644,6 +739,7 @@ titleForHeaderInSection:(NSInteger)section
 
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
 
@@ -687,6 +783,15 @@ titleForHeaderInSection:(NSInteger)section
 
 
 	
+}
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+	
+	if (index == 0) {
+		// search item
+		[self->tableView scrollRectToVisible:[[self->tableView tableHeaderView] bounds] animated:NO];
+		return -1;
+	}	
+	return index;
 }
 - (void)tableView:(UITableView *)tableView 
 accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath 
@@ -739,7 +844,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	secP = (sectionData*)[setTypeP->elementP objectAtIndex:row]; 
 	addressP = (struct AddressBook *)getContact( secP->recordid);
 	
-	[self showContactDetailScreen :addressP ];
+	[self showContactDetailScreen :addressP :CONTACTDETAILVIEWENUM];
 		
 
 

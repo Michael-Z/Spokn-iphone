@@ -113,7 +113,6 @@ titleForHeaderInSection:(NSInteger)section
 	return ALPHA_ARRAY; 
 } 
 
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
 	////printf("shankarjaikishan");
@@ -129,20 +128,40 @@ titleForHeaderInSection:(NSInteger)section
 	NSString *firstName = (NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
 	NSString *lastName = (NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
 	NSString *biz = (NSString *)ABRecordCopyValue(person, kABPersonOrganizationProperty);
-	
+	NSString *resultP;
+	NSString *lFirstName;
+	NSString *lLastName;
 	
 	if ((!firstName) && !(lastName)) 
 	{
-		if (biz) return biz;
-		return @" ";
+		if (biz) 
+		{
+			resultP =  [[NSString alloc] initWithFormat:@"%@", biz];
+			[biz release];
+		}
+		else
+		{
+			
+			resultP =  [[NSString alloc] initWithFormat:@"%@", @" "];
+		}
+		
+		return resultP;
 	}
 	
-	if (!lastName) lastName = @"";
-	if (!firstName) firstName = @"";
+	if (!lastName) lLastName = @"";
+	else
+		lLastName = lastName;
+	if (!firstName) lFirstName = @"";
+	else
+		lFirstName = firstName;
 	
-	firstName = [firstName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	lastName =  [lastName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	return [NSString stringWithFormat:@"%@ %@", firstName, lastName] ;
+	
+	resultP =  [[NSString alloc] initWithFormat:@"%@ %@", lFirstName, lLastName];
+	[firstName release];
+	[lastName release];
+	[biz release];
+	//NSLog(resultP);
+	return resultP    ;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -169,7 +188,9 @@ titleForHeaderInSection:(NSInteger)section
 	//////printf("mukesh");
 	//secP = (sectionData*)[dataP objectAtIndex:0];
 	id person = [setTypeP->elementP objectAtIndex:row];
-	cell.text = [self getName:person];
+	NSString *resP = [self getName:person];
+	cell.text = resP;
+	[resP release];
 
 	//cell.textColor = [self getColor:[crayon objectAtIndex:1]];
 	
@@ -206,7 +227,7 @@ titleForHeaderInSection:(NSInteger)section
 	//NSString* mobile=@"";
 	NSString* numberStringP;
 	char *numbercharP;
-printf("\nidentifire = %ld\n",property);
+//printf("\nidentifire = %ld\n",property);
 	for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
 	{
 		
@@ -257,6 +278,15 @@ printf("\nidentifire = %ld\n",property);
 	return NO;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+	
+	if (index == 0) {
+		// search item
+		[self->tableView scrollRectToVisible:[[self->tableView tableHeaderView] bounds] animated:NO];
+		return -1;
+	}	
+	return index;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
 {
 	
@@ -287,9 +317,11 @@ printf("\nidentifire = %ld\n",property);
 	addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook)+10);
 	memset(addressP,0,sizeof(struct AddressBook));
 	nameP = [self getName:person];
-	NSLog(nameP);
+//	NSLog(nameP);
 	numbercharP = (char*)[nameP  cStringUsingEncoding:1];
+	
 	strncpy(addressP->title,numbercharP,98);
+	[nameP release];
 	//ABMultiValueRef name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
 	name1 =(NSString*)ABRecordCopyValue(person,kABRealPropertyType);
 	if(name1)
@@ -327,7 +359,7 @@ printf("\nidentifire = %ld\n",property);
 
 					}
 			}
-			NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
+		//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
 			[numberStringP release];
 			[labelStringP release];
 		}
@@ -368,7 +400,7 @@ printf("\nidentifire = %ld\n",property);
 	 [ContactControllerDetailsviewP release];
 	 */
 	 
-	[(ContactViewController*) controllerP showContactDetailScreen:addressP];
+	[(ContactViewController*) controllerP showContactDetailScreen:addressP :CONTACTPHONEADDRESSBOOKDETAIL];
 	free(addressP);
 	 
 	 
@@ -385,9 +417,9 @@ printf("\nidentifire = %ld\n",property);
 	{
 		setTypeP = [sectionArray objectAtIndex:0];
 		//lsz = setTypeP->elementP.count;
-		/*while(setTypeP->elementP.count)
+		while(setTypeP->elementP.count)
 			//for(j = 0;j<lsz;++j)
-			[setTypeP->elementP removeObjectAtIndex:0];*/
+			[setTypeP->elementP removeObjectAtIndex:0];
 		[setTypeP release];
 		[sectionArray removeObjectAtIndex:0];
 	}
@@ -398,18 +430,21 @@ printf("\nidentifire = %ld\n",property);
 		setTypeP->index = i;
 		[sectionArray addObject: setTypeP] ;
 	}
-	
+	//printf("\n %d people count ",peopleArray.count);
 	
 	//searchArray = [[NSMutableArray alloc] init];
 	for (NSString *person in peopleArray)
 	{
-	
+		NSString *searchStrP;
 		
-		NSRange range = [ALPHA rangeOfString:[[[self getName:person] substringToIndex:1] uppercaseString]];
+		searchStrP = [self getName:person] ;
+		
+		NSRange range = [ALPHA rangeOfString:[[searchStrP substringToIndex:1] uppercaseString]];
 		
 		
 		if (range.location == NSNotFound || range.location >=MAXSEC )
 		{
+			[searchStrP release];
 			continue;
 		}
 		setTypeP = [sectionArray objectAtIndex:range.location];
@@ -417,7 +452,7 @@ printf("\nidentifire = %ld\n",property);
 		{	
 			if([matchString length]>1)
 			{	
-				NSRange range1 = [[[self getName:person] uppercaseString] rangeOfString:upString];//[[[self getName:person] uppercaseString] rangeOfString:upString];
+				NSRange range1 = [[searchStrP uppercaseString] rangeOfString:upString];//[[[self getName:person] uppercaseString] rangeOfString:upString];
 				if (range1.location != NSNotFound) 
 				{	
 					//////printf("\n%s %ld %d",addressP->title,addressP->id ,i);
@@ -437,7 +472,7 @@ printf("\nidentifire = %ld\n",property);
 			[ setTypeP->elementP addObject:person];
 			
 		}
-		
+		[searchStrP release];
 	/*	
 		// Add everyone when there's nothing to match to
 		if ([matchString length] == 0)
@@ -471,7 +506,7 @@ printf("\nidentifire = %ld\n",property);
 	CGFloat height = controllerP.view.frame.size.height;
 	
 	//Parameters x = origion on x-axis, y = origon on y-axis.
-	CGRect frame = CGRectMake(0, yaxis, width, height);
+	CGRect frame = CGRectMake(0, 0, width, height);
 	(*ovControllerP).view.frame = frame;	
 	(*ovControllerP).view.backgroundColor = [UIColor grayColor];
 	(*ovControllerP).view.alpha = 0.5;
@@ -507,6 +542,11 @@ printf("\nidentifire = %ld\n",property);
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
 	[searchBar resignFirstResponder];
+	//return [ (ContactViewController*)controllerP doneSearching_Clicked:searchBar];
+}
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+	return [ (ContactViewController*)controllerP searchBarShouldBeginEditing:searchBar];
 }
 -(void)setSearchBarAndTable:(UISearchBar *)lBarP :(UITableView *)tableP PerentObject:(UIViewController *)lcontrollerP OverlayView:(OverlayViewController **)lovController;
 
@@ -553,7 +593,7 @@ printf("\nidentifire = %ld\n",property);
 	self->tableView.rowHeight = 40;
 	if(peopleArray==nil)
 	{	
-		sectionArray = [[[NSMutableArray alloc] init] retain];
+		sectionArray = [[NSMutableArray alloc] init] ;
 		peopleArray = (NSMutableArray *)ABAddressBookCopyArrayOfAllPeople(ABAddressBookCreate());
 		
 		
@@ -569,9 +609,25 @@ printf("\nidentifire = %ld\n",property);
 // Clean up
 -(void) dealloc
 {
+	printf("\n dalloc");
+	sectionType *setTypeP;
+	if(sectionArray)
+	{	
+		while(sectionArray.count)
+		{
+			setTypeP = [sectionArray objectAtIndex:0];
+			//lsz = setTypeP->elementP.count;
+			while(setTypeP->elementP.count)
+			//for(j = 0;j<lsz;++j)
+				[setTypeP->elementP removeObjectAtIndex:0];
+			[setTypeP release];
+			[sectionArray removeObjectAtIndex:0];
+		}
+		[sectionArray release];
+	}	
 	[peopleArray release];
 	//[searchArray release];
-	[sectionArray release];
+	
 	[super dealloc];
 }
 @end

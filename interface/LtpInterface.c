@@ -133,6 +133,7 @@ void alertInterface(void *udata,int lineid, int alertcode, void *data)
 		}
 	}	
 }
+
 int CallBackSoundPCM(void *uData,sampleFrame *pcmBufferP,unsigned int *lengthP,Boolean recordB)
 {
 	LtpInterfaceType *ltPInterfaceP;
@@ -283,37 +284,65 @@ void *PollThread(void *PollThreadP)
 	
 	while(1)
 	{
+		
 		if(gP->pthreadstopB==true) 
 		{
 			gP->pthreadstopB = false;
 			break;
 		}
-		if(gP->currentTime==0)
+		
+		if(gP->connectionActiveByte==0)
 		{
-			gP->currentTime = time(NULL);
+			sleep(1);
+			continue;
 		}
 		else
 		{
-			long diff;
-			diff = time(NULL) - gP->currentTime;
-			if(diff>MAXTIME_RESYNC)
+		
+			
+			if(gP->connectionActiveByte==1)
+			{	
+				restartSocket(&gP->socketID);
+				//printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
+				ltpLogin(gP->ltpObjectP,CMD_LOGIN);
+				gP->connectionActiveByte = 2;
+			}
+			
+			
+			
+			
+			if(gP->currentTime==0)
 			{
 				gP->currentTime = time(NULL);
-				printf("\n resync Called");
-				if(gP->ltpObjectP->call[gP->ltpObjectP->activeLine].ltpState = CALL_IDLE)
-				{	
-					profileResync();
-				}	
 			}
-		
-		}
-		if(DoPolling(gP)!=0)
-		{	
-			//sleep(1);
-			break;
+			else
+			{
+				long diff;
+				diff = time(NULL) - gP->currentTime;
+				if(diff>MAXTIME_RESYNC)
+				{
+					gP->currentTime = time(NULL);
+					printf("\n resync Called");
+					if(gP->ltpObjectP->call[gP->ltpObjectP->activeLine].ltpState = CALL_IDLE)
+					{	
+						profileResync();
+					}	
+				}
+				
+			}
+			if(DoPolling(gP)!=0)
+			{	
+				//sleep(1);
+				break;
+				
+			}
 			
+		
+		
+		
 		}
 		
+				
 	}
 	return NULL;
 	
@@ -403,9 +432,12 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 	{
 		return -2;
 	}
-	restartSocket(&ltpInterfaceP->socketID);
-//printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
-	ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
+	if(ltpInterfaceP->connectionActiveByte)
+	{	
+		restartSocket(&ltpInterfaceP->socketID);
+		//printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
+		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
+	}
 	ltpInterfaceP->alertNotifyP(START_LOGIN,0,0,ltpInterfaceP->userData,0);
 	
 	return 0;
@@ -478,4 +510,13 @@ void SendDTMF(LtpInterfaceType *ltpInterfaceP,int lineid, char *dtmfMsgP)
 {
 	ltpMessageDTMF(ltpInterfaceP->ltpObjectP,  lineid,dtmfMsgP );
 
+}
+void SetConnection( LtpInterfaceType *ltpInterfaceP,int activeByte)
+{
+	ltpInterfaceP->connectionActiveByte = activeByte;
+	if(activeByte==2)//mean send login packet
+	{
+		DoLtpLogin(ltpInterfaceP);
+	}
+	
 }

@@ -98,6 +98,7 @@
 						break;
 					case LOGIN_STATUS_NO_ACCESS:
 							[dialviewP setStatusText: @"no access" :ALERT_OFFLINE :self->subID ];
+						printf("\n no access to network");
 						break;
 					default:
 							[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
@@ -453,10 +454,14 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//setLtpUserName(ltpInterfacesP, "");
 	//setLtpPassword(ltpInterfacesP, "");
 	//NSString *ltpValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"protocol_prefrence"];
+	[self startCheckNetwork];	
+	
 	if(DoLtpLogin(ltpInterfacesP))//mean error ask dial to load login view
 	{
 		alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self,0);
 	}
+	
+	//[self startCheckNetwork];	
 	/*
 	[self LoadContactView:contactviewP];
 	[self LoadContactView:vmsviewP];
@@ -482,6 +487,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[ltpTimerP stopTimer ];
 	//logOut(ltpInterfacesP);
 	endLtp(ltpInterfacesP);
+	[self stopCheckNetwork];
 	printf("\n  count %d tab %d",[dialviewP retainCount],[tabBarController retainCount]);
 	[tabBarController release];
 	
@@ -692,6 +698,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 		[ vmsNavigationController popViewControllerAnimated:YES];
 		vmsDeInit(&vmsP);
+		return 1;
 	}
 	return 0;
 }
@@ -729,7 +736,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	char type[30];
 	int max = 20;
 	
-	
+	//printf("\n test122323232323");
 	addressP = getContactAndTypeCall(noCharP,type);	
 	if(addressP)
 	{
@@ -740,7 +747,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[vmShowViewControllerP setFileName: "temp" :0];
 		[vmShowViewControllerP setvmsDetail: noCharP : addressP->title :type :false :max :0];
 		[vmShowViewControllerP setObject:self];
-		
+		[vmsNavigationController popToRootViewControllerAnimated:NO];
 		[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];
 		
 		if([vmShowViewControllerP retainCount]>1)
@@ -756,7 +763,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
 		[vmShowViewControllerP setvmsDetail: noCharP : noCharP :"" :false :max : 0];
 		[vmShowViewControllerP setObject:self];
-		
+		[vmsNavigationController popToRootViewControllerAnimated:NO];
 		[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];
 		
 		if([vmShowViewControllerP retainCount]>1)
@@ -842,6 +849,108 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 
 
+}
+#pragma mark RECHABILITY
+-(void) startCheckNetwork
+{
+//static	struct sockaddr_in	addr;
+	//addr.sin_addr.s_addr = inet_addr("0.0.0.123");
+	//if (addr.sin_addr.s_addr == INADDR_NONE)
+	//	return;
+	//addr.sin_port = htons(80);	
+//	addr.sin_family = AF_INET;
+	
+	
+//	printf("\n host reach start");
+	[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+
+	hostReach = [[Reachability reachabilityWithHostName: @"www.spokn.com"] retain];
+	//hostReach = [[Reachability reachabilityWithAddress:&addr] retain];
+	[hostReach startNotifer];
+	//[self updateReachabilityStatus: hostReach];
+
+	//wifiReach = [[Reachability reachabilityForLocalWiFi] retain];
+	//[wifiReach startNotifer];
+}
+-(void) stopCheckNetwork
+{
+	
+	printf("\n host reach stop");
+//	[hostReach stopNotifer];
+	//[wifiReach stopNotifer];
+	[hostReach release];
+	[wifiReach release];
+	
+		
+}
+- (void)reachabilityChanged:(NSNotification *)note
+{
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+	[self updateReachabilityStatus: curReach];
+}
+
+- (void) configureTextField: (Reachability*) curReach
+{
+    NetworkStatus netStatus = [curReach currentReachabilityStatus];
+    BOOL connectionRequired= [curReach connectionRequired];
+    NSString* statusString= @"";
+    switch (netStatus)
+    {
+        case NotReachable:
+        {
+                 //Minor interface detail- connectionRequired may return yes, even when the host is unreachable.  We cover that up here...
+            connectionRequired= NO;  
+		/*	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" 
+															message:@"connect via wifi"
+														   delegate:self 
+												  cancelButtonTitle:nil 
+												  otherButtonTitles:@"OK", nil];
+			[alert show];
+			[alert release];*/
+			SetConnection( ltpInterfacesP,0);
+			printf("\n offline set");
+			alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
+            break;
+        }
+            
+        case ReachableViaWWAN:
+        {
+             break;
+        }
+        case ReachableViaWiFi:
+        {
+			/*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" 
+															message:@"connect via wifi"
+														   delegate:self 
+												  cancelButtonTitle:nil 
+												  otherButtonTitles:@"OK", nil];
+			[alert show];
+			[alert release];*/
+			printf("\n richable set");
+			SetConnection( ltpInterfacesP,2);
+			 break;
+		}
+    }
+    if(connectionRequired)
+    {
+        statusString= [NSString stringWithFormat: @"%@, Connection Required", statusString];
+    }
+    NSLog(statusString);
+	//textField.text= statusString;
+}
+
+- (void) updateReachabilityStatus: (Reachability*) curReach
+{
+	
+	
+	if(curReach == hostReach)
+	{
+		[self configureTextField:  curReach];
+       		
+    }
+	
+	
 }
 
 @end

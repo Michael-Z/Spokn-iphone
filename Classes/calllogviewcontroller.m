@@ -285,6 +285,7 @@
 				{
 					dispP.uiImageP = outImageP;
 				}
+				else
 				if(cdrP->direction & CALLTYPE_IN)
 				{
 					if(cdrP->direction & CALLTYPE_MISSED)
@@ -296,6 +297,10 @@
 					{	
 						dispP.uiImageP = inImageP;
 					}	
+				}
+				else
+				{
+						dispP.uiImageP = outImageP;
 				}
 			}
 			
