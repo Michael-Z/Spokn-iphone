@@ -127,6 +127,8 @@
 		loadedB = false;
 		sectionCount = 1;
 		[self setTitle:@"Info"];
+		[self setTitlesString:@"Select number for vms"];
+		[self setSelectedNumber:"\0" showAddButton:NO];
 		msgLabelP = 0;
 		// white button:
 			
@@ -536,6 +538,12 @@
 	}
 
 }
+
+-(void)setTitlesString:(NSString*)nsP
+{
+	[titlesP release];
+	titlesP = [[NSString alloc] initWithString:nsP];
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -564,6 +572,13 @@
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	
+	buttonBackground = [UIImage imageNamed:@"whiteButton.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
+	[CustomButton setImages:addButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
+	
+	
 	//tableView.tag = TABLE_VIEW_TAG;
 	if(self.navigationItem.rightBarButtonItem==nil)
 	{	
@@ -590,8 +605,42 @@
 		{	
 			if(viewEnum==CALLLOGDETAILVIEWENUM)
 			{	
-				self.navigationItem.rightBarButtonItem 
-				= [ [ [ UIBarButtonItem alloc ] initWithTitle:@"Delete" style:UIBarButtonItemStyleDone target:self action:@selector(deleteClicked)] autorelease];
+				deleteButton = [[UIButton alloc] init];
+				// The default size for the save button is 49x30 pixels
+				deleteButton.frame = CGRectMake(0, 0, 60, 30.0);
+				
+				// Center the text vertically and horizontally
+				deleteButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+				deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+				
+				UIImage *image = [UIImage imageNamed:@"bottombarred_pressed.png"];
+				
+				// Make a stretchable image from the original image
+				UIImage *stretchImage = [image stretchableImageWithLeftCapWidth:15.0 topCapHeight:0.0];
+				
+				// Set the background to the stretchable image
+				[deleteButton setBackgroundImage:stretchImage forState:UIControlStateNormal];
+				
+				// Make the background color clear
+				deleteButton.backgroundColor = [UIColor clearColor];
+				
+				// Set the font properties
+				[deleteButton setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
+				deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+					
+				
+				[deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+				
+				[deleteButton addTarget:self action:@selector(deleteClicked) forControlEvents:UIControlEventTouchUpInside];
+				
+				UIBarButtonItem *navButton = [[UIBarButtonItem alloc] initWithCustomView:deleteButton];
+				
+				self.navigationItem.rightBarButtonItem = navButton;
+				
+				[navButton release];
+				[deleteButton release];
+				
+				//self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ] initWithTitle:@"Delete" style:UIBarButtonItemStyleDone target:self action:@selector(deleteClicked)] autorelease];
 				struct tm tmP1,*tmP=0;
 				time_t timeP;
 				char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
@@ -667,13 +716,13 @@
 	viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	if(viewEnum==CONTACTADDVIEWENUM || viewEnum == CONTACTFORWARDVMS)
 	{
-		viewP.hidden = YES;
+		viewP.hidden = !showAddButtonB;
 		printf("\n viewEnum");
 		tableView.tableFooterView = viewP;
 		[viewP release];
 		if(viewEnum == CONTACTFORWARDVMS)
 		{
-			[self setTitle:@"Select number for vms"];
+			[self setTitle:titlesP ];
 		}
 
 	}
@@ -864,6 +913,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			{
 				*retValP = 1;
 				strcpy(numberCharP,sectionArray[section].dataforSection[row].elementP);
+				if(selectContactP)
+				{
+					strcpy(selectContactP->nameChar,addressDataP->title);
+					strcpy(selectContactP->number,numberCharP);
+					
+					strcpy(selectContactP->type,sectionArray[section].dataforSection[row].nameofRow);
+				
+				}
 				if(self->rootObjectP)
 				{
 					[[self navigationController]  popToViewController:self->rootObjectP animated:NO];
@@ -971,7 +1028,38 @@ titleForHeaderInSection:(NSInteger)section
 	{	
 		self->cdrP = (struct CDR *)malloc(sizeof(struct CDR )+4);
 		*self->cdrP=*lcdrP;
+		//[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:NO ];
+		[self setSelectedNumber:self->cdrP->title showAddButton:NO];
+		
+		
 	}	
+}
+-(IBAction)addContactPressed:(id)sender
+{
+
+	struct AddressBook *addressDataTmpP;
+	
+	
+	addressDataTmpP = addressDataP;
+	addressDataP = 0;
+	addressDataTmpP->title[0] = 0;
+	showAddButtonB = NO;
+	viewP.hidden = !showAddButtonB;
+	self.navigationItem.rightBarButtonItem 
+	= [ [ [ UIBarButtonItem alloc ]
+		 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
+		 target: self
+		 action: @selector(doneClicked) ] autorelease ];
+	
+	[self setAddressBook:addressDataTmpP editable:true :CONTACTADDVIEWENUM];
+	free(addressDataTmpP);
+	
+}
+-(void)setSelectedNumber:(char*)noCharP showAddButton:(BOOL)lshowB;
+{
+	strcpy(self->selectNoCharP,noCharP);
+	showAddButtonB = lshowB;
+	
 }
 -(void)setAddressBook:( struct AddressBook *)laddressDataP editable:(Boolean)leditableB :(ViewTypeEnum) lviewEnum
 {
@@ -1006,14 +1094,14 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	if(strlen(addressDataP->home)>0)
 	{
-		if(self->cdrP)
-			if(!strcmp(self->cdrP->userid,addressDataP->home ))
+		//if(self->cdrP)
+			if(!strcmp(selectNoCharP,addressDataP->home ))
 			{
 				sectionArray[0].dataforSection[tablesz].selected = 1;
 			}
 		//element[tablesz++] = addressDataP->home;
 		sectionArray[0].dataforSection[tablesz].section = 0;
-		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Home");
+		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"home");
 		sectionArray[0].dataforSection[tablesz].elementP = addressDataP->home;
 		sectionArray[0].count++;
 		tablesz++;
@@ -1034,14 +1122,14 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	if(strlen(addressDataP->business)>0)
 	{
-		if(self->cdrP)
-			if(!strcmp(self->cdrP->userid,addressDataP->business ))
+		//if(self->cdrP)
+			if(!strcmp(selectNoCharP,addressDataP->business ))
 			{
 				sectionArray[0].dataforSection[tablesz].selected = 1;
 			}
 		//element[tablesz++] = addressDataP->business;
 		sectionArray[0].dataforSection[tablesz].section = 0;
-		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Business");
+		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"business");
 		sectionArray[0].dataforSection[tablesz].elementP = addressDataP->business;
 		sectionArray[0].count++;
 		tablesz++;
@@ -1062,14 +1150,14 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	if(strlen(addressDataP->mobile)>0)
 	{
-		if(self->cdrP)
-			if(!strcmp(self->cdrP->userid,addressDataP->mobile ))
+		//if(self->cdrP)
+			if(!strcmp(selectNoCharP,addressDataP->mobile ))
 			{
 				sectionArray[0].dataforSection[tablesz].selected = 1;
 			}
 		//element[tablesz++] = addressDataP->mobile;
 		sectionArray[0].dataforSection[tablesz].section = 0;
-		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Mobile");
+		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"mobile");
 		sectionArray[0].dataforSection[tablesz].elementP = addressDataP->mobile;
 		sectionArray[0].count++;
 		
@@ -1091,14 +1179,14 @@ titleForHeaderInSection:(NSInteger)section
 	
 	if(strlen(addressDataP->other)>0)
 	{
-		if(self->cdrP)
-			if(!strcmp(self->cdrP->userid,addressDataP->other ))
+		//if(self->cdrP)
+			if(!strcmp(selectNoCharP,addressDataP->other ))
 			{
 				sectionArray[0].dataforSection[tablesz].selected = 1;
 			}
 		//element[tablesz++] = addressDataP->other;
 		sectionArray[0].dataforSection[tablesz].section = 0;
-		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Other");
+		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"other");
 		sectionArray[0].dataforSection[tablesz].elementP = addressDataP->other;
 		sectionArray[0].count++;
 		tablesz++;
@@ -1119,8 +1207,8 @@ titleForHeaderInSection:(NSInteger)section
 	if(strlen(addressDataP->spoknid)>0)
 	{
 		//element[tablesz++] = addressDataP->spoknid;
-		if(self->cdrP)
-		if(!strcmp(self->cdrP->userid,addressDataP->spoknid ))
+		//if(self->cdrP)
+		if(!strcmp(selectNoCharP,addressDataP->spoknid ))
 		{
 			sectionArray[0].dataforSection[tablesz].selected = 1;
 		}
@@ -1152,8 +1240,12 @@ titleForHeaderInSection:(NSInteger)section
 	if(strlen(addressDataP->email)>0)
 	{
 		//element[tablesz++] = addressDataP->email;
+		if(!strcmp(selectNoCharP,addressDataP->email ))
+		{
+			sectionArray[sectionCount].dataforSection[0].selected = 1;
+		}
 		sectionArray[sectionCount].dataforSection[0].section = 0;
-		strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"Email");
+		strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"email");
 		sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
 		sectionArray[sectionCount].count++;
 		//tablesz++;
@@ -1197,7 +1289,7 @@ titleForHeaderInSection:(NSInteger)section
 	{
 		printf("\n  up to");
 		nsp = [[NSString alloc] initWithUTF8String:(const char*)addressDataP->title ];
-		NSLog(@"%@",nsp);
+		NSLog(@"%@  showB = %d",nsp,showAddButtonB);
 		
 		[userNameP setText:nsp];
 		[nsp release];
@@ -1214,6 +1306,7 @@ titleForHeaderInSection:(NSInteger)section
 				self->delButtonP.hidden = NO;
 				self->vmsButtonP.hidden = YES;
 				self->callButtonP.hidden = YES;
+				self->addButtonP.hidden = !showAddButtonB;
 				changeNameButtonP.hidden = NO;
 				if([[userNameP text] length]==0)
 				{
@@ -1245,6 +1338,7 @@ titleForHeaderInSection:(NSInteger)section
 				self->vmsButtonP.hidden = NO;
 				self->callButtonP.hidden = NO;
 				changeNameButtonP.hidden = YES;
+				self->addButtonP.hidden = !showAddButtonB;
 				tableView.tableHeaderView = userNameP;
 			//	[userNameP release];
 				if(CONTACTPHONEDETAIL==viewEnum)
@@ -1294,7 +1388,7 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
-	
+	[titlesP release];
 	[changeNameButtonP release];
 	[userNameP release];
 	[msgLabelP release];
@@ -1311,11 +1405,13 @@ titleForHeaderInSection:(NSInteger)section
 	 [super dealloc];
 }
 
--(void)setReturnValue:(int*)lretValP selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
+-(void)setReturnValue:(int*)lretValP selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP selectedContact:(SelectedContctType*)lselectContactP
+
 {
 	retValP = lretValP;
 	numberCharP = lnumberCharP;
 	rootObjectP = lrootObjectP;
+	selectContactP = lselectContactP;
 	
 }
 @end

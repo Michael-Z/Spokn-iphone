@@ -117,12 +117,26 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
 	//("\nkeyboard");
-	tableView.tableHeaderView = 0;
+	
 	CGRect lframe;
 	lframe = gframe;
 	lframe.size.width-=40;
 	searchBar.frame = lframe; 
-	 self.navigationItem.titleView = searchBar;
+	//+ (void)beginAnimations:(NSString *)animationID context:(void *)context;  // additional context info passed to will start/did stop selectors. begin/commit can be nested
+	//+ (void)commitAnimations;                                                 // starts up any animations when the top level animation is commited
+
+	/*[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:0.75];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+	[UIView setAnimationTransition: UIViewAnimationTransitionCurlUp
+						   forView:self.view  cache:YES];
+	tableView.tableHeaderView = 0;
+	self.navigationItem.titleView = searchBar;
+	
+	[UIView commitAnimations];*/
+	tableView.tableHeaderView = 0;
+	self.navigationItem.titleView = searchBar;
+
 	self.navigationItem.rightBarButtonItem 
 	= [ [ [ UIBarButtonItem alloc ]
 		 initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
@@ -425,7 +439,7 @@ titleForHeaderInSection:(NSInteger)section
 			{
 				*returnPtr = 0;
 			}
-			[ContactControllerDetailsviewP setReturnValue:returnPtr selectedContact:numberCharP  rootObject:rootControllerObject] ;
+			[ContactControllerDetailsviewP setReturnValue:returnPtr selectedContact:numberCharP  rootObject:rootControllerObject selectedContact:0] ;
 			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
 		}
@@ -434,7 +448,7 @@ titleForHeaderInSection:(NSInteger)section
 			resultInt = 0;
 			//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
 			contactID = addressP->id;
-			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0] ;
+			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0 selectedContact:0] ;
 			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :viewEnum];
 			

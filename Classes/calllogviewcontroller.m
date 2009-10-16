@@ -428,7 +428,7 @@
 			[ContactControllerDetailsviewP setObject:self->ownerobject];
 			resultInt = 0;
 			//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
-			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0] ;
+			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0 selectedContact:0] ;
 			[ContactControllerDetailsviewP setCdr:cdrP];
 			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
@@ -467,14 +467,24 @@
 			memset(addressP,0,sizeof(struct AddressBook));
 			addressP->id = -1;
 			strcpy(addressP->title,cdrP->userid);
-			strcpy(addressP->other,cdrP->userid);
+			if(strlen(cdrP->userid)==SPOKN_ID_RANGE)
+			{
+				strcpy(addressP->spoknid,cdrP->userid);
+			}
+			else
+			{	
+				strcpy(addressP->other,cdrP->userid);
+			}
+			
+			
 			ContactDetailsViewController     *ContactControllerDetailsviewP;	
 			ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 			[ContactControllerDetailsviewP setObject:self->ownerobject];
 			resultInt = 0;
 			//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
-			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0] ;
+			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0 selectedContact:0] ;
 			[ContactControllerDetailsviewP setCdr:cdrP];
+			[ContactControllerDetailsviewP setSelectedNumber:cdrP->userid showAddButton:YES ];
 			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
 			

@@ -35,7 +35,7 @@
 	Boolean loadedB;
 	SpoknAppDelegate *ownerobject;
 	struct VMail* vmailP;
-	SectionContactType sectionArray[4];
+	SectionContactType sectionArray[MAX_SECTION];
 	int sectionCount;
 	int maxTime;
 	int maxTimeLoc;
@@ -46,9 +46,12 @@
 	char *fileNameCharP;
 	int *returnValLongP;
 	int openForwardNo;
-	char forwardNoChar[100];
+	char forwardNoChar[150];
 	UISlider *sliderP;
 	UIImage *knob;
+	int returnValueInt;
+	UIButton *deleteButton;
+	SelectedContctType *selectP;
 	
 	
 	
@@ -66,4 +69,5 @@
 -(void)makeView;
 -(IBAction)stopButtonPressed:(id)sender;
 -(void)loadOtherView;
+-(void) loadContactDetails :(char*) numberCharP;
 @end

@@ -13,7 +13,7 @@
 #import "customcell.h"
 #import "custombutton.h"
 #define MAX_COUNT 7
-#define MAX_SECTION 2
+#define MAX_SECTION 4
 @class SpoknAppDelegate;
 typedef struct DataForSection
 {
@@ -26,6 +26,13 @@ typedef struct DataForSection
 	UIView *customViewP;
 	
 }DataForSection;
+typedef struct SelectedContctType
+{
+	char nameChar[150];
+	char type[40];
+	char number[150];
+}SelectedContctType;
+	
 typedef struct SectionContactType
 	{
 		int count;
@@ -45,6 +52,7 @@ typedef enum ViewTypeEnum
 		CONTACTPHONEADDRESSBOOKDETAIL,
 		CONTACTFORWARDVMS
 		
+		
 	}ViewTypeEnum;
 @interface ContactDetailsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate> {
 	IBOutlet UILabel *userNameP;
@@ -55,6 +63,7 @@ typedef enum ViewTypeEnum
 	IBOutlet CustomButton  *vmsButtonP;
 	IBOutlet CustomButton  *callButtonP;
 	IBOutlet UIButton  *changeNameButtonP;
+	IBOutlet CustomButton  *addButtonP;
 	int sectionCount;
 	int tablesz;
 	Boolean editableB;
@@ -75,6 +84,11 @@ typedef enum ViewTypeEnum
 	UILabel *msgLabelP;
 	char *numberCharP;
 	id rootObjectP;
+	NSString *titlesP;
+	char selectNoCharP[150];//use to store selected no
+	UIButton *deleteButton;
+	BOOL showAddButtonB;
+	SelectedContctType *selectContactP;
 	
 }
 
@@ -86,6 +100,10 @@ typedef enum ViewTypeEnum
 -(IBAction)vmsPressed:(id)sender;
 -(IBAction)deletePressed:(id)sender;
 -(IBAction)changeNamePressed:(id)sender;
+-(IBAction)addContactPressed:(id)sender;
 - (void) presentSheet:(bool)callB;
--(void)setReturnValue:(int*)lretValB selectedContact:(char*)lnumberCharP rootObject:(id)rootObject;
+-(void)setReturnValue:(int*)lretValB selectedContact:(char*)lnumberCharP rootObject:(id)rootObject selectedContact:(SelectedContctType*)lselectContactP;
+-(void)setTitlesString:(NSString*)nsP;
+-(void)setSelectedNumber:(char*)noCharP showAddButton:(BOOL)lshowB;
 @end
+

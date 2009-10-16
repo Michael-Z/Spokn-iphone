@@ -30,6 +30,10 @@
 		[ownerobject vmsSend:noCharP :fileNameCharP];
 	}	
 }
+-(IBAction)cancelClicked
+{
+	[ [self navigationController] popViewControllerAnimated:YES ];
+}
 -(IBAction)deleteClicked
 {
 	/*struct AddressBook *addressDataTmpP;
@@ -288,6 +292,7 @@
 			
 				[cell.contentView addSubview:sectionArray[section].dataforSection[row].customViewP];
 				[sectionArray[section].dataforSection[row].customViewP release];
+				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 			}
 			else
 			{
@@ -324,8 +329,12 @@
 		cell.spoknSubCellP.dataArrayP = secLocP->elementP;
 		cell.spoknSubCellP.ownerDrawB = true;
 		cell.spoknSubCellP.rowHeight = 50;
-		//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}	
+	else
+	{
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+	}
 	//[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	/*if(editableB)
 	{
@@ -392,7 +401,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	
 	//int index;
 	NSString *stringStrP;
-	
+	printf("\nsection %d %d \n",lsection,row);
 	//objStrP = sectionArray[lsection].dataforSection[row].nameofRow;
 	objStrP = sectionArray[lsection].dataforSection[row].elementP;
 	typeCallP = sectionArray[lsection].dataforSection[row].secRowP;
@@ -503,7 +512,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
 {
 	printf("\n preeesed select");
-	[self->tableView deselectRowAtIndexPath : newIndexPath animated:NO];
+	int row = [newIndexPath row];
+	int section = [newIndexPath section];
+	if(sectionArray[section].dataforSection[row].customViewP==0)
+	{
+		[self->tableView deselectRowAtIndexPath : newIndexPath animated:NO];
+		[self loadContactDetails:noCharP];
+	}
 	//selection = [[[UIFont familyNames] objectAtIndex:[newIndexPath row]] retain];
 /*	int row = [newIndexPath row];
 	int section = [newIndexPath section];
@@ -676,6 +691,34 @@ id createImage(float percentage)
 		
 		forwardNoChar[0] = 0;
 	}
+	if(returnValueInt)
+	{
+		if(playB==false)
+		{	
+			printf("\n selected no %s",forwardNoChar);
+			//forwardNoChar[0]=0;
+			returnValueInt = 0;
+			if(selectP)
+			{
+				struct VMail* lvmailP;
+				lvmailP = vmailP;
+				vmailP =0;
+				printf("\n selected type %s %s %s",forwardNoChar,selectP->nameChar,selectP->type);
+				[self setvmsDetail: forwardNoChar : selectP->nameChar :selectP->type :playB :maxTime :lvmailP];
+				free(selectP);
+				if(lvmailP)
+				{
+					free(lvmailP);
+				}
+				selectP = 0;
+			}
+			forwardNoChar[0]=0;
+			[self loadOtherView];
+			[self makeView];
+			[self->tableView reloadData];
+		}	
+	
+	}
 }	
 
 -(void)setObject:(id) object 
@@ -726,8 +769,44 @@ id createImage(float percentage)
 			
 		}	
 		[secondLabelP setText:[NSString stringWithFormat:@"%d", self->maxTime]];
-		self.navigationItem.rightBarButtonItem 
-		= [ [ [ UIBarButtonItem alloc ] initWithTitle:@"Delete" style:UIBarButtonItemStyleDone target:self action:@selector(deleteClicked)] autorelease];
+		
+		deleteButton = [[UIButton alloc] init];
+		// The default size for the save button is 49x30 pixels
+		deleteButton.frame = CGRectMake(0, 0, 60, 30.0);
+		
+		// Center the text vertically and horizontally
+		deleteButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+		deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+		
+		UIImage *image = [UIImage imageNamed:@"bottombarred_pressed.png"];
+		
+		// Make a stretchable image from the original image
+		UIImage *stretchImage = [image stretchableImageWithLeftCapWidth:15.0 topCapHeight:0.0];
+		
+		// Set the background to the stretchable image
+		[deleteButton setBackgroundImage:stretchImage forState:UIControlStateNormal];
+		
+		// Make the background color clear
+		deleteButton.backgroundColor = [UIColor clearColor];
+		
+		// Set the font properties
+		[deleteButton setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
+		deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+		
+		
+		[deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+		
+		[deleteButton addTarget:self action:@selector(deleteClicked) forControlEvents:UIControlEventTouchUpInside];
+		
+		UIBarButtonItem *navButton = [[UIBarButtonItem alloc] initWithCustomView:deleteButton];
+		
+		self.navigationItem.rightBarButtonItem = navButton;
+		
+		[navButton release];
+		[deleteButton release];
+		
+		
+	//	self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ] initWithTitle:@"Delete" style:UIBarButtonItemStyleDone target:self action:@selector(deleteClicked)] autorelease];
 		
 		
 	}
@@ -746,6 +825,41 @@ id createImage(float percentage)
 		[previewButtonP setTitle:@"Preview" forState:UIControlStateNormal];
 		[previewButtonP setTitle:@"Preview" forState:UIControlStateHighlighted];
 		self.navigationItem.rightBarButtonItem  = nil;
+		deleteButton = [[UIButton alloc] init];
+		// The default size for the save button is 49x30 pixels
+		deleteButton.frame = CGRectMake(0, 0, 60, 30.0);
+		
+		// Center the text vertically and horizontally
+		deleteButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+		deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+		
+		UIImage *image = [UIImage imageNamed:@"bottombarred_pressed.png"];
+		
+		// Make a stretchable image from the original image
+		UIImage *stretchImage = [image stretchableImageWithLeftCapWidth:15.0 topCapHeight:0.0];
+		
+		// Set the background to the stretchable image
+		[deleteButton setBackgroundImage:stretchImage forState:UIControlStateNormal];
+		
+		// Make the background color clear
+		deleteButton.backgroundColor = [UIColor clearColor];
+		
+		// Set the font properties
+		[deleteButton setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
+		deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+		
+		
+		[deleteButton setTitle:@"Cancel" forState:UIControlStateNormal];
+		
+		[deleteButton addTarget:self action:@selector(cancelClicked) forControlEvents:UIControlEventTouchUpInside];
+		
+		UIBarButtonItem *navButton = [[UIBarButtonItem alloc] initWithCustomView:deleteButton];
+		
+		self.navigationItem.rightBarButtonItem = navButton;
+		
+		[navButton release];
+		[deleteButton release];
+		
 	}
 	
 	amt = 0.0;
@@ -773,6 +887,72 @@ id createImage(float percentage)
 	
 }
 
+-(void) loadContactDetails : (char*) numberCharP 
+
+{
+	
+	struct AddressBook *addressP;
+	char type[30];
+	forwardNoChar[0] = 0;
+	addressP = getContactAndTypeCall(numberCharP,type);	
+	selectP = 0;
+	if(addressP)
+	{
+		ContactDetailsViewController     *ContactControllerDetailsviewP;	
+		if(playB==false)
+		{	
+			selectP = (SelectedContctType*)malloc(sizeof(SelectedContctType)+4);
+		}
+		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+		returnValueInt = 0;
+		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContact:forwardNoChar  rootObject:self selectedContact:selectP] ;
+	
+		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
+		[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
+		[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:NO ];
+		[ContactControllerDetailsviewP setObject:self->ownerobject];
+		
+		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+		
+		if([ContactControllerDetailsviewP retainCount]>1)
+			[ContactControllerDetailsviewP release];
+	}	
+	else
+	{
+		addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));
+		memset(addressP,0,sizeof(struct AddressBook));
+		addressP->id = -1;
+		strcpy(addressP->title,numberCharP);
+		if(strlen(numberCharP)==SPOKN_ID_RANGE)
+		{
+			strcpy(addressP->spoknid,numberCharP);
+		}
+		else
+		{	
+			strcpy(addressP->other,numberCharP);
+		}
+		ContactDetailsViewController     *ContactControllerDetailsviewP;	
+		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+		returnValueInt = 0;
+		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContact:forwardNoChar  rootObject:self selectedContact:0]  ;
+		
+		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
+		[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
+		[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:YES ];
+		[ContactControllerDetailsviewP setObject:self->ownerobject];
+		
+		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+		
+		if([ContactControllerDetailsviewP retainCount]>1)
+			[ContactControllerDetailsviewP release];
+		free(addressP);
+		addressP = 0;
+		
+	
+	
+	}
+		
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -781,9 +961,14 @@ id createImage(float percentage)
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
+
 -(void)setvmsDetail:(char*)lnoCharP :(char*)lnameCharP :(char*)ltypeCharP :(Boolean)lplayB :(int)lmaxTime :(struct VMail*) lvmailP
 {
 	//NSString *nsp;
+	if(noCharP) free(noCharP);
+	if(nameCharP) free(nameCharP);
+	if(typeCharP) free(typeCharP);
+	if(vmailP) free(vmailP);
 	noCharP = malloc(strlen(lnoCharP)+4);
 	strcpy(noCharP,lnoCharP);
 	nameCharP = malloc(strlen(lnameCharP)+4);
@@ -796,6 +981,7 @@ id createImage(float percentage)
 		vmailP = malloc(sizeof(struct VMail)+4);
 		*vmailP = *lvmailP;
 	}
+	tablesz = 0;
 	//noCharP =[ [NSString alloc] initWithUTF8String:lnoCharP];
 	//nameCharP =[ [NSString alloc] initWithUTF8String:lnameCharP];
 	//typeCharP = [[NSString alloc] initWithUTF8String:ltypeCharP];
@@ -881,6 +1067,12 @@ id createImage(float percentage)
 	{
 		free(fileNameCharP);
 	}
+	if(selectP)
+	{
+		free(selectP);
+		selectP = 0;
+	}
+	
 	if(noCharP)
 	free(noCharP);
 	if(nameCharP)

@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="42"/>
+			<integer value="38"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -178,8 +178,26 @@
 								<reference key="IBUINormalTitleColor" ref="346118328"/>
 								<reference key="IBUINormalTitleShadowColor" ref="579832469"/>
 							</object>
+							<object class="IBUIButton" id="589428040">
+								<reference key="NSNextResponder" ref="139589346"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{10, 64}, {275, 37}}</string>
+								<reference key="NSSuperview" ref="139589346"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIFont" ref="4737424"/>
+								<string key="IBUINormalTitle">Add contact</string>
+								<reference key="IBUIHighlightedTitleColor" ref="1049220797"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="579832469"/>
+							</object>
 						</object>
-						<string key="NSFrame">{{10, 317}, {305, 53}}</string>
+						<string key="NSFrame">{{10, 317}, {305, 110}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -318,6 +336,23 @@
 					</object>
 					<int key="connectionID">58</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">addButtonP</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="589428040"/>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">addContactPressed:</string>
+						<reference key="source" ref="589428040"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">61</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -354,14 +389,6 @@
 						<reference key="parent" ref="317526666"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">32</int>
-						<reference key="object" ref="721003761"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-						</object>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">33</int>
 						<reference key="object" ref="2078895"/>
 						<reference key="parent" ref="191373211"/>
@@ -374,6 +401,7 @@
 							<reference ref="172174305"/>
 							<reference ref="714687318"/>
 							<reference ref="815585431"/>
+							<reference ref="589428040"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -397,6 +425,16 @@
 						<reference key="object" ref="821059074"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">32</int>
+						<reference key="object" ref="721003761"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">59</int>
+						<reference key="object" ref="589428040"/>
+						<reference key="parent" ref="139589346"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -417,6 +455,8 @@
 					<string>42.CustomClassName</string>
 					<string>42.IBPluginDependency</string>
 					<string>47.IBPluginDependency</string>
+					<string>59.CustomClassName</string>
+					<string>59.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -433,6 +473,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>CustomButton</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>CustomButton</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -456,7 +498,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">58</int>
+			<int key="maxID">61</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -468,6 +510,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addContactPressed:</string>
 							<string>callPressed:</string>
 							<string>changeNamePressed:</string>
 							<string>deletePressed:</string>
@@ -479,12 +522,14 @@
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
+							<string>id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addButtonP</string>
 							<string>callButtonP</string>
 							<string>changeNameButtonP</string>
 							<string>delButtonP</string>
@@ -496,6 +541,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>CustomButton</string>
 							<string>CustomButton</string>
 							<string>UIButton</string>
 							<string>CustomButton</string>
