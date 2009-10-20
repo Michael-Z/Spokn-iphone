@@ -24,6 +24,7 @@
 	UISearchBar *searchBarP;
 	SpoknAppDelegate *ownerobject;
 	OverlayViewController **ovControllerP;
+	Boolean searchB;
 	
 }
 -(void)setObject:(id) object ;

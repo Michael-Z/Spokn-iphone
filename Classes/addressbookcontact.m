@@ -110,7 +110,13 @@ titleForHeaderInSection:(NSInteger)section
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView 
 { 
-	return ALPHA_ARRAY; 
+    #ifndef _HIDDEN_NAVBAR
+		return ALPHA_ARRAY;
+	#else
+		if(searchB==false)
+			return ALPHA_ARRAY;
+	#endif
+	return nil;
 } 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
@@ -492,8 +498,8 @@ titleForHeaderInSection:(NSInteger)section
 	
 	//This method is called again when the user clicks back from the detail view.
 	//So the overlay is displayed on the results, which is something we do not want to happen.
-	UITextField *searchField = [[theSearchBar subviews] lastObject];
-	if(searchField.text.length>0)
+	//UITextField *searchField = [[theSearchBar subviews] lastObject];
+	if(theSearchBar.text.length>0)
 		return;
 	
 	//Add the overlay view.
@@ -501,12 +507,20 @@ titleForHeaderInSection:(NSInteger)section
 	{	
 		*ovControllerP = [[OverlayViewController alloc] initWithNibName:@"OverlayView" bundle:[NSBundle mainBundle]];
 	}
-	CGFloat yaxis = controllerP.navigationController.navigationBar.frame.size.height;
 	CGFloat width = controllerP.view.frame.size.width;
 	CGFloat height = controllerP.view.frame.size.height;
+	#ifndef _HIDDEN_NAVBAR
+	//CGFloat yaxis = controllerP.navigationController.navigationBar.frame.size.height;
 	
-	//Parameters x = origion on x-axis, y = origon on y-axis.
 	CGRect frame = CGRectMake(0, 0, width, height);
+	
+	#else
+		CGFloat yaxis = controllerP.navigationController.navigationBar.frame.size.height;
+	
+		CGRect frame = CGRectMake(0, yaxis, width, height);
+	#endif
+	//Parameters x = origion on x-axis, y = origon on y-axis.
+	
 	(*ovControllerP).view.frame = frame;	
 	(*ovControllerP).view.backgroundColor = [UIColor grayColor];
 	(*ovControllerP).view.alpha = 0.5;
@@ -541,11 +555,21 @@ titleForHeaderInSection:(NSInteger)section
 // When the search button (i.e. "Done") is clicked, hide the keyboard
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+	searchB = true;
 	[searchBar resignFirstResponder];
 	//return [ (ContactViewController*)controllerP doneSearching_Clicked:searchBar];
 }
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+{
+	searchB = false;
+	[(ContactViewController*)controllerP  cancelSearch];
+}
+
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
+//	#ifdef _HIDDEN_NAVBAR
+	searchB = true;
+	//#endif
 	return [ (ContactViewController*)controllerP searchBarShouldBeginEditing:searchBar];
 }
 -(void)setSearchBarAndTable:(UISearchBar *)lBarP :(UITableView *)tableP PerentObject:(UIViewController *)lcontrollerP OverlayView:(OverlayViewController **)lovController;
@@ -559,6 +583,7 @@ titleForHeaderInSection:(NSInteger)section
 	self->tableView = tableP;
 	tableView.delegate = self;
 	tableView.dataSource = self;
+	searchB = false;
 	if(peopleArray=0)
 	{	
 		[self loadViewLoc];

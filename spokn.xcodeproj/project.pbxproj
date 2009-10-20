@@ -411,11 +411,11 @@
 				8B9302671011EDFA004BDA41 /* contactviewcontroller.h */,
 				8B9302681011EDFA004BDA41 /* contactviewController.m */,
 				8B9302691011EDFA004BDA41 /* contact.xib */,
-				8B93026A1011EDFA004BDA41 /* dialviewcontroller.h */,
 				8B93026B1011EDFA004BDA41 /* dialviewcontroller.m */,
 				8B93026C1011EDFA004BDA41 /* dialview.xib */,
 				8B93026D1011EDFA004BDA41 /* Incommingcallviewcontroller.h */,
 				8B93026E1011EDFA004BDA41 /* Incommingcallviewcontroller.m */,
+				8B93026A1011EDFA004BDA41 /* dialviewcontroller.h */,
 				8B93026F1011EDFA004BDA41 /* incommingcall.xib */,
 				8B9302701011EDFA004BDA41 /* Info.plist */,
 				8B9302711011EDFA004BDA41 /* loginviewcontroller.h */,
@@ -939,8 +939,6 @@
 					"\"$(SRCROOT)/../lib/speex/macos/build\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21128CCB-5FBA-4358-AFFD-30A99E980DC9";
 				SDKROOT = iphonesimulator2.2.1;
 				SKIP_INSTALL = NO;
 			};
@@ -986,8 +984,6 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "1E1D55B3-B0D8-45A0-BEFD-F121B982C9DF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1E1D55B3-B0D8-45A0-BEFD-F121B982C9DF";
 				SDKROOT = iphonesimulator2.2.1;
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;

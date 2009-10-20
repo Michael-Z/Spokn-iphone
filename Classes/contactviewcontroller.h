@@ -44,6 +44,8 @@
 	int resultInt;
 	int firstSection;	
 	CGRect gframe;
+	Boolean searchStartB;
+	//NSArray *sectionNSArrayP;
 	
 	
 
@@ -62,4 +64,5 @@
 -(void) setReturnVariable:(id) rootObject :(char *) numberCharP : (int *)valP;
 -(int)  showContactDetailScreen: (struct AddressBook * )addressP :(ViewTypeEnum) viewEnum;
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
+-(void)cancelSearch;
 @end

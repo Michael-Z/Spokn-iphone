@@ -89,6 +89,7 @@ typedef enum ViewTypeEnum
 	UIButton *deleteButton;
 	BOOL showAddButtonB;
 	SelectedContctType *selectContactP;
+	Boolean noNameB;
 	
 }
 

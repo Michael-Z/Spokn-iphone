@@ -1312,15 +1312,30 @@ titleForHeaderInSection:(NSInteger)section
 				{
 				//	[userNameP setTextColor:[UIColor grayColor]];
 					[userNameP setText:@"    First Last"];
+					noNameB = true;
 				}
 				else
 				{
+					noNameB = false;
+					NSString *nsP;
+					nsP = [[NSString alloc]initWithFormat:@"   %@",userNameP.text];
+					[userNameP setText:nsP];
+					[nsP release];
 					//[userNameP setTextColor:[UIColor blackColor]];
 				}
 				userNameP.hidden = YES;
 			//	[changeNameButtonP addSubview:userNameP];
 				//[userNameP release];
 				//setTitle:(NSString *)title forState:(UIControlState)state
+				if(noNameB)
+				{
+					[changeNameButtonP setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+				}
+				else
+				{
+					[changeNameButtonP setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+					
+				}
 				[changeNameButtonP setTitle:userNameP.text forState:UIControlStateNormal];
 				tableView.tableHeaderView = changeNameButtonP;
 				//[changeNameButtonP release];

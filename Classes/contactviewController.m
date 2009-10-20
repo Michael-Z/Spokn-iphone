@@ -46,7 +46,15 @@
 	[super touchesBegan:touches withEvent:event];
 	[self resignFirstResponder];
 }
-
+- (NSTimeInterval)keyboardAnimationDurationForNotification:(NSNotification*)notification
+{
+	printf("\nkey board");
+	NSDictionary* info = [notification userInfo];
+    NSValue* value = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval duration = 0;
+    [value getValue:&duration];
+    return duration;
+}
 -(void)setObject:(id) object 
 {
 	self->ownerobject = object;
@@ -61,6 +69,7 @@
 	}
 	[self reloadLocal:upString :0];
 }
+
 -(void)cancelSearch
 {
 	[self doneSearching_Clicked:nil];
@@ -74,10 +83,16 @@
 		[addressBookTableDelegate setSearchBarAndTable:searchbar  :tableView PerentObject:self OverlayView :&ovController];
 		
 	}
+	searchStartB = false;
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
+{
+	[self cancelSearch];
 }
 - (void) doneSearching_Clicked:(id)sender {
 	
-//	printf("\n mukesh");
+	#ifndef _HIDDEN_NAVBAR
+	searchStartB = false;
 	searchbar.text = @"";
 	[searchbar resignFirstResponder];
 	
@@ -86,6 +101,12 @@
 	[ovController.view removeFromSuperview];
 	[ovController release];
 	ovController = nil;
+	searchbar.frame = gframe; 
+	
+		[searchbar setShowsCancelButton:NO animated:YES];
+		tableView.tableHeaderView = searchbar;
+		self.navigationItem.titleView = segmentedControl;
+		
 	if(parentView==0)
 	{	
 		self.navigationItem.rightBarButtonItem 
@@ -104,66 +125,106 @@
 		
 	}
 	
-	self.navigationItem.titleView = segmentedControl;
-	CGRect lframe;
-	lframe = gframe;
+	#else
+		printf("\n mukesh");
+		searchbar.text = @"";
+		[searchbar resignFirstResponder];
 	
-	//lframe.size.width+=40;
-	searchbar.frame = lframe; 
-	tableView.tableHeaderView = searchbar;
+		self->tableView.scrollEnabled = YES;
 	
+		[ovController.view removeFromSuperview];
+		[ovController release];
+		ovController = nil;
+		[self navigationController].navigationBarHidden =NO;
+		//sectionNSArrayP = ALPHA_ARRAY;
+		[searchbar setShowsCancelButton:NO animated:YES];
+		searchStartB = false;
+	
+	#endif
+	//[self->tableView reloadData];
+	
+
+
 	
 }
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
 	//("\nkeyboard");
-	
+	#ifndef _HIDDEN_NAVBAR
 	CGRect lframe;
 	lframe = gframe;
-	lframe.size.width-=40;
+	lframe.size.width-=20;
 	searchBar.frame = lframe; 
+	searchStartB = true;
+	tableView.tableHeaderView = 0;
+	self.navigationItem.titleView = searchBar;
+	[searchBar setShowsCancelButton:YES animated:YES];
+	self.navigationItem.rightBarButtonItem = nil;
+	#else
+	//CGRect lframe;
+	//lframe = gframe;
+	//lframe.size.width-=40;
+	//searchBar.frame = lframe; 
+	[searchBar setShowsCancelButton:YES animated:YES];
+	//[searchBar setActive : YES animated:YES];
 	//+ (void)beginAnimations:(NSString *)animationID context:(void *)context;  // additional context info passed to will start/did stop selectors. begin/commit can be nested
 	//+ (void)commitAnimations;                                                 // starts up any animations when the top level animation is commited
-
-	/*[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.75];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	[UIView setAnimationTransition: UIViewAnimationTransitionCurlUp
-						   forView:self.view  cache:YES];
-	tableView.tableHeaderView = 0;
-	self.navigationItem.titleView = searchBar;
 	
-	[UIView commitAnimations];*/
-	tableView.tableHeaderView = 0;
-	self.navigationItem.titleView = searchBar;
-
-	self.navigationItem.rightBarButtonItem 
-	= [ [ [ UIBarButtonItem alloc ]
-		 initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
-		 target: self
-		 action: @selector(cancelSearch) ] autorelease ];
-	//[self->tableView reloadData];
+	/*[UIView beginAnimations:nil context:nil];
+	 [UIView setAnimationDuration:0.75];
+	 [UIView setAnimationBeginsFromCurrentState:YES];
+	 [UIView setAnimationTransition: UIViewAnimationTransitionCurlUp
+	 forView:self.view  cache:YES];
+	 tableView.tableHeaderView = 0;
+	 self.navigationItem.titleView = searchBar;
+	 
+	 [UIView commitAnimations];*/
+	//tableView.tableHeaderView = 0;
+	//self.navigationItem.titleView = searchBar;
+	
+	/*self.navigationItem.rightBarButtonItem 
+	 = [ [ [ UIBarButtonItem alloc ]
+	 initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+	 target: self
+	 action: @selector(cancelSearch) ] autorelease ];*/
+	[self navigationController].navigationBarHidden =YES;
+	
+	//[self navigationController].navigationBarHidden =NO;
+	
+	searchStartB = true;
+	[self->tableView reloadData];
+	
+	#endif	
 	return YES;
 }
 - (void) searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
 	
 	//This method is called again when the user clicks back from the detail view.
 	//So the overlay is displayed on the results, which is something we do not want to happen.
-	UITextField *searchField = [[theSearchBar subviews] lastObject];
-	if(searchField.text.length>0)
+	//UITextField *searchField = [[theSearchBar subviews] lastObject];
+	
+	if(theSearchBar.text.length>0)
 		return;
 	
 	//Add the overlay view.
 	if(ovController == nil)
 		ovController = [[OverlayViewController alloc] initWithNibName:@"OverlayView" bundle:[NSBundle mainBundle]];
 	
-	//CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
 	CGFloat width = self.view.frame.size.width;
 	CGFloat height = self.view.frame.size.height;
 	//CGRect frame = CGRectMake(0, yaxis, width, height);
 
 	//Parameters x = origion on x-axis, y = origon on y-axis.
+	#ifndef _HIDDEN_NAVBAR
+	//CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
+	
 	CGRect frame = CGRectMake(0, 0, width, height);
+	#else
+	CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
+	
+	CGRect frame = CGRectMake(0, yaxis, width, height);
+	
+	#endif
 	ovController.view.frame = frame;	
 	ovController.view.backgroundColor = [UIColor grayColor];
 	ovController.view.alpha = 0.5;
@@ -241,7 +302,17 @@ titleForHeaderInSection:(NSInteger)section
 } 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView 
 { 
-	return ALPHA_ARRAY; 
+	#ifndef _HIDDEN_NAVBAR
+		return ALPHA_ARRAY;
+	#else
+	if(searchStartB==false)
+		return ALPHA_ARRAY; 
+	return nil;
+	#endif
+	
+	
+	//return sectionNSArrayP;
+	
 	
 } 
 
@@ -255,7 +326,8 @@ titleForHeaderInSection:(NSInteger)section
 - (void)viewDidLoad {
     [super viewDidLoad];
 		searchbar.delegate = self;
-	
+	searchStartB = false;
+
 	//CGRect cellFrame ;
 	//cellFrame = searchbar.bounds;
 	//cellFrame.size.width-=30;
@@ -301,6 +373,17 @@ titleForHeaderInSection:(NSInteger)section
 	[ self reload ];
 		
 
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	if(searchStartB)
+	{	
+	#ifdef _HIDDEN_NAVBAR
+		[self navigationController].navigationBarHidden =NO;
+	#endif	
+	}
+	
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -348,6 +431,17 @@ titleForHeaderInSection:(NSInteger)section
 		}	
 		firstSection = -1;
 	}	
+	#ifdef _HIDDEN_NAVBAR
+	[self navigationController].navigationBarHidden =searchStartB;
+	#else
+		if(searchStartB)
+		{
+			self.navigationItem.rightBarButtonItem = nil;
+		}
+		
+		
+	#endif
+	
 	
 
 }	
@@ -368,7 +462,7 @@ titleForHeaderInSection:(NSInteger)section
 			 tableView.dataSource = self;
 			 searchbar.delegate = self;
 			 searchbar.text = @"";
-			
+			//[ self->tableView reloadData ];
 			 [self reloadLocal:nil :0];
 			 
 		 }
@@ -555,7 +649,7 @@ titleForHeaderInSection:(NSInteger)section
 	//////////printf("\nmukesh");
 	if(uaObject==GETCONTACTLIST)
 	{
-		if(self.navigationItem.rightBarButtonItem==nil)
+		if(self.navigationItem.rightBarButtonItem==nil && searchStartB==false)
 		{	
 			if(parentView==0)
 			{	
