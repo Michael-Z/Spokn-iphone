@@ -241,7 +241,7 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
 			//now check whether it contain @ or not
-			numbercharP = (char*)[numberStringP  cStringUsingEncoding:1];
+			numbercharP = (char*)[numberStringP  NSUTF8StringEncoding:1];
 
 			if(strstr(numbercharP,"@")==0)
 			{	
@@ -324,7 +324,7 @@ titleForHeaderInSection:(NSInteger)section
 	memset(addressP,0,sizeof(struct AddressBook));
 	nameP = [self getName:person];
 //	NSLog(nameP);
-	numbercharP = (char*)[nameP  cStringUsingEncoding:1];
+	numbercharP = (char*)[nameP  cStringUsingEncoding:NSUTF8StringEncoding];
 	
 	strncpy(addressP->title,numbercharP,98);
 	[nameP release];
@@ -342,25 +342,25 @@ titleForHeaderInSection:(NSInteger)section
 			}
 			if([labelStringP isEqualToString:@"_$!<Mobile>!$_"])
 			{
-				numbercharP = (char*)[numberStringP  cStringUsingEncoding:1];
+				numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 				strcpy(addressP->mobile,numbercharP);
 			}
 			else
 			{	
 				if([labelStringP isEqualToString:@"_$!<Home>!$_"])
 				{
-					numbercharP = (char*)[numberStringP  cStringUsingEncoding:1];
+					numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 					strcpy(addressP->home,numbercharP);
 				}
 				else
 					if([labelStringP isEqualToString:@"_$!<Business>!$_"])
 					{
-						numbercharP = (char*)[numberStringP  cStringUsingEncoding:1];
+						numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 						strcpy(addressP->business,numbercharP);
 					}
 					else
 					{
-						numbercharP = (char*)[numberStringP  cStringUsingEncoding:1];
+						numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 						strcpy(addressP->other,numbercharP);
 
 					}
@@ -383,7 +383,7 @@ titleForHeaderInSection:(NSInteger)section
 			{
 				continue;
 			}
-			numbercharP = (char*)[numberStringP  cStringUsingEncoding:1];
+			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 			strcpy(addressP->email,numbercharP);
 		//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
 			[numberStringP release];

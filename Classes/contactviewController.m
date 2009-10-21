@@ -274,7 +274,7 @@
 		[self.tabBarItem   initWithTabBarSystemItem: 
 												  UITabBarSystemItemContacts tag:1];
 		parentView = 0;
-
+		sectionArray = [[NSMutableArray alloc] init] ;
     }
     return self;
 }
@@ -343,7 +343,7 @@ titleForHeaderInSection:(NSInteger)section
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Contact" image:nil tag:3];
 
-	sectionArray = [[[NSMutableArray alloc] init] retain];
+	
 	//tableView.backgroundColor = [UIColor blueColor];
 	tableView.scrollsToTop = YES;
 	tableView.delegate = self;
@@ -495,10 +495,22 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
-	//printf("\n contact dealloc");
+	printf("\n contact dealloc");
 	[ovController release];	
 	[addressBookTableDelegate release];
-    [super dealloc];
+	sectionType *setTypeP;
+	while(sectionArray.count)
+	{
+		setTypeP = [sectionArray objectAtIndex:0];
+				while(setTypeP->elementP.count)
+			//for(j = 0;j<lsz;++j)
+			[setTypeP->elementP removeObjectAtIndex:0];
+		[setTypeP release];
+		[sectionArray removeObjectAtIndex:0];
+	}
+	[sectionArray release];
+    
+	[super dealloc];
 }
 -(void) setReturnVariable:(id) rootObject :(char *) lnumberCharP : (int *)lvalP
 {

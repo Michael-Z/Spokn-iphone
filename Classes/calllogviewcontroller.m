@@ -16,12 +16,16 @@
 #import "customcell.h"
 @implementation CalllogViewController
 
-
+-(void) hideLeftbutton:(Boolean) lhideB
+{
+	hideB = lhideB;
+}
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
 		[self.tabBarItem initWithTabBarSystemItem:UITabBarSystemItemRecents tag:2];
+		hideB = false;
     }
     return self;
 }
@@ -742,14 +746,16 @@ cancelButtonTitle: nil
 	
 	self.navigationItem.titleView = segmentedControl;
 	segmentedControl.selectedSegmentIndex = 0;
-	self.navigationItem.leftBarButtonItem 
-	= [ [ [ UIBarButtonItem alloc ]
-		 initWithTitle: @"Clear" style:UIBarButtonItemStylePlain
-		 target: self
-		 action: @selector(clearPressed) ] autorelease ];
-	
-	
+	if(hideB==false)
+	{	
+		self.navigationItem.leftBarButtonItem 
+		= [ [ [ UIBarButtonItem alloc ]
+			 initWithTitle: @"Clear" style:UIBarButtonItemStylePlain
+			 target: self
+			 action: @selector(clearPressed) ] autorelease ];
 	}
+	
+}
 
 /*
 // Override to allow orientations other than the default portrait orientation.

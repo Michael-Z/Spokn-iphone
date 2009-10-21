@@ -17,6 +17,8 @@
 		8B07244F10751C3B00C1D1A4 /* vms.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B07244D10751C3B00C1D1A4 /* vms.png */; };
 		8B07246410751D4600C1D1A4 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B07246310751D4600C1D1A4 /* login.png */; };
 		8B0B3EAC103AD39900150C5B /* spokn_1.xcclassmodel in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */; };
+		8B16790D108F36A3004D18C0 /* testingview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B16790A108F36A3004D18C0 /* testingview.xib */; };
+		8B16790E108F36A3004D18C0 /* testingview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B16790B108F36A3004D18C0 /* testingview.m */; };
 		8B177BF0104674E000E42923 /* missed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BE8104674E000E42923 /* missed.png */; };
 		8B177BF2104674E000E42923 /* callout.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEA104674E000E42923 /* callout.png */; };
 		8B177BF3104674E000E42923 /* callin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEB104674E000E42923 /* callin.png */; };
@@ -187,6 +189,10 @@
 		8B07244D10751C3B00C1D1A4 /* vms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vms.png; path = rsc/vms.png; sourceTree = "<group>"; };
 		8B07246310751D4600C1D1A4 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcclassmodel; path = spokn_1.xcclassmodel; sourceTree = "<group>"; };
+		8B1678BA108F3093004D18C0 /* testmemory-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "testmemory-Info.plist"; sourceTree = "<group>"; };
+		8B16790A108F36A3004D18C0 /* testingview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = testingview.xib; sourceTree = "<group>"; };
+		8B16790B108F36A3004D18C0 /* testingview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testingview.m; sourceTree = "<group>"; };
+		8B16790C108F36A3004D18C0 /* testingview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testingview.h; sourceTree = "<group>"; };
 		8B177BE8104674E000E42923 /* missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = missed.png; path = rsc/missed.png; sourceTree = "<group>"; };
 		8B177BEA104674E000E42923 /* callout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callout.png; path = rsc/callout.png; sourceTree = "<group>"; };
 		8B177BEB104674E000E42923 /* callin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callin.png; path = rsc/callin.png; sourceTree = "<group>"; };
@@ -394,6 +400,9 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8B16790A108F36A3004D18C0 /* testingview.xib */,
+				8B16790B108F36A3004D18C0 /* testingview.m */,
+				8B16790C108F36A3004D18C0 /* testingview.h */,
 				8BE3E2EF1084D100008CB625 /* Reachability.m */,
 				8BE3E2F01084D100008CB625 /* Reachability.h */,
 				8BBD8A90107F7FBE008FD911 /* callviewcontroller.xib */,
@@ -474,6 +483,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */,
+				8B1678BA108F3093004D18C0 /* testmemory-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -855,6 +865,7 @@
 				8BF795391085F76F00DBFC51 /* red.png in Resources */,
 				8BF7953A1085F76F00DBFC51 /* orange.png in Resources */,
 				8BF7953B1085F76F00DBFC51 /* green.png in Resources */,
+				8B16790D108F36A3004D18C0 /* testingview.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -913,6 +924,7 @@
 				8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */,
 				8BCB06B21083020A00468EC7 /* custombutton.m in Sources */,
 				8BE3E2F11084D100008CB625 /* Reachability.m in Sources */,
+				8B16790E108F36A3004D18C0 /* testingview.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

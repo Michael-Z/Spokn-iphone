@@ -18,10 +18,13 @@
 - (void) createSectionList: (id) wordArray
 {
 	// Build an array with 4 sub-array sections
-	listOfItems = [[[NSMutableArray alloc] init] retain];
+	listOfItems = [[NSMutableArray alloc] init] ;
 	for (int i = 0; i < 3; i++)
 	{
-		[listOfItems addObject:[[[NSMutableArray alloc] init] retain]];
+		NSMutableArray *nSMutableArrayP;
+		nSMutableArrayP = [[NSMutableArray alloc] init] ;
+		[listOfItems addObject:nSMutableArrayP];
+		[nSMutableArrayP release];
 	}
 	// Add each word to its alphabetical section
 	for (NSString *word in wordArray)
@@ -130,6 +133,13 @@
 {
 	self.navigationItem.titleView = activityIndicator;
 	[activityIndicator startAnimating];
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+											   initWithTitle:@"cancel" 
+											   style:UIBarButtonItemStylePlain 
+											   target:self 
+											   action:@selector(LoginPressed)] autorelease];
+	printf("\n startProcess");
+	
 
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -141,15 +151,8 @@
 	   	
 	forwardNoCharP = malloc(100);
 	memset(forwardNoCharP,0,100);
-	self.navigationItem.titleView = activityIndicator;
-	[activityIndicator startAnimating];
-	//self.navigationItem.leftBarButtonItem = activityIndicator;
-	[activityIndicator startAnimating];
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithTitle:@"Sign-in" 
-											   style:UIBarButtonItemStylePlain 
-											   target:self 
-											   action:@selector(LoginPressed)] autorelease];
+	[self startProgress];
+	
 	//[buttonCtlP setBackgroundColor:[UIColor greenColor]];
 	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn Number";
 	NSArray *wordArray = [wordstring componentsSeparatedByString:@"\n"] ;

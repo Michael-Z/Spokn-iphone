@@ -65,7 +65,7 @@
 	if(currentView==1)//mean call is on, send dtmp tone
 	{
 		char *numbercharP;
-		numbercharP = (char*)[string cStringUsingEncoding:1];
+		numbercharP = (char*)[string cStringUsingEncoding:NSUTF8StringEncoding];
 		SendDTMF(ltpInterfacesP,0,numbercharP);
 	
 	}
@@ -83,11 +83,11 @@
 	
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Dial" image:nil tag:2];
-	self.navigationItem.leftBarButtonItem 
+	/*self.navigationItem.leftBarButtonItem 
 	= [ [ [ UIBarButtonItem alloc ]
 		 initWithTitle: @"Login" style:UIBarButtonItemStylePlain
 		 target: self
-		 action: @selector(LoginPressed) ] autorelease ];
+		 action: @selector(LoginPressed) ] autorelease ];*/
 	currentView = 0;
 	
 	//[statusLabelP setText:@"not logged in"];
@@ -247,7 +247,7 @@
 	if(onLineB)
 	{	
 		char *numbercharP;
-		numbercharP = (char*)[[numberlebelP text] cStringUsingEncoding:1];
+		numbercharP = (char*)[[numberlebelP text] cStringUsingEncoding:NSUTF8StringEncoding];
 		[ownerobject makeCall:numbercharP];
 		currentView = 1;
 		[hangUpButtonP setTitle:@"Hang" forState:UIControlStateNormal];
@@ -282,7 +282,7 @@
 		else
 		{
 			char *numbercharP;
-			numbercharP = (char*)[[numberlebelP text] cStringUsingEncoding:1];
+			numbercharP = (char*)[[numberlebelP text] cStringUsingEncoding:NSUTF8StringEncoding];
 			//if(strlen(numbercharP)>5)
 			{	
 				//char *numcharP;

@@ -102,12 +102,12 @@
 	struct AddressBook *addrP ;
 	
 	//dataP = [pathP cStringUsingEncoding:1];
-	namecharP = (char*)[[nameFieldP text] cStringUsingEncoding:1];
-	mobilecharP = (char*)[[mobileFieldP text] cStringUsingEncoding:1];
-	businesscharP = (char*)[[businessFieldP text] cStringUsingEncoding:1];
-	homecharP = (char*)[[homeFieldP text] cStringUsingEncoding:1];
-	emailCharP = (char*)[[emailFieldP text] cStringUsingEncoding:1];
-	spoknIdCharP = (char*)[[spoknIdFieldP text] cStringUsingEncoding:1];
+	namecharP = (char*)[[nameFieldP text] cStringUsingEncoding:NSUTF8StringEncoding];
+	mobilecharP = (char*)[[mobileFieldP text] cStringUsingEncoding:NSUTF8StringEncoding];
+	businesscharP = (char*)[[businessFieldP text] cStringUsingEncoding:NSUTF8StringEncoding];
+	homecharP = (char*)[[homeFieldP text] cStringUsingEncoding:NSUTF8StringEncoding];
+	emailCharP = (char*)[[emailFieldP text] cStringUsingEncoding:NSUTF8StringEncoding];
+	spoknIdCharP = (char*)[[spoknIdFieldP text] cStringUsingEncoding:NSUTF8StringEncoding];
 	//|| ((mobilecharP && strlen(mobilecharP)||(businesscharP && strlen(businesscharP)||(homecharP && strlen(homecharP)||(emailCharP && strlen(emailCharP) ))
 	if( (namecharP && strlen(namecharP))&&(  (mobilecharP && strlen(mobilecharP)) || (businesscharP && strlen(businesscharP))||(homecharP && strlen(homecharP))|| (emailCharP && strlen(emailCharP)) ) )
 	{

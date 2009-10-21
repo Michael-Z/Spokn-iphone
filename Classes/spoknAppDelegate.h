@@ -21,14 +21,18 @@
 @class AddEditcontactViewController;
 #include "vmsplayrecord.h"
 #import "vmshowviewcontroller.h"
-
+#ifdef _TEST_MEMORY_
+#import "testingview.h"
+#endif
 #define LOAD_VIEW 1000
 #define LOAD_LOGIN_VIEW 1
 #define TRYING_CALL 4000
 
 @class VmailViewController;
 @class SpoknViewController;
+@class testingview;
 
+//
 @interface SpoknAppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate> {
   //  @public
 	UIWindow *window;
@@ -46,6 +50,12 @@
 	UINavigationController *calllogNavigationController;
 	UINavigationController *contactNavigationController;
 	UINavigationController *spoknViewNavigationController;
+#ifdef _TEST_MEMORY_
+	UINavigationController *testNavigationController;
+	testingview *testP;
+
+#endif
+	
 	
 	
 	UITabBarController *tabBarController;

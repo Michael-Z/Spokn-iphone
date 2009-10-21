@@ -21,7 +21,7 @@
 #import "CalllogViewController.h"
 #import "vmailviewcontroller.h"
 #import "spoknviewcontroller.h"
-
+//#import "testingview.h"
 //#import "NSFileManager.h"
 @implementation SpoknAppDelegate
 /*
@@ -282,7 +282,7 @@ char * GetPathFunction(void *uData)
 	const char *dataP;
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	nsP = [paths objectAtIndex:0];
-	dataP = [nsP cStringUsingEncoding:1];
+	dataP = [nsP cStringUsingEncoding:NSUTF8StringEncoding];
 	returnCharP = malloc(strlen(dataP)+10);
 	strcpy(returnCharP,dataP);
 	
@@ -325,6 +325,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	vmsviewP = [[VmailViewController alloc] initWithNibName:@"vmailview" bundle:[NSBundle mainBundle]];
 	callviewP = [[CalllogViewController alloc] initWithNibName:@"calllog" bundle:[NSBundle mainBundle]];
 	
+	
+
+	
 	spoknViewControllerP = [[SpoknViewController alloc] initWithNibName:@"spoknviewcontroller" bundle:[NSBundle mainBundle]];	
 	vmsP = 0;
 	//dialNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: dialviewP ];
@@ -358,7 +361,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 
 	
-	
+	#ifdef _TEST_MEMORY_
+		testP = [[testingview alloc] initWithNibName:@"testingview" bundle:[NSBundle mainBundle]];
+		testNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: testP ];
+		[testP release];				
+	#endif
 	
 	viewControllers = [[NSMutableArray alloc] init];
 	//[viewControllers addObject:loginViewP];
@@ -377,6 +384,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	[viewControllers addObject:spoknViewNavigationController];
 	[spoknViewNavigationController release];
+	
+	#ifdef _TEST_MEMORY_
+	[viewControllers addObject:testNavigationController];
+	[testNavigationController release];
+
+	#endif
 	tabBarController = [ [ UITabBarController alloc ] init ];
 	printf("\n tab retain count %d",[tabBarController retainCount]);
 	tabBarController.viewControllers = viewControllers;

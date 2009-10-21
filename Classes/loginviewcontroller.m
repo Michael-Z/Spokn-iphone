@@ -168,8 +168,8 @@
 	}
 	
 	//dataP = [pathP cStringUsingEncoding:1];
-	userNamecharP = (char*)[[usernameFieldP text] cStringUsingEncoding:1];
-	passwordcharP = (char*)[[passwordFieldP text] cStringUsingEncoding:1];
+	userNamecharP = (char*)[[usernameFieldP text] cStringUsingEncoding:NSUTF8StringEncoding];
+	passwordcharP = (char*)[[passwordFieldP text] cStringUsingEncoding:NSUTF8StringEncoding];
 	if(userNamecharP && passwordcharP)
 	{	
 		setLtpUserName(ltpInterfacesP,userNamecharP);

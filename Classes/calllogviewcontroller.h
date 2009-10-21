@@ -25,9 +25,11 @@
 	UISegmentedControl *segmentedControl;
 	int resultInt;
 	struct CDR *gcdrP;
+	Boolean hideB;
 	
 }
 -(void)setObject:(id) object ;
 -(void)setObjType:(UAObjectType)luaObj;
 - (void)addRow: (int )index sectionObject:(sectionType **)sectionPP;
+-(void) hideLeftbutton:(Boolean) lhideB;
 @end
