@@ -172,6 +172,16 @@
 	passwordcharP = (char*)[[passwordFieldP text] cStringUsingEncoding:NSUTF8StringEncoding];
 	if(userNamecharP && passwordcharP)
 	{	
+		char *uNameCharP;
+		uNameCharP = getLtpUserName(ltpInterfacesP);
+		if(uNameCharP)
+		{
+			if(strcmp(uNameCharP,userNamecharP)!=0)
+			{
+				profileClear();
+			}
+			free(uNameCharP);
+		}
 		setLtpUserName(ltpInterfacesP,userNamecharP);
 		setLtpPassword(ltpInterfacesP,passwordcharP);
 		DoLtpLogin(ltpInterfacesP);

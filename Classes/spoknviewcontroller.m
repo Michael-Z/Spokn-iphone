@@ -134,7 +134,7 @@
 	self.navigationItem.titleView = activityIndicator;
 	[activityIndicator startAnimating];
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithTitle:@"cancel" 
+											   initWithTitle:@"Cancel" 
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
 											   action:@selector(LoginPressed)] autorelease];
@@ -423,8 +423,9 @@ titleForHeaderInSection:(NSInteger)section
 		if([temp isEqualToString:@"Status"])
 		{
 			
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			label2 = labelStatus ;
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		
 		}
 		else if([temp isEqualToString:@"Account Balance"])
