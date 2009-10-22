@@ -13,7 +13,7 @@
 #import "SpoknAppDelegate.h"
 #import "AddEditcontactViewController.h"
 #import  "AddeditcellController.h"
-
+//self.navigationItem.leftBarButtonItem.enabled = YES;
 @implementation ContactDetailsViewController
 
  
@@ -492,6 +492,7 @@
 		 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
 		 target: self
 		 action: @selector(doneClicked) ] autorelease ];	
+	self.navigationItem.rightBarButtonItem.enabled = NO;
 	addressDataTmpP = addressDataP;
 	addressDataP = 0;
 	[self setAddressBook:addressDataTmpP editable:true :viewEnum];
@@ -508,6 +509,7 @@
 	{
 		updatecontact = 1;
 		viewResult = 0;
+		self.navigationItem.rightBarButtonItem.enabled = YES;
 		printf("\n make changes");
 		struct AddressBook *addressDataTmpP;
 		
@@ -590,7 +592,8 @@
 				= [ [ [ UIBarButtonItem alloc ]
 				 initWithBarButtonSystemItem: UIBarButtonSystemItemEdit
 				 target: self
-				 action: @selector(editClicked) ] autorelease ];	
+				 action: @selector(editClicked) ] autorelease ];
+				//self.navigationItem.rightBarButtonItem.enabled = NO;
 			}
 			else
 			{
@@ -599,6 +602,7 @@
 					 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
 					 target: self
 					 action: @selector(doneClicked) ] autorelease ];
+				self.navigationItem.rightBarButtonItem.enabled = NO;
 			}
 		}
 		else
@@ -636,6 +640,7 @@
 				UIBarButtonItem *navButton = [[UIBarButtonItem alloc] initWithCustomView:deleteButton];
 				
 				self.navigationItem.rightBarButtonItem = navButton;
+				//self.navigationItem.rightBarButtonItem.enabled = NO;
 				
 				[navButton release];
 				[deleteButton release];
@@ -700,6 +705,7 @@
 					 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
 					 target: self
 					 action: @selector(doneClicked) ] autorelease ];
+				self.navigationItem.rightBarButtonItem.enabled = NO;
 				if(viewEnum!=CONTACTFORWARDVMS)
 				{	
 					self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
@@ -712,6 +718,10 @@
 		
 		
 	}	
+	self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+											   target: self
+											   action: @selector(cancelClicked) ] autorelease ];	
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	if(viewEnum==CONTACTADDVIEWENUM || viewEnum == CONTACTFORWARDVMS)
@@ -836,8 +846,9 @@
 	if(editableB)
 	{
 		//	cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;//UITableViewCellAccessoryDetailDisclosureButton; 
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		cell.hidesAccessoryWhenEditing = NO;
+		//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		//cell.hidesAccessoryWhenEditing = NO;
+		cell.accessoryType = UITableViewCellAccessoryNone;
 	}
 	else
 	{
@@ -882,7 +893,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:
 (NSIndexPath *)indexPath
 {
-	int row = [indexPath row];
+	/*int row = [indexPath row];
 	int section = [indexPath section];
 	if(editableB)
 	{	
@@ -895,7 +906,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			return UITableViewCellEditingStyleDelete;
 		}
 	}	
-	
+	*/
 	return UITableViewCellEditingStyleNone;
 }
 
@@ -1050,6 +1061,7 @@ titleForHeaderInSection:(NSInteger)section
 		 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
 		 target: self
 		 action: @selector(doneClicked) ] autorelease ];
+	self.navigationItem.rightBarButtonItem.enabled = NO;
 	
 	[self setAddressBook:addressDataTmpP editable:true :CONTACTADDVIEWENUM];
 	free(addressDataTmpP);
@@ -1111,7 +1123,7 @@ titleForHeaderInSection:(NSInteger)section
 		if(leditableB)
 		{
 			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Add home number");
+			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"home");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->home;
 			sectionArray[0].count++;
 			sectionArray[0].dataforSection[tablesz].addNewB = true;
@@ -1140,7 +1152,7 @@ titleForHeaderInSection:(NSInteger)section
 		if(leditableB)
 		{
 			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Add business number");
+			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"business");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->business;
 			sectionArray[0].count++;
 			sectionArray[0].dataforSection[tablesz].addNewB = true;
@@ -1168,7 +1180,7 @@ titleForHeaderInSection:(NSInteger)section
 		if(leditableB)
 		{
 			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Add mobile number");
+			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"mobile ");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->mobile;
 			sectionArray[0].count++;
 			sectionArray[0].dataforSection[tablesz].addNewB = true;
@@ -1196,7 +1208,7 @@ titleForHeaderInSection:(NSInteger)section
 		if(leditableB)
 		{
 			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Add new number");
+			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"other");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->other;
 			sectionArray[0].count++;
 			sectionArray[0].dataforSection[tablesz].addNewB = true;
@@ -1224,7 +1236,7 @@ titleForHeaderInSection:(NSInteger)section
 		if(leditableB)
 		{
 			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Add Spokn ID");
+			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Spokn ID");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->spoknid;
 			sectionArray[0].count++;
 			sectionArray[0].dataforSection[tablesz].addNewB = true;
@@ -1261,7 +1273,7 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			printf("\n email ");
 			sectionArray[sectionCount].dataforSection[0].section = 0;
-			strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"Add email");
+			strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"email");
 			sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
 			sectionArray[sectionCount].count++;
 			sectionArray[sectionCount].dataforSection[0].addNewB = true;
@@ -1301,7 +1313,7 @@ titleForHeaderInSection:(NSInteger)section
 			if(editableB)
 			{	
 				printf("\n edit clocked");
-				[ self->tableView setEditing: YES animated: YES ];
+				//[ self->tableView setEditing: YES animated: YES ];
 				self->tableView.allowsSelectionDuringEditing = YES;
 				self->delButtonP.hidden = NO;
 				self->vmsButtonP.hidden = YES;

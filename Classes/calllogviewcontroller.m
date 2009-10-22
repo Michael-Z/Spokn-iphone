@@ -67,10 +67,19 @@
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section 
 {
-	int count;
+	
 	/*return [[UIFont	familyNames] count];*/
 	count = GetTotalCount(showMisscallInt);
-	//////printf("\n mukesh sharma %d\n",count);
+	if(count)
+	{
+		self.navigationItem.leftBarButtonItem.enabled = YES;
+	}
+	else
+	{
+		self.navigationItem.leftBarButtonItem.enabled = NO;
+
+	}
+	///printf("\n mukesh sharma %d\n",count);
 	return count;
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -675,12 +684,12 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }
 -(void) clearPressed {
 	
-UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-message: [ NSString stringWithString:@"Are u sure u want to clear calllog?" ]
+UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Recent calls" 
+message: [ NSString stringWithString:@"Clear all calls?" ]
 delegate: self
 cancelButtonTitle: nil
-										 otherButtonTitles: @"OK", nil];
-[alert addButtonWithTitle:@"Cancel"];
+										 otherButtonTitles: @"Yes", nil];
+[alert addButtonWithTitle:@"No"];
 	[ alert show ];
 
 }
@@ -736,9 +745,9 @@ cancelButtonTitle: nil
 	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	
-	[ segmentedControl insertSegmentWithTitle: @"All" atIndex: 0 animated: YES ];
-	[ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: YES ];
-	[ segmentedControl insertSegmentWithTitle: @"Missed" atIndex: 2 animated: YES ];
+	[ segmentedControl insertSegmentWithTitle: @"All" atIndex: 0 animated: NO ];
+	[ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: NO ];
+	[ segmentedControl insertSegmentWithTitle: @"Missed" atIndex: 2 animated: NO ];
 	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
 	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
 	showMisscallInt = GETCALLLOGLIST;
@@ -753,6 +762,15 @@ cancelButtonTitle: nil
 			 initWithTitle: @"Clear" style:UIBarButtonItemStylePlain
 			 target: self
 			 action: @selector(clearPressed) ] autorelease ];
+		if(count)
+		{
+			self.navigationItem.leftBarButtonItem.enabled = YES;
+		}
+		else
+		{
+			self.navigationItem.leftBarButtonItem.enabled = NO;
+			
+		}
 	}
 	
 }

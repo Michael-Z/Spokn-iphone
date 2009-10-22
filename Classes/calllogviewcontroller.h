@@ -26,6 +26,7 @@
 	int resultInt;
 	struct CDR *gcdrP;
 	Boolean hideB;
+	long count;
 	
 }
 -(void)setObject:(id) object ;

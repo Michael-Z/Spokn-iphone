@@ -862,9 +862,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	
-	[ segmentedControl insertSegmentWithTitle: @"All" atIndex: 0 animated: YES ];
-	[ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: YES ];
-	[ segmentedControl insertSegmentWithTitle: @"Undelivered" atIndex: 2 animated: YES ];
+	[ segmentedControl insertSegmentWithTitle: @"All" atIndex: 0 animated: NO ];
+	[ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: NO ];
+	[ segmentedControl insertSegmentWithTitle: @"Undelivered" atIndex: 2 animated: NO ];
 	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
 	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
 	showFailInt = GETVMAILLIST;

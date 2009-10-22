@@ -241,7 +241,7 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
 			//now check whether it contain @ or not
-			numbercharP = (char*)[numberStringP  NSUTF8StringEncoding:1];
+			numbercharP = (char*)[numberStringP cStringUsingEncoding: NSUTF8StringEncoding];
 
 			if(strstr(numbercharP,"@")==0)
 			{	

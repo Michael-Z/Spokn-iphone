@@ -69,7 +69,10 @@
 	}
 	[self reloadLocal:upString :0];
 }
-
+-(IBAction)cancelClicked
+{
+	[ [self navigationController] popViewControllerAnimated:YES ];
+}
 -(void)cancelSearch
 {
 	[self doneSearching_Clicked:nil];
@@ -103,7 +106,7 @@
 	ovController = nil;
 	searchbar.frame = gframe; 
 	
-		[searchbar setShowsCancelButton:NO animated:YES];
+		[searchbar setShowsCancelButton:NO animated:NO];
 		tableView.tableHeaderView = searchbar;
 		self.navigationItem.titleView = segmentedControl;
 		
@@ -137,7 +140,7 @@
 		ovController = nil;
 		[self navigationController].navigationBarHidden =NO;
 		//sectionNSArrayP = ALPHA_ARRAY;
-		[searchbar setShowsCancelButton:NO animated:YES];
+		[searchbar setShowsCancelButton:NO animated:NO];
 		searchStartB = false;
 	
 	#endif
@@ -153,7 +156,7 @@
 	#ifndef _HIDDEN_NAVBAR
 	CGRect lframe;
 	lframe = gframe;
-	lframe.size.width-=20;
+	lframe.size.width-=4;
 	searchBar.frame = lframe; 
 	searchStartB = true;
 	tableView.tableHeaderView = 0;
@@ -356,10 +359,10 @@ titleForHeaderInSection:(NSInteger)section
 	
 	 segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	 segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	  [ segmentedControl insertSegmentWithTitle: @"Spokn" atIndex: 0 animated: YES ];
+	  [ segmentedControl insertSegmentWithTitle: @"Spokn" atIndex: 0 animated: NO ];
 	
-	 [ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: YES ];
-	 [ segmentedControl insertSegmentWithTitle: @"Phone" atIndex: 2 animated: YES ];
+	 [ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: NO ];
+	 [ segmentedControl insertSegmentWithTitle: @"Phone" atIndex: 2 animated: NO ];
 	
 	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
 	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
@@ -368,8 +371,13 @@ titleForHeaderInSection:(NSInteger)section
 	 
 	 self.navigationItem.titleView = segmentedControl;
 	 segmentedControl.selectedSegmentIndex = 0;
-		
-	
+	if(parentView)
+	{	
+		self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+											   target: self
+											   action: @selector(cancelClicked) ] autorelease ];
+	}
 	[ self reload ];
 		
 
@@ -385,9 +393,9 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	
 }
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-	[super viewDidAppear:animated];
+	[super viewWillAppear:animated];
 	if(resultInt)
 	{
 		//("\nhello view deleted\n");
@@ -452,6 +460,7 @@ titleForHeaderInSection:(NSInteger)section
 	 {
 		 case 2:
 			searchbar.text = @"";
+			 self.navigationItem.rightBarButtonItem.enabled = NO;
 			 [addressBookTableDelegate setSearchBarAndTable:searchbar  :tableView PerentObject:self OverlayView :&ovController];
 			 
 			
@@ -462,6 +471,7 @@ titleForHeaderInSection:(NSInteger)section
 			 tableView.dataSource = self;
 			 searchbar.delegate = self;
 			 searchbar.text = @"";
+			  self.navigationItem.rightBarButtonItem.enabled = YES;
 			//[ self->tableView reloadData ];
 			 [self reloadLocal:nil :0];
 			 

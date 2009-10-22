@@ -222,7 +222,10 @@
 	}
 -(void)updateSpoknView:(id)object
 {
-	[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :getForwardNo() :getDidNo() ];
+	char *forwardCharP;
+	int result=0;
+	forwardCharP = getForwardNo(&result);
+	[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result ];
 }
 -(void)LoadContactView:(id)object
 {
@@ -484,7 +487,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	printf("\n tab retain count %d",[tabBarController retainCount]);
 	printf("\n after %d %d",[callviewP retainCount],[dialviewP retainCount]	);
 	//tabBarController.selectedViewController = vmsNavigationController;
-	[vmsviewP.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
+	[vmsviewP.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 	tabBarController.selectedViewController = spoknViewNavigationController;
 	
 

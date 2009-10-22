@@ -30,6 +30,7 @@
 		[ownerobject vmsSend:noCharP :fileNameCharP];
 	}	
 }
+
 -(IBAction)cancelClicked
 {
 	[ [self navigationController] popViewControllerAnimated:YES ];
@@ -884,6 +885,10 @@ id createImage(float percentage)
 	[self loadOtherView];	
 	[self makeView];
 	[tableView reloadData];
+	self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+											   target: self
+											   action: @selector(cancelClicked) ] autorelease ];
 	
 }
 

@@ -36,8 +36,10 @@
 }
 -(IBAction)buyCredit:(id)sender;
 -(void)setObject:(id) object ;
--(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)forwardNoCharP :(char *)spoknCharP;
+-(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward;
+
 - (IBAction)switchChange:(UISwitch*)sender;
 -(void)startProgress;
+-(void)showForwardScreen;
 
 @end

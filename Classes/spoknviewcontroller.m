@@ -43,26 +43,47 @@
 {
 	self->ownerobject = object;
 }
+-(void)showForwardScreen
+{
+	AddeditcellController     *AddeditcellControllerviewP;	
+	AddeditcellControllerviewP = [[AddeditcellController alloc]init];
+	[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :NUMBER_RANGE buttonType:1];
+	[AddeditcellControllerviewP setObject:self->ownerobject];
+	viewResult = 0;
+	viewCallB = true;
+	char *forwordCharP;
+	forwordCharP = (char*)[[labelForword text] cStringUsingEncoding:NSUTF8StringEncoding];
+	if(forwordCharP)
+	{
+		strcpy(forwardNoCharP,forwordCharP);
+	}
+	
+	[AddeditcellControllerviewP setData:forwardNoCharP value:"Enter forward no" placeHolder:"Enter forward no" returnValue:&viewResult];
+	
+	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: NO ];
+	
+	[AddeditcellControllerviewP release];
+	
+
+}
+
 - (IBAction)switchChange:(UISwitch*)sender {
 	if(sender.on)
 	{
 
-		AddeditcellController     *AddeditcellControllerviewP;	
-		AddeditcellControllerviewP = [[AddeditcellController alloc]init];
-		[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :NUMBER_RANGE buttonType:1];
-		[AddeditcellControllerviewP setObject:self->ownerobject];
-		viewResult = 0;
-		viewCallB = true;
-		[AddeditcellControllerviewP setData:forwardNoCharP value:"Enter forward no" placeHolder:"Enter forward no" returnValue:&viewResult];
+		char *forwordCharP;
+		forwordCharP = (char*)[[labelForword text] cStringUsingEncoding:NSUTF8StringEncoding];
 		
-		[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: NO ];
-		
-			[AddeditcellControllerviewP release];
+		[labelForword setTextColor:[UIColor blueColor]]; 
+		SetOrReSetForwardNo(true,forwordCharP);
+		profileResync();
+
 	}
 	else
 	{
 		SetOrReSetForwardNo(false,forwardNoCharP);
 		profileResync();
+		[labelForword setTextColor:[UIColor lightGrayColor]]; 	
 
 	}
 	NSLog(@"togging  %s", sender.on ? "on" : "off");
@@ -188,9 +209,11 @@
 			nsP = [[NSString alloc] initWithUTF8String:forwardNoCharP];
 			[labelForword setText:nsP];
 			[nsP release];
-			
-			SetOrReSetForwardNo(true,forwardNoCharP);
-			profileResync();
+			if(switchView.on)
+			{	
+				SetOrReSetForwardNo(true,forwardNoCharP);
+				profileResync();
+			}
 			memset(forwardNoCharP,0,100);
 		}
 		//[ self->tableView reloadData ];
@@ -289,7 +312,7 @@ titleForHeaderInSection:(NSInteger)section
 	return 50;
 	
 }
--(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP
+-(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward
 {
 	balance = balance/100;
 	char s1[20];
@@ -365,13 +388,16 @@ titleForHeaderInSection:(NSInteger)section
 		stringStrP = [[NSString alloc] initWithUTF8String:lforwardNoCharP ];
 		[labelForword setText:stringStrP];
 		[stringStrP release];
-		if(strlen(lforwardNoCharP)>0)
+		//if(strlen(lforwardNoCharP)>0)
+		if(forward)
 		{
 			switchView.on = YES;
+			[labelForword setTextColor:[UIColor blueColor]]; 
 		}
 		else
 		{
 			switchView.on = NO;
+			[labelForword setTextColor:[UIColor lightGrayColor]]; 	
 		}
 	}
 	
@@ -438,7 +464,8 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			
 			label2 = labelForword ;
-			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			//[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		}
 		else if([temp isEqualToString:@"Spokn Number"])
 		{
@@ -500,7 +527,12 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		[WebViewControllerviewP release];	
 	
 	}
+	if(section==1 && row==1)
+	{
+		[self showForwardScreen];
+	}
 	[ltableView deselectRowAtIndexPath : indexPath animated:YES];
+	
 	
 }
 
