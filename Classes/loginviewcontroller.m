@@ -136,7 +136,8 @@
 	char *userNamecharP;
 	char *passwordcharP;
 	UIAlertView *alert;
-	NSString *tmp;
+	NSString *userNameStrP;
+	NSString *passwordStrP;
 	if([usernameFieldP.text length]==0)
 	{
 		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
@@ -167,8 +168,8 @@
 		}
 		
 	}
-	tmp = [usernameFieldP.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	if([tmp length]==0)
+	userNameStrP = [usernameFieldP.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	if([userNameStrP length]==0)
 	{
 		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
 											  message: [ NSString stringWithString:@"user name should not contain white space" ]
@@ -182,9 +183,25 @@
 		return;
 		
 	}
+	passwordStrP = [passwordFieldP.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	//NSLog(@" %@",passwordFieldP.text);
+	if([passwordStrP length]==0)
+	{
+		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
+											  message: [ NSString stringWithString:@"password should not contain white space" ]
+											 delegate: self
+									cancelButtonTitle: nil
+									otherButtonTitles: @"OK", nil
+				 ];
+		
+		[ alert show ];
+		[alert release];
+		return;
+		
+	}
 	//dataP = [pathP cStringUsingEncoding:1];
-	userNamecharP = (char*)[tmp cStringUsingEncoding:NSUTF8StringEncoding];
-	passwordcharP = (char*)[[passwordFieldP text] cStringUsingEncoding:NSUTF8StringEncoding];
+	userNamecharP = (char*)[userNameStrP cStringUsingEncoding:NSUTF8StringEncoding];
+	passwordcharP = (char*)[passwordStrP cStringUsingEncoding:NSUTF8StringEncoding];
 	if(userNamecharP && passwordcharP)
 	{	
 		char *uNameCharP;
