@@ -151,7 +151,7 @@ NSLog(@"\nSave123");
 													action: @selector(savePressed) ] autorelease ];
 		
 	}
-	self.navigationItem.leftBarButtonItem.enabled = YES;
+	self.navigationItem.rightBarButtonItem.enabled = NO;
 	headLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	
@@ -205,8 +205,16 @@ NSLog(@"\nSave123");
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-	if(!self.navigationItem.rightBarButtonItem.enabled)
-	self.navigationItem.rightBarButtonItem.enabled = YES;	
+	//NSLog(@"\n%@\n",string);
+	if([textField.text length]<=1 && [string length]==0 )
+	{
+		self.navigationItem.rightBarButtonItem.enabled = NO;	
+	}
+	else
+	{	
+		if(!self.navigationItem.rightBarButtonItem.enabled)
+			self.navigationItem.rightBarButtonItem.enabled = YES;	
+	}
 	NSString *usernameString = [textField.text stringByReplacingCharactersInRange:range withString:string];
     return !([usernameString length] > fieldRangeInt);
 	
