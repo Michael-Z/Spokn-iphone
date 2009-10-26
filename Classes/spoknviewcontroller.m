@@ -224,7 +224,7 @@
 		{
 			//printf("\n control on");
 			viewCallB = false;
-			[switchView setOn:NO animated:NO]; 
+			//[switchView setOn:NO animated:NO]; 
 		}
 	}
 	
