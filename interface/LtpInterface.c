@@ -15,7 +15,7 @@
 #include "unistd.h"
 #include "ltpmobile.h"
 #include "ua.h"
-
+#include "ltpandsip.h"
 //#include <types.h>
 pthread_mutexattr_t    attr;
 pthread_mutex_t         mutex;
@@ -37,10 +37,11 @@ void readSocketData(LtpInterfaceType *localLtpInterfaceObjectP)
 	while((length = netRead(localLtpInterfaceObjectP->socketID, localLtpInterfaceObjectP->ltpReceType.bufferUChar, localLtpInterfaceObjectP->ltpReceType.bufferLength, &localLtpInterfaceObjectP->ltpReceType.address, &localLtpInterfaceObjectP->ltpReceType.port))>0)
 	{
 		mutexLockInterface();
+		#ifdef _LTP_
 		////printf("\n length recv %d",length);
-		ltpOnPacket(localLtpInterfaceObjectP->ltpObjectP, (char *)localLtpInterfaceObjectP->ltpReceType.bufferUChar, length, localLtpInterfaceObjectP->ltpReceType.address, localLtpInterfaceObjectP->ltpReceType.port);
+			ltpOnPacket(localLtpInterfaceObjectP->ltpObjectP, (char *)localLtpInterfaceObjectP->ltpReceType.bufferUChar, length, localLtpInterfaceObjectP->ltpReceType.address, localLtpInterfaceObjectP->ltpReceType.port);
 		////printf("\n end length");
-		
+		#endif
 		mutexUnLockInterface();
 	}	
 	
@@ -144,8 +145,9 @@ int CallBackSoundPCM(void *uData,sampleFrame *pcmBufferP,unsigned int *lengthP,B
 #ifdef _SNDLOOPBACK_
 	AddPcmData(ltpInterfaceP->playbackP,(unsigned short*)pcmBufferP,*lengthP,true);
 #else
+	#ifdef _LTP_
 	ltpSoundInput(ltPInterfaceP->ltpObjectP,(short*)pcmBufferP,*lengthP,true);
-	
+#endif
 	/*if(length<640)
 	{
 		//printf("\nlength=%d",length);
@@ -193,7 +195,7 @@ int openSoundInterface(void *udata,int isFullDuplex)
 	DeInitAudio( ltpInterfaceP->recordP,false);
 	ltpInterfaceP->playbackP = 0;
 	ltpInterfaceP->recordP = 0;
-	SetAudioType(ltpInterfaceP,0);//record as well as play back
+	SetAudioTypeLocal(ltpInterfaceP,0);//record as well as play back
 	ltpInterfaceP->playbackP = InitAudio(ltpInterfaceP, CallBackUI, 0);//playback
 	if(CreateSoundThread(true,ltpInterfaceP->playbackP,false,0))
 	{
@@ -280,6 +282,10 @@ void  setLtpServer(LtpInterfaceType *ltpInterfaceP,char*serverCharP)
 }
 void *PollThread(void *PollThreadP)
 {
+	#ifndef _LTP_
+	return NULL;
+	#endif
+	
 	LtpInterfaceType *gP = (LtpInterfaceType*) PollThreadP;
 	
 	while(1)
@@ -385,13 +391,14 @@ LtpInterfaceType *	  startLtp(AlertNotificationCallbackP  alertNotiCallbackP,uns
 			SetLtpCallBack(ltpInterfaceP->ltpObjectP,&localLtpCallBackType);
 		
 		#endif
+	#ifdef _LTP_	
 		pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
 		pthread_mutex_init(&mutex, &attr);
 		ltpInterfaceP->pthreadstopB = false;
-	#ifdef _OWN_THREAD_
-		pthread_create(&ltpInterfaceP->pthObj, 0,PollThread,ltpInterfaceP);
-	#endif
-		
+		#ifdef _OWN_THREAD_
+			pthread_create(&ltpInterfaceP->pthObj, 0,PollThread,ltpInterfaceP);
+		#endif
+	#endif	
 		return ltpInterfaceP;
 	}
 	return NULL;
@@ -402,7 +409,9 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 	DeInitAudio( ltpInterfaceP->recordP,false);
 	ltpInterfaceP->playbackP = 0;
 	ltpInterfaceP->recordP = 0;
-	#ifdef _OWN_THREAD_
+	#ifdef _LTP_		
+		#ifdef _OWN_THREAD_
+	
 		ltpInterfaceP->pthreadstopB = true;
 		while(ltpInterfaceP->pthreadstopB)
 		{
@@ -411,6 +420,7 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 		//pthread_cancel(ltpInterfaceP->pthObj);
 		//pthread_exit(ltpInterfaceP->pthObj);
 		ltpInterfaceP->pthObj = 0;
+		#endif
 	#endif
 	free(ltpInterfaceP->ltpObjectP);
 	ltpInterfaceP->ltpObjectP  = 0;
@@ -504,7 +514,11 @@ void AcceptInterface(LtpInterfaceType *ltpInterfaceP,int lineID)
 }
 void RejectInterface(LtpInterfaceType *ltpInterfaceP,int lineID)
 {
+#ifdef _LTP_
 	ltpRefuse(ltpInterfaceP->ltpObjectP, lineID,0);
+#else
+	ltpHangup(ltpInterfaceP->ltpObjectP,lineID);
+#endif
 }
 void SendDTMF(LtpInterfaceType *ltpInterfaceP,int lineid, char *dtmfMsgP)
 {

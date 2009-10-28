@@ -241,17 +241,17 @@
 					 otherButtonTitles:nil, nil];
 		if(strlen(addressDataP->home)>0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "Home",addressDataP->home] ];
+			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
 			stringSelected[i++] = addressDataP->home;
 		}
 		if(strlen(addressDataP->business)>0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","Business" ,addressDataP->business] ];
+			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
 			stringSelected[i++] = addressDataP->business;
 		}	
 		if(strlen(addressDataP->mobile)>0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","Mobile", addressDataP->mobile] ];
+			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
 			stringSelected[i++] = addressDataP->mobile;
 		}	
 
@@ -265,7 +265,7 @@
 		
 		if(strlen(addressDataP->other)>0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","Other", addressDataP->other] ];
+			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
 		
 			stringSelected[i++] = addressDataP->other;
 		}	
@@ -282,17 +282,17 @@
 						 otherButtonTitles:nil, nil];
 		if(strlen(addressDataP->home)>0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "Home",addressDataP->home] ];
+			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
 			stringSelected[i++] = addressDataP->home;
 		}
 		if(strlen(addressDataP->business)>0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","Business" ,addressDataP->business] ];
+			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
 			stringSelected[i++] = addressDataP->business;
 		}	
 		if(strlen(addressDataP->mobile)>0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","Mobile", addressDataP->mobile] ];
+			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
 			stringSelected[i++] = addressDataP->mobile;
 		}	
 		
@@ -306,14 +306,14 @@
 		
 		if(strlen(addressDataP->other)>0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","Other", addressDataP->other] ];
+			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
 			
 			stringSelected[i++] = addressDataP->other;
 		}			
 		
 		if(strlen(addressDataP->email)>0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","Email", addressDataP->email] ];
+			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","email", addressDataP->email] ];
 		
 			stringSelected[i++] = addressDataP->email;
 		}	
@@ -706,22 +706,22 @@
 					 target: self
 					 action: @selector(doneClicked) ] autorelease ];
 				self.navigationItem.rightBarButtonItem.enabled = NO;
-				if(viewEnum!=CONTACTFORWARDVMS)
+			/*	if(viewEnum!=CONTACTFORWARDVMS)
 				{	
 					self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 														   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 														   target: self
 														   action: @selector(cancelClicked) ] autorelease ];	
-				}	
+				}	*/
 			}	
 		}	
 		
 		
 	}	
-	self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+	/*self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 											   target: self
-											   action: @selector(cancelClicked) ] autorelease ];	
+											   action: @selector(cancelClicked) ] autorelease ];	*/
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	if(viewEnum==CONTACTADDVIEWENUM || viewEnum == CONTACTFORWARDVMS)
@@ -1351,12 +1351,13 @@ titleForHeaderInSection:(NSInteger)section
 				[changeNameButtonP setTitle:userNameP.text forState:UIControlStateNormal];
 				tableView.tableHeaderView = changeNameButtonP;
 				//[changeNameButtonP release];
-				
-				
-				self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+				if(viewEnum!=CONTACTADDVIEWENUM)
+				{
+					self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 														   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 														   target: self
 														   action: @selector(cancelClicked) ] autorelease ];	
+				}	
 						
 			}	
 			else

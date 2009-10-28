@@ -53,13 +53,13 @@
 	{
 		case ALERT_CONNECTED:
 			[dialviewP setStatusText: @"ringing" :ALERT_CONNECTED :0];
-			openSoundInterface(ltpInterfacesP,1);
+			//openSoundInterface(ltpInterfacesP,1);
 			[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 			break;	
 		case ALERT_DISCONNECTED:
 			[dialviewP setStatusText: @"end call" :ALERT_DISCONNECTED :0 ];
 
-			closeSoundInterface(ltpInterfacesP);
+			//closeSoundInterface(ltpInterfacesP);
 			
 			[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
 			//reload log
@@ -561,20 +561,70 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[ navigationController pushViewController: dialviewP animated: YES ];
 	//[navigationController setViewControllers: dialviewP animated: YES ];
 	//tabBarController.selectedViewController = dialviewP;
-	tabBarController.selectedViewController = dialviewP;
+//	tabBarController.selectedViewController = dialviewP;
 	//tabBarController.selectedViewController = dialNavigationController;
 }
 //call by incomming method
 -(void)AcceptCall:(IncommingCallType*) inComP
 {
-	AcceptInterface(ltpInterfacesP, inComP->lineid);
+	
 	self->incommingCallList[inComP->lineid] = 0;
-	free(inComP);
+	
+	
+	
 	dialviewP.currentView = 1;//mean show hang button
-	[tabBarController dismissModalViewControllerAnimated:YES];
+	[tabBarController dismissModalViewControllerAnimated:NO];
 
 	//[ dialNavigationController popToViewController: dialviewP animated: YES ];
-	[self changeView];
+	NSMutableString *tempStringP;
+	NSString *strP;
+	char typeP[30];
+	struct AddressBook *addressP;
+		
+		tempStringP = [[NSMutableString alloc] init] ;
+		addressP = getContactAndTypeCall(inComP->userIdChar,typeP);
+		if(addressP)
+		{
+			strP = [[NSString alloc] initWithUTF8String:addressP->title] ;
+			[tempStringP setString:strP];
+			[strP release];
+			strP = [[NSString alloc] initWithUTF8String:typeP] ;
+			[tempStringP appendString:@"\n calling " ];
+			[tempStringP appendString:strP];
+			[strP release ];
+		}
+		else
+		{
+			strP = [[NSString alloc] initWithUTF8String:inComP->userIdChar] ;
+			
+			[tempStringP appendString:strP ];
+			//[tempStringP setString:addressP->title];
+			[tempStringP appendString:@"\n calling..." ];
+			//[tempStringP appendString:strP];
+			[strP release ];
+			
+		}
+		//strP = [[NSString alloc] initWithUTF8String:noCharP] ;
+		//[strP setString:@"Calling "];
+		
+		
+		
+		
+		//	tempStringP = [NSMutableString stringWithString:@"calling "]	;
+		
+		
+		
+				//[]
+		NSLog(@"\n%@",tempStringP);
+	printf("\n calldsffdfd");
+		[dialviewP setStatusText:tempStringP :TRYING_CALL :0];
+		//[tempStringP release];
+		[tempStringP release ];
+		//	[strP release ];
+		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+	AcceptInterface(ltpInterfacesP, inComP->lineid);
+	free(inComP);
+	//[self changeView];
 	
 
 }

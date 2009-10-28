@@ -449,14 +449,21 @@
 		case TRYING_CALL:
 		
 			[self setViewButton:1];
+			
 			if(callViewControllerP==0)
 			{	
+				
 				callViewControllerP = [[CallViewController alloc] initWithNibName:@"callviewcontroller" bundle:[NSBundle mainBundle]];
 				[callViewControllerP setObject:self->ownerobject];
+				
+				
 				[callViewControllerP setLabel:callingstringP];
+				
 				[self presentModalViewController:callViewControllerP animated:YES];
+				
 				if([callViewControllerP retainCount]>1)
 					[callViewControllerP release];
+				
 			}	
 			[numberlebelP setText:@""];
 

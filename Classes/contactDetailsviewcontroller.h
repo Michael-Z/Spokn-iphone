@@ -53,7 +53,7 @@ typedef enum ViewTypeEnum
 		CONTACTFORWARDVMS
 		
 		
-	}ViewTypeEnum;
+	}ViewTypeEnum; 
 @interface ContactDetailsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate> {
 	IBOutlet UILabel *userNameP;
 	IBOutlet UITableView *tableView;

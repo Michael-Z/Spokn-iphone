@@ -88,10 +88,10 @@ void AQBufferCallbackLocal(
 						   void *in,
 						   AudioQueueRef inQ,
 						   AudioQueueBufferRef outQB);
-void AudioSessionInterruptionListenerLocal(
+void AudioSessionInterruptionListenerClient(
 										   void *                  inClientData,
 										   UInt32                  inInterruptionState);
-void SetAudioType(void *uData,int type);
+void SetAudioTypeLocal(void *uData,int type);
 int SetSpeakerOnOrOff(void *uData,Boolean onB);
 #endif
 
