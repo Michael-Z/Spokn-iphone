@@ -82,6 +82,15 @@
 		8B594D0D1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0B1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a */; };
 		8B594D101096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0E1096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a */; };
 		8B594D111096E1B800A6659A /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0F1096E1B800A6659A /* libpj-arm-apple-darwin9.a */; };
+		8B59A62C10998423003BF3EA /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A61F10998423003BF3EA /* Contact.m */; };
+		8B59A62D10998423003BF3EA /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62110998423003BF3EA /* ContactCell.m */; };
+		8B59A62E10998423003BF3EA /* ContactCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62310998423003BF3EA /* ContactCellView.m */; };
+		8B59A62F10998423003BF3EA /* GTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62510998423003BF3EA /* GTokenField.m */; };
+		8B59A63010998423003BF3EA /* GTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62710998423003BF3EA /* GTokenFieldCell.m */; };
+		8B59A63110998423003BF3EA /* UIColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62910998423003BF3EA /* UIColorAdditions.m */; };
+		8B59A63210998423003BF3EA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62B10998423003BF3EA /* UIViewAdditions.m */; };
+		8B59A68E109987FB003BF3EA /* pickerviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */; };
+		8B59A68F109987FB003BF3EA /* pickerviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */; };
 		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
 		8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */; };
 		8B7EEBD2104834F8007EE771 /* vmail_out_newHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7EEBCC104834F8007EE771 /* vmail_out_newHigh.png */; };
@@ -294,6 +303,23 @@
 		8B594D0E1096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjlib/lib/libpj-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594D0F1096E1B800A6659A /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B594D571096E41000A6659A /* sipwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sipwrapper.h; path = ../lib/common/include/sipwrapper.h; sourceTree = SOURCE_ROOT; };
+		8B59A61E10998423003BF3EA /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		8B59A61F10998423003BF3EA /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		8B59A62010998423003BF3EA /* ContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCell.h; sourceTree = "<group>"; };
+		8B59A62110998423003BF3EA /* ContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCell.m; sourceTree = "<group>"; };
+		8B59A62210998423003BF3EA /* ContactCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCellView.h; sourceTree = "<group>"; };
+		8B59A62310998423003BF3EA /* ContactCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCellView.m; sourceTree = "<group>"; };
+		8B59A62410998423003BF3EA /* GTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTokenField.h; sourceTree = "<group>"; };
+		8B59A62510998423003BF3EA /* GTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTokenField.m; sourceTree = "<group>"; };
+		8B59A62610998423003BF3EA /* GTokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTokenFieldCell.h; sourceTree = "<group>"; };
+		8B59A62710998423003BF3EA /* GTokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTokenFieldCell.m; sourceTree = "<group>"; };
+		8B59A62810998423003BF3EA /* UIColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorAdditions.h; sourceTree = "<group>"; };
+		8B59A62910998423003BF3EA /* UIColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorAdditions.m; sourceTree = "<group>"; };
+		8B59A62A10998423003BF3EA /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
+		8B59A62B10998423003BF3EA /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
+		8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = pickerviewcontroller.xib; sourceTree = "<group>"; };
+		8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pickerviewcontroller.m; sourceTree = "<group>"; };
+		8B59A68D109987FB003BF3EA /* pickerviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pickerviewcontroller.h; sourceTree = "<group>"; };
 		8B6739E2101209E900849952 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddeditcellController.m; sourceTree = "<group>"; };
 		8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddeditcellController.h; sourceTree = "<group>"; };
@@ -501,6 +527,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */,
+				8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */,
+				8B59A68D109987FB003BF3EA /* pickerviewcontroller.h */,
+				8B59A61D10998423003BF3EA /* GCustomControls */,
 				8B16790A108F36A3004D18C0 /* testingview.xib */,
 				8B16790B108F36A3004D18C0 /* testingview.m */,
 				8B16790C108F36A3004D18C0 /* testingview.h */,
@@ -509,13 +539,13 @@
 				8BBD8A90107F7FBE008FD911 /* callviewcontroller.xib */,
 				8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */,
 				8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */,
-				8BCEEB2C104AD235001DF4AC /* OverlayView.xib */,
 				8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */,
 				8BCEEAED104ACC87001DF4AC /* overlayviewcontroller.h */,
 				8BA8E555102835BC0022801E /* vmailview.xib */,
 				8BA8E556102835BC0022801E /* vmailviewcontroller.m */,
 				8BA8E557102835BC0022801E /* vmailviewcontroller.h */,
 				8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */,
+				8BCEEB2C104AD235001DF4AC /* OverlayView.xib */,
 				8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */,
 				8B9302661011EDFA004BDA41 /* contactDetails.xib */,
 				8B9302671011EDFA004BDA41 /* contactviewcontroller.h */,
@@ -694,6 +724,27 @@
 				8B594CDB1096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a */,
 			);
 			name = siplib;
+			sourceTree = "<group>";
+		};
+		8B59A61D10998423003BF3EA /* GCustomControls */ = {
+			isa = PBXGroup;
+			children = (
+				8B59A61E10998423003BF3EA /* Contact.h */,
+				8B59A61F10998423003BF3EA /* Contact.m */,
+				8B59A62010998423003BF3EA /* ContactCell.h */,
+				8B59A62110998423003BF3EA /* ContactCell.m */,
+				8B59A62210998423003BF3EA /* ContactCellView.h */,
+				8B59A62310998423003BF3EA /* ContactCellView.m */,
+				8B59A62410998423003BF3EA /* GTokenField.h */,
+				8B59A62510998423003BF3EA /* GTokenField.m */,
+				8B59A62610998423003BF3EA /* GTokenFieldCell.h */,
+				8B59A62710998423003BF3EA /* GTokenFieldCell.m */,
+				8B59A62810998423003BF3EA /* UIColorAdditions.h */,
+				8B59A62910998423003BF3EA /* UIColorAdditions.m */,
+				8B59A62A10998423003BF3EA /* UIViewAdditions.h */,
+				8B59A62B10998423003BF3EA /* UIViewAdditions.m */,
+			);
+			path = GCustomControls;
 			sourceTree = "<group>";
 		};
 		8B8EC6B2101211570036D419 /* interface */ = {
@@ -1010,6 +1061,7 @@
 				8BF7953A1085F76F00DBFC51 /* orange.png in Resources */,
 				8BF7953B1085F76F00DBFC51 /* green.png in Resources */,
 				8B16790D108F36A3004D18C0 /* testingview.xib in Resources */,
+				8B59A68E109987FB003BF3EA /* pickerviewcontroller.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,6 +1121,14 @@
 				8BE3E2F11084D100008CB625 /* Reachability.m in Sources */,
 				8B16790E108F36A3004D18C0 /* testingview.m in Sources */,
 				8B2C3D8C1096CB54003BB164 /* ltpandsip.c in Sources */,
+				8B59A62C10998423003BF3EA /* Contact.m in Sources */,
+				8B59A62D10998423003BF3EA /* ContactCell.m in Sources */,
+				8B59A62E10998423003BF3EA /* ContactCellView.m in Sources */,
+				8B59A62F10998423003BF3EA /* GTokenField.m in Sources */,
+				8B59A63010998423003BF3EA /* GTokenFieldCell.m in Sources */,
+				8B59A63110998423003BF3EA /* UIColorAdditions.m in Sources */,
+				8B59A63210998423003BF3EA /* UIViewAdditions.m in Sources */,
+				8B59A68F109987FB003BF3EA /* pickerviewcontroller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

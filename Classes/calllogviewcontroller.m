@@ -441,7 +441,7 @@
 			[ContactControllerDetailsviewP setObject:self->ownerobject];
 			resultInt = 0;
 			//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
-			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0 selectedContact:0] ;
+			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
 			[ContactControllerDetailsviewP setCdr:cdrP];
 			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
@@ -495,7 +495,7 @@
 			[ContactControllerDetailsviewP setObject:self->ownerobject];
 			resultInt = 0;
 			//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
-			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0 selectedContact:0] ;
+			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
 			[ContactControllerDetailsviewP setCdr:cdrP];
 			[ContactControllerDetailsviewP setSelectedNumber:cdrP->userid showAddButton:YES ];
 			

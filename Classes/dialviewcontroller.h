@@ -39,6 +39,7 @@
 	int hour,min,sec;
 	CallViewController *callViewControllerP;
 	NSString *callingstringP;
+	char lastTypeNo[40];
 }
 
 

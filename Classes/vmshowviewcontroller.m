@@ -8,8 +8,84 @@
 
 #import "vmshowviewcontroller.h"
 #import "SpoknAppDelegate.h"
-
+#import "pickerviewcontroller.h"
 @implementation VmShowViewController
+- (void)upDateScreen
+{
+	tableView.tableHeaderView =  pickerviewcontrollerviewP.view;
+	[tableView reloadData];
+}
+-( void)sendForwardVms:(char*)lallForwardContactP
+{
+	if(lallForwardContactP)
+	{	
+		[ownerobject vmsForward:lallForwardContactP :fileNameCharP];
+		//[ownerobject vmsSend:contactNumberP :fileNameCharP];
+	
+	}	
+	
+}	
+-(void)addContact:(UIViewController*)rootP
+{
+
+	
+	openForwardNo = 0;
+	
+	if(rootP==nil)
+	{
+		printf("\ndsfdsfdfdfdsf");
+		rootP = self;
+	}
+	//showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP
+	[ownerobject showContactScreen:rootP returnnumber:&forwardContact result:&openForwardNo];
+}
+-(int)getForwardNumber:(SelectedContctType*)  lcontactObjectP
+{
+	printf("\n forwardno the no");
+	if(openForwardNo)//mean it is on
+	{
+		//strcpy(lforwardNoP,forwardNoChar);
+		openForwardNo = 0;
+		
+		*lcontactObjectP = forwardContact;
+		memset(&forwardContact,0,sizeof(SelectedContctType));
+		
+		return 0;
+	}
+	return 1;
+
+}
+-(void)showForwardOrReplyScreen:(SelectedContctType *)selectedContactP
+{
+	//pickerviewcontroller     *pickerviewcontrollerviewP;	
+	//pickerviewcontrollerviewP = [[pickerviewcontroller alloc] init];
+	//[pickerviewcontrollerviewP SetkeyBoardType:UIKeyboardTypePhonePad :10 buttonType:UIKeyboardTypeNamePhonePad];
+//	[pickerviewcontrollerviewP setObject:self->ownerobject];
+	
+	//[pickerviewcontrollerviewP setData:nil value:nil placeHolder:nil returnValue:nil];
+	
+//	[ [self navigationController] pushViewController:pickerviewcontrollerviewP animated: YES ];
+	
+	//[pickerviewcontrollerviewP release];
+		
+	
+	
+	
+	playB = false;
+	maxTime = 20;
+	maxTimeLoc = 20;
+	strcpy(fileNameCharP,"temp");
+	[self loadOtherView];
+	[self makeView];
+	[pickerviewcontrollerviewP addSelectedContact:selectedContactP  ];
+	[self->tableView reloadData];
+
+	
+	
+	
+}
+
+
 #pragma mark button action
 -(IBAction)sendPressed:(id)sender
 {
@@ -18,16 +94,43 @@
 	{
 		openForwardNo = 0;
 		
-		forwardNoChar[0] = 0;
+		//forwardNoChar[0] = 0;
 		//showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP
-		[ownerobject showContactScreen:self returnnumber:forwardNoChar result:&openForwardNo];
+		//[ownerobject showContactScreen:self returnnumber:forwardNoChar result:&openForwardNo];
+		//[self showForwardOrReplyScreen:"" name:""];
+		
+		pickerviewcontroller     *lpickerviewcontrollerviewP;	
+		lpickerviewcontrollerviewP = [[pickerviewcontroller alloc] init];
+		lpickerviewcontrollerviewP.upDateProtocolP = self;
+		[lpickerviewcontrollerviewP viewLoadedModal:YES];
+		[lpickerviewcontrollerviewP SetkeyBoardType:UIKeyboardTypePhonePad :10 buttonType:UIKeyboardTypeNamePhonePad];
+			[lpickerviewcontrollerviewP setObject:self->ownerobject];
+		
+		[lpickerviewcontrollerviewP setData:nil value:nil placeHolder:nil returnValue:nil];
+		
+			[ [self navigationController] pushViewController:lpickerviewcontrollerviewP animated: YES ];
+		
+		[lpickerviewcontrollerviewP release];
 		
 		
 		
 	}
 	else
-	{	
-		[ownerobject vmsSend:noCharP :fileNameCharP];
+	{	char *contactNumberP;
+		contactNumberP = [pickerviewcontrollerviewP getContactNumberList];
+		if(contactNumberP)
+		{	
+			[ownerobject vmsSend:contactNumberP :fileNameCharP];
+			free(contactNumberP);
+		}	
+		else
+		{
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"number should not be empty" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+			
+			[alert show];
+			[alert release];
+		
+		}
 	}	
 }
 
@@ -143,7 +246,7 @@
 		if([ownerobject VmsStreamStart:false])
 		{
 			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-															   message: [ NSString  stringWithFormat:@" can not play vms", forwardNoChar]
+															   message: [ NSString  stringWithString:@" can not play vms"]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: @"OK", nil
@@ -163,7 +266,7 @@
 		if([ownerobject VmsStreamStart:true])
 		{
 			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-															   message: [ NSString  stringWithFormat:@" can not play vms", forwardNoChar]
+															   message: [ NSString  stringWithString:@" can not play vms"]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: @"OK", nil
@@ -229,11 +332,19 @@
 	}	
 	else
 	{
-		playB = false;
+		/*playB = false;
 		maxTime = 20;
 		maxTimeLoc = 20;
 		strcpy(fileNameCharP,"temp");
-		[self loadOtherView];
+		[self loadOtherView];*/
+		SelectedContctType *lselectP;
+		lselectP = malloc(sizeof(SelectedContctType));
+		strcpy(lselectP->number,noCharP);
+		strcpy(lselectP->nameChar,nameCharP);
+		strcpy(lselectP->type,typeCharP);
+		[self showForwardOrReplyScreen:lselectP];
+		free(lselectP);
+		//[self showForwardOrReplyScreen:noCharP name:nameCharP];
 	}
 	
 
@@ -663,6 +774,11 @@ id createImage(float percentage)
 		//[sliderP setThumbImage:knob forState:UIControlStateHighlighted];
 		
 		[sliderP addTarget:self action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
+		pickerviewcontrollerviewP = [[pickerviewcontroller alloc] init];
+		[pickerviewcontrollerviewP SetkeyBoardType:UIKeyboardTypePhonePad :10 buttonType:UIKeyboardTypeNamePhonePad];
+		[pickerviewcontrollerviewP setObject:self->ownerobject];
+		
+		[pickerviewcontrollerviewP setData:nil value:nil placeHolder:nil returnValue:nil];
 		//[contentView addSubview: slider];
 		//[sliderP release];
 		
@@ -679,7 +795,7 @@ id createImage(float percentage)
 	{
 		printf("\n make changes");
 		openForwardNo = 0;
-		[ownerobject vmsForward:forwardNoChar :fileNameCharP];		
+		/*[ownerobject vmsForward:forwardNoChar :fileNameCharP];		
 		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 														   message: [ NSString  stringWithFormat:@" vmail is sent to %s", forwardNoChar]
 														  delegate: nil
@@ -687,16 +803,17 @@ id createImage(float percentage)
 												 otherButtonTitles: @"OK", nil
 							  ];
 		[ alert show ];
-		[alert release];
+		[alert release];*/
+		[self showForwardOrReplyScreen:&forwardContact];
 		
 		
-		forwardNoChar[0] = 0;
+		//forwardNoChar[0] = 0;
 	}
 	if(returnValueInt)
 	{
 		if(playB==false)
 		{	
-			printf("\n selected no %s",forwardNoChar);
+		//	printf("\n selected no %s",forwardNoChar);
 			//forwardNoChar[0]=0;
 			returnValueInt = 0;
 			if(selectP)
@@ -704,8 +821,8 @@ id createImage(float percentage)
 				struct VMail* lvmailP;
 				lvmailP = vmailP;
 				vmailP =0;
-				printf("\n selected type %s %s %s",forwardNoChar,selectP->nameChar,selectP->type);
-				[self setvmsDetail: forwardNoChar : selectP->nameChar :selectP->type :playB :maxTime :lvmailP];
+				//printf("\n selected type %s %s %s",forwardNoChar,selectP->nameChar,selectP->type);
+				//[self setvmsDetail: forwardNoChar : selectP->nameChar :selectP->type :playB :maxTime :lvmailP];
 				free(selectP);
 				if(lvmailP)
 				{
@@ -713,7 +830,7 @@ id createImage(float percentage)
 				}
 				selectP = 0;
 			}
-			forwardNoChar[0]=0;
+			//forwardNoChar[0]=0;
 			[self loadOtherView];
 			[self makeView];
 			[self->tableView reloadData];
@@ -814,7 +931,8 @@ id createImage(float percentage)
 	else
 	{
 		
-		
+		pickerviewcontrollerviewP.upDateProtocolP = self;
+		tableView.tableHeaderView =  pickerviewcontrollerviewP.view;
 		[msgLabelP setText:@"Press the record button to record a\n20 second long VMS "];
 		[secondLabelP setText:[NSString stringWithFormat:@"%d", self->maxTime]];
 		previewButtonP.enabled  = NO;
@@ -826,6 +944,7 @@ id createImage(float percentage)
 		[previewButtonP setTitle:@"Preview" forState:UIControlStateNormal];
 		[previewButtonP setTitle:@"Preview" forState:UIControlStateHighlighted];
 		self.navigationItem.rightBarButtonItem  = nil;
+		/*
 		deleteButton = [[UIButton alloc] init];
 		// The default size for the save button is 49x30 pixels
 		deleteButton.frame = CGRectMake(0, 0, 60, 30.0);
@@ -860,7 +979,7 @@ id createImage(float percentage)
 		
 		[navButton release];
 		[deleteButton release];
-		
+		*/
 	}
 	
 	amt = 0.0;
@@ -875,6 +994,7 @@ id createImage(float percentage)
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[self setTitle:@"Vms"];
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	firstSectionviewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	secondSectionviewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -898,7 +1018,7 @@ id createImage(float percentage)
 	
 	struct AddressBook *addressP;
 	char type[30];
-	forwardNoChar[0] = 0;
+	//forwardNoChar[0] = 0;
 	addressP = getContactAndTypeCall(numberCharP,type);	
 	selectP = 0;
 	if(addressP)
@@ -910,7 +1030,7 @@ id createImage(float percentage)
 		}
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 		returnValueInt = 0;
-		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContact:forwardNoChar  rootObject:self selectedContact:selectP] ;
+		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:self selectedContact:selectP] ;
 	
 		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
 		[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
@@ -939,7 +1059,7 @@ id createImage(float percentage)
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 		returnValueInt = 0;
-		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContact:forwardNoChar  rootObject:self selectedContact:0]  ;
+		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:self selectedContact:0]  ;
 		
 		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
 		[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
@@ -1001,38 +1121,46 @@ id createImage(float percentage)
 }	
 -(void)makeView
 {
-	sectionArray[0].dataforSection[tablesz].section = 0;
+	int secIndex=0;
+	if(playB)
+	{	
+		sectionArray[secIndex].dataforSection[tablesz].section = 0;
 	//strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Add home number");
-	sectionArray[0].dataforSection[tablesz].elementP = nameCharP;//addressDataP->home;
-	sectionArray[0].dataforSection[tablesz].secRowP = typeCharP;
-	sectionArray[0].count++;
-	sectionArray[0].dataforSection[tablesz].addNewB = true;
+		sectionArray[secIndex].dataforSection[tablesz].elementP = nameCharP;//addressDataP->home;
+		sectionArray[secIndex].dataforSection[tablesz].secRowP = typeCharP;
+		sectionArray[secIndex].count++;
+		sectionArray[secIndex].dataforSection[tablesz].addNewB = true;
+		secIndex++;
+	}
 	
-	sectionArray[1].dataforSection[tablesz].elementP = 0;//addressDataP->home;
-	sectionArray[1].dataforSection[tablesz].secRowP = 0;
-	sectionArray[1].sectionheight = 100;
-	sectionArray[1].sectionView = firstSectionviewP;
+	sectionArray[secIndex].dataforSection[tablesz].elementP = 0;//addressDataP->home;
+	sectionArray[secIndex].dataforSection[tablesz].secRowP = 0;
+	sectionArray[secIndex].sectionheight = 100;
+	sectionArray[secIndex].sectionView = 0;
+	//if(playB)
+	sectionArray[secIndex].sectionView = firstSectionviewP;
 	
-	sectionArray[1].count=0;
+	sectionArray[secIndex].count=0;
+	secIndex++;
 	#ifdef PROGRESS_VIEW
-	sectionArray[2].dataforSection[tablesz].customViewP = uiProgBarP;//addressDataP->home;
+	sectionArray[secIndex].dataforSection[tablesz].customViewP = uiProgBarP;//addressDataP->home;
 	#else
-	sectionArray[2].dataforSection[tablesz].customViewP = sliderP;//addressDataP->home;
+	sectionArray[secIndex].dataforSection[tablesz].customViewP = sliderP;//addressDataP->home;
 
 	#endif
-	sectionArray[2].dataforSection[tablesz].secRowP = 0;
-	sectionArray[2].sectionheight = 30;
-	sectionArray[2].sectionView = 0;
-	sectionArray[2].count++;
+	sectionArray[secIndex].dataforSection[tablesz].secRowP = 0;
+	sectionArray[secIndex].sectionheight = 30;
+	sectionArray[secIndex].sectionView = 0;
+	sectionArray[secIndex].count++;
+	secIndex++;
+	sectionArray[secIndex].dataforSection[tablesz].customViewP = 0;//addressDataP->home;
+	sectionArray[secIndex].dataforSection[tablesz].secRowP = 0;
+	sectionArray[secIndex].sectionheight = 150;
+	sectionArray[secIndex].sectionView = secondSectionviewP;
+	secIndex++;
+	sectionCount = secIndex;
 	
-	sectionArray[3].dataforSection[tablesz].customViewP = 0;//addressDataP->home;
-	sectionArray[3].dataforSection[tablesz].secRowP = 0;
-	sectionArray[3].sectionheight = 150;
-	sectionArray[3].sectionView = secondSectionviewP;
 	
-	sectionCount = 4;
-	
-	sectionArray[1].count=0;
 	
 	
 	//sectionArray[1].dataforSection[tablesz].addNewB = true;

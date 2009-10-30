@@ -248,9 +248,34 @@
 	{	
 		char *numbercharP;
 		numbercharP = (char*)[[numberlebelP text] cStringUsingEncoding:NSUTF8StringEncoding];
+		if(numbercharP==NULL || strlen(numbercharP)==0)
+		{
+			
+			if(strlen(lastTypeNo)==0)
+			{
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+																   message: [ NSString stringWithString:@"please enter the number." ]
+																  delegate: nil
+														 cancelButtonTitle: nil
+														 otherButtonTitles: @"OK", nil
+									  ];
+				[ alert show ];
+				[alert release];
+				
+			}
+			else
+			{
+				numberlebelP.text = [NSString stringWithUTF8String:lastTypeNo];
+				statusLabel1P.hidden = YES;
+				statusLabel2P.hidden = YES;
+			}
+			return;
+		}
+		strcpy(lastTypeNo,numbercharP);
 		[ownerobject makeCall:numbercharP];
 		currentView = 1;
 		[hangUpButtonP setTitle:@"Hang" forState:UIControlStateNormal];
+		numberlebelP.text = @"";
 	}
 	else
 	{
@@ -288,6 +313,34 @@
 				//char *numcharP;
 				//numcharP = malloc(strlen(numbercharP)+10);
 				//strcpy(numcharP,numbercharP);
+				if(numbercharP==NULL || strlen(numbercharP)==0)
+				{
+					
+					if(strlen(lastTypeNo)==0)
+					{
+						UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+																		   message: [ NSString stringWithString:@"please enter the number." ]
+																		  delegate: nil
+																 cancelButtonTitle: nil
+																 otherButtonTitles: @"OK", nil
+											  ];
+						[ alert show ];
+						[alert release];
+						
+					}
+					else
+					{
+						numberlebelP.text = [NSString stringWithUTF8String:lastTypeNo];
+						statusLabel1P.hidden = YES;
+						statusLabel2P.hidden = YES;
+					}
+					return;
+				}
+				strcpy(lastTypeNo,numbercharP);
+				
+				
+				
+				
 				[ownerobject vmsShowRecordScreen:numbercharP];
 				numberlebelP.text = @"";
 			}	
@@ -534,7 +587,8 @@
 		//[statusLabelP drawRect];
 	self->status = lstatus;
 	self->subStatus = lsubStatus;
-	[self performSelectorOnMainThread : @ selector(setButton: ) withObject:nil waitUntilDone:YES];
+	[self setButton:nil];
+	//[self performSelectorOnMainThread : @ selector(setButton: ) withObject:nil waitUntilDone:YES];
 	//numberFieldP.text = strP;
 	
 

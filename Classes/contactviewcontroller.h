@@ -12,6 +12,7 @@
 #include "ua.h"
 #include "vmsplayrecord.h"
 #import "contactDetailsviewcontroller.h"
+#import <AddressBookUI/AddressBookUI.h>
 #define MAXSEC 28
 #define ALPHA @"!ABCDEFGHIJKLMNOPQRSTUVWXYZ#"
 #define ALPHA_ARRAY [NSArray arrayWithObjects: @"{search}" , @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R",@"S",@"T", @"U", @"V", @"W", @"X", @"Y",@"Z",@"#" , nil] 
@@ -21,7 +22,11 @@
 @class AddressBookContact;
 @class UIAddressBook;
 @class OverlayViewController;
-@interface ContactViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate>  {
+//@class ABPeoplePickerNavigationController;
+#define _NEW_ADDRESS_BOOK_
+#define _NO_SEARCH_MOVE_
+
+@interface ContactViewController : UIViewController<ABPeoplePickerNavigationControllerDelegate , UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate>  {
 	IBOutlet UITableView *tableView;
 	//IBOutlet UITableView *addressBookTableView;
 	IBOutlet AddressBookContact *addressBookTableDelegate;
@@ -37,7 +42,8 @@
 	IBOutlet UISearchBar *searchbar;
 	OverlayViewController *ovController;
 	int *returnPtr;
-	char *numberCharP;
+	//char *numberCharP;
+	SelectedContctType *selectedContactP;
 	int parentView;//this variable distinguish between different parent view
 	id rootControllerObject;
 	long contactID;
@@ -46,8 +52,9 @@
 	CGRect gframe;
 	Boolean searchStartB;
 	//NSArray *sectionNSArrayP;
-	
-	
+	#ifdef _NEW_ADDRESS_BOOK_
+		ABPeoplePickerNavigationController *addressBookP;
+	#endif
 
 }
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
@@ -61,7 +68,7 @@
 -(void)setObjType:(UAObjectType)luaObj;
 - (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP ;
 - (void) doneSearching_Clicked:(id)sender;
--(void) setReturnVariable:(id) rootObject :(char *) numberCharP : (int *)valP;
+-(void) setReturnVariable:(id) rootObject :(SelectedContctType *)lselectedContactP : (int *)valP;
 -(int)  showContactDetailScreen: (struct AddressBook * )addressP :(ViewTypeEnum) viewEnum;
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
 -(void)cancelSearch;

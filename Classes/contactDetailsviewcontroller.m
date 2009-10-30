@@ -915,7 +915,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	//selection = [[[UIFont familyNames] objectAtIndex:[newIndexPath row]] retain];
 	int row = [newIndexPath row];
 	int section = [newIndexPath section];
-	
+	printf("\n got the no");
+
 	if(editableB==false)
 	{	
 		if(viewEnum == CONTACTFORWARDVMS)
@@ -923,17 +924,21 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			if(retValP)
 			{
 				*retValP = 1;
-				strcpy(numberCharP,sectionArray[section].dataforSection[row].elementP);
+				if(numberCharP)
+				{	
+					strcpy(numberCharP,sectionArray[section].dataforSection[row].elementP);
+				}	
 				if(selectContactP)
 				{
 					strcpy(selectContactP->nameChar,addressDataP->title);
-					strcpy(selectContactP->number,numberCharP);
+					strcpy(selectContactP->number,sectionArray[section].dataforSection[row].elementP);
 					
 					strcpy(selectContactP->type,sectionArray[section].dataforSection[row].nameofRow);
 				
 				}
 				if(self->rootObjectP)
 				{
+					printf("\n got the no");
 					[[self navigationController]  popToViewController:self->rootObjectP animated:NO];
 				}
 			}
@@ -1433,7 +1438,7 @@ titleForHeaderInSection:(NSInteger)section
 	 [super dealloc];
 }
 
--(void)setReturnValue:(int*)lretValP selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP selectedContact:(SelectedContctType*)lselectContactP
+-(void)setReturnValue:(int*)lretValP selectedContactNumber:(char*)lnumberCharP rootObject:(id)lrootObjectP selectedContact:(SelectedContctType*)lselectContactP
 
 {
 	retValP = lretValP;

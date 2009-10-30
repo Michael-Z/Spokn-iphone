@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "contactDetailsviewcontroller.h"
+#import "pickerviewcontroller.h"
 @protocol VmsProtocol
 
 @optional
@@ -18,7 +19,8 @@
 @end
 //#define PROGRESS_VIEW
 @class SpoknAppDelegate;
-@interface VmShowViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,VmsProtocol> {
+@class pickerviewcontroller;
+@interface VmShowViewController : UIViewController<UpDateViewProtocol,UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,VmsProtocol> {
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *msgLabelP;
 	IBOutlet UILabel *secondLabelP;
@@ -46,13 +48,15 @@
 	char *fileNameCharP;
 	int *returnValLongP;
 	int openForwardNo;
-	char forwardNoChar[150];
+	SelectedContctType      forwardContact;
 	UISlider *sliderP;
 	UIImage *knob;
 	int returnValueInt;
 	UIButton *deleteButton;
 	SelectedContctType *selectP;
+	pickerviewcontroller     *pickerviewcontrollerviewP;
 	
+	//(SelectedContctType *)lselectedContactP
 	
 	
 }
@@ -70,4 +74,6 @@
 -(IBAction)stopButtonPressed:(id)sender;
 -(void)loadOtherView;
 -(void) loadContactDetails :(char*) numberCharP;
+-(void)showForwardOrReplyScreen:(SelectedContctType *)selectedContactP;
+
 @end

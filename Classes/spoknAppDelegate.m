@@ -63,7 +63,8 @@
 			
 			[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
 			//reload log
-			[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
+			[self LoadContactView:callviewP];
+			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 			break;
 		case START_LOGIN:
 				[dialviewP setStatusText: @"connecting..." :START_LOGIN :0 ];
@@ -74,19 +75,20 @@
 			#endif
 			self->onLineB = true;
 				[dialviewP setStatusText: @"online" :ALERT_ONLINE :0 ];
-			[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
-			
+			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
+			[self updateSpoknView:0];
 			//[self performSelectorOnMainThread : @ selector(popLoginView: ) withObject:nil waitUntilDone:YES];
 
 			profileResync();
 			cdrEmpty();
 			cdrLoad();
-			[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
+			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
+			[self LoadContactView:callviewP];
 			break;
 		case ALERT_OFFLINE:
 			self->onLineB = false;
-			[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
-			
+			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
+			[self updateSpoknView:0];
 				switch(self->subID)
 				{
 					case LOGIN_STATUS_OFFLINE:
@@ -107,15 +109,15 @@
 			break;
 		case VMS_PLAY_KILL:
 			//remove object from memory
-						
-			[self performSelectorOnMainThread : @ selector(vmsDeinitRecordPlay: ) withObject:nil waitUntilDone:YES];
+			[self vmsDeinitRecordPlay:nil];			
+			//[self performSelectorOnMainThread : @ selector(vmsDeinitRecordPlay: ) withObject:nil waitUntilDone:YES];
 			break;
 		case VMS_RECORD_KILL:	
 			//vmsDeInit(&vmsP);
 			
 			////printf("\n delete record object");
-			[self performSelectorOnMainThread : @ selector(vmsDeinitRecordPlay: ) withObject:nil waitUntilDone:YES];
-			
+			//[self performSelectorOnMainThread : @ selector(vmsDeinitRecordPlay: ) withObject:nil waitUntilDone:YES];
+			[self vmsDeinitRecordPlay:nil];
 			break;
 		case PLAY_KILL:
 			RemoveSoundThread(ltpInterfacesP,true);
@@ -124,26 +126,28 @@
 			RemoveSoundThread(ltpInterfacesP,false);
 			break;	
 		case ALERT_INCOMING_CALL:
-			[self performSelectorOnMainThread : @ selector(LoadInCommingView: ) withObject:nil waitUntilDone:YES];
-
+			//[self performSelectorOnMainThread : @ selector(LoadInCommingView: ) withObject:nil waitUntilDone:YES];
+			[self LoadInCommingView:0];	
 			//[ navigationNavigationController pushViewNavigationController: inCommingCallViewP animated: YES ];
 			//[statusLabelP performSelectorOnMainThread : @ selector(setText: ) withObject:strP waitUntilDone:YES];
 			break;
 		case ALERT_NEWVMAIL:
 	//put badge on vmail
 		
-			[self performSelectorOnMainThread : @ selector(newBadgeArrived: ) withObject:vmsNavigationController waitUntilDone:YES];
-			
+		//	[self performSelectorOnMainThread : @ selector(newBadgeArrived: ) withObject:vmsNavigationController waitUntilDone:YES];
+			[self newBadgeArrived:vmsNavigationController];	
 			break;
 			case UA_ALERT:
 			switch(self->subID)
 			{
 				case REFRESH_CONTACT:
-					[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:contactviewP waitUntilDone:YES];
+					[self LoadContactView:contactviewP];
+					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:contactviewP waitUntilDone:YES];
 					//refresh cradit
 					//balance = getBalance();
 					[dialviewP setStatusText: nil :UA_ALERT :REFRESH_CONTACT ];
-					[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
+					[self updateSpoknView:0];
+					//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 					
 
 					
@@ -151,11 +155,13 @@
 				
 				case REFRESH_VMAIL:
 					
-					[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:vmsviewP waitUntilDone:YES];
+					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:vmsviewP waitUntilDone:YES];
+					[self LoadContactView:vmsviewP];
 					break;
 				
 				case REFRESH_CALLLOG:
-					[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
+					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
+					[self LoadContactView:callviewP];
 					break;
 					
 				
@@ -254,16 +260,20 @@
 //	[ dialNavigationController pushViewController: inCommingCallViewP animated: YES ];
 	[self changeView];
 }
-
+-(void) sendMessage:(id)object
+{
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)object userInfo:nil];
+}
 void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned long userData,void *otherinfoP)
 {
 	SpoknAppDelegate *spoknDelP;
 	spoknDelP = (SpoknAppDelegate *)userData;
 	[spoknDelP setLtpInfo:type :valSubLong :lineID :otherinfoP];
+	[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:YES];
 	
-	
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)spoknDelP userInfo:nil];
+	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)spoknDelP userInfo:nil];
 
 }
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP
@@ -781,7 +791,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	return 0;
 }
--(int)showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP
+-(int)showContactScreen:(id) navObject returnnumber:(SelectedContctType *)lselectedContactP  result:(int *) resultP
 {
 	ContactViewController *contactP;
 	contactP = [[ContactViewController alloc] initWithNibName:@"contact" bundle:[NSBundle mainBundle]];
@@ -790,7 +800,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	contactP.uaObject = GETCONTACTLIST;
 	[contactP setObjType:GETCONTACTLIST];
 	contactP.ltpInterfacesP = ltpInterfacesP;
-	[contactP setReturnVariable:navObject :noCharP :resultP];
+	[contactP setReturnVariable:navObject :lselectedContactP :resultP];
 	[ [navObject navigationController] pushViewController:contactP animated: YES ];
 	[contactP release];
 	printf("\n retain countact details count %d\n",[contactviewP retainCount]);

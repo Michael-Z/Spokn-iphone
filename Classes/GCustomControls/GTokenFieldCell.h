@@ -1,0 +1,33 @@
+//
+//  GTokenFieldCell.h
+//  GTokenFieldTest
+//
+//  Created by Vinay Chavan on 27/05/09.
+//  Copyright 2009 Geodesic Ltd.. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface GTokenFieldCell : UIView {
+	id _object;
+	UILabel* _labelView;
+	BOOL _selected;
+	NSString* _number;
+	UIColor* _color1;
+	UIColor* _color2;
+	UIColor* _color3;
+	UIColor* _color4;
+}
+
+@property(nonatomic,retain) id object;
+@property(nonatomic,copy) NSString* _number;
+@property(nonatomic,copy) NSString* label;
+@property(nonatomic,retain) UIFont* font;
+@property(nonatomic) BOOL selected;
+
+@property(nonatomic,retain) UIColor* color1;
+@property(nonatomic,retain) UIColor* color2;
+@property(nonatomic,retain) UIColor* color3;
+@property(nonatomic,retain) UIColor* color4;
+
+@end

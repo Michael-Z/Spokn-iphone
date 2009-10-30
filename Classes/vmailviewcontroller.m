@@ -14,6 +14,7 @@
 #import "customcell.h"
 #import "vmshowviewcontroller.h"
 #include "ua.h"
+
 @implementation VmailViewController
 @synthesize ltpInterfacesP;
 
@@ -716,7 +717,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	*/
 	[ self->tableView reloadData ];
 }
-- (void) startEditing {
+- (void) ComposeVmailPressed {
 /*	NSIndexPath * indexPath;
 	sectionType *secLocP;
 	indexPath = self->tableView.indexPathForSelectedRow;
@@ -737,10 +738,25 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	*/
 	openVmsCompose = 0;
+	VmShowViewController     *vmShowViewControllerP;	
+	vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
+	[vmShowViewControllerP setFileName: "temp" :0];
+	//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
+	[vmShowViewControllerP setvmsDetail: "" : "" :"" :false :20 : 0];
+	[vmShowViewControllerP setObject:self->ownerobject];
+	//[[self navigationController] popToRootViewControllerAnimated:NO];
+	[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];
 	
+	if([vmShowViewControllerP retainCount]>1)
+		[vmShowViewControllerP release];
+	printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);	
 	vmsNoChar[0] = 0;
+	
+	//openVmsCompose = 0;
+	
+	//vmsNoChar[0] = 0;
 	//showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP
-	[ownerobject showContactScreen:self returnnumber:vmsNoChar result:&openVmsCompose];
+	//[ownerobject showContactScreen:self returnnumber:vmsNoChar result:&openVmsCompose];
 	//[ownerobject changeView];
 	
 
@@ -882,7 +898,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	= [ [ [ UIBarButtonItem alloc ]
 		 initWithBarButtonSystemItem: UIBarButtonSystemItemCompose
 		 target: self
-		 action: @selector(startEditing) ] autorelease ];	
+		 action: @selector(ComposeVmailPressed) ] autorelease ];	
 	
 	
 

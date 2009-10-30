@@ -36,6 +36,7 @@
 
 
 }
+-(void)showForwardScreen;
 -(void)setObject:(id) object ;
 -(void)setObjType:(UAObjectType)luaObj;
 - (void)addRow: (int )index sectionObject:(sectionType **)sectionPP;

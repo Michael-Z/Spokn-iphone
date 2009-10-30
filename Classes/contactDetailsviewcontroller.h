@@ -103,7 +103,7 @@ typedef enum ViewTypeEnum
 -(IBAction)changeNamePressed:(id)sender;
 -(IBAction)addContactPressed:(id)sender;
 - (void) presentSheet:(bool)callB;
--(void)setReturnValue:(int*)lretValB selectedContact:(char*)lnumberCharP rootObject:(id)rootObject selectedContact:(SelectedContctType*)lselectContactP;
+-(void)setReturnValue:(int*)lretValB selectedContactNumber:(char*)lnumberCharP rootObject:(id)rootObject selectedContact:(SelectedContctType*)lselectContactP;
 -(void)setTitlesString:(NSString*)nsP;
 -(void)setSelectedNumber:(char*)noCharP showAddButton:(BOOL)lshowB;
 @end

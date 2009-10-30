@@ -40,6 +40,142 @@
 @synthesize ltpInterfacesP;
 @synthesize  uaObject;
 @synthesize parentView;
+
+#pragma mark _ADDRESSBOOKDELEGATE_START
+// Called after the user has pressed cancel
+// The delegate is responsible for dismissing the peoplePicker
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+	printf("\n search cancel");
+}
+
+// Called after a person has been selected by the user.
+// Return YES if you want the person to be displayed.
+// Return NO  to do nothing (the delegate is responsible for dismissing the peoplePicker).
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+	
+		
+	/*
+	 ABPersonViewController *pvc = [[ABPersonViewController alloc] init];
+	 pvc.displayedPerson = person;
+	 pvc.personViewDelegate = self;
+	 [[controllerP navigationController] pushViewController:pvc animated:YES];
+	 */
+	NSString *numberStringP;
+	NSString *labelStringP;
+	NSString *nameP;
+	char *numbercharP;
+	ABMultiValueRef name1 ;
+	struct AddressBook *addressP;
+	addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook)+10);
+	memset(addressP,0,sizeof(struct AddressBook));
+	nameP = [self->addressBookTableDelegate getName:person];
+	//	NSLog(nameP);
+	numbercharP = (char*)[nameP  cStringUsingEncoding:NSUTF8StringEncoding];
+	
+	strncpy(addressP->title,numbercharP,98);
+	
+	[nameP release];
+	//ABMultiValueRef name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
+	name1 =(NSString*)ABRecordCopyValue(person,kABRealPropertyType);
+	if(name1)
+	{	
+		
+		for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
+		{
+			numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
+			labelStringP=(NSString*)ABMultiValueCopyLabelAtIndex(name1,i);
+			if(numberStringP==0 || labelStringP==0)
+			{
+				continue;
+			}
+			if([labelStringP isEqualToString:@"_$!<Mobile>!$_"])
+			{
+				numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
+				strcpy(addressP->mobile,numbercharP);
+			}
+			else
+			{	
+				if([labelStringP isEqualToString:@"_$!<Home>!$_"])
+				{
+					numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
+					strcpy(addressP->home,numbercharP);
+				}
+				else
+					if([labelStringP isEqualToString:@"_$!<Business>!$_"])
+					{
+						numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
+						strcpy(addressP->business,numbercharP);
+					}
+					else
+					{
+						numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
+						strcpy(addressP->other,numbercharP);
+						
+					}
+			}
+			//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
+			[numberStringP release];
+			[labelStringP release];
+		}
+		[name1 release];
+	}	
+	name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
+	if(name1)
+	{	
+		for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
+		{
+			numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
+			labelStringP=(NSString*)ABMultiValueCopyLabelAtIndex(name1,i);
+			if(numberStringP==0 || labelStringP==0)
+			{
+				continue;
+			}
+			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
+			strcpy(addressP->email,numbercharP);
+			//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
+			[numberStringP release];
+			[labelStringP release];
+		}
+		[name1 release];
+	}	
+	
+	
+	
+	/* 
+	 ContactDetailsViewController     *ContactControllerDetailsviewP;	
+	 ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+	 [ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTPHONEDETAIL];
+	 [ContactControllerDetailsviewP setObject:self->ownerobject];
+	 
+	 [ ownerobject.contactNavigationController pushViewController:ContactControllerDetailsviewP animated: YES ];
+	 
+	 if([ContactControllerDetailsviewP retainCount]>1)
+	 [ContactControllerDetailsviewP release];
+	 */
+	
+	[self showContactDetailScreen:addressP :CONTACTPHONEADDRESSBOOKDETAIL];
+	free(addressP);
+	
+		
+	
+	
+	
+	printf("\n selected contact123");
+	return NO;
+}
+// Called after a value has been selected by the user.
+// Return YES if you want default action to be performed.
+// Return NO to do nothing (the delegate is responsible for dismissing the peoplePicker).
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+	printf("\n selected contact");
+	return NO;
+}
+
+
+#pragma mark _ADDRESSBOOKDELEGATE_END
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	//printf("\n touch");
@@ -94,6 +230,40 @@
 }
 - (void) doneSearching_Clicked:(id)sender {
 	
+	
+#ifdef _NO_SEARCH_MOVE_
+	[searchbar setShowsCancelButton:NO animated:YES];
+	searchStartB = false;
+	searchbar.text = @"";
+	[searchbar resignFirstResponder];
+	if(parentView==0)
+	{	
+		self.navigationItem.rightBarButtonItem 
+		= [ [ [ UIBarButtonItem alloc ]
+			 initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
+			 target: self
+			 action: @selector(addContactUI) ] autorelease ];	
+	}
+	/*
+	else
+	{
+		self.navigationItem.rightBarButtonItem 
+		= [ [ [ UIBarButtonItem alloc ]
+			 initWithTitle: @"Number" style:UIBarButtonItemStyleDone 
+			 target: self
+			 action: @selector(showNumberScreen) ] autorelease ];	
+		
+	}*/
+	self->tableView.scrollEnabled = YES;
+	
+	[ovController.view removeFromSuperview];
+	[ovController release];
+	ovController = nil;
+	
+	return ;
+#endif
+	
+
 	#ifndef _HIDDEN_NAVBAR
 	searchStartB = false;
 	searchbar.text = @"";
@@ -118,6 +288,7 @@
 			 target: self
 			 action: @selector(addContactUI) ] autorelease ];	
 	}
+	/*
 	else
 	{
 		self.navigationItem.rightBarButtonItem 
@@ -127,7 +298,7 @@
 			 action: @selector(showNumberScreen) ] autorelease ];	
 		
 	}
-	
+	*/
 	#else
 		printf("\n mukesh");
 		searchbar.text = @"";
@@ -153,6 +324,15 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
 	//("\nkeyboard");
+	
+	#ifdef _NO_SEARCH_MOVE_
+	[searchBar setShowsCancelButton:YES animated:YES];
+	self.navigationItem.rightBarButtonItem = nil;
+	searchStartB = true;
+	[self->tableView reloadData];
+
+	return YES;
+	#endif
 	#ifndef _HIDDEN_NAVBAR
 	CGRect lframe;
 	lframe = gframe;
@@ -190,7 +370,8 @@
 	 initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 	 target: self
 	 action: @selector(cancelSearch) ] autorelease ];*/
-	[self navigationController].navigationBarHidden =YES;
+	[[self navigationController] setNavigationBarHidden:YES animated:YES];
+	//[self navigationController].navigationBarHidden =YES;
 	
 	//[self navigationController].navigationBarHidden =NO;
 	
@@ -306,13 +487,14 @@ titleForHeaderInSection:(NSInteger)section
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView 
 { 
 	#ifndef _HIDDEN_NAVBAR
-		return ALPHA_ARRAY;
+	if(searchStartB==false)
+		return ALPHA_ARRAY; 
 	#else
 	if(searchStartB==false)
 		return ALPHA_ARRAY; 
 	return nil;
 	#endif
-	
+	return nil;
 	
 	//return sectionNSArrayP;
 	
@@ -335,6 +517,17 @@ titleForHeaderInSection:(NSInteger)section
 	//cellFrame = searchbar.bounds;
 	//cellFrame.size.width-=30;
 	//searchbar.bounds = cellFrame;
+	
+	#ifdef _NEW_ADDRESS_BOOK_
+	addressBookP = [[ABPeoplePickerNavigationController alloc] init];
+	[addressBookP setNavigationBarHidden:YES animated:NO];
+	[addressBookP setPeoplePickerDelegate:self];
+	addressBookP.view.frame = self.view.frame;
+	addressBookP.view.hidden=YES;
+	[self.view addSubview:addressBookP.view];
+	//[addressBookP.view release];
+	#endif
+	
 	searchbar.placeholder = @"Search";
 	searchbar.autocorrectionType = UITextAutocorrectionTypeNo;
 	searchbar.autocapitalizationType = UITextAutocapitalizationTypeNone;		
@@ -459,22 +652,36 @@ titleForHeaderInSection:(NSInteger)section
 	 switch(index)
 	 {
 		 case 2:
-			searchbar.text = @"";
+			//searchbar.text = @"";
 			 self.navigationItem.rightBarButtonItem.enabled = NO;
+			 			 //[self presentModalViewController:ab animated:YES];
+		#ifdef _NEW_ADDRESS_BOOK_
+			  addressBookP.view.hidden=NO;
+			#else
 			 [addressBookTableDelegate setSearchBarAndTable:searchbar  :tableView PerentObject:self OverlayView :&ovController];
+			 
+		#endif
+			 
 			 
 			
 			 break;
 		 case  0:
 		 {
-			 tableView.delegate = self;
-			 tableView.dataSource = self;
-			 searchbar.delegate = self;
-			 searchbar.text = @"";
-			  self.navigationItem.rightBarButtonItem.enabled = YES;
-			//[ self->tableView reloadData ];
-			 [self reloadLocal:nil :0];
+			#ifdef _NEW_ADDRESS_BOOK_
+				addressBookP.view.hidden=YES;
+				self.navigationItem.rightBarButtonItem.enabled = YES;
+			#else
+				tableView.delegate = self;
+				tableView.dataSource = self;
+				searchbar.delegate = self;
+				searchbar.text = @"";
+				
+			 //[ self->tableView reloadData ];
+				[self reloadLocal:nil :0];
+				self.navigationItem.rightBarButtonItem.enabled = YES;
 			 
+			#endif
+						 
 		 }
 			 break;
  
@@ -505,6 +712,9 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
+	#ifdef _NEW_ADDRESS_BOOK_
+		[addressBookP release];
+	#endif
 	printf("\n contact dealloc");
 	[ovController release];	
 	[addressBookTableDelegate release];
@@ -522,9 +732,9 @@ titleForHeaderInSection:(NSInteger)section
     
 	[super dealloc];
 }
--(void) setReturnVariable:(id) rootObject :(char *) lnumberCharP : (int *)lvalP
+-(void) setReturnVariable:(id) rootObject :(SelectedContctType *)lselectedContactP: (int *)lvalP
 {
-	numberCharP = lnumberCharP;
+	selectedContactP = lselectedContactP;
 	returnPtr = lvalP;
 	rootControllerObject = rootObject;
 	
@@ -555,7 +765,7 @@ titleForHeaderInSection:(NSInteger)section
 			{
 				*returnPtr = 0;
 			}
-			[ContactControllerDetailsviewP setReturnValue:returnPtr selectedContact:numberCharP  rootObject:rootControllerObject selectedContact:0] ;
+			[ContactControllerDetailsviewP setReturnValue:returnPtr selectedContactNumber:0  rootObject:rootControllerObject selectedContact:selectedContactP] ;
 			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
 		}
@@ -564,7 +774,7 @@ titleForHeaderInSection:(NSInteger)section
 			resultInt = 0;
 			//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
 			contactID = addressP->id;
-			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContact:0  rootObject:0 selectedContact:0] ;
+			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
 			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :viewEnum];
 			
@@ -587,6 +797,7 @@ titleForHeaderInSection:(NSInteger)section
 	return 1;
 	
 }
+/*
 - (void) showNumberScreen {
 	
 	AddeditcellController     *AddeditcellControllerviewP;	
@@ -606,6 +817,7 @@ titleForHeaderInSection:(NSInteger)section
 	[AddeditcellControllerviewP release];
 	
 }
+ */
 - (void) addContactUI {
 
 	/*AddEditcontactViewController     *addeditviewP;	
@@ -681,7 +893,7 @@ titleForHeaderInSection:(NSInteger)section
 					 target: self
 					 action: @selector(addContactUI) ] autorelease ];	
 			}
-			else
+			/*else
 			{
 				self.navigationItem.rightBarButtonItem 
 				= [ [ [ UIBarButtonItem alloc ]
@@ -689,7 +901,7 @@ titleForHeaderInSection:(NSInteger)section
 					 target: self
 					 action: @selector(showNumberScreen) ] autorelease ];	
 			
-			}
+			}*/
 		}	
 
 		struct AddressBook *addressP;

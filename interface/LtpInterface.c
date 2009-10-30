@@ -459,6 +459,9 @@ int logOut(LtpInterfaceType *ltpInterfaceP)
 	{	
 		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGOUT);
 		profileClear();
+		cdrRemoveAll();
+		setLtpUserName(ltpInterfaceP,"");
+		setLtpPassword(ltpInterfaceP,"");
 		return 0;
 	}	
 	return 1;

@@ -120,10 +120,14 @@ changed:(BOOL)changed;
 -(void)setVmsDelegate :(id)deligateP;
 -(int)getFileSize:(char*)fileNameP :(unsigned long *)noSecP;
 -(int) vmsShowRecordScreen : (char*)noCharP;
--(int)showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP;
+-(int)showContactScreen:(id) navObject returnnumber:(SelectedContctType *)lselectedContactP  result:(int *) resultP;
+
 -(int) vmsForward:(char*)numberP :(char*)fileNameCharP;
 - (void) updateReachabilityStatus: (Reachability*) curReach;
 -(void) startCheckNetwork;
 -(void) stopCheckNetwork;
+-(void)vmsDeinitRecordPlay:(id)object;
+-(void)newBadgeArrived:(id)object;
+-(void) sendMessage:(id)object;
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
