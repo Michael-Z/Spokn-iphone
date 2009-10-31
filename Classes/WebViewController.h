@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "spoknAppDelegate.h"
 
-@interface WebViewController : UIViewController {
+@interface WebViewController : UIViewController<UIActionSheetDelegate,UIWebViewDelegate>  {
 	
 	IBOutlet UIWebView *accountswebView;
 	SpoknAppDelegate *ownerobject;
+	UIActionSheet  *uiActionSheetP;
+	UIActivityIndicatorView *spinner;
+	NSString * urlnumberP;
 }
 @property (nonatomic, retain) UIWebView *accountswebView;
 -(void)setObject:(id) object;
