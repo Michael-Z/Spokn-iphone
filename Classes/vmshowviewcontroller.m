@@ -70,13 +70,14 @@
 		
 	
 	
-	
+	printf("\n\n\n\ncontact added\n\n\n");
 	playB = false;
 	maxTime = 20;
 	maxTimeLoc = 20;
 	strcpy(fileNameCharP,"temp");
-	[self loadOtherView];
 	[self makeView];
+	[self loadOtherView];
+	
 	[pickerviewcontrollerviewP addSelectedContact:selectedContactP  ];
 	[self->tableView reloadData];
 
@@ -1005,10 +1006,10 @@ id createImage(float percentage)
 	[self loadOtherView];	
 	[self makeView];
 	[tableView reloadData];
-	self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+	/*self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 											   target: self
-											   action: @selector(cancelClicked) ] autorelease ];
+											   action: @selector(cancelClicked) ] autorelease ];*/
 	
 }
 
@@ -1122,6 +1123,10 @@ id createImage(float percentage)
 -(void)makeView
 {
 	int secIndex=0;
+	for(int i=0;i<MAX_SECTION;++i)
+	{
+		memset(&sectionArray[i],0,sizeof(SectionContactType));
+	}
 	if(playB)
 	{	
 		sectionArray[secIndex].dataforSection[tablesz].section = 0;

@@ -104,6 +104,7 @@ static CGFloat kMinCursorWidth = 50;
 	
 	if (previousHeight && newHeight != previousHeight) {
 		self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.bounds.size.width, newHeight);
+		//self.height = newHeight;
 		[self setNeedsDisplay];
 		
 		SEL sel = @selector(textFieldDidResize:);
