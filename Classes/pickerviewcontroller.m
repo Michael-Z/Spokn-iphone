@@ -115,6 +115,29 @@
 
 @implementation pickerviewcontroller
 @synthesize upDateProtocolP;
+-(int) addElement :(NSMutableArray *)searchedContactsP contactObject:(Contact*)lcontactP
+{
+	Contact* tmpContactP;
+	
+	for(int i=0;i<searchedContactsP.count;++i)
+	{
+		tmpContactP = [searchedContactsP objectAtIndex:i];
+		if(tmpContactP)
+		{
+			NSString *nmP;
+			nmP = [self remSpChar:lcontactP.Name ];
+			NSString *tmpContactWhiteSpaceP;
+			tmpContactWhiteSpaceP = [self remSpChar:tmpContactP.Name];
+			
+			if([tmpContactP.Number isEqualToString: lcontactP.Number ] && [tmpContactWhiteSpaceP  isEqualToString: nmP ])
+			{
+				return 1;
+			}
+		}
+	}
+	[searchedContactsP addObject:lcontactP];
+	return 0;
+}
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
@@ -325,7 +348,7 @@
 		[self.view addSubview:_composerScrollView];
 		if(modalB==false)
 		{	
-			tbl_contacts = [[UITableView alloc] initWithFrame:CGRectMake(0, 43, 320, 100) style:UITableViewStylePlain];
+			tbl_contacts = [[UITableView alloc] initWithFrame:CGRectMake(0, 43, 320, 200) style:UITableViewStylePlain];
 			
 		}
 		else
@@ -376,7 +399,7 @@
 - (IBAction) updateSearchTable : (id) sender
 {
 	[searchedContacts removeAllObjects];
-	
+	char *ltpsSearchStringP=0;
 	NSString *texttosearch = [txtDestNo.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	texttosearch = [self remSpChar:texttosearch];
 	
@@ -384,6 +407,7 @@
 	
 	if([texttosearch length] > 0)
 	{
+		ltpsSearchStringP = [texttosearch cStringUsingEncoding:NSUTF8StringEncoding];
 		CFStringRef names = (CFStringRef)texttosearch;
 		
 		CFArrayRef people = ABAddressBookCopyPeopleWithName (addressBook,names);
@@ -443,9 +467,192 @@
 		}
 		CFRelease(people);
 	}
-	
+	//now search ltp
+	if(ltpsSearchStringP)
+	{	
+		long countLong = GetTotalCount(GETCONTACTLIST);
+		struct AddressBook *addressP;
+		char *title;
+		for(int i=0;i<countLong;++i)
+		{
+			addressP = GetObjectAtIndex(uaObject ,i);
+			title = strstr(addressP->title,ltpsSearchStringP);
+			if(title)
+			{
+				
+				if(strlen(addressP->mobile)>0)
+				{
+					NSString *nameP;
+					Contact *object = nil;
+					nameP = [[NSString alloc] initWithUTF8String:addressP->title];
+					NSString *numberP;
+					numberP = [[NSString alloc] initWithUTF8String:addressP->mobile];
+					object = [[Contact alloc] init];
+					object.Name = nameP;
+					
+					
+					
+					object.Detail = @"mobile";
+					object.Number = numberP;
+					
+					//object.Detail = [NSString stringWithString:(NSString *)xyz];
+					//object.Number = [NSString stringWithString:[string	:j]];
+					
+					[searchedContacts addObject:object];					
+					[object release], object = nil;
+					[numberP release];
+					[nameP release];
+					
+				
+				}
+				if(strlen(addressP->home)>0)
+				{
+					NSString *nameP;
+					Contact *object = nil;
+					nameP = [[NSString alloc] initWithUTF8String:addressP->title];
+					NSString *numberP;
+					numberP = [[NSString alloc] initWithUTF8String:addressP->home];
+					object = [[Contact alloc] init];
+					object.Name = nameP;
+					
+					
+					
+					object.Detail = @"home";
+					object.Number = numberP;
+					
+					//object.Detail = [NSString stringWithString:(NSString *)xyz];
+					//object.Number = [NSString stringWithString:[string	:j]];
+					//[self addElement:searchedContacts contactObject:object];
+					[searchedContacts addObject:object];					
+					[object release], object = nil;
+					[numberP release];
+					[nameP release];
+					
+					
+				}
+				if(strlen(addressP->business)>0)
+				{
+					NSString *nameP;
+					Contact *object = nil;
+					nameP = [[NSString alloc] initWithUTF8String:addressP->title];
+					NSString *numberP;
+					numberP = [[NSString alloc] initWithUTF8String:addressP->business];
+					object = [[Contact alloc] init];
+					object.Name = nameP;
+					
+					
+					
+					object.Detail = @"business";
+					object.Number = numberP;
+					
+					//object.Detail = [NSString stringWithString:(NSString *)xyz];
+					//object.Number = [NSString stringWithString:[string	:j]];
+					//[self :searchedContacts contactObject:object];
+					[searchedContacts addObject:object];					
+					[object release], object = nil;
+					[numberP release];
+					[nameP release];
+					
+					
+				}
+				
+				if(strlen(addressP->spoknid)>0)
+				{
+					NSString *nameP;
+					Contact *object = nil;
+					nameP = [[NSString alloc] initWithUTF8String:addressP->title];
+					NSString *numberP;
+					numberP = [[NSString alloc] initWithUTF8String:addressP->spoknid];
+					object = [[Contact alloc] init];
+					object.Name = nameP;
+					
+					
+					
+					object.Detail = @"Spokn ID";
+					object.Number = numberP;
+					
+					//object.Detail = [NSString stringWithString:(NSString *)xyz];
+					//object.Number = [NSString stringWithString:[string	:j]];
+					//[self addElement:searchedContacts contactObject:object];
+					[searchedContacts addObject:object];					
+					[object release], object = nil;
+					[numberP release];
+					[nameP release];
+					
+					
+				}
+				if(strlen(addressP->other)>0)
+				{
+					NSString *nameP;
+					Contact *object = nil;
+					nameP = [[NSString alloc] initWithUTF8String:addressP->title];
+					NSString *numberP;
+					numberP = [[NSString alloc] initWithUTF8String:addressP->other];
+					object = [[Contact alloc] init];
+					object.Name = nameP;
+					
+					
+					
+					object.Detail = @"Other";
+					object.Number = numberP;
+					
+					//object.Detail = [NSString stringWithString:(NSString *)xyz];
+					//object.Number = [NSString stringWithString:[string	:j]];
+					//[self addElement:searchedContacts contactObject:object];
+					[searchedContacts addObject:object];					
+					[object release], object = nil;
+					[numberP release];
+					[nameP release];
+					
+					
+				}
+				if(strlen(addressP->email)>0)
+				{
+					NSString *nameP;
+					Contact *object = nil;
+					nameP = [[NSString alloc] initWithUTF8String:addressP->title];
+					NSString *numberP;
+					numberP = [[NSString alloc] initWithUTF8String:addressP->email];
+					object = [[Contact alloc] init];
+					object.Name = nameP;
+					
+					
+					
+					object.Detail = @"email";
+					object.Number = numberP;
+					
+					//object.Detail = [NSString stringWithString:(NSString *)xyz];
+					//object.Number = [NSString stringWithString:[string	:j]];
+					//[self addElement:searchedContacts contactObject:object];
+					[searchedContacts addObject:object];					
+					[object release], object = nil;
+					[numberP release];
+					[nameP release];
+					
+					
+				}
+				
+				
+			}	
+							
+			
+			
+		}
+	}	
 	if( [searchedContacts count] > 0 )
 	{
+		/*NSMutableArray *lsearchedContacts;
+		Contact *locObjectP;
+		lsearchedContacts = [[NSMutableArray alloc] init];
+		for(int i=0;i<[searchedContacts count] ;++i)
+		{
+			locObjectP = [searchedContacts objectAtIndex:i];
+			[self addElement:lsearchedContacts contactObject:locObjectP];
+			
+		}
+		[searchedContacts release];
+		searchedContacts = nil;
+		searchedContacts = lsearchedContacts;*/
 		// reload data
 		[tbl_contacts reloadData];
 		[self showSearchTable];
@@ -577,7 +784,7 @@
 {
 	if(modalB==false)
 	{	
-		self.view.frame = CGRectMake(0, 0, 320,160 );	
+		self.view.frame = CGRectMake(0, 0, 320,200 );	
 		[upDateProtocolP upDateScreen];
 	}
 	

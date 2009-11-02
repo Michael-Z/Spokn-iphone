@@ -67,6 +67,7 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {     
 	[spinner startAnimating];
+	//webView.detectsPhoneNumbers = NO;
 	[uiActionSheetP showInView:[self navigationController].view]; 
 }
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -76,6 +77,7 @@
 	NSString *urlString = url.absoluteString;
 	NSString *search = @"tel:";
 	NSRange range = [urlString rangeOfString : search];
+	NSLog(@"\nmukesh   %@",urlString);
 	if (range.location != NSNotFound) 
 	{
 		urlnumberP = [urlString substringFromIndex:range.length];

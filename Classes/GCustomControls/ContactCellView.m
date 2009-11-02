@@ -102,7 +102,7 @@
 	
 	
 	[numberTextColor set];
-	point = CGPointMake(boundsX + LEFT_COLUMN_OFFSET + 60, LOWER_ROW_TOP);
+	point = CGPointMake(boundsX + LEFT_COLUMN_OFFSET + 80, LOWER_ROW_TOP);
 	[_contact.Number drawAtPoint:point 
 	 forWidth:MSG_LEFT_COLUMN_WIDTH 
 	 withFont:numberFont minFontSize:MIN_NUMBER_FONT_SIZE 

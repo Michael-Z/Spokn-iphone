@@ -15,6 +15,7 @@
 #define _NAME_IN_TABLE_
 @class SpoknAppDelegate;
 @class GTokenField;
+@class Contact;
 /*typedef struct ContactListType
 	{
 		SelectedContctType  contactObject;	
@@ -79,5 +80,6 @@
 -(IBAction)addContactPressed:(id)sender;
 -(IBAction)addFromContact:(id)sender;
 - (void)updateLayout;
+-(int) addElement :(NSMutableArray *)searchedContactsP contactObject:(Contact*)lcontactP;
 @property(nonatomic,readwrite,assign) id<UpDateViewProtocol> upDateProtocolP;
 @end
