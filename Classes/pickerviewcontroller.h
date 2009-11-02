@@ -44,7 +44,6 @@
 	SpoknAppDelegate *ownerobject;
 	UIKeyboardType keyboardtype;
 	GTokenField *txtDestNo;
-	UIActionSheet *_actionSheet;
 	UIScrollView *_composerScrollView;
 	UITableView *tbl_contacts;
 	ABAddressBookRef addressBook;
@@ -79,5 +78,6 @@
 -(char*) getContactNumberList;
 -(IBAction)addContactPressed:(id)sender;
 -(IBAction)addFromContact:(id)sender;
+- (void)updateLayout;
 @property(nonatomic,readwrite,assign) id<UpDateViewProtocol> upDateProtocolP;
 @end
