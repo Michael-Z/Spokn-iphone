@@ -339,6 +339,8 @@
 		tbl_contacts.dataSource = self;
 		[self.view addSubview:tbl_contacts];
 		[self hideSearchTable];
+		
+		[self updateLayout];
 		addressBook = ABAddressBookCreate();
 	}
 
@@ -596,16 +598,20 @@
 
 
 - (void)textFieldDidResize:(GTokenField*)tokenField {
-//	[self updateLayout];
+	//[self updateLayout];
 }
 
+- (void)updateLayout {
+	//txtMssg.frame = CGRectMake(0, txtDestNo.frame.size.height + 1, 320, txtMssg.frame.size.height);
+	_composerScrollView.contentSize = CGSizeMake(txtDestNo.frame.size.width, txtDestNo.frame.size.height + 0.5);
+}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 	if( textField == txtDestNo)
 	{		
 		BOOL try = ![string length];
 		if (![txtDestNo shouldUpdate:try]) {
-		//	[self updateLayout];
+			[self updateLayout];
 			return NO;
 		}
 		
@@ -745,10 +751,7 @@
 		[txtDestNo release];
 		txtDestNo = nil;
 	}
-	if(_actionSheet)
-		[_actionSheet release], 
-		_actionSheet = nil;
-	
+
 	[super dealloc];
 }
 

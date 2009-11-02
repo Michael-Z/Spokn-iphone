@@ -40,6 +40,7 @@
 	CallViewController *callViewControllerP;
 	NSString *callingstringP;
 	char lastTypeNo[40];
+	int _downKey;
 }
 
 
@@ -57,5 +58,5 @@
 //- (void)controlPressed:(id) sender;
 -(void)setViewButton:(int)viewButton;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
-
+- (void)playSoundForKey:(int)key;
 @end

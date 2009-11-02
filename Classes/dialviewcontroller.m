@@ -14,8 +14,10 @@
 #include "time.h"
 #import "keypadview.h"
 #import "callviewcontroller.h"
+#import <AudioToolbox/AudioToolbox.h>
 @implementation DialviewController
-
+const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'};
+static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 @synthesize ltpInterfacesP;
 @synthesize currentView;
 - (void)keyPressedDown:(NSString *)stringkey keycode:(int)keyVal
@@ -32,7 +34,50 @@
 	}
 	if([curText length]<NUMBER_RANGE)
 	[numberlebelP setText: [curText stringByAppendingString: stringkey]];
+	if( [stringkey isEqualToString:@"*"] )
+	{
+		_downKey = 10;
+	}
+	else if( [stringkey isEqualToString:@"0"] )
+	{
+		_downKey = 11;
+	}
+	else if( [stringkey isEqualToString:@"#"] )
+	{
+		_downKey = 12;
+	}
+	else
+	{
+		_downKey = [stringkey intValue];
+	}	
+	[self playSoundForKey:_downKey];
 
+}
+
+- (void)playSoundForKey:(int)key
+{
+	if (!sounds[key])
+	{
+		NSBundle *mainBundle = [NSBundle mainBundle];
+		NSString *filename = [NSString stringWithFormat:@"dtmf-%c", (key == 10 ? 's' : _keyValues[key])];
+		NSString *path = [mainBundle pathForResource:filename ofType:@"aif"];
+		if (!path)
+			return;
+		
+		NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
+		if (aFileURL != nil)  
+		{
+			SystemSoundID aSoundID;
+			OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
+															  &aSoundID);
+			if (error != kAudioServicesNoError)
+				return;
+			
+			sounds[_downKey] = aSoundID;
+		}
+	}
+	
+	AudioServicesPlaySystemSound(sounds[_downKey]);
 }
 - (void)keyPressedUp:(NSString *)stringkey keycode:(int)keyVal
 {
