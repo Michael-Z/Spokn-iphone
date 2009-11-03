@@ -43,6 +43,8 @@
 
 - (BOOL)shouldUpdate:(BOOL)emptyText;
 - (NSString*)numberForObject:(id)object;
+-(int) totalObject;
+-(NSString *)GetNameAtIndex:(int)index;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,5 +58,6 @@
 - (void)tokenFieldDidResize:(GTokenField*)tokenField;
 
 - (NSString*) labelForObject:(id)object;
+-(NSString *)GetNameAtIndex:(int)index;
 
 @end

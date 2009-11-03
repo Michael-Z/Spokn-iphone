@@ -77,7 +77,16 @@
 	NSString *urlString = url.absoluteString;
 	NSString *search = @"tel:";
 	NSRange range = [urlString rangeOfString : search];
-	NSLog(@"\nmukesh   %@",urlString);
+
+	
+	NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+	if (theConnection) {
+        NSLog(@" Connection established");
+	}
+    else {
+        NSLog(@"Connection failed");
+    }   
+	
 	if (range.location != NSNotFound) 
 	{
 		urlnumberP = [urlString substringFromIndex:range.length];
@@ -99,7 +108,10 @@
 	}
 	return YES;
 }
-
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+	 NSLog(@"Recieved response");
+}
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

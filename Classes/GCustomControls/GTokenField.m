@@ -101,7 +101,6 @@ static CGFloat kMinCursorWidth = 50;
 - (void)updateHeight {
 	CGFloat previousHeight = self.frame.size.height;
 	CGFloat newHeight = [self layoutCells];
-	
 	if (previousHeight && newHeight != previousHeight) {
 		self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.bounds.size.width, newHeight);
 		//self.height = newHeight;
@@ -227,6 +226,26 @@ static CGFloat kMinCursorWidth = 50;
 	
 	[commaSeparatedTextString autorelease];
 	return commaSeparatedTextString;
+}
+-(int) totalObject
+{
+	return [_cellViews count];
+}
+-(NSString *)GetNameAtIndex:(int)index
+{
+	int  count = [_cellViews count];
+	if(index<count)
+	{
+		NSString* returnString = [[NSString alloc] init];
+		returnString = [[NSString alloc] initWithString:[self labelForObject:[_cellViews objectAtIndex:index]]];
+		[returnString autorelease];
+		return returnString;
+		
+		
+		
+	
+	}
+	return nil;
 }
 - (NSString*) commaSeparatedNumber {
 	NSString* commaSeparatedTextString = [[NSString alloc] init];

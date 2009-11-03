@@ -60,7 +60,7 @@
 	
 	[AddeditcellControllerviewP setData:forwardNoCharP value:"Enter forward no" placeHolder:"Enter forward no" returnValue:&viewResult];
 	
-	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: NO ];
+	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
 	
 	[AddeditcellControllerviewP release];
 	

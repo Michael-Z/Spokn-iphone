@@ -25,6 +25,7 @@
 - (void)keyPressedDown:(NSString *)stringkey keycode:(int)keyVal
 {
 	NSLog(@"%@   %d",stringkey ,keyVal);
+	
 	NSString *curText = [dtmfLabelP text];
 	[dtmfLabelP setText: [curText stringByAppendingString: stringkey]];
 	char numberchar[5]={0};
@@ -43,14 +44,8 @@
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
 	
-	/*
+
 	[self.view setBackgroundColor:[[[UIColor alloc] 
-									initWithPatternImage:[UIImage imageWithContentsOfFile:@"/User/Library/LockBackground.jpg"]]
-								   autorelease]];*/
-	//[self.view setBackgroundColor:[[[UIColor alloc] 
-	/////								initWithPatternImage:[UIImage defaultDesktopImage]]
-	//							   autorelease]];
-	[self->viewP setBackgroundColor:[[[UIColor alloc] 
 									 initWithPatternImage:[UIImage defaultDesktopImage]]
 									autorelease]];
 	[self->viewMenuP setBackgroundColor:[UIColor clearColor]];

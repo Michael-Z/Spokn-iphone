@@ -40,7 +40,40 @@
 @synthesize contactNavigationController;
 @synthesize onLineB;
 @synthesize tabBarController;
-
++(BOOL) emailValidate : (NSString *)email
+{
+	
+	
+	//Quick return if @ Or . not in the string
+	if([email rangeOfString:@"@"].location==NSNotFound || [email rangeOfString:@"."].location==NSNotFound)
+		return NO;
+	
+	//Break email address into its components
+	NSString *accountName=[email substringToIndex: [email rangeOfString:@"@"].location];
+	email=[email substringFromIndex:[email rangeOfString:@"@"].location+1];
+	
+	//’.’ not present in substring
+	if([email rangeOfString:@"."].location==NSNotFound)
+		return NO;
+	NSString *domainName=[email substringToIndex:[email rangeOfString:@"."].location];
+	NSString *subDomain=[email substringFromIndex:[email rangeOfString:@"."].location+1];
+	
+	//username, domainname and subdomain name should not contain the following charters below
+	//filter for user name
+	NSString *unWantedInUName = @" ~!@#$^&*()={}[]|;’:\”<>,?/`";
+	//filter for domain
+	NSString *unWantedInDomain = @" ~!@#$%^&*()={}[]|;’:\”<>,+?/`";
+	//filter for subdomain 
+	NSString *unWantedInSub = @" `~!@#$%^&*()={}[]:\”;’<>,?/1234567890";
+	
+	//subdomain should not be less that 2 and not greater 6
+	if(!(subDomain.length>=2 && subDomain.length<=6)) return NO;
+	
+	if([accountName isEqualToString:@""] || [accountName rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:unWantedInUName]].location!=NSNotFound || [domainName isEqualToString:@""] || [domainName rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:unWantedInDomain]].location!=NSNotFound || [subDomain isEqualToString:@""] || [subDomain rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:unWantedInSub]].location!=NSNotFound)
+		return NO;
+	
+	return YES;
+}
 -(void) showText:(NSString *)testStringP
 {
 	[dialviewP setStatusText:testStringP :0 :0];

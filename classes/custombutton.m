@@ -30,7 +30,7 @@
 	rect1.origin.y-=2;
 	rect1.size.width+=4;
 	rect1.size.height+=4;
-	[self CGContextAddRoundRect : rect1 :5.0];
+//	[self CGContextAddRoundRect : rect1 :5.0];
 	
 }
 

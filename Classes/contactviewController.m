@@ -653,7 +653,7 @@ titleForHeaderInSection:(NSInteger)section
 	 {
 		 case 2:
 			//searchbar.text = @"";
-			 self.navigationItem.rightBarButtonItem.enabled = NO;
+			self.navigationItem.rightBarButtonItem=nil;
 			 			 //[self presentModalViewController:ab animated:YES];
 		#ifdef _NEW_ADDRESS_BOOK_
 			  addressBookP.view.hidden=NO;
@@ -667,9 +667,18 @@ titleForHeaderInSection:(NSInteger)section
 			 break;
 		 case  0:
 		 {
+			
+			 if(parentView==0)
+			 {	
+				 self.navigationItem.rightBarButtonItem 
+				 = [ [ [ UIBarButtonItem alloc ]
+					  initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
+					  target: self
+					  action: @selector(addContactUI) ] autorelease ];	
+			 }
 			#ifdef _NEW_ADDRESS_BOOK_
 				addressBookP.view.hidden=YES;
-				self.navigationItem.rightBarButtonItem.enabled = YES;
+				
 			#else
 				tableView.delegate = self;
 				tableView.dataSource = self;
@@ -678,7 +687,7 @@ titleForHeaderInSection:(NSInteger)section
 				
 			 //[ self->tableView reloadData ];
 				[self reloadLocal:nil :0];
-				self.navigationItem.rightBarButtonItem.enabled = YES;
+			 
 			 
 			#endif
 						 

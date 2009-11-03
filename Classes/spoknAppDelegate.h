@@ -129,5 +129,6 @@ changed:(BOOL)changed;
 -(void)vmsDeinitRecordPlay:(id)object;
 -(void)newBadgeArrived:(id)object;
 -(void) sendMessage:(id)object;
++(BOOL) emailValidate : (NSString *)email;
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);

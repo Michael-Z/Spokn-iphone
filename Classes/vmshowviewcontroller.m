@@ -13,6 +13,7 @@
 @implementation VmShowViewController
 - (void) doneSearching_Clicked:(id)sender {
 	
+	printf("\n done clicked");
 	[self->pickerviewcontrollerviewP removeKeyBoard];
 	//[self keyBoardOnOrOff:false];
 	return ;
@@ -23,6 +24,11 @@
 - (void)upDateScreen
 {
 	tableView.tableHeaderView =  pickerviewcontrollerviewP.view;
+	//self.view.frame = CGSizeMake(0, pickerviewcontrollerviewP.view.frame.size.height );
+	int temp;
+	int temp1;
+	temp = tableView.tableHeaderView.frame.size.height; 
+		temp1 = pickerviewcontrollerviewP.view.frame.size.height;
 	[tableView reloadData];
 }
 -( void)sendForwardVms:(char*)lallForwardContactP
@@ -88,13 +94,17 @@
 			}
 			else
 			{
-				ovController.view.frame = *frameP;	
+				//printf("\n current frame %f %f %f %f",frameP->origin.x,frameP->origin.y,frameP->size.width,frameP->size.height);
+				
+				CGRect frame = CGRectMake(0, frameP->size.height, width, height);
+				ovController.view.frame = frame;	
 			}
+		//	printf("%f %f %f %f",ovController.view.frame.origin.x,ovController.view.frame.origin.y,ovController.view.frame.size.width,ovController.view.frame.size.height);
 			ovController.view.backgroundColor = [UIColor clearColor];
 			//ovController.view.alpha = 0.5;
 	
 			ovController.rvController = self;
-		
+			self->tableView.scrollEnabled = NO;
 			[self->tableView insertSubview:ovController.view aboveSubview:self.parentViewController.view];
 		}	
 	}	
@@ -892,9 +902,13 @@ id createImage(float percentage)
 			[self loadOtherView];
 			[self makeView];
 			[self->tableView reloadData];
+			//tableView.tableHeaderView =  
+			//pickerviewcontrollerviewP.view.hidden = YES;
+
 		}	
 	
 	}
+	//pickerviewcontrollerviewP.view.hidden = YES;
 }	
 
 -(void)setObject:(id) object 
@@ -1165,6 +1179,16 @@ id createImage(float percentage)
 		*vmailP = *lvmailP;
 	}
 	tablesz = 0;
+	if(lplayB==false)
+	{
+		if(strlen(lnoCharP)>1)
+		{	
+			openForwardNo = true;
+			strcpy(forwardContact.nameChar,lnameCharP);
+			strcpy(forwardContact.number,lnoCharP);
+			strcpy(forwardContact.type,ltypeCharP);
+		}	
+	}
 	//noCharP =[ [NSString alloc] initWithUTF8String:lnoCharP];
 	//nameCharP =[ [NSString alloc] initWithUTF8String:lnameCharP];
 	//typeCharP = [[NSString alloc] initWithUTF8String:ltypeCharP];

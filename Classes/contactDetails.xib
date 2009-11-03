@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="38"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -88,7 +88,7 @@
 							<object class="IBUIButton" id="172174305">
 								<reference key="NSNextResponder" ref="139589346"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, -3}, {139, 59}}</string>
+								<string key="NSFrameSize">{139, 59}</string>
 								<reference key="NSSuperview" ref="139589346"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIAutoresizesSubviews">NO</bool>
@@ -124,15 +124,11 @@
 									<string key="NSResourceName">callblue.png</string>
 								</object>
 								<reference key="IBUISelectedBackgroundImage" ref="124778887"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">vms.png</string>
-								</object>
 							</object>
 							<object class="IBUIButton" id="714687318">
 								<reference key="NSNextResponder" ref="139589346"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{142, -3}, {146, 59}}</string>
+								<string key="NSFrame">{{142, 0}, {139, 59}}</string>
 								<reference key="NSSuperview" ref="139589346"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIAutoresizesSubviews">NO</bool>
@@ -154,10 +150,6 @@
 								<reference key="IBUINormalImage" ref="1002547695"/>
 								<reference key="IBUIHighlightedBackgroundImage" ref="124778887"/>
 								<reference key="IBUISelectedBackgroundImage" ref="124778887"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">call.png</string>
-								</object>
 							</object>
 							<object class="IBUIButton" id="815585431">
 								<reference key="NSNextResponder" ref="139589346"/>
@@ -563,6 +555,13 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/custombutton.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/GCustomControls/UIViewAdditions.h</string>
 					</object>
 				</object>
 			</object>

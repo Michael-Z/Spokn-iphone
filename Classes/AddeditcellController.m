@@ -8,9 +8,11 @@
 //
 
 #import "AddeditcellController.h"
+#import "spoknAppDelegate.h"
 #import "contactDetailsviewcontroller.h"
 #include "ua.h"
 @implementation AddeditcellController
+
 -(void) shiftToRoot: (id)lrootObject :(Boolean ) rootB
 {
 	self->navRootObject = lrootObject;
@@ -40,13 +42,13 @@
 {
 	
 	char *TempP;
-	if([[txtField text] length]==0)
+	//if([[txtField text] length]==0)
 	{	
-		UIAlertView *alert;
+		
 		switch(keyboardtype)
 		{
 				
-			case UIKeyboardTypePhonePad:
+		/*	case UIKeyboardTypePhonePad:
 		
 				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 											  message: [ NSString stringWithString:@"number can not be blanked" ]
@@ -63,20 +65,25 @@
 											otherButtonTitles: @"OK", nil
 						 ];
 				break;
-				
+				*/
 			case UIKeyboardTypeEmailAddress:		
-				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-													  message: [ NSString stringWithString:@"email can not be blanked" ]
+				if([SpoknAppDelegate emailValidate:[txtField text]]==NO)
+				{	
+					UIAlertView *alert;
+					alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+													  message: [ NSString stringWithString:@"Invalid email address" ]
 													 delegate: self
 											cancelButtonTitle: nil
 											otherButtonTitles: @"OK", nil
 						 ];
+					[ alert show ];
+					[alert release];
+				}	
 				break;
 				
 				
 		}
-		[ alert show ];
-		[alert release];
+		
 		return;
 	}	
 	
@@ -245,7 +252,7 @@ NSLog(@"\nSave123");
 						txtField = [[UITextField alloc] initWithFrame:CGRectMake(20.0f, self.tableView.rowHeight/3, 280.0f, 50.0f)];
 						txtField.delegate = self;
 						[cell.contentView addSubview:txtField]; 
-						//[txtField becomeFirstResponder];
+						[txtField becomeFirstResponder];
 						[txtField release];
 						txtField.keyboardType = keyboardtype;
 						txtField.delegate = self;
@@ -306,7 +313,7 @@ NSLog(@"\nSave123");
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	//	[txtField resignFirstResponder];
+		[txtField resignFirstResponder];
 	return YES;
 }
 

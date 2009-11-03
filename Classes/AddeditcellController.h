@@ -39,6 +39,7 @@
 -(void)setObject:(id) object;
 -(void) shiftToRoot:(id)lnavRootObject :(Boolean ) rootB;
 -(void) SetkeyBoardType:(UIKeyboardType) type : (int) maxCharInt buttonType:(int)lbuttonType;
+
 @end
 
 

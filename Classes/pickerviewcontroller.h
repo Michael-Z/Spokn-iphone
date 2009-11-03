@@ -41,10 +41,22 @@
 -(int)keyBoardOnOrOff:(BOOL)onB :(CGRect*) frameP;
 
 @end
-@interface pickerviewcontroller : UIViewController <UITextViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,ABPeoplePickerNavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
+@class pickerviewcontroller;
+@interface MyLabel : UILabel 
+{
+	
+	id<UpDateViewProtocol> upDateProtocolP;
+	
+}
+@property(nonatomic,readwrite,assign) id<UpDateViewProtocol> upDateProtocolP;
+@end
+
+@interface pickerviewcontroller : UIViewController <UpDateViewProtocol,UITextViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,ABPeoplePickerNavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
 	SpoknAppDelegate *ownerobject;
 	UIKeyboardType keyboardtype;
 	GTokenField *txtDestNo;
+	MyLabel *toLabel;
+	MyLabel *toLabelStart;
 	UIScrollView *_composerScrollView;
 	UITableView *tbl_contacts;
 	ABAddressBookRef addressBook;

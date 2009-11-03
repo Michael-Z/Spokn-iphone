@@ -14,6 +14,21 @@
 #import "Contact.h"
 #import "ContactCell.h"
 #import "contactviewcontroller.h"
+#import "spoknAppDelegate.h"
+
+@implementation MyLabel
+@synthesize upDateProtocolP;
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	[super touchesBegan:touches withEvent:event];
+	printf("\n mukesh");
+	
+	//	[self dismissKeyboard:numberFieldP];
+	[upDateProtocolP upDateScreen];
+}
+@end
+
+
 
 /*
 @implementation BarBG
@@ -115,6 +130,26 @@
 
 @implementation pickerviewcontroller
 @synthesize upDateProtocolP;
+
+- (void)upDateScreen
+{
+
+	[txtDestNo becomeFirstResponder];
+	
+	
+	txtDestNo.hidden = NO;
+	toLabel.userInteractionEnabled = NO;
+	toLabelStart.hidden = YES;
+	toLabelStart.userInteractionEnabled = NO;
+	toLabel.hidden = YES;
+	_composerScrollView.hidden = NO;
+	if(modalB==false)
+	{	
+		self.view.frame = CGRectMake(0, 0, 320,200 );
+	//self.view.frame = CGRectMake(0, 0, 320,txtDestNo.frame.size.height );
+		[upDateProtocolP upDateScreen];
+	}	
+}
 -(int) addElement :(NSMutableArray *)searchedContactsP contactObject:(Contact*)lcontactP
 {
 	Contact* tmpContactP;
@@ -141,12 +176,12 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
-	printf("\n mukesh");
-	if(modalB==false)
+	printf("\n mukesh shastri");
+	/*if(modalB==false)
 	{
 		[txtDestNo resignFirstResponder];
 	}
-		//	[self dismissKeyboard:numberFieldP];
+	*/	//	[self dismissKeyboard:numberFieldP];
 	
 }
 -(void)addSelectedContact:(SelectedContctType*)  lcontactObjectP
@@ -299,7 +334,7 @@
 	[contentView release];
 	
 	{
-		if(modalB==false)
+		if(modalB==false)	
 		{	
 			_composerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
 		}
@@ -315,6 +350,9 @@
 			if(modalB==false)
 			{	
 				txtDestNo = [[GTokenField alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+				//txtDestNo.hidden = YES;
+				//myLabelP  = [[MyLabel alloc ] initWithFrame:CGRectMake(0, 0, 320, 100)];
+				//myLabelP.text = @"sj ";
 			}
 			else
 			{
@@ -336,14 +374,37 @@
 			UIButton* addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
 			[addButton addTarget:self action:@selector(addFromContact:) forControlEvents:UIControlEventTouchUpInside];
 			txtDestNo.rightView = addButton;
-			
+			//[_composerScrollView addSubview:myLabelP];
 			[_composerScrollView addSubview:txtDestNo];
 			
-			UILabel *toLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 1, 30, 38)];
-			toLabel.text = @"To:";
-			toLabel.backgroundColor = [UIColor clearColor];
-			toLabel.textColor = [UIColor grayColor];
-			[_composerScrollView addSubview:toLabel];
+			//txtDestNo.hidden = YES;
+			MyLabel *toLabelScroll = [[MyLabel alloc] initWithFrame:CGRectMake(5, 1, 32, 38)];
+			toLabelScroll.userInteractionEnabled = NO;
+			toLabelScroll.text = @"To:";
+			toLabelScroll.backgroundColor = [UIColor clearColor];
+			toLabelScroll.textColor = [UIColor grayColor];
+			toLabelScroll.upDateProtocolP = self;
+			[_composerScrollView addSubview:toLabelScroll];
+			
+			toLabelStart = [[MyLabel alloc] initWithFrame:CGRectMake(0, 1, 32, 38)];
+			toLabelStart.userInteractionEnabled = YES;
+			toLabelStart.text = @" To:";
+			toLabelStart.backgroundColor = [UIColor whiteColor];
+			toLabelStart.textColor = [UIColor grayColor];
+			toLabelStart.upDateProtocolP = self;
+			toLabelStart.hidden = YES;
+			[self.view addSubview:toLabelStart];
+			
+			toLabel = [[MyLabel alloc] initWithFrame:CGRectMake(32, 1, 286, 38)];
+			toLabel.userInteractionEnabled = YES;
+			toLabel.text = @" To:";
+			toLabel.backgroundColor = [UIColor whiteColor];
+			toLabel.textColor = [UIColor blackColor];
+			toLabel.upDateProtocolP = self;
+			toLabel.hidden = YES;
+			[self.view addSubview:toLabel];
+			
+			
 		}
 		[self.view addSubview:_composerScrollView];
 		if(modalB==false)
@@ -464,8 +525,9 @@
 				}
 				[name release], name = nil;
 			}//people
+			CFRelease(people);
 		}
-		CFRelease(people);
+		
 	}
 	//now search ltp
 	if(ltpsSearchStringP)
@@ -798,8 +860,8 @@
 	tbl_contacts.hidden = YES;
 	if(modalB==false)
 	{	
-		self.view.frame = CGRectMake(0, 0, 320,50 );
-		[upDateProtocolP upDateScreen];
+		//self.view.frame = CGRectMake(0, 0, 320,txtDestNo.frame.size.height );
+		//[upDateProtocolP upDateScreen];
 		[self->upDateProtocolP keyBoardOnOrOff:YES :nil];
 	}
 	_composerScrollView.scrollEnabled = YES;	
@@ -812,6 +874,7 @@
 
 - (void)updateLayout {
 	//txtMssg.frame = CGRectMake(0, txtDestNo.frame.size.height + 1, 320, txtMssg.frame.size.height);
+	txtDestNo.frame = CGRectMake(0, 0, 320, txtDestNo.frame.size.height);
 	_composerScrollView.contentSize = CGSizeMake(txtDestNo.frame.size.width, txtDestNo.frame.size.height + 0.5);
 }
 
@@ -853,6 +916,25 @@
 	{	
 		if(typeStrP==nil || [typeStrP isEqualToString:@""])
 		{
+			if([SpoknAppDelegate emailValidate:text]==NO)
+			{	
+				
+				NSString *text1 = [text stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
+				
+				
+				if(text1!=0 && [text1 length]!=0)
+				{
+					txtDestNo.text = @" ";
+					return ;
+				}
+				else
+				{
+					
+				}
+				
+			}	
+			
+			
 			texttype = [[NSString alloc] initWithString:text];
 			[txtDestNo addCellWithString:[NSString stringWithString:text] type:texttype];
 			[texttype release];
@@ -872,12 +954,69 @@
 	{
 		[txtDestNo resignFirstResponder];
 		[self->upDateProtocolP keyBoardOnOrOff:NO :nil] ;
+		NSString *tmpStringP;
+		NSMutableString *resultStrP;
+		resultStrP = [[NSMutableString alloc] init];
+		[txtDestNo resignFirstResponder];
+		[self->upDateProtocolP keyBoardOnOrOff:NO :nil] ;
+		toLabelStart.hidden = NO;
+		toLabelStart.userInteractionEnabled = YES;
+		
+		toLabel.userInteractionEnabled = YES;
+		int i=0;
+		int countObj = [txtDestNo totalObject];
+		while(1)
+		{	
+			tmpStringP = [txtDestNo GetNameAtIndex:i];
+			if(tmpStringP)
+			{
+				if(i)
+				{
+					[resultStrP appendString:@","];
+				}
+				[resultStrP appendString:tmpStringP];
+				++i;
+				if(i==3)
+				{
+					if((countObj-i)>0)
+					{	
+						[resultStrP appendFormat:@" & %d more...",countObj-i];
+					}
+					break;
+				}
+				
+			}
+			else
+			{
+				break;
+			}
+		}	
+		//txtDestNo.hidden = YES;
+		toLabel.text = resultStrP;
+		//toLabel.backgroundColor = [UIColor whiteColor];
+		toLabel.hidden = NO;
+		_composerScrollView.hidden = YES;
+		//[_composerScrollView scrollRectToVisible: toLabel.frame animated:NO];
+		[resultStrP release];
+		if(modalB==false)
+		{
+			self.view.frame = CGRectMake(0, 0, 320,50 );
+			[upDateProtocolP upDateScreen];
+		}	
 	}
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;        // return NO to disallow editing.
 {
 	printf("\n key board");
-	[self->upDateProtocolP keyBoardOnOrOff:YES :nil];
+	if(modalB==false)
+	{
+		CGRect frame = txtDestNo.frame;
+	
+		[self->upDateProtocolP keyBoardOnOrOff:YES :&frame];
+	
+		self.view.frame = CGRectMake(0, 0, 320,200 );	
+		[upDateProtocolP upDateScreen];
+	}	
 	return YES;
 }
 - (void) textViewDidBeginEditing: (UITextView *) textView
