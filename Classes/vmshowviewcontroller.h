@@ -20,6 +20,7 @@
 //#define PROGRESS_VIEW
 @class SpoknAppDelegate;
 @class pickerviewcontroller;
+@class OverlayViewController;
 @interface VmShowViewController : UIViewController<UpDateViewProtocol,UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,VmsProtocol> {
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *msgLabelP;
@@ -55,7 +56,7 @@
 	UIButton *deleteButton;
 	SelectedContctType *selectP;
 	pickerviewcontroller     *pickerviewcontrollerviewP;
-	
+	OverlayViewController *ovController;
 	//(SelectedContctType *)lselectedContactP
 	
 	
@@ -75,5 +76,6 @@
 -(void)loadOtherView;
 -(void) loadContactDetails :(char*) numberCharP;
 -(void)showForwardOrReplyScreen:(SelectedContctType *)selectedContactP;
+- (void) doneSearching_Clicked:(id)sender;
 
 @end

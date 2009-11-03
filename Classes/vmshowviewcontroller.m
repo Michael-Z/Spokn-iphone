@@ -9,7 +9,17 @@
 #import "vmshowviewcontroller.h"
 #import "SpoknAppDelegate.h"
 #import "pickerviewcontroller.h"
+#import "overlayviewcontroller.h"
 @implementation VmShowViewController
+- (void) doneSearching_Clicked:(id)sender {
+	
+	[self->pickerviewcontrollerviewP removeKeyBoard];
+	//[self keyBoardOnOrOff:false];
+	return ;
+	
+	
+	
+}
 - (void)upDateScreen
 {
 	tableView.tableHeaderView =  pickerviewcontrollerviewP.view;
@@ -55,6 +65,53 @@
 	return 1;
 
 }
+-(int)keyBoardOnOrOff:(BOOL)onB :(CGRect*) frameP
+{
+	
+	if(onB)
+	{	
+		if(ovController == nil)
+		{	
+			ovController = [[OverlayViewController alloc] initWithNibName:@"OverlayView" bundle:[NSBundle mainBundle]];
+	
+			CGFloat width = self.view.frame.size.width;
+			CGFloat height = self.view.frame.size.height;
+			//CGRect frame = CGRectMake(0, yaxis, width, height);
+	
+			//Parameters x = origion on x-axis, y = origon on y-axis.
+
+			printf("\n over view");
+			if(frameP==0)
+			{	
+				CGRect frame = CGRectMake(0, 50, width, height);
+				ovController.view.frame = frame;	
+			}
+			else
+			{
+				ovController.view.frame = *frameP;	
+			}
+			ovController.view.backgroundColor = [UIColor clearColor];
+			//ovController.view.alpha = 0.5;
+	
+			ovController.rvController = self;
+		
+			[self->tableView insertSubview:ovController.view aboveSubview:self.parentViewController.view];
+		}	
+	}	
+	else
+	{
+		self->tableView.scrollEnabled = YES;
+		
+		[ovController.view removeFromSuperview];
+		[ovController release];
+		ovController = nil;
+		
+	}	
+
+	
+	
+}
+
 -(void)showForwardOrReplyScreen:(SelectedContctType *)selectedContactP
 {
 	//pickerviewcontroller     *pickerviewcontrollerviewP;	

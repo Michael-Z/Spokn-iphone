@@ -786,6 +786,7 @@
 	{	
 		self.view.frame = CGRectMake(0, 0, 320,200 );	
 		[upDateProtocolP upDateScreen];
+		[self->upDateProtocolP keyBoardOnOrOff:NO :nil];
 	}
 	
 	tbl_contacts.hidden = NO;
@@ -799,6 +800,7 @@
 	{	
 		self.view.frame = CGRectMake(0, 0, 320,50 );
 		[upDateProtocolP upDateScreen];
+		[self->upDateProtocolP keyBoardOnOrOff:YES :nil];
 	}
 	_composerScrollView.scrollEnabled = YES;	
 }
@@ -864,7 +866,20 @@
 	
 	txtDestNo.text = @" ";	
 }
-
+-(void)removeKeyBoard
+{
+	if(modalB==false)
+	{
+		[txtDestNo resignFirstResponder];
+		[self->upDateProtocolP keyBoardOnOrOff:NO :nil] ;
+	}
+}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;        // return NO to disallow editing.
+{
+	printf("\n key board");
+	[self->upDateProtocolP keyBoardOnOrOff:YES :nil];
+	return YES;
+}
 - (void) textViewDidBeginEditing: (UITextView *) textView
 {
 	//self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Done" 
@@ -923,8 +938,8 @@
 		{
 			[self update_txtDestNo:@""];
 		}
-		
-		[theTextField resignFirstResponder];
+		[self removeKeyBoard];
+		//[theTextField resignFirstResponder];
 	}
 	return YES;
 }

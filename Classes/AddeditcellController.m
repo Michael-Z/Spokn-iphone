@@ -245,7 +245,7 @@ NSLog(@"\nSave123");
 						txtField = [[UITextField alloc] initWithFrame:CGRectMake(20.0f, self.tableView.rowHeight/3, 280.0f, 50.0f)];
 						txtField.delegate = self;
 						[cell.contentView addSubview:txtField]; 
-						[txtField becomeFirstResponder];
+						//[txtField becomeFirstResponder];
 						[txtField release];
 						txtField.keyboardType = keyboardtype;
 						txtField.delegate = self;
@@ -304,7 +304,6 @@ NSLog(@"\nSave123");
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	//	[txtField resignFirstResponder];

@@ -215,7 +215,7 @@
 					<object class="IBUIButton" id="704230319">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 80}</string>
+						<string key="NSFrameSize">{330, 80}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -344,9 +344,9 @@
 							<reference ref="805596281"/>
 							<reference ref="431785844"/>
 							<reference ref="776989204"/>
-							<reference ref="704230319"/>
 							<reference ref="722111373"/>
 							<reference ref="554878694"/>
+							<reference ref="704230319"/>
 						</object>
 						<reference key="parent" ref="317526666"/>
 					</object>
@@ -379,11 +379,9 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">133</int>
 						<reference key="object" ref="722111373"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">138</int>
-						<reference key="object" ref="704230319"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -399,6 +397,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">142</int>
 						<reference key="object" ref="776989204"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">138</int>
+						<reference key="object" ref="704230319"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>

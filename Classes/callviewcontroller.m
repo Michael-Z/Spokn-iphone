@@ -42,12 +42,17 @@
     [super viewDidLoad];
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
+	
+	/*
 	[self.view setBackgroundColor:[[[UIColor alloc] 
-									initWithPatternImage:[UIImage defaultDesktopImage]]
-								   autorelease]];
-	/*[self->viewP setBackgroundColor:[[[UIColor alloc] 
+									initWithPatternImage:[UIImage imageWithContentsOfFile:@"/User/Library/LockBackground.jpg"]]
+								   autorelease]];*/
+	//[self.view setBackgroundColor:[[[UIColor alloc] 
+	/////								initWithPatternImage:[UIImage defaultDesktopImage]]
+	//							   autorelease]];
+	[self->viewP setBackgroundColor:[[[UIColor alloc] 
 									 initWithPatternImage:[UIImage defaultDesktopImage]]
-									autorelease]];	*/
+									autorelease]];
 	[self->viewMenuP setBackgroundColor:[UIColor clearColor]];
 	[self->viewKeypadP setBackgroundColor:[UIColor clearColor]];
 	callnoLabelP.numberOfLines = 2;

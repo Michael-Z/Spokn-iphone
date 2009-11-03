@@ -38,9 +38,9 @@
 -( void)sendForwardVms:(char*)forwardP;
 -(void)addContact:(UIViewController*)rootP;
 -(int)getForwardNumber:(SelectedContctType*)  lcontactObjectP;
+-(int)keyBoardOnOrOff:(BOOL)onB :(CGRect*) frameP;
 
 @end
-
 @interface pickerviewcontroller : UIViewController <UITextViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,ABPeoplePickerNavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
 	SpoknAppDelegate *ownerobject;
 	UIKeyboardType keyboardtype;
@@ -81,5 +81,6 @@
 -(IBAction)addFromContact:(id)sender;
 - (void)updateLayout;
 -(int) addElement :(NSMutableArray *)searchedContactsP contactObject:(Contact*)lcontactP;
+-(void)removeKeyBoard;
 @property(nonatomic,readwrite,assign) id<UpDateViewProtocol> upDateProtocolP;
 @end
