@@ -243,6 +243,13 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 - (void)dealloc {
 	printf("\n dialview dealloc");
+	int i;
+	for (i = 1; i < 13; ++i)
+		if (sounds[i])
+		{
+			AudioServicesDisposeSystemSoundID(sounds[i]);
+			sounds[i] = 0;
+		}
 	[calltimerP release];
 	[callingstringP release]; 
 	//[statusLabelP release];

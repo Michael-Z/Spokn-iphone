@@ -13,6 +13,11 @@
 - (void)upDateScreen
 {
 	tableView.tableHeaderView =  pickerviewcontrollerviewP.view;
+	//self.view.frame = CGSizeMake(0, pickerviewcontrollerviewP.view.frame.size.height );
+	int temp;
+	int temp1;
+	temp = tableView.tableHeaderView.frame.size.height; 
+		temp1 = pickerviewcontrollerviewP.view.frame.size.height;
 	[tableView reloadData];
 }
 -( void)sendForwardVms:(char*)lallForwardContactP

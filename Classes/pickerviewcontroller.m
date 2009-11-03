@@ -276,7 +276,7 @@
 	[contentView release];
 	
 	{
-		if(modalB==false)
+		if(modalB==false)	
 		{	
 			_composerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
 		}
@@ -603,6 +603,7 @@
 
 - (void)updateLayout {
 	//txtMssg.frame = CGRectMake(0, txtDestNo.frame.size.height + 1, 320, txtMssg.frame.size.height);
+	txtDestNo.frame = CGRectMake(0, 0, 320, txtDestNo.frame.size.height);
 	_composerScrollView.contentSize = CGSizeMake(txtDestNo.frame.size.width, txtDestNo.frame.size.height + 0.5);
 }
 
