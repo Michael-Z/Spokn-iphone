@@ -106,5 +106,6 @@ typedef enum ViewTypeEnum
 -(void)setReturnValue:(int*)lretValB selectedContactNumber:(char*)lnumberCharP rootObject:(id)rootObject selectedContact:(SelectedContctType*)lselectContactP;
 -(void)setTitlesString:(NSString*)nsP;
 -(void)setSelectedNumber:(char*)noCharP showAddButton:(BOOL)lshowB;
+
 @end
 

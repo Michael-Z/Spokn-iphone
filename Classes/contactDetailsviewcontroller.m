@@ -830,6 +830,7 @@
 			cell = [ [ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
 			//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
 			[self addRow:section :row sectionObject:&secLocP];
+			[cell setAutoResize:YES];
 			
 		}	
 	}	
