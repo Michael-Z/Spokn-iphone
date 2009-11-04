@@ -186,12 +186,20 @@
 }
 -(void)addSelectedContact:(SelectedContctType*)  lcontactObjectP
 {
-	#ifdef _NAME_IN_TABLE_
-	[txtDestNo addCellWithString:[NSString stringWithUTF8String:lcontactObjectP->nameChar] type:[NSString stringWithUTF8String:lcontactObjectP->number] ];
-#else	
-	[txtDestNo addCellWithString:[NSString stringWithUTF8String:lcontactObjectP->number] type:[NSString stringWithUTF8String:lcontactObjectP->number] ];
 	
-#endif
+	if(lcontactObjectP==0)
+	{
+		return;
+	}
+	#ifdef _NAME_IN_TABLE_
+		[txtDestNo addCellWithString:[NSString stringWithUTF8String:lcontactObjectP->nameChar] type:[NSString stringWithUTF8String:lcontactObjectP->number] ];
+	#else	
+		[txtDestNo addCellWithString:[NSString stringWithUTF8String:lcontactObjectP->number] type:[NSString stringWithUTF8String:lcontactObjectP->number] ];
+	
+	#endif
+	toLabel.hidden = YES;
+	toLabelStart.hidden = YES;
+	_composerScrollView.hidden = NO;
 }
 -(char*)getContactNumberList
 {
@@ -305,7 +313,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+	keyBoardOnB = FALSE;
 	searchedContacts = [[NSMutableArray alloc] init];
 	searchArray = [[NSMutableArray alloc] init];
 	UIView *contentView ;
@@ -336,7 +344,7 @@
 	{
 		if(modalB==false)	
 		{	
-			_composerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+			_composerScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
 		}
 		else
 		{
@@ -349,7 +357,7 @@
 		
 			if(modalB==false)
 			{	
-				txtDestNo = [[GTokenField alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+				txtDestNo = [[GTokenField alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
 				//txtDestNo.hidden = YES;
 				//myLabelP  = [[MyLabel alloc ] initWithFrame:CGRectMake(0, 0, 320, 100)];
 				//myLabelP.text = @"sj ";
@@ -862,7 +870,10 @@
 	{	
 		//self.view.frame = CGRectMake(0, 0, 320,txtDestNo.frame.size.height );
 		//[upDateProtocolP upDateScreen];
-		[self->upDateProtocolP keyBoardOnOrOff:YES :nil];
+		if(keyBoardOnB)
+		{	
+			[self->upDateProtocolP keyBoardOnOrOff:YES :nil];
+		}
 	}
 	_composerScrollView.scrollEnabled = YES;	
 }
@@ -1005,6 +1016,15 @@
 		}	
 	}
 }
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+	if(modalB==false)
+	{
+		[self->upDateProtocolP keyBoardOnOrOff:NO :nil];
+	}
+	keyBoardOnB = FALSE;
+	return YES;
+}
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;        // return NO to disallow editing.
 {
 	printf("\n key board");
@@ -1017,6 +1037,7 @@
 		self.view.frame = CGRectMake(0, 0, 320,200 );	
 		[upDateProtocolP upDateScreen];
 	}	
+	keyBoardOnB = TRUE;
 	return YES;
 }
 - (void) textViewDidBeginEditing: (UITextView *) textView

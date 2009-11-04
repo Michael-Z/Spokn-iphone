@@ -597,12 +597,15 @@
 			}
 			else
 			{
-				self.navigationItem.rightBarButtonItem 
-				= [ [ [ UIBarButtonItem alloc ]
-					 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
-					 target: self
-					 action: @selector(doneClicked) ] autorelease ];
-				self.navigationItem.rightBarButtonItem.enabled = NO;
+				if(viewEnum != CONTACTPHONEADDRESSBOOKDETAIL)
+				{	
+					self.navigationItem.rightBarButtonItem 
+					= [ [ [ UIBarButtonItem alloc ]
+						 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
+						 target: self
+						 action: @selector(doneClicked) ] autorelease ];
+					self.navigationItem.rightBarButtonItem.enabled = NO;
+				}	
 			}
 		}
 		else

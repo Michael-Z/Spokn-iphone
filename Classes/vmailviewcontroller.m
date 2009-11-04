@@ -70,7 +70,7 @@
 		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
 		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
 		[vmShowViewControllerP setFileName: fileNameCharP :&viewPlayResult];
-		[vmShowViewControllerP setvmsDetail: vmailP->userid : addressP->title :type :true :max :vmailP];
+		[vmShowViewControllerP setvmsDetail: vmailP->userid : addressP->title :type :VMSStatePlay :max :vmailP];
 		[vmShowViewControllerP setObject:self->ownerobject];
 		
 		[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];
@@ -86,7 +86,7 @@
 		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
 		[vmShowViewControllerP setFileName: fileNameCharP :&viewPlayResult];
 		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
-		[vmShowViewControllerP setvmsDetail: vmailP->userid : vmailP->userid :"mobile" :true :max : vmailP];
+		[vmShowViewControllerP setvmsDetail: vmailP->userid : vmailP->userid :"mobile" :VMSStatePlay :max : vmailP];
 		[vmShowViewControllerP setObject:self->ownerobject];
 		
 		[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];
@@ -742,7 +742,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
 	[vmShowViewControllerP setFileName: "temp" :0];
 	//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
-	[vmShowViewControllerP setvmsDetail: "" : "" :"" :false :20 : 0];
+	[vmShowViewControllerP setvmsDetail: "" : "" :"" :VMSStateRecord :20 : 0];
 	[vmShowViewControllerP setObject:self->ownerobject];
 	//[[self navigationController] popToRootViewControllerAnimated:NO];
 	[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];

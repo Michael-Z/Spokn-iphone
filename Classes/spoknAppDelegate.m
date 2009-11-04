@@ -854,7 +854,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
 		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
 		[vmShowViewControllerP setFileName: "temp" :0];
-		[vmShowViewControllerP setvmsDetail: noCharP : addressP->title :type :false :max :0];
+		[vmShowViewControllerP setvmsDetail: noCharP : addressP->title :type :VMSStateRecord :max :0];
 		[vmShowViewControllerP setObject:self];
 		[vmsNavigationController popToRootViewControllerAnimated:NO];
 		[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];
@@ -870,7 +870,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
 		[vmShowViewControllerP setFileName: "temp" :0];
 		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
-		[vmShowViewControllerP setvmsDetail: noCharP : noCharP :"" :false :max : 0];
+		[vmShowViewControllerP setvmsDetail: noCharP : noCharP :"" :VMSStateRecord :max : 0];
 		[vmShowViewControllerP setObject:self];
 		[vmsNavigationController popToRootViewControllerAnimated:NO];
 		[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];

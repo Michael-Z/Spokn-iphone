@@ -122,7 +122,7 @@
 	
 }
 
--(void)showForwardOrReplyScreen:(SelectedContctType *)selectedContactP
+-(void)showForwardOrReplyScreen:(VMSStateType) lvmsState :(SelectedContctType *)selectedContactP
 {
 	//pickerviewcontroller     *pickerviewcontrollerviewP;	
 	//pickerviewcontrollerviewP = [[pickerviewcontroller alloc] init];
@@ -138,10 +138,13 @@
 	
 	
 	printf("\n\n\n\ncontact added\n\n\n");
-	playB = false;
-	maxTime = 20;
-	maxTimeLoc = 20;
-	strcpy(fileNameCharP,"temp");
+	vmstateType = lvmsState;
+	if(vmstateType==VMSStateRecord)
+	{	
+		maxTime = 20;
+		maxTimeLoc = 20;
+		strcpy(fileNameCharP,"temp");
+	}
 	[self makeView];
 	[self loadOtherView];
 	
@@ -158,15 +161,15 @@
 -(IBAction)sendPressed:(id)sender
 {
 	printf("\n send pressed");
-	if(playB)
+	if(vmstateType == VMSStatePlay)
 	{
 		openForwardNo = 0;
-		
+		[self showForwardOrReplyScreen:VMSStateForward :nil];
 		//forwardNoChar[0] = 0;
 		//showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP
 		//[ownerobject showContactScreen:self returnnumber:forwardNoChar result:&openForwardNo];
 		//[self showForwardOrReplyScreen:"" name:""];
-		
+		/*
 		pickerviewcontroller     *lpickerviewcontrollerviewP;	
 		lpickerviewcontrollerviewP = [[pickerviewcontroller alloc] init];
 		lpickerviewcontrollerviewP.upDateProtocolP = self;
@@ -179,7 +182,7 @@
 			[ [self navigationController] pushViewController:lpickerviewcontrollerviewP animated: YES ];
 		
 		[lpickerviewcontrollerviewP release];
-		
+		*/
 		
 		
 	}
@@ -187,18 +190,29 @@
 	{	char *contactNumberP;
 		contactNumberP = [pickerviewcontrollerviewP getContactNumberList];
 		if(contactNumberP)
-		{	
-			[ownerobject vmsSend:contactNumberP :fileNameCharP];
-			free(contactNumberP);
-		}	
-		else
 		{
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"number should not be empty" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+			if( strlen(contactNumberP)>0)
+			{	
+				printf("\n forward no %s",contactNumberP);
+				if(vmstateType == VMSStateRecord)
+					[ownerobject vmsSend:contactNumberP :fileNameCharP];
+				else
+				{
+					[self sendForwardVms:contactNumberP];
+				}
+				free(contactNumberP);
+				return;
+			}
+			free(contactNumberP);
 			
-			[alert show];
-			[alert release];
+		}	
 		
-		}
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"number should not be empty" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+			
+		[alert show];
+		
+		
+		
 	}	
 }
 
@@ -243,7 +257,8 @@
 	nsTimerP = 0;
 	printf("\n stop");
 	[PlayButtonP addTarget:self action:@selector(playPressed:) forControlEvents: UIControlEventTouchUpInside];
-	if(playB)
+	
+	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateForward )
 	{	
 		[PlayButtonP setTitle:@"Play" forState:UIControlStateNormal];
 		[PlayButtonP setTitle:@"Play" forState:UIControlStateHighlighted];
@@ -284,10 +299,19 @@
 	}
 	else
 	{
-		if(playB==false)
+		Boolean playB;
+		if(vmstateType == VMSStatePlay ||vmstateType == VMSStateRecord )
 		{
-			[ownerobject vmsStop:!playB];
+			playB = true;
 		}
+		else
+		{
+			playB = false;
+		}
+		
+		
+		[ownerobject vmsStop:!playB];
+		
 	}
 	printf("\n timer progress count %f",amt);
 	
@@ -295,6 +319,15 @@
 -(IBAction)stopButtonPressed:(id)sender
 {
 	printf("\n stop pressed");
+	Boolean playB;
+	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateRecord )
+	{
+		playB = true;
+	}
+	else
+	{
+		playB = false;
+	}
 	if([ownerobject vmsStop:!playB])
 	{
 		printf("\n error");
@@ -307,7 +340,7 @@
 {
 	printf("\n playPressed pressed");
 	unsigned long sz;
-	if(playB)
+	if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward)
 	{
 		if([ownerobject vmsPlayStart:fileNameCharP :&sz])
 			return;
@@ -366,7 +399,7 @@
 {
 
 	printf("\n previewPressed pressed");
-	if(playB==false)
+	if(vmstateType==VMSStateRecord)
 	{
 		char *nameP=0;
 		unsigned long sz;
@@ -410,7 +443,7 @@
 		strcpy(lselectP->number,noCharP);
 		strcpy(lselectP->nameChar,nameCharP);
 		strcpy(lselectP->type,typeCharP);
-		[self showForwardOrReplyScreen:lselectP];
+		[self showForwardOrReplyScreen:VMSStateRecord :lselectP];
 		free(lselectP);
 		//[self showForwardOrReplyScreen:noCharP name:nameCharP];
 	}
@@ -480,7 +513,7 @@
 				
 				cell = [ [ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
 				//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
-				
+				[cell setAutoResize:YES];
 				[self addRow:section :row sectionObject:&secLocP];
 				
 			}
@@ -872,14 +905,15 @@ id createImage(float percentage)
 							  ];
 		[ alert show ];
 		[alert release];*/
-		[self showForwardOrReplyScreen:&forwardContact];
+		[self showForwardOrReplyScreen:vmstateType :&forwardContact];
 		
 		
 		//forwardNoChar[0] = 0;
 	}
 	if(returnValueInt)
 	{
-		if(playB==false)
+		
+		if(vmstateType!=VMSStatePlay)
 		{	
 		//	printf("\n selected no %s",forwardNoChar);
 			//forwardNoChar[0]=0;
@@ -920,7 +954,7 @@ id createImage(float percentage)
 
 -(void)loadOtherView
 {
-	if(playB)
+	if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward)
 	{
 		char s1[50];
 		char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
@@ -959,42 +993,56 @@ id createImage(float percentage)
 			
 		}	
 		[secondLabelP setText:[NSString stringWithFormat:@"%d", self->maxTime]];
-		
-		deleteButton = [[UIButton alloc] init];
+		if(vmstateType==VMSStatePlay)
+		{	
+			deleteButton = [[UIButton alloc] init];
 		// The default size for the save button is 49x30 pixels
-		deleteButton.frame = CGRectMake(0, 0, 60, 30.0);
+			deleteButton.frame = CGRectMake(0, 0, 60, 30.0);
 		
 		// Center the text vertically and horizontally
-		deleteButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-		deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+			deleteButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+			deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 		
-		UIImage *image = [UIImage imageNamed:@"bottombarred_pressed.png"];
+			UIImage *image = [UIImage imageNamed:@"bottombarred_pressed.png"];
 		
 		// Make a stretchable image from the original image
-		UIImage *stretchImage = [image stretchableImageWithLeftCapWidth:15.0 topCapHeight:0.0];
+			UIImage *stretchImage = [image stretchableImageWithLeftCapWidth:15.0 topCapHeight:0.0];
 		
 		// Set the background to the stretchable image
-		[deleteButton setBackgroundImage:stretchImage forState:UIControlStateNormal];
+			[deleteButton setBackgroundImage:stretchImage forState:UIControlStateNormal];
 		
 		// Make the background color clear
-		deleteButton.backgroundColor = [UIColor clearColor];
+			deleteButton.backgroundColor = [UIColor clearColor];
 		
 		// Set the font properties
-		[deleteButton setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
-		deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+			[deleteButton setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
+			deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
 		
 		
-		[deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+			[deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
 		
-		[deleteButton addTarget:self action:@selector(deleteClicked) forControlEvents:UIControlEventTouchUpInside];
+			[deleteButton addTarget:self action:@selector(deleteClicked) forControlEvents:UIControlEventTouchUpInside];
 		
-		UIBarButtonItem *navButton = [[UIBarButtonItem alloc] initWithCustomView:deleteButton];
+			UIBarButtonItem *navButton = [[UIBarButtonItem alloc] initWithCustomView:deleteButton];
 		
-		self.navigationItem.rightBarButtonItem = navButton;
+			self.navigationItem.rightBarButtonItem = navButton;
 		
-		[navButton release];
-		[deleteButton release];
+			[navButton release];
+			[deleteButton release];
+			tableView.tableHeaderView = 0;
+		}
+		else
+		{
+			pickerviewcontrollerviewP.upDateProtocolP = self;
+			tableView.tableHeaderView =  pickerviewcontrollerviewP.view;
+			[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
+			[sendButtonP setTitle:@"Send" forState:UIControlStateHighlighted];
+			
+			
+			self.navigationItem.rightBarButtonItem  = nil;
+			
 		
+		}
 		
 	//	self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ] initWithTitle:@"Delete" style:UIBarButtonItemStyleDone target:self action:@selector(deleteClicked)] autorelease];
 		
@@ -1066,6 +1114,7 @@ id createImage(float percentage)
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[ownerobject setVmsDelegate:self];
 	[self setTitle:@"Vms"];
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	firstSectionviewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -1096,7 +1145,7 @@ id createImage(float percentage)
 	if(addressP)
 	{
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
-		if(playB==false)
+		if(vmstateType==VMSStateRecord)
 		{	
 			selectP = (SelectedContctType*)malloc(sizeof(SelectedContctType)+4);
 		}
@@ -1159,7 +1208,7 @@ id createImage(float percentage)
 }
 */
 
--(void)setvmsDetail:(char*)lnoCharP :(char*)lnameCharP :(char*)ltypeCharP :(Boolean)lplayB :(int)lmaxTime :(struct VMail*) lvmailP
+-(void)setvmsDetail:(char*)lnoCharP :(char*)lnameCharP :(char*)ltypeCharP :(VMSStateType)lVMSStateType :(int)lmaxTime :(struct VMail*) lvmailP
 {
 	//NSString *nsp;
 	if(noCharP) free(noCharP);
@@ -1179,7 +1228,7 @@ id createImage(float percentage)
 		*vmailP = *lvmailP;
 	}
 	tablesz = 0;
-	if(lplayB==false)
+	if(lVMSStateType==VMSStateRecord)
 	{
 		if(strlen(lnoCharP)>1)
 		{	
@@ -1192,7 +1241,7 @@ id createImage(float percentage)
 	//noCharP =[ [NSString alloc] initWithUTF8String:lnoCharP];
 	//nameCharP =[ [NSString alloc] initWithUTF8String:lnameCharP];
 	//typeCharP = [[NSString alloc] initWithUTF8String:ltypeCharP];
-	playB = lplayB;
+	vmstateType = lVMSStateType;
 	maxTime = lmaxTime;
 	maxTimeLoc = maxTime;
 		printf("\n maxtime set %d",self->maxTime);
@@ -1208,7 +1257,7 @@ id createImage(float percentage)
 	{
 		memset(&sectionArray[i],0,sizeof(SectionContactType));
 	}
-	if(playB)
+	if(vmstateType==VMSStatePlay)
 	{	
 		sectionArray[secIndex].dataforSection[tablesz].section = 0;
 	//strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Add home number");
@@ -1277,10 +1326,19 @@ id createImage(float percentage)
 
 
 - (void)dealloc {
+	printf("\n dealoc called");
+	[ownerobject setVmsDelegate:nil];
 	if(nsTimerP)
 	{	
 		[nsTimerP invalidate];
-		[ownerobject vmsStop:!playB];
+		if(vmstateType==VMSStateRecord)
+		{
+			[ownerobject vmsStop:true];
+		}
+		else
+		{
+			[ownerobject vmsStop:false];
+		}
 	}
 	if(fileNameCharP)
 	{

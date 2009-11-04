@@ -14,9 +14,9 @@
 	
 	IBOutlet UIWebView *accountswebView;
 	SpoknAppDelegate *ownerobject;
-	UIActionSheet  *uiActionSheetP;
+	//UIActionSheet  *uiActionSheetP;
 	UIActivityIndicatorView *spinner;
-	NSString * urlnumberP;
+	
 }
 @property (nonatomic, retain) UIWebView *accountswebView;
 -(void)setObject:(id) object;

@@ -72,19 +72,37 @@
 		CGRect cellFrame = CGRectMake(5.0, 5.0, self.contentView.bounds.size.width-8.0, self.contentView.bounds.size.height-8.0);
 		spoknSubCellP = [[SpoknSubCell alloc] initWithFrame:cellFrame];
 		
-		spoknSubCellP.autoresizingMask = (UIViewAutoresizingFlexibleHeight | 
+		/*spoknSubCellP.autoresizingMask = (UIViewAutoresizingFlexibleHeight | 
 										  UIViewAutoresizingFlexibleWidth | 
 										  UIViewAutoresizingFlexibleTopMargin | 
 										  //UIViewAutoresizingFlexibleLeftMargin | 
 										  //UIViewAutoresizingFlexibleRightMargin | 
-										  UIViewAutoresizingFlexibleBottomMargin);
+										  UIViewAutoresizingFlexibleBottomMargin);*/
+		spoknSubCellP.autoresizingMask = UIViewAutoresizingNone;
 		[self.contentView addSubview:spoknSubCellP];
+		[spoknSubCellP release];
 		spoknSubCellP.font = self.font;
 		
 	}
     return self;
 }
+-(void) setAutoResize:(BOOL)onB
+{
+	if(onB)
+	{
+		spoknSubCellP.autoresizingMask = (UIViewAutoresizingFlexibleHeight | 
+										 UIViewAutoresizingFlexibleWidth | 
+										 UIViewAutoresizingFlexibleTopMargin | 
+										 //UIViewAutoresizingFlexibleLeftMargin | 
+										 //UIViewAutoresizingFlexibleRightMargin | 
+										 UIViewAutoresizingFlexibleBottomMargin);
+	}
+	else
+	{
+		spoknSubCellP.autoresizingMask = UIViewAutoresizingNone;
+	}
 
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
@@ -111,9 +129,9 @@
     if (self = [super initWithFrame:frame]) {
         // Initialization code
 		
-		
+		rectCell = frame;
 		self.backgroundColor = [UIColor whiteColor];
-		
+		//printf("\n init with frame");
 		//savedImage = [UIImage imageNamed:@"Status-saved.png"];	
     }
     return self;
@@ -131,11 +149,13 @@
 	int stY;
 	int width;
 	int height;
+	//rect = rectCell;
 	stX = rect.origin.x;
 	stY = rect.origin.y;
 	UIColor *txtColor;
 	UIFont                *fontlP;
-	//////////////printf("\n drawing...");
+	
+	//printf("\n drawing cell..");
 	/*	if (self.editing)
 	 {
 	 return;

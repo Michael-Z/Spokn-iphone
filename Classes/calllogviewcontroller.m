@@ -325,7 +325,7 @@
 			dispP.top = 0;
 			if(secObjStrP)
 			{	
-				dispP.width = 70;
+				dispP.width = 60;
 			}
 			else
 			{

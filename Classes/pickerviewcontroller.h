@@ -70,6 +70,7 @@
 	BOOL modalB;
 	id<UpDateViewProtocol> upDateProtocolP;
 	NSString *allDestno;
+	BOOL keyBoardOnB;
 	//NSString *detailStrP;
 
 }

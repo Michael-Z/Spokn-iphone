@@ -33,8 +33,8 @@
 	
 	
 	 accountswebView.delegate = self;
-	 uiActionSheetP = [[UIActionSheet alloc] initWithTitle:@"Loading..." delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-	 uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+	 //uiActionSheetP = [[UIActionSheet alloc] initWithTitle:@"Loading..." delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+	// uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
 //	 [uiActionSheetP showInView:[self navigationController].view]; 
 	
 	spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -61,18 +61,18 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {    
 	NSLog(@"Web View started loading...");
 	[spinner stopAnimating];
-	[uiActionSheetP dismissWithClickedButtonIndex:0 animated:YES ];
+//[uiActionSheetP dismissWithClickedButtonIndex:0 animated:YES ];
 
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {     
 	[spinner startAnimating];
 	//webView.detectsPhoneNumbers = NO;
-	[uiActionSheetP showInView:[self navigationController].view]; 
+//	[uiActionSheetP showInView:[self navigationController].view]; 
 }
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
 
-	urlnumberP = [NSString alloc];
+	
 	NSURL *url = request.URL;
 	NSString *urlString = url.absoluteString;
 	NSString *search = @"tel:";
@@ -89,6 +89,7 @@
 	
 	if (range.location != NSNotFound) 
 	{
+		NSString * urlnumberP;
 		urlnumberP = [urlString substringFromIndex:range.length];
 		char *numbercharP;
 		numbercharP = (char*)[urlnumberP cStringUsingEncoding:NSUTF8StringEncoding];
@@ -135,7 +136,8 @@
 
 - (void)dealloc {
 	//[urlnumberP release];
-	[uiActionSheetP release];
+	//[uiActionSheetP release];
+	[spinner stopAnimating];
 	[spinner release];
 	[accountswebView release];
     [super dealloc];

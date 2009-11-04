@@ -17,6 +17,13 @@
 - (void)VmsStop;
 
 @end
+typedef enum  VMSStateType
+	{
+		VMSStatePlay,
+		VMSStateRecord,
+		VMSStateForward
+	}VMSStateType;
+	
 //#define PROGRESS_VIEW
 @class SpoknAppDelegate;
 @class pickerviewcontroller;
@@ -34,7 +41,7 @@
 	char *nameCharP;
 	char *noCharP;
 	char *typeCharP;
-	Boolean playB;
+	VMSStateType vmstateType;//play record forward
 	Boolean loadedB;
 	SpoknAppDelegate *ownerobject;
 	struct VMail* vmailP;
@@ -64,7 +71,7 @@
 - (void)VmsStart;
 - (void)VmsStop;
 -(void)setFileName:(char*)lfileNameCharP :(int*) lreturnValLongP;
--(void)setvmsDetail:(char*)lnoCharP :(char*)lnameCharP :(char*)ltypeCharP :(Boolean)lplayB :(int)lmaxTime :(struct VMail*) vmailP;
+-(void)setvmsDetail:(char*)lnoCharP :(char*)lnameCharP :(char*)ltypeCharP :(VMSStateType)lVMSStateType :(int)lmaxTime :(struct VMail*) vmailP;
 
 -(IBAction)sendPressed:(id)sender;
 -(IBAction)playPressed:(id)sender;
@@ -75,7 +82,7 @@
 -(IBAction)stopButtonPressed:(id)sender;
 -(void)loadOtherView;
 -(void) loadContactDetails :(char*) numberCharP;
--(void)showForwardOrReplyScreen:(SelectedContctType *)selectedContactP;
+-(void)showForwardOrReplyScreen:(VMSStateType) lvmsState :(SelectedContctType *)selectedContactP;
 - (void) doneSearching_Clicked:(id)sender;
 
 @end

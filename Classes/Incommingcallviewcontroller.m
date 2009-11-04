@@ -67,6 +67,7 @@
 
 
 - (void)dealloc {
+	[self->textProP release];
     [super dealloc];
 }
 -(IBAction)Accept:(id)sender
@@ -90,8 +91,10 @@
 	{
 		return;
 	}
+	printf("\n %s",self->ltpInDataP->userIdChar);
 	nsp = [[NSString alloc] initWithUTF8String:self->ltpInDataP->userIdChar ];
-	[self->textProP setString:nsp];
+	[self->textProP setString:@"Incomming call from \n"];
+	[self->textProP appendString:nsp];
 	[nsp release];
 	
 }

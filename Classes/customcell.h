@@ -63,6 +63,7 @@
 	Boolean ownerDrawB;
 	int rowHeight;
 	NSMutableArray *dataArrayP;  
+	CGRect rectCell;
 	
 }
 - (void)drawRect:(CGRect)rect;
@@ -79,6 +80,7 @@
 	
 	SpoknSubCell *spoknSubCellP;
 }
+-(void) setAutoResize:(BOOL)onB;
 @property (readwrite,assign) SpoknSubCell *spoknSubCellP;
 
 @end

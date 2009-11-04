@@ -78,13 +78,14 @@
 						 ];
 					[ alert show ];
 					[alert release];
+					return;
 				}	
 				break;
 				
 				
 		}
 		
-		return;
+		//return;
 	}	
 	
 	
@@ -194,7 +195,11 @@ NSLog(@"\nSave123");
 }
 
 #pragma mark Table view methods
-
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Detemine if it's in editing mode
+	
+    return UITableViewCellEditingStyleNone;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 	return 50.0;
 }

@@ -1066,7 +1066,11 @@ titleForHeaderInSection:(NSInteger)section
 		 target: self
 		 action: @selector(startEditing) ] autorelease ];
 }
-
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Detemine if it's in editing mode
+	
+    return UITableViewCellEditingStyleNone;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
 		if(sectionArray.count)
@@ -1194,9 +1198,18 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	//secP = (sectionData*)[dataP objectAtIndex:0];
 	secP = (sectionData*)[setTypeP->elementP objectAtIndex:row]; 
 	addressP = (struct AddressBook *)getContact( secP->recordid);
-	
-	[self showContactDetailScreen :addressP :CONTACTDETAILVIEWENUM];
-		
+	#ifdef TEST_CALL_ID
+		if(addressP->id==TEST_CALL_ID)
+		{
+			[self showContactDetailScreen :addressP :CONTACTPHONEADDRESSBOOKDETAIL];//dont allowed edit
+		}
+		else
+		{
+			[self showContactDetailScreen :addressP :CONTACTDETAILVIEWENUM];
+		}
+	#else
+		[self showContactDetailScreen :addressP :CONTACTDETAILVIEWENUM];
+	#endif	
 
 
 }
