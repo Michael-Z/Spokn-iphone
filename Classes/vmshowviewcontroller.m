@@ -35,7 +35,20 @@
 {
 	if(lallForwardContactP)
 	{	
-		[ownerobject vmsForward:lallForwardContactP :fileNameCharP];
+		if([ownerobject vmsForward:lallForwardContactP :fileNameCharP]==0)
+		{	
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:@"VMS sent successfuly." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+			
+			[alert show];
+		}
+		else
+		{
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:@"VMS sending failed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+			
+			[alert show];
+		}
+		
+		
 		//[ownerobject vmsSend:contactNumberP :fileNameCharP];
 	
 	}	
@@ -195,10 +208,25 @@
 			{	
 				printf("\n forward no %s",contactNumberP);
 				if(vmstateType == VMSStateRecord)
-					[ownerobject vmsSend:contactNumberP :fileNameCharP];
+				{
+					if([ownerobject vmsSend:contactNumberP :fileNameCharP]==0)
+					{
+						UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:@"VMS sent successfuly." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+						
+						[alert show];
+					}
+					else
+					{
+						UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:@"VMS sending failed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+						
+						[alert show];
+					
+					}
+				}
 				else
 				{
-					[self sendForwardVms:contactNumberP];
+					[self sendForwardVms:contactNumberP] ;
+				
 				}
 				free(contactNumberP);
 				return;

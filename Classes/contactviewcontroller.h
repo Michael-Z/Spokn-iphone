@@ -69,7 +69,7 @@
 - (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP ;
 - (void) doneSearching_Clicked:(id)sender;
 -(void) setReturnVariable:(id) rootObject :(SelectedContctType *)lselectedContactP : (int *)valP;
--(int)  showContactDetailScreen: (struct AddressBook * )addressP :(ViewTypeEnum) viewEnum;
+-(int)  showContactDetailScreen: (struct AddressBook * )addressP :(ViewTypeEnum) viewEnum contactBook:(ABRecordRef)contactRefP;
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
 -(void)cancelSearch;
 @end

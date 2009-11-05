@@ -130,8 +130,13 @@
 		[self setTitlesString:@"Select number for vms"];
 		[self setSelectedNumber:"\0" showAddButton:NO];
 		msgLabelP = 0;
+		for(int i=0;i<MAX_SECTION;++i)
+		{
+			memset(&sectionArray[i],0,sizeof(SectionContactType));
+		}
 		// white button:
-			
+		firstSecCount = 0;
+		secondSecCount = 0;	
 		
 	}
     return self;
@@ -159,6 +164,7 @@
 	 
 	if(stringSelected[buttonIndex])
 	{	
+		[[self navigationController]  popViewControllerAnimated:YES];
 		if(callActionSheetB)
 		{
 			printf("\nname %s\n",stringSelected[buttonIndex]);
@@ -172,6 +178,7 @@
 			//printf("\n%s",callNoP);
 			[ownerobject vmsShowRecordScreen:stringSelected[buttonIndex]];
 		}
+		
 	} 
 	[actionSheet release];
  }
@@ -239,36 +246,56 @@
 					 cancelButtonTitle:nil 
 					 destructiveButtonTitle:nil
 					 otherButtonTitles:nil, nil];
-		if(strlen(addressDataP->home)>0)
+		if(firstSecCount==0 && secondSecCount==0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
-			stringSelected[i++] = addressDataP->home;
+			if(strlen(addressDataP->home)>0)
+			{	
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
+				stringSelected[i++] = addressDataP->home;
+			}
+			if(strlen(addressDataP->business)>0)
+			{	
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
+				stringSelected[i++] = addressDataP->business;
+			}	
+			if(strlen(addressDataP->mobile)>0)
+			{	
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
+				stringSelected[i++] = addressDataP->mobile;
+			}	
+
+		
+			if(strlen(addressDataP->spoknid)>0)
+			{		
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "Spokn",addressDataP->spoknid] ];
+				stringSelected[i++] = addressDataP->spoknid;
+			}	
+
+		
+			if(strlen(addressDataP->other)>0)
+			{	
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
+		
+				stringSelected[i++] = addressDataP->other;
+			}	
 		}
-		if(strlen(addressDataP->business)>0)
-		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
-			stringSelected[i++] = addressDataP->business;
-		}	
-		if(strlen(addressDataP->mobile)>0)
-		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
-			stringSelected[i++] = addressDataP->mobile;
-		}	
-
+		else
+		{
+			for(int k=0;k<1;++k)
+			{	
+				for(int j=0;j<sectionArray[k].count;++j)
+				{	
+				
+					printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP ] ];
+					
+					stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
+				
+				}
+			}	
 		
-		if(strlen(addressDataP->spoknid)>0)
-		{		
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "Spokn",addressDataP->spoknid] ];
-			stringSelected[i++] = addressDataP->spoknid;
-		}	
-
 		
-		if(strlen(addressDataP->other)>0)
-		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
-		
-			stringSelected[i++] = addressDataP->other;
-		}	
+		}
 	
 			
 	}
@@ -280,43 +307,63 @@
 						 cancelButtonTitle:nil 
 						 destructiveButtonTitle:nil
 						 otherButtonTitles:nil, nil];
-		if(strlen(addressDataP->home)>0)
+		if(firstSecCount==0 && secondSecCount==0)
 		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
-			stringSelected[i++] = addressDataP->home;
-		}
-		if(strlen(addressDataP->business)>0)
-		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
-			stringSelected[i++] = addressDataP->business;
-		}	
-		if(strlen(addressDataP->mobile)>0)
-		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
-			stringSelected[i++] = addressDataP->mobile;
-		}	
+			if(strlen(addressDataP->home)>0)
+			{	
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
+				stringSelected[i++] = addressDataP->home;
+			}
+			if(strlen(addressDataP->business)>0)
+			{	
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
+				stringSelected[i++] = addressDataP->business;
+			}	
+			if(strlen(addressDataP->mobile)>0)
+			{	
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
+				stringSelected[i++] = addressDataP->mobile;
+			}	
 		
 		
-		if(strlen(addressDataP->spoknid)>0)
-		{		
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "Spokn",addressDataP->spoknid] ];
-			stringSelected[i++] = addressDataP->spoknid;
-		}	
+			if(strlen(addressDataP->spoknid)>0)
+			{		
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "Spokn",addressDataP->spoknid] ];
+				stringSelected[i++] = addressDataP->spoknid;
+			}	
 		
 		
-		if(strlen(addressDataP->other)>0)
-		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
+			if(strlen(addressDataP->other)>0)
+			{	
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
 			
-			stringSelected[i++] = addressDataP->other;
-		}			
+				stringSelected[i++] = addressDataP->other;
+			}			
 		
-		if(strlen(addressDataP->email)>0)
-		{	
-			[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","email", addressDataP->email] ];
+			if(strlen(addressDataP->email)>0)
+			{	
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","email", addressDataP->email] ];
 		
-			stringSelected[i++] = addressDataP->email;
+				stringSelected[i++] = addressDataP->email;
+			}	
 		}	
+		else
+		{
+			for(int k=0;k<MAX_SECTION;++k)
+			{	
+				for(int j=0;j<sectionArray[k].count;++j)
+				{	
+					
+					printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
+					
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP] ];
+					
+					stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
+					
+				}
+			}	
+		
+		}
 
 			
 		
@@ -830,6 +877,7 @@
 			cell = [ [ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
 			//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
 			[self addRow:section :row sectionObject:&secLocP];
+			[cell setAutoResize:YES];
 			
 		}	
 	}	
@@ -1081,6 +1129,44 @@ titleForHeaderInSection:(NSInteger)section
 	showAddButtonB = lshowB;
 	
 }
+-(void) addContactDetails:(SelectedContctType *)lcontactdataP
+{
+	if(strstr(lcontactdataP->number,"@")==0)
+	{	
+		if(firstSecCount<MAX_COUNT)
+		{	
+			sectionArray[0].dataforSection[firstSecCount].contactdataP = malloc(sizeof(SelectedContctType));
+			*sectionArray[0].dataforSection[firstSecCount].contactdataP = *lcontactdataP;
+		
+			sectionArray[0].dataforSection[firstSecCount].section = 0;
+			strcpy(sectionArray[0].dataforSection[firstSecCount].nameofRow,lcontactdataP->type);
+			sectionArray[0].dataforSection[firstSecCount].elementP = sectionArray[0].dataforSection[firstSecCount].contactdataP->number;
+		
+			sectionArray[0].count++;
+			printf("\n %s %s",sectionArray[0].dataforSection[firstSecCount].elementP,sectionArray[0].dataforSection[firstSecCount].nameofRow);
+			firstSecCount++;
+		}	
+		
+	}
+	else
+	{
+		if(secondSecCount<MAX_COUNT)
+		{	
+			sectionArray[1].dataforSection[secondSecCount].contactdataP = malloc(sizeof(SelectedContctType));
+			*sectionArray[1].dataforSection[secondSecCount].contactdataP = *lcontactdataP;
+		
+			sectionArray[1].dataforSection[secondSecCount].section = 1;
+			strcpy(sectionArray[1].dataforSection[secondSecCount].nameofRow,lcontactdataP->type);
+			sectionArray[1].dataforSection[secondSecCount].elementP = sectionArray[1].dataforSection[secondSecCount].contactdataP->number;
+			sectionArray[1].count++;
+			printf("\nemail %s %s",sectionArray[0].dataforSection[secondSecCount].elementP,sectionArray[0].dataforSection[firstSecCount].nameofRow);
+		
+			secondSecCount++;
+		}	
+		
+		
+	}
+}
 -(void)setAddressBook:( struct AddressBook *)laddressDataP editable:(Boolean)leditableB :(ViewTypeEnum) lviewEnum
 {
 	NSString *nsp;
@@ -1095,214 +1181,253 @@ titleForHeaderInSection:(NSInteger)section
 	self->tablesz = 0;
 	addressDataP = 0;
 	
-	for(int i=0;i<MAX_SECTION;++i)
-	{
-		memset(&sectionArray[i],0,sizeof(SectionContactType));
-	}
-	
-	sectionArray[0].sectionView = msgLabelP;
-	sectionArray[0].sectionheight = 50;
-
-	sectionCount = 1;
-	
-	addressDataP = malloc(sizeof(struct AddressBook)+4);//extra 4 for padding
-	memset(addressDataP,0,sizeof(struct AddressBook));
-	if(laddressDataP)
-	{
-		*addressDataP=*laddressDataP;
-	
-	}
-	if(strlen(addressDataP->home)>0)
-	{
-		//if(self->cdrP)
-			if(!strcmp(selectNoCharP,addressDataP->home ))
-			{
-				sectionArray[0].dataforSection[tablesz].selected = 1;
-			}
-		//element[tablesz++] = addressDataP->home;
-		sectionArray[0].dataforSection[tablesz].section = 0;
-		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"home");
-		sectionArray[0].dataforSection[tablesz].elementP = addressDataP->home;
-		sectionArray[0].count++;
-		tablesz++;
-	}
-	else
-	{
-		if(leditableB)
+	if(firstSecCount==0 && secondSecCount==0)
+	{	
+		if(laddressDataP==0)
 		{
+			return;
+		}
+		for(int i=0;i<MAX_SECTION;++i)
+		{
+			memset(&sectionArray[i],0,sizeof(SectionContactType));
+		}
+	
+	
+		sectionArray[0].sectionView = msgLabelP;
+		sectionArray[0].sectionheight = 50;
+		
+		sectionCount = 1;
+		
+		addressDataP = malloc(sizeof(struct AddressBook)+4);//extra 4 for padding
+		memset(addressDataP,0,sizeof(struct AddressBook));
+		if(laddressDataP)
+		{
+			*addressDataP=*laddressDataP;
+		
+		}
+		if(strlen(addressDataP->home)>0)
+		{
+			//if(self->cdrP)
+				if(!strcmp(selectNoCharP,addressDataP->home ))
+				{
+					sectionArray[0].dataforSection[tablesz].selected = 1;
+				}
+			//element[tablesz++] = addressDataP->home;
 			sectionArray[0].dataforSection[tablesz].section = 0;
 			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"home");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->home;
 			sectionArray[0].count++;
-			sectionArray[0].dataforSection[tablesz].addNewB = true;
 			tablesz++;
-				
-				
 		}
-	}
-	if(strlen(addressDataP->business)>0)
-	{
-		//if(self->cdrP)
-			if(!strcmp(selectNoCharP,addressDataP->business ))
-			{
-				sectionArray[0].dataforSection[tablesz].selected = 1;
-			}
-		//element[tablesz++] = addressDataP->business;
-		sectionArray[0].dataforSection[tablesz].section = 0;
-		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"business");
-		sectionArray[0].dataforSection[tablesz].elementP = addressDataP->business;
-		sectionArray[0].count++;
-		tablesz++;
-		
-	}
-	else
-	{
-		if(leditableB)
+		else
 		{
+			if(leditableB)
+			{
+				sectionArray[0].dataforSection[tablesz].section = 0;
+				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"home");
+				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->home;
+				sectionArray[0].count++;
+				sectionArray[0].dataforSection[tablesz].addNewB = true;
+				tablesz++;
+					
+					
+			}
+		}
+		if(strlen(addressDataP->business)>0)
+		{
+			//if(self->cdrP)
+				if(!strcmp(selectNoCharP,addressDataP->business ))
+				{
+					sectionArray[0].dataforSection[tablesz].selected = 1;
+				}
+			//element[tablesz++] = addressDataP->business;
 			sectionArray[0].dataforSection[tablesz].section = 0;
 			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"business");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->business;
 			sectionArray[0].count++;
-			sectionArray[0].dataforSection[tablesz].addNewB = true;
-				tablesz++;
+			tablesz++;
 			
 		}
-	}
-	if(strlen(addressDataP->mobile)>0)
-	{
-		//if(self->cdrP)
-			if(!strcmp(selectNoCharP,addressDataP->mobile ))
-			{
-				sectionArray[0].dataforSection[tablesz].selected = 1;
-			}
-		//element[tablesz++] = addressDataP->mobile;
-		sectionArray[0].dataforSection[tablesz].section = 0;
-		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"mobile");
-		sectionArray[0].dataforSection[tablesz].elementP = addressDataP->mobile;
-		sectionArray[0].count++;
-		
-		tablesz++;
-	}
-	else
-	{
-		if(leditableB)
+		else
 		{
+			if(leditableB)
+			{
+				sectionArray[0].dataforSection[tablesz].section = 0;
+				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"business");
+				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->business;
+				sectionArray[0].count++;
+				sectionArray[0].dataforSection[tablesz].addNewB = true;
+					tablesz++;
+				
+			}
+		}
+		if(strlen(addressDataP->mobile)>0)
+		{
+			//if(self->cdrP)
+				if(!strcmp(selectNoCharP,addressDataP->mobile ))
+				{
+					sectionArray[0].dataforSection[tablesz].selected = 1;
+				}
+			//element[tablesz++] = addressDataP->mobile;
 			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"mobile ");
+			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"mobile");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->mobile;
 			sectionArray[0].count++;
-			sectionArray[0].dataforSection[tablesz].addNewB = true;
-				tablesz++;
 			
+			tablesz++;
 		}
-	}
-	
-	if(strlen(addressDataP->other)>0)
-	{
-		//if(self->cdrP)
-			if(!strcmp(selectNoCharP,addressDataP->other ))
-			{
-				sectionArray[0].dataforSection[tablesz].selected = 1;
-			}
-		//element[tablesz++] = addressDataP->other;
-		sectionArray[0].dataforSection[tablesz].section = 0;
-		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"other");
-		sectionArray[0].dataforSection[tablesz].elementP = addressDataP->other;
-		sectionArray[0].count++;
-		tablesz++;
-	}
-	else
-	{
-		if(leditableB)
+		else
 		{
+			if(leditableB)
+			{
+				sectionArray[0].dataforSection[tablesz].section = 0;
+				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"mobile ");
+				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->mobile;
+				sectionArray[0].count++;
+				sectionArray[0].dataforSection[tablesz].addNewB = true;
+					tablesz++;
+				
+			}
+		}
+		
+		if(strlen(addressDataP->other)>0)
+		{
+			//if(self->cdrP)
+				if(!strcmp(selectNoCharP,addressDataP->other ))
+				{
+					sectionArray[0].dataforSection[tablesz].selected = 1;
+				}
+			//element[tablesz++] = addressDataP->other;
 			sectionArray[0].dataforSection[tablesz].section = 0;
 			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"other");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->other;
 			sectionArray[0].count++;
-			sectionArray[0].dataforSection[tablesz].addNewB = true;
 			tablesz++;
-		
 		}
-	}
-	if(strlen(addressDataP->spoknid)>0)
-	{
-		//element[tablesz++] = addressDataP->spoknid;
-		//if(self->cdrP)
-		if(!strcmp(selectNoCharP,addressDataP->spoknid ))
+		else
 		{
-			sectionArray[0].dataforSection[tablesz].selected = 1;
+			if(leditableB)
+			{
+				sectionArray[0].dataforSection[tablesz].section = 0;
+				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"other");
+				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->other;
+				sectionArray[0].count++;
+				sectionArray[0].dataforSection[tablesz].addNewB = true;
+				tablesz++;
+			
+			}
 		}
-		sectionArray[0].dataforSection[tablesz].section = 0;
-		strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Spokn ID");
-		sectionArray[0].dataforSection[tablesz].elementP = addressDataP->spoknid;
-		sectionArray[0].count++;
-		tablesz++;
-		
-	}
-	else
-	{
-		if(leditableB)
+		if(strlen(addressDataP->spoknid)>0)
 		{
+			//element[tablesz++] = addressDataP->spoknid;
+			//if(self->cdrP)
+			if(!strcmp(selectNoCharP,addressDataP->spoknid ))
+			{
+				sectionArray[0].dataforSection[tablesz].selected = 1;
+			}
 			sectionArray[0].dataforSection[tablesz].section = 0;
 			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Spokn ID");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->spoknid;
 			sectionArray[0].count++;
-			sectionArray[0].dataforSection[tablesz].addNewB = true;
 			tablesz++;
 			
 		}
-	}
-	if(tablesz==0)
-	{
-		sectionCount = 0;
-		
-	}
-	if(strlen(addressDataP->email)>0)
-	{
-		//element[tablesz++] = addressDataP->email;
-		if(!strcmp(selectNoCharP,addressDataP->email ))
-		{
-			sectionArray[sectionCount].dataforSection[0].selected = 1;
-		}
-		sectionArray[sectionCount].dataforSection[0].section = 0;
-		strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"email");
-		sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
-		sectionArray[sectionCount].count++;
-		//tablesz++;
-		if(sectionCount)	
-			sectionCount = 2;
 		else
-			sectionCount = 1;
-		
-	}
-	else
-	{
-		if(leditableB)
 		{
-			printf("\n email ");
+			if(leditableB)
+			{
+				sectionArray[0].dataforSection[tablesz].section = 0;
+				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Spokn ID");
+				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->spoknid;
+				sectionArray[0].count++;
+				sectionArray[0].dataforSection[tablesz].addNewB = true;
+				tablesz++;
+				
+			}
+		}
+		if(tablesz==0)
+		{
+			sectionCount = 0;
+			
+		}
+		if(strlen(addressDataP->email)>0)
+		{
+			//element[tablesz++] = addressDataP->email;
+			if(!strcmp(selectNoCharP,addressDataP->email ))
+			{
+				sectionArray[sectionCount].dataforSection[0].selected = 1;
+			}
 			sectionArray[sectionCount].dataforSection[0].section = 0;
 			strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"email");
 			sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
 			sectionArray[sectionCount].count++;
-			sectionArray[sectionCount].dataforSection[0].addNewB = true;
+			//tablesz++;
 			if(sectionCount)	
 				sectionCount = 2;
 			else
 				sectionCount = 1;
 			
 		}
-	}
-	if(sectionCount==0)
-	{
-		editableB = true;
+		else
+		{
+			if(leditableB)
+			{
+				printf("\n email ");
+				sectionArray[sectionCount].dataforSection[0].section = 0;
+				strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"email");
+				sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
+				sectionArray[sectionCount].count++;
+				sectionArray[sectionCount].dataforSection[0].addNewB = true;
+				if(sectionCount)	
+					sectionCount = 2;
+				else
+					sectionCount = 1;
+				
+			}
+		}
+		if(sectionCount==0)
+		{
+			editableB = true;
+		}
+		else
+		{
+			if(tablesz==0) //need to display table
+				tablesz = 1;
+		}
 	}
 	else
 	{
-		if(tablesz==0) //need to display table
-			tablesz = 1;
+		sectionCount = 0;
+		sectionArray[0].sectionView = msgLabelP;
+		sectionArray[0].sectionheight = 50;
+		if(laddressDataP)
+		{	
+			addressDataP = malloc(sizeof(struct AddressBook)+4);//extra 4 for padding
+			memset(addressDataP,0,sizeof(struct AddressBook));
+			if(laddressDataP)
+			{
+				*addressDataP=*laddressDataP;
+			
+			}
+		}	
+		if(firstSecCount)
+		{
+			sectionCount++;
+		}
+		if(secondSecCount)
+		{
+			sectionCount++;
+			if(firstSecCount==0) //mean we need to transfer contant of section two to one
+			{
+				sectionArray[0] = sectionArray[1];
+				firstSecCount = secondSecCount;
+				secondSecCount = 0;
+				memset(&sectionArray[1],0,sizeof(SectionContactType));
+				
+			}
+		}
+		tablesz = 1;
 	}
-	
-	
 		
 	
 	if(loadedB)
@@ -1424,6 +1549,18 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
+	for(int k=0;k<MAX_SECTION;++k)
+	{	
+		for(int j=0;j<sectionArray[k].count;++j)
+		{	
+			
+			if(sectionArray[k].dataforSection[j].contactdataP)
+			{	
+				free(sectionArray[k].dataforSection[j].contactdataP);	
+			}	
+		}
+	}	
+	
 	[titlesP release];
 	[changeNameButtonP release];
 	[userNameP release];
