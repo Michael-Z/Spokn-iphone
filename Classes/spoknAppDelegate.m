@@ -359,6 +359,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[ window addSubview: viewController.view ];
 	//[ window addSubview: viewController->usernameP ];
 	//[ window addSubview: viewController->passwordP ];
+	wifiavailable = NO;
 	char *userNameCharP;
 	char *passwordCharP;
 	NSMutableArray *viewControllers;
@@ -690,6 +691,18 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	Boolean retB = false;
 	char typeP[30];
 	struct AddressBook *addressP;
+	
+	if(!wifiavailable)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" 
+														message:@"wifi not available"
+													   delegate:self 
+											  cancelButtonTitle:nil 
+											  otherButtonTitles:@"OK", nil];
+		[alert show];
+		[alert release];
+		return;
+	}
 	if(self->onLineB)
 	{	
 		tempStringP = [[NSMutableString alloc] init] ;
@@ -1037,6 +1050,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			[alert show];
 			[alert release];*/
 			printf("\n richable set");
+			wifiavailable = YES;
 			SetConnection( ltpInterfacesP,2);
 			 break;
 		}

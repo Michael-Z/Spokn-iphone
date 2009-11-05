@@ -49,39 +49,6 @@
 		8B47DB4A107264ED00EEEF61 /* dialer.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47DB47107264ED00EEEF61 /* dialer.png */; };
 		8B47DB4B107264ED00EEEF61 /* contacts.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47DB48107264ED00EEEF61 /* contacts.png */; };
 		8B47DB4C107264ED00EEEF61 /* addcall.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47DB49107264ED00EEEF61 /* addcall.png */; };
-		8B594CDC1096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD01096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a */; };
-		8B594CDD1096E0F000A6659A /* libsrtp-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD11096E0F000A6659A /* libsrtp-arm-apple-darwin9.a */; };
-		8B594CDE1096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD21096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a */; };
-		8B594CDF1096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD31096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a */; };
-		8B594CE01096E0F000A6659A /* libresample-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD41096E0F000A6659A /* libresample-arm-apple-darwin9.a */; };
-		8B594CE11096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD51096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a */; };
-		8B594CE21096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD61096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a */; };
-		8B594CE31096E0F000A6659A /* libmilenage-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD71096E0F000A6659A /* libmilenage-arm-apple-darwin9.a */; };
-		8B594CE41096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD81096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a */; };
-		8B594CE51096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD91096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a */; };
-		8B594CE61096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CDA1096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a */; };
-		8B594CE71096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CDB1096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a */; };
-		8B594CF01096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CE81096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a */; };
-		8B594CF11096E11F00A6659A /* libpjsua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CE91096E11F00A6659A /* libpjsua-arm-apple-darwin9.a */; };
-		8B594CF21096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEA1096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a */; };
-		8B594CF31096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEB1096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a */; };
-		8B594CF41096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEC1096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a */; };
-		8B594CF51096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CED1096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a */; };
-		8B594CF61096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEE1096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a */; };
-		8B594CF71096E11F00A6659A /* libpjsip-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEF1096E11F00A6659A /* libpjsip-arm-apple-darwin9.a */; };
-		8B594CFA1096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CF81096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a */; };
-		8B594CFB1096E15400A6659A /* libpjnath-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CF91096E15400A6659A /* libpjnath-arm-apple-darwin9.a */; };
-		8B594D031096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFC1096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a */; };
-		8B594D041096E17800A6659A /* libpjsdp-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFD1096E17800A6659A /* libpjsdp-arm-apple-darwin9.a */; };
-		8B594D051096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFE1096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a */; };
-		8B594D061096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFF1096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a */; };
-		8B594D071096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D001096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a */; };
-		8B594D081096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D011096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a */; };
-		8B594D091096E17800A6659A /* libpjmedia-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D021096E17800A6659A /* libpjmedia-arm-apple-darwin9.a */; };
-		8B594D0C1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0A1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a */; };
-		8B594D0D1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0B1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a */; };
-		8B594D101096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0E1096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a */; };
-		8B594D111096E1B800A6659A /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0F1096E1B800A6659A /* libpj-arm-apple-darwin9.a */; };
 		8B59A62C10998423003BF3EA /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A61F10998423003BF3EA /* Contact.m */; };
 		8B59A62D10998423003BF3EA /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62110998423003BF3EA /* ContactCell.m */; };
 		8B59A62E10998423003BF3EA /* ContactCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62310998423003BF3EA /* ContactCellView.m */; };
@@ -281,39 +248,6 @@
 		8B47DB47107264ED00EEEF61 /* dialer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialer.png; sourceTree = "<group>"; };
 		8B47DB48107264ED00EEEF61 /* contacts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contacts.png; sourceTree = "<group>"; };
 		8B47DB49107264ED00EEEF61 /* addcall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addcall.png; sourceTree = "<group>"; };
-		8B594CD01096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsrtp-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libsrtp-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD11096E0F000A6659A /* libsrtp-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsrtp-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libsrtp-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD21096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libspeex-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD31096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libresample-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libresample-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD41096E0F000A6659A /* libresample-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libresample-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libresample-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD51096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libportaudio-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD61096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmilenage-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libmilenage-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD71096E0F000A6659A /* libmilenage-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmilenage-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libmilenage-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD81096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libilbccodec-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libilbccodec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD91096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgsmcodec-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libgsmcodec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CDA1096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgsmcodec-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libgsmcodec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CDB1096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libg7221codec-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libg7221codec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CE81096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsua-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CE91096E11F00A6659A /* libpjsua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CEA1096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsip-ua-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CEB1096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-ua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CEC1096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-simple-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsip-simple-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CED1096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-simple-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-simple-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CEE1096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsip-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CEF1096E11F00A6659A /* libpjsip-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CF81096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjnath-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjnath/lib/libpjnath-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CF91096E15400A6659A /* libpjnath-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjnath-arm-apple-darwin9.a"; path = "../pjproject/pjnath/lib/libpjnath-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CFC1096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsdp-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjsdp-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CFD1096E17800A6659A /* libpjsdp-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsdp-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjsdp-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CFE1096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjmedia-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CFF1096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-codec-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjmedia-codec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594D001096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-codec-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjmedia-codec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594D011096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjmedia-audiodev-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594D021096E17800A6659A /* libpjmedia-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjmedia-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594D0A1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594D0B1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-arm-apple-darwin9.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594D0E1096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjlib/lib/libpj-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594D0F1096E1B800A6659A /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B594D571096E41000A6659A /* sipwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sipwrapper.h; path = ../lib/common/include/sipwrapper.h; sourceTree = SOURCE_ROOT; };
 		8B59A61E10998423003BF3EA /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		8B59A61F10998423003BF3EA /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
@@ -509,39 +443,6 @@
 				8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */,
 				8BB54917104BF25B00BD6C22 /* libspeexlib.a in Frameworks */,
 				8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */,
-				8B594CDC1096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CDD1096E0F000A6659A /* libsrtp-arm-apple-darwin9.a in Frameworks */,
-				8B594CDE1096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CDF1096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CE01096E0F000A6659A /* libresample-arm-apple-darwin9.a in Frameworks */,
-				8B594CE11096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CE21096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CE31096E0F000A6659A /* libmilenage-arm-apple-darwin9.a in Frameworks */,
-				8B594CE41096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CE51096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CE61096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a in Frameworks */,
-				8B594CE71096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CF01096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CF11096E11F00A6659A /* libpjsua-arm-apple-darwin9.a in Frameworks */,
-				8B594CF21096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CF31096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a in Frameworks */,
-				8B594CF41096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CF51096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a in Frameworks */,
-				8B594CF61096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CF71096E11F00A6659A /* libpjsip-arm-apple-darwin9.a in Frameworks */,
-				8B594CFA1096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CFB1096E15400A6659A /* libpjnath-arm-apple-darwin9.a in Frameworks */,
-				8B594D031096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594D041096E17800A6659A /* libpjsdp-arm-apple-darwin9.a in Frameworks */,
-				8B594D051096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594D061096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594D071096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a in Frameworks */,
-				8B594D081096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594D091096E17800A6659A /* libpjmedia-arm-apple-darwin9.a in Frameworks */,
-				8B594D0C1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594D0D1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
-				8B594D101096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594D111096E1B800A6659A /* libpj-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,7 +532,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				8B594CCE1096E08700A6659A /* siplib */,
 				8BB54916104BF25B00BD6C22 /* libspeexlib.a */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -708,46 +608,6 @@
 				8B177BEB104674E000E42923 /* callin.png */,
 			);
 			name = image;
-			sourceTree = "<group>";
-		};
-		8B594CCE1096E08700A6659A /* siplib */ = {
-			isa = PBXGroup;
-			children = (
-				8B594D0E1096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a */,
-				8B594D0F1096E1B800A6659A /* libpj-arm-apple-darwin9.a */,
-				8B594D0A1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a */,
-				8B594D0B1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a */,
-				8B594CFC1096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a */,
-				8B594CFD1096E17800A6659A /* libpjsdp-arm-apple-darwin9.a */,
-				8B594CFE1096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a */,
-				8B594CFF1096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a */,
-				8B594D001096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a */,
-				8B594D011096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a */,
-				8B594D021096E17800A6659A /* libpjmedia-arm-apple-darwin9.a */,
-				8B594CF81096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a */,
-				8B594CF91096E15400A6659A /* libpjnath-arm-apple-darwin9.a */,
-				8B594CE81096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a */,
-				8B594CE91096E11F00A6659A /* libpjsua-arm-apple-darwin9.a */,
-				8B594CEA1096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a */,
-				8B594CEB1096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a */,
-				8B594CEC1096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a */,
-				8B594CED1096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a */,
-				8B594CEE1096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a */,
-				8B594CEF1096E11F00A6659A /* libpjsip-arm-apple-darwin9.a */,
-				8B594CD01096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a */,
-				8B594CD11096E0F000A6659A /* libsrtp-arm-apple-darwin9.a */,
-				8B594CD21096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a */,
-				8B594CD31096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a */,
-				8B594CD41096E0F000A6659A /* libresample-arm-apple-darwin9.a */,
-				8B594CD51096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a */,
-				8B594CD61096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a */,
-				8B594CD71096E0F000A6659A /* libmilenage-arm-apple-darwin9.a */,
-				8B594CD81096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a */,
-				8B594CD91096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a */,
-				8B594CDA1096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a */,
-				8B594CDB1096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a */,
-			);
-			name = siplib;
 			sourceTree = "<group>";
 		};
 		8B59A61D10998423003BF3EA /* GCustomControls */ = {

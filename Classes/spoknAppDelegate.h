@@ -72,6 +72,7 @@
 //
 	Reachability* hostReach;
     Reachability* wifiReach;
+	Boolean wifiavailable;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;

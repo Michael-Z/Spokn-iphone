@@ -396,13 +396,12 @@
 	
 	CGFloat width = self.view.frame.size.width;
 	CGFloat height = self.view.frame.size.height;
-	//CGRect frame = CGRectMake(0, yaxis, width, height);
 
 	//Parameters x = origion on x-axis, y = origon on y-axis.
 	#ifndef _HIDDEN_NAVBAR
 	//CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
 	
-	CGRect frame = CGRectMake(0, 0, width, height);
+	CGRect frame = CGRectMake(0, searchbar.frame.size.height, width, height);
 	#else
 	CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
 	
@@ -530,7 +529,9 @@ titleForHeaderInSection:(NSInteger)section
 	
 	searchbar.placeholder = @"Search";
 	searchbar.autocorrectionType = UITextAutocorrectionTypeNo;
-	searchbar.autocapitalizationType = UITextAutocapitalizationTypeNone;		
+	searchbar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+	//searchbar.alpha = 0.6;
+	//searchbar.tintColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:20/255.0 alpha:1.0];
 	gframe = searchbar.frame;
 		
 	UITextField *searchField = [[searchbar subviews] lastObject];

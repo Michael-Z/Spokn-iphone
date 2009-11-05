@@ -143,7 +143,6 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	[keypadmain setImage:@"dialerkeypad.png" : @"dialerkeypad_pressed.png"];
 	[keypadmain setElement:3 :4];
 	keypadmain.keypadProtocolP = self;
-	
 	/*
 	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -275,9 +274,54 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	
 
 }
+- (void)stopTimer
+{
+	if (_deleteTimer)
+	{
+		[_deleteTimer invalidate];
+		[_deleteTimer release];
+		_deleteTimer = NULL;
+	}
+}
+- (void)deleteRepeat
+{
+	/*NSString *curText = [_label text];
+	int length = [curText length];
+	if(length > 0)
+	{
+		[_label setText: [curText substringToIndex:(length-1)]];
+	}
+	else
+	{
+		[self stopTimer];
+	}
+	if (length == 1)
+	{
+		//_callButton.enabled = NO;
+	}*/
+	NSString *curText = [numberlebelP text];
+	int length = [curText length];
+	if(length > 0) 
+	{
+		[numberlebelP setText: [curText substringToIndex:(length-1)]];
+		curText = [numberlebelP text];
+		length = [curText length];
+	}
+	else
+	{
+		[self stopTimer];
+	}
+	if(length==0)
+	{
+		statusLabel1P.hidden = NO;
+		statusLabel2P.hidden = NO;
+	}
+	
+}
 -(IBAction)backkeyPressed:(id)sender
 {
-	NSString *curText = [numberlebelP text];
+	[self deleteRepeat];
+/*	NSString *curText = [numberlebelP text];
 	int length = [curText length];
 	if(length > 0)
 	{
@@ -289,8 +333,17 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	{
 		statusLabel1P.hidden = NO;
 		statusLabel2P.hidden = NO;
-	}
+	}*/
+	_deleteTimer = [[NSTimer scheduledTimerWithTimeInterval:0.2 target:self 
+												   selector:@selector(deleteRepeat) 
+												   userInfo:nil 
+													repeats:YES] retain];
 	
+	
+}
+-(IBAction)backkeyReleased:(id)sender
+{
+	[self stopTimer];
 }
 -(IBAction)callLtp:(id)sender
 {

@@ -41,6 +41,7 @@
 	NSString *callingstringP;
 	char lastTypeNo[40];
 	int _downKey;
+	NSTimer *_deleteTimer;
 }
 
 
@@ -52,6 +53,7 @@
 -(IBAction)callLtp:(id)sender;
 -(IBAction)hangLtp:(id)sender;
 -(IBAction)backkeyPressed:(id)sender;
+-(IBAction)backkeyReleased:(id)sender;
 - (IBAction)dismissKeyboard: (id)sender;
 - (IBAction)valueChanged: (id)sender;
 -(void)setStatusText:(NSString *)strP :(int)status :(int)subStatus;
@@ -59,4 +61,6 @@
 -(void)setViewButton:(int)viewButton;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
 - (void)playSoundForKey:(int)key;
+- (void)stopTimer;
+- (void)deleteRepeat;
 @end
