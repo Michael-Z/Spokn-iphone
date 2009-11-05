@@ -97,12 +97,27 @@
 												selector: @selector(handleCallTimer:)
 												userInfo: nil
 												 repeats: YES];
+	char *newLineP;
+	char *stringP;
+	char*tmpStrP;
 	//timecallduration = time(0);
 	timecallduration = 0;
 	hour = 0;
 	min = 0;
 	sec = 0;
-	
+	stringP = (char*)[labelStrP cStringUsingEncoding:NSUTF8StringEncoding];
+	newLineP = malloc(strlen(stringP)+4);
+	strcpy(newLineP,stringP);
+	tmpStrP = strstr(newLineP,"\n");
+	if(tmpStrP)
+	{
+		*tmpStrP = 0;
+		[labelStrP release];
+		labelStrP = [[NSString alloc]initWithUTF8String:newLineP];
+		[callnoLabelP setText:labelStrP];
+		
+	}
+	free(newLineP);
 }
 -(int)  stopTimer
 {
@@ -221,7 +236,7 @@
 }
 -(void)setLabel:(NSString *)strP
 {
-	labelStrP = [NSString stringWithString:strP];
+	labelStrP = [[NSString alloc] initWithString:strP];
 	[callnoLabelP setText:strP];
 }
 - (void)didReceiveMemoryWarning {

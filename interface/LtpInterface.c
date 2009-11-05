@@ -108,18 +108,10 @@ void alertInterface(void *udata,int lineid, int alertcode, void *data)
 				IncommingCallType *incommingCallP;
 				incommingCallP = (IncommingCallType *)malloc(sizeof(IncommingCallType));
 				incommingCallP->lineid = lineid;
-				if(data)
-				{	
-					char *tmP;
-					tmP = (char*)data;
-					//printf("\n name = %s",tmP);
-					strcpy(incommingCallP->userIdChar,tmP);
-					ldata = incommingCallP;//change data variable 
-				}
-				else
-				{
-					free(incommingCallP);
-				}
+				strcpy(incommingCallP->userIdChar,ltpInterfaceP->ltpObjectP->call[lineid].remoteUserid);
+				ldata = incommingCallP;//change data variable 
+
+				
 			}
 			break;
 	
