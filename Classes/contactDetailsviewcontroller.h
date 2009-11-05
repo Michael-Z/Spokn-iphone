@@ -12,9 +12,16 @@
 #include "ua.h"
 #import "customcell.h"
 #import "custombutton.h"
-#define MAX_COUNT 7
+#define MAX_COUNT 10
 #define MAX_SECTION 4
 @class SpoknAppDelegate;
+typedef struct SelectedContctType
+	{
+		char nameChar[150];
+		char type[40];
+		char number[150];
+	}SelectedContctType;
+
 typedef struct DataForSection
 {
 	int section;
@@ -23,15 +30,10 @@ typedef struct DataForSection
 	char nameofRow[40];
 	char *secRowP;
 	char *elementP;
+	SelectedContctType *contactdataP;
 	UIView *customViewP;
 	
 }DataForSection;
-typedef struct SelectedContctType
-{
-	char nameChar[150];
-	char type[40];
-	char number[150];
-}SelectedContctType;
 	
 typedef struct SectionContactType
 	{
@@ -39,6 +41,7 @@ typedef struct SectionContactType
 		int sectionheight;
 		UIView *sectionView;
 		//int rowHeight;
+		
 		DataForSection dataforSection[MAX_COUNT];
 	}SectionContactType;
 
@@ -70,6 +73,8 @@ typedef enum ViewTypeEnum
 	NSMutableArray *listOfItems;
 	struct CDR *cdrP;
 	Boolean callActionSheetB;
+	int firstSecCount;
+	int secondSecCount;
 	SectionContactType sectionArray[MAX_SECTION];
 	//char *element[MAX_COUNT]; 
 	struct AddressBook *addressDataP;
@@ -106,6 +111,7 @@ typedef enum ViewTypeEnum
 -(void)setReturnValue:(int*)lretValB selectedContactNumber:(char*)lnumberCharP rootObject:(id)rootObject selectedContact:(SelectedContctType*)lselectContactP;
 -(void)setTitlesString:(NSString*)nsP;
 -(void)setSelectedNumber:(char*)noCharP showAddButton:(BOOL)lshowB;
+-(void) addContactDetails:(SelectedContctType *)lcontactdataP;
 
 @end
 

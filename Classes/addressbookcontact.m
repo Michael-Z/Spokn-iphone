@@ -394,19 +394,6 @@ titleForHeaderInSection:(NSInteger)section
 	
 	
 	 
-	/* 
-	 ContactDetailsViewController     *ContactControllerDetailsviewP;	
-	 ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
-	 [ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTPHONEDETAIL];
-	 [ContactControllerDetailsviewP setObject:self->ownerobject];
-	 
-	 [ ownerobject.contactNavigationController pushViewController:ContactControllerDetailsviewP animated: YES ];
-	 
-	 if([ContactControllerDetailsviewP retainCount]>1)
-	 [ContactControllerDetailsviewP release];
-	 */
-	 
-	[(ContactViewController*) controllerP showContactDetailScreen:addressP :CONTACTPHONEADDRESSBOOKDETAIL];
 	free(addressP);
 	 
 	 
