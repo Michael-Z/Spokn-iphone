@@ -270,7 +270,22 @@
 	char *forwardCharP;
 	int result=0;
 	forwardCharP = getForwardNo(&result);
-	[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result ];
+	if(wifiavailable)
+	{	
+		[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result ];
+	}
+	else
+	{
+		if(self->onLineB)
+		{	
+			[spoknViewControllerP setDetails:getTitle() :self->onLineB :NO_WIFI_AVAILABLE :getBalance() :forwardCharP :getDidNo() forwardOn:result ];
+		}
+		else
+		{
+			[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result ];
+			
+		}
+	}
 }
 -(void)LoadContactView:(id)object
 {
@@ -1049,8 +1064,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			{	 
 				printf("\n richable set via wwan");
 				 wifiavailable = NO;
+				alertNotiFication(ALERT_ONLINE,0,NO_WIFI_AVAILABLE,(long)self,0);
 				//wifiavailable = YES;
-				SetConnection( ltpInterfacesP,2);
+				//SetConnection( ltpInterfacesP,2);
 			}	 
 			break;
         }

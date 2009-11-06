@@ -382,6 +382,8 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			currentView = 1;
 			[hangUpButtonP setTitle:@"Hang" forState:UIControlStateNormal];
 			numberlebelP.text = @"";
+			statusLabel1P.hidden = NO;
+			statusLabel2P.hidden = NO;
 		}	
 	}
 	else
@@ -450,6 +452,8 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				
 				[ownerobject vmsShowRecordScreen:numbercharP];
 				numberlebelP.text = @"";
+				statusLabel1P.hidden = NO;
+				statusLabel2P.hidden = NO;
 			}	
 		}
 	}

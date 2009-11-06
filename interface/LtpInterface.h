@@ -21,6 +21,7 @@
 	#define MAXDATA 2000
 	#define MAXINCALL 15 
 	#define MAXTIME_RESYNC 180 //this is in sec 
+	#define NO_WIFI_AVAILABLE 1001 
 	#define _OWN_THREAD_
 	
   #include <pthread.h>

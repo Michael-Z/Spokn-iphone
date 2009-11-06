@@ -96,12 +96,14 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
+		CGRect statusFrame = CGRectMake(120, 0, 170, 40);
 		CGRect LabelFrame2 = CGRectMake(165, 0, 117, 40);
 		[self.tabBarItem initWithTitle:@"My Spokn" image:[UIImage imageNamed:@"spokntab.png"] tag:5];
 		labelBalance = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelBalance.textAlignment = UITextAlignmentRight;
 		labelBalance.tag = 1;
-		labelStatus = [[UILabel alloc] initWithFrame:LabelFrame2];
+		
+		labelStatus = [[UILabel alloc] initWithFrame:statusFrame];
 		labelStatus.textAlignment = UITextAlignmentRight;
 		labelStatus.tag = 2;
 		labelForword = [[UILabel alloc] initWithFrame:LabelFrame2];
@@ -372,7 +374,15 @@ titleForHeaderInSection:(NSInteger)section
 		case 1:
 			self.navigationItem.titleView = 0;
 			[activityIndicator stopAnimating];
-			[labelStatus setText:@"Online  "];
+			switch(subStatus)
+			{
+				case NO_WIFI_AVAILABLE:
+				[labelStatus setText:@"No wifi available"];
+				break;
+				default:
+				[labelStatus setText:@"Online  "];
+			}
+			//[labelStatus setText:@"Online  "];
 			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 													   initWithTitle:@"Sign-out" 
 													   style:UIBarButtonItemStylePlain 
