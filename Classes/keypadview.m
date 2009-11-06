@@ -17,9 +17,9 @@
 {
 	elementx = lelementx;
 	elementy = lelementy;
-	elementWidth = self.frame.size.width/elementx;
-	elementHeight = self.frame.size.height/elementy;
-	NSLog(@"\n element taken %f %f ",elementWidth,elementHeight);
+	elementWidth = self.bounds.size.width/elementx;
+	elementHeight = self.bounds.size.height/elementy;
+	//NSLog(@"\n element taken %f %f ",elementWidth,elementHeight);
 		
 }	
 
@@ -29,19 +29,20 @@
 	pressedImageP = [[UIImage imageNamed:pressedImgP] retain];
 	CGRect tmpBound;
 	tmpBound = self.bounds;
-	NSLog(@"\n normal %f %f ",keypadImageP.size.width,keypadImageP.size.height);
-	NSLog(@"\n pressed %f %f ",pressedImageP.size.width,pressedImageP.size.height);
-	NSLog(@"\n bound %f %f ",tmpBound.size.width,tmpBound.size.height);
+	//NSLog(@"\n normal %f %f ",keypadImageP.size.width,keypadImageP.size.height);
+	//NSLog(@"\n pressed %f %f ",pressedImageP.size.width,pressedImageP.size.height);
+	//NSLog(@"\n bound %f %f ",tmpBound.size.width,tmpBound.size.height);
 	
 	tmpBound.size.width = keypadImageP.size.width;
 	tmpBound.size.height = keypadImageP.size.height;
 	self.bounds = tmpBound;
+	//NSLog(@"\n bound while start %f %f ",self.bounds.size.width ,self.bounds.size.height);
 	tmpBound = self.frame;
 	tmpBound.size.width = keypadImageP.size.width;
 	tmpBound.size.height = keypadImageP.size.height;
 
 	self.frame = tmpBound;
-	self.backgroundColor = [UIColor redColor];
+	//self.backgroundColor = [UIColor redColor];
 
 }
 - (id)initWithFrame:(CGRect)frame {
@@ -71,15 +72,16 @@
 	{
 		CGPoint point = [touch locationInView:self];
 		
-		NSLog(@"\npoint x=%f y=%f\n",point.x,point.y);
+		//NSLog(@"\npoint x=%f y=%f\n",point.x,point.y);
 		row =  point.y/self->elementHeight;
 		col = point.x/self->elementWidth;
 
-		NSLog(@"\n%f %f",point.x*4/self.bounds.size.width,point.y*4/self.bounds.size.height);
+		//NSLog(@"\n%f %f",point.x*4/self.bounds.size.width,point.y*4/self.bounds.size.height);
 		rectchange.origin.x = col*elementWidth;
 		rectchange.origin.y = row*elementHeight;
 		rectchange.size.width = elementWidth;
 		rectchange.size.height = elementHeight;
+		NSLog(@"\n rect = %f %f %f %f",rectchange.origin.x,rectchange.origin.y,rectchange.size.width,rectchange.size.height);
 		arrayPos = row*elementx+col;
 		[keypadProtocolP keyPressedDown:keyStrs[arrayPos] keycode:keyValues[arrayPos] ];
 	}
@@ -96,6 +98,8 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+	
+	//NSLog(@"\n bound in draw %f %f ",self.bounds.size.width ,self.bounds.size.height);
 	/*UIFont *fntP;
 	UIColor *txtColor;
 	CGContextRef context = UIGraphicsGetCurrentContext(); 
@@ -120,7 +124,7 @@
 	 */
 	CGRect r, b;
 	
-	//NSLog(@"drawRect");
+	////NSLog(@"drawRect");
 	r.size = [keypadImageP  size];
 	//b = CGRectMake(0.0f, 74.0f, 320.0f, 273.0f);
 	b = [self bounds];
@@ -131,8 +135,8 @@
 		CGRect ri;
 		ri = rectchange;
 			
-		NSLog(@"\n%f %f   %f %f ",ri.origin.x,ri.origin.y,ri.size.width,ri.size.height);
-		//NSLog(@"drawButton %d", _downKey);
+		//NSLog(@"\n%f %f   %f %f ",ri.origin.x,ri.origin.y,ri.size.width,ri.size.height);
+		////NSLog(@"drawButton %d", _downKey);
 		//CGRect ri = [self rectForKey:_downKey];
 		CGImageRef cgImg = CGImageCreateWithImageInRect([ pressedImageP CGImage], ri);
 		UIImage *img = [UIImage imageWithCGImage:cgImg];
