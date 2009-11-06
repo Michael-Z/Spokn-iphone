@@ -17,8 +17,9 @@
 {
 	elementx = lelementx;
 	elementy = lelementy;
-	elementWidth = self.bounds.size.width/elementx;
-	elementHeight = self.bounds.size.height/elementy;
+	elementWidth = self.frame.size.width/elementx;
+	elementHeight = self.frame.size.height/elementy;
+	NSLog(@"\n element taken %f %f ",elementWidth,elementHeight);
 		
 }	
 
@@ -26,6 +27,21 @@
 {
 	keypadImageP = [[UIImage imageNamed:normalImgP] retain];
 	pressedImageP = [[UIImage imageNamed:pressedImgP] retain];
+	CGRect tmpBound;
+	tmpBound = self.bounds;
+	NSLog(@"\n normal %f %f ",keypadImageP.size.width,keypadImageP.size.height);
+	NSLog(@"\n pressed %f %f ",pressedImageP.size.width,pressedImageP.size.height);
+	NSLog(@"\n bound %f %f ",tmpBound.size.width,tmpBound.size.height);
+	
+	tmpBound.size.width = keypadImageP.size.width;
+	tmpBound.size.height = keypadImageP.size.height;
+	self.bounds = tmpBound;
+	tmpBound = self.frame;
+	tmpBound.size.width = keypadImageP.size.width;
+	tmpBound.size.height = keypadImageP.size.height;
+
+	self.frame = tmpBound;
+	self.backgroundColor = [UIColor redColor];
 
 }
 - (id)initWithFrame:(CGRect)frame {
@@ -54,6 +70,8 @@
 	while ((touch = [enumerator nextObject])) 
 	{
 		CGPoint point = [touch locationInView:self];
+		
+		NSLog(@"\npoint x=%f y=%f\n",point.x,point.y);
 		row =  point.y/self->elementHeight;
 		col = point.x/self->elementWidth;
 

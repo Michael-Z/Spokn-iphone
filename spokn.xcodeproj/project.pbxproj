@@ -170,6 +170,7 @@
 		8BE3E2F11084D100008CB625 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3E2EF1084D100008CB625 /* Reachability.m */; };
 		8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */; };
 		8BE447B01080924400EB3A4A /* vmsprogressleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE447AF1080924400EB3A4A /* vmsprogressleft.png */; };
+		8BE59EF410A4155100AFB4D2 /* lcd_top_simple.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE59EF310A4155100AFB4D2 /* lcd_top_simple.png */; };
 		8BE6DF5D104BC54700703BE8 /* vmsplayrecord.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */; };
 		8BE6DF5E104BC54700703BE8 /* playrecordpcm.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF56104BC54700703BE8 /* playrecordpcm.c */; };
 		8BE6DF5F104BC54700703BE8 /* netlayer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF58104BC54700703BE8 /* netlayer.c */; };
@@ -439,6 +440,7 @@
 		8BE3E2F01084D100008CB625 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8BE447AF1080924400EB3A4A /* vmsprogressleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmsprogressleft.png; sourceTree = "<group>"; };
+		8BE59EF310A4155100AFB4D2 /* lcd_top_simple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lcd_top_simple.png; sourceTree = "<group>"; };
 		8BE6DF52104BC54700703BE8 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = windows.h; path = interface/windows.h; sourceTree = "<group>"; };
 		8BE6DF53104BC54700703BE8 /* vmsplayrecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vmsplayrecord.h; path = interface/vmsplayrecord.h; sourceTree = "<group>"; };
 		8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vmsplayrecord.c; path = interface/vmsplayrecord.c; sourceTree = "<group>"; };
@@ -885,6 +887,7 @@
 		F2730CAF1070A9B300DF8852 /* rsc */ = {
 			isa = PBXGroup;
 			children = (
+				8BE59EF310A4155100AFB4D2 /* lcd_top_simple.png */,
 				8BF795361085F76F00DBFC51 /* red.png */,
 				8BF795371085F76F00DBFC51 /* orange.png */,
 				8BF795381085F76F00DBFC51 /* green.png */,
@@ -1119,6 +1122,7 @@
 				8BAA7DA4109EBD3E0009C8D4 /* dtmf-8.aif in Resources */,
 				8BAA7DA5109EBD3E0009C8D4 /* dtmf-9.aif in Resources */,
 				8BAA7DA6109EBD3E0009C8D4 /* dtmf-s.aif in Resources */,
+				8BE59EF410A4155100AFB4D2 /* lcd_top_simple.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -470,6 +470,7 @@
 			addrP = getContact(addressDataP->id);			
 			if(addrP)
 			{
+				printf("\n add contact");
 				strcpy(addrP->title,addressDataP->title);
 				strcpy(addrP->mobile,addressDataP->mobile);
 				strcpy(addrP->business,addressDataP->business);

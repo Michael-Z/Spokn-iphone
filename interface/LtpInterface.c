@@ -436,11 +436,16 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 	}
 	if(ltpInterfaceP->connectionActiveByte)
 	{	
+		printf("\n mukesh start ");
 		restartSocket(&ltpInterfaceP->socketID);
 		//printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
 		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
+		ltpInterfaceP->alertNotifyP(START_LOGIN,0,0,ltpInterfaceP->userData,0);
 	}
-	ltpInterfaceP->alertNotifyP(START_LOGIN,0,0,ltpInterfaceP->userData,0);
+	else
+	{
+		ltpInterfaceP->alertNotifyP(START_LOGIN,0,1,ltpInterfaceP->userData,0);
+	}
 	
 	return 0;
 

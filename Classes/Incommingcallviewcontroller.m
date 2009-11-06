@@ -33,6 +33,7 @@
     [super viewDidLoad];
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"IncommingCall" image:nil tag:2];
+	incomingStatusLabelP.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lcd_top_simple.png"]];
 	[incomingStatusLabelP setText:textProP];
 	[self.view setBackgroundColor:[[[UIColor alloc] 
 							   initWithPatternImage:[UIImage defaultDesktopImage]]

@@ -377,10 +377,12 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			return;
 		}
 		strcpy(lastTypeNo,numbercharP);
-		[ownerobject makeCall:numbercharP];
-		currentView = 1;
-		[hangUpButtonP setTitle:@"Hang" forState:UIControlStateNormal];
-		numberlebelP.text = @"";
+		if([ownerobject makeCall:numbercharP])
+		{	
+			currentView = 1;
+			[hangUpButtonP setTitle:@"Hang" forState:UIControlStateNormal];
+			numberlebelP.text = @"";
+		}	
 	}
 	else
 	{

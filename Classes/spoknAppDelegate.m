@@ -100,6 +100,11 @@
 			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 			break;
 		case START_LOGIN:
+				if(self->subID==1)//mean no connectivity
+				{
+					printf("\n start network request send");
+					[self startCheckNetwork];
+				}
 				[dialviewP setStatusText: @"connecting..." :START_LOGIN :0 ];
 			break;
 		case ALERT_ONLINE://login
@@ -107,7 +112,8 @@
 			//printf("\nonline");
 			#endif
 			self->onLineB = true;
-				[dialviewP setStatusText: @"online" :ALERT_ONLINE :0 ];
+			[dialviewP setStatusText: @"online" :ALERT_ONLINE :0 ];
+			
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];
 			//[self performSelectorOnMainThread : @ selector(popLoginView: ) withObject:nil waitUntilDone:YES];
@@ -701,7 +707,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 											  otherButtonTitles:@"OK", nil];
 		[alert show];
 		[alert release];
-		return;
+		return retB;
 	}
 	if(self->onLineB)
 	{	
@@ -982,10 +988,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//addr.sin_port = htons(80);	
 //	addr.sin_family = AF_INET;
 	
-	
+	printf("\n start Reachability");
 //	printf("\n host reach start");
 	[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
-
+	[self stopCheckNetwork];
 	hostReach = [[Reachability reachabilityWithHostName: @"www.spokn.com"] retain];
 	//hostReach = [[Reachability reachabilityWithAddress:&addr] retain];
 	[hostReach startNotifer];
@@ -1034,30 +1040,46 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			printf("\n offline set");
 			alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
             break;
-        }
+        }		
             
         case ReachableViaWWAN:
         {
-             break;
+            printf("\n richebility on trough ReachableViaWWAN");
+			if(connectionRequired==NO)
+			{	 
+				printf("\n richable set via wwan");
+				 wifiavailable = NO;
+				//wifiavailable = YES;
+				SetConnection( ltpInterfacesP,2);
+			}	 
+			break;
         }
         case ReachableViaWiFi:
         {
 			/*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" 
 															message:@"connect via wifi"
-														   delegate:self 
+														   delegate:self		
 												  cancelButtonTitle:nil 
 												  otherButtonTitles:@"OK", nil];
 			[alert show];
 			[alert release];*/
-			printf("\n richable set");
-			wifiavailable = YES;
-			SetConnection( ltpInterfacesP,2);
+			 if(connectionRequired==NO)
+			 {	 
+				 printf("\n richable set");
+				 wifiavailable = YES;
+				 SetConnection( ltpInterfacesP,2);
+			 }	 
 			 break;
 		}
     }
     if(connectionRequired)
     {
-        statusString= [NSString stringWithFormat: @"%@, Connection Required", statusString];
+        statusString= [NSString stringWithFormat: @"%@, Connection Required %d", statusString,netStatus];
+		SetConnection( ltpInterfacesP,0);
+		printf("\n offline set");
+		alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
+		wifiavailable = NO;
+		
     }
     NSLog(statusString);
 	//textField.text= statusString;
