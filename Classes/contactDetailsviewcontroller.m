@@ -709,7 +709,7 @@
 				msgLabelP.textAlignment = UITextAlignmentLeft;
 				msgLabelP.tag = 1;
 				msgLabelP.numberOfLines = 2;
-				msgLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+				msgLabelP.backgroundColor = [UIColor clearColor];
 				//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 				
 				
@@ -774,7 +774,7 @@
 											   target: self
 											   action: @selector(cancelClicked) ] autorelease ];	*/
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	viewP.backgroundColor = [UIColor clearColor];
 	if(viewEnum==CONTACTADDVIEWENUM || viewEnum == CONTACTFORWARDVMS)
 	{
 		viewP.hidden = !showAddButtonB;

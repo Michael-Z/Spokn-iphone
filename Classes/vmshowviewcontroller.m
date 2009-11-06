@@ -1145,8 +1145,8 @@ id createImage(float percentage)
 	[ownerobject setVmsDelegate:self];
 	[self setTitle:@"Vms"];
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	firstSectionviewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	secondSectionviewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	firstSectionviewP.backgroundColor = [UIColor clearColor];
+	secondSectionviewP.backgroundColor = [UIColor clearColor];
 
 	tableView.delegate = self;
 	tableView.dataSource = self;
