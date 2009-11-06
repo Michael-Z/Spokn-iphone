@@ -247,8 +247,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -288,6 +286,8 @@
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>8B8EC6B2101211570036D419</string>
+								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>8B177BE3104674A600E42923</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>8BB5492C104BF2F300BD6C22</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
@@ -297,11 +297,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>106</integer>
+									<integer>133</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1238}, {302, 683}}</string>
+							<string>{{0, 1714}, {302, 683}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -331,12 +331,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>keypadview.m</string>
+								<string>contactDetailsviewcontroller.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -344,11 +346,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>keypadview.m</string>
+										<string>contactDetailsviewcontroller.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8B25F5DF10A429A800DE0EAB</string>
+										<string>8B25F69810A43C2900DE0EAB</string>
 										<key>history</key>
 										<array>
 											<string>8B84B79A101480B800836F86</string>
@@ -605,9 +607,7 @@
 											<string>8BF1638E10883B2D00E66A9C</string>
 											<string>8BF1638F10883B2D00E66A9C</string>
 											<string>8BF1639010883B2D00E66A9C</string>
-											<string>8BF1639110883B2D00E66A9C</string>
 											<string>8BF1639210883B2D00E66A9C</string>
-											<string>8BF1639310883B2D00E66A9C</string>
 											<string>8BF1639410883B2D00E66A9C</string>
 											<string>8BF1639510883B2D00E66A9C</string>
 											<string>8BF1639610883B2D00E66A9C</string>
@@ -706,11 +706,9 @@
 											<string>8B4BAC3A10A3FC4000749443</string>
 											<string>8B4BAC3B10A3FC4000749443</string>
 											<string>8B4BAC5A10A4059600749443</string>
-											<string>8B4BAC5B10A4059600749443</string>
 											<string>8B4BAC5C10A4059600749443</string>
 											<string>8B4BAC5D10A4059600749443</string>
 											<string>8B4BAC5E10A4059600749443</string>
-											<string>8B4BAC7510A407B600749443</string>
 											<string>8BE59EF710A4156900AFB4D2</string>
 											<string>8BE59F0D10A4172F00AFB4D2</string>
 											<string>8BE59F0E10A4172F00AFB4D2</string>
@@ -719,9 +717,13 @@
 											<string>8BE59F1110A4172F00AFB4D2</string>
 											<string>8BE59F5510A41B6700AFB4D2</string>
 											<string>8BE59FCE10A4228000AFB4D2</string>
-											<string>8B25F5A910A4244E00DE0EAB</string>
 											<string>8B25F5C810A426E200DE0EAB</string>
-											<string>8B25F5C910A426E200DE0EAB</string>
+											<string>8B25F62410A4355000DE0EAB</string>
+											<string>8B25F62510A4355000DE0EAB</string>
+											<string>8B25F68010A43A8100DE0EAB</string>
+											<string>8B25F69010A43B4B00DE0EAB</string>
+											<string>8B25F69110A43B4B00DE0EAB</string>
+											<string>8B25F69210A43B4B00DE0EAB</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -819,7 +821,6 @@
 											<string>8BF163D010883B2D00E66A9C</string>
 											<string>8BF163D110883B2D00E66A9C</string>
 											<string>8BF163D210883B2D00E66A9C</string>
-											<string>8BF163D310883B2D00E66A9C</string>
 											<string>8BF163D410883B2D00E66A9C</string>
 											<string>8BF163D510883B2D00E66A9C</string>
 											<string>8BF163D610883B2D00E66A9C</string>
@@ -861,11 +862,14 @@
 											<string>8B4BAC7710A407B600749443</string>
 											<string>8BE59F1410A4172F00AFB4D2</string>
 											<string>8BE59F1710A4172F00AFB4D2</string>
-											<string>8BE59F5710A41B6700AFB4D2</string>
 											<string>8BE59F8910A41DBB00AFB4D2</string>
-											<string>8B25F5AB10A4244E00DE0EAB</string>
 											<string>8B25F5CA10A426E200DE0EAB</string>
 											<string>8B25F5CB10A426E200DE0EAB</string>
+											<string>8B25F60E10A433BC00DE0EAB</string>
+											<string>8B25F62810A4355000DE0EAB</string>
+											<string>8B25F68210A43A8100DE0EAB</string>
+											<string>8B25F69310A43B4B00DE0EAB</string>
+											<string>8B25F69410A43B4B00DE0EAB</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1064,7 +1068,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>279194024.69968897</real>
+	<real>279198761.47231799</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -1083,6 +1087,7 @@
 		<string>8B25F5B810A4244E00DE0EAB</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>8B93025A1011EBB8004BDA41</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/mukesh/mygit/iphone/spokn.xcodeproj</string>
 	</array>
@@ -1321,12 +1326,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>dialviewcontroller.m</string>
+										<string>callviewcontroller.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1347,8 +1354,6 @@
 							<string>342pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1384,8 +1389,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>8BE59F2910A4191C00AFB4D2</string>
-				<string>8BE59F2A10A4191C00AFB4D2</string>
+				<string>8B25F60910A433BB00DE0EAB</string>
+				<string>8B25F60A10A433BB00DE0EAB</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -1394,7 +1399,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

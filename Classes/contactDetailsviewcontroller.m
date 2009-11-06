@@ -1184,10 +1184,7 @@ titleForHeaderInSection:(NSInteger)section
 	
 	if(firstSecCount==0 && secondSecCount==0)
 	{	
-		if(laddressDataP==0)
-		{
-			return;
-		}
+		
 		for(int i=0;i<MAX_SECTION;++i)
 		{
 			memset(&sectionArray[i],0,sizeof(SectionContactType));
