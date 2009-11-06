@@ -25,7 +25,6 @@
 		8B1B8FDD107E0D3F00C77E3F /* spoknlog.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1B8FDC107E0D3F00C77E3F /* spoknlog.png */; };
 		8B25F61B10A4348E00DE0EAB /* keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B25F61A10A4348E00DE0EAB /* keypad.png */; };
 		8B2C3D8C1096CB54003BB164 /* ltpandsip.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C3D8B1096CB54003BB164 /* ltpandsip.c */; };
-		8B3309081073519500DF154C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B3309071073519500DF154C /* Settings.bundle */; };
 		8B39FFC8107C910200073950 /* vmshowviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B39FFC6107C910200073950 /* vmshowviewcontroller.m */; };
 		8B39FFC9107C910200073950 /* vmshowviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */; };
 		8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B413C4D1075ED71005A400F /* spoknviewcontroller.m */; };
@@ -254,7 +253,6 @@
 		8B1B8FDC107E0D3F00C77E3F /* spoknlog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spoknlog.png; sourceTree = "<group>"; };
 		8B2C3D8A1096CB54003BB164 /* ltpandsip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpandsip.h; path = interface/ltpandsip.h; sourceTree = "<group>"; };
 		8B2C3D8B1096CB54003BB164 /* ltpandsip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpandsip.c; path = interface/ltpandsip.c; sourceTree = "<group>"; };
-		8B3309071073519500DF154C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		8B39FFC5107C910200073950 /* vmshowviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmshowviewcontroller.h; sourceTree = "<group>"; };
 		8B39FFC6107C910200073950 /* vmshowviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = vmshowviewcontroller.m; sourceTree = "<group>"; };
 		8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = vmshowviewcontroller.xib; sourceTree = "<group>"; };
@@ -661,7 +659,6 @@
 			isa = PBXGroup;
 			children = (
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
-				8B3309071073519500DF154C /* Settings.bundle */,
 				8B177BE3104674A600E42923 /* image */,
 				8B6739E2101209E900849952 /* spokn-Info.plist */,
 				8B93027E1011EDFA004BDA41 /* spokn.png */,
@@ -1087,7 +1084,6 @@
 				8B47DB4A107264ED00EEEF61 /* dialer.png in Resources */,
 				8B47DB4B107264ED00EEEF61 /* contacts.png in Resources */,
 				8B47DB4C107264ED00EEEF61 /* addcall.png in Resources */,
-				8B3309081073519500DF154C /* Settings.bundle in Resources */,
 				8B0723AC1075150300C1D1A4 /* Default.png in Resources */,
 				8B07244F10751C3B00C1D1A4 /* vms.png in Resources */,
 				8B07246410751D4600C1D1A4 /* login.png in Resources */,
