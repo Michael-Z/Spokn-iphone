@@ -81,7 +81,12 @@
 		rectchange.size.width = elementWidth;
 		rectchange.size.height = elementHeight;
 		arrayPos = row*elementx+col;
-		[keypadProtocolP keyPressedDown:keyStrs[arrayPos] keycode:keyValues[arrayPos] ];
+		printf("%d",  arrayPos);
+		if(arrayPos<12)
+		{	
+			NSLog(@"\n%@ %c",keyStrs[arrayPos],keyValues[arrayPos]);
+			[keypadProtocolP keyPressedDown:keyStrs[arrayPos] keycode:keyValues[arrayPos] ];
+		}	
 	}
 	[self setNeedsDisplay];
 }
