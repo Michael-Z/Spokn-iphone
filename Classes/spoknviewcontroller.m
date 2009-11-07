@@ -18,6 +18,12 @@
 - (void) createSectionList: (id) wordArray
 {
 	// Build an array with 4 sub-array sections
+	self->imageName[0][0].imageNameP = @"AS-status";
+	self->imageName[0][1].imageNameP = @"AS-credits";
+	self->imageName[1][0].imageNameP = @"AS-callforward";
+	self->imageName[1][1].imageNameP = @"AS-forward-to";
+	self->imageName[2][0].imageNameP = @"AS-spokn";
+	//self.imageName[1][1].imageNameP = @"";
 	listOfItems = [[NSMutableArray alloc] init] ;
 	for (int i = 0; i < 3; i++)
 	{
@@ -97,12 +103,12 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
 		CGRect statusFrame = CGRectMake(120, 0, 170, 40);
-		CGRect LabelFrame2 = CGRectMake(165, 0, 117, 40);
+		CGRect LabelFrame2 = CGRectMake(170, 0, 117, 40);
 		[self.tabBarItem initWithTitle:@"My Spokn" image:[UIImage imageNamed:@"TB-Spokn.png"] tag:5];
 		labelBalance = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelBalance.textAlignment = UITextAlignmentRight;
 		labelBalance.tag = 1;
-		
+		LabelFrame2 = CGRectMake(165, 0, 117, 40);
 		labelStatus = [[UILabel alloc] initWithFrame:statusFrame];
 		labelStatus.textAlignment = UITextAlignmentRight;
 		labelStatus.tag = 2;
@@ -437,14 +443,14 @@ titleForHeaderInSection:(NSInteger)section
     
     
 		NSArray *mycell = [[[listOfItems objectAtIndex:section] objectAtIndex:row] componentsSeparatedByString:@"\n"];
-		[uiImageViewP = [UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spoknlog" ofType:@"png" inDirectory:@"/"]]];
+		[uiImageViewP = [UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self->imageName[section][row].imageNameP ofType:@"png" inDirectory:@"/"]]];
 		
 		uiImageViewP.frame = CGRectMake(4, 8, 32, 32);
 		[cell.contentView addSubview:uiImageViewP];
 		//cell.text = [mycell objectAtIndex:0];
 		NSString *temp =[mycell objectAtIndex:0];
 		//cell.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spoknlog" ofType:@"png" inDirectory:@"/"]];
-		CGRect LabelFrame1 = CGRectMake(35, 0, 150, 40);
+		CGRect LabelFrame1 = CGRectMake(40, 0, 150, 40);
 		label1 = [[UILabel alloc] initWithFrame:LabelFrame1];
 		label1.text = temp;
 		[cell.contentView addSubview:label1];

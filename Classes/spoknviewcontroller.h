@@ -14,6 +14,11 @@
 		UIView *viewForrowP;
 	}SubViewDetails;
  */
+typedef struct ImageNameType
+	{
+		NSString *imageNameP;
+	}ImageNameType;
+#define MAXIMAGE 5
 @class SpoknAppDelegate;
 @interface SpoknViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
 	
@@ -30,6 +35,7 @@
 	int viewResult;
 	char *forwardNoCharP;
 	int viewCallB;
+	ImageNameType imageName[3][MAXIMAGE];
 	UIActivityIndicatorView *activityIndicator;
 	
 
