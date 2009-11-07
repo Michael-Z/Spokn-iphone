@@ -13,6 +13,10 @@
 #import  "AddeditcellController.h"
 #import "WebViewController.h"
 #include "ua.h"
+#define SPOKNCOLOR [UIColor colorWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0]
+
+
+
 @implementation SpoknViewController
 // Build a section/row list 
 - (void) createSectionList: (id) wordArray
@@ -80,7 +84,7 @@
 		char *forwordCharP;
 		forwordCharP = (char*)[[labelForword text] cStringUsingEncoding:NSUTF8StringEncoding];
 		
-		[labelForword setTextColor:[UIColor blackColor]]; 
+		[labelForword setTextColor:SPOKNCOLOR]; 
 		SetOrReSetForwardNo(true,forwordCharP);
 		profileResync();
 
@@ -103,12 +107,12 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
 		CGRect statusFrame = CGRectMake(120, 0, 170, 40);
-		CGRect LabelFrame2 = CGRectMake(170, 0, 117, 40);
+		CGRect LabelFrame2 = CGRectMake(160, 0, 117, 40);
 		[self.tabBarItem initWithTitle:@"My Spokn" image:[UIImage imageNamed:@"TB-Spokn.png"] tag:5];
 		labelBalance = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelBalance.textAlignment = UITextAlignmentRight;
 		labelBalance.tag = 1;
-		LabelFrame2 = CGRectMake(165, 0, 117, 40);
+	//	LabelFrame2 = CGRectMake(160, 0, 117, 40);
 		labelStatus = [[UILabel alloc] initWithFrame:statusFrame];
 		labelStatus.textAlignment = UITextAlignmentRight;
 		labelStatus.tag = 2;
@@ -408,7 +412,7 @@ titleForHeaderInSection:(NSInteger)section
 		if(forward)
 		{
 			switchView.on = YES;
-			[labelForword setTextColor:[UIColor blackColor]]; 
+			[labelForword setTextColor:SPOKNCOLOR]; 
 		}
 		else
 		{
@@ -450,9 +454,10 @@ titleForHeaderInSection:(NSInteger)section
 		//cell.text = [mycell objectAtIndex:0];
 		NSString *temp =[mycell objectAtIndex:0];
 		//cell.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spoknlog" ofType:@"png" inDirectory:@"/"]];
-		CGRect LabelFrame1 = CGRectMake(40, 0, 150, 40);
+		CGRect LabelFrame1 = CGRectMake(32, 0, 150, 40);
 		label1 = [[UILabel alloc] initWithFrame:LabelFrame1];
 		label1.text = temp;
+		label1.font = [UIFont boldSystemFontOfSize:15];
 		[cell.contentView addSubview:label1];
 		[label1 release];
 		
@@ -500,7 +505,7 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		else
 		{
-			label2.textColor = [UIColor blackColor];
+			label2.textColor = SPOKNCOLOR;
 			[cell.contentView addSubview:label2];
 			[label2 release];
 		}
