@@ -225,7 +225,7 @@
 		
 		if(tmP)
 		{	
-			char *days[7]={"Sunday","Monday","Tuesday","Wednesday","Thusday","Friday","Sutarday"};
+			char *days[7]={"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 			
 			time_t todaytime;
 			long difftime;
