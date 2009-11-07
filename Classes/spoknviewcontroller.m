@@ -80,7 +80,7 @@
 		char *forwordCharP;
 		forwordCharP = (char*)[[labelForword text] cStringUsingEncoding:NSUTF8StringEncoding];
 		
-		[labelForword setTextColor:[UIColor blueColor]]; 
+		[labelForword setTextColor:[UIColor blackColor]]; 
 		SetOrReSetForwardNo(true,forwordCharP);
 		profileResync();
 
@@ -408,7 +408,7 @@ titleForHeaderInSection:(NSInteger)section
 		if(forward)
 		{
 			switchView.on = YES;
-			[labelForword setTextColor:[UIColor blueColor]]; 
+			[labelForword setTextColor:[UIColor blackColor]]; 
 		}
 		else
 		{
@@ -445,7 +445,7 @@ titleForHeaderInSection:(NSInteger)section
 		NSArray *mycell = [[[listOfItems objectAtIndex:section] objectAtIndex:row] componentsSeparatedByString:@"\n"];
 		[uiImageViewP = [UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self->imageName[section][row].imageNameP ofType:@"png" inDirectory:@"/"]]];
 		
-		uiImageViewP.frame = CGRectMake(4, 8, 32, 32);
+		uiImageViewP.frame = CGRectMake(4, 8, 25, 25);
 		[cell.contentView addSubview:uiImageViewP];
 		//cell.text = [mycell objectAtIndex:0];
 		NSString *temp =[mycell objectAtIndex:0];
@@ -500,7 +500,7 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		else
 		{
-			label2.textColor = [UIColor blueColor];
+			label2.textColor = [UIColor blackColor];
 			[cell.contentView addSubview:label2];
 			[label2 release];
 		}
