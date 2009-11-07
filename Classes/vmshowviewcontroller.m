@@ -149,7 +149,7 @@
 		
 	}	
 
-	
+	return 0;
 	
 }
 
@@ -227,19 +227,22 @@
 				printf("\n forward no %s",contactNumberP);
 				if(vmstateType == VMSStateRecord)
 				{
-					if([ownerobject vmsSend:contactNumberP :fileNameCharP]==0)
-					{
-						UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:@"VMS sent successfuly." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-						
-						[alert show];
-					}
-					else
+					if([ownerobject vmsSend:contactNumberP :fileNameCharP]!=0)
 					{
 						UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:@"VMS sending failed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
 						
 						[alert show];
-					
+						
+						
 					}
+					/*else
+					{
+						UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:@"VMS sent successfuly." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+						
+						[alert show];					
+					}
+					 */
+					
 				}
 				else
 				{
@@ -247,6 +250,7 @@
 				
 				}
 				free(contactNumberP);
+				[self cancelClicked];//remove dialog
 				return;
 			}
 			free(contactNumberP);
