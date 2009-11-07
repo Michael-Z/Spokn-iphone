@@ -135,6 +135,9 @@
 		8B9302F11011EFC6004BDA41 /* STRING.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302E01011EFC6004BDA41 /* STRING.c */; };
 		8B9302F21011EFC6004BDA41 /* Table.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302E11011EFC6004BDA41 /* Table.c */; };
 		8B9303A61011F11B004BDA41 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9303A51011F11B004BDA41 /* AudioToolbox.framework */; };
+		8B9929E410A5679600EBD16F /* TB-VMS.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9929E110A5679600EBD16F /* TB-VMS.png */; };
+		8B9929E510A5679600EBD16F /* TB-Spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9929E210A5679600EBD16F /* TB-Spokn.png */; };
+		8B9929E610A5679600EBD16F /* Spokn-Logomark-59.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9929E310A5679600EBD16F /* Spokn-Logomark-59.png */; };
 		8BA8E3A11027EF800022801E /* addeditcontactviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */; };
 		8BA8E3A21027EF800022801E /* addeditcontact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E3A01027EF800022801E /* addeditcontact.xib */; };
 		8BA8E558102835BC0022801E /* vmailview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E555102835BC0022801E /* vmailview.xib */; };
@@ -394,6 +397,9 @@
 		8B9302E11011EFC6004BDA41 /* Table.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Table.c; path = ../lib/gsm/Table.c; sourceTree = SOURCE_ROOT; };
 		8B9302E21011EFC6004BDA41 /* UNPROTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UNPROTO.h; path = ../lib/gsm/UNPROTO.h; sourceTree = SOURCE_ROOT; };
 		8B9303A51011F11B004BDA41 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
+		8B9929E110A5679600EBD16F /* TB-VMS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-VMS.png"; sourceTree = "<group>"; };
+		8B9929E210A5679600EBD16F /* TB-Spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-Spokn.png"; sourceTree = "<group>"; };
+		8B9929E310A5679600EBD16F /* Spokn-Logomark-59.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spokn-Logomark-59.png"; sourceTree = "<group>"; };
 		8BA8E39E1027EF800022801E /* addeditcontactviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addeditcontactviewcontroller.h; sourceTree = "<group>"; };
 		8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addeditcontactviewcontroller.m; sourceTree = "<group>"; };
 		8BA8E3A01027EF800022801E /* addeditcontact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addeditcontact.xib; sourceTree = "<group>"; };
@@ -884,6 +890,9 @@
 		F2730CAF1070A9B300DF8852 /* rsc */ = {
 			isa = PBXGroup;
 			children = (
+				8B9929E110A5679600EBD16F /* TB-VMS.png */,
+				8B9929E210A5679600EBD16F /* TB-Spokn.png */,
+				8B9929E310A5679600EBD16F /* Spokn-Logomark-59.png */,
 				8BE59EF310A4155100AFB4D2 /* lcd_top_simple.png */,
 				8BF795361085F76F00DBFC51 /* red.png */,
 				8BF795371085F76F00DBFC51 /* orange.png */,
@@ -1119,6 +1128,9 @@
 				8BAA7DA5109EBD3E0009C8D4 /* dtmf-9.aif in Resources */,
 				8BAA7DA6109EBD3E0009C8D4 /* dtmf-s.aif in Resources */,
 				8BE59EF410A4155100AFB4D2 /* lcd_top_simple.png in Resources */,
+				8B9929E410A5679600EBD16F /* TB-VMS.png in Resources */,
+				8B9929E510A5679600EBD16F /* TB-Spokn.png in Resources */,
+				8B9929E610A5679600EBD16F /* Spokn-Logomark-59.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

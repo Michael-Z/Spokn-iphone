@@ -1004,10 +1004,13 @@
 		}	
 		//txtDestNo.hidden = YES;
 		toLabel.text = resultStrP;
+		if(countObj)
+		{	
 		//toLabel.backgroundColor = [UIColor whiteColor];
-		toLabel.hidden = NO;
-		_composerScrollView.hidden = YES;
-		//[_composerScrollView scrollRectToVisible: toLabel.frame animated:NO];
+			toLabel.hidden = NO;
+			_composerScrollView.hidden = YES;
+		}	
+			//[_composerScrollView scrollRectToVisible: toLabel.frame animated:NO];
 		[resultStrP release];
 		if(modalB==false)
 		{

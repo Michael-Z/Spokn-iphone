@@ -923,14 +923,18 @@ titleForHeaderInSection:(NSInteger)section
 	ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 	[ContactControllerDetailsviewP setObject:self->ownerobject];
 	[ContactControllerDetailsviewP setAddressBook:0 editable:true :CONTACTADDVIEWENUM];
+	UINavigationController *tmpCtl;
+	tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: ContactControllerDetailsviewP ] autorelease];
+	//[tmpCtl release];
 	
-
-	[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+	//[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
 		
-	
+	[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
 	
 	if([ContactControllerDetailsviewP retainCount]>1)
 		[ContactControllerDetailsviewP release];
+	//[self presentModalViewController:self animated:YES];
+	//ownerobject.tabBarController.view.hidden = YES;
 	//printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 	
 	

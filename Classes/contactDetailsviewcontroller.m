@@ -421,7 +421,14 @@
 	NSLog(@"Cancel");
 	
 	
-	[[self navigationController]  popViewControllerAnimated:YES];
+	if(viewEnum!=CONTACTADDVIEWENUM)
+	{	
+		[ [self navigationController] popToRootViewControllerAnimated:YES ];
+	}	
+	else
+	{
+		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+	}
 }
 -(IBAction)doneClicked
 {
@@ -487,8 +494,16 @@
 		profileResync();
 	}
 	if(popupB)
-	[ [self navigationController] popToRootViewControllerAnimated:YES ];
-	//contactID = -1;
+	{	
+		if(viewEnum!=CONTACTADDVIEWENUM)
+		{	
+			[ [self navigationController] popToRootViewControllerAnimated:YES ];
+		}	
+		else
+		{
+			[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+		}
+	}	//contactID = -1;
 		
 	
 	
@@ -775,6 +790,10 @@
 											   action: @selector(cancelClicked) ] autorelease ];	*/
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	viewP.backgroundColor = [UIColor clearColor];
+	if(viewEnum==CONTACTADDVIEWENUM)
+	{
+		self.title = @"New Contact";
+	}
 	if(viewEnum==CONTACTADDVIEWENUM || viewEnum == CONTACTFORWARDVMS)
 	{
 		viewP.hidden = !showAddButtonB;
@@ -1482,7 +1501,7 @@ titleForHeaderInSection:(NSInteger)section
 				[changeNameButtonP setTitle:userNameP.text forState:UIControlStateNormal];
 				tableView.tableHeaderView = changeNameButtonP;
 				//[changeNameButtonP release];
-				if(viewEnum!=CONTACTADDVIEWENUM)
+				//if(viewEnum!=CONTACTADDVIEWENUM)
 				{
 					self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 														   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
@@ -1568,7 +1587,7 @@ titleForHeaderInSection:(NSInteger)section
 		free(self->cdrP);
 	}
 	self->cdrP = 0;
-	printf("\n dealloc");
+	printf("\n dealloc contactdetails");
 	if(addressDataP)
 		free(addressDataP);
 	addressDataP = 0;

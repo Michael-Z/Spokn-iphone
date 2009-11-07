@@ -552,7 +552,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	printf("\n tab retain count %d",[tabBarController retainCount]);
 	printf("\n after %d %d",[callviewP retainCount],[dialviewP retainCount]	);
 	//tabBarController.selectedViewController = vmsNavigationController;
-	[vmsviewP.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
+	[vmsviewP.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"TB-VMS.png"] tag:4];
 	tabBarController.selectedViewController = spoknViewNavigationController;
 	
 
@@ -891,7 +891,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[vmShowViewControllerP setvmsDetail: noCharP : addressP->title :type :VMSStateRecord :max :0];
 		[vmShowViewControllerP setObject:self];
 		[vmsNavigationController popToRootViewControllerAnimated:NO];
-		[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];
+		UINavigationController *tmpCtl;
+		tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: vmShowViewControllerP ] autorelease];
+		[tabBarController presentModalViewController:tmpCtl animated:YES];
+		
+		//[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];
 		
 		if([vmShowViewControllerP retainCount]>1)
 			[vmShowViewControllerP release];
@@ -907,7 +911,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[vmShowViewControllerP setvmsDetail: noCharP : noCharP :"" :VMSStateRecord :max : 0];
 		[vmShowViewControllerP setObject:self];
 		[vmsNavigationController popToRootViewControllerAnimated:NO];
-		[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];
+		//[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];
+		UINavigationController *tmpCtl;
+		tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: vmShowViewControllerP ] autorelease];
+		[tabBarController presentModalViewController:tmpCtl animated:YES];
 		
 		if([vmShowViewControllerP retainCount]>1)
 			[vmShowViewControllerP release];

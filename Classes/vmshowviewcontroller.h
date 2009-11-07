@@ -64,6 +64,7 @@ typedef enum  VMSStateType
 	SelectedContctType *selectP;
 	pickerviewcontroller     *pickerviewcontrollerviewP;
 	OverlayViewController *ovController;
+	int recordVmsB;
 	//(SelectedContctType *)lselectedContactP
 	
 	

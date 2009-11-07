@@ -98,7 +98,7 @@
         // Custom initialization
 		CGRect statusFrame = CGRectMake(120, 0, 170, 40);
 		CGRect LabelFrame2 = CGRectMake(165, 0, 117, 40);
-		[self.tabBarItem initWithTitle:@"My Spokn" image:[UIImage imageNamed:@"spokntab.png"] tag:5];
+		[self.tabBarItem initWithTitle:@"My Spokn" image:[UIImage imageNamed:@"TB-Spokn.png"] tag:5];
 		labelBalance = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelBalance.textAlignment = UITextAlignmentRight;
 		labelBalance.tag = 1;

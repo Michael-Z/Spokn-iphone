@@ -21,6 +21,24 @@
 	
 	
 }
+-(IBAction)cancelClicked
+{
+	NSLog(@"Cancel");
+	
+		if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward)
+		{	
+			[ [self navigationController] popViewControllerAnimated:YES ];
+		}
+		else
+		{	
+			
+			[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+		}	
+	
+}
+
+
+
 - (void)upDateScreen
 {
 	tableView.tableHeaderView =  pickerviewcontrollerviewP.view;
@@ -244,10 +262,7 @@
 	}	
 }
 
--(IBAction)cancelClicked
-{
-	[ [self navigationController] popViewControllerAnimated:YES ];
-}
+
 -(IBAction)deleteClicked
 {
 	/*struct AddressBook *addressDataTmpP;
@@ -293,11 +308,14 @@
 	}
 	else
 	{
-		[PlayButtonP setTitle:@"Record" forState:UIControlStateNormal];
-		[PlayButtonP setTitle:@"Record" forState:UIControlStateHighlighted];
+		[PlayButtonP setTitle:@"Rerecord" forState:UIControlStateNormal];
+		[PlayButtonP setTitle:@"Rerecord" forState:UIControlStateHighlighted];
 	}
+	
+	[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTime - self->maxtimeDouble]];
+	[msgLabelP setText:@"Press on send button to send VMS "];
+	recordVmsB = true;
 	self->maxtimeDouble=maxTime;
-	[secondLabelP setText:[NSString stringWithFormat:@"%d", self->maxtimeDouble]];
 	amt = 0.0;
 	previewButtonP.enabled  = YES;
 	sendButtonP.enabled  = YES;
@@ -1058,6 +1076,10 @@ id createImage(float percentage)
 			[navButton release];
 			[deleteButton release];
 			tableView.tableHeaderView = 0;
+			self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+													   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+													   target: self
+													   action: @selector(cancelClicked) ] autorelease ];	
 		}
 		else
 		{
@@ -1066,8 +1088,12 @@ id createImage(float percentage)
 			[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
 			[sendButtonP setTitle:@"Send" forState:UIControlStateHighlighted];
 			
-			
-			self.navigationItem.rightBarButtonItem  = nil;
+			self.navigationItem.leftBarButtonItem = nil;
+			//self.navigationItem.rightBarButtonItem  = nil;
+			self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+													   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+													   target: self
+													   action: @selector(cancelClicked) ] autorelease ];	
 			
 		
 		}
@@ -1081,17 +1107,24 @@ id createImage(float percentage)
 		
 		pickerviewcontrollerviewP.upDateProtocolP = self;
 		tableView.tableHeaderView =  pickerviewcontrollerviewP.view;
-		[msgLabelP setText:@"Press the record button to record a\n20 second long VMS "];
-		[secondLabelP setText:[NSString stringWithFormat:@"%d", self->maxTime]];
-		previewButtonP.enabled  = NO;
-		sendButtonP.enabled  = NO;
-		[PlayButtonP setTitle:@"Record" forState:UIControlStateNormal];
-		[PlayButtonP setTitle:@"Record" forState:UIControlStateHighlighted];
-		[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
-		[sendButtonP setTitle:@"Send" forState:UIControlStateHighlighted];
-		[previewButtonP setTitle:@"Preview" forState:UIControlStateNormal];
-		[previewButtonP setTitle:@"Preview" forState:UIControlStateHighlighted];
-		self.navigationItem.rightBarButtonItem  = nil;
+		if(recordVmsB==false)
+		{	
+			[msgLabelP setText:@"Press the record button to record a\n20 second long VMS "];
+			[secondLabelP setText:[NSString stringWithFormat:@"%d", self->maxTime]];
+			previewButtonP.enabled  = NO;
+			sendButtonP.enabled  = NO;
+			[PlayButtonP setTitle:@"Record" forState:UIControlStateNormal];
+			[PlayButtonP setTitle:@"Record" forState:UIControlStateHighlighted];
+			[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
+			[sendButtonP setTitle:@"Send" forState:UIControlStateHighlighted];
+			[previewButtonP setTitle:@"Preview" forState:UIControlStateNormal];
+			[previewButtonP setTitle:@"Preview" forState:UIControlStateHighlighted];
+		}
+		self.navigationItem.leftBarButtonItem = nil;
+		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+													initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+													target: self
+													action: @selector(cancelClicked) ] autorelease ];	
 		/*
 		deleteButton = [[UIButton alloc] init];
 		// The default size for the save button is 49x30 pixels
@@ -1142,6 +1175,7 @@ id createImage(float percentage)
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	recordVmsB = false;
 	[ownerobject setVmsDelegate:self];
 	[self setTitle:@"Vms"];
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];

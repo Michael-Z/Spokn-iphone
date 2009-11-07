@@ -74,7 +74,11 @@
 		[vmShowViewControllerP setObject:self->ownerobject];
 		
 		[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];
+		//UINavigationController *tmpCtl;
+		//tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: vmShowViewControllerP ] autorelease];
+		//[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
 		
+				
 		if([vmShowViewControllerP retainCount]>1)
 			[vmShowViewControllerP release];
 		printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);
@@ -90,6 +94,9 @@
 		[vmShowViewControllerP setObject:self->ownerobject];
 		
 		[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];
+		//UINavigationController *tmpCtl;
+		//tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: vmShowViewControllerP ] autorelease];
+		//[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
 		
 		if([vmShowViewControllerP retainCount]>1)
 			[vmShowViewControllerP release];
@@ -745,7 +752,10 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[vmShowViewControllerP setvmsDetail: "" : "" :"" :VMSStateRecord :20 : 0];
 	[vmShowViewControllerP setObject:self->ownerobject];
 	//[[self navigationController] popToRootViewControllerAnimated:NO];
-	[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];
+	//[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];
+	UINavigationController *tmpCtl;
+	tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: vmShowViewControllerP ] autorelease];
+	[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
 	
 	if([vmShowViewControllerP retainCount]>1)
 		[vmShowViewControllerP release];
