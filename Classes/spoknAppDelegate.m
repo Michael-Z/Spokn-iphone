@@ -40,6 +40,13 @@
 @synthesize contactNavigationController;
 @synthesize onLineB;
 @synthesize tabBarController;
+- (void) handleTimer: (id) timer
+{
+	
+	profileResync();
+	
+}
+
 +(BOOL) emailValidate : (NSString *)email
 {
 	
@@ -88,6 +95,10 @@
 			[dialviewP setStatusText: @"ringing" :ALERT_CONNECTED :0];
 			//openSoundInterface(ltpInterfacesP,1);
 			[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+			#ifndef _LTP_
+				[nsTimerP invalidate];
+				nsTimerP = nil;
+			#endif
 			break;	
 		case ALERT_DISCONNECTED:
 			[dialviewP setStatusText: @"end call" :ALERT_DISCONNECTED :0 ];
@@ -97,10 +108,19 @@
 			[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
 			//reload log
 			[self LoadContactView:callviewP];
-			#ifdef _SIP_
-
-
-			#endif
+			#ifndef _LTP_
+				[nsTimerP invalidate];
+			
+				nsTimerP = [NSTimer scheduledTimerWithTimeInterval: MAXTIME_RESYNC
+						
+														target: self
+						
+													  selector: @selector(handleTimer:)
+						
+													  userInfo: nil
+						
+													   repeats: YES];
+			 #endif
 			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 			break;
 		case START_LOGIN:
@@ -112,6 +132,20 @@
 				[dialviewP setStatusText: @"connecting..." :START_LOGIN :0 ];
 			break;
 		case ALERT_ONLINE://login
+			
+			#ifndef _LTP_
+			[nsTimerP invalidate];
+			
+			nsTimerP = [NSTimer scheduledTimerWithTimeInterval: MAXTIME_RESYNC
+						
+														target: self
+						
+													  selector: @selector(handleTimer:)
+						
+													  userInfo: nil
+						
+													   repeats: YES];
+			#endif
 			#ifdef _LOG_DATA_
 			//printf("\nonline");
 			#endif
@@ -568,6 +602,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+	#ifndef _LTP_
+		[nsTimerP invalidate];
+		nsTimerP = nil;
+	#endif
 	//[super applicationWillTerminate:application];
 	[ltpTimerP stopTimer ];
 	//logOut(ltpInterfacesP);

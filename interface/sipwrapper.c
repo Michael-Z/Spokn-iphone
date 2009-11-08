@@ -630,7 +630,7 @@ static int spokn_pj_init(char *errorstring)
 	pj_status_t status;
 	pjsua_transport_config transcfg;
 	pjsua_media_config cfgmedia;
-
+	printf("\n pj init");
     /* Create pjsua first! */
     status = pjsua_create();
 

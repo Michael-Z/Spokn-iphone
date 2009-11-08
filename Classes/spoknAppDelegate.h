@@ -58,7 +58,7 @@
 #endif
 	
 	
-	
+	NSTimer *nsTimerP;
 	UITabBarController *tabBarController;
 	LtpInterfaceType *ltpInterfacesP;
 	VmsPlayRecordType *vmsP;

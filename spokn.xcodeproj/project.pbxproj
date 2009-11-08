@@ -13,8 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		32EE818710A5B1DA00B0BAAD /* searchbarbackgroung.png in Resources */ = {isa = PBXBuildFile; fileRef = 32EE818610A5B1DA00B0BAAD /* searchbarbackgroung.png */; };
-		32EE820410A5B71A00B0BAAD /* contact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE820310A5B71A00B0BAAD /* contact.xib */; };
 		8B0723AC1075150300C1D1A4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B0723AB1075150300C1D1A4 /* Default.png */; };
 		8B07244F10751C3B00C1D1A4 /* vms.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B07244D10751C3B00C1D1A4 /* vms.png */; };
 		8B07246410751D4600C1D1A4 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B07246310751D4600C1D1A4 /* login.png */; };
@@ -25,8 +23,8 @@
 		8B177BF2104674E000E42923 /* callout.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEA104674E000E42923 /* callout.png */; };
 		8B177BF3104674E000E42923 /* callin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEB104674E000E42923 /* callin.png */; };
 		8B1B8FDD107E0D3F00C77E3F /* spoknlog.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1B8FDC107E0D3F00C77E3F /* spoknlog.png */; };
-		8B25F61B10A4348E00DE0EAB /* keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B25F61A10A4348E00DE0EAB /* keypad.png */; };
 		8B2C3D8C1096CB54003BB164 /* ltpandsip.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C3D8B1096CB54003BB164 /* ltpandsip.c */; };
+		8B3309081073519500DF154C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B3309071073519500DF154C /* Settings.bundle */; };
 		8B39FFC8107C910200073950 /* vmshowviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B39FFC6107C910200073950 /* vmshowviewcontroller.m */; };
 		8B39FFC9107C910200073950 /* vmshowviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */; };
 		8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B413C4D1075ED71005A400F /* spoknviewcontroller.m */; };
@@ -51,12 +49,39 @@
 		8B47DB4A107264ED00EEEF61 /* dialer.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47DB47107264ED00EEEF61 /* dialer.png */; };
 		8B47DB4B107264ED00EEEF61 /* contacts.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47DB48107264ED00EEEF61 /* contacts.png */; };
 		8B47DB4C107264ED00EEEF61 /* addcall.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47DB49107264ED00EEEF61 /* addcall.png */; };
-		8B53822310A586F900BB244F /* vm_icons_incoming_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B53821D10A586F900BB244F /* vm_icons_incoming_new.png */; };
-		8B53822410A586F900BB244F /* vm_icons_incoming_read.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B53821E10A586F900BB244F /* vm_icons_incoming_read.png */; };
-		8B53822510A586F900BB244F /* vm_icons_outgoing_delivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B53821F10A586F900BB244F /* vm_icons_outgoing_delivered.png */; };
-		8B53822610A586F900BB244F /* vm_icons_outgoing_undelivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B53822010A586F900BB244F /* vm_icons_outgoing_undelivered.png */; };
-		8B53822710A586F900BB244F /* vmail_out_newHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B53822110A586F900BB244F /* vmail_out_newHigh.png */; };
-		8B53822810A586F900BB244F /* vms_out_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B53822210A586F900BB244F /* vms_out_Active.png */; };
+		8B594CDC1096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD01096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a */; };
+		8B594CDD1096E0F000A6659A /* libsrtp-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD11096E0F000A6659A /* libsrtp-arm-apple-darwin9.a */; };
+		8B594CDE1096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD21096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a */; };
+		8B594CDF1096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD31096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a */; };
+		8B594CE01096E0F000A6659A /* libresample-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD41096E0F000A6659A /* libresample-arm-apple-darwin9.a */; };
+		8B594CE11096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD51096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a */; };
+		8B594CE21096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD61096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a */; };
+		8B594CE31096E0F000A6659A /* libmilenage-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD71096E0F000A6659A /* libmilenage-arm-apple-darwin9.a */; };
+		8B594CE41096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD81096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a */; };
+		8B594CE51096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD91096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a */; };
+		8B594CE61096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CDA1096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a */; };
+		8B594CE71096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CDB1096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a */; };
+		8B594CF01096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CE81096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a */; };
+		8B594CF11096E11F00A6659A /* libpjsua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CE91096E11F00A6659A /* libpjsua-arm-apple-darwin9.a */; };
+		8B594CF21096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEA1096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a */; };
+		8B594CF31096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEB1096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a */; };
+		8B594CF41096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEC1096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a */; };
+		8B594CF51096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CED1096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a */; };
+		8B594CF61096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEE1096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a */; };
+		8B594CF71096E11F00A6659A /* libpjsip-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEF1096E11F00A6659A /* libpjsip-arm-apple-darwin9.a */; };
+		8B594CFA1096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CF81096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a */; };
+		8B594CFB1096E15400A6659A /* libpjnath-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CF91096E15400A6659A /* libpjnath-arm-apple-darwin9.a */; };
+		8B594D031096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFC1096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a */; };
+		8B594D041096E17800A6659A /* libpjsdp-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFD1096E17800A6659A /* libpjsdp-arm-apple-darwin9.a */; };
+		8B594D051096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFE1096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a */; };
+		8B594D061096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFF1096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a */; };
+		8B594D071096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D001096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a */; };
+		8B594D081096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D011096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a */; };
+		8B594D091096E17800A6659A /* libpjmedia-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D021096E17800A6659A /* libpjmedia-arm-apple-darwin9.a */; };
+		8B594D0C1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0A1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a */; };
+		8B594D0D1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0B1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a */; };
+		8B594D101096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0E1096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a */; };
+		8B594D111096E1B800A6659A /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0F1096E1B800A6659A /* libpj-arm-apple-darwin9.a */; };
 		8B59A62C10998423003BF3EA /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A61F10998423003BF3EA /* Contact.m */; };
 		8B59A62D10998423003BF3EA /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62110998423003BF3EA /* ContactCell.m */; };
 		8B59A62E10998423003BF3EA /* ContactCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62310998423003BF3EA /* ContactCellView.m */; };
@@ -66,13 +91,23 @@
 		8B59A63210998423003BF3EA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62B10998423003BF3EA /* UIViewAdditions.m */; };
 		8B59A68E109987FB003BF3EA /* pickerviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */; };
 		8B59A68F109987FB003BF3EA /* pickerviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */; };
-		8B626B1910A56C9900A9BC0E /* Spokn-Logomark-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B626B1810A56C9900A9BC0E /* Spokn-Logomark-29.png */; };
-		8B626B4810A56FE700A9BC0E /* AS-callforward.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B626B4310A56FE700A9BC0E /* AS-callforward.png */; };
-		8B626B4910A56FE700A9BC0E /* AS-credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B626B4410A56FE700A9BC0E /* AS-credits.png */; };
-		8B626B4A10A56FE700A9BC0E /* AS-forward-to.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B626B4510A56FE700A9BC0E /* AS-forward-to.png */; };
-		8B626B4B10A56FE700A9BC0E /* AS-spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B626B4610A56FE700A9BC0E /* AS-spokn.png */; };
-		8B626B4C10A56FE700A9BC0E /* AS-status.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B626B4710A56FE700A9BC0E /* AS-status.png */; };
-		8B626B6110A573AD00A9BC0E /* Spokn-Logomark-59.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B626B6010A573AD00A9BC0E /* Spokn-Logomark-59.png */; };
+		8B65614310A6ECF80078FA0A /* TB-VMS.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65613D10A6ECF80078FA0A /* TB-VMS.png */; };
+		8B65614410A6ECF80078FA0A /* TB-Spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65613E10A6ECF80078FA0A /* TB-Spokn.png */; };
+		8B65614510A6ECF80078FA0A /* Spokn-Logomark-59.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65613F10A6ECF80078FA0A /* Spokn-Logomark-59.png */; };
+		8B65614610A6ECF80078FA0A /* Spokn-Logomark-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614010A6ECF80078FA0A /* Spokn-Logomark-29.png */; };
+		8B65614710A6ECF80078FA0A /* searchbarbackgroung.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614110A6ECF80078FA0A /* searchbarbackgroung.png */; };
+		8B65614810A6ECF80078FA0A /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614210A6ECF80078FA0A /* default.png */; };
+		8B65615010A6ED060078FA0A /* vm_icons_incoming_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614A10A6ED060078FA0A /* vm_icons_incoming_new.png */; };
+		8B65615110A6ED060078FA0A /* vm_icons_incoming_read.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614B10A6ED060078FA0A /* vm_icons_incoming_read.png */; };
+		8B65615210A6ED060078FA0A /* vm_icons_outgoing_delivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614C10A6ED060078FA0A /* vm_icons_outgoing_delivered.png */; };
+		8B65615310A6ED060078FA0A /* vm_icons_outgoing_undelivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614D10A6ED060078FA0A /* vm_icons_outgoing_undelivered.png */; };
+		8B65615410A6ED060078FA0A /* vmail_out_newHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614E10A6ED060078FA0A /* vmail_out_newHigh.png */; };
+		8B65615510A6ED060078FA0A /* vms_out_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614F10A6ED060078FA0A /* vms_out_Active.png */; };
+		8B65615C10A6ED200078FA0A /* AS-callforward.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65615710A6ED200078FA0A /* AS-callforward.png */; };
+		8B65615D10A6ED200078FA0A /* AS-credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65615810A6ED200078FA0A /* AS-credits.png */; };
+		8B65615E10A6ED200078FA0A /* AS-forward-to.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65615910A6ED200078FA0A /* AS-forward-to.png */; };
+		8B65615F10A6ED200078FA0A /* AS-spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65615A10A6ED200078FA0A /* AS-spokn.png */; };
+		8B65616010A6ED200078FA0A /* AS-status.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65615B10A6ED200078FA0A /* AS-status.png */; };
 		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
 		8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */; };
 		8B8024DD1078D29C00C02F5F /* backview.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8024DC1078D29C00C02F5F /* backview.png */; };
@@ -83,6 +118,7 @@
 		8B9302811011EDFA004BDA41 /* contactDetailsviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */; };
 		8B9302821011EDFA004BDA41 /* contactDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302661011EDFA004BDA41 /* contactDetails.xib */; };
 		8B9302831011EDFA004BDA41 /* contactviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302681011EDFA004BDA41 /* contactviewController.m */; };
+		8B9302841011EDFA004BDA41 /* contact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302691011EDFA004BDA41 /* contact.xib */; };
 		8B9302851011EDFA004BDA41 /* dialviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93026B1011EDFA004BDA41 /* dialviewcontroller.m */; };
 		8B9302861011EDFA004BDA41 /* dialview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B93026C1011EDFA004BDA41 /* dialview.xib */; };
 		8B9302871011EDFA004BDA41 /* Incommingcallviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B93026E1011EDFA004BDA41 /* Incommingcallviewcontroller.m */; };
@@ -110,8 +146,6 @@
 		8B9302F11011EFC6004BDA41 /* STRING.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302E01011EFC6004BDA41 /* STRING.c */; };
 		8B9302F21011EFC6004BDA41 /* Table.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302E11011EFC6004BDA41 /* Table.c */; };
 		8B9303A61011F11B004BDA41 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9303A51011F11B004BDA41 /* AudioToolbox.framework */; };
-		8B9929E410A5679600EBD16F /* TB-VMS.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9929E110A5679600EBD16F /* TB-VMS.png */; };
-		8B9929E510A5679600EBD16F /* TB-Spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9929E210A5679600EBD16F /* TB-Spokn.png */; };
 		8BA8E3A11027EF800022801E /* addeditcontactviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */; };
 		8BA8E3A21027EF800022801E /* addeditcontact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E3A01027EF800022801E /* addeditcontact.xib */; };
 		8BA8E558102835BC0022801E /* vmailview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E555102835BC0022801E /* vmailview.xib */; };
@@ -147,7 +181,6 @@
 		8BE3E2F11084D100008CB625 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3E2EF1084D100008CB625 /* Reachability.m */; };
 		8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */; };
 		8BE447B01080924400EB3A4A /* vmsprogressleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE447AF1080924400EB3A4A /* vmsprogressleft.png */; };
-		8BE59EF410A4155100AFB4D2 /* lcd_top_simple.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE59EF310A4155100AFB4D2 /* lcd_top_simple.png */; };
 		8BE6DF5D104BC54700703BE8 /* vmsplayrecord.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */; };
 		8BE6DF5E104BC54700703BE8 /* playrecordpcm.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF56104BC54700703BE8 /* playrecordpcm.c */; };
 		8BE6DF5F104BC54700703BE8 /* netlayer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF58104BC54700703BE8 /* netlayer.c */; };
@@ -181,7 +214,6 @@
 		F2730CC91070A9B300DF8852 /* Dial.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB61070A9B300DF8852 /* Dial.png */; };
 		F2730CCA1070A9B300DF8852 /* dialerkeypad.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB71070A9B300DF8852 /* dialerkeypad.png */; };
 		F2730CCB1070A9B300DF8852 /* dialerkeypad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB81070A9B300DF8852 /* dialerkeypad_pressed.png */; };
-		F2730CCC1070A9B300DF8852 /* keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB91070A9B300DF8852 /* keypad.png */; };
 		F2730CCD1070A9B300DF8852 /* keypad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CBA1070A9B300DF8852 /* keypad_pressed.png */; };
 		F2730CCE1070A9B300DF8852 /* missed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CBB1070A9B300DF8852 /* missed.png */; };
 		F2730CCF1070A9B300DF8852 /* showkeyboard.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CBC1070A9B300DF8852 /* showkeyboard.png */; };
@@ -210,8 +242,6 @@
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* spokn_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spokn_Prefix.pch; sourceTree = "<group>"; };
-		32EE818610A5B1DA00B0BAAD /* searchbarbackgroung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchbarbackgroung.png; sourceTree = "<group>"; };
-		32EE820310A5B71A00B0BAAD /* contact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contact.xib; sourceTree = "<group>"; };
 		8B0723AB1075150300C1D1A4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		8B07244D10751C3B00C1D1A4 /* vms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vms.png; path = rsc/vms.png; sourceTree = "<group>"; };
 		8B07246310751D4600C1D1A4 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
@@ -226,6 +256,7 @@
 		8B1B8FDC107E0D3F00C77E3F /* spoknlog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spoknlog.png; sourceTree = "<group>"; };
 		8B2C3D8A1096CB54003BB164 /* ltpandsip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpandsip.h; path = interface/ltpandsip.h; sourceTree = "<group>"; };
 		8B2C3D8B1096CB54003BB164 /* ltpandsip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpandsip.c; path = interface/ltpandsip.c; sourceTree = "<group>"; };
+		8B3309071073519500DF154C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		8B39FFC5107C910200073950 /* vmshowviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmshowviewcontroller.h; sourceTree = "<group>"; };
 		8B39FFC6107C910200073950 /* vmshowviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = vmshowviewcontroller.m; sourceTree = "<group>"; };
 		8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = vmshowviewcontroller.xib; sourceTree = "<group>"; };
@@ -253,12 +284,39 @@
 		8B47DB47107264ED00EEEF61 /* dialer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialer.png; sourceTree = "<group>"; };
 		8B47DB48107264ED00EEEF61 /* contacts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contacts.png; sourceTree = "<group>"; };
 		8B47DB49107264ED00EEEF61 /* addcall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addcall.png; sourceTree = "<group>"; };
-		8B53821D10A586F900BB244F /* vm_icons_incoming_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_incoming_new.png; sourceTree = "<group>"; };
-		8B53821E10A586F900BB244F /* vm_icons_incoming_read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_incoming_read.png; sourceTree = "<group>"; };
-		8B53821F10A586F900BB244F /* vm_icons_outgoing_delivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_outgoing_delivered.png; sourceTree = "<group>"; };
-		8B53822010A586F900BB244F /* vm_icons_outgoing_undelivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_outgoing_undelivered.png; sourceTree = "<group>"; };
-		8B53822110A586F900BB244F /* vmail_out_newHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmail_out_newHigh.png; sourceTree = "<group>"; };
-		8B53822210A586F900BB244F /* vms_out_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vms_out_Active.png; sourceTree = "<group>"; };
+		8B594CD01096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsrtp-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libsrtp-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CD11096E0F000A6659A /* libsrtp-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsrtp-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libsrtp-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594CD21096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libspeex-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CD31096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libresample-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libresample-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CD41096E0F000A6659A /* libresample-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libresample-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libresample-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594CD51096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libportaudio-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CD61096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmilenage-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libmilenage-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CD71096E0F000A6659A /* libmilenage-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmilenage-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libmilenage-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594CD81096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libilbccodec-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libilbccodec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CD91096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgsmcodec-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libgsmcodec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CDA1096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgsmcodec-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libgsmcodec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594CDB1096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libg7221codec-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libg7221codec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CE81096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsua-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CE91096E11F00A6659A /* libpjsua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594CEA1096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsip-ua-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CEB1096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-ua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594CEC1096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-simple-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsip-simple-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CED1096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-simple-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-simple-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594CEE1096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsip-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CEF1096E11F00A6659A /* libpjsip-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594CF81096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjnath-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjnath/lib/libpjnath-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CF91096E15400A6659A /* libpjnath-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjnath-arm-apple-darwin9.a"; path = "../pjproject/pjnath/lib/libpjnath-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594CFC1096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsdp-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjsdp-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CFD1096E17800A6659A /* libpjsdp-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsdp-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjsdp-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594CFE1096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjmedia-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594CFF1096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-codec-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjmedia-codec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594D001096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-codec-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjmedia-codec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594D011096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjmedia-audiodev-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594D021096E17800A6659A /* libpjmedia-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjmedia-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594D0A1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594D0B1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-arm-apple-darwin9.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B594D0E1096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjlib/lib/libpj-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
+		8B594D0F1096E1B800A6659A /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B594D571096E41000A6659A /* sipwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sipwrapper.h; path = ../lib/common/include/sipwrapper.h; sourceTree = SOURCE_ROOT; };
 		8B59A61E10998423003BF3EA /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		8B59A61F10998423003BF3EA /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
@@ -277,13 +335,23 @@
 		8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = pickerviewcontroller.xib; sourceTree = "<group>"; };
 		8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pickerviewcontroller.m; sourceTree = "<group>"; };
 		8B59A68D109987FB003BF3EA /* pickerviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pickerviewcontroller.h; sourceTree = "<group>"; };
-		8B626B1810A56C9900A9BC0E /* Spokn-Logomark-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spokn-Logomark-29.png"; sourceTree = "<group>"; };
-		8B626B4310A56FE700A9BC0E /* AS-callforward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-callforward.png"; sourceTree = "<group>"; };
-		8B626B4410A56FE700A9BC0E /* AS-credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-credits.png"; sourceTree = "<group>"; };
-		8B626B4510A56FE700A9BC0E /* AS-forward-to.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-forward-to.png"; sourceTree = "<group>"; };
-		8B626B4610A56FE700A9BC0E /* AS-spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-spokn.png"; sourceTree = "<group>"; };
-		8B626B4710A56FE700A9BC0E /* AS-status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-status.png"; sourceTree = "<group>"; };
-		8B626B6010A573AD00A9BC0E /* Spokn-Logomark-59.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spokn-Logomark-59.png"; sourceTree = "<group>"; };
+		8B65613D10A6ECF80078FA0A /* TB-VMS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-VMS.png"; sourceTree = "<group>"; };
+		8B65613E10A6ECF80078FA0A /* TB-Spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-Spokn.png"; sourceTree = "<group>"; };
+		8B65613F10A6ECF80078FA0A /* Spokn-Logomark-59.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spokn-Logomark-59.png"; sourceTree = "<group>"; };
+		8B65614010A6ECF80078FA0A /* Spokn-Logomark-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spokn-Logomark-29.png"; sourceTree = "<group>"; };
+		8B65614110A6ECF80078FA0A /* searchbarbackgroung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchbarbackgroung.png; sourceTree = "<group>"; };
+		8B65614210A6ECF80078FA0A /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		8B65614A10A6ED060078FA0A /* vm_icons_incoming_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_incoming_new.png; sourceTree = "<group>"; };
+		8B65614B10A6ED060078FA0A /* vm_icons_incoming_read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_incoming_read.png; sourceTree = "<group>"; };
+		8B65614C10A6ED060078FA0A /* vm_icons_outgoing_delivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_outgoing_delivered.png; sourceTree = "<group>"; };
+		8B65614D10A6ED060078FA0A /* vm_icons_outgoing_undelivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_outgoing_undelivered.png; sourceTree = "<group>"; };
+		8B65614E10A6ED060078FA0A /* vmail_out_newHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmail_out_newHigh.png; sourceTree = "<group>"; };
+		8B65614F10A6ED060078FA0A /* vms_out_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vms_out_Active.png; sourceTree = "<group>"; };
+		8B65615710A6ED200078FA0A /* AS-callforward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-callforward.png"; sourceTree = "<group>"; };
+		8B65615810A6ED200078FA0A /* AS-credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-credits.png"; sourceTree = "<group>"; };
+		8B65615910A6ED200078FA0A /* AS-forward-to.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-forward-to.png"; sourceTree = "<group>"; };
+		8B65615A10A6ED200078FA0A /* AS-spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-spokn.png"; sourceTree = "<group>"; };
+		8B65615B10A6ED200078FA0A /* AS-status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-status.png"; sourceTree = "<group>"; };
 		8B6739E2101209E900849952 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddeditcellController.m; sourceTree = "<group>"; };
 		8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddeditcellController.h; sourceTree = "<group>"; };
@@ -298,6 +366,7 @@
 		8B9302661011EDFA004BDA41 /* contactDetails.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contactDetails.xib; sourceTree = "<group>"; };
 		8B9302671011EDFA004BDA41 /* contactviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactviewcontroller.h; sourceTree = "<group>"; };
 		8B9302681011EDFA004BDA41 /* contactviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactviewController.m; sourceTree = "<group>"; };
+		8B9302691011EDFA004BDA41 /* contact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contact.xib; sourceTree = "<group>"; };
 		8B93026A1011EDFA004BDA41 /* dialviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dialviewcontroller.h; sourceTree = "<group>"; };
 		8B93026B1011EDFA004BDA41 /* dialviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dialviewcontroller.m; sourceTree = "<group>"; };
 		8B93026C1011EDFA004BDA41 /* dialview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = dialview.xib; sourceTree = "<group>"; };
@@ -340,8 +409,6 @@
 		8B9302E11011EFC6004BDA41 /* Table.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Table.c; path = ../lib/gsm/Table.c; sourceTree = SOURCE_ROOT; };
 		8B9302E21011EFC6004BDA41 /* UNPROTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UNPROTO.h; path = ../lib/gsm/UNPROTO.h; sourceTree = SOURCE_ROOT; };
 		8B9303A51011F11B004BDA41 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
-		8B9929E110A5679600EBD16F /* TB-VMS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-VMS.png"; sourceTree = "<group>"; };
-		8B9929E210A5679600EBD16F /* TB-Spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-Spokn.png"; sourceTree = "<group>"; };
 		8BA8E39E1027EF800022801E /* addeditcontactviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addeditcontactviewcontroller.h; sourceTree = "<group>"; };
 		8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addeditcontactviewcontroller.m; sourceTree = "<group>"; };
 		8BA8E3A01027EF800022801E /* addeditcontact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addeditcontact.xib; sourceTree = "<group>"; };
@@ -386,7 +453,6 @@
 		8BE3E2F01084D100008CB625 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8BE447AF1080924400EB3A4A /* vmsprogressleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmsprogressleft.png; sourceTree = "<group>"; };
-		8BE59EF310A4155100AFB4D2 /* lcd_top_simple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lcd_top_simple.png; sourceTree = "<group>"; };
 		8BE6DF52104BC54700703BE8 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = windows.h; path = interface/windows.h; sourceTree = "<group>"; };
 		8BE6DF53104BC54700703BE8 /* vmsplayrecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vmsplayrecord.h; path = interface/vmsplayrecord.h; sourceTree = "<group>"; };
 		8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vmsplayrecord.c; path = interface/vmsplayrecord.c; sourceTree = "<group>"; };
@@ -405,7 +471,6 @@
 		8BF795381085F76F00DBFC51 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		F249AAB5106F6A340024AE84 /* keypadview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keypadview.h; sourceTree = "<group>"; };
 		F249AAB6106F6A340024AE84 /* keypadview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = keypadview.m; sourceTree = "<group>"; };
-		F249AB56106F7B9B0024AE84 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = rsc/English.lproj/keypad.png; sourceTree = "<group>"; };
 		F249AB57106F7B9B0024AE84 /* keypad_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = keypad_pressed.png; path = rsc/keypad_pressed.png; sourceTree = "<group>"; };
 		F270709610710F2200DA61E9 /* bottombarblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarblue.png; sourceTree = "<group>"; };
 		F270709710710F2200DA61E9 /* bottombarblue_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarblue_pressed.png; sourceTree = "<group>"; };
@@ -429,7 +494,6 @@
 		F2730CB61070A9B300DF8852 /* Dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dial.png; sourceTree = "<group>"; };
 		F2730CB71070A9B300DF8852 /* dialerkeypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialerkeypad.png; sourceTree = "<group>"; };
 		F2730CB81070A9B300DF8852 /* dialerkeypad_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialerkeypad_pressed.png; sourceTree = "<group>"; };
-		F2730CB91070A9B300DF8852 /* keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = keypad.png; path = English.lproj/keypad.png; sourceTree = "<group>"; };
 		F2730CBA1070A9B300DF8852 /* keypad_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keypad_pressed.png; sourceTree = "<group>"; };
 		F2730CBB1070A9B300DF8852 /* missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missed.png; sourceTree = "<group>"; };
 		F2730CBC1070A9B300DF8852 /* showkeyboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showkeyboard.png; sourceTree = "<group>"; };
@@ -451,6 +515,39 @@
 				8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */,
 				8BB54917104BF25B00BD6C22 /* libspeexlib.a in Frameworks */,
 				8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */,
+				8B594CDC1096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CDD1096E0F000A6659A /* libsrtp-arm-apple-darwin9.a in Frameworks */,
+				8B594CDE1096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CDF1096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CE01096E0F000A6659A /* libresample-arm-apple-darwin9.a in Frameworks */,
+				8B594CE11096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CE21096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CE31096E0F000A6659A /* libmilenage-arm-apple-darwin9.a in Frameworks */,
+				8B594CE41096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CE51096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CE61096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a in Frameworks */,
+				8B594CE71096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CF01096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CF11096E11F00A6659A /* libpjsua-arm-apple-darwin9.a in Frameworks */,
+				8B594CF21096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CF31096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a in Frameworks */,
+				8B594CF41096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CF51096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a in Frameworks */,
+				8B594CF61096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CF71096E11F00A6659A /* libpjsip-arm-apple-darwin9.a in Frameworks */,
+				8B594CFA1096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594CFB1096E15400A6659A /* libpjnath-arm-apple-darwin9.a in Frameworks */,
+				8B594D031096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594D041096E17800A6659A /* libpjsdp-arm-apple-darwin9.a in Frameworks */,
+				8B594D051096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594D061096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594D071096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a in Frameworks */,
+				8B594D081096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594D091096E17800A6659A /* libpjmedia-arm-apple-darwin9.a in Frameworks */,
+				8B594D0C1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594D0D1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
+				8B594D101096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a in Frameworks */,
+				8B594D111096E1B800A6659A /* libpj-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +566,7 @@
 				8B16790C108F36A3004D18C0 /* testingview.h */,
 				8BE3E2EF1084D100008CB625 /* Reachability.m */,
 				8BE3E2F01084D100008CB625 /* Reachability.h */,
+				8BBD8A90107F7FBE008FD911 /* callviewcontroller.xib */,
 				8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */,
 				8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */,
 				8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */,
@@ -482,7 +580,7 @@
 				8B9302661011EDFA004BDA41 /* contactDetails.xib */,
 				8B9302671011EDFA004BDA41 /* contactviewcontroller.h */,
 				8B9302681011EDFA004BDA41 /* contactviewController.m */,
-				32EE820310A5B71A00B0BAAD /* contact.xib */,
+				8B9302691011EDFA004BDA41 /* contact.xib */,
 				8B93026B1011EDFA004BDA41 /* dialviewcontroller.m */,
 				8B93026C1011EDFA004BDA41 /* dialview.xib */,
 				8B93026D1011EDFA004BDA41 /* Incommingcallviewcontroller.h */,
@@ -513,7 +611,6 @@
 				F249AAB6106F6A340024AE84 /* keypadview.m */,
 				8B47D82F10720BA400EEEF61 /* callviewcontroller.h */,
 				8B47D83010720BA400EEEF61 /* callviewcontroller.m */,
-				8BBD8A90107F7FBE008FD911 /* callviewcontroller.xib */,
 				8B413C4C1075ED71005A400F /* spoknviewcontroller.h */,
 				8B413C4D1075ED71005A400F /* spoknviewcontroller.m */,
 				8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */,
@@ -540,6 +637,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				8B594CCE1096E08700A6659A /* siplib */,
 				8BB54916104BF25B00BD6C22 /* libspeexlib.a */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -567,6 +665,7 @@
 			isa = PBXGroup;
 			children = (
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
+				8B3309071073519500DF154C /* Settings.bundle */,
 				8B177BE3104674A600E42923 /* image */,
 				8B6739E2101209E900849952 /* spokn-Info.plist */,
 				8B93027E1011EDFA004BDA41 /* spokn.png */,
@@ -578,7 +677,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8B81B4B010318ADB00A18DA1 /* AddressBook.framework */,
 				8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */,
 				8BB5492C104BF2F300BD6C22 /* speexlib.xcodeproj */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -603,7 +701,6 @@
 				F2730CA91070A90100DF8852 /* showkeyboard.png */,
 				F2730C1510709D0400DF8852 /* dialerkeypad.png */,
 				F2730C1610709D0400DF8852 /* dialerkeypad_pressed.png */,
-				8B25F61A10A4348E00DE0EAB /* keypad.png */,
 				F249AB57106F7B9B0024AE84 /* keypad_pressed.png */,
 				8B177BE8104674E000E42923 /* missed.png */,
 				8B177BEA104674E000E42923 /* callout.png */,
@@ -612,17 +709,44 @@
 			name = image;
 			sourceTree = "<group>";
 		};
-		8B53821C10A586F900BB244F /* vms_icons */ = {
+		8B594CCE1096E08700A6659A /* siplib */ = {
 			isa = PBXGroup;
 			children = (
-				8B53821D10A586F900BB244F /* vm_icons_incoming_new.png */,
-				8B53821E10A586F900BB244F /* vm_icons_incoming_read.png */,
-				8B53821F10A586F900BB244F /* vm_icons_outgoing_delivered.png */,
-				8B53822010A586F900BB244F /* vm_icons_outgoing_undelivered.png */,
-				8B53822110A586F900BB244F /* vmail_out_newHigh.png */,
-				8B53822210A586F900BB244F /* vms_out_Active.png */,
+				8B594D0E1096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a */,
+				8B594D0F1096E1B800A6659A /* libpj-arm-apple-darwin9.a */,
+				8B594D0A1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a */,
+				8B594D0B1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a */,
+				8B594CFC1096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a */,
+				8B594CFD1096E17800A6659A /* libpjsdp-arm-apple-darwin9.a */,
+				8B594CFE1096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a */,
+				8B594CFF1096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a */,
+				8B594D001096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a */,
+				8B594D011096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a */,
+				8B594D021096E17800A6659A /* libpjmedia-arm-apple-darwin9.a */,
+				8B594CF81096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a */,
+				8B594CF91096E15400A6659A /* libpjnath-arm-apple-darwin9.a */,
+				8B594CE81096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a */,
+				8B594CE91096E11F00A6659A /* libpjsua-arm-apple-darwin9.a */,
+				8B594CEA1096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a */,
+				8B594CEB1096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a */,
+				8B594CEC1096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a */,
+				8B594CED1096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a */,
+				8B594CEE1096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a */,
+				8B594CEF1096E11F00A6659A /* libpjsip-arm-apple-darwin9.a */,
+				8B594CD01096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a */,
+				8B594CD11096E0F000A6659A /* libsrtp-arm-apple-darwin9.a */,
+				8B594CD21096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a */,
+				8B594CD31096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a */,
+				8B594CD41096E0F000A6659A /* libresample-arm-apple-darwin9.a */,
+				8B594CD51096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a */,
+				8B594CD61096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a */,
+				8B594CD71096E0F000A6659A /* libmilenage-arm-apple-darwin9.a */,
+				8B594CD81096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a */,
+				8B594CD91096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a */,
+				8B594CDA1096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a */,
+				8B594CDB1096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a */,
 			);
-			path = vms_icons;
+			name = siplib;
 			sourceTree = "<group>";
 		};
 		8B59A61D10998423003BF3EA /* GCustomControls */ = {
@@ -646,14 +770,27 @@
 			path = GCustomControls;
 			sourceTree = "<group>";
 		};
-		8B626B4210A56FE700A9BC0E /* accountrsc */ = {
+		8B65614910A6ED060078FA0A /* vms_icons */ = {
 			isa = PBXGroup;
 			children = (
-				8B626B4310A56FE700A9BC0E /* AS-callforward.png */,
-				8B626B4410A56FE700A9BC0E /* AS-credits.png */,
-				8B626B4510A56FE700A9BC0E /* AS-forward-to.png */,
-				8B626B4610A56FE700A9BC0E /* AS-spokn.png */,
-				8B626B4710A56FE700A9BC0E /* AS-status.png */,
+				8B65614A10A6ED060078FA0A /* vm_icons_incoming_new.png */,
+				8B65614B10A6ED060078FA0A /* vm_icons_incoming_read.png */,
+				8B65614C10A6ED060078FA0A /* vm_icons_outgoing_delivered.png */,
+				8B65614D10A6ED060078FA0A /* vm_icons_outgoing_undelivered.png */,
+				8B65614E10A6ED060078FA0A /* vmail_out_newHigh.png */,
+				8B65614F10A6ED060078FA0A /* vms_out_Active.png */,
+			);
+			path = vms_icons;
+			sourceTree = "<group>";
+		};
+		8B65615610A6ED200078FA0A /* accountrsc */ = {
+			isa = PBXGroup;
+			children = (
+				8B65615710A6ED200078FA0A /* AS-callforward.png */,
+				8B65615810A6ED200078FA0A /* AS-credits.png */,
+				8B65615910A6ED200078FA0A /* AS-forward-to.png */,
+				8B65615A10A6ED200078FA0A /* AS-spokn.png */,
+				8B65615B10A6ED200078FA0A /* AS-status.png */,
 			);
 			path = accountrsc;
 			sourceTree = "<group>";
@@ -672,6 +809,7 @@
 				8BE6DF59104BC54700703BE8 /* LtpInterface.h */,
 				8BE6DF5A104BC54700703BE8 /* LtpInterface.c */,
 				8B2C3D8B1096CB54003BB164 /* ltpandsip.c */,
+				8B81B4B010318ADB00A18DA1 /* AddressBook.framework */,
 				8B2C3D8A1096CB54003BB164 /* ltpandsip.h */,
 				8BE6DF5B104BC54700703BE8 /* ltpdump.h */,
 				8BE6DF5C104BC54700703BE8 /* ltpdump.c */,
@@ -771,14 +909,14 @@
 		F2730CAF1070A9B300DF8852 /* rsc */ = {
 			isa = PBXGroup;
 			children = (
-				8B53821C10A586F900BB244F /* vms_icons */,
-				8B626B4210A56FE700A9BC0E /* accountrsc */,
-				32EE818610A5B1DA00B0BAAD /* searchbarbackgroung.png */,
-				8B626B6010A573AD00A9BC0E /* Spokn-Logomark-59.png */,
-				8B626B1810A56C9900A9BC0E /* Spokn-Logomark-29.png */,
-				8B9929E110A5679600EBD16F /* TB-VMS.png */,
-				8B9929E210A5679600EBD16F /* TB-Spokn.png */,
-				8BE59EF310A4155100AFB4D2 /* lcd_top_simple.png */,
+				8B65615610A6ED200078FA0A /* accountrsc */,
+				8B65614910A6ED060078FA0A /* vms_icons */,
+				8B65613D10A6ECF80078FA0A /* TB-VMS.png */,
+				8B65613E10A6ECF80078FA0A /* TB-Spokn.png */,
+				8B65613F10A6ECF80078FA0A /* Spokn-Logomark-59.png */,
+				8B65614010A6ECF80078FA0A /* Spokn-Logomark-29.png */,
+				8B65614110A6ECF80078FA0A /* searchbarbackgroung.png */,
+				8B65614210A6ECF80078FA0A /* default.png */,
 				8BF795361085F76F00DBFC51 /* red.png */,
 				8BF795371085F76F00DBFC51 /* orange.png */,
 				8BF795381085F76F00DBFC51 /* green.png */,
@@ -829,7 +967,6 @@
 				F2730CB61070A9B300DF8852 /* Dial.png */,
 				F2730CB71070A9B300DF8852 /* dialerkeypad.png */,
 				F2730CB81070A9B300DF8852 /* dialerkeypad_pressed.png */,
-				F2730CB91070A9B300DF8852 /* keypad.png */,
 				F2730CBA1070A9B300DF8852 /* keypad_pressed.png */,
 				F2730CBB1070A9B300DF8852 /* missed.png */,
 				F2730CBC1070A9B300DF8852 /* showkeyboard.png */,
@@ -897,6 +1034,7 @@
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				8B9302821011EDFA004BDA41 /* contactDetails.xib in Resources */,
+				8B9302841011EDFA004BDA41 /* contact.xib in Resources */,
 				8B9302861011EDFA004BDA41 /* dialview.xib in Resources */,
 				8B9302881011EDFA004BDA41 /* incommingcall.xib in Resources */,
 				8B93028B1011EDFA004BDA41 /* loginview.xib in Resources */,
@@ -910,7 +1048,6 @@
 				8B177BF2104674E000E42923 /* callout.png in Resources */,
 				8B177BF3104674E000E42923 /* callin.png in Resources */,
 				8BCEEB2D104AD235001DF4AC /* OverlayView.xib in Resources */,
-				8B25F61B10A4348E00DE0EAB /* keypad.png in Resources */,
 				F249AB59106F7B9B0024AE84 /* keypad_pressed.png in Resources */,
 				F2730C1710709D0400DF8852 /* dialerkeypad.png in Resources */,
 				F2730C1810709D0400DF8852 /* dialerkeypad_pressed.png in Resources */,
@@ -928,7 +1065,6 @@
 				F2730CC91070A9B300DF8852 /* Dial.png in Resources */,
 				F2730CCA1070A9B300DF8852 /* dialerkeypad.png in Resources */,
 				F2730CCB1070A9B300DF8852 /* dialerkeypad_pressed.png in Resources */,
-				F2730CCC1070A9B300DF8852 /* keypad.png in Resources */,
 				F2730CCD1070A9B300DF8852 /* keypad_pressed.png in Resources */,
 				F2730CCE1070A9B300DF8852 /* missed.png in Resources */,
 				F2730CCF1070A9B300DF8852 /* showkeyboard.png in Resources */,
@@ -959,6 +1095,7 @@
 				8B47DB4A107264ED00EEEF61 /* dialer.png in Resources */,
 				8B47DB4B107264ED00EEEF61 /* contacts.png in Resources */,
 				8B47DB4C107264ED00EEEF61 /* addcall.png in Resources */,
+				8B3309081073519500DF154C /* Settings.bundle in Resources */,
 				8B0723AC1075150300C1D1A4 /* Default.png in Resources */,
 				8B07244F10751C3B00C1D1A4 /* vms.png in Resources */,
 				8B07246410751D4600C1D1A4 /* login.png in Resources */,
@@ -993,24 +1130,23 @@
 				8BAA7DA4109EBD3E0009C8D4 /* dtmf-8.aif in Resources */,
 				8BAA7DA5109EBD3E0009C8D4 /* dtmf-9.aif in Resources */,
 				8BAA7DA6109EBD3E0009C8D4 /* dtmf-s.aif in Resources */,
-				8BE59EF410A4155100AFB4D2 /* lcd_top_simple.png in Resources */,
-				8B9929E410A5679600EBD16F /* TB-VMS.png in Resources */,
-				8B9929E510A5679600EBD16F /* TB-Spokn.png in Resources */,
-				8B626B1910A56C9900A9BC0E /* Spokn-Logomark-29.png in Resources */,
-				8B626B4810A56FE700A9BC0E /* AS-callforward.png in Resources */,
-				8B626B4910A56FE700A9BC0E /* AS-credits.png in Resources */,
-				8B626B4A10A56FE700A9BC0E /* AS-forward-to.png in Resources */,
-				8B626B4B10A56FE700A9BC0E /* AS-spokn.png in Resources */,
-				8B626B4C10A56FE700A9BC0E /* AS-status.png in Resources */,
-				8B626B6110A573AD00A9BC0E /* Spokn-Logomark-59.png in Resources */,
-				8B53822310A586F900BB244F /* vm_icons_incoming_new.png in Resources */,
-				8B53822410A586F900BB244F /* vm_icons_incoming_read.png in Resources */,
-				8B53822510A586F900BB244F /* vm_icons_outgoing_delivered.png in Resources */,
-				8B53822610A586F900BB244F /* vm_icons_outgoing_undelivered.png in Resources */,
-				8B53822710A586F900BB244F /* vmail_out_newHigh.png in Resources */,
-				8B53822810A586F900BB244F /* vms_out_Active.png in Resources */,
-				32EE818710A5B1DA00B0BAAD /* searchbarbackgroung.png in Resources */,
-				32EE820410A5B71A00B0BAAD /* contact.xib in Resources */,
+				8B65614310A6ECF80078FA0A /* TB-VMS.png in Resources */,
+				8B65614410A6ECF80078FA0A /* TB-Spokn.png in Resources */,
+				8B65614510A6ECF80078FA0A /* Spokn-Logomark-59.png in Resources */,
+				8B65614610A6ECF80078FA0A /* Spokn-Logomark-29.png in Resources */,
+				8B65614710A6ECF80078FA0A /* searchbarbackgroung.png in Resources */,
+				8B65614810A6ECF80078FA0A /* default.png in Resources */,
+				8B65615010A6ED060078FA0A /* vm_icons_incoming_new.png in Resources */,
+				8B65615110A6ED060078FA0A /* vm_icons_incoming_read.png in Resources */,
+				8B65615210A6ED060078FA0A /* vm_icons_outgoing_delivered.png in Resources */,
+				8B65615310A6ED060078FA0A /* vm_icons_outgoing_undelivered.png in Resources */,
+				8B65615410A6ED060078FA0A /* vmail_out_newHigh.png in Resources */,
+				8B65615510A6ED060078FA0A /* vms_out_Active.png in Resources */,
+				8B65615C10A6ED200078FA0A /* AS-callforward.png in Resources */,
+				8B65615D10A6ED200078FA0A /* AS-credits.png in Resources */,
+				8B65615E10A6ED200078FA0A /* AS-forward-to.png in Resources */,
+				8B65615F10A6ED200078FA0A /* AS-spokn.png in Resources */,
+				8B65616010A6ED200078FA0A /* AS-status.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1082,17 +1218,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		8B25F61A10A4348E00DE0EAB /* keypad.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F249AB56106F7B9B0024AE84 /* English */,
-			);
-			name = keypad.png;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
