@@ -132,7 +132,7 @@
 	[searchbar setFrame:CGRectMake(0,0,294,searchBarHeight)];
 	searchbar.backgroundColor = [UIColor clearColor];
 	searchbar.tintColor = [UIColor colorWithRed:191/255.0 green:200/255.0 blue:206/255.0 alpha:1.0];
-	UIView *tempview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280,searchBarHeight )];
+	tempview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320,searchBarHeight )];
 	[tempview addSubview:searchbar];
 	tempview.backgroundColor = [UIColor clearColor];	
 	tableView.tableHeaderView = tempview;
@@ -433,7 +433,7 @@ titleForHeaderInSection:(NSInteger)section
 	[searchbar setFrame:CGRectMake(0,0,294,searchBarHeight)];
 	searchbar.backgroundColor = [UIColor clearColor];
 	searchbar.tintColor = [UIColor colorWithRed:191/255.0 green:200/255.0 blue:206/255.0 alpha:1.0];
-	UIView * tempview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280,searchBarHeight )];
+	tempview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320,searchBarHeight )];
 	[tempview addSubview:searchbar];
 	tempview.backgroundColor = [UIColor clearColor];
 

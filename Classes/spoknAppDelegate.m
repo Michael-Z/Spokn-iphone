@@ -98,14 +98,7 @@
 			//reload log
 			[self LoadContactView:callviewP];
 			#ifdef _SIP_
-			long diff;
-			diff = time(NULL) - gP->currentTime;
-			if(diff>MAXTIME_RESYNC)
-			{
-				gP->currentTime = time(NULL);
-				printf("\n resync Called");
-				profileResync();
-			}
+
 
 			#endif
 			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];

@@ -33,7 +33,7 @@
 	IBOutlet AddressBookContact *addressBookTableDelegate;
 	//UIAddressBook *addressBookUIP;
 	UISegmentedControl *segmentedControl;
-
+	UIView *tempview;
 	//NSMutableArray *fileList;
 	SpoknAppDelegate *ownerobject;
 	LtpInterfaceType *ltpInterfacesP;
