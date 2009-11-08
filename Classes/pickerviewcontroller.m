@@ -354,7 +354,7 @@
 		_composerScrollView.bounces = NO;
 		_composerScrollView.bouncesZoom = NO;
 		{	
-		
+			
 			if(modalB==false)
 			{	
 				txtDestNo = [[GTokenField alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
@@ -364,30 +364,48 @@
 			}
 			else
 			{
-					txtDestNo = [[GTokenField alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+				txtDestNo = [[GTokenField alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
 			}
+			txtDestNo.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
+			txtDestNo.backgroundColor = [UIColor whiteColor];
+			txtDestNo.delegate = self;
+			txtDestNo.autocorrectionType = UITextAutocorrectionTypeNo;
+			txtDestNo.autocapitalizationType = UITextAutocapitalizationTypeNone;	
+			txtDestNo.rightViewMode = UITextFieldViewModeAlways;
+			txtDestNo.clearsOnBeginEditing = NO;
+			//txtDestNo.placeholder = @"Numerics only";
+			txtDestNo.keyboardType = UIKeyboardTypeNamePhonePad;
+			txtDestNo.returnKeyType = UIReturnKeyDefault;
+			txtDestNo.font = [UIFont systemFontOfSize:16.0];
+			[txtDestNo addTarget:self action:@selector(updateSearchTable:) forControlEvents:UIControlEventEditingChanged];
+			
+			UIButton* addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+			[addButton addTarget:self action:@selector(addFromContact:) forControlEvents:UIControlEventTouchUpInside];
+			txtDestNo.rightView = addButton;
+			//[_composerScrollView addSubview:myLabelP];
+			[_composerScrollView addSubview:txtDestNo];
 			
 			//txtDestNo.hidden = YES;
-			MyLabel *toLabelScroll = [[MyLabel alloc] initWithFrame:CGRectMake(5, 1, 32, 38)];
+			MyLabel *toLabelScroll = [[MyLabel alloc] initWithFrame:CGRectMake(5, 0, 32, 38)];
 			toLabelScroll.userInteractionEnabled = NO;
-			toLabelScroll.text = @" To:";
+			toLabelScroll.text = @"To:";
 			toLabelScroll.backgroundColor = [UIColor clearColor];
 			toLabelScroll.textColor = [UIColor grayColor];
 			toLabelScroll.upDateProtocolP = self;
 			[_composerScrollView addSubview:toLabelScroll];
 			
-			toLabelStart = [[MyLabel alloc] initWithFrame:CGRectMake(0, 1, 32, 38)];
+			toLabelStart = [[MyLabel alloc] initWithFrame:CGRectMake(0, 0, 40, 42)];
 			toLabelStart.userInteractionEnabled = YES;
-			toLabelStart.text = @" To:";
+			toLabelStart.text = @" To: ";
 			toLabelStart.backgroundColor = [UIColor whiteColor];
 			toLabelStart.textColor = [UIColor grayColor];
 			toLabelStart.upDateProtocolP = self;
 			toLabelStart.hidden = YES;
 			[self.view addSubview:toLabelStart];
 			
-			toLabel = [[MyLabel alloc] initWithFrame:CGRectMake(32, 1, 286, 38)];
+			toLabel = [[MyLabel alloc] initWithFrame:CGRectMake(40, 0, 286, 42)];
 			toLabel.userInteractionEnabled = YES;
-			toLabel.text = @" To:";
+			toLabel.text = @" To: ";
 			toLabel.backgroundColor = [UIColor whiteColor];
 			toLabel.textColor = [UIColor blackColor];
 			toLabel.upDateProtocolP = self;
@@ -417,8 +435,9 @@
 		[self updateLayout];
 		addressBook = ABAddressBookCreate();
 	}
-
+	
 }
+
 -(IBAction)addFromContact:(id)sender
 {
 	if(modalB)
