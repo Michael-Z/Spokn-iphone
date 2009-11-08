@@ -265,7 +265,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	switch(currentView)
 	{
 		case 0:
-			[hangUpButtonP setTitle:@"Vms" forState:UIControlStateNormal];
+			[hangUpButtonP setTitle:@"VMS" forState:UIControlStateNormal];
 			break;
 		case 1:
 			[hangUpButtonP setTitle:@"Hang" forState:UIControlStateNormal];

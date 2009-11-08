@@ -39,7 +39,7 @@
 	UAObjectType uaObject;
 	NSMutableArray *sectionArray;
 	NSMutableArray *searchArray;
-	IBOutlet UISearchBar *searchbar;
+	UISearchBar *searchbar;
 	OverlayViewController *ovController;
 	int *returnPtr;
 	//char *numberCharP;

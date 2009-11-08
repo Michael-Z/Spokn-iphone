@@ -1181,13 +1181,14 @@ id createImage(float percentage)
     [super viewDidLoad];
 	recordVmsB = false;
 	[ownerobject setVmsDelegate:self];
-	[self setTitle:@"Vms"];
+	[self setTitle:@"VMS"];
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	firstSectionviewP.backgroundColor = [UIColor clearColor];
 	secondSectionviewP.backgroundColor = [UIColor clearColor];
 
 	tableView.delegate = self;
 	tableView.dataSource = self;
+	tableView.scrollEnabled = NO;
 	loadedB = true;
 	[self loadOtherView];	
 	[self makeView];

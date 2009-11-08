@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">768</int>
-		<string key="IBDocument.SystemVersion">9L31a</string>
+		<string key="IBDocument.SystemVersion">9G2030</string>
 		<string key="IBDocument.InterfaceBuilderVersion">680</string>
-		<string key="IBDocument.AppKitVersion">949.54</string>
+		<string key="IBDocument.AppKitVersion">949.43</string>
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -39,19 +39,6 @@
 					<object class="IBUITableView" id="716481711">
 						<reference key="NSNextResponder" ref="337424716"/>
 						<int key="NSvFlags">274</int>
-						<object class="NSMutableArray" key="NSSubviews">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUISearchBar" id="671931798">
-								<reference key="NSNextResponder" ref="716481711"/>
-								<int key="NSvFlags">290</int>
-								<string key="NSFrameSize">{320, 44}</string>
-								<reference key="NSSuperview" ref="716481711"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUIContentMode">3</int>
-								<bool key="IBUIMultipleTouchEnabled">YES</bool>
-								<object class="IBUITextInputTraits" key="IBTextInputTraits"/>
-							</object>
-						</object>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="337424716"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -68,7 +55,6 @@
 						<float key="IBUIRowHeight">4.400000e+01</float>
 						<float key="IBUISectionHeaderHeight">2.200000e+01</float>
 						<float key="IBUISectionFooterHeight">2.200000e+01</float>
-						<reference key="IBUITableHeaderView" ref="671931798"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -143,14 +129,6 @@
 					</object>
 					<int key="connectionID">38</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">searchbar</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="671931798"/>
-					</object>
-					<int key="connectionID">43</int>
-				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -188,7 +166,6 @@
 						<reference key="object" ref="716481711"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="671931798"/>
 						</object>
 						<reference key="parent" ref="337424716"/>
 					</object>
@@ -196,11 +173,6 @@
 						<int key="objectID">32</int>
 						<reference key="object" ref="473929468"/>
 						<reference key="parent" ref="317526666"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">42</int>
-						<reference key="object" ref="671931798"/>
-						<reference key="parent" ref="716481711"/>
 					</object>
 				</object>
 			</object>
@@ -213,14 +185,12 @@
 					<string>15.IBEditorWindowLastContentRect</string>
 					<string>15.IBPluginDependency</string>
 					<string>19.IBPluginDependency</string>
-					<string>42.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ContactViewController</string>
 					<string>UIResponder</string>
-					<string>{{524, 391}, {320, 460}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{143, 250}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -245,7 +215,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">43</int>
+			<int key="maxID">42</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -271,14 +241,12 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addressBookTableDelegate</string>
 							<string>rootControllerObject</string>
-							<string>searchbar</string>
 							<string>tableView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>AddressBookContact</string>
 							<string>id</string>
-							<string>UISearchBar</string>
 							<string>UITableView</string>
 						</object>
 					</object>

@@ -128,6 +128,16 @@
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
+	CGFloat searchBarHeight = [searchbar frame].size.height;
+	[searchbar setFrame:CGRectMake(0,0,294,searchBarHeight)];
+	searchbar.backgroundColor = [UIColor clearColor];
+	searchbar.tintColor = [UIColor colorWithRed:191/255.0 green:200/255.0 blue:206/255.0 alpha:1.0];
+	UIView *tempview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280,searchBarHeight )];
+	[tempview addSubview:searchbar];
+	tempview.backgroundColor = [UIColor clearColor];	
+	tableView.tableHeaderView = tempview;
+	tableView.tableHeaderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"searchbarbackgroung.png"]];
+	[tempview release];
 	[self cancelSearch];
 }
 - (void) doneSearching_Clicked:(id)sender {
@@ -228,6 +238,8 @@
 	//("\nkeyboard");
 	
 	#ifdef _NO_SEARCH_MOVE_
+	CGFloat searchBarHeight = [searchbar frame].size.height;
+	[searchbar setFrame:CGRectMake(0,0,320,searchBarHeight)];
 	[searchBar setShowsCancelButton:YES animated:YES];
 	self.navigationItem.rightBarButtonItem = nil;
 	searchStartB = true;
@@ -411,8 +423,19 @@ titleForHeaderInSection:(NSInteger)section
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-		searchbar.delegate = self;
+	
+	searchbar = [[UISearchBar alloc] init];
+	searchbar.delegate = self;
 	searchStartB = false;
+	[searchbar sizeToFit];
+	
+	CGFloat searchBarHeight = [searchbar frame].size.height;
+	[searchbar setFrame:CGRectMake(0,0,294,searchBarHeight)];
+	searchbar.backgroundColor = [UIColor clearColor];
+	searchbar.tintColor = [UIColor colorWithRed:191/255.0 green:200/255.0 blue:206/255.0 alpha:1.0];
+	UIView * tempview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280,searchBarHeight )];
+	[tempview addSubview:searchbar];
+	tempview.backgroundColor = [UIColor clearColor];
 
 	//CGRect cellFrame ;
 	//cellFrame = searchbar.bounds;
@@ -449,12 +472,15 @@ titleForHeaderInSection:(NSInteger)section
 	tableView.dataSource = self;
 	//tableView.tag = 2001;
 	
-	tableView.tableHeaderView = searchbar;
+	tableView.tableHeaderView = tempview;
+	tableView.tableHeaderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"searchbarbackgroung.png"]];
+	[tempview release];
 	addressBookTableDelegate = [[AddressBookContact alloc] init];
 	[addressBookTableDelegate setObject:ownerobject];
 	
 	 segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	 segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+
 	  [ segmentedControl insertSegmentWithTitle: @"Spokn" atIndex: 0 animated: NO ];
 	
 	 [ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: NO ];
@@ -464,7 +490,6 @@ titleForHeaderInSection:(NSInteger)section
 	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
 	 
 	 [ segmentedControl addTarget: self action: @selector(controlPressed:) forControlEvents:UIControlEventValueChanged ];
-	 
 	 self.navigationItem.titleView = segmentedControl;
 	 segmentedControl.selectedSegmentIndex = 0;
 	if(parentView)
@@ -475,7 +500,6 @@ titleForHeaderInSection:(NSInteger)section
 											   action: @selector(cancelClicked) ] autorelease ];
 	}
 	[ self reload ];
-		
 
 }
 - (void)viewWillDisappear:(BOOL)animated
