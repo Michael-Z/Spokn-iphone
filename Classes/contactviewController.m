@@ -488,19 +488,39 @@ titleForHeaderInSection:(NSInteger)section
 	
 	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
 	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
-	 
+	
 	 [ segmentedControl addTarget: self action: @selector(controlPressed:) forControlEvents:UIControlEventValueChanged ];
 	 self.navigationItem.titleView = segmentedControl;
 	 segmentedControl.selectedSegmentIndex = 0;
 	if(parentView)
 	{	
-		self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+		
+	/*	UIView * tempview = [[UIView alloc] initWithFrame:CGRectMake(120, 0, 200, 150)];
+        
+		UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)] autorelease];
+        label.backgroundColor = [UIColor clearColor];
+        label.font = [UIFont boldSystemFontOfSize:12.0];
+        label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        label.textAlignment = UITextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+		label.text = NSLocalizedString(@"Choose contact or input a Number", @"");
+        //self.navigationItem.titleView = label;
+       
+		[tempview addSubview:label];
+		CGRect imgFrame = segmentedControl.frame;
+		imgFrame.origin = CGPointMake(90,15);
+		segmentedControl.frame = imgFrame;
+		[viewP addSubview:segmentedControl];
+		[viewP setBackgroundColor:[UIColor clearColor]];
+		self.navigationItem.titleView =  viewP;
+		viewP.hidden = NO;*/
+		self.navigationItem.hidesBackButton = YES;
+		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 											   target: self
 											   action: @selector(cancelClicked) ] autorelease ];
 	}
 	[ self reload ];
-
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -605,13 +625,17 @@ titleForHeaderInSection:(NSInteger)section
 			 }
 			#ifdef _NEW_ADDRESS_BOOK_
 				addressBookP.view.hidden=YES;
+			 self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+														 initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+														 target: self
+														 action: @selector(cancelClicked) ] autorelease ];
 				
 			#else
 				tableView.delegate = self;
 				tableView.dataSource = self;
 				searchbar.delegate = self;
 				searchbar.text = @"";
-				
+
 			 //[ self->tableView reloadData ];
 				[self reloadLocal:nil :0];
 			 
