@@ -421,7 +421,7 @@
 	NSLog(@"Cancel");
 	
 	
-	if(viewEnum!=CONTACTADDVIEWENUM)
+	if(viewEnum!=CONTACTADDVIEWENUM || modalViewB ==true)
 	{	
 		[ [self navigationController] popToRootViewControllerAnimated:YES ];
 	}	
@@ -495,7 +495,7 @@
 	}
 	if(popupB)
 	{	
-		if(viewEnum!=CONTACTADDVIEWENUM)
+		if(viewEnum!=CONTACTADDVIEWENUM && modalViewB!=true)
 		{	
 			[ [self navigationController] popToRootViewControllerAnimated:YES ];
 		}	
@@ -1140,6 +1140,7 @@ titleForHeaderInSection:(NSInteger)section
 	self.navigationItem.rightBarButtonItem.enabled = NO;
 	
 	[self setAddressBook:addressDataTmpP editable:true :CONTACTADDVIEWENUM];
+	modelViewB= true;
 	free(addressDataTmpP);
 	
 }

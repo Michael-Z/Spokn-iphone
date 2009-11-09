@@ -171,6 +171,7 @@
 		8BF795391085F76F00DBFC51 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF795361085F76F00DBFC51 /* red.png */; };
 		8BF7953A1085F76F00DBFC51 /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF795371085F76F00DBFC51 /* orange.png */; };
 		8BF7953B1085F76F00DBFC51 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF795381085F76F00DBFC51 /* green.png */; };
+		8BFC39B210A8390F00043818 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFC39B110A8390F00043818 /* libspeex-arm-apple-darwin9.a */; };
 		F249AAB7106F6A340024AE84 /* keypadview.m in Sources */ = {isa = PBXBuildFile; fileRef = F249AAB6106F6A340024AE84 /* keypadview.m */; };
 		F249AB59106F7B9B0024AE84 /* keypad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F249AB57106F7B9B0024AE84 /* keypad_pressed.png */; };
 		F270709C10710F2200DA61E9 /* bottombarblue.png in Resources */ = {isa = PBXBuildFile; fileRef = F270709610710F2200DA61E9 /* bottombarblue.png */; };
@@ -431,6 +432,7 @@
 		8BF795361085F76F00DBFC51 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
 		8BF795371085F76F00DBFC51 /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
 		8BF795381085F76F00DBFC51 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
+		8BFC39B110A8390F00043818 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		F249AAB5106F6A340024AE84 /* keypadview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keypadview.h; sourceTree = "<group>"; };
 		F249AAB6106F6A340024AE84 /* keypadview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = keypadview.m; sourceTree = "<group>"; };
 		F249AB56106F7B9B0024AE84 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = rsc/English.lproj/keypad.png; sourceTree = "<group>"; };
@@ -493,6 +495,7 @@
 				8B6609CE10A81B75000F8DAE /* libresample-arm-apple-darwin9.a in Frameworks */,
 				8B6609CF10A81B75000F8DAE /* libmilenage-arm-apple-darwin9.a in Frameworks */,
 				8B6609D010A81B75000F8DAE /* libgsmcodec-arm-apple-darwin9.a in Frameworks */,
+				8BFC39B210A8390F00043818 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,6 +707,7 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
+				8BFC39B110A8390F00043818 /* libspeex-arm-apple-darwin9.a */,
 				8B6609B510A81B74000F8DAE /* libpj-arm-apple-darwin9.a */,
 				8B6609B610A81B74000F8DAE /* libpjlib-util-arm-apple-darwin9.a */,
 				8B6609B710A81B74000F8DAE /* libpjsdp-arm-apple-darwin9.a */,

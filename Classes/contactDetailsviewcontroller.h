@@ -95,6 +95,7 @@ typedef enum ViewTypeEnum
 	BOOL showAddButtonB;
 	SelectedContctType *selectContactP;
 	Boolean noNameB;
+	Boolean modalViewB;
 	
 }
 
