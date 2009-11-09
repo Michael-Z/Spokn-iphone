@@ -128,6 +128,14 @@
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
+
+
+	self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+												initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+												target: self
+												action: @selector(cancelClicked) ] autorelease ];
+	
+
 	CGFloat searchBarHeight = [searchbar frame].size.height;
 	[searchbar setFrame:CGRectMake(0,0,294,searchBarHeight)];
 	searchbar.backgroundColor = [UIColor clearColor];
@@ -449,6 +457,7 @@ titleForHeaderInSection:(NSInteger)section
 	addressBookP.view.frame = self.view.frame;
 	addressBookP.view.hidden=YES;
 	[self.view addSubview:addressBookP.view];
+	
 	//[addressBookP.view release];
 	#endif
 	
@@ -471,7 +480,7 @@ titleForHeaderInSection:(NSInteger)section
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	//tableView.tag = 2001;
-	
+
 	tableView.tableHeaderView = tempview;
 	tableView.tableHeaderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"searchbarbackgroung.png"]];
 	[tempview release];
@@ -514,11 +523,14 @@ titleForHeaderInSection:(NSInteger)section
 		[viewP setBackgroundColor:[UIColor clearColor]];
 		self.navigationItem.titleView =  viewP;
 		viewP.hidden = NO;*/
+#ifdef _NO_SEARCH_MOVE_
 		self.navigationItem.hidesBackButton = YES;
 		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
-											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
-											   target: self
-											   action: @selector(cancelClicked) ] autorelease ];
+													initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+													target: self
+													action: @selector(cancelClicked) ] autorelease ];
+#endif	
+
 	}
 	[ self reload ];
 }
@@ -604,6 +616,7 @@ titleForHeaderInSection:(NSInteger)section
 			 			 //[self presentModalViewController:ab animated:YES];
 		#ifdef _NEW_ADDRESS_BOOK_
 			  addressBookP.view.hidden=NO;
+			 //addressBookP.sc
 			#else
 			 [addressBookTableDelegate setSearchBarAndTable:searchbar  :tableView PerentObject:self OverlayView :&ovController];
 			 
@@ -625,10 +638,10 @@ titleForHeaderInSection:(NSInteger)section
 			 }
 			#ifdef _NEW_ADDRESS_BOOK_
 				addressBookP.view.hidden=YES;
-			 self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+		/*	 self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 														 initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 														 target: self
-														 action: @selector(cancelClicked) ] autorelease ];
+														 action: @selector(cancelClicked) ] autorelease ];*
 				
 			#else
 				tableView.delegate = self;
