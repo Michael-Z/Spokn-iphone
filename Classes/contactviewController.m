@@ -532,6 +532,14 @@ titleForHeaderInSection:(NSInteger)section
 #endif	
 
 	}
+	else
+	{
+		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+													initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
+													target: self
+													action: @selector(addContactUI) ] autorelease ];
+		
+	}
 	[ self reload ];
 }
 - (void)viewWillDisappear:(BOOL)animated
@@ -612,7 +620,10 @@ titleForHeaderInSection:(NSInteger)section
 	 {
 		 case 2:
 			//searchbar.text = @"";
-			self.navigationItem.rightBarButtonItem=nil;
+			  if(parentView==0)
+			  {	  
+				  self.navigationItem.rightBarButtonItem=nil;
+			  }		
 			 			 //[self presentModalViewController:ab animated:YES];
 		#ifdef _NEW_ADDRESS_BOOK_
 			  addressBookP.view.hidden=NO;
