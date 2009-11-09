@@ -3,7 +3,7 @@
 //  spoknclient
 //
 //  Created by Mukesh Sharma on 01/07/09.
-//  Copyright 2009 Geodesic Ltd.. All rights reserved.
+//  Copyright 2009 Geodesic Ltd.. All rights reservcallViewControllerPed.
 //
 
 #import "dialviewcontroller.h"
@@ -632,12 +632,17 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			[numberlebelP setText:@""];
 
 			break;
+		case END_CALL_PRESSED:
+				[self setViewButton:0];
+			[callViewControllerP stopTimer];
+				callViewControllerP = 0;
+			break;
 		case ALERT_DISCONNECTED:
 			
 			[self setViewButton:0];
 			[calltimerP invalidate];
 			timecallduration = [callViewControllerP stopTimer];
-			[self dismissModalViewControllerAnimated:NO];
+			[self dismissModalViewControllerAnimated:YES];
 			callViewControllerP = 0;
 			//printf("\ndisconnected");
 			calltimerP = nil;

@@ -25,6 +25,7 @@
 	int row;
 	//UIFont *fontP;
 	int fntSz;
+	BOOL boldB;
 	NSString  *fntNameP;
 	UIColor *colorP;
 	Boolean percent;//data given as persent
@@ -36,6 +37,7 @@
 	
 	
 }
+@property (readwrite,assign) BOOL boldB;
 @property (readwrite,assign) UITextAlignment textAlignmentType;
 @property (readwrite,assign) Boolean percent;
 @property (readwrite,assign) int left;

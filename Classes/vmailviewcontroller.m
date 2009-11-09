@@ -551,7 +551,7 @@
 	cell.spoknSubCellP.dataArrayP = secLocP->elementP;
 	cell.spoknSubCellP.ownerDrawB = true;
 	cell.spoknSubCellP.rowHeight = 50;
-	//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//UITableViewCellAccessoryDetailDisclosureButton; 
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//UITableViewCellAccessoryDetailDisclosureButton; 
 	//cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	[CellIdentifier release];
 	//cell.hidesAccessoryWhenEditing = YES;

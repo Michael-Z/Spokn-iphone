@@ -630,6 +630,7 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	pj_status_t status;
 	pjsua_transport_config transcfg;
 	pjsua_media_config cfgmedia;
+	pjsua_destroy();
 	printf("\n pj init");
     /* Create pjsua first! */
     status = pjsua_create();
@@ -839,6 +840,7 @@ void ltpLogin(struct ltpStack *ps, int command)
 
 			if (acc_id != PJSUA_INVALID_ID)
 				pjsua_acc_set_registration(acc_id, PJ_FALSE);
+			pjsua_destroy();
 		}	
 	}
 }

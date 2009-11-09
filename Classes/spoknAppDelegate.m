@@ -164,7 +164,9 @@
 			[self LoadContactView:callviewP];
 			break;
 		case ALERT_OFFLINE:
+			
 			self->onLineB = false;
+			//logOut(ltpInterfacesP,false);
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];
 				switch(self->subID)
@@ -174,6 +176,7 @@
 							[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
 						break;
 					case LOGIN_STATUS_FAILED:
+							
 							[dialviewP setStatusText: @"Authentication failed" :ALERT_OFFLINE :self->subID ];
 						break;
 					case LOGIN_STATUS_NO_ACCESS:
@@ -822,8 +825,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 -(Boolean)endCall:(int)lineid
 {
 	hangLtpInterface(self->ltpInterfacesP);
-	[dialviewP setStatusText: @"call end" :0 :0];
-	[tabBarController dismissModalViewControllerAnimated:YES];
+	[dialviewP setStatusText: @"call end" :ALERT_DISCONNECTED :0];
+	//[tabBarController dismissModalViewControllerAnimated:YES];
 
 	return true;
 }

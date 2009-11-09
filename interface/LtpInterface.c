@@ -455,7 +455,7 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 				return 1;
 			
 			}
-			ltpInterfaceP->pjsipStartB==true;
+			//ltpInterfaceP->pjsipStartB==true;
 		}	
 		
 		#endif

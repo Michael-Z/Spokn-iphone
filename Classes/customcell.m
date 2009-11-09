@@ -17,7 +17,7 @@
 @synthesize height;
 @synthesize dataP;
 @synthesize colorP;
-
+@synthesize boldB;
 @synthesize row;
 @synthesize uiImageP;
 @synthesize fountCount;
@@ -38,6 +38,7 @@
 	uiImageP = nil;
 	fountCount = 0;
 	textAlignmentType = UITextAlignmentLeft;
+	boldB = NO;
 	return self;
 	
 }
@@ -217,7 +218,15 @@
 					
 					if(displayDataP.fntSz)
 					{
-						fontlP =   [UIFont systemFontOfSize:displayDataP.fntSz] ;// displayDataP.fontP;
+						if(displayDataP.boldB)
+						{
+							fontlP =   [UIFont boldSystemFontOfSize:displayDataP.fntSz] ;// displayDataP.fontP;
+							
+						}
+						else
+						{	
+							fontlP =   [UIFont systemFontOfSize:displayDataP.fntSz] ;// displayDataP.fontP;
+						}
 					}
 					else
 					{	

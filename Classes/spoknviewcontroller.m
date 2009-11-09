@@ -189,9 +189,9 @@
 	//[buttonCtlP setBackgroundColor:[UIColor greenColor]];
 	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn Number";
 	NSArray *wordArray = [wordstring componentsSeparatedByString:@"\n"] ;
-	// self->tableView initWithStyle:UITableViewStyleGrouped];
+	// [self->tableView initWithStyle :UITableViewStyleGrouped];
 	self->tableView.rowHeight = 50.0f;
-	self->tableView.backgroundColor = [UIColor whiteColor];
+	//self->tableView.backgroundColor = [UIColor whiteColor];
 	
 	self->tableView.tableFooterView = buttonCtlP;
 	[buttonCtlP release];
