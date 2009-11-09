@@ -636,12 +636,19 @@ titleForHeaderInSection:(NSInteger)section
 					  target: self
 					  action: @selector(addContactUI) ] autorelease ];	
 			 }
+			 else
+			 {
+				 self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+				  initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+				  target: self
+				  action: @selector(cancelClicked) ] autorelease ];
+			 }
 			#ifdef _NEW_ADDRESS_BOOK_
 				addressBookP.view.hidden=YES;
 		/*	 self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 														 initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 														 target: self
-														 action: @selector(cancelClicked) ] autorelease ];*
+														 action: @selector(cancelClicked) ] autorelease ];*/
 				
 			#else
 				tableView.delegate = self;
