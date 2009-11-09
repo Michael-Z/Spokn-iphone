@@ -152,6 +152,14 @@
 			 target: self
 			 action: @selector(addContactUI) ] autorelease ];	
 	}
+	else
+	{
+		self.navigationItem.rightBarButtonItem 
+		= [ [ [ UIBarButtonItem alloc ]
+			 initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+			 target: self
+			 action: @selector(cancelClicked) ] autorelease ];	
+	}
 	/*
 	else
 	{
