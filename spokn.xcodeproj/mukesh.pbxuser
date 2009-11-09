@@ -222,8 +222,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 279467406;
-			PBXWorkspaceStateSaveDate = 279467406;
+			PBXPerProjectTemplateStateSaveDate = 279478777;
+			PBXWorkspaceStateSaveDate = 279478777;
 		};
 		perUserProjectItems = {
 			8B09422C104A707200F19164 /* PBXTextBookmark */ = 8B09422C104A707200F19164 /* PBXTextBookmark */;
@@ -284,8 +284,6 @@
 			8B20AC5210A880DC009E546A /* PBXTextBookmark */ = 8B20AC5210A880DC009E546A /* PBXTextBookmark */;
 			8B20AC5310A880DC009E546A /* PBXTextBookmark */ = 8B20AC5310A880DC009E546A /* PBXTextBookmark */;
 			8B20AC5410A880DC009E546A /* PBXTextBookmark */ = 8B20AC5410A880DC009E546A /* PBXTextBookmark */;
-			8B20AC5510A880DC009E546A /* PBXTextBookmark */ = 8B20AC5510A880DC009E546A /* PBXTextBookmark */;
-			8B20AC5610A880DC009E546A /* PBXTextBookmark */ = 8B20AC5610A880DC009E546A /* PBXTextBookmark */;
 			8B20AC5A10A88133009E546A /* PBXTextBookmark */ = 8B20AC5A10A88133009E546A /* PBXTextBookmark */;
 			8B20AC5B10A88133009E546A /* PBXTextBookmark */ = 8B20AC5B10A88133009E546A /* PBXTextBookmark */;
 			8B20AC5D10A88133009E546A /* PBXTextBookmark */ = 8B20AC5D10A88133009E546A /* PBXTextBookmark */;
@@ -739,6 +737,7 @@
 			8BF868011046D4BB00F463D7 /* PBXTextBookmark */ = 8BF868011046D4BB00F463D7 /* PBXTextBookmark */;
 			8BF868051046D4BB00F463D7 /* PBXTextBookmark */ = 8BF868051046D4BB00F463D7 /* PBXTextBookmark */;
 			8BFC39D710A842EF00043818 /* PBXBookmark */ = 8BFC39D710A842EF00043818 /* PBXBookmark */;
+			8BFE274710A8849600E14234 /* PBXTextBookmark */ = 8BFE274710A8849600E14234 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 8B9302571011EBA2004BDA41 /* Source Control */;
 		userBuildSettings = {
@@ -1116,11 +1115,6 @@
 		name = customcell.m;
 		path = /Users/mukesh/mygit/iphone/Classes/customcell.m;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 6505}}";
-			sepNavSelRange = "{4474, 0}";
-			sepNavVisRange = "{3991, 980}";
-		};
 	};
 	8B16E3BC10906B9100FFE1EE /* GSM_CREA.c */ = {
 		isa = PBXFileReference;
@@ -1142,11 +1136,6 @@
 		name = spoknviewcontroller.m;
 		path = /Users/mukesh/mygit/iphone/Classes/spoknviewcontroller.m;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1412, 8177}}";
-			sepNavSelRange = "{3309, 0}";
-			sepNavVisRange = "{3015, 1920}";
-		};
 	};
 	8B16E40B109071B000FFE1EE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1247,11 +1236,6 @@
 		name = UIImage.h;
 		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIImage.h;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 1205}}";
-			sepNavSelRange = "{974, 72}";
-			sepNavVisRange = "{611, 1157}";
-		};
 	};
 	8B177C2A10467D0700E42923 /* calls.cpp */ = {
 		isa = PBXFileReference;
@@ -1340,23 +1324,6 @@
 		name = speex_codec.c;
 		path = "/Users/mukesh/mygit/pjproject/pjmedia/src/pjmedia-codec/speex_codec.c";
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 15110}}";
-			sepNavSelRange = "{5216, 0}";
-			sepNavVisRange = "{4724, 809}";
-		};
-	};
-	8B20AB2010A8641B009E546A /* sipwrapper.c */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.c;
-		name = sipwrapper.c;
-		path = /Users/mukesh/mygit/iphone/interface/sipwrapper.c;
-		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 15091}}";
-			sepNavSelRange = "{24792, 0}";
-			sepNavVisRange = "{24562, 676}";
-		};
 	};
 	8B20AB2310A8642A009E546A /* PBXBookmark */ = {
 		isa = PBXBookmark;
@@ -1374,6 +1341,7 @@
 	};
 	8B20AB2510A8642A009E546A /* CFBase.h */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
 		name = CFBase.h;
 		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers/CFBase.h;
 		sourceTree = "<absolute>";
@@ -1384,11 +1352,6 @@
 		name = speex.c;
 		path = /Users/mukesh/mygit/pjproject/third_party/speex/libspeex/speex.c;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 3913}}";
-			sepNavSelRange = "{5070, 0}";
-			sepNavVisRange = "{4795, 694}";
-		};
 	};
 	8B20AB9110A86D48009E546A /* Call-log-Icons-incoming.png */ = {
 		uiCtxt = {
@@ -1417,6 +1380,7 @@
 	};
 	8B20ABAC10A8780F009E546A /* UINavigationBar.h */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
 		name = UINavigationBar.h;
 		path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UINavigationBar.h;
 		sourceTree = "<absolute>";
@@ -1683,26 +1647,6 @@
 		vrLen = 209;
 		vrLoc = 0;
 	};
-	8B20AC5510A880DC009E546A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 8B594D571096E41000A6659A /* sipwrapper.h */;
-		name = "sipwrapper.h: 519";
-		rLen = 0;
-		rLoc = 14324;
-		rType = 0;
-		vrLen = 774;
-		vrLoc = 13840;
-	};
-	8B20AC5610A880DC009E546A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 8B20AB2010A8641B009E546A /* sipwrapper.c */;
-		name = "sipwrapper.c: 932";
-		rLen = 0;
-		rLoc = 24756;
-		rType = 0;
-		vrLen = 676;
-		vrLoc = 24562;
-	};
 	8B20AC5A10A88133009E546A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 8BF1644D10884E7D00E66A9C /* contactDetailsviewcontroller.m */;
@@ -1735,13 +1679,14 @@
 	};
 	8B20AC5E10A88133009E546A /* sipwrapper.c */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.c;
 		name = sipwrapper.c;
 		path = /Users/mukesh/mygit/iphone/interface/sipwrapper.c;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 15091}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1055, 15077}}";
 			sepNavSelRange = "{24792, 0}";
-			sepNavVisRange = "{24562, 676}";
+			sepNavVisRange = "{24562, 647}";
 		};
 	};
 	8B25F66410A4396600DE0EAB /* keypadview.m */ = {
@@ -1781,7 +1726,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 511;
-		modificationTime = 279478565.082573;
+		modificationTime = 279479033.887547;
 		state = 1;
 	};
 	8B29990810982FA800204D81 /* Incommingcallviewcontroller.m:75 */ = {
@@ -1797,7 +1742,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 75;
-		modificationTime = 279478565.082564;
+		modificationTime = 279479033.887563;
 		state = 1;
 	};
 	8B29991A1098306900204D81 /* spoknAppDelegate.m:615 */ = {
@@ -1813,7 +1758,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 615;
-		modificationTime = 279478565.082548;
+		modificationTime = 279479033.88757;
 		state = 1;
 	};
 	8B299A6E10983C6A00204D81 /* PBXTextBookmark */ = {
@@ -1876,11 +1821,6 @@
 		name = ltpmobile.c;
 		path = /Users/mukesh/mygit/lib/common/src/ltpmobile.c;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 41625}}";
-			sepNavSelRange = "{62, 0}";
-			sepNavVisRange = "{65987, 721}";
-		};
 	};
 	8B313EBE104A672B00C2BA1D /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -2143,11 +2083,6 @@
 		name = LtpInterface.c;
 		path = /Users/mukesh/mygit/iphone/interface/LtpInterface.c;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1853, 8207}}";
-			sepNavSelRange = "{11491, 13}";
-			sepNavVisRange = "{11064, 691}";
-		};
 	};
 	8B3E8A941087299A00F7D305 /* spoknAppDelegate.m:806 */ = {
 		isa = PBXFileBreakpoint;
@@ -2163,7 +2098,7 @@
 		ignoreCount = 0;
 		lineNumber = 806;
 		location = spokn;
-		modificationTime = 279478546.481401;
+		modificationTime = 279478794.571645;
 		state = 2;
 	};
 	8B3E8AC010872E3F00F7D305 /* playrecordpcm.c */ = {
@@ -2317,7 +2252,7 @@
 		ignoreCount = 0;
 		lineNumber = 641;
 		location = spokn;
-		modificationTime = 279478546.481352;
+		modificationTime = 279478794.571616;
 		state = 2;
 	};
 	8B458A9E103FE52F008AB88E /* string.h */ = {
@@ -2440,11 +2375,6 @@
 		name = CGGeometry.h;
 		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator3.0.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 4720}}";
-			sepNavSelRange = "{263, 11}";
-			sepNavVisRange = "{0, 478}";
-		};
 	};
 	8B49F8F2104571330055F08E /* UIColor.h */ = {
 		isa = PBXFileReference;
@@ -3023,11 +2953,6 @@
 		name = vmailviewcontroller.m;
 		path = /Users/mukesh/mygit/iphone/Classes/vmailviewcontroller.m;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 15673}}";
-			sepNavSelRange = "{11364, 0}";
-			sepNavVisRange = "{11023, 819}";
-		};
 	};
 	8B59EFBC10A8261A00B06474 /* calllogviewcontroller.m */ = {
 		isa = PBXFileReference;
@@ -3035,11 +2960,6 @@
 		name = calllogviewcontroller.m;
 		path = /Users/mukesh/mygit/iphone/Classes/calllogviewcontroller.m;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1307, 13299}}";
-			sepNavSelRange = "{8981, 0}";
-			sepNavVisRange = "{8786, 744}";
-		};
 	};
 	8B59EFEB10A82CEE00B06474 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -3708,11 +3628,6 @@
 		name = contactviewController.m;
 		path = /Users/mukesh/mygit/iphone/Classes/contactviewController.m;
 		sourceTree = "<group>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 21608}}";
-			sepNavSelRange = "{4657, 0}";
-			sepNavVisRange = "{4156, 829}";
-		};
 	};
 	8B8523E0108CC41700FEEE6E /* contactviewController.m:477 */ = {
 		isa = PBXFileBreakpoint;
@@ -3728,7 +3643,7 @@
 		ignoreCount = 0;
 		lineNumber = 477;
 		location = spokn;
-		modificationTime = 279478546.481415;
+		modificationTime = 279478794.571654;
 		state = 2;
 	};
 	8B8523E4108CC44100FEEE6E /* contactviewController.m:748 */ = {
@@ -3745,7 +3660,7 @@
 		ignoreCount = 0;
 		lineNumber = 748;
 		location = spokn;
-		modificationTime = 279478546.481433;
+		modificationTime = 279478794.571661;
 		state = 2;
 	};
 	8B8523E6108CC45000FEEE6E /* contactviewController.m:1068 */ = {
@@ -3762,7 +3677,7 @@
 		ignoreCount = 0;
 		lineNumber = 1068;
 		location = spokn;
-		modificationTime = 279478546.481452;
+		modificationTime = 279478794.571666;
 		state = 2;
 	};
 	8B852469108CCAA600FEEE6E /* UIViewController.h */ = {
@@ -3793,7 +3708,7 @@
 		ignoreCount = 0;
 		lineNumber = 170;
 		location = spokn;
-		modificationTime = 279478546.481286;
+		modificationTime = 279478794.571567;
 		state = 2;
 	};
 	8B86269510844DC700718D16 /* ABNewPersonViewController.h */ = {
@@ -4925,11 +4840,6 @@
 		name = vmshowviewcontroller.m;
 		path = /Users/mukesh/mygit/iphone/Classes/vmshowviewcontroller.m;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 21709}}";
-			sepNavSelRange = "{12495, 0}";
-			sepNavVisRange = "{12056, 866}";
-		};
 	};
 	8B99293B10A55AD900EBD16F /* spoknAppDelegate.m */ = {
 		isa = PBXFileReference;
@@ -5513,7 +5423,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 195;
-		modificationTime = 279478546.481332;
+		modificationTime = 279478794.571601;
 		state = 2;
 	};
 	8BA4467F1032EF0400EA536A /* ABPerson.h */ = {
@@ -5631,11 +5541,6 @@
 		name = callviewcontroller.m;
 		path = /Users/mukesh/mygit/iphone/Classes/callviewcontroller.m;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1308, 3624}}";
-			sepNavSelRange = "{2837, 0}";
-			sepNavVisRange = "{0, 917}";
-		};
 	};
 	8BA5A5E810A2D11F007BA622 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -5797,7 +5702,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 22;
-		modificationTime = 279478546.481318;
+		modificationTime = 279478794.571592;
 		state = 2;
 	};
 	8BA8E556102835BC0022801E /* vmailviewcontroller.m */ = {
@@ -6099,11 +6004,6 @@
 		name = callviewcontroller.h;
 		path = /Users/mukesh/mygit/iphone/Classes/callviewcontroller.h;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 668}}";
-			sepNavSelRange = "{707, 0}";
-			sepNavVisRange = "{215, 844}";
-		};
 	};
 	8BBAAAA9108D79D50033DF47 /* CFByteOrder.h */ = {
 		isa = PBXFileReference;
@@ -6321,7 +6221,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 2;
-		modificationTime = 279478546.481364;
+		modificationTime = 279478794.571623;
 		state = 2;
 	};
 	8BC2F10D10490947008A40B9 /* contact.m:2 */ = {
@@ -6337,7 +6237,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 2;
-		modificationTime = 279478546.481382;
+		modificationTime = 279478794.571632;
 		state = 2;
 	};
 	8BC2F18310491766008A40B9 /* PBXTextBookmark */ = {
@@ -6497,7 +6397,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 300;
-		modificationTime = 279478546.481395;
+		modificationTime = 279478794.57164;
 		state = 2;
 	};
 	8BC7DE8F10133AB900E21311 /* maince.cpp */ = {
@@ -6778,11 +6678,6 @@
 		name = spoknviewcontroller.h;
 		path = /Users/mukesh/mygit/iphone/Classes/spoknviewcontroller.h;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1097, 779}}";
-			sepNavSelRange = "{347, 10}";
-			sepNavVisRange = "{240, 745}";
-		};
 	};
 	8BD3E5DF1078B4D200300343 /* time.h */ = {
 		isa = PBXFileReference;
@@ -6953,11 +6848,6 @@
 		name = vmshowviewcontroller.h;
 		path = /Users/mukesh/mygit/iphone/Classes/vmshowviewcontroller.h;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 1420}}";
-			sepNavSelRange = "{1658, 6}";
-			sepNavVisRange = "{1219, 849}";
-		};
 	};
 	8BE08A3C1099CF5F007945EE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -7751,11 +7641,6 @@
 		name = contactDetailsviewcontroller.m;
 		path = /Users/mukesh/mygit/iphone/Classes/contactDetailsviewcontroller.m;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 24313}}";
-			sepNavSelRange = "{14591, 0}";
-			sepNavVisRange = "{14056, 1005}";
-		};
 	};
 	8BF164C110885F3000E66A9C /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -7797,11 +7682,6 @@
 		name = contactDetailsviewcontroller.h;
 		path = /Users/mukesh/mygit/iphone/Classes/contactDetailsviewcontroller.h;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 1915}}";
-			sepNavSelRange = "{2243, 0}";
-			sepNavVisRange = "{1616, 893}";
-		};
 	};
 	8BF1676E10888A5B00E66A9C /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -7941,7 +7821,7 @@
 		ignoreCount = 0;
 		lineNumber = 116;
 		location = spokn;
-		modificationTime = 279478546.481342;
+		modificationTime = 279478794.571607;
 		state = 2;
 	};
 	8BF7298D10355FE500C124B0 /* NSString.h */ = {
@@ -8139,6 +8019,22 @@
 	8BFC39D710A842EF00043818 /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = F249AB56106F7B9B0024AE84 /* English */;
+	};
+	8BFE274710A8849600E14234 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8BFE274810A8849600E14234 /* sipwrapper.c */;
+		name = "sipwrapper.c: 934";
+		rLen = 0;
+		rLoc = 24792;
+		rType = 0;
+		vrLen = 676;
+		vrLoc = 24562;
+	};
+	8BFE274810A8849600E14234 /* sipwrapper.c */ = {
+		isa = PBXFileReference;
+		name = sipwrapper.c;
+		path = /Users/mukesh/mygit/iphone/interface/sipwrapper.c;
+		sourceTree = "<absolute>";
 	};
 	F249AAB5106F6A340024AE84 /* keypadview.h */ = {
 		uiCtxt = {
