@@ -183,7 +183,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 }
 -(void) LogoutPressed {
 	
-	logOut(ltpInterfacesP);
+	logOut(ltpInterfacesP,true);
 	//statusLabelP. textAlignment=UITextAlignmentCenter;
 	//[statusLabelP setText:@""];
 	[self.navigationItem.leftBarButtonItem initWithTitle: @"Login" style:UIBarButtonItemStylePlain

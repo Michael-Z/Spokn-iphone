@@ -49,38 +49,19 @@
 		8B47DB4A107264ED00EEEF61 /* dialer.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47DB47107264ED00EEEF61 /* dialer.png */; };
 		8B47DB4B107264ED00EEEF61 /* contacts.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47DB48107264ED00EEEF61 /* contacts.png */; };
 		8B47DB4C107264ED00EEEF61 /* addcall.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47DB49107264ED00EEEF61 /* addcall.png */; };
-		8B594CDC1096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD01096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a */; };
 		8B594CDD1096E0F000A6659A /* libsrtp-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD11096E0F000A6659A /* libsrtp-arm-apple-darwin9.a */; };
-		8B594CDE1096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD21096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a */; };
-		8B594CDF1096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD31096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a */; };
 		8B594CE01096E0F000A6659A /* libresample-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD41096E0F000A6659A /* libresample-arm-apple-darwin9.a */; };
-		8B594CE11096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD51096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a */; };
-		8B594CE21096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD61096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a */; };
 		8B594CE31096E0F000A6659A /* libmilenage-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD71096E0F000A6659A /* libmilenage-arm-apple-darwin9.a */; };
-		8B594CE41096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD81096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a */; };
-		8B594CE51096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CD91096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a */; };
 		8B594CE61096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CDA1096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a */; };
-		8B594CE71096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CDB1096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a */; };
-		8B594CF01096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CE81096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a */; };
 		8B594CF11096E11F00A6659A /* libpjsua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CE91096E11F00A6659A /* libpjsua-arm-apple-darwin9.a */; };
-		8B594CF21096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEA1096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a */; };
 		8B594CF31096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEB1096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a */; };
-		8B594CF41096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEC1096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a */; };
 		8B594CF51096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CED1096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a */; };
-		8B594CF61096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEE1096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a */; };
 		8B594CF71096E11F00A6659A /* libpjsip-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CEF1096E11F00A6659A /* libpjsip-arm-apple-darwin9.a */; };
-		8B594CFA1096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CF81096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a */; };
 		8B594CFB1096E15400A6659A /* libpjnath-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CF91096E15400A6659A /* libpjnath-arm-apple-darwin9.a */; };
-		8B594D031096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFC1096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a */; };
 		8B594D041096E17800A6659A /* libpjsdp-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFD1096E17800A6659A /* libpjsdp-arm-apple-darwin9.a */; };
-		8B594D051096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFE1096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a */; };
-		8B594D061096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594CFF1096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a */; };
 		8B594D071096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D001096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a */; };
-		8B594D081096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D011096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a */; };
 		8B594D091096E17800A6659A /* libpjmedia-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D021096E17800A6659A /* libpjmedia-arm-apple-darwin9.a */; };
-		8B594D0C1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0A1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a */; };
 		8B594D0D1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0B1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a */; };
-		8B594D101096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0E1096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a */; };
 		8B594D111096E1B800A6659A /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B594D0F1096E1B800A6659A /* libpj-arm-apple-darwin9.a */; };
 		8B59A62C10998423003BF3EA /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A61F10998423003BF3EA /* Contact.m */; };
 		8B59A62D10998423003BF3EA /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62110998423003BF3EA /* ContactCell.m */; };
@@ -91,23 +72,23 @@
 		8B59A63210998423003BF3EA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62B10998423003BF3EA /* UIViewAdditions.m */; };
 		8B59A68E109987FB003BF3EA /* pickerviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */; };
 		8B59A68F109987FB003BF3EA /* pickerviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */; };
-		8B65614310A6ECF80078FA0A /* TB-VMS.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65613D10A6ECF80078FA0A /* TB-VMS.png */; };
-		8B65614410A6ECF80078FA0A /* TB-Spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65613E10A6ECF80078FA0A /* TB-Spokn.png */; };
-		8B65614510A6ECF80078FA0A /* Spokn-Logomark-59.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65613F10A6ECF80078FA0A /* Spokn-Logomark-59.png */; };
-		8B65614610A6ECF80078FA0A /* Spokn-Logomark-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614010A6ECF80078FA0A /* Spokn-Logomark-29.png */; };
-		8B65614710A6ECF80078FA0A /* searchbarbackgroung.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614110A6ECF80078FA0A /* searchbarbackgroung.png */; };
-		8B65614810A6ECF80078FA0A /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614210A6ECF80078FA0A /* default.png */; };
-		8B65615010A6ED060078FA0A /* vm_icons_incoming_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614A10A6ED060078FA0A /* vm_icons_incoming_new.png */; };
-		8B65615110A6ED060078FA0A /* vm_icons_incoming_read.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614B10A6ED060078FA0A /* vm_icons_incoming_read.png */; };
-		8B65615210A6ED060078FA0A /* vm_icons_outgoing_delivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614C10A6ED060078FA0A /* vm_icons_outgoing_delivered.png */; };
-		8B65615310A6ED060078FA0A /* vm_icons_outgoing_undelivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614D10A6ED060078FA0A /* vm_icons_outgoing_undelivered.png */; };
-		8B65615410A6ED060078FA0A /* vmail_out_newHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614E10A6ED060078FA0A /* vmail_out_newHigh.png */; };
-		8B65615510A6ED060078FA0A /* vms_out_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65614F10A6ED060078FA0A /* vms_out_Active.png */; };
-		8B65615C10A6ED200078FA0A /* AS-callforward.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65615710A6ED200078FA0A /* AS-callforward.png */; };
-		8B65615D10A6ED200078FA0A /* AS-credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65615810A6ED200078FA0A /* AS-credits.png */; };
-		8B65615E10A6ED200078FA0A /* AS-forward-to.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65615910A6ED200078FA0A /* AS-forward-to.png */; };
-		8B65615F10A6ED200078FA0A /* AS-spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65615A10A6ED200078FA0A /* AS-spokn.png */; };
-		8B65616010A6ED200078FA0A /* AS-status.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B65615B10A6ED200078FA0A /* AS-status.png */; };
+		8B657B4A10A72A0D008921F6 /* vm_icons_incoming_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B3810A72A0D008921F6 /* vm_icons_incoming_new.png */; };
+		8B657B4B10A72A0D008921F6 /* vm_icons_incoming_read.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B3910A72A0D008921F6 /* vm_icons_incoming_read.png */; };
+		8B657B4C10A72A0D008921F6 /* vm_icons_outgoing_delivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B3A10A72A0D008921F6 /* vm_icons_outgoing_delivered.png */; };
+		8B657B4D10A72A0D008921F6 /* vm_icons_outgoing_undelivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B3B10A72A0D008921F6 /* vm_icons_outgoing_undelivered.png */; };
+		8B657B4E10A72A0D008921F6 /* vmail_out_newHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B3C10A72A0D008921F6 /* vmail_out_newHigh.png */; };
+		8B657B4F10A72A0D008921F6 /* vms_out_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B3D10A72A0D008921F6 /* vms_out_Active.png */; };
+		8B657B5010A72A0D008921F6 /* TB-VMS.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B3E10A72A0D008921F6 /* TB-VMS.png */; };
+		8B657B5110A72A0D008921F6 /* TB-Spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B3F10A72A0D008921F6 /* TB-Spokn.png */; };
+		8B657B5210A72A0D008921F6 /* Spokn-Logomark-59.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B4010A72A0D008921F6 /* Spokn-Logomark-59.png */; };
+		8B657B5310A72A0D008921F6 /* Spokn-Logomark-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B4110A72A0D008921F6 /* Spokn-Logomark-29.png */; };
+		8B657B5410A72A0D008921F6 /* searchbarstrech.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B4210A72A0D008921F6 /* searchbarstrech.png */; };
+		8B657B5510A72A0D008921F6 /* searchbarbackgroung.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B4310A72A0D008921F6 /* searchbarbackgroung.png */; };
+		8B657B5610A72A0D008921F6 /* AS-callforward.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B4510A72A0D008921F6 /* AS-callforward.png */; };
+		8B657B5710A72A0D008921F6 /* AS-credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B4610A72A0D008921F6 /* AS-credits.png */; };
+		8B657B5810A72A0D008921F6 /* AS-forward-to.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B4710A72A0D008921F6 /* AS-forward-to.png */; };
+		8B657B5910A72A0D008921F6 /* AS-spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B4810A72A0D008921F6 /* AS-spokn.png */; };
+		8B657B5A10A72A0D008921F6 /* AS-status.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B657B4910A72A0D008921F6 /* AS-status.png */; };
 		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
 		8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */; };
 		8B8024DD1078D29C00C02F5F /* backview.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8024DC1078D29C00C02F5F /* backview.png */; };
@@ -284,38 +265,19 @@
 		8B47DB47107264ED00EEEF61 /* dialer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialer.png; sourceTree = "<group>"; };
 		8B47DB48107264ED00EEEF61 /* contacts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contacts.png; sourceTree = "<group>"; };
 		8B47DB49107264ED00EEEF61 /* addcall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addcall.png; sourceTree = "<group>"; };
-		8B594CD01096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsrtp-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libsrtp-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594CD11096E0F000A6659A /* libsrtp-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsrtp-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libsrtp-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD21096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libspeex-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD31096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libresample-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libresample-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594CD41096E0F000A6659A /* libresample-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libresample-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libresample-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD51096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libportaudio-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD61096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmilenage-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libmilenage-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594CD71096E0F000A6659A /* libmilenage-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmilenage-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libmilenage-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD81096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libilbccodec-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libilbccodec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CD91096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgsmcodec-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libgsmcodec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594CDA1096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgsmcodec-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libgsmcodec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CDB1096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libg7221codec-i386-apple-darwin9.8.0.a"; path = "../pjproject/third_party/lib/libg7221codec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CE81096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsua-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594CE91096E11F00A6659A /* libpjsua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CEA1096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsip-ua-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594CEB1096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-ua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CEC1096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-simple-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsip-simple-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594CED1096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-simple-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-simple-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CEE1096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjsip/lib/libpjsip-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594CEF1096E11F00A6659A /* libpjsip-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CF81096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjnath-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjnath/lib/libpjnath-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594CF91096E15400A6659A /* libpjnath-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjnath-arm-apple-darwin9.a"; path = "../pjproject/pjnath/lib/libpjnath-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CFC1096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsdp-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjsdp-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594CFD1096E17800A6659A /* libpjsdp-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsdp-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjsdp-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594CFE1096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjmedia-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
-		8B594CFF1096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-codec-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjmedia-codec-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594D001096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-codec-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjmedia-codec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594D011096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjmedia/lib/libpjmedia-audiodev-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594D021096E17800A6659A /* libpjmedia-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjmedia-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594D0A1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594D0B1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-arm-apple-darwin9.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B594D0E1096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin9.8.0.a"; path = "../pjproject/pjlib/lib/libpj-i386-apple-darwin9.8.0.a"; sourceTree = SOURCE_ROOT; };
 		8B594D0F1096E1B800A6659A /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B594D571096E41000A6659A /* sipwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sipwrapper.h; path = ../lib/common/include/sipwrapper.h; sourceTree = SOURCE_ROOT; };
 		8B59A61E10998423003BF3EA /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
@@ -335,23 +297,23 @@
 		8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = pickerviewcontroller.xib; sourceTree = "<group>"; };
 		8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pickerviewcontroller.m; sourceTree = "<group>"; };
 		8B59A68D109987FB003BF3EA /* pickerviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pickerviewcontroller.h; sourceTree = "<group>"; };
-		8B65613D10A6ECF80078FA0A /* TB-VMS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-VMS.png"; sourceTree = "<group>"; };
-		8B65613E10A6ECF80078FA0A /* TB-Spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-Spokn.png"; sourceTree = "<group>"; };
-		8B65613F10A6ECF80078FA0A /* Spokn-Logomark-59.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spokn-Logomark-59.png"; sourceTree = "<group>"; };
-		8B65614010A6ECF80078FA0A /* Spokn-Logomark-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spokn-Logomark-29.png"; sourceTree = "<group>"; };
-		8B65614110A6ECF80078FA0A /* searchbarbackgroung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchbarbackgroung.png; sourceTree = "<group>"; };
-		8B65614210A6ECF80078FA0A /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
-		8B65614A10A6ED060078FA0A /* vm_icons_incoming_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_incoming_new.png; sourceTree = "<group>"; };
-		8B65614B10A6ED060078FA0A /* vm_icons_incoming_read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_incoming_read.png; sourceTree = "<group>"; };
-		8B65614C10A6ED060078FA0A /* vm_icons_outgoing_delivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_outgoing_delivered.png; sourceTree = "<group>"; };
-		8B65614D10A6ED060078FA0A /* vm_icons_outgoing_undelivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_outgoing_undelivered.png; sourceTree = "<group>"; };
-		8B65614E10A6ED060078FA0A /* vmail_out_newHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmail_out_newHigh.png; sourceTree = "<group>"; };
-		8B65614F10A6ED060078FA0A /* vms_out_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vms_out_Active.png; sourceTree = "<group>"; };
-		8B65615710A6ED200078FA0A /* AS-callforward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-callforward.png"; sourceTree = "<group>"; };
-		8B65615810A6ED200078FA0A /* AS-credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-credits.png"; sourceTree = "<group>"; };
-		8B65615910A6ED200078FA0A /* AS-forward-to.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-forward-to.png"; sourceTree = "<group>"; };
-		8B65615A10A6ED200078FA0A /* AS-spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-spokn.png"; sourceTree = "<group>"; };
-		8B65615B10A6ED200078FA0A /* AS-status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-status.png"; sourceTree = "<group>"; };
+		8B657B3810A72A0D008921F6 /* vm_icons_incoming_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_incoming_new.png; sourceTree = "<group>"; };
+		8B657B3910A72A0D008921F6 /* vm_icons_incoming_read.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_incoming_read.png; sourceTree = "<group>"; };
+		8B657B3A10A72A0D008921F6 /* vm_icons_outgoing_delivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_outgoing_delivered.png; sourceTree = "<group>"; };
+		8B657B3B10A72A0D008921F6 /* vm_icons_outgoing_undelivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_outgoing_undelivered.png; sourceTree = "<group>"; };
+		8B657B3C10A72A0D008921F6 /* vmail_out_newHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmail_out_newHigh.png; sourceTree = "<group>"; };
+		8B657B3D10A72A0D008921F6 /* vms_out_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vms_out_Active.png; sourceTree = "<group>"; };
+		8B657B3E10A72A0D008921F6 /* TB-VMS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-VMS.png"; sourceTree = "<group>"; };
+		8B657B3F10A72A0D008921F6 /* TB-Spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-Spokn.png"; sourceTree = "<group>"; };
+		8B657B4010A72A0D008921F6 /* Spokn-Logomark-59.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spokn-Logomark-59.png"; sourceTree = "<group>"; };
+		8B657B4110A72A0D008921F6 /* Spokn-Logomark-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spokn-Logomark-29.png"; sourceTree = "<group>"; };
+		8B657B4210A72A0D008921F6 /* searchbarstrech.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchbarstrech.png; sourceTree = "<group>"; };
+		8B657B4310A72A0D008921F6 /* searchbarbackgroung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchbarbackgroung.png; sourceTree = "<group>"; };
+		8B657B4510A72A0D008921F6 /* AS-callforward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-callforward.png"; sourceTree = "<group>"; };
+		8B657B4610A72A0D008921F6 /* AS-credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-credits.png"; sourceTree = "<group>"; };
+		8B657B4710A72A0D008921F6 /* AS-forward-to.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-forward-to.png"; sourceTree = "<group>"; };
+		8B657B4810A72A0D008921F6 /* AS-spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-spokn.png"; sourceTree = "<group>"; };
+		8B657B4910A72A0D008921F6 /* AS-status.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AS-status.png"; sourceTree = "<group>"; };
 		8B6739E2101209E900849952 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddeditcellController.m; sourceTree = "<group>"; };
 		8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddeditcellController.h; sourceTree = "<group>"; };
@@ -515,38 +477,19 @@
 				8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */,
 				8BB54917104BF25B00BD6C22 /* libspeexlib.a in Frameworks */,
 				8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */,
-				8B594CDC1096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594CDD1096E0F000A6659A /* libsrtp-arm-apple-darwin9.a in Frameworks */,
-				8B594CDE1096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CDF1096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594CE01096E0F000A6659A /* libresample-arm-apple-darwin9.a in Frameworks */,
-				8B594CE11096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CE21096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594CE31096E0F000A6659A /* libmilenage-arm-apple-darwin9.a in Frameworks */,
-				8B594CE41096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CE51096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594CE61096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a in Frameworks */,
-				8B594CE71096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594CF01096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594CF11096E11F00A6659A /* libpjsua-arm-apple-darwin9.a in Frameworks */,
-				8B594CF21096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594CF31096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a in Frameworks */,
-				8B594CF41096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594CF51096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a in Frameworks */,
-				8B594CF61096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594CF71096E11F00A6659A /* libpjsip-arm-apple-darwin9.a in Frameworks */,
-				8B594CFA1096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594CFB1096E15400A6659A /* libpjnath-arm-apple-darwin9.a in Frameworks */,
-				8B594D031096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594D041096E17800A6659A /* libpjsdp-arm-apple-darwin9.a in Frameworks */,
-				8B594D051096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a in Frameworks */,
-				8B594D061096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594D071096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a in Frameworks */,
-				8B594D081096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594D091096E17800A6659A /* libpjmedia-arm-apple-darwin9.a in Frameworks */,
-				8B594D0C1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594D0D1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
-				8B594D101096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a in Frameworks */,
 				8B594D111096E1B800A6659A /* libpj-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -712,39 +655,20 @@
 		8B594CCE1096E08700A6659A /* siplib */ = {
 			isa = PBXGroup;
 			children = (
-				8B594D0E1096E1B800A6659A /* libpj-i386-apple-darwin9.8.0.a */,
 				8B594D0F1096E1B800A6659A /* libpj-arm-apple-darwin9.a */,
-				8B594D0A1096E19700A6659A /* libpjlib-util-i386-apple-darwin9.8.0.a */,
 				8B594D0B1096E19700A6659A /* libpjlib-util-arm-apple-darwin9.a */,
-				8B594CFC1096E17800A6659A /* libpjsdp-i386-apple-darwin9.8.0.a */,
 				8B594CFD1096E17800A6659A /* libpjsdp-arm-apple-darwin9.a */,
-				8B594CFE1096E17800A6659A /* libpjmedia-i386-apple-darwin9.8.0.a */,
-				8B594CFF1096E17800A6659A /* libpjmedia-codec-i386-apple-darwin9.8.0.a */,
 				8B594D001096E17800A6659A /* libpjmedia-codec-arm-apple-darwin9.a */,
-				8B594D011096E17800A6659A /* libpjmedia-audiodev-i386-apple-darwin9.8.0.a */,
 				8B594D021096E17800A6659A /* libpjmedia-arm-apple-darwin9.a */,
-				8B594CF81096E15400A6659A /* libpjnath-i386-apple-darwin9.8.0.a */,
 				8B594CF91096E15400A6659A /* libpjnath-arm-apple-darwin9.a */,
-				8B594CE81096E11F00A6659A /* libpjsua-i386-apple-darwin9.8.0.a */,
 				8B594CE91096E11F00A6659A /* libpjsua-arm-apple-darwin9.a */,
-				8B594CEA1096E11F00A6659A /* libpjsip-ua-i386-apple-darwin9.8.0.a */,
 				8B594CEB1096E11F00A6659A /* libpjsip-ua-arm-apple-darwin9.a */,
-				8B594CEC1096E11F00A6659A /* libpjsip-simple-i386-apple-darwin9.8.0.a */,
 				8B594CED1096E11F00A6659A /* libpjsip-simple-arm-apple-darwin9.a */,
-				8B594CEE1096E11F00A6659A /* libpjsip-i386-apple-darwin9.8.0.a */,
 				8B594CEF1096E11F00A6659A /* libpjsip-arm-apple-darwin9.a */,
-				8B594CD01096E0F000A6659A /* libsrtp-i386-apple-darwin9.8.0.a */,
 				8B594CD11096E0F000A6659A /* libsrtp-arm-apple-darwin9.a */,
-				8B594CD21096E0F000A6659A /* libspeex-i386-apple-darwin9.8.0.a */,
-				8B594CD31096E0F000A6659A /* libresample-i386-apple-darwin9.8.0.a */,
 				8B594CD41096E0F000A6659A /* libresample-arm-apple-darwin9.a */,
-				8B594CD51096E0F000A6659A /* libportaudio-i386-apple-darwin9.8.0.a */,
-				8B594CD61096E0F000A6659A /* libmilenage-i386-apple-darwin9.8.0.a */,
 				8B594CD71096E0F000A6659A /* libmilenage-arm-apple-darwin9.a */,
-				8B594CD81096E0F000A6659A /* libilbccodec-i386-apple-darwin9.8.0.a */,
-				8B594CD91096E0F000A6659A /* libgsmcodec-i386-apple-darwin9.8.0.a */,
 				8B594CDA1096E0F000A6659A /* libgsmcodec-arm-apple-darwin9.a */,
-				8B594CDB1096E0F000A6659A /* libg7221codec-i386-apple-darwin9.8.0.a */,
 			);
 			name = siplib;
 			sourceTree = "<group>";
@@ -770,27 +694,27 @@
 			path = GCustomControls;
 			sourceTree = "<group>";
 		};
-		8B65614910A6ED060078FA0A /* vms_icons */ = {
+		8B657B3710A72A0D008921F6 /* vms_icons */ = {
 			isa = PBXGroup;
 			children = (
-				8B65614A10A6ED060078FA0A /* vm_icons_incoming_new.png */,
-				8B65614B10A6ED060078FA0A /* vm_icons_incoming_read.png */,
-				8B65614C10A6ED060078FA0A /* vm_icons_outgoing_delivered.png */,
-				8B65614D10A6ED060078FA0A /* vm_icons_outgoing_undelivered.png */,
-				8B65614E10A6ED060078FA0A /* vmail_out_newHigh.png */,
-				8B65614F10A6ED060078FA0A /* vms_out_Active.png */,
+				8B657B3810A72A0D008921F6 /* vm_icons_incoming_new.png */,
+				8B657B3910A72A0D008921F6 /* vm_icons_incoming_read.png */,
+				8B657B3A10A72A0D008921F6 /* vm_icons_outgoing_delivered.png */,
+				8B657B3B10A72A0D008921F6 /* vm_icons_outgoing_undelivered.png */,
+				8B657B3C10A72A0D008921F6 /* vmail_out_newHigh.png */,
+				8B657B3D10A72A0D008921F6 /* vms_out_Active.png */,
 			);
 			path = vms_icons;
 			sourceTree = "<group>";
 		};
-		8B65615610A6ED200078FA0A /* accountrsc */ = {
+		8B657B4410A72A0D008921F6 /* accountrsc */ = {
 			isa = PBXGroup;
 			children = (
-				8B65615710A6ED200078FA0A /* AS-callforward.png */,
-				8B65615810A6ED200078FA0A /* AS-credits.png */,
-				8B65615910A6ED200078FA0A /* AS-forward-to.png */,
-				8B65615A10A6ED200078FA0A /* AS-spokn.png */,
-				8B65615B10A6ED200078FA0A /* AS-status.png */,
+				8B657B4510A72A0D008921F6 /* AS-callforward.png */,
+				8B657B4610A72A0D008921F6 /* AS-credits.png */,
+				8B657B4710A72A0D008921F6 /* AS-forward-to.png */,
+				8B657B4810A72A0D008921F6 /* AS-spokn.png */,
+				8B657B4910A72A0D008921F6 /* AS-status.png */,
 			);
 			path = accountrsc;
 			sourceTree = "<group>";
@@ -909,14 +833,14 @@
 		F2730CAF1070A9B300DF8852 /* rsc */ = {
 			isa = PBXGroup;
 			children = (
-				8B65615610A6ED200078FA0A /* accountrsc */,
-				8B65614910A6ED060078FA0A /* vms_icons */,
-				8B65613D10A6ECF80078FA0A /* TB-VMS.png */,
-				8B65613E10A6ECF80078FA0A /* TB-Spokn.png */,
-				8B65613F10A6ECF80078FA0A /* Spokn-Logomark-59.png */,
-				8B65614010A6ECF80078FA0A /* Spokn-Logomark-29.png */,
-				8B65614110A6ECF80078FA0A /* searchbarbackgroung.png */,
-				8B65614210A6ECF80078FA0A /* default.png */,
+				8B657B3710A72A0D008921F6 /* vms_icons */,
+				8B657B3E10A72A0D008921F6 /* TB-VMS.png */,
+				8B657B3F10A72A0D008921F6 /* TB-Spokn.png */,
+				8B657B4010A72A0D008921F6 /* Spokn-Logomark-59.png */,
+				8B657B4110A72A0D008921F6 /* Spokn-Logomark-29.png */,
+				8B657B4210A72A0D008921F6 /* searchbarstrech.png */,
+				8B657B4310A72A0D008921F6 /* searchbarbackgroung.png */,
+				8B657B4410A72A0D008921F6 /* accountrsc */,
 				8BF795361085F76F00DBFC51 /* red.png */,
 				8BF795371085F76F00DBFC51 /* orange.png */,
 				8BF795381085F76F00DBFC51 /* green.png */,
@@ -1130,23 +1054,23 @@
 				8BAA7DA4109EBD3E0009C8D4 /* dtmf-8.aif in Resources */,
 				8BAA7DA5109EBD3E0009C8D4 /* dtmf-9.aif in Resources */,
 				8BAA7DA6109EBD3E0009C8D4 /* dtmf-s.aif in Resources */,
-				8B65614310A6ECF80078FA0A /* TB-VMS.png in Resources */,
-				8B65614410A6ECF80078FA0A /* TB-Spokn.png in Resources */,
-				8B65614510A6ECF80078FA0A /* Spokn-Logomark-59.png in Resources */,
-				8B65614610A6ECF80078FA0A /* Spokn-Logomark-29.png in Resources */,
-				8B65614710A6ECF80078FA0A /* searchbarbackgroung.png in Resources */,
-				8B65614810A6ECF80078FA0A /* default.png in Resources */,
-				8B65615010A6ED060078FA0A /* vm_icons_incoming_new.png in Resources */,
-				8B65615110A6ED060078FA0A /* vm_icons_incoming_read.png in Resources */,
-				8B65615210A6ED060078FA0A /* vm_icons_outgoing_delivered.png in Resources */,
-				8B65615310A6ED060078FA0A /* vm_icons_outgoing_undelivered.png in Resources */,
-				8B65615410A6ED060078FA0A /* vmail_out_newHigh.png in Resources */,
-				8B65615510A6ED060078FA0A /* vms_out_Active.png in Resources */,
-				8B65615C10A6ED200078FA0A /* AS-callforward.png in Resources */,
-				8B65615D10A6ED200078FA0A /* AS-credits.png in Resources */,
-				8B65615E10A6ED200078FA0A /* AS-forward-to.png in Resources */,
-				8B65615F10A6ED200078FA0A /* AS-spokn.png in Resources */,
-				8B65616010A6ED200078FA0A /* AS-status.png in Resources */,
+				8B657B4A10A72A0D008921F6 /* vm_icons_incoming_new.png in Resources */,
+				8B657B4B10A72A0D008921F6 /* vm_icons_incoming_read.png in Resources */,
+				8B657B4C10A72A0D008921F6 /* vm_icons_outgoing_delivered.png in Resources */,
+				8B657B4D10A72A0D008921F6 /* vm_icons_outgoing_undelivered.png in Resources */,
+				8B657B4E10A72A0D008921F6 /* vmail_out_newHigh.png in Resources */,
+				8B657B4F10A72A0D008921F6 /* vms_out_Active.png in Resources */,
+				8B657B5010A72A0D008921F6 /* TB-VMS.png in Resources */,
+				8B657B5110A72A0D008921F6 /* TB-Spokn.png in Resources */,
+				8B657B5210A72A0D008921F6 /* Spokn-Logomark-59.png in Resources */,
+				8B657B5310A72A0D008921F6 /* Spokn-Logomark-29.png in Resources */,
+				8B657B5410A72A0D008921F6 /* searchbarstrech.png in Resources */,
+				8B657B5510A72A0D008921F6 /* searchbarbackgroung.png in Resources */,
+				8B657B5610A72A0D008921F6 /* AS-callforward.png in Resources */,
+				8B657B5710A72A0D008921F6 /* AS-credits.png in Resources */,
+				8B657B5810A72A0D008921F6 /* AS-forward-to.png in Resources */,
+				8B657B5910A72A0D008921F6 /* AS-spokn.png in Resources */,
+				8B657B5A10A72A0D008921F6 /* AS-status.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

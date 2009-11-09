@@ -43,6 +43,7 @@
 - (void) handleTimer: (id) timer
 {
 	
+	printf("\n resync called");
 	profileResync();
 	
 }
@@ -573,7 +574,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//setLtpUserName(ltpInterfacesP, "");
 	//setLtpPassword(ltpInterfacesP, "");
 	//NSString *ltpValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"protocol_prefrence"];
-	[self startCheckNetwork];	
+	//[self startCheckNetwork];	
 	
 	if(DoLtpLogin(ltpInterfacesP))//mean error ask dial to load login view
 	{
@@ -598,7 +599,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 -(void)logOut
 {
-	logOut(ltpInterfacesP);
+	logOut(ltpInterfacesP,true);
 }
 - (void)applicationWillTerminate:(UIApplication *)application
 {
@@ -609,6 +610,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[super applicationWillTerminate:application];
 	[ltpTimerP stopTimer ];
 	//logOut(ltpInterfacesP);
+	logOut(ltpInterfacesP,false);
 	endLtp(ltpInterfacesP);
 	[self stopCheckNetwork];
 	printf("\n  count %d tab %d",[dialviewP retainCount],[tabBarController retainCount]);
@@ -1052,10 +1054,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//addr.sin_port = htons(80);	
 //	addr.sin_family = AF_INET;
 	
-	printf("\n start Reachability");
+	
 //	printf("\n host reach start");
 	[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
 	[self stopCheckNetwork];
+	printf("\n start Reachability");
 	hostReach = [[Reachability reachabilityWithHostName: @"www.spokn.com"] retain];
 	//hostReach = [[Reachability reachabilityWithAddress:&addr] retain];
 	[hostReach startNotifer];
@@ -1087,12 +1090,13 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
     NetworkStatus netStatus = [curReach currentReachabilityStatus];
     BOOL connectionRequired= [curReach connectionRequired];
     NSString* statusString= @"";
+	printf("\n no network available\n\n");
     switch (netStatus)
     {
         case NotReachable:
         {
                  //Minor interface detail- connectionRequired may return yes, even when the host is unreachable.  We cover that up here...
-            connectionRequired= NO;  
+         //   connectionRequired= NO;  
 		/*	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" 
 															message:@"connect via wifi"
 														   delegate:self 
@@ -1144,9 +1148,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		printf("\n offline set");
 		alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
 		wifiavailable = NO;
+		 NSLog(statusString);
 		
     }
-    NSLog(statusString);
+   
 	//textField.text= statusString;
 }
 

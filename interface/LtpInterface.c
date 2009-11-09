@@ -16,6 +16,7 @@
 #include "ltpmobile.h"
 #include "ua.h"
 #include "ltpandsip.h"
+#include "sipwrapper.h"
 //#include <types.h>
 pthread_mutexattr_t    attr;
 pthread_mutex_t         mutex;
@@ -364,6 +365,11 @@ LtpInterfaceType *	  startLtp(AlertNotificationCallbackP  alertNotiCallbackP,uns
 	#else		
 		ltpInterfaceP->ltpObjectP = ltpInit(2, LTP_CODEC_SPEEX, 4);
 	#endif
+		if(ltpInterfaceP->ltpObjectP==0)
+		{
+			free(ltpInterfaceP);
+			return NULL;
+		}
 		ltpInterfaceP->ltpObjectP->nextCallSession = 0xffff & ticks();
 		ltpInterfaceP->ltpObjectP->nextMsgID = 0xffff & ticks();
 		ltpInterfaceP->ltpObjectP->forceProxy = 0;
@@ -436,8 +442,23 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 	}
 	if(ltpInterfaceP->connectionActiveByte)
 	{	
+		char errorstr[50];
 		printf("\n mukesh start ");
+		#ifdef _LTP_
 		restartSocket(&ltpInterfaceP->socketID);
+		#else
+		if(ltpInterfaceP->pjsipStartB==false)
+		{	
+			printf("\n start login ltp");
+			if (!spokn_pj_init(errorstr)){
+				printf ("PJ not initiallized: %s\n",errorstr);
+				return 1;
+			
+			}
+			ltpInterfaceP->pjsipStartB==true;
+		}	
+		
+		#endif
 		//printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
 		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
 		ltpInterfaceP->alertNotifyP(START_LOGIN,0,0,ltpInterfaceP->userData,0);
@@ -450,15 +471,18 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 	return 0;
 
 }
-int logOut(LtpInterfaceType *ltpInterfaceP)
+int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 {
 	if(ltpInterfaceP)
 	{	
 		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGOUT);
-		profileClear();
-		cdrRemoveAll();
-		setLtpUserName(ltpInterfaceP,"");
-		setLtpPassword(ltpInterfaceP,"");
+		if(clearAllB)
+		{	
+			profileClear();
+			cdrRemoveAll();
+			setLtpUserName(ltpInterfaceP,"");
+			setLtpPassword(ltpInterfaceP,"");
+		}	
 		return 0;
 	}	
 	return 1;

@@ -623,7 +623,7 @@ static void on_reg_state(pjsua_acc_id acc_id)
 }
 
 
-static int spokn_pj_init(char *errorstring)
+ int spokn_pj_init(char *errorstring)
 {
 	pjsua_config cfg;
 	pjsua_logging_config log_cfg;
@@ -756,12 +756,12 @@ struct ltpStack  *ltpInit(int maxslots, int maxbitrate, int framesPerPacket)
 		ps->bigEndian = 0;
 	else
 		ps->bigEndian = 1;
-
+/*
 	if (!spokn_pj_init(errorstr)){
-		printf ("PJ not initiallized: %s\n");
+		printf ("PJ not initiallized: %s\n",errorstr);
 		free(ps);
 		return NULL;
-	}
+	}*/
 	return ps;
 }
 
@@ -833,10 +833,13 @@ void ltpLogin(struct ltpStack *ps, int command)
 	}
 
 	if (command == CMD_LOGOUT) {
-		acc_id = pjsua_acc_get_default();
+		if(pjsua_acc_get_count() > 0)
+		{	
+			acc_id = pjsua_acc_get_default();
 
-		if (acc_id != PJSUA_INVALID_ID)
-			pjsua_acc_set_registration(acc_id, PJ_FALSE);
+			if (acc_id != PJSUA_INVALID_ID)
+				pjsua_acc_set_registration(acc_id, PJ_FALSE);
+		}	
 	}
 }
 

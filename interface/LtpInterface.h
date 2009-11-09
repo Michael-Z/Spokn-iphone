@@ -54,6 +54,7 @@ typedef struct IncommingCallType
 			long currentTime;
 			int connectionActiveByte;
 			pthread_t pthObj;
+			Boolean pjsipStartB;
 			
 			
 		}LtpInterfaceType;
@@ -78,7 +79,7 @@ typedef struct IncommingCallType
 	Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP);
 	int  CallBackUI(void *uData,Boolean palyBackB);
 	void RemoveSoundThread(LtpInterfaceType *ltpInterfaceP,Boolean playBackB);
-	int logOut(LtpInterfaceType *ltpInterfaceP);
+	int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB);
 	void mutexLockInterface();
 	void mutexUnLockInterface();
 	void *PollThread(void *PollThreadP);
