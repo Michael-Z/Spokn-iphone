@@ -421,7 +421,7 @@
 	NSLog(@"Cancel");
 	
 	
-	if(viewEnum!=CONTACTADDVIEWENUM || modalViewB ==true)
+	if(viewEnum!=CONTACTADDVIEWENUM || modelViewB ==true)
 	{	
 		[ [self navigationController] popToRootViewControllerAnimated:YES ];
 	}	
@@ -495,7 +495,7 @@
 	}
 	if(popupB)
 	{	
-		if(viewEnum!=CONTACTADDVIEWENUM && modalViewB!=true)
+		if(viewEnum!=CONTACTADDVIEWENUM && modelViewB!=true)
 		{	
 			[ [self navigationController] popToRootViewControllerAnimated:YES ];
 		}	

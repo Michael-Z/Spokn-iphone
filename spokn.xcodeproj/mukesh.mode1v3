@@ -247,6 +247,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -294,6 +296,7 @@
 								<string>8BB5492C104BF2F300BD6C22</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
+								<string>1C08E77C0454961000C914BD</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
@@ -303,7 +306,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 18}, {302, 683}}</string>
+							<string>{{0, 3346}, {302, 683}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -338,7 +341,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>keypad.png</string>
+								<string>contactDetailsviewcontroller.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -346,11 +349,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>keypad.png</string>
+										<string>contactDetailsviewcontroller.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8BFC39C410A83A4600043818</string>
+										<string>8BFC39DF10A842EF00043818</string>
 										<key>history</key>
 										<array>
 											<string>8B84B79A101480B800836F86</string>
@@ -635,7 +638,6 @@
 											<string>8B9928CD10A5500D00EBD16F</string>
 											<string>8B9928EA10A550D800EBD16F</string>
 											<string>8B99294310A55AE100EBD16F</string>
-											<string>8B99294610A55AE100EBD16F</string>
 											<string>8B99297210A55E3B00EBD16F</string>
 											<string>8B9929C910A5646F00EBD16F</string>
 											<string>8B9929F010A5687800EBD16F</string>
@@ -728,10 +730,11 @@
 											<string>8B59EFF010A82CEE00B06474</string>
 											<string>8B59EFF110A82CEE00B06474</string>
 											<string>8B59EFF210A82CEE00B06474</string>
-											<string>8B59EFF310A82CEE00B06474</string>
 											<string>8B59EFF410A82CEE00B06474</string>
 											<string>8B48BF1710A837B8003B4241</string>
-											<string>8B48BF1A10A837B8003B4241</string>
+											<string>8BFC39D710A842EF00043818</string>
+											<string>8BFC39D810A842EF00043818</string>
+											<string>8BFC39D910A842EF00043818</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -867,6 +870,11 @@
 											<string>8B59EFF910A82CEE00B06474</string>
 											<string>8B59EFFB10A82CEE00B06474</string>
 											<string>8B48BF1910A837B8003B4241</string>
+											<string>8BFC39DA10A842EF00043818</string>
+											<string>8BFC39DB10A842EF00043818</string>
+											<string>8BFC39DC10A842EF00043818</string>
+											<string>8BFC39DD10A842EF00043818</string>
+											<string>8BFC39DE10A842EF00043818</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -888,8 +896,6 @@
 							<string>494pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1067,7 +1073,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>279460422.74518198</real>
+	<real>279462639.06525201</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -1082,9 +1088,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>8B93025A1011EBB8004BDA41</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/mukesh/mygit/iphone/spokn.xcodeproj</string>
+		<string>8B93025A1011EBB8004BDA41</string>
 	</array>
 	<key>WindowString</key>
 	<string>-8 136 1440 742 0 0 1440 878 </string>
@@ -1108,7 +1114,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>contactDetailsviewcontroller.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -1179,7 +1185,7 @@
 			<key>WindowToolGUID</key>
 			<string>8B93025A1011EBB8004BDA41</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
