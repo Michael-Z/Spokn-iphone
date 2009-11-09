@@ -339,6 +339,7 @@
 			secLocP->userData = objP;
 			secLocP->index = index;
 			dispP = [ [displayData alloc] init];
+			dispP.boldB = YES;
 			dispP.left = 0;
 			dispP.top = 0;
 			if(secObjStrP)
@@ -349,7 +350,7 @@
 			{
 				dispP.width = 100;
 			}
-			dispP.height = 50;
+			dispP.height = 60;
 			if (vmailP->direction == VMAIL_OUT) 
 			{
 				/*
@@ -426,9 +427,9 @@
 				dispP = [ [displayData alloc] init];
 				dispP.left = 0;
 				dispP.top = 0;
-				dispP.width = 25;
+				dispP.width = 20;
 				dispP.textAlignmentType = UITextAlignmentRight;
-				dispP.height = 100;
+				dispP.height = 70;
 				if(vmailP->status==VMAIL_FAILED)
 				{
 					dispP.colorP = [UIColor redColor];
@@ -442,7 +443,7 @@
 				stringStrP = [[NSString alloc] initWithUTF8String:secObjStrP ];
 				dispP.dataP = stringStrP;
 				[stringStrP release];
-				dispP.colorP = [UIColor blueColor];
+				dispP.colorP = [[UIColor alloc] initWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0];
 				dispP.fntSz = 14;
 				[dispP.colorP release];
 				[secLocP->elementP addObject:dispP];
@@ -534,6 +535,7 @@
 			
 			cell =  [[ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
 			//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
+			[cell resizeFrame];
 			[self addRow:[ indexPath indexAtPosition: 1 ] sectionObject:&secLocP];
 			
 		}	

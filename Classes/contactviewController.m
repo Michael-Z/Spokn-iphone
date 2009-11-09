@@ -114,28 +114,20 @@
 -(void)cancelSearch
 {
 	[self doneSearching_Clicked:nil];
-	if(segmentedControl.selectedSegmentIndex==0)//different view
-	{	
-		[self reload];
-	}
-	else
-	{
-		searchbar.text = @"";
-		[addressBookTableDelegate setSearchBarAndTable:searchbar  :tableView PerentObject:self OverlayView :&ovController];
-		
-	}
+	
 	searchStartB = false;
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
 
 
-	self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
-												initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
-												target: self
-												action: @selector(cancelClicked) ] autorelease ];
+		
+	[self cancelSearch];
+}
+- (void) doneSearching_Clicked:(id)sender {
 	
-
+	searchStartB = false;
+	[searchbar resignFirstResponder];
 	CGFloat searchBarHeight = [searchbar frame].size.height;
 	[searchbar setFrame:CGRectMake(0,0,294,searchBarHeight)];
 	searchbar.backgroundColor = [UIColor clearColor];
@@ -146,16 +138,12 @@
 	tableView.tableHeaderView = tempview;
 	tableView.tableHeaderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"searchbarbackgroung.png"]];
 	[tempview release];
-	[self cancelSearch];
-}
-- (void) doneSearching_Clicked:(id)sender {
-	
 	
 #ifdef _NO_SEARCH_MOVE_
 	[searchbar setShowsCancelButton:NO animated:YES];
 	searchStartB = false;
 	searchbar.text = @"";
-	[searchbar resignFirstResponder];
+	//[searchbar resignFirstResponder];
 	if(parentView==0)
 	{	
 		self.navigationItem.rightBarButtonItem 
@@ -179,7 +167,16 @@
 	[ovController.view removeFromSuperview];
 	[ovController release];
 	ovController = nil;
-	
+	if(segmentedControl.selectedSegmentIndex==0)//different view
+	{	
+		[self reload];
+	}
+	else
+	{
+		searchbar.text = @"";
+		[addressBookTableDelegate setSearchBarAndTable:searchbar  :tableView PerentObject:self OverlayView :&ovController];
+		
+	}
 	return ;
 #endif
 	

@@ -52,7 +52,7 @@
 									
 			dispP = [ [displayData alloc] init];
 			dispP.left = 10;
-			dispP.top = 5;
+			dispP.top = 0;
 			dispP.width = 100;
 			if(secObjStrP)
 			{	
@@ -60,7 +60,7 @@
 					dispP.width = 40;
 			}
 			
-			dispP.height = 50;
+			dispP.height = 40;
 			
 			dispP.colorP = [UIColor blueColor];
 			

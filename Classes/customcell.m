@@ -87,6 +87,13 @@
 	}
     return self;
 }
+-(void) resizeFrame
+{
+	CGRect cellFrame = CGRectMake(0.0, 0.0, self.contentView.bounds.size.width, self.contentView.bounds.size.height);
+	//spoknSubCellP = [[SpoknSubCell alloc] initWithFrame:cellFrame];
+	
+	spoknSubCellP.frame = cellFrame;
+}
 -(void) setAutoResize:(BOOL)onB
 {
 	if(onB)

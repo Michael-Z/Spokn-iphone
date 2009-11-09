@@ -82,6 +82,7 @@
 	
 	SpoknSubCell *spoknSubCellP;
 }
+-(void) resizeFrame;
 -(void) setAutoResize:(BOOL)onB;
 @property (readwrite,assign) SpoknSubCell *spoknSubCellP;
 

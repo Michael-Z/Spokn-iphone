@@ -131,6 +131,7 @@
 			CGRect cellRect = CGRectMake(0, 0, 320, 50);
 			
 			cell = [ [ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
+			[cell resizeFrame];
 			//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
 			[self addRow:[ indexPath indexAtPosition: 1 ] sectionObject:&secLocP];
 			
@@ -287,6 +288,7 @@
 			secLocP->userData = objP;
 			secLocP->index = index;
 			dispP = [ [displayData alloc] init];
+			//dispP.boldB = YES;
 			dispP.left = 0;
 			dispP.top = 0;
 			dispP.width = 0;
@@ -331,7 +333,7 @@
 			{
 				dispP.width = 100;
 			}
-			dispP.height = 50;
+			dispP.height = 60;
 			if((cdrP->direction & CALLTYPE_IN) && (cdrP->direction & CALLTYPE_MISSED))
 			{	
 				dispP.colorP = [UIColor redColor];
@@ -359,13 +361,13 @@
 				dispP = [ [displayData alloc] init];
 				dispP.left = 0;
 				dispP.top = 0;
-				dispP.width = 30;
+				dispP.width = 27;
 				dispP.textAlignmentType = UITextAlignmentRight;
 				dispP.height = 100;
 				stringStrP = [[NSString alloc] initWithUTF8String:secObjStrP ];
 				dispP.dataP = stringStrP;
 				[stringStrP release];
-				dispP.colorP = [UIColor blackColor];
+				dispP.colorP = [[UIColor alloc] initWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0];
 				dispP.fntSz = 14;
 				[dispP.colorP release];
 				[secLocP->elementP addObject:dispP];
