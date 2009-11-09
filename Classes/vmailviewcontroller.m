@@ -453,8 +453,8 @@
 			if(typeCallP)
 			{	
 				dispP = [ [displayData alloc] init];
-				dispP.left = 16;
-				dispP.top = 0;
+				dispP.left = 18;
+				dispP.top = 2;
 				dispP.width = 70;
 				dispP.row = 1;
 				dispP.height = 40;

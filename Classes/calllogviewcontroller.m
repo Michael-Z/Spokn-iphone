@@ -376,8 +376,8 @@
 			}	
 			
 			dispP = [ [displayData alloc] init];
-			dispP.left = 20;
-			dispP.top = 0;
+			dispP.left = 18;
+			dispP.top = 2;
 			dispP.width = 70;
 			dispP.row = 1;
 			dispP.height = 40;
@@ -724,9 +724,9 @@ cancelButtonTitle: nil
     [super viewDidLoad];
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Calllog" image:nil tag:2];
-	missImageP = [UIImage imageNamed:@"missedvms.png"];
-	inImageP = [UIImage imageNamed:@"incomming.png"];
-	outImageP = [UIImage imageNamed:@"outgoing.png"];
+	missImageP = [UIImage imageNamed:@"Call-log-Icons-missed.png"];
+	inImageP = [UIImage imageNamed:@"Call-log-Icons-incoming.png"];
+	outImageP = [UIImage imageNamed:@"Call-log-Icons-outgoing.png"];
 	
 	 
 	

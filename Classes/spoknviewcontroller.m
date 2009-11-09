@@ -106,8 +106,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-		CGRect statusFrame = CGRectMake(120, 0, 170, 40);
-		CGRect LabelFrame2 = CGRectMake(160, 0, 117, 40);
+		CGRect statusFrame = CGRectMake(120, 0, 170, 45);
+		CGRect LabelFrame2 = CGRectMake(160, 0, 117, 45);
 		[self.tabBarItem initWithTitle:@"My Spokn" image:[UIImage imageNamed:@"TB-Spokn.png"] tag:5];
 		labelBalance = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelBalance.textAlignment = UITextAlignmentRight;

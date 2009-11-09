@@ -549,7 +549,7 @@
 	if([addeditviewP retainCount]>1)
 		[addeditviewP release];*/
 	struct AddressBook *addressDataTmpP;
-
+	
 	self.navigationItem.rightBarButtonItem 
 	= [ [ [ UIBarButtonItem alloc ]
 		 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
@@ -1010,7 +1010,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 				if(self->rootObjectP)
 				{
 					printf("\n got the no");
-					[[self navigationController]  popToViewController:self->rootObjectP animated:NO];
+					[[self navigationController]  popToViewController:self->rootObjectP animated:YES];
 				}
 			}
 			return;

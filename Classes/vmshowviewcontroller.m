@@ -25,13 +25,13 @@
 {
 	NSLog(@"Cancel");
 	
-		if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward)
+		if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward || modalB==true)
 		{	
 			[ [self navigationController] popViewControllerAnimated:YES ];
 		}
 		else
 		{	
-			
+				
 			[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 		}	
 	
@@ -494,6 +494,8 @@
 		strcpy(lselectP->nameChar,nameCharP);
 		strcpy(lselectP->type,typeCharP);
 		[self showForwardOrReplyScreen:VMSStateRecord :lselectP];
+		modalB = true;
+		self.navigationItem.hidesBackButton = YES;
 		free(lselectP);
 		//[self showForwardOrReplyScreen:noCharP name:nameCharP];
 	}

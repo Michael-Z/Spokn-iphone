@@ -193,7 +193,7 @@
 						stY = rect.origin.y+height;
 					}
 					rec.origin.x = stX + displayDataP.left + 1;
-					rec.origin.y = stY+ displayDataP.top + 5;
+					rec.origin.y = stY+ displayDataP.top + 1;
 					width = (rect.size.width/100)*displayDataP.width;
 					height = (rect.size.height/100)*displayDataP.height;
 					rec.size.width = width;
@@ -245,14 +245,16 @@
 					{
 						
 						CGRect rec1;
-						rec.origin.y = stY+ displayDataP.top + 5;
+						// CGFloat y;
+						
 						rec1 = rec;
+						rec1.origin.y = stY+ displayDataP.top + 8;
 						rec1.size.width = displayDataP.uiImageP.size.width;
 						rec1.size.height = displayDataP.uiImageP.size.height;
 						[displayDataP.uiImageP drawInRect:rec1 ];	
-						rec.origin.y += height/4;
+						//rec.origin.y += height/4;
 						//[displayDataP.uiImageP drawInRect:rec1 blendMode: kCGBlendModeNormal alpha: 1.0];
-						rec.origin.x+= displayDataP.uiImageP.size.width +2;
+						rec.origin.x+= displayDataP.uiImageP.size.width +4;
 						
 					}
 				//	- (CGSize)drawInRect:(CGRect)rect withFont:(UIFont *)font lineBreakMode:(UILineBreakMode)lineBreakMode alignment:(UITextAlignment)alignment;

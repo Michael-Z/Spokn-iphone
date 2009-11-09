@@ -630,6 +630,7 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	pj_status_t status;
 	pjsua_transport_config transcfg;
 	pjsua_media_config cfgmedia;
+	pj_str_t tmp;
 	pjsua_destroy();
 	printf("\n pj init");
     /* Create pjsua first! */
@@ -647,7 +648,7 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	cfg.cb.on_call_media_state = &on_call_media_state;
 	cfg.cb.on_call_state = &on_call_state;
 	cfg.cb.on_reg_state = &on_reg_state;
-
+	
 	pjsua_logging_config_default(&log_cfg);
 	log_cfg.console_level = 0;
 	 pjsua_media_config_default(&cfgmedia);
@@ -676,6 +677,27 @@ static void on_reg_state(pjsua_acc_id acc_id)
 		return 0;
 	}
 
+	//speex code
+	/* Set codec priority 
+	 
+	 Use only "speex/8000" or "speex/16000". Set zero priority for others.
+	 
+	 */
+	/*
+	pjsua_codec_set_priority(pj_cstr(&tmp, "speex/8000"), PJMEDIA_CODEC_PRIO_HIGHEST);
+	
+	pjsua_codec_set_priority(pj_cstr(&tmp, "speex/16000"), PJMEDIA_CODEC_PRIO_NEXT_HIGHER);
+	
+	pjsua_codec_set_priority(pj_cstr(&tmp, "speex/32000"), 0);
+	
+	pjsua_codec_set_priority(pj_cstr(&tmp, "pcmu"), 0);
+	
+	pjsua_codec_set_priority(pj_cstr(&tmp, "pcma"), 0);
+	
+	pjsua_codec_set_priority(pj_cstr(&tmp, "ilbc"), 0);
+	
+	pjsua_codec_set_priority(pj_cstr(&tmp, "gsm"), 0);
+	*/
     /* Add UDP transport. */
 
 	pjsua_transport_config_default(&transcfg);
@@ -904,7 +926,16 @@ int ltpRing(struct ltpStack *ps, char *remoteid, int command)
 	}
 
 	if (strncmp(remoteid, "sip:", 4))
-		sprintf(struri, "sip:+%s@spokn.com", remoteid);
+	{	
+		if(strstr(remoteid,"+"))
+		{
+			sprintf(struri, "sip:%s@spokn.com", remoteid);
+		}
+		else
+		{	
+			sprintf(struri, "sip:+%s@spokn.com", remoteid);
+		}	
+	}
 	else
 		strcpy(struri, remoteid);
 
