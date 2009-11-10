@@ -96,7 +96,7 @@
 			NSString *curTest = keyStrs[arrayPos];
 			if([curTest isEqualToString:@"0"])
 			{
-				_plusTimer = [[NSTimer scheduledTimerWithTimeInterval:2 target:self 
+				_plusTimer = [[NSTimer scheduledTimerWithTimeInterval:0.2 target:self 
 															 selector:@selector(handleKeyPressAndHold) 
 															 userInfo:nil 
 															  repeats:YES] retain];

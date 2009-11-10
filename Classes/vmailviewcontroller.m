@@ -171,6 +171,7 @@
 		//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 		//self.title = @"Voicemail";
 		//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
+		[self setTitle:@"VMS"];
 		[self.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"TB-VMS.png"] tag:4];
     }
     return self;
@@ -891,6 +892,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	nsTimerP = nil;
 	uiProgressP = nil;
 	uiActionSheetP = nil;
+	[self setTitle:@"VMS"];
 	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	

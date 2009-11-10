@@ -596,7 +596,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//tabBarController.selectedViewController = vmsNavigationController;
 	
 	tabBarController.selectedViewController = spoknViewNavigationController;
-	
+	[vmsNavigationController.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"TB-VMS.png"] tag:4];
 
 		
 }

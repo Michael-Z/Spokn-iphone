@@ -93,6 +93,7 @@
 		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
 		8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */; };
 		8B8024DD1078D29C00C02F5F /* backview.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8024DC1078D29C00C02F5F /* backview.png */; };
+		8B8192B310A994AB0059239B /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8192B210A994AB0059239B /* default.png */; };
 		8B81B3F910317A2900A18DA1 /* addressbookcontact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B81B3F810317A2900A18DA1 /* addressbookcontact.m */; };
 		8B81B4AD10318AC300A18DA1 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */; };
 		8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4B010318ADB00A18DA1 /* AddressBook.framework */; };
@@ -321,6 +322,7 @@
 		8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddeditcellController.m; sourceTree = "<group>"; };
 		8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddeditcellController.h; sourceTree = "<group>"; };
 		8B8024DC1078D29C00C02F5F /* backview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backview.png; sourceTree = "<group>"; };
+		8B8192B210A994AB0059239B /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = rsc/default.png; sourceTree = "<group>"; };
 		8B81B3F710317A2900A18DA1 /* addressbookcontact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addressbookcontact.h; sourceTree = "<group>"; };
 		8B81B3F810317A2900A18DA1 /* addressbookcontact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addressbookcontact.m; sourceTree = "<group>"; };
 		8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -611,6 +613,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8B8192B210A994AB0059239B /* default.png */,
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
 				8B177BE3104674A600E42923 /* image */,
 				8B6739E2101209E900849952 /* spokn-Info.plist */,
@@ -1091,6 +1094,7 @@
 				8B20AB9410A86D48009E546A /* Call-log-Icons-incoming.png in Resources */,
 				8B20AB9510A86D48009E546A /* Call-log-Icons-missed.png in Resources */,
 				8B20AB9610A86D48009E546A /* Call-log-Icons-outgoing.png in Resources */,
+				8B8192B310A994AB0059239B /* default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
