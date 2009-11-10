@@ -51,7 +51,15 @@
 	touchDown = 0;
 	    return self;
 }
-
+- (void)stopTimer
+{
+	if (_plusTimer)
+	{
+		[_plusTimer invalidate];
+		[_plusTimer release];
+		_plusTimer = NULL;
+	}
+}
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
@@ -85,6 +93,14 @@
 		if(arrayPos<12)
 		{	
 			NSLog(@"\n%@ %c",keyStrs[arrayPos],keyValues[arrayPos]);
+			NSString *curTest = keyStrs[arrayPos];
+			if([curTest isEqualToString:@"0"])
+			{
+				_plusTimer = [[NSTimer scheduledTimerWithTimeInterval:2 target:self 
+															 selector:@selector(handleKeyPressAndHold) 
+															 userInfo:nil 
+															  repeats:YES] retain];
+			}	
 			[keypadProtocolP keyPressedDown:keyStrs[arrayPos] keycode:keyValues[arrayPos] ];
 		}	
 	}
@@ -93,13 +109,19 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+	[self stopTimer];
 	[super touchesBegan:touches withEvent:event];
 	touchDown = 0;
 	[self setNeedsDisplay];
 
 	
 }
-
+- (void)handleKeyPressAndHold
+{
+	//[numberlebelP setText: [curText stringByAppendingString: @"+"]];
+	[keypadProtocolP keyPressedDown:@"+" keycode:0 ];
+	[self stopTimer];
+}
 - (void)drawRect:(CGRect)rect {
 	/*UIFont *fntP;
 	UIColor *txtColor;
@@ -156,6 +178,7 @@
 
 
 - (void)dealloc {
+	[_plusTimer release];
     [dataStringP release];
 	[keypadImageP release];
 	[pressedImageP release];

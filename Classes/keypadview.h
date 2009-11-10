@@ -28,6 +28,7 @@
 	int elementHeight;
 	CGRect rectchange;
 	id<KeypadProtocol> keypadProtocolP;
+	NSTimer *_plusTimer;
 
 }
 -(void)setElement:(int)lelementx :(int)lelementy;

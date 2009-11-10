@@ -33,7 +33,20 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		statusLabel2P.hidden = YES;
 	}
 	if([curText length]<NUMBER_RANGE)
-	[numberlebelP setText: [curText stringByAppendingString: stringkey]];
+	{
+		if([stringkey isEqualToString:@"+"])
+		{
+			[self deleteRepeat];
+			statusLabel1P.hidden = YES;
+			statusLabel2P.hidden = YES;
+			NSString *curText = [numberlebelP text];
+			[numberlebelP setText:[curText stringByAppendingString:stringkey]];
+		}
+		else
+		{	
+			[numberlebelP setText: [curText stringByAppendingString: stringkey]];
+		}
+	}	
 	if( [stringkey isEqualToString:@"*"] )
 	{
 		_downKey = 10;
