@@ -459,9 +459,12 @@ titleForHeaderInSection:(NSInteger)section
 	addressBookP = [[ABPeoplePickerNavigationController alloc] init];
 	[addressBookP setNavigationBarHidden:YES animated:NO];
 	[addressBookP setPeoplePickerDelegate:self];
-	addressBookP.view.frame = self.view.frame;
+	//addressBookP.view.frame = self.view.frame;
 	addressBookP.view.hidden=YES;
-	[self.view addSubview:addressBookP.view];
+	mainViewP = self.view;
+	[mainViewP retain];
+	
+	//[self.view addSubview:addressBookP.view];
 	
 	//[addressBookP.view release];
 	#endif
@@ -632,6 +635,7 @@ titleForHeaderInSection:(NSInteger)section
 			 			 //[self presentModalViewController:ab animated:YES];
 		#ifdef _NEW_ADDRESS_BOOK_
 			  addressBookP.view.hidden=NO;
+			 self.view = addressBookP.view;
 			 //addressBookP.sc
 			#else
 			 [addressBookTableDelegate setSearchBarAndTable:searchbar  :tableView PerentObject:self OverlayView :&ovController];
@@ -660,6 +664,7 @@ titleForHeaderInSection:(NSInteger)section
 				  action: @selector(cancelClicked) ] autorelease ];
 			 }
 			#ifdef _NEW_ADDRESS_BOOK_
+				self.view = mainViewP;
 				addressBookP.view.hidden=YES;
 		/*	 self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 														 initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
@@ -712,6 +717,7 @@ titleForHeaderInSection:(NSInteger)section
 		[addressBookP release];
 	#endif
 	printf("\n contact dealloc");
+	[mainViewP retain]; 
 	[ovController release];	
 	[addressBookTableDelegate release];
 	sectionType *setTypeP;

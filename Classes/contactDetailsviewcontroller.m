@@ -1084,6 +1084,7 @@ titleForHeaderInSection:(NSInteger)section
 	 return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spokn.png"]];
 	 else
 	 return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spokn.png"]];*/
+	printf("\n section asked");
 	return sectionArray[section].sectionView;
 }
 
@@ -1138,7 +1139,8 @@ titleForHeaderInSection:(NSInteger)section
 		 target: self
 		 action: @selector(doneClicked) ] autorelease ];
 	self.navigationItem.rightBarButtonItem.enabled = NO;
-	
+	[msgLabelP release];
+	msgLabelP = nil;
 	[self setAddressBook:addressDataTmpP editable:true :CONTACTADDVIEWENUM];
 	modelViewB= true;
 	free(addressDataTmpP);
@@ -1533,7 +1535,7 @@ titleForHeaderInSection:(NSInteger)section
 			}
 			if(tableView)
 			{	
-				//printf("\n%d",tablesz);
+				printf("\n reloaded table %d\n",tablesz);
 				[tableView reloadData];
 			}	
 						

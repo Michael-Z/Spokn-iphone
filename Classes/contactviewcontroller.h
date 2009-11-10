@@ -52,6 +52,7 @@
 	int firstSection;	
 	CGRect gframe;
 	Boolean searchStartB;
+	UIView *mainViewP;
 	//NSArray *sectionNSArrayP;
 	#ifdef _NEW_ADDRESS_BOOK_
 		ABPeoplePickerNavigationController *addressBookP;
