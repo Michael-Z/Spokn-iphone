@@ -25,7 +25,6 @@
 		8B177BF2104674E000E42923 /* callout.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEA104674E000E42923 /* callout.png */; };
 		8B177BF3104674E000E42923 /* callin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEB104674E000E42923 /* callin.png */; };
 		8B1B8FDD107E0D3F00C77E3F /* spoknlog.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1B8FDC107E0D3F00C77E3F /* spoknlog.png */; };
-		8B20AB6C10A86881009E546A /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B20AB6B10A86881009E546A /* libspeex-arm-apple-darwin9.a */; };
 		8B20AB9410A86D48009E546A /* Call-log-Icons-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9110A86D48009E546A /* Call-log-Icons-incoming.png */; };
 		8B20AB9510A86D48009E546A /* Call-log-Icons-missed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9210A86D48009E546A /* Call-log-Icons-missed.png */; };
 		8B20AB9610A86D48009E546A /* Call-log-Icons-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9310A86D48009E546A /* Call-log-Icons-outgoing.png */; };
@@ -241,7 +240,6 @@
 		8B177BEA104674E000E42923 /* callout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callout.png; path = rsc/callout.png; sourceTree = "<group>"; };
 		8B177BEB104674E000E42923 /* callin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callin.png; path = rsc/callin.png; sourceTree = "<group>"; };
 		8B1B8FDC107E0D3F00C77E3F /* spoknlog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spoknlog.png; sourceTree = "<group>"; };
-		8B20AB6B10A86881009E546A /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B20AB9110A86D48009E546A /* Call-log-Icons-incoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-incoming.png"; sourceTree = "<group>"; };
 		8B20AB9210A86D48009E546A /* Call-log-Icons-missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-missed.png"; sourceTree = "<group>"; };
 		8B20AB9310A86D48009E546A /* Call-log-Icons-outgoing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-outgoing.png"; sourceTree = "<group>"; };
@@ -498,7 +496,6 @@
 				8B6609CE10A81B75000F8DAE /* libresample-arm-apple-darwin9.a in Frameworks */,
 				8B6609CF10A81B75000F8DAE /* libmilenage-arm-apple-darwin9.a in Frameworks */,
 				8B6609D010A81B75000F8DAE /* libgsmcodec-arm-apple-darwin9.a in Frameworks */,
-				8B20AB6C10A86881009E546A /* libspeex-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,7 +716,6 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
-				8B20AB6B10A86881009E546A /* libspeex-arm-apple-darwin9.a */,
 				8B6609B510A81B74000F8DAE /* libpj-arm-apple-darwin9.a */,
 				8B6609B610A81B74000F8DAE /* libpjlib-util-arm-apple-darwin9.a */,
 				8B6609B710A81B74000F8DAE /* libpjsdp-arm-apple-darwin9.a */,
@@ -1190,7 +1186,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = 4.0;
 				GENERATE_PROFILING_CODE = YES;
 				INFOPLIST_FILE = "spokn-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -1257,7 +1253,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -1273,7 +1269,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				SDKROOT = iphonesimulator2.2.1;
+				SDKROOT = iphoneos2.2.1;
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
 			};

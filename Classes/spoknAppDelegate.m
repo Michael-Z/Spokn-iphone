@@ -594,7 +594,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	printf("\n tab retain count %d",[tabBarController retainCount]);
 	printf("\n after %d %d",[callviewP retainCount],[dialviewP retainCount]	);
 	//tabBarController.selectedViewController = vmsNavigationController;
-	[vmsviewP.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"TB-VMS.png"] tag:4];
+	
 	tabBarController.selectedViewController = spoknViewNavigationController;
 	
 

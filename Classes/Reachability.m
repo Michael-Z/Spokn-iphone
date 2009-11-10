@@ -68,9 +68,14 @@ static void PrintReachabilityFlags(SCNetworkReachabilityFlags    flags, const ch
 			
 			(flags & kSCNetworkReachabilityFlagsTransientConnection)  ? 't' : '-',
 			(flags & kSCNetworkReachabilityFlagsConnectionRequired)   ? 'c' : '-',
-			(flags & kSCNetworkReachabilityFlagsConnectionOnTraffic)  ? 'C' : '-',
+			#ifdef kSCNetworkReachabilityFlagsConnectionOnTraffic
+				(flags & kSCNetworkReachabilityFlagsConnectionOnTraffic)  ? 'C' : '-',
+			#endif
 			(flags & kSCNetworkReachabilityFlagsInterventionRequired) ? 'i' : '-',
-			(flags & kSCNetworkReachabilityFlagsConnectionOnDemand)   ? 'D' : '-',
+			#ifdef kSCNetworkReachabilityFlagsConnectionOnDemand
+
+				(flags & kSCNetworkReachabilityFlagsConnectionOnDemand)   ? 'D' : '-',
+			#endif
 			(flags & kSCNetworkReachabilityFlagsIsLocalAddress)       ? 'l' : '-',
 			(flags & kSCNetworkReachabilityFlagsIsDirect)             ? 'd' : '-',
 			comment
@@ -218,8 +223,12 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 		//  then we'll assume (for now) that your on Wi-Fi
 		retVal = ReachableViaWiFi;
 	}
-	
-	
+	#ifndef kSCNetworkReachabilityFlagsConnectionOnDemand	
+	#define kSCNetworkReachabilityFlagsConnectionOnDemand 1<<5
+	#endif
+	#ifndef kSCNetworkReachabilityFlagsConnectionOnTraffic
+	#define kSCNetworkReachabilityFlagsConnectionOnTraffic	 1<<3 
+	#endif
 	if ((((flags & kSCNetworkReachabilityFlagsConnectionOnDemand ) != 0) ||
 		(flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0))
 	{

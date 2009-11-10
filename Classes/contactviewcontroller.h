@@ -28,7 +28,7 @@
 
 @interface ContactViewController : UIViewController<ABPeoplePickerNavigationControllerDelegate , UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate>  {
 	IBOutlet UITableView *tableView;
-	IBOutlet UIView *viewP;
+	//IBOutlet UIView *viewP;
 	//IBOutlet UITableView *addressBookTableView;
 	IBOutlet AddressBookContact *addressBookTableDelegate;
 	//UIAddressBook *addressBookUIP;

@@ -171,6 +171,7 @@
 		//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 		//self.title = @"Voicemail";
 		//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
+		[self.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"TB-VMS.png"] tag:4];
     }
     return self;
 }
@@ -344,13 +345,16 @@
 			dispP.top = 0;
 			if(secObjStrP)
 			{	
-				dispP.width = 70;
+				dispP.width = 65;
 			}
 			else
 			{
 				dispP.width = 100;
 			}
+			if(typeCallP)
 			dispP.height = 60;
+			else
+			dispP.height = 100;	
 			if (vmailP->direction == VMAIL_OUT) 
 			{
 				/*
@@ -426,8 +430,8 @@
 			{	
 				dispP = [ [displayData alloc] init];
 				dispP.left = 0;
-				dispP.top = 0;
-				dispP.width = 20;
+				dispP.top = 5;
+				dispP.width = 25;
 				dispP.textAlignmentType = UITextAlignmentRight;
 				dispP.height = 70;
 				if(vmailP->status==VMAIL_FAILED)

@@ -696,7 +696,7 @@
 				
 				// Set the font properties
 				[deleteButton setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
-				deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+				deleteButton.font = [UIFont boldSystemFontOfSize:12];
 					
 				
 				[deleteButton setTitle:@"Delete" forState:UIControlStateNormal];

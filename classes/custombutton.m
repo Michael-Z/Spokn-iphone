@@ -69,10 +69,12 @@ imagePressed:(UIImage *)imagePressed
 	
 	UIImage *newImage = [image stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
 	[buttonObjectP setBackgroundImage:newImage forState:UIControlStateNormal];
-	
+	//retain for 2.2.1
+	[image retain];
 	UIImage *newPressedImage = [imagePressed stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
 	[buttonObjectP setBackgroundImage:newPressedImage forState:UIControlStateHighlighted];
-	
+	//retain for 2.2.1
+	[imagePressed retain];
 	   // in case the parent view draws with a custom color or gradient, use a transparent color
 	buttonObjectP.backgroundColor = [UIColor clearColor];
 	

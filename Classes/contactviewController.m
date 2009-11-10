@@ -83,7 +83,7 @@
 	//printf("\n touch");
 	[super touchesBegan:touches withEvent:event];
 	[self resignFirstResponder];
-}
+}/*
 - (NSTimeInterval)keyboardAnimationDurationForNotification:(NSNotification*)notification
 {
 	printf("\nkey board");
@@ -92,7 +92,7 @@
     NSTimeInterval duration = 0;
     [value getValue:&duration];
     return duration;
-}
+}*/
 -(void)setObject:(id) object 
 {
 	self->ownerobject = object;
@@ -140,7 +140,12 @@
 	[tempview release];
 	
 #ifdef _NO_SEARCH_MOVE_
+//#ifdef IPHONE_
+#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
 	[searchbar setShowsCancelButton:NO animated:YES];
+#else
+	searchbar.showsCancelButton = NO;
+#endif	
 	searchStartB = false;
 	searchbar.text = @"";
 	//[searchbar resignFirstResponder];
@@ -200,8 +205,13 @@
 	[ovController release];
 	ovController = nil;
 	searchbar.frame = gframe; 
+#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
+	[searchbar setShowsCancelButton:NO animated:NO];
+#else
+	searchbar.showsCancelButton = NO;
+#endif	
 	
-		[searchbar setShowsCancelButton:NO animated:NO];
+		//[searchbar setShowsCancelButton:NO animated:NO];
 		tableView.tableHeaderView = searchbar;
 		self.navigationItem.titleView = segmentedControl;
 		
@@ -236,7 +246,12 @@
 		ovController = nil;
 		[self navigationController].navigationBarHidden =NO;
 		//sectionNSArrayP = ALPHA_ARRAY;
-		[searchbar setShowsCancelButton:NO animated:NO];
+	
+		#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
+			[searchbar setShowsCancelButton:NO animated:NO];
+		#else
+			searchbar.showsCancelButton = NO;
+		#endif	
 		searchStartB = false;
 	
 	#endif
@@ -253,8 +268,13 @@
 	#ifdef _NO_SEARCH_MOVE_
 	CGFloat searchBarHeight = [searchbar frame].size.height;
 	[searchbar setFrame:CGRectMake(0,0,320,searchBarHeight)];
-	[searchBar setShowsCancelButton:YES animated:YES];
-	self.navigationItem.rightBarButtonItem = nil;
+	#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
+		[searchBar setShowsCancelButton:YES animated:YES];
+
+	#else
+		searchbar.showsCancelButton = YES;
+	#endif	
+		//self.navigationItem.rightBarButtonItem = nil;
 	searchStartB = true;
 	[self->tableView reloadData];
 
@@ -268,14 +288,26 @@
 	searchStartB = true;
 	tableView.tableHeaderView = 0;
 	self.navigationItem.titleView = searchBar;
-	[searchBar setShowsCancelButton:YES animated:YES];
+	#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
+		[searchBar setShowsCancelButton:YES animated:YES];
+		
+	#else
+		searchbar.showsCancelButton = YES;
+	#endif	
+	
 	self.navigationItem.rightBarButtonItem = nil;
 	#else
 	//CGRect lframe;
 	//lframe = gframe;
 	//lframe.size.width-=40;
 	//searchBar.frame = lframe; 
-	[searchBar setShowsCancelButton:YES animated:YES];
+	#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
+		[searchBar setShowsCancelButton:YES animated:YES];
+		
+	#else
+		searchbar.showsCancelButton = YES;
+	#endif	
+	//[searchBar setShowsCancelButton:YES animated:YES];
 	//[searchBar setActive : YES animated:YES];
 	//+ (void)beginAnimations:(NSString *)animationID context:(void *)context;  // additional context info passed to will start/did stop selectors. begin/commit can be nested
 	//+ (void)commitAnimations;                                                 // starts up any animations when the top level animation is commited
