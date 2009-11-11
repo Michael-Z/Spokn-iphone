@@ -66,6 +66,7 @@ typedef enum  VMSStateType
 	OverlayViewController *ovController;
 	int recordVmsB;
 	Boolean modalB;
+	Boolean previewPressedB;
 	//(SelectedContctType *)lselectedContactP
 	
 	

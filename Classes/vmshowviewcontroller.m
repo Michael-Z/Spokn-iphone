@@ -315,11 +315,28 @@
 		[PlayButtonP setTitle:@"Rerecord" forState:UIControlStateNormal];
 		[PlayButtonP setTitle:@"Rerecord" forState:UIControlStateHighlighted];
 	}
+	if(vmstateType == VMSStateRecord)
+	{	
+		if(previewPressedB==false)
+		{	
+			[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTime - self->maxtimeDouble]];
+			
+		}
+		else
+		{
+			[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTimeLoc]];
+		}
+		previewPressedB = false;
+		[msgLabelP setText:@"Press on send button to send VMS "];
+		recordVmsB = true;
+		self->maxtimeDouble=maxTime;
+	}
+	else
+	{
+		self->maxtimeDouble=maxTime;
+		[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTime ]];
+	}
 	
-	[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTime - self->maxtimeDouble]];
-	[msgLabelP setText:@"Press on send button to send VMS "];
-	recordVmsB = true;
-	self->maxtimeDouble=maxTime;
 	amt = 0.0;
 	previewButtonP.enabled  = YES;
 	sendButtonP.enabled  = YES;
@@ -427,6 +444,7 @@
 			return;
 		}
 	}
+	maxTimeLoc = maxTime;
 	nsTimerP = [NSTimer scheduledTimerWithTimeInterval: 1.0
 				
 												target: self
@@ -463,6 +481,7 @@
 		{	
 			free(nameP);
 		}
+		previewPressedB = true;
 		[ownerobject VmsStreamStart:false];
 		self->maxtimeDouble=sz;
 		maxTimeLoc = sz;
