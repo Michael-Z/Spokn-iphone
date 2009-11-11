@@ -423,8 +423,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[ window addSubview: viewController->usernameP ];
 	//[ window addSubview: viewController->passwordP ];
 	wifiavailable = NO;
-	char *userNameCharP;
-	char *passwordCharP;
+	//char *userNameCharP;
+	//char *passwordCharP;
 	NSMutableArray *viewControllers;
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	dialviewP = [[DialviewController alloc] initWithNibName:@"dialview" bundle:[NSBundle mainBundle]];

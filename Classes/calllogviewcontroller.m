@@ -59,6 +59,8 @@
  *   Table Data Source
  */
 
+#pragma mark Table view methods
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView 
 {
 	////////printf("\n dilip sharma");
@@ -167,7 +169,7 @@
 	char *objStrP=0;
 	char *secObjStrP = 0;
 	struct tm *tmP=0;
-	struct tm tmP1,tmP2;
+	//struct tm tmP1,tmP2;
 	time_t timeP;
 	char disp[200];
 	char s1[30];

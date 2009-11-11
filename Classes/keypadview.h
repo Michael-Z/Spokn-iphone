@@ -33,6 +33,8 @@
 }
 -(void)setElement:(int)lelementx :(int)lelementy;
 -(void)setImage:(NSString *)normalImgP : (NSString *)pressedImgP;
+- (void)handleKeyPressAndHold;
+- (void)stopTimer;
 @property(nonatomic,readwrite,assign) id<KeypadProtocol> keypadProtocolP;
 @property(nonatomic,readwrite,copy) NSString *dataStringP;
 @property(nonatomic,readwrite,assign) int objectId;		

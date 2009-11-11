@@ -15,20 +15,15 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		32EE818710A5B1DA00B0BAAD /* searchbarbackgroung.png in Resources */ = {isa = PBXBuildFile; fileRef = 32EE818610A5B1DA00B0BAAD /* searchbarbackgroung.png */; };
 		32EE820410A5B71A00B0BAAD /* contact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE820310A5B71A00B0BAAD /* contact.xib */; };
-		8B0723AC1075150300C1D1A4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B0723AB1075150300C1D1A4 /* Default.png */; };
 		8B07244F10751C3B00C1D1A4 /* vms.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B07244D10751C3B00C1D1A4 /* vms.png */; };
 		8B07246410751D4600C1D1A4 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B07246310751D4600C1D1A4 /* login.png */; };
 		8B0B3EAC103AD39900150C5B /* spokn_1.xcclassmodel in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */; };
 		8B16790D108F36A3004D18C0 /* testingview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B16790A108F36A3004D18C0 /* testingview.xib */; };
 		8B16790E108F36A3004D18C0 /* testingview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B16790B108F36A3004D18C0 /* testingview.m */; };
-		8B177BF0104674E000E42923 /* missed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BE8104674E000E42923 /* missed.png */; };
-		8B177BF2104674E000E42923 /* callout.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEA104674E000E42923 /* callout.png */; };
-		8B177BF3104674E000E42923 /* callin.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B177BEB104674E000E42923 /* callin.png */; };
 		8B1B8FDD107E0D3F00C77E3F /* spoknlog.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1B8FDC107E0D3F00C77E3F /* spoknlog.png */; };
 		8B20AB9410A86D48009E546A /* Call-log-Icons-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9110A86D48009E546A /* Call-log-Icons-incoming.png */; };
 		8B20AB9510A86D48009E546A /* Call-log-Icons-missed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9210A86D48009E546A /* Call-log-Icons-missed.png */; };
 		8B20AB9610A86D48009E546A /* Call-log-Icons-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9310A86D48009E546A /* Call-log-Icons-outgoing.png */; };
-		8B25F61B10A4348E00DE0EAB /* keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B25F61A10A4348E00DE0EAB /* keypad.png */; };
 		8B2C3D8C1096CB54003BB164 /* ltpandsip.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C3D8B1096CB54003BB164 /* ltpandsip.c */; };
 		8B39FFC8107C910200073950 /* vmshowviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B39FFC6107C910200073950 /* vmshowviewcontroller.m */; };
 		8B39FFC9107C910200073950 /* vmshowviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */; };
@@ -92,6 +87,7 @@
 		8B6609D010A81B75000F8DAE /* libgsmcodec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6609C210A81B74000F8DAE /* libgsmcodec-arm-apple-darwin9.a */; };
 		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
 		8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */; };
+		8B7CC63E10AACE1D0043DC42 /* keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7CC63D10AACE1D0043DC42 /* keypad.png */; };
 		8B8024DD1078D29C00C02F5F /* backview.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8024DC1078D29C00C02F5F /* backview.png */; };
 		8B8192B310A994AB0059239B /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8192B210A994AB0059239B /* default.png */; };
 		8B81B3F910317A2900A18DA1 /* addressbookcontact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B81B3F810317A2900A18DA1 /* addressbookcontact.m */; };
@@ -157,10 +153,6 @@
 		8BCB06B21083020A00468EC7 /* custombutton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB06B11083020A00468EC7 /* custombutton.m */; };
 		8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */; };
 		8BCEEB2D104AD235001DF4AC /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCEEB2C104AD235001DF4AC /* OverlayView.xib */; };
-		8BD3E5CF1078B4CD00300343 /* outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3E5CC1078B4CD00300343 /* outgoing.png */; };
-		8BD3E5D01078B4CD00300343 /* missedvms.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3E5CD1078B4CD00300343 /* missedvms.png */; };
-		8BD3E5D11078B4CD00300343 /* incomming.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3E5CE1078B4CD00300343 /* incomming.png */; };
-		8BE35075107761CA00C2729A /* vmstab.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE35074107761CA00C2729A /* vmstab.png */; };
 		8BE3E2F11084D100008CB625 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3E2EF1084D100008CB625 /* Reachability.m */; };
 		8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */; };
 		8BE447B01080924400EB3A4A /* vmsprogressleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE447AF1080924400EB3A4A /* vmsprogressleft.png */; };
@@ -175,33 +167,18 @@
 		8BF7953A1085F76F00DBFC51 /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF795371085F76F00DBFC51 /* orange.png */; };
 		8BF7953B1085F76F00DBFC51 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF795381085F76F00DBFC51 /* green.png */; };
 		F249AAB7106F6A340024AE84 /* keypadview.m in Sources */ = {isa = PBXBuildFile; fileRef = F249AAB6106F6A340024AE84 /* keypadview.m */; };
-		F249AB59106F7B9B0024AE84 /* keypad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F249AB57106F7B9B0024AE84 /* keypad_pressed.png */; };
 		F270709C10710F2200DA61E9 /* bottombarblue.png in Resources */ = {isa = PBXBuildFile; fileRef = F270709610710F2200DA61E9 /* bottombarblue.png */; };
 		F270709D10710F2200DA61E9 /* bottombarblue_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F270709710710F2200DA61E9 /* bottombarblue_pressed.png */; };
 		F270709E10710F2200DA61E9 /* bottombargreen.png in Resources */ = {isa = PBXBuildFile; fileRef = F270709810710F2200DA61E9 /* bottombargreen.png */; };
 		F270709F10710F2200DA61E9 /* bottombargreen_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F270709910710F2200DA61E9 /* bottombargreen_pressed.png */; };
 		F27070A010710F2200DA61E9 /* bottombarred_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F270709A10710F2200DA61E9 /* bottombarred_pressed.png */; };
 		F27070A110710F2200DA61E9 /* decline.png in Resources */ = {isa = PBXBuildFile; fileRef = F270709B10710F2200DA61E9 /* decline.png */; };
-		F2730C1710709D0400DF8852 /* dialerkeypad.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730C1510709D0400DF8852 /* dialerkeypad.png */; };
-		F2730C1810709D0400DF8852 /* dialerkeypad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730C1610709D0400DF8852 /* dialerkeypad_pressed.png */; };
-		F2730CAA1070A90100DF8852 /* addcontact.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CA51070A90100DF8852 /* addcontact.png */; };
-		F2730CAB1070A90100DF8852 /* addcontact_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CA61070A90100DF8852 /* addcontact_pressed.png */; };
-		F2730CAC1070A90100DF8852 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CA71070A90100DF8852 /* delete.png */; };
-		F2730CAD1070A90100DF8852 /* delete_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CA81070A90100DF8852 /* delete_pressed.png */; };
-		F2730CAE1070A90100DF8852 /* showkeyboard.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CA91070A90100DF8852 /* showkeyboard.png */; };
-		F2730CC31070A9B300DF8852 /* addcontact.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB01070A9B300DF8852 /* addcontact.png */; };
-		F2730CC41070A9B300DF8852 /* addcontact_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB11070A9B300DF8852 /* addcontact_pressed.png */; };
-		F2730CC51070A9B300DF8852 /* callin.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB21070A9B300DF8852 /* callin.png */; };
-		F2730CC61070A9B300DF8852 /* callout.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB31070A9B300DF8852 /* callout.png */; };
 		F2730CC71070A9B300DF8852 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB41070A9B300DF8852 /* delete.png */; };
 		F2730CC81070A9B300DF8852 /* delete_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB51070A9B300DF8852 /* delete_pressed.png */; };
 		F2730CC91070A9B300DF8852 /* Dial.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB61070A9B300DF8852 /* Dial.png */; };
 		F2730CCA1070A9B300DF8852 /* dialerkeypad.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB71070A9B300DF8852 /* dialerkeypad.png */; };
 		F2730CCB1070A9B300DF8852 /* dialerkeypad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB81070A9B300DF8852 /* dialerkeypad_pressed.png */; };
-		F2730CCC1070A9B300DF8852 /* keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CB91070A9B300DF8852 /* keypad.png */; };
 		F2730CCD1070A9B300DF8852 /* keypad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CBA1070A9B300DF8852 /* keypad_pressed.png */; };
-		F2730CCE1070A9B300DF8852 /* missed.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CBB1070A9B300DF8852 /* missed.png */; };
-		F2730CCF1070A9B300DF8852 /* showkeyboard.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730CBC1070A9B300DF8852 /* showkeyboard.png */; };
 		F2730D491070BD8A00DF8852 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730D471070BD8A00DF8852 /* call.png */; };
 		F2730D4A1070BD8A00DF8852 /* callblue.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730D481070BD8A00DF8852 /* callblue.png */; };
 		F2730D521070C15D00DF8852 /* answer.png in Resources */ = {isa = PBXBuildFile; fileRef = F2730D511070C15D00DF8852 /* answer.png */; };
@@ -229,17 +206,13 @@
 		32CA4F630368D1EE00C91783 /* spokn_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spokn_Prefix.pch; sourceTree = "<group>"; };
 		32EE818610A5B1DA00B0BAAD /* searchbarbackgroung.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchbarbackgroung.png; sourceTree = "<group>"; };
 		32EE820310A5B71A00B0BAAD /* contact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contact.xib; sourceTree = "<group>"; };
-		8B0723AB1075150300C1D1A4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
-		8B07244D10751C3B00C1D1A4 /* vms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vms.png; path = rsc/vms.png; sourceTree = "<group>"; };
+		8B07244D10751C3B00C1D1A4 /* vms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vms.png; sourceTree = "<group>"; };
 		8B07246310751D4600C1D1A4 /* login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login.png; sourceTree = "<group>"; };
 		8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcclassmodel; path = spokn_1.xcclassmodel; sourceTree = "<group>"; };
 		8B1678BA108F3093004D18C0 /* testmemory-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "testmemory-Info.plist"; sourceTree = "<group>"; };
 		8B16790A108F36A3004D18C0 /* testingview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = testingview.xib; sourceTree = "<group>"; };
 		8B16790B108F36A3004D18C0 /* testingview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testingview.m; sourceTree = "<group>"; };
 		8B16790C108F36A3004D18C0 /* testingview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testingview.h; sourceTree = "<group>"; };
-		8B177BE8104674E000E42923 /* missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = missed.png; path = rsc/missed.png; sourceTree = "<group>"; };
-		8B177BEA104674E000E42923 /* callout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callout.png; path = rsc/callout.png; sourceTree = "<group>"; };
-		8B177BEB104674E000E42923 /* callin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = callin.png; path = rsc/callin.png; sourceTree = "<group>"; };
 		8B1B8FDC107E0D3F00C77E3F /* spoknlog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spoknlog.png; sourceTree = "<group>"; };
 		8B20AB9110A86D48009E546A /* Call-log-Icons-incoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-incoming.png"; sourceTree = "<group>"; };
 		8B20AB9210A86D48009E546A /* Call-log-Icons-missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-missed.png"; sourceTree = "<group>"; };
@@ -252,7 +225,7 @@
 		8B413C4C1075ED71005A400F /* spoknviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknviewcontroller.h; sourceTree = "<group>"; };
 		8B413C4D1075ED71005A400F /* spoknviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknviewcontroller.m; sourceTree = "<group>"; };
 		8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spoknviewcontroller.xib; sourceTree = "<group>"; };
-		8B413CAC1075FE01005A400F /* spokntab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spokntab.png; path = rsc/spokntab.png; sourceTree = "<group>"; };
+		8B413CAC1075FE01005A400F /* spokntab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spokntab.png; sourceTree = "<group>"; };
 		8B47D82F10720BA400EEEF61 /* callviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callviewcontroller.h; sourceTree = "<group>"; };
 		8B47D83010720BA400EEEF61 /* callviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callviewcontroller.m; sourceTree = "<group>"; };
 		8B47D856107212BE00EEEF61 /* speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker.png; sourceTree = "<group>"; };
@@ -321,8 +294,9 @@
 		8B6739E2101209E900849952 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddeditcellController.m; sourceTree = "<group>"; };
 		8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddeditcellController.h; sourceTree = "<group>"; };
+		8B7CC63D10AACE1D0043DC42 /* keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keypad.png; sourceTree = "<group>"; };
 		8B8024DC1078D29C00C02F5F /* backview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backview.png; sourceTree = "<group>"; };
-		8B8192B210A994AB0059239B /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = rsc/default.png; sourceTree = "<group>"; };
+		8B8192B210A994AB0059239B /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		8B81B3F710317A2900A18DA1 /* addressbookcontact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addressbookcontact.h; sourceTree = "<group>"; };
 		8B81B3F810317A2900A18DA1 /* addressbookcontact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addressbookcontact.m; sourceTree = "<group>"; };
 		8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -412,10 +386,6 @@
 		8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = overlayviewcontroller.m; sourceTree = "<group>"; };
 		8BCEEAED104ACC87001DF4AC /* overlayviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = overlayviewcontroller.h; sourceTree = "<group>"; };
 		8BCEEB2C104AD235001DF4AC /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
-		8BD3E5CC1078B4CD00300343 /* outgoing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outgoing.png; sourceTree = "<group>"; };
-		8BD3E5CD1078B4CD00300343 /* missedvms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missedvms.png; sourceTree = "<group>"; };
-		8BD3E5CE1078B4CD00300343 /* incomming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = incomming.png; sourceTree = "<group>"; };
-		8BE35074107761CA00C2729A /* vmstab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmstab.png; sourceTree = "<group>"; };
 		8BE3E2EF1084D100008CB625 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8BE3E2F01084D100008CB625 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -439,34 +409,18 @@
 		8BF795381085F76F00DBFC51 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
 		F249AAB5106F6A340024AE84 /* keypadview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keypadview.h; sourceTree = "<group>"; };
 		F249AAB6106F6A340024AE84 /* keypadview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = keypadview.m; sourceTree = "<group>"; };
-		F249AB56106F7B9B0024AE84 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = English; path = rsc/English.lproj/keypad.png; sourceTree = "<group>"; };
-		F249AB57106F7B9B0024AE84 /* keypad_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = keypad_pressed.png; path = rsc/keypad_pressed.png; sourceTree = "<group>"; };
 		F270709610710F2200DA61E9 /* bottombarblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarblue.png; sourceTree = "<group>"; };
 		F270709710710F2200DA61E9 /* bottombarblue_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarblue_pressed.png; sourceTree = "<group>"; };
 		F270709810710F2200DA61E9 /* bottombargreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombargreen.png; sourceTree = "<group>"; };
 		F270709910710F2200DA61E9 /* bottombargreen_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombargreen_pressed.png; sourceTree = "<group>"; };
 		F270709A10710F2200DA61E9 /* bottombarred_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombarred_pressed.png; sourceTree = "<group>"; };
 		F270709B10710F2200DA61E9 /* decline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = decline.png; sourceTree = "<group>"; };
-		F2730C1510709D0400DF8852 /* dialerkeypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dialerkeypad.png; path = rsc/dialerkeypad.png; sourceTree = "<group>"; };
-		F2730C1610709D0400DF8852 /* dialerkeypad_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dialerkeypad_pressed.png; path = rsc/dialerkeypad_pressed.png; sourceTree = "<group>"; };
-		F2730CA51070A90100DF8852 /* addcontact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = addcontact.png; path = rsc/addcontact.png; sourceTree = "<group>"; };
-		F2730CA61070A90100DF8852 /* addcontact_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = addcontact_pressed.png; path = rsc/addcontact_pressed.png; sourceTree = "<group>"; };
-		F2730CA71070A90100DF8852 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = delete.png; path = rsc/delete.png; sourceTree = "<group>"; };
-		F2730CA81070A90100DF8852 /* delete_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = delete_pressed.png; path = rsc/delete_pressed.png; sourceTree = "<group>"; };
-		F2730CA91070A90100DF8852 /* showkeyboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = showkeyboard.png; path = rsc/showkeyboard.png; sourceTree = "<group>"; };
-		F2730CB01070A9B300DF8852 /* addcontact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addcontact.png; sourceTree = "<group>"; };
-		F2730CB11070A9B300DF8852 /* addcontact_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addcontact_pressed.png; sourceTree = "<group>"; };
-		F2730CB21070A9B300DF8852 /* callin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = callin.png; sourceTree = "<group>"; };
-		F2730CB31070A9B300DF8852 /* callout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = callout.png; sourceTree = "<group>"; };
 		F2730CB41070A9B300DF8852 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		F2730CB51070A9B300DF8852 /* delete_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_pressed.png; sourceTree = "<group>"; };
 		F2730CB61070A9B300DF8852 /* Dial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dial.png; sourceTree = "<group>"; };
 		F2730CB71070A9B300DF8852 /* dialerkeypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialerkeypad.png; sourceTree = "<group>"; };
 		F2730CB81070A9B300DF8852 /* dialerkeypad_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dialerkeypad_pressed.png; sourceTree = "<group>"; };
-		F2730CB91070A9B300DF8852 /* keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = keypad.png; path = English.lproj/keypad.png; sourceTree = "<group>"; };
 		F2730CBA1070A9B300DF8852 /* keypad_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keypad_pressed.png; sourceTree = "<group>"; };
-		F2730CBB1070A9B300DF8852 /* missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missed.png; sourceTree = "<group>"; };
-		F2730CBC1070A9B300DF8852 /* showkeyboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = showkeyboard.png; sourceTree = "<group>"; };
 		F2730D471070BD8A00DF8852 /* call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call.png; sourceTree = "<group>"; };
 		F2730D481070BD8A00DF8852 /* callblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = callblue.png; sourceTree = "<group>"; };
 		F2730D511070C15D00DF8852 /* answer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = answer.png; sourceTree = "<group>"; };
@@ -613,7 +567,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8B8192B210A994AB0059239B /* default.png */,
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
 				8B177BE3104674A600E42923 /* image */,
 				8B6739E2101209E900849952 /* spokn-Info.plist */,
@@ -641,21 +594,7 @@
 		8B177BE3104674A600E42923 /* image */ = {
 			isa = PBXGroup;
 			children = (
-				8B413CAC1075FE01005A400F /* spokntab.png */,
 				F2730CAF1070A9B300DF8852 /* rsc */,
-				F2730CA51070A90100DF8852 /* addcontact.png */,
-				8B07244D10751C3B00C1D1A4 /* vms.png */,
-				F2730CA61070A90100DF8852 /* addcontact_pressed.png */,
-				F2730CA71070A90100DF8852 /* delete.png */,
-				F2730CA81070A90100DF8852 /* delete_pressed.png */,
-				F2730CA91070A90100DF8852 /* showkeyboard.png */,
-				F2730C1510709D0400DF8852 /* dialerkeypad.png */,
-				F2730C1610709D0400DF8852 /* dialerkeypad_pressed.png */,
-				8B25F61A10A4348E00DE0EAB /* keypad.png */,
-				F249AB57106F7B9B0024AE84 /* keypad_pressed.png */,
-				8B177BE8104674E000E42923 /* missed.png */,
-				8B177BEA104674E000E42923 /* callout.png */,
-				8B177BEB104674E000E42923 /* callin.png */,
 			);
 			name = image;
 			sourceTree = "<group>";
@@ -855,23 +794,20 @@
 				8B626B4210A56FE700A9BC0E /* accountrsc */,
 				32EE818610A5B1DA00B0BAAD /* searchbarbackgroung.png */,
 				8B626B6010A573AD00A9BC0E /* Spokn-Logomark-59.png */,
+				8B413CAC1075FE01005A400F /* spokntab.png */,
 				8B626B1810A56C9900A9BC0E /* Spokn-Logomark-29.png */,
 				8B9929E110A5679600EBD16F /* TB-VMS.png */,
 				8B9929E210A5679600EBD16F /* TB-Spokn.png */,
 				8BE59EF310A4155100AFB4D2 /* lcd_top_simple.png */,
+				8B8192B210A994AB0059239B /* default.png */,
 				8BF795361085F76F00DBFC51 /* red.png */,
 				8BF795371085F76F00DBFC51 /* orange.png */,
 				8BF795381085F76F00DBFC51 /* green.png */,
 				8B8626BD1084504C00718D16 /* whiteButton.png */,
-				8B0723AB1075150300C1D1A4 /* Default.png */,
-				8BE35074107761CA00C2729A /* vmstab.png */,
 				8BBF6C661083530D00E57ABE /* blueButton.png */,
 				8BE447AF1080924400EB3A4A /* vmsprogressleft.png */,
 				8B1B8FDC107E0D3F00C77E3F /* spoknlog.png */,
 				8B8024DC1078D29C00C02F5F /* backview.png */,
-				8BD3E5CC1078B4CD00300343 /* outgoing.png */,
-				8BD3E5CD1078B4CD00300343 /* missedvms.png */,
-				8BD3E5CE1078B4CD00300343 /* incomming.png */,
 				8B07246310751D4600C1D1A4 /* login.png */,
 				8B47DB47107264ED00EEEF61 /* dialer.png */,
 				8B47DB48107264ED00EEEF61 /* contacts.png */,
@@ -900,19 +836,14 @@
 				F2730D511070C15D00DF8852 /* answer.png */,
 				F2730D471070BD8A00DF8852 /* call.png */,
 				F2730D481070BD8A00DF8852 /* callblue.png */,
-				F2730CB01070A9B300DF8852 /* addcontact.png */,
-				F2730CB11070A9B300DF8852 /* addcontact_pressed.png */,
-				F2730CB21070A9B300DF8852 /* callin.png */,
-				F2730CB31070A9B300DF8852 /* callout.png */,
 				F2730CB41070A9B300DF8852 /* delete.png */,
 				F2730CB51070A9B300DF8852 /* delete_pressed.png */,
 				F2730CB61070A9B300DF8852 /* Dial.png */,
 				F2730CB71070A9B300DF8852 /* dialerkeypad.png */,
+				8B07244D10751C3B00C1D1A4 /* vms.png */,
 				F2730CB81070A9B300DF8852 /* dialerkeypad_pressed.png */,
-				F2730CB91070A9B300DF8852 /* keypad.png */,
+				8B7CC63D10AACE1D0043DC42 /* keypad.png */,
 				F2730CBA1070A9B300DF8852 /* keypad_pressed.png */,
-				F2730CBB1070A9B300DF8852 /* missed.png */,
-				F2730CBC1070A9B300DF8852 /* showkeyboard.png */,
 			);
 			path = rsc;
 			sourceTree = "<group>";
@@ -986,32 +917,13 @@
 				8BA8E3A21027EF800022801E /* addeditcontact.xib in Resources */,
 				8BA8E558102835BC0022801E /* vmailview.xib in Resources */,
 				8B0B3EAC103AD39900150C5B /* spokn_1.xcclassmodel in Resources */,
-				8B177BF0104674E000E42923 /* missed.png in Resources */,
-				8B177BF2104674E000E42923 /* callout.png in Resources */,
-				8B177BF3104674E000E42923 /* callin.png in Resources */,
 				8BCEEB2D104AD235001DF4AC /* OverlayView.xib in Resources */,
-				8B25F61B10A4348E00DE0EAB /* keypad.png in Resources */,
-				F249AB59106F7B9B0024AE84 /* keypad_pressed.png in Resources */,
-				F2730C1710709D0400DF8852 /* dialerkeypad.png in Resources */,
-				F2730C1810709D0400DF8852 /* dialerkeypad_pressed.png in Resources */,
-				F2730CAA1070A90100DF8852 /* addcontact.png in Resources */,
-				F2730CAB1070A90100DF8852 /* addcontact_pressed.png in Resources */,
-				F2730CAC1070A90100DF8852 /* delete.png in Resources */,
-				F2730CAD1070A90100DF8852 /* delete_pressed.png in Resources */,
-				F2730CAE1070A90100DF8852 /* showkeyboard.png in Resources */,
-				F2730CC31070A9B300DF8852 /* addcontact.png in Resources */,
-				F2730CC41070A9B300DF8852 /* addcontact_pressed.png in Resources */,
-				F2730CC51070A9B300DF8852 /* callin.png in Resources */,
-				F2730CC61070A9B300DF8852 /* callout.png in Resources */,
 				F2730CC71070A9B300DF8852 /* delete.png in Resources */,
 				F2730CC81070A9B300DF8852 /* delete_pressed.png in Resources */,
 				F2730CC91070A9B300DF8852 /* Dial.png in Resources */,
 				F2730CCA1070A9B300DF8852 /* dialerkeypad.png in Resources */,
 				F2730CCB1070A9B300DF8852 /* dialerkeypad_pressed.png in Resources */,
-				F2730CCC1070A9B300DF8852 /* keypad.png in Resources */,
 				F2730CCD1070A9B300DF8852 /* keypad_pressed.png in Resources */,
-				F2730CCE1070A9B300DF8852 /* missed.png in Resources */,
-				F2730CCF1070A9B300DF8852 /* showkeyboard.png in Resources */,
 				F2730D491070BD8A00DF8852 /* call.png in Resources */,
 				F2730D4A1070BD8A00DF8852 /* callblue.png in Resources */,
 				F2730D521070C15D00DF8852 /* answer.png in Resources */,
@@ -1039,15 +951,10 @@
 				8B47DB4A107264ED00EEEF61 /* dialer.png in Resources */,
 				8B47DB4B107264ED00EEEF61 /* contacts.png in Resources */,
 				8B47DB4C107264ED00EEEF61 /* addcall.png in Resources */,
-				8B0723AC1075150300C1D1A4 /* Default.png in Resources */,
 				8B07244F10751C3B00C1D1A4 /* vms.png in Resources */,
 				8B07246410751D4600C1D1A4 /* login.png in Resources */,
 				8B413C501075ED71005A400F /* spoknviewcontroller.xib in Resources */,
 				8B413CAD1075FE01005A400F /* spokntab.png in Resources */,
-				8BE35075107761CA00C2729A /* vmstab.png in Resources */,
-				8BD3E5CF1078B4CD00300343 /* outgoing.png in Resources */,
-				8BD3E5D01078B4CD00300343 /* missedvms.png in Resources */,
-				8BD3E5D11078B4CD00300343 /* incomming.png in Resources */,
 				8B8024DD1078D29C00C02F5F /* backview.png in Resources */,
 				8B39FFC9107C910200073950 /* vmshowviewcontroller.xib in Resources */,
 				8B1B8FDD107E0D3F00C77E3F /* spoknlog.png in Resources */,
@@ -1095,6 +1002,7 @@
 				8B20AB9510A86D48009E546A /* Call-log-Icons-missed.png in Resources */,
 				8B20AB9610A86D48009E546A /* Call-log-Icons-outgoing.png in Resources */,
 				8B8192B310A994AB0059239B /* default.png in Resources */,
+				8B7CC63E10AACE1D0043DC42 /* keypad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,17 +1075,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		8B25F61A10A4348E00DE0EAB /* keypad.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F249AB56106F7B9B0024AE84 /* English */,
-			);
-			name = keypad.png;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1225,6 +1122,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
+				GCC_VERSION = 4.0;
 				INFOPLIST_FILE = "spokn-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1286,7 +1184,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (

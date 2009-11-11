@@ -28,106 +28,6 @@
 }
 @end
 
-
-
-/*
-@implementation BarBG
-@synthesize color1 = _color1, color2 = _color2;
-
-- (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        // Initialization code
-		self.backgroundColor = [UIColor clearColor];
-    }
-    return self;
-}
-
-- (CGGradientRef)newGradientWithColors:(UIColor**)colors count:(int)count {
-	CGFloat* components = malloc(sizeof(CGFloat)*4*count);
-	for (int i = 0; i < count; ++i) {
-		UIColor* color = colors[i];
-		size_t n = CGColorGetNumberOfComponents(color.CGColor);
-		const CGFloat* rgba = CGColorGetComponents(color.CGColor);
-		if (n == 2) {
-			components[i*4] = rgba[0];
-			components[i*4+1] = rgba[0];
-			components[i*4+2] = rgba[0];
-			components[i*4+3] = rgba[1];
-		} else if (n == 4) {
-			components[i*4] = rgba[0];
-			components[i*4+1] = rgba[1];
-			components[i*4+2] = rgba[2];
-			components[i*4+3] = rgba[3];
-		}
-	}
-	
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGColorSpaceRef space = CGBitmapContextGetColorSpace(context);
-	CGGradientRef gradient = CGGradientCreateWithColorComponents(space, components, nil, count);
-	free(components);
-	return gradient;
-}
-
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-	CGContextRef ctx = UIGraphicsGetCurrentContext();
-	
-	// fill gradient
-	self.color1 = [UIColor colorWithRed:0.91 green:0.92 blue:0.93 alpha:1];
-	self.color2 = [UIColor colorWithRed:0.76 green:0.77 blue:0.78 alpha:1];
-	UIColor* colors[] = {_color1, _color2};
-	CGGradientRef gradient = [self newGradientWithColors:colors count:2];
-	CGContextDrawLinearGradient(ctx, 
-								gradient, 
-								CGPointMake(rect.origin.x, rect.origin.y + 1),
-								CGPointMake(rect.origin.x, rect.origin.y + rect.size.height), 
-								kCGGradientDrawsAfterEndLocation);
-	CGGradientRelease(gradient);
-	
-	
-	self.color1 = [UIColor colorWithRed:0.76 green:0.78 blue:0.79 alpha:1];
-	self.color2 = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1];
-	UIColor* colors1[] = {_color1, _color2};
-	CGGradientRef gradient1 = [self newGradientWithColors:colors1 count:2];
-	CGContextDrawLinearGradient(ctx, 
-								gradient1, 
-								CGPointMake(rect.origin.x, rect.origin.y),
-								CGPointMake(rect.origin.x, rect.origin.y + 3), 
-								kCGGradientDrawsBeforeStartLocation);
-	CGGradientRelease(gradient1);
-	
-	//draw upper border
-	CGContextSetLineWidth(ctx, 1.0);
-	
-	[[UIColor grayColor] setStroke];
-	CGContextMoveToPoint(ctx, rect.origin.x, rect.origin.y);
-	CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width, rect.origin.y);
-	CGContextStrokePath(ctx);
-	CGContextClosePath(ctx);
-	
-	CGContextSetLineWidth(ctx, 1.0);
-	[[UIColor whiteColor] setStroke];
-	CGContextMoveToPoint(ctx, rect.origin.x, rect.origin.y + 2);
-	CGContextAddLineToPoint(ctx, rect.origin.x + rect.size.width, rect.origin.y + 2);
-	CGContextStrokePath(ctx);
-	CGContextClosePath(ctx);
-	
-	
-	CGContextRestoreGState(ctx);	
-}
-
-
-- (void)dealloc {
-	[_color1 release];
-	[_color2 release];
-	[super dealloc];
-}
-
-
-@end
-*/
-//--------------------------------------------------------------------------------------------------------------------------------------------------
-
 @implementation pickerviewcontroller
 @synthesize upDateProtocolP;
 
@@ -205,8 +105,7 @@
 {
 	char *numberCharP = 0;
 	NSString *resultP;
-	int countInt = 0;
-	
+
 	resultP = [txtDestNo commaSeparatedNumber];
 	if(resultP)
 	{
@@ -245,7 +144,6 @@
 }
 -(IBAction)sendPressed
 {
-	//=============================================================
 	[self update_txtDestNo:@""];
 	char *allforwardNoCharP;
 	allforwardNoCharP = [self getContactNumberList];
@@ -258,7 +156,6 @@
 	}
 	else
 	{
-	//=============================================================
 		[self->upDateProtocolP sendForwardVms:allforwardNoCharP];//this will send vms
 		[[self navigationController] popToRootViewControllerAnimated:YES];
 		free(allforwardNoCharP);
@@ -732,83 +629,6 @@
 		[self hideSearchTable];
 	}
 	
-
-/*	struct AddressBook *addressP;
-	int i=0;
-	char *ignoreSpaceStrP = 0;
-//	sectionType *setTypeP;
-//	NSString *CellIdentifier,*rangeStringP;
-	
-	NSString *texttosearch = [txtDestNo.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	texttosearch = [self remSpChar:texttosearch];
-	self->count = GetTotalCount(uaObject);
-	if(count > 0)
-	{	
-		for (i=0;i<count;++i)
-		{
-			addressP = GetObjectAtIndex(uaObject ,i);
-			ignoreSpaceStrP = addressP->title;
-			while(*ignoreSpaceStrP==' ')
-			{
-				ignoreSpaceStrP++;
-			}
-		}
-	}
-	
-/*	for (i=0;i<count;++i)
-	{
-		sectionData *secP;
-		addressP = GetObjectAtIndex(uaObject ,i);		
-		ignoreSpaceStrP = addressP->title;
-		while(*ignoreSpaceStrP==' ')
-		{
-			ignoreSpaceStrP++;
-		}
-		CellIdentifier = [[NSString alloc] initWithUTF8String:ignoreSpaceStrP] ;
-		secP = [[sectionData alloc] init];
-		secP->recordid = addressP->id;
-		
-		rangeStringP = 	[[CellIdentifier substringToIndex:1] uppercaseString];
-		
-		for (i = 0; i < MAXSEC; i++){
-			
-			setTypeP = [[sectionType alloc] init];
-			setTypeP->index = i;
-			[sectionArray addObject: setTypeP] ;
-			//("\n%d",i);
-		}
-		NSRange range = [ALPHA rangeOfString:rangeStringP];
-		if (range.location != NSNotFound && range.location <MAXSEC) 
-		{	
-			if(texttosearch)
-			{	
-				if([texttosearch length]>0)
-				{	
-					NSRange range1 = [[CellIdentifier uppercaseString] rangeOfString:texttosearch];//[[[self getName:person] uppercaseString] rangeOfString:upString];
-					//if (range1.location != NSNotFound) 
-					//{	
-					//////printf("\n%s %ld %d",addressP->title,addressP->id ,i);
-					[ searchArray addObject:secP];
-					//}	
-				}
-				else
-				{
-					//[ setTypeP->elementP addObject:secP];
-				}
-			}
-			
-			// Add the name to the proper array
-			[secP release];
-			
-			[CellIdentifier release];
-		}
-		
-		//addressP = (struct AddressBook *)getContact( secP->recordid);
-		
-	}
-	*/
-	
-	
 }
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
 {
@@ -1144,7 +964,8 @@
 
 
 
-//--------------------Search Table Functions------------------------------------------------------------------------------
+#pragma mark Table view methods
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
 }

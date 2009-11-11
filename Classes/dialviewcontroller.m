@@ -493,8 +493,8 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 {
 	self->timecallduration++;
 	time_t timeP = {0};
-	struct tm  tmLoc;
-	struct tm *tmP=0;
+	//struct tm  tmLoc;
+	//struct tm *tmP=0;
 	//readSocketData(self->ltpInterfacesP);//read socket
 	
 	timeP = self->timecallduration;

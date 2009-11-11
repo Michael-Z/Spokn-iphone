@@ -461,7 +461,7 @@ titleForHeaderInSection:(NSInteger)section
 		[cell.contentView addSubview:label1];
 		[label1 release];
 		
-		CGRect LabelFrame2 = CGRectMake(200, 0, 100, 40);
+		//CGRect LabelFrame2 = CGRectMake(200, 0, 100, 40);
 		//label2 = [[UILabel alloc] initWithFrame:LabelFrame2];
 		//label2.textAlignment = UITextAlignmentRight;
 		//label.font = [UIFont boldSystemFontOfSize:12];
@@ -529,8 +529,8 @@ commitEditingStyle:(UITableViewCellEditingStyle) editingStyle
 forRowAtIndexPath:(NSIndexPath *) indexPath 
 { 
 	
-	int row = [indexPath row];
-	int section = [indexPath section];
+	//int row = [indexPath row];
+	//int section = [indexPath section];
 		
 	
 	

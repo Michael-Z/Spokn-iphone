@@ -178,7 +178,7 @@
 {
 	UIButton *butP;
 	int enable;
-	UInt32 route;
+
 	butP = (UIButton*)sender;
 	
 	enable = !butP.selected;

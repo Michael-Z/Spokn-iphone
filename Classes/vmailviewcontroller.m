@@ -187,6 +187,8 @@
  *   Table Data Source
  */
 
+#pragma mark Table view methods
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView 
 {
 	//////printf("\n dilip sharma");

@@ -64,24 +64,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
-- (NSString *)tableView:(UITableView *)tableView 
-titleForHeaderInSection:(NSInteger)section 
-{ 
-	sectionType *setTypeP;
-	
-	////printf("\nsdbarman %d",sectionArray.count);
-	if(section<sectionArray.count)
-	{	
-		setTypeP = [sectionArray objectAtIndex:section];
-		if(setTypeP->elementP.count)
-		{	
-				////printf("%d data ",setTypeP->index);
-			return [NSString stringWithFormat:@"%@", 
-					[ALPHA_ARRAY objectAtIndex:setTypeP->index]];
-		}	
-	}
-	return nil;
-} 
+
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -94,6 +77,8 @@ titleForHeaderInSection:(NSInteger)section
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
+
+#pragma mark Table view methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
@@ -127,7 +112,24 @@ titleForHeaderInSection:(NSInteger)section
 	return 1;
 }
 
-
+- (NSString *)tableView:(UITableView *)tableView 
+titleForHeaderInSection:(NSInteger)section 
+{ 
+	sectionType *setTypeP;
+	
+	////printf("\nsdbarman %d",sectionArray.count);
+	if(section<sectionArray.count)
+	{	
+		setTypeP = [sectionArray objectAtIndex:section];
+		if(setTypeP->elementP.count)
+		{	
+			////printf("%d data ",setTypeP->index);
+			return [NSString stringWithFormat:@"%@", 
+					[ALPHA_ARRAY objectAtIndex:setTypeP->index]];
+		}	
+	}
+	return nil;
+} 
 
 - (NSString *) getName: (ABRecordRef) person
 {
@@ -481,6 +483,9 @@ titleForHeaderInSection:(NSInteger)section
 	////printf("count %d",sectionArray.count);
 	[self->tableView reloadData];
 }
+
+#pragma mark SearchBar view methods
+
 - (void) searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
 	
 	//This method is called again when the user clicks back from the detail view.
