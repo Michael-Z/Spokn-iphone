@@ -21,6 +21,7 @@
 #import "CalllogViewController.h"
 #import "vmailviewcontroller.h"
 #import "spoknviewcontroller.h"
+
 //#import "testingview.h"
 //#import "NSFileManager.h"
 @implementation SpoknAppDelegate
@@ -40,6 +41,7 @@
 @synthesize contactNavigationController;
 @synthesize onLineB;
 @synthesize tabBarController;
+@synthesize ltpInterfacesP;
 - (void) handleTimer: (id) timer
 {
 	
@@ -82,6 +84,87 @@
 	
 	return YES;
 }
+- (void) PlayRing: (id) timer
+{
+	printf("\n ring play....");
+	AudioServicesPlayAlertSound(soundIncommingCallID);	
+}
+-(void) destroyRing
+{
+
+	if(soundIncommingCallID)
+	{
+		AudioServicesDisposeSystemSoundID(soundIncommingCallID);
+		soundIncommingCallID = 0;
+	}
+}
+-(void) createRing
+{
+		soundIncommingCallID = 0;
+	
+	
+	NSBundle *mainBundle = [NSBundle mainBundle];
+	
+	NSString *path = [mainBundle pathForResource:@"phone" ofType:@"caf"];
+	if (!path)
+		return;
+	
+	NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
+	if (aFileURL != nil)  
+	{
+		SystemSoundID aSoundID;
+		OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
+														  &aSoundID);
+		if (error != kAudioServicesNoError)
+			return;
+		soundIncommingCallID = aSoundID;
+		printf("\n ring created");
+
+	
+	}
+	
+	
+	
+}
+-(void) startRing
+{
+	if(soundIncommingCallID)
+	{	
+		printf("\n ring play");
+		if(ringTimer==nil)
+		{	
+		
+			UInt32 route = kAudioSessionOverrideAudioRoute_Speaker;
+			AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, 
+									 sizeof(route), &route);
+			
+			ringTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0
+				
+												target: self
+				
+											  selector: @selector(PlayRing:)
+				
+											  userInfo: nil
+				
+											   repeats: YES];
+		}	
+	}	
+}
+-(int) stopRing
+{
+	if(ringTimer)
+	{	
+		printf("ring stop");
+		[ringTimer invalidate];
+		ringTimer = nil;
+		UInt32 route = kAudioSessionOverrideAudioRoute_None;
+		AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, 
+								 sizeof(route), &route);
+		return 0;
+	}	
+	return 1;
+	
+}
 -(void) showText:(NSString *)testStringP
 {
 	[dialviewP setStatusText:testStringP :0 :0];
@@ -109,6 +192,10 @@
 			[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
 			//reload log
 			[self LoadContactView:callviewP];
+			if([self stopRing]==0)
+			{
+				[tabBarController dismissModalViewControllerAnimated:YES];
+			}
 			#ifndef _LTP_
 				[nsTimerP invalidate];
 			
@@ -355,6 +442,7 @@
 	
 //	[ dialNavigationController pushViewController: inCommingCallViewP animated: YES ];
 	[self changeView];
+	[self startRing];
 }
 -(void) sendMessage:(id)object
 {
@@ -524,7 +612,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 		ltpInterfacesP = startLtp(alertNotiFication,(unsigned long)self);
 	}
+#ifdef _LTP_
 	setLtpServer(ltpInterfacesP,"64.49.236.88");
+#else
+	setLtpServer(ltpInterfacesP,"www.spokn.com");
+#endif	
+	
 	//setLtpServer(ltpInterfacesP,"64.49.244.225");
 
 	//start ua 
@@ -597,7 +690,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	tabBarController.selectedViewController = spoknViewNavigationController;
 	[vmsNavigationController.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"TB-VMS.png"] tag:4];
-
+	[self createRing];
 		
 }
 -(void)logOut
@@ -618,6 +711,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[self stopCheckNetwork];
 	printf("\n  count %d tab %d",[dialviewP retainCount],[tabBarController retainCount]);
 	[tabBarController release];
+	[self destroyRing];
 	
 	//[contactNavigationController release];
 	//[vmsNavigationController release];
@@ -679,7 +773,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 //call by incomming method
 -(void)AcceptCall:(IncommingCallType*) inComP
 {
-	
+	[self stopRing];
 	self->incommingCallList[inComP->lineid] = 0;
 	
 	
@@ -742,6 +836,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 -(void)RejectCall:(IncommingCallType *)inComP
 {
+	[self stopRing];
 	RejectInterface(ltpInterfacesP, inComP->lineid);
 	self->incommingCallList[inComP->lineid] = 0;
 	free(inComP);

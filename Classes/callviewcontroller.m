@@ -11,6 +11,7 @@
 #import "spoknAppDelegate.h"
 #include "playrecordpcm.h"
 #include "custombutton.h"
+#include "sipwrapper.h"
 @implementation CallViewController
 
 /*
@@ -182,10 +183,52 @@
 	butP = (UIButton*)sender;
 	
 	enable = !butP.selected;
+	#ifndef _LTP_
+	setMute(enable);
+	#endif
 	[butP setSelected:enable];
 	printf("%d",enable);
 	
 }
+-(IBAction)HoldPressed:(id)sender
+{
+	UIButton *butP;
+	int enable;
+	
+	butP = (UIButton*)sender;
+	
+	enable = !butP.selected;
+#ifndef _LTP_
+	setHold(ownerobject.ltpInterfacesP->ltpObjectP, enable);
+#endif
+	[butP setSelected:enable];
+}
+/*
+ - (void)setMute:(BOOL)enable
+ {
+ 
+if (enable)
+pjsua_conf_adjust_rx_level(0 , 0.0f);
+else
+pjsua_conf_adjust_rx_level(0 , 1.0f);
+}
+
+- (void)setHoldEnabled: (BOOL)enable
+{
+	if (enable)
+	{
+		if (_call_id != PJSUA_INVALID_ID)
+			pjsua_call_set_hold(_call_id, NULL);
+	}
+	else
+	{
+		if (_call_id != PJSUA_INVALID_ID)
+			pjsua_call_reinvite(_call_id, PJ_TRUE, NULL);
+	}
+}
+
+
+ */
 -(IBAction)speakerPressed:(id)sender
 {
 	UIButton *butP;
@@ -248,13 +291,16 @@
 }
 
 - (void)viewDidUnload {
-	[super viewDidUnload];
+		
+	//[super viewDidUnload];
+	
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
 
 
 - (void)dealloc {
+	SetSpeakerOnOrOff(0,false);
 	printf("\n vmail dealloc");
 	[labelStrP release];
 	

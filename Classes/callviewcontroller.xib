@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="34"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -371,22 +371,22 @@
 									<string key="NSResourceName">sixsqbutton_1.png</string>
 								</object>
 							</object>
-						</object>
-						<string key="NSFrame">{{-9, 129}, {329, 204}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="647880509">
-								<int key="NSID">2</int>
+							<object class="IBUIView" id="1011915126">
+								<reference key="NSNextResponder" ref="598707238"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{25, 10}, {284, 238}}</string>
+								<reference key="NSSuperview" ref="598707238"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
+									<object class="NSColorSpace" key="NSCustomColorSpace" id="647880509">
+										<int key="NSID">2</int>
+									</object>
+								</object>
+								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 							</object>
 						</object>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-					</object>
-					<object class="IBUIView" id="1011915126">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 138}, {284, 238}}</string>
+						<string key="NSFrame">{{-9, 129}, {329, 204}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -534,6 +534,15 @@
 					</object>
 					<int key="connectionID">71</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">HoldPressed:</string>
+						<reference key="source" ref="834870923"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">72</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -558,7 +567,6 @@
 							<reference ref="888034793"/>
 							<reference ref="355225762"/>
 							<reference ref="858869296"/>
-							<reference ref="1011915126"/>
 						</object>
 						<reference key="parent" ref="317526666"/>
 					</object>
@@ -601,6 +609,7 @@
 							<reference ref="111149937"/>
 							<reference ref="79742761"/>
 							<reference ref="834870923"/>
+							<reference ref="1011915126"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -662,7 +671,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">68</int>
 						<reference key="object" ref="1011915126"/>
-						<reference key="parent" ref="191373211"/>
+						<reference key="parent" ref="598707238"/>
 					</object>
 				</object>
 			</object>
@@ -737,7 +746,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">71</int>
+			<int key="maxID">72</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -749,6 +758,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>HoldPressed:</string>
 							<string>endCallPressed:</string>
 							<string>endCallPressedKey:</string>
 							<string>keypadPressed:</string>
@@ -757,6 +767,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

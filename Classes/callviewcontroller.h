@@ -38,6 +38,6 @@
 -(IBAction)endCallPressedKey:(id)sender;
 -(void) startTimer;
 -(int)  stopTimer;
-
+-(IBAction)HoldPressed:(id)sender;
 
 @end

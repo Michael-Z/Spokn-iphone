@@ -30,6 +30,7 @@
 		8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B413C4D1075ED71005A400F /* spoknviewcontroller.m */; };
 		8B413C501075ED71005A400F /* spoknviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */; };
 		8B413CAD1075FE01005A400F /* spokntab.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B413CAC1075FE01005A400F /* spokntab.png */; };
+		8B41461010AC407900887392 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41460F10AC407900887392 /* libspeex-arm-apple-darwin9.a */; };
 		8B47D83210720BA400EEEF61 /* callviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B47D83010720BA400EEEF61 /* callviewcontroller.m */; };
 		8B47D865107212BE00EEEF61 /* speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47D856107212BE00EEEF61 /* speaker.png */; };
 		8B47D866107212BE00EEEF61 /* sixsqbuttonsel_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47D857107212BE00EEEF61 /* sixsqbuttonsel_6.png */; };
@@ -86,6 +87,7 @@
 		8B6609CF10A81B75000F8DAE /* libmilenage-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6609C110A81B74000F8DAE /* libmilenage-arm-apple-darwin9.a */; };
 		8B6609D010A81B75000F8DAE /* libgsmcodec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B6609C210A81B74000F8DAE /* libgsmcodec-arm-apple-darwin9.a */; };
 		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
+		8B7B07C310AC386E007E6C61 /* phone.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B7B07C210AC386E007E6C61 /* phone.caf */; };
 		8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */; };
 		8B7CC63E10AACE1D0043DC42 /* keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7CC63D10AACE1D0043DC42 /* keypad.png */; };
 		8B8024DD1078D29C00C02F5F /* backview.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8024DC1078D29C00C02F5F /* backview.png */; };
@@ -226,6 +228,7 @@
 		8B413C4D1075ED71005A400F /* spoknviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknviewcontroller.m; sourceTree = "<group>"; };
 		8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spoknviewcontroller.xib; sourceTree = "<group>"; };
 		8B413CAC1075FE01005A400F /* spokntab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spokntab.png; sourceTree = "<group>"; };
+		8B41460F10AC407900887392 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B47D82F10720BA400EEEF61 /* callviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callviewcontroller.h; sourceTree = "<group>"; };
 		8B47D83010720BA400EEEF61 /* callviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callviewcontroller.m; sourceTree = "<group>"; };
 		8B47D856107212BE00EEEF61 /* speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker.png; sourceTree = "<group>"; };
@@ -292,6 +295,7 @@
 		8B6609C110A81B74000F8DAE /* libmilenage-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmilenage-arm-apple-darwin9.a"; path = "../../pjproject/third_party/lib/libmilenage-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B6609C210A81B74000F8DAE /* libgsmcodec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgsmcodec-arm-apple-darwin9.a"; path = "../../pjproject/third_party/lib/libgsmcodec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B6739E2101209E900849952 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
+		8B7B07C210AC386E007E6C61 /* phone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = phone.caf; sourceTree = "<group>"; };
 		8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddeditcellController.m; sourceTree = "<group>"; };
 		8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddeditcellController.h; sourceTree = "<group>"; };
 		8B7CC63D10AACE1D0043DC42 /* keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keypad.png; sourceTree = "<group>"; };
@@ -452,6 +456,7 @@
 				8B6609CE10A81B75000F8DAE /* libresample-arm-apple-darwin9.a in Frameworks */,
 				8B6609CF10A81B75000F8DAE /* libmilenage-arm-apple-darwin9.a in Frameworks */,
 				8B6609D010A81B75000F8DAE /* libgsmcodec-arm-apple-darwin9.a in Frameworks */,
+				8B41461010AC407900887392 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +663,7 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
+				8B41460F10AC407900887392 /* libspeex-arm-apple-darwin9.a */,
 				8B6609B510A81B74000F8DAE /* libpj-arm-apple-darwin9.a */,
 				8B6609B610A81B74000F8DAE /* libpjlib-util-arm-apple-darwin9.a */,
 				8B6609B710A81B74000F8DAE /* libpjsdp-arm-apple-darwin9.a */,
@@ -761,6 +767,7 @@
 		8BAA7D8E109EBD3E0009C8D4 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				8B7B07C210AC386E007E6C61 /* phone.caf */,
 				8BAA7D8F109EBD3E0009C8D4 /* dtmf-#.aif */,
 				8BAA7D90109EBD3E0009C8D4 /* dtmf-0.aif */,
 				8BAA7D91109EBD3E0009C8D4 /* dtmf-1.aif */,
@@ -1003,6 +1010,7 @@
 				8B20AB9610A86D48009E546A /* Call-log-Icons-outgoing.png in Resources */,
 				8B8192B310A994AB0059239B /* default.png in Resources */,
 				8B7CC63E10AACE1D0043DC42 /* keypad.png in Resources */,
+				8B7B07C310AC386E007E6C61 /* phone.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1122,7 +1130,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = 4.2;
 				INFOPLIST_FILE = "spokn-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1184,7 +1192,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (

@@ -15,7 +15,7 @@
 	#include "ltpmobile.h"
 	#include "playrecordpcm.h"
 	//#define USERAGENT  "desktop-windows-d2-1.0"
-	#define USERAGENT "spokn-win-0.1.17"
+	#define USERAGENT "spokn-iphone-0.1.1"
 	#define ALERT_OFFLINE_WRONG_ID 1000
 	#define START_LOGIN        6000 
 	#define MAXDATA 2000

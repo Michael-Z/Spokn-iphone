@@ -13,6 +13,7 @@
 #include <errno.h>
 #include <sys/stat.h>
 #include <AudioToolbox/AudioQueue.h>
+#include <AudioToolbox/AudioServices.h>
 #define MAXArray 20
 #define BYTES_PER_SAMPLE 2 
 #define SAMPLE_RATE 8000

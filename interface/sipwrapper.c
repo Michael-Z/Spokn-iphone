@@ -1002,3 +1002,26 @@ void startConference ()
 			pstack->call[i].InConference = 1;
 		}
 }
+void setMute(int enableB)
+{
+	if (enableB)
+		pjsua_conf_adjust_rx_level(0 , 0.0f);
+	else
+		pjsua_conf_adjust_rx_level(0 , 1.0f);
+}
+
+
+void setHold(struct ltpStack *ps,int enableB)
+{
+	if (enableB)
+	{
+		if (ps->call[ps->activeLine].ltpSession != PJSUA_INVALID_ID)
+			pjsua_call_set_hold(ps->call[ps->activeLine].ltpSession, NULL);
+	}
+	else
+	{
+		if (ps->call[ps->activeLine].ltpSession != PJSUA_INVALID_ID)
+			pjsua_call_reinvite(ps->call[ps->activeLine].ltpSession, PJ_TRUE, NULL);
+	}
+	
+}

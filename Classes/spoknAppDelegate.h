@@ -10,6 +10,8 @@
 #include "ltptimer.h"
 #include "LtpInterface.h"
 #import "Reachability.h"
+#include "playrecordpcm.h"
+
 @class LoginViewController;
 
 @class DialviewController;
@@ -57,7 +59,7 @@
 
 #endif
 	
-	
+	NSTimer *ringTimer;
 	NSTimer *nsTimerP;
 	UITabBarController *tabBarController;
 	LtpInterfaceType *ltpInterfacesP;
@@ -74,6 +76,7 @@
 	Reachability* hostReach;
     Reachability* wifiReach;
 	Boolean wifiavailable;
+	SystemSoundID soundIncommingCallID;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -101,6 +104,7 @@
 @property (nonatomic, assign) IBOutlet CalllogViewController *callviewP;
 
 */
+@property (nonatomic, assign) LtpInterfaceType *ltpInterfacesP;
 @property (nonatomic, assign) IBOutlet UINavigationController *vmsNavigationController;
 @property (nonatomic, assign) IBOutlet UINavigationController *calllogNavigationController;
 @property (nonatomic, assign) IBOutlet UINavigationController *contactNavigationController;
@@ -132,5 +136,10 @@ changed:(BOOL)changed;
 -(void)newBadgeArrived:(id)object;
 -(void) sendMessage:(id)object;
 +(BOOL) emailValidate : (NSString *)email;
+-(void) createRing;
+-(void) destroyRing;
+-(int) stopRing;
+-(void)startRing;
+
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
