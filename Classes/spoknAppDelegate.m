@@ -847,14 +847,16 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 }
 
+//text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ()<>-./"]];
 -(Boolean)makeCall:(char *)noCharP
 {
 	NSMutableString *tempStringP;
 	NSString *strP;
 	Boolean retB = false;
 	char typeP[30];
+	char *resultCharP;
 	struct AddressBook *addressP;
-	
+	resultCharP = NormalizeNumber(noCharP);
 	if(!wifiavailable)
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" 
@@ -869,7 +871,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(self->onLineB)
 	{	
 		tempStringP = [[NSMutableString alloc] init] ;
-		addressP = getContactAndTypeCall(noCharP,typeP);
+		addressP = getContactAndTypeCall(resultCharP,typeP);
 		if(addressP)
 		{
 			strP = [[NSString alloc] initWithUTF8String:addressP->title] ;
@@ -888,7 +890,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			uID = getAddressUid(self->ltpInterfacesP);
 			if(uID)
 			{
-				[ContactViewController	getNameAndType:uID :noCharP:&addressBookNameP :&addressBookTypeP];
+				[ContactViewController	getNameAndType:uID :resultCharP :&addressBookNameP :&addressBookTypeP];
 				if(addressBookNameP)
 				{	
 					
@@ -913,7 +915,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			}	
 			else
 			{	
-				strP = [[NSString alloc] initWithUTF8String:noCharP] ;
+				strP = [[NSString alloc] initWithUTF8String:resultCharP] ;
 			
 				[tempStringP appendString:strP ];
 			//[tempStringP setString:addressP->title];
@@ -933,7 +935,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		
 		
-		retB = callLtpInterface(self->ltpInterfacesP,noCharP);
+		retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
 	//[]
 		NSLog(@"\n%@",tempStringP);
 		[dialviewP setStatusText:tempStringP :TRYING_CALL :0];
@@ -941,9 +943,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[tempStringP release ];
 	//	[strP release ];
 		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+		
 	}	
 	
-
+	free(resultCharP);
 	return retB;
 		
 	

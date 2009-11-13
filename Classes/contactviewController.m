@@ -50,6 +50,7 @@
 	char *numbercharP;
 	char *tmpcharP;
 	NSString *text1;
+	char *normalizeNoCharP;
 	ABMultiValueRef name1 ;
 	if(nameStringP==0 || typeP==0 || recordID==0)
 	{
@@ -84,7 +85,8 @@
 	name1 =(NSString*)ABRecordCopyValue(person,kABRealPropertyType);
 	if(name1)
 	{	
-		
+	
+		int res;
 		for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
 		{
 			numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
@@ -98,12 +100,19 @@
 			//NSLog(@"\n%@ ", numbercharP);
 			//NSLog(@"\n%@ ", labelStringP);
 			//text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]];
+			 
+				 
 			text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>"]];
 			//NSLog(text1);
 			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-			if(strcmp(numbercharP,lnumberCharP)==0)
+			normalizeNoCharP = NormalizeNumber(numbercharP);
+			res=  strcmp(normalizeNoCharP,lnumberCharP);
+			
+			//printf("\n\n %s %s \n\n\n",normalizeNoCharP,lnumberCharP);
+			free(normalizeNoCharP);
+			if(res==0)
 			{
-				tmpcharP = (char*)[labelStringP  cStringUsingEncoding:NSUTF8StringEncoding];
+				tmpcharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
 				if(tmpcharP)
 				{
 					*typeP = malloc(strlen(tmpcharP)+4); 
