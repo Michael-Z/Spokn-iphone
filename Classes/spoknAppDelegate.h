@@ -77,6 +77,8 @@
     Reachability* wifiReach;
 	Boolean wifiavailable;
 	SystemSoundID soundIncommingCallID;
+	//this store address of addressbook
+	
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -104,6 +106,8 @@
 @property (nonatomic, assign) IBOutlet CalllogViewController *callviewP;
 
 */
+
+
 @property (nonatomic, assign) LtpInterfaceType *ltpInterfacesP;
 @property (nonatomic, assign) IBOutlet UINavigationController *vmsNavigationController;
 @property (nonatomic, assign) IBOutlet UINavigationController *calllogNavigationController;

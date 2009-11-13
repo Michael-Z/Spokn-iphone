@@ -175,6 +175,8 @@
 	char s1[30];
 	//int index;
 	NSString *stringStrP;
+	char *addressBookNameP = 0;
+	char *addressBookTypeP = 0;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	//////printf("\n index = %d\n",index);
 	
@@ -220,6 +222,21 @@
 			}
 			
 			objStrP = addressP->title;
+		}
+		else
+		{
+			if(cdrP->addressUId)
+			{	
+				
+				[ContactViewController	getNameAndType:cdrP->addressUId :cdrP->userid :&addressBookNameP :&addressBookTypeP];
+				if(addressBookNameP)
+				{	
+					typeCallP = addressBookTypeP;
+					objStrP = addressBookNameP;
+				}
+				
+				
+			}		
 		}
 		timeP = cdrP->date;
 		
@@ -410,6 +427,10 @@
 		//[CellIdentifier release];
 				
 	}
+	if(addressBookNameP)
+	free(addressBookNameP);
+	if(addressBookTypeP)
+	free(addressBookTypeP);
 	//return nil;
 }
 
@@ -450,7 +471,7 @@
 			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
 			
-			
+			[ContactControllerDetailsviewP setRecordID:cdrP->addressUId :cdrP->recordID];
 			[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
 			
 			
@@ -466,55 +487,83 @@
 		}
 		else
 		{
-			/*addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));
-			memset(addressP,0,sizeof(struct AddressBook));
-			addressP->id = -1;
-			strcpy(addressP->mobile,cdrP->userid);
-			AddEditcontactViewController     *addeditviewP;	
-			addeditviewP = [[AddEditcontactViewController alloc] initWithNibName:@"addeditcontact" bundle:[NSBundle mainBundle]];
-			[addeditviewP setObject:self->ownerobject];
-			[ [self navigationController] pushViewController:addeditviewP animated: YES ];	
-			[addeditviewP  setContactDetail:addressP];
-			free(addressP);
-			if([addeditviewP retainCount]>1)
-				[addeditviewP release];*/
 			
-			
-			addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));
-			memset(addressP,0,sizeof(struct AddressBook));
-			addressP->id = -1;
-			strcpy(addressP->title,cdrP->userid);
-			if(strlen(cdrP->userid)==SPOKN_ID_RANGE)
-			{
-				strcpy(addressP->spoknid,cdrP->userid);
-			}
-			else
+			Boolean noFoundB = true;
+			if(cdrP->addressUId)
 			{	
-				strcpy(addressP->other,cdrP->userid);
+				ABAddressBookRef addressBook = ABAddressBookCreate();
+				ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,
+																		cdrP->addressUId);
+				if(person)
+				{	
+					noFoundB = false;
+					ContactDetailsViewController     *ContactControllerDetailsviewP;	
+					ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+					[ContactControllerDetailsviewP setObject:self->ownerobject];
+					resultInt = 0;
+					[ContactControllerDetailsviewP setRecordID:cdrP->addressUId :cdrP->recordID];
+					//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
+					[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
+					[ContactControllerDetailsviewP setCdr:cdrP];
+					
+					
+					[ContactControllerDetailsviewP setSelectedNumber:cdrP->userid showAddButton:NO ];
+					[ContactViewController addDetailsFromAddressBook :ContactControllerDetailsviewP :CALLLOGDETAILVIEWENUM contactBook:person];
+					
+					[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+					
+					
+					
+					if([ContactControllerDetailsviewP retainCount]>1)
+						[ContactControllerDetailsviewP release];
+					printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+				}	
+				
 			}
-			
-			
-			ContactDetailsViewController     *ContactControllerDetailsviewP;	
-			ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
-			[ContactControllerDetailsviewP setObject:self->ownerobject];
-			resultInt = 0;
-			//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
-			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
-			[ContactControllerDetailsviewP setCdr:cdrP];
-			[ContactControllerDetailsviewP setSelectedNumber:cdrP->userid showAddButton:YES ];
-			
-			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
-			
-			
-			[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+			if(noFoundB)
+			{	
 			
 			
 			
-			if([ContactControllerDetailsviewP retainCount]>1)
-				[ContactControllerDetailsviewP release];
-			printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 			
-			free(addressP);
+			
+				addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));
+				memset(addressP,0,sizeof(struct AddressBook));
+				addressP->id = -1;
+				strcpy(addressP->title,cdrP->userid);
+				if(strlen(cdrP->userid)==SPOKN_ID_RANGE)
+				{
+					strcpy(addressP->spoknid,cdrP->userid);
+				}
+				else
+				{	
+					strcpy(addressP->other,cdrP->userid);
+				}
+				
+				
+				ContactDetailsViewController     *ContactControllerDetailsviewP;	
+				ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+				[ContactControllerDetailsviewP setObject:self->ownerobject];
+				resultInt = 0;
+				[ContactControllerDetailsviewP setRecordID:cdrP->addressUId :cdrP->recordID];
+				//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
+				[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
+				[ContactControllerDetailsviewP setCdr:cdrP];
+				[ContactControllerDetailsviewP setSelectedNumber:cdrP->userid showAddButton:YES ];
+				
+				[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
+				
+				
+				[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+				
+				
+				
+				if([ContactControllerDetailsviewP retainCount]>1)
+					[ContactControllerDetailsviewP release];
+				printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+				
+				free(addressP);
+			}	
 			return;
 		}
 		
@@ -540,6 +589,7 @@
 	if(self->tableView.editing==NO)
 	{	
 		
+		SetAddressBookDetails(ownerobject.ltpInterfacesP,cdrP->addressUId,cdrP->recordID);
 		[self->ownerobject makeCall:cdrP->userid];
 		[self->ownerobject changeView];
 	}

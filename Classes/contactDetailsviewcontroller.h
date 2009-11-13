@@ -96,6 +96,8 @@ typedef enum ViewTypeEnum
 	SelectedContctType *selectContactP;
 	Boolean noNameB;
 	Boolean modelViewB;
+	int addressID;
+	int recordID;
 	
 }
 
@@ -113,6 +115,7 @@ typedef enum ViewTypeEnum
 -(void)setTitlesString:(NSString*)nsP;
 -(void)setSelectedNumber:(char*)noCharP showAddButton:(BOOL)lshowB;
 -(void) addContactDetails:(SelectedContctType *)lcontactdataP;
+-(void) setRecordID:(int)laddressID :(int)lrecordId;
 
 @end
 

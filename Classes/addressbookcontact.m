@@ -131,7 +131,7 @@ titleForHeaderInSection:(NSInteger)section
 	return nil;
 } 
 
-- (NSString *) getName: (ABRecordRef) person
++ (NSString *) getName: (ABRecordRef) person
 {
 	NSString *firstName = (NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty);
 	NSString *lastName = (NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty);
@@ -324,7 +324,7 @@ titleForHeaderInSection:(NSInteger)section
 	ABMultiValueRef name1 ;
 	addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook)+10);
 	memset(addressP,0,sizeof(struct AddressBook));
-	nameP = [self getName:person];
+	nameP = [AddressBookContact getName:person];
 //	NSLog(nameP);
 	numbercharP = (char*)[nameP  cStringUsingEncoding:NSUTF8StringEncoding];
 	
@@ -432,7 +432,7 @@ titleForHeaderInSection:(NSInteger)section
 	{
 		NSString *searchStrP;
 		
-		searchStrP = [self getName:person] ;
+		searchStrP = [AddressBookContact getName:person] ;
 		
 		NSRange range = [ALPHA rangeOfString:[[searchStrP substringToIndex:1] uppercaseString]];
 		

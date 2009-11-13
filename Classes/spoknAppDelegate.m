@@ -882,13 +882,45 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 		else
 		{
-			strP = [[NSString alloc] initWithUTF8String:noCharP] ;
+			int uID;
+			char *addressBookNameP = 0;
+			char *addressBookTypeP = 0;
+			uID = getAddressUid(self->ltpInterfacesP);
+			if(uID)
+			{
+				[ContactViewController	getNameAndType:uID :noCharP:&addressBookNameP :&addressBookTypeP];
+				if(addressBookNameP)
+				{	
+					
+					strP = [[NSString alloc] initWithUTF8String:addressBookNameP] ;
+					[tempStringP setString:strP];
+					[strP release];
+					if(addressBookTypeP)
+					{	
+						strP = [[NSString alloc] initWithUTF8String:addressBookTypeP] ;
+						[tempStringP appendString:@"\n calling " ];
+						[tempStringP appendString:strP];
+						[strP release ];
+					}	
+					free(addressBookNameP);
+					if(addressBookTypeP)
+					{	
+						free(addressBookTypeP);
+					}	
+					
+				}
+				
+			}	
+			else
+			{	
+				strP = [[NSString alloc] initWithUTF8String:noCharP] ;
 			
-			[tempStringP appendString:strP ];
+				[tempStringP appendString:strP ];
 			//[tempStringP setString:addressP->title];
-			[tempStringP appendString:@"\n calling..." ];
+				[tempStringP appendString:@"\n calling..." ];
 			//[tempStringP appendString:strP];
-			[strP release ];
+				[strP release ];
+			}	
 			
 		}
 		//strP = [[NSString alloc] initWithUTF8String:noCharP] ;

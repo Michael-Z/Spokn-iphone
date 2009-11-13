@@ -95,10 +95,12 @@ void alertInterface(void *udata,int lineid, int alertcode, void *data)
 		case ALERT_DISCONNECTED:
 			if (ltpInterfaceP->ltpObjectP->call[lineid].timeStop)
 				cdrAdd(ltpInterfaceP->ltpObjectP->call[lineid].remoteUserid, (time_t) ltpInterfaceP->ltpObjectP->call[lineid].timeStart, 
-					  ltpInterfaceP->ltpObjectP->call[lineid].timeStop - ltpInterfaceP->ltpObjectP->call[lineid].timeStart, ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall);
+					  ltpInterfaceP->ltpObjectP->call[lineid].timeStop - ltpInterfaceP->ltpObjectP->call[lineid].timeStart, ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall,ltpInterfaceP->addressUId ,ltpInterfaceP->recordID );
 			else
 				cdrAdd(ltpInterfaceP->ltpObjectP->call[lineid].remoteUserid, (time_t) ltpInterfaceP->ltpObjectP->call[lineid].timeStart, 
-					   0, ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall);
+					   0, ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall,ltpInterfaceP->addressUId ,ltpInterfaceP->recordID);
+			ltpInterfaceP->addressUId  = 0;
+			ltpInterfaceP->recordID = 0;
 			break;
 		case ALERT_OFFLINE:
 				subid = ltpInterfaceP->ltpObjectP->loginStatus;
@@ -557,4 +559,20 @@ void SetConnection( LtpInterfaceType *ltpInterfaceP,int activeByte)
 		DoLtpLogin(ltpInterfaceP);
 	}
 	
+}
+int  SetAddressBookDetails(LtpInterfaceType *ltpInterfaceP,int addressUId,int recordID)
+{
+	if(ltpInterfaceP)
+	{
+		ltpInterfaceP->addressUId = addressUId;
+		ltpInterfaceP->recordID = recordID;
+		return 0;
+		
+	}
+	return 1;
+}
+int getAddressUid(LtpInterfaceType *ltpInterfaceP)
+{
+	if(ltpInterfaceP==0) return 0;
+	return ltpInterfaceP->addressUId;
 }

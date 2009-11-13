@@ -164,6 +164,8 @@
 	 
 	if(stringSelected[buttonIndex])
 	{	
+		SetAddressBookDetails(ownerobject.ltpInterfacesP,addressID,recordID);
+		
 		[[self navigationController]  popViewControllerAnimated:YES];
 		if(callActionSheetB)
 		{
@@ -1017,6 +1019,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		}
 		if(strstr( sectionArray[section].dataforSection[row].elementP,"@")==0)
 		{	
+			SetAddressBookDetails(ownerobject.ltpInterfacesP,addressID,recordID);
 			[self->ownerobject makeCall:sectionArray[section].dataforSection[row].elementP];
 			[self->ownerobject changeView];
 		}	
@@ -1161,10 +1164,14 @@ titleForHeaderInSection:(NSInteger)section
 			sectionArray[0].dataforSection[firstSecCount].contactdataP = malloc(sizeof(SelectedContctType));
 			*sectionArray[0].dataforSection[firstSecCount].contactdataP = *lcontactdataP;
 		
+			
 			sectionArray[0].dataforSection[firstSecCount].section = 0;
 			strcpy(sectionArray[0].dataforSection[firstSecCount].nameofRow,lcontactdataP->type);
 			sectionArray[0].dataforSection[firstSecCount].elementP = sectionArray[0].dataforSection[firstSecCount].contactdataP->number;
-		
+			if(!strcmp(selectNoCharP,sectionArray[0].dataforSection[firstSecCount].elementP ))
+			{
+				sectionArray[0].dataforSection[firstSecCount].selected = 1;
+			}
 			sectionArray[0].count++;
 			printf("\n %s %s",sectionArray[0].dataforSection[firstSecCount].elementP,sectionArray[0].dataforSection[firstSecCount].nameofRow);
 			firstSecCount++;
@@ -1181,6 +1188,10 @@ titleForHeaderInSection:(NSInteger)section
 			sectionArray[1].dataforSection[secondSecCount].section = 1;
 			strcpy(sectionArray[1].dataforSection[secondSecCount].nameofRow,lcontactdataP->type);
 			sectionArray[1].dataforSection[secondSecCount].elementP = sectionArray[1].dataforSection[secondSecCount].contactdataP->number;
+			if(!strcmp(selectNoCharP,sectionArray[1].dataforSection[secondSecCount].elementP ))
+			{
+				sectionArray[1].dataforSection[secondSecCount].selected = 1;
+			}
 			sectionArray[1].count++;
 			printf("\nemail %s %s",sectionArray[0].dataforSection[secondSecCount].elementP,sectionArray[0].dataforSection[firstSecCount].nameofRow);
 		
@@ -1606,5 +1617,10 @@ titleForHeaderInSection:(NSInteger)section
 	rootObjectP = lrootObjectP;
 	selectContactP = lselectContactP;
 	
+}
+-(void) setRecordID:(int)laddressID :(int)lrecordId
+{
+	addressID= laddressID;
+	recordID = lrecordId;
 }
 @end

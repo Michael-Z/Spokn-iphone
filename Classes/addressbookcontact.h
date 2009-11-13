@@ -27,7 +27,7 @@
 	Boolean searchB;
 	
 }
-- (NSString *) getName: (ABRecordRef) person;
++(NSString *) getName: (ABRecordRef) person;
 -(void)setObject:(id) object ;
 - (void)loadViewLoc;
 -(void)setSearchBarAndTable:(UISearchBar *)lBarP :(UITableView *)tableP PerentObject:(UIViewController *)lcontrollerP OverlayView:(OverlayViewController **)lovController;

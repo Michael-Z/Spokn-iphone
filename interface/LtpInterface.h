@@ -56,6 +56,8 @@ typedef struct IncommingCallType
 			int connectionActiveByte;
 			pthread_t pthObj;
 			Boolean pjsipStartB;
+			int addressUId;
+			int recordID;	
 			
 			
 		}LtpInterfaceType;
@@ -89,5 +91,7 @@ typedef struct IncommingCallType
     void SendDTMF(LtpInterfaceType *ltpInterfaceP,int lineid, char *dtmfMsgP);
 	void readSocketData(LtpInterfaceType *localLtpInterfaceObjectP);
 	void SetConnection( LtpInterfaceType *ltpInterfaceP,int activeB);
+	int SetAddressBookDetails(LtpInterfaceType *ltpInterfaceP,int addressUId,int recordID);
+	int getAddressUid(LtpInterfaceType *ltpInterfaceP);
 
 #endif
