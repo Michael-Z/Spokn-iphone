@@ -562,11 +562,13 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	char *tmp;
 	NSString *srtrP;
 	tmp = getCreditsPage();
-	srtrP = [[NSString alloc] initWithUTF8String:tmp];
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:srtrP]];
-	 free(tmp);
-	 [ srtrP release];
-	 
+	if(tmp)
+	{
+		srtrP = [[NSString alloc] initWithUTF8String:tmp];
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:srtrP]];
+		free(tmp);
+		[ srtrP release];
+	}	
 }
 
 @end
