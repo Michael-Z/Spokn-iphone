@@ -1202,7 +1202,14 @@ id createImage(float percentage)
     [super viewDidLoad];
 	recordVmsB = false;
 	[ownerobject setVmsDelegate:self];
-	[self setTitle:@"VMS"];
+	if(vmstateType==VMSStateRecord)
+	{
+		[self setTitle:@"New VMS"];
+	}
+	else
+	{	
+		[self setTitle:@"VMS"];
+	}
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	firstSectionviewP.backgroundColor = [UIColor clearColor];
 	secondSectionviewP.backgroundColor = [UIColor clearColor];
