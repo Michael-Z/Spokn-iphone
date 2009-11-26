@@ -794,7 +794,7 @@ cancelButtonTitle: nil
 	tableView.dataSource = self;
 //	tableView.tag = TABLE_VIEW_TAG;
 	[tableView reloadData];
-	[self setTitle:@"Calllog"];
+	[self setTitle:@"Recents"];
 	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	
