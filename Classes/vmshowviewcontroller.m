@@ -459,7 +459,20 @@
 	[PlayButtonP setTitle:@"Stop" forState:UIControlStateHighlighted];
 	previewButtonP.enabled  = NO;
 	sendButtonP.enabled  = NO;
-
+	previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
+	previewButtonP.titleShadowOffset = CGSizeMake(0,-1);
+	[previewButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+	[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
+	[previewButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+	[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+	sendButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
+	//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
+	sendButtonP.titleShadowOffset = CGSizeMake(0,-1);
+	[sendButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+	[sendButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
+	[sendButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+	[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+	
 	
 
 }
@@ -499,6 +512,19 @@
 		[PlayButtonP setTitle:@"Stop" forState:UIControlStateHighlighted];
 		previewButtonP.enabled  = NO;
 		sendButtonP.enabled  = NO;
+		previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
+		previewButtonP.titleShadowOffset = CGSizeMake(0,-1);
+		[previewButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+		[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
+		[previewButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+		[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+		sendButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
+		//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
+		sendButtonP.titleShadowOffset = CGSizeMake(0,-1);
+		[sendButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+		[sendButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
+		[sendButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+		[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 	}	
 	else
 	{
@@ -1027,6 +1053,11 @@ id createImage(float percentage)
 {
 	if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward)
 	{
+		
+		if(vmstateType==VMSStateForward)
+		{	
+			[self setTitle:@"Forward VMS"];
+		}
 		char s1[50];
 		char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 		
@@ -1138,6 +1169,21 @@ id createImage(float percentage)
 			[secondLabelP setText:[NSString stringWithFormat:@"%d", self->maxTime]];
 			previewButtonP.enabled  = NO;
 			sendButtonP.enabled  = NO;
+			sendButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
+			//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
+			sendButtonP.titleShadowOffset = CGSizeMake(0,-1);
+			[sendButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+			[sendButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
+			[sendButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+			[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+			previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
+			//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
+			previewButtonP.titleShadowOffset = CGSizeMake(0,-1);
+			[previewButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+			[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
+			[previewButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+			[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+			
 			[PlayButtonP setTitle:@"Record" forState:UIControlStateNormal];
 			[PlayButtonP setTitle:@"Record" forState:UIControlStateHighlighted];
 			[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
