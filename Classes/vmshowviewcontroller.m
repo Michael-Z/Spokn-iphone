@@ -1101,10 +1101,10 @@ id createImage(float percentage)
 			[navButton release];
 			[deleteButton release];
 			tableView.tableHeaderView = 0;
-			self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+			/*self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 													   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 													   target: self
-													   action: @selector(cancelClicked) ] autorelease ];	
+													   action: @selector(cancelClicked) ] autorelease ];	*/
 		}
 		else
 		{
@@ -1113,7 +1113,7 @@ id createImage(float percentage)
 			[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
 			[sendButtonP setTitle:@"Send" forState:UIControlStateHighlighted];
 			
-			self.navigationItem.leftBarButtonItem = nil;
+			self.navigationItem.hidesBackButton = YES;
 			//self.navigationItem.rightBarButtonItem  = nil;
 			self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 													   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel

@@ -63,6 +63,11 @@
 	char type[30];
 	printf("\n max time %d",max);
 	viewPlayResult = 0;
+	UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
+	temporaryBarButtonItem.title = @"All VMSes";
+	self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+	[temporaryBarButtonItem release]; 
+	
 	addressP = getContactAndTypeCall(vmailP->userid,type);	
 	if(addressP)
 	{
