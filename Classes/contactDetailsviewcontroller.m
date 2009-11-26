@@ -25,6 +25,7 @@
 /*
  *   Table Delegate
  */
+
 - (void)addRow: (int)lsection:(int )row sectionObject:(sectionType **)sectionPP;
 {
 		char *objStrP=0;
@@ -51,7 +52,7 @@
 			
 									
 			dispP = [ [displayData alloc] init];
-			dispP.left = 10;
+			dispP.left = 6;
 			dispP.top = 0;
 			dispP.width = 100;
 			if(secObjStrP)
@@ -60,19 +61,19 @@
 					dispP.width = 40;
 			}
 			
-			dispP.height = 40;
+			dispP.height = 50;
 			
-			dispP.colorP = [UIColor blueColor];
+			dispP.colorP = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
 			
-			
-			dispP.fntSz = 16;
+			dispP.fntSz = 14;
+			dispP.boldB = YES;
 			//dispP.fontP =  [self->fontGloP fontWithSize:16];
 			//[dispP.fontP retain];
 			//[dispP.fontP release];
 			stringStrP = [[NSString alloc] initWithUTF8String:objStrP ];
 			dispP.dataP = stringStrP;
 			[stringStrP release];
-			[dispP.colorP release];
+			//[dispP.colorP release];
 			
 			[secLocP->elementP addObject:dispP];
 			
@@ -89,7 +90,21 @@
 				[stringStrP release];
 				if(sectionArray[lsection].dataforSection[row].selected)
 				{	
-					dispP.colorP = [UIColor blueColor];
+					if(rootObjectP == 0)
+					{	
+						if((cdrP->direction & CALLTYPE_IN) && (cdrP->direction & CALLTYPE_MISSED))
+						{
+							dispP.colorP =[UIColor colorWithRed:140.0/255.0 green:16.0/255.0 blue:5.0/255.0 alpha:1.0];
+						}
+						else
+						{	
+							dispP.colorP = [UIColor colorWithRed:40.0/255.0 green:108.0/255.0 blue:214/255.0 alpha:1.0];
+						}
+					}
+					else
+					{
+						dispP.colorP = [UIColor colorWithRed:40.0/255.0 green:108.0/255.0 blue:214/255.0 alpha:1.0];
+					}	
 					
 				}
 				else
@@ -97,15 +112,13 @@
 					dispP.colorP = [UIColor blackColor];
 				}
 				dispP.fntSz = 14;
-				[dispP.colorP release];
+				dispP.boldB = YES;
+				//[dispP.colorP release];
 				[secLocP->elementP addObject:dispP];
 				
 				// [cell setNeedsDisplay];
 			}	
-			
-			
-			
-			*sectionPP = secLocP;//back the pointer
+				*sectionPP = secLocP;//back the pointer
 			
 			//[self->cellofcalllogP addObjectAtIndex:secLocP :index];	
 			//[self->cellofcalllogP addObjectAtIndex:cell.spoknSubCellP.dataArrayP :index];	
@@ -1245,7 +1258,7 @@ titleForHeaderInSection:(NSInteger)section
 				}
 			//element[tablesz++] = addressDataP->home;
 			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"home");
+			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Home");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->home;
 			sectionArray[0].count++;
 			tablesz++;
@@ -1255,7 +1268,7 @@ titleForHeaderInSection:(NSInteger)section
 			if(leditableB)
 			{
 				sectionArray[0].dataforSection[tablesz].section = 0;
-				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"home");
+				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Home");
 				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->home;
 				sectionArray[0].count++;
 				sectionArray[0].dataforSection[tablesz].addNewB = true;
@@ -1273,7 +1286,7 @@ titleForHeaderInSection:(NSInteger)section
 				}
 			//element[tablesz++] = addressDataP->business;
 			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"business");
+			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Business");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->business;
 			sectionArray[0].count++;
 			tablesz++;
@@ -1284,7 +1297,7 @@ titleForHeaderInSection:(NSInteger)section
 			if(leditableB)
 			{
 				sectionArray[0].dataforSection[tablesz].section = 0;
-				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"business");
+				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Business");
 				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->business;
 				sectionArray[0].count++;
 				sectionArray[0].dataforSection[tablesz].addNewB = true;
@@ -1301,7 +1314,7 @@ titleForHeaderInSection:(NSInteger)section
 				}
 			//element[tablesz++] = addressDataP->mobile;
 			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"mobile");
+			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Mobile");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->mobile;
 			sectionArray[0].count++;
 			
@@ -1312,7 +1325,7 @@ titleForHeaderInSection:(NSInteger)section
 			if(leditableB)
 			{
 				sectionArray[0].dataforSection[tablesz].section = 0;
-				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"mobile ");
+				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Mobile ");
 				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->mobile;
 				sectionArray[0].count++;
 				sectionArray[0].dataforSection[tablesz].addNewB = true;
@@ -1330,7 +1343,7 @@ titleForHeaderInSection:(NSInteger)section
 				}
 			//element[tablesz++] = addressDataP->other;
 			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"other");
+			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Other");
 			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->other;
 			sectionArray[0].count++;
 			tablesz++;
@@ -1340,7 +1353,7 @@ titleForHeaderInSection:(NSInteger)section
 			if(leditableB)
 			{
 				sectionArray[0].dataforSection[tablesz].section = 0;
-				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"other");
+				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Other");
 				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->other;
 				sectionArray[0].count++;
 				sectionArray[0].dataforSection[tablesz].addNewB = true;
@@ -1389,7 +1402,7 @@ titleForHeaderInSection:(NSInteger)section
 				sectionArray[sectionCount].dataforSection[0].selected = 1;
 			}
 			sectionArray[sectionCount].dataforSection[0].section = 0;
-			strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"email");
+			strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"Email");
 			sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
 			sectionArray[sectionCount].count++;
 			//tablesz++;
@@ -1405,7 +1418,7 @@ titleForHeaderInSection:(NSInteger)section
 			{
 				printf("\n email ");
 				sectionArray[sectionCount].dataforSection[0].section = 0;
-				strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"email");
+				strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"Email");
 				sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
 				sectionArray[sectionCount].count++;
 				sectionArray[sectionCount].dataforSection[0].addNewB = true;

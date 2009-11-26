@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="34"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -371,22 +371,22 @@
 									<string key="NSResourceName">sixsqbutton_1.png</string>
 								</object>
 							</object>
-							<object class="IBUIView" id="1011915126">
-								<reference key="NSNextResponder" ref="598707238"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{25, 10}, {284, 238}}</string>
-								<reference key="NSSuperview" ref="598707238"/>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-									<object class="NSColorSpace" key="NSCustomColorSpace" id="647880509">
-										<int key="NSID">2</int>
-									</object>
-								</object>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-							</object>
 						</object>
 						<string key="NSFrame">{{-9, 129}, {329, 204}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+							<object class="NSColorSpace" key="NSCustomColorSpace" id="647880509">
+								<int key="NSID">2</int>
+							</object>
+						</object>
+						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+					</object>
+					<object class="IBUIView" id="1011915126">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{17, 105}, {284, 238}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -567,6 +567,7 @@
 							<reference ref="888034793"/>
 							<reference ref="355225762"/>
 							<reference ref="858869296"/>
+							<reference ref="1011915126"/>
 						</object>
 						<reference key="parent" ref="317526666"/>
 					</object>
@@ -609,7 +610,6 @@
 							<reference ref="111149937"/>
 							<reference ref="79742761"/>
 							<reference ref="834870923"/>
-							<reference ref="1011915126"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -671,7 +671,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">68</int>
 						<reference key="object" ref="1011915126"/>
-						<reference key="parent" ref="598707238"/>
+						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
 			</object>

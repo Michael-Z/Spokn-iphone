@@ -43,6 +43,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	SetSpeakerOnOrOff(0,false);
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
 	callnoLabelP.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lcd_top_simple.png"]];
@@ -57,7 +58,7 @@
 	self->viewKeypadP.hidden = YES;
 	self->hideKeypadButtonP.hidden = YES;
 	self->endCallKeypadButtonP.hidden = YES;
-	[viewKeypadP setImage:@"keypad.png" : @"keypad_pressed.png"];
+	[viewKeypadP setImage:@"_keypad.png" : @"_keypad_pressed.png"];
 	[viewKeypadP setElement:3 :4];
 	viewKeypadP.keypadProtocolP = self;
 	buttonBackground = [UIImage imageNamed:@"red.png"];
@@ -301,7 +302,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 
 - (void)dealloc {
-	SetSpeakerOnOrOff(0,false);
+	SetSpeakerOnOrOff(0,true);
 	printf("\n vmail dealloc");
 	[labelStrP release];
 	

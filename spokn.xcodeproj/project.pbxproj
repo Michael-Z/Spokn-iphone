@@ -25,12 +25,13 @@
 		8B20AB9510A86D48009E546A /* Call-log-Icons-missed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9210A86D48009E546A /* Call-log-Icons-missed.png */; };
 		8B20AB9610A86D48009E546A /* Call-log-Icons-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9310A86D48009E546A /* Call-log-Icons-outgoing.png */; };
 		8B2C3D8C1096CB54003BB164 /* ltpandsip.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C3D8B1096CB54003BB164 /* ltpandsip.c */; };
+		8B2CFA4F10BCF43E008D8462 /* _keypad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B2CFA4D10BCF43E008D8462 /* _keypad_pressed.png */; };
+		8B2CFA5010BCF43E008D8462 /* _keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B2CFA4E10BCF43E008D8462 /* _keypad.png */; };
 		8B39FFC8107C910200073950 /* vmshowviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B39FFC6107C910200073950 /* vmshowviewcontroller.m */; };
 		8B39FFC9107C910200073950 /* vmshowviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */; };
 		8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B413C4D1075ED71005A400F /* spoknviewcontroller.m */; };
 		8B413C501075ED71005A400F /* spoknviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */; };
 		8B413CAD1075FE01005A400F /* spokntab.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B413CAC1075FE01005A400F /* spokntab.png */; };
-		8B41461010AC407900887392 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41460F10AC407900887392 /* libspeex-arm-apple-darwin9.a */; };
 		8B47D83210720BA400EEEF61 /* callviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B47D83010720BA400EEEF61 /* callviewcontroller.m */; };
 		8B47D865107212BE00EEEF61 /* speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47D856107212BE00EEEF61 /* speaker.png */; };
 		8B47D866107212BE00EEEF61 /* sixsqbuttonsel_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B47D857107212BE00EEEF61 /* sixsqbuttonsel_6.png */; };
@@ -221,6 +222,8 @@
 		8B20AB9310A86D48009E546A /* Call-log-Icons-outgoing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-outgoing.png"; sourceTree = "<group>"; };
 		8B2C3D8A1096CB54003BB164 /* ltpandsip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpandsip.h; path = interface/ltpandsip.h; sourceTree = "<group>"; };
 		8B2C3D8B1096CB54003BB164 /* ltpandsip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpandsip.c; path = interface/ltpandsip.c; sourceTree = "<group>"; };
+		8B2CFA4D10BCF43E008D8462 /* _keypad_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = _keypad_pressed.png; path = rsc/_keypad_pressed.png; sourceTree = "<group>"; };
+		8B2CFA4E10BCF43E008D8462 /* _keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = _keypad.png; path = rsc/_keypad.png; sourceTree = "<group>"; };
 		8B39FFC5107C910200073950 /* vmshowviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmshowviewcontroller.h; sourceTree = "<group>"; };
 		8B39FFC6107C910200073950 /* vmshowviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = vmshowviewcontroller.m; sourceTree = "<group>"; };
 		8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = vmshowviewcontroller.xib; sourceTree = "<group>"; };
@@ -228,7 +231,6 @@
 		8B413C4D1075ED71005A400F /* spoknviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknviewcontroller.m; sourceTree = "<group>"; };
 		8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spoknviewcontroller.xib; sourceTree = "<group>"; };
 		8B413CAC1075FE01005A400F /* spokntab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spokntab.png; sourceTree = "<group>"; };
-		8B41460F10AC407900887392 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B47D82F10720BA400EEEF61 /* callviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callviewcontroller.h; sourceTree = "<group>"; };
 		8B47D83010720BA400EEEF61 /* callviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callviewcontroller.m; sourceTree = "<group>"; };
 		8B47D856107212BE00EEEF61 /* speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker.png; sourceTree = "<group>"; };
@@ -456,7 +458,6 @@
 				8B6609CE10A81B75000F8DAE /* libresample-arm-apple-darwin9.a in Frameworks */,
 				8B6609CF10A81B75000F8DAE /* libmilenage-arm-apple-darwin9.a in Frameworks */,
 				8B6609D010A81B75000F8DAE /* libgsmcodec-arm-apple-darwin9.a in Frameworks */,
-				8B41461010AC407900887392 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,6 +600,8 @@
 		8B177BE3104674A600E42923 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				8B2CFA4D10BCF43E008D8462 /* _keypad_pressed.png */,
+				8B2CFA4E10BCF43E008D8462 /* _keypad.png */,
 				F2730CAF1070A9B300DF8852 /* rsc */,
 			);
 			name = image;
@@ -663,7 +666,6 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
-				8B41460F10AC407900887392 /* libspeex-arm-apple-darwin9.a */,
 				8B6609B510A81B74000F8DAE /* libpj-arm-apple-darwin9.a */,
 				8B6609B610A81B74000F8DAE /* libpjlib-util-arm-apple-darwin9.a */,
 				8B6609B710A81B74000F8DAE /* libpjsdp-arm-apple-darwin9.a */,
@@ -1011,6 +1013,8 @@
 				8B8192B310A994AB0059239B /* default.png in Resources */,
 				8B7CC63E10AACE1D0043DC42 /* keypad.png in Resources */,
 				8B7B07C310AC386E007E6C61 /* phone.caf in Resources */,
+				8B2CFA4F10BCF43E008D8462 /* _keypad_pressed.png in Resources */,
+				8B2CFA5010BCF43E008D8462 /* _keypad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

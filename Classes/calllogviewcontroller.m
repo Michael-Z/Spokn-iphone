@@ -468,9 +468,8 @@
 			//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
 			[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
 			[ContactControllerDetailsviewP setCdr:cdrP];
-			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
-			
+			[ContactControllerDetailsviewP setSelectedNumber:cdrP->userid showAddButton:NO];
 			[ContactControllerDetailsviewP setRecordID:cdrP->addressUId :cdrP->recordID];
 			[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
 			

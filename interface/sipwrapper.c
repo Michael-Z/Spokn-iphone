@@ -688,7 +688,7 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	
 	pjsua_codec_set_priority(pj_cstr(&tmp, "speex/16000"), PJMEDIA_CODEC_PRIO_NEXT_HIGHER);
 	
-	pjsua_codec_set_priority(pj_cstr(&tmp, "speex/32000"), 0);
+	pjsua_codec_set_priority(pj_cstr(&tmp, "speex/32000"), 0);s
 	
 	pjsua_codec_set_priority(pj_cstr(&tmp, "pcmu"), 0);
 	

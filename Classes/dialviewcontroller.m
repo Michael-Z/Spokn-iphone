@@ -633,7 +633,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				callViewControllerP = [[CallViewController alloc] initWithNibName:@"callviewcontroller" bundle:[NSBundle mainBundle]];
 				[callViewControllerP setObject:self->ownerobject];
 				
-				
+				callViewControllerP.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 				[callViewControllerP setLabel:callingstringP];
 				
 				[self presentModalViewController:callViewControllerP animated:YES];
