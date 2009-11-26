@@ -43,7 +43,7 @@
 			8B8523E6108CC45000FEEE6E /* contactviewController.m:1359 */,
 			8B29989A1098163900204D81 /* dialview.m:524 */,
 			8B29990810982FA800204D81 /* Incommingcallviewcontroller.m:75 */,
-			8B29991A1098306900204D81 /* spoknAppDelegate.m:708 */,
+			8B29991A1098306900204D81 /* spoknAppDelegate.m:718 */,
 			8B8B7EED10B3FE8E00DB1D3E /* ua.c:1968 */,
 			8B8B7F0F10B3FF5300DB1D3E /* ua.c:2804 */,
 		);
@@ -711,6 +711,9 @@
 			8BC5681910BE86C60083F77D /* PBXTextBookmark */ = 8BC5681910BE86C60083F77D /* PBXTextBookmark */;
 			8BC5681A10BE86C60083F77D /* PBXTextBookmark */ = 8BC5681A10BE86C60083F77D /* PBXTextBookmark */;
 			8BC5681B10BE86C60083F77D /* PBXTextBookmark */ = 8BC5681B10BE86C60083F77D /* PBXTextBookmark */;
+			8BC5682610BE89650083F77D /* PBXTextBookmark */ = 8BC5682610BE89650083F77D /* PBXTextBookmark */;
+			8BC5682D10BE8BA80083F77D /* PBXTextBookmark */ = 8BC5682D10BE8BA80083F77D /* PBXTextBookmark */;
+			8BC5682E10BE8BA80083F77D /* PBXTextBookmark */ = 8BC5682E10BE8BA80083F77D /* PBXTextBookmark */;
 			8BC8D5F7108599F0007C721A = 8BC8D5F7108599F0007C721A /* PBXTextBookmark */;
 			8BCB06571082F8A500468EC7 = 8BCB06571082F8A500468EC7 /* PBXTextBookmark */;
 			8BCB06D11083052C00468EC7 = 8BCB06D11083052C00468EC7 /* PBXTextBookmark */;
@@ -1174,6 +1177,11 @@
 		name = addressbookcontact.m;
 		path = /Users/mukesh/mygit/iphone/Classes/addressbookcontact.m;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1220, 11652}}";
+			sepNavSelRange = "{3016, 45}";
+			sepNavVisRange = "{3328, 797}";
+		};
 	};
 	8B16E40B109071B000FFE1EE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1481,8 +1489,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 524;
-		modificationTime = 280921773.843445;
-		state = 1;
+		modificationTime = 280923071.951411;
+		state = 0;
 	};
 	8B29990810982FA800204D81 /* Incommingcallviewcontroller.m:75 */ = {
 		isa = PBXFileBreakpoint;
@@ -1497,10 +1505,10 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 75;
-		modificationTime = 280921773.843499;
-		state = 1;
+		modificationTime = 280923071.97658;
+		state = 0;
 	};
-	8B29991A1098306900204D81 /* spoknAppDelegate.m:708 */ = {
+	8B29991A1098306900204D81 /* spoknAppDelegate.m:718 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1512,9 +1520,9 @@
 		functionName = "-AcceptCall:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 708;
-		modificationTime = 280921773.843463;
-		state = 1;
+		lineNumber = 718;
+		modificationTime = 280923072.027435;
+		state = 0;
 	};
 	8B2C3D8A1096CB54003BB164 /* ltpandsip.h */ = {
 		uiCtxt = {
@@ -1599,7 +1607,7 @@
 		fRef = 8B7BE597107D9BA000BD7411 /* spoknAppDelegate.h */;
 		name = "spoknAppDelegate.h: 109";
 		rLen = 0;
-		rLoc = 3023;
+		rLoc = 3037;
 		rType = 0;
 		vrLen = 1345;
 		vrLoc = 2131;
@@ -2165,7 +2173,7 @@
 		ignoreCount = 0;
 		lineNumber = 641;
 		location = spokn;
-		modificationTime = 280921733.774829;
+		modificationTime = 280923071.594638;
 		state = 2;
 	};
 	8B458A9E103FE52F008AB88E /* string.h */ = {
@@ -2373,6 +2381,11 @@
 		name = spoknAppDelegate.m;
 		path = /Users/mukesh/mygit/iphone/Classes/spoknAppDelegate.m;
 		sourceTree = "<group>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {3498, 19264}}";
+			sepNavSelRange = "{21431, 0}";
+			sepNavVisRange = "{20905, 1159}";
+		};
 	};
 	8B4FDAD5109088BF000FFF55 /* UITextField.h */ = {
 		isa = PBXFileReference;
@@ -2848,6 +2861,11 @@
 		name = spoknAppDelegate.h;
 		path = /Users/mukesh/mygit/iphone/Classes/spoknAppDelegate.h;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1055, 2367}}";
+			sepNavSelRange = "{2026, 0}";
+			sepNavVisRange = "{1571, 1309}";
+		};
 	};
 	8B7BE61A107DA86300BD7411 /* vmailviewcontroller.h */ = {
 		isa = PBXFileReference;
@@ -3893,7 +3911,7 @@
 		ignoreCount = 0;
 		lineNumber = 607;
 		location = spokn;
-		modificationTime = 280921733.77487;
+		modificationTime = 280923071.594689;
 		state = 2;
 	};
 	8B8523E6108CC45000FEEE6E /* contactviewController.m:1359 */ = {
@@ -3910,7 +3928,7 @@
 		ignoreCount = 0;
 		lineNumber = 1359;
 		location = spokn;
-		modificationTime = 280921733.774884;
+		modificationTime = 280923071.594705;
 		state = 2;
 	};
 	8B852469108CCAA600FEEE6E /* UIViewController.h */ = {
@@ -3941,7 +3959,7 @@
 		ignoreCount = 0;
 		lineNumber = 170;
 		location = spokn;
-		modificationTime = 280921733.774768;
+		modificationTime = 280923071.594559;
 		state = 2;
 	};
 	8B86269510844DC700718D16 /* ABNewPersonViewController.h */ = {
@@ -4464,8 +4482,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 1968;
-		modificationTime = 280921773.843508;
-		state = 1;
+		modificationTime = 280923072.097291;
+		state = 0;
 	};
 	8B8B7EF610B3FEF500DB1D3E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -4532,7 +4550,7 @@
 		fRef = 8B4C7FFE10971F820003B3F3 /* spoknAppDelegate.m */;
 		name = "spoknAppDelegate.m: 490";
 		rLen = 52;
-		rLoc = 13990;
+		rLoc = 14125;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 13657;
@@ -4590,8 +4608,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 2804;
-		modificationTime = 280921773.843488;
-		state = 1;
+		modificationTime = 280923072.173211;
+		state = 0;
 	};
 	8B8B7F3210B403C000DB1D3E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -4915,8 +4933,8 @@
 	8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1328, 25229}}";
-			sepNavSelRange = "{1203, 0}";
-			sepNavVisRange = "{545, 892}";
+			sepNavSelRange = "{1044, 0}";
+			sepNavVisRange = "{518, 894}";
 			sepNavWindowFrame = "{{15, 187}, {1262, 686}}";
 		};
 	};
@@ -5776,7 +5794,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 195;
-		modificationTime = 280921733.77481;
+		modificationTime = 280923071.594615;
 		state = 2;
 	};
 	8BA4467F1032EF0400EA536A /* ABPerson.h */ = {
@@ -6011,7 +6029,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 22;
-		modificationTime = 280921733.7748;
+		modificationTime = 280923071.594603;
 		state = 2;
 	};
 	8BA8E556102835BC0022801E /* vmailviewcontroller.m */ = {
@@ -6888,7 +6906,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 2;
-		modificationTime = 280921733.774838;
+		modificationTime = 280923071.594649;
 		state = 2;
 	};
 	8BC2F10D10490947008A40B9 /* contact.m:2 */ = {
@@ -6904,7 +6922,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 2;
-		modificationTime = 280921733.774849;
+		modificationTime = 280923071.594664;
 		state = 2;
 	};
 	8BC2F18310491766008A40B9 /* PBXTextBookmark */ = {
@@ -7064,7 +7082,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 313;
-		modificationTime = 280921733.774858;
+		modificationTime = 280923071.594674;
 		state = 2;
 	};
 	8BC567B810BE7DBA0083F77D /* PBXTextBookmark */ = {
@@ -7733,6 +7751,36 @@
 		rType = 0;
 		vrLen = 892;
 		vrLoc = 545;
+	};
+	8BC5682610BE89650083F77D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8BC567CA10BE7E120083F77D /* spoknviewcontroller.m */;
+		name = "spoknviewcontroller.m: 16";
+		rLen = 21;
+		rLoc = 350;
+		rType = 0;
+		vrLen = 694;
+		vrLoc = 42;
+	};
+	8BC5682D10BE8BA80083F77D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8BC567CA10BE7E120083F77D /* spoknviewcontroller.m */;
+		name = "spoknviewcontroller.m: 16";
+		rLen = 21;
+		rLoc = 350;
+		rType = 0;
+		vrLen = 694;
+		vrLoc = 42;
+	};
+	8BC5682E10BE8BA80083F77D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8BC567CA10BE7E120083F77D /* spoknviewcontroller.m */;
+		name = "spoknviewcontroller.m: 16";
+		rLen = 21;
+		rLoc = 350;
+		rType = 0;
+		vrLen = 694;
+		vrLoc = 42;
 	};
 	8BC7DE8F10133AB900E21311 /* maince.cpp */ = {
 		isa = PBXFileReference;
@@ -8912,7 +8960,7 @@
 		ignoreCount = 0;
 		lineNumber = 116;
 		location = spokn;
-		modificationTime = 280921733.774816;
+		modificationTime = 280923071.594624;
 		state = 2;
 	};
 	8BF7298D10355FE500C124B0 /* NSString.h */ = {
@@ -8931,7 +8979,7 @@
 	};
 	8BF729B2103562B400C124B0 /* spoknalert.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1055, 462}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1055, 611}}";
 			sepNavSelRange = "{243, 0}";
 			sepNavVisRange = "{0, 305}";
 		};

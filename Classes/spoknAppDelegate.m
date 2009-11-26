@@ -345,7 +345,14 @@
 					loginViewP = [[LoginViewController alloc] initWithNibName:@"loginview" bundle:[NSBundle mainBundle]];
 					loginViewP.ltpInterfacesP  = ltpInterfacesP;
 					[loginViewP setObject:self];
-					[tabBarController presentModalViewController:loginViewP animated:YES];
+					if(animation)
+					{
+						[tabBarController presentModalViewController:loginViewP animated:YES];
+					}
+					else
+					{	
+						[tabBarController presentModalViewController:loginViewP animated:NO];
+					}
 					//[ [self dialNavigationController] pushViewController:loginViewP animated: YES ];
 					
 					//NSLog(@"retainCount:%d", [addeditviewP retainCount]);
@@ -513,6 +520,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	wifiavailable = NO;
 	//char *userNameCharP;
 	//char *passwordCharP;
+	animation = 1;
 	NSMutableArray *viewControllers;
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	dialviewP = [[DialviewController alloc] initWithNibName:@"dialview" bundle:[NSBundle mainBundle]];
@@ -674,6 +682,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	if(DoLtpLogin(ltpInterfacesP))//mean error ask dial to load login view
 	{
+		animation = 0;
 		alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self,0);
 	}
 	
@@ -695,6 +704,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 -(void)logOut
 {
+	animation = 1;
 	logOut(ltpInterfacesP,true);
 }
 - (void)applicationWillTerminate:(UIApplication *)application

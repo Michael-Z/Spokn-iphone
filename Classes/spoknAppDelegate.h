@@ -78,7 +78,7 @@
 	Boolean wifiavailable;
 	SystemSoundID soundIncommingCallID;
 	//this store address of addressbook
-	
+	int animation;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
