@@ -218,7 +218,6 @@
 			[dialviewP setStatusText: @"end call" :ALERT_DISCONNECTED :0 ];
 			//closeSoundInterface(ltpInterfacesP);
 			SetSpeakerOnOrOff(0,true);
-			[self playcallendTone];
 			[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
 			//reload log
 			[self LoadContactView:callviewP];

@@ -14,6 +14,7 @@
 @interface LoginViewController : UIViewController<UITextFieldDelegate> {
 	IBOutlet UITextField*usernameFieldP;
 	IBOutlet UITextField *passwordFieldP;
+	IBOutlet UIButton *spoknButtonP;
 	//LtpTimer *ltpTimerP;
 	SpoknAppDelegate * ownerobject;
 	LtpInterfaceType *ltpInterfacesP;
