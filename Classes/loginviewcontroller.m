@@ -231,6 +231,16 @@
 
 
 }
+-(IBAction)forgotPassword:(id)sender
+{
+	
+	
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.spokn.com/services/wm/forgot-password"]];
+	/*NSString *srtrP; 
+	 srtrP = [[NSString alloc] initWithString:@"http://www.spokn.com/services/wm/forgot-password"];
+	 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:srtrP]];
+	 [srtrP release];*/
+}
 -(void)setObject:(id) object 
 {
 	self->ownerobject = object;

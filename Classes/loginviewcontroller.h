@@ -18,6 +18,7 @@
 	SpoknAppDelegate * ownerobject;
 	LtpInterfaceType *ltpInterfacesP;
 	
+	
 }
 
 
@@ -27,6 +28,7 @@
 -(void)setObject:(id) object ;
 -(IBAction)loginLtp:(id)sender;
 -(IBAction)openUrl:(id)sender;
+-(IBAction)forgotPassword:(id)sender;
 
 
 @end
