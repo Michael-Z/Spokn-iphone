@@ -350,7 +350,7 @@ titleForHeaderInSection:(NSInteger)section
 	
 	
 	printf("\n bal %f",balance);
-	sprintf(s1,"$ %.2f  ",balance);
+	sprintf(s1,"$%.2f",balance);
 	stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
 	[labelBalance setText:stringStrP];
 	[stringStrP release];

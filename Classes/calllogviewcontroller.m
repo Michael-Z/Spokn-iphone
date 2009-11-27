@@ -395,7 +395,7 @@
 			}	
 			
 			dispP = [ [displayData alloc] init];
-			dispP.left = 14;
+			dispP.left = 15;
 			dispP.top = 2;
 			dispP.width = 70;
 			dispP.row = 1;
