@@ -21,7 +21,6 @@
 #import "CalllogViewController.h"
 #import "vmailviewcontroller.h"
 #import "spoknviewcontroller.h"
-
 //#import "testingview.h"
 //#import "NSFileManager.h"
 @implementation SpoknAppDelegate
@@ -97,6 +96,11 @@
 		AudioServicesDisposeSystemSoundID(soundIncommingCallID);
 		soundIncommingCallID = 0;
 	}
+	if(onlinesoundID)
+	{
+		AudioServicesDisposeSystemSoundID(onlinesoundID);
+		onlinesoundID = 0;
+	}
 }
 -(void) createRing
 {
@@ -165,6 +169,31 @@
 	return 1;
 	
 }
+
+-(void) playonlineTone
+{
+	onlinesoundID = 0;
+	
+	
+	NSBundle *mainBundle = [NSBundle mainBundle];
+	
+	NSString *path = [mainBundle pathForResource:@"gling" ofType:@"caf"];
+	if (!path)
+		return;
+	
+	NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
+	if (aFileURL != nil)  
+	{
+		SystemSoundID aSoundID;
+		OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
+														  &aSoundID);
+		if (error != kAudioServicesNoError)
+			return;
+		onlinesoundID = aSoundID;
+		
+	}
+	AudioServicesPlayAlertSound(onlinesoundID);	
+}
 -(void) showText:(NSString *)testStringP
 {
 	[dialviewP setStatusText:testStringP :0 :0];
@@ -177,6 +206,7 @@
 	{
 		case ALERT_CONNECTED:
 			[dialviewP setStatusText: @"ringing" :ALERT_CONNECTED :0];
+
 			//openSoundInterface(ltpInterfacesP,1);
 			[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 			#ifndef _LTP_
@@ -186,9 +216,9 @@
 			break;	
 		case ALERT_DISCONNECTED:
 			[dialviewP setStatusText: @"end call" :ALERT_DISCONNECTED :0 ];
-
 			//closeSoundInterface(ltpInterfacesP);
 			SetSpeakerOnOrOff(0,true);
+			[self playcallendTone];
 			[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
 			//reload log
 			[self LoadContactView:callviewP];
@@ -196,6 +226,7 @@
 			{
 				[tabBarController dismissModalViewControllerAnimated:YES];
 			}
+						
 			#ifndef _LTP_
 				[nsTimerP invalidate];
 			
@@ -249,6 +280,7 @@
 			cdrLoad();
 			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 			[self LoadContactView:callviewP];
+			[self playonlineTone];
 			break;
 		case ALERT_OFFLINE:
 			

@@ -79,6 +79,7 @@
 	SystemSoundID soundIncommingCallID;
 	//this store address of addressbook
 	int animation;
+	SystemSoundID onlinesoundID;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -145,6 +146,7 @@ changed:(BOOL)changed;
 -(int) stopRing;
 -(void)startRing;
 -(void)cancelLoginView;
+-(void) playonlineTone;
 
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);

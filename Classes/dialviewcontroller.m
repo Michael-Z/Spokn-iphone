@@ -673,7 +673,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 					//dont get panic it will release in handleCallTimerend
 					calltimerP = nil;
 					timecallduration = -1;
-					
+					//[ownerobject playcallendTone];
 				}	
 				//timecallduration = time(0);
 				

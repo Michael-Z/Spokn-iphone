@@ -125,6 +125,8 @@
 		8B9303A61011F11B004BDA41 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9303A51011F11B004BDA41 /* AudioToolbox.framework */; };
 		8B9929E410A5679600EBD16F /* TB-VMS.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9929E110A5679600EBD16F /* TB-VMS.png */; };
 		8B9929E510A5679600EBD16F /* TB-Spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9929E210A5679600EBD16F /* TB-Spokn.png */; };
+		8BA08A1110BFC27C00ED19B7 /* doorbell.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8BA08A1010BFC27C00ED19B7 /* doorbell.caf */; };
+		8BA08A7510BFC94000ED19B7 /* gling.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8BA08A7410BFC94000ED19B7 /* gling.caf */; };
 		8BA8E3A11027EF800022801E /* addeditcontactviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */; };
 		8BA8E3A21027EF800022801E /* addeditcontact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E3A01027EF800022801E /* addeditcontact.xib */; };
 		8BA8E558102835BC0022801E /* vmailview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E555102835BC0022801E /* vmailview.xib */; };
@@ -351,6 +353,8 @@
 		8B9303A51011F11B004BDA41 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		8B9929E110A5679600EBD16F /* TB-VMS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-VMS.png"; sourceTree = "<group>"; };
 		8B9929E210A5679600EBD16F /* TB-Spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-Spokn.png"; sourceTree = "<group>"; };
+		8BA08A1010BFC27C00ED19B7 /* doorbell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = doorbell.caf; sourceTree = "<group>"; };
+		8BA08A7410BFC94000ED19B7 /* gling.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gling.caf; sourceTree = "<group>"; };
 		8BA8E39E1027EF800022801E /* addeditcontactviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addeditcontactviewcontroller.h; sourceTree = "<group>"; };
 		8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addeditcontactviewcontroller.m; sourceTree = "<group>"; };
 		8BA8E3A01027EF800022801E /* addeditcontact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addeditcontact.xib; sourceTree = "<group>"; };
@@ -763,6 +767,8 @@
 		8BAA7D8E109EBD3E0009C8D4 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				8BA08A7410BFC94000ED19B7 /* gling.caf */,
+				8BA08A1010BFC27C00ED19B7 /* doorbell.caf */,
 				8B7B07C210AC386E007E6C61 /* phone.caf */,
 				8BAA7D8F109EBD3E0009C8D4 /* dtmf-#.aif */,
 				8BAA7D90109EBD3E0009C8D4 /* dtmf-0.aif */,
@@ -1007,6 +1013,8 @@
 				8B7B07C310AC386E007E6C61 /* phone.caf in Resources */,
 				8BC5683710BE8DFE0083F77D /* Default.png in Resources */,
 				8BC568FC10BE9A590083F77D /* dialview.xib in Resources */,
+				8BA08A1110BFC27C00ED19B7 /* doorbell.caf in Resources */,
+				8BA08A7510BFC94000ED19B7 /* gling.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
