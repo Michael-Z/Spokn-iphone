@@ -873,8 +873,28 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	{
 		[self->tableView deselectRowAtIndexPath : nsP animated:NO];
 	}
+	if(onLine)
+	{
+		self.navigationItem.rightBarButtonItem.enabled =YES;
+	}	
+	else
+	{
+		self.navigationItem.rightBarButtonItem.enabled = NO;
+	}	
 }	
-
+-(void)setcomposeStatus:(int)lstatus
+{
+	onLine = lstatus;
+	if(onLine)
+	{
+		self.navigationItem.rightBarButtonItem.enabled =YES;
+	}	
+	else
+	{
+		self.navigationItem.rightBarButtonItem.enabled = NO;
+	}	
+	
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -923,7 +943,15 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	= [ [ [ UIBarButtonItem alloc ]
 		 initWithBarButtonSystemItem: UIBarButtonSystemItemCompose
 		 target: self
-		 action: @selector(ComposeVmailPressed) ] autorelease ];	
+		 action: @selector(ComposeVmailPressed) ] autorelease ];
+	if(onLine)
+	{
+		self.navigationItem.rightBarButtonItem.enabled =YES;
+	}	
+	else
+	{
+		self.navigationItem.rightBarButtonItem.enabled = NO;
+	}	
 	
 	
 

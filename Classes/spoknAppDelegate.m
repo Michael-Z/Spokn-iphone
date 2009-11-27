@@ -1255,6 +1255,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			SetConnection( ltpInterfacesP,0);
 			printf("\n offline set");
 			alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
+			[vmsviewP setcomposeStatus:0 ];
             break;
         }		
             
@@ -1266,6 +1267,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				printf("\n richable set via wwan");
 				 wifiavailable = NO;
 				alertNotiFication(ALERT_ONLINE,0,NO_WIFI_AVAILABLE,(long)self,0);
+				[vmsviewP setcomposeStatus:1 ];
 				//wifiavailable = YES;
 				//SetConnection( ltpInterfacesP,2);
 			}	 
@@ -1285,6 +1287,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				 printf("\n richable set");
 				 wifiavailable = YES;
 				 SetConnection( ltpInterfacesP,2);
+				 [vmsviewP setcomposeStatus:1 ];
 			 }	 
 			 break;
 		}

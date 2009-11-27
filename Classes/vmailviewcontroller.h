@@ -33,6 +33,7 @@
 	int viewPlayResult;
 	int openVmsCompose;
 	char vmsNoChar[100];
+	int onLine;
 
 
 }
@@ -42,5 +43,6 @@
 - (void)addRow: (int )index sectionObject:(sectionType **)sectionPP;
 -(void)stopvmsPlay;
 -(void)startVmsProgress:(char*)fileNameCharP :(int) max :(struct VMail *)vmailP;
+-(void)setcomposeStatus:(int)lstatus;
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 @end
