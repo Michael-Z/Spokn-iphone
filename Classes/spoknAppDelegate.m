@@ -772,6 +772,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 
 }
+-(void)cancelLoginView
+{
+	[tabBarController dismissModalViewControllerAnimated:YES];
+	//[ spoknViewControllerP cancelProgress];
+}
 -(void)changeView
 {
 	//[ navigationController pushViewController: dialviewP animated: YES ];

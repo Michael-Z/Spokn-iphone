@@ -47,5 +47,5 @@ typedef struct ImageNameType
 - (IBAction)switchChange:(UISwitch*)sender;
 -(void)startProgress;
 -(void)showForwardScreen;
-
+//-(void)cancelProgress;
 @end

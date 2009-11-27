@@ -175,6 +175,20 @@
 	
 
 }
+/*
+-(void)cancelProgress
+{
+	self.navigationItem.titleView = 0;
+	[activityIndicator stopAnimating];
+
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+											   initWithTitle:@"Sign-in" 
+											   style:UIBarButtonItemStylePlain 
+											   target:self 
+											   action:@selector(LoginPressed)] autorelease];
+	
+}
+ */
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];

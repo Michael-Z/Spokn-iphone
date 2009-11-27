@@ -144,6 +144,7 @@ changed:(BOOL)changed;
 -(void) destroyRing;
 -(int) stopRing;
 -(void)startRing;
+-(void)cancelLoginView;
 
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);

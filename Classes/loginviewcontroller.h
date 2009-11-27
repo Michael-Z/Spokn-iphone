@@ -29,6 +29,7 @@
 -(IBAction)loginLtp:(id)sender;
 -(IBAction)openUrl:(id)sender;
 -(IBAction)forgotPassword:(id)sender;
+-(IBAction)cancelPressed:(id)sender;
 
 
 @end

@@ -241,6 +241,10 @@
 	 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:srtrP]];
 	 [srtrP release];*/
 }
+-(IBAction)cancelPressed:(id)sender
+{
+	[self->ownerobject cancelLoginView];
+}
 -(void)setObject:(id) object 
 {
 	self->ownerobject = object;
