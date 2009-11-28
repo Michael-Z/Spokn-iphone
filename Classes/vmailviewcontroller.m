@@ -413,14 +413,15 @@
 			}
 			if(vmailP->status==VMAIL_FAILED)
 			{
-				dispP.colorP = [UIColor redColor];
+				dispP.colorP = [UIColor colorWithRed:187/255.0 green:25/255.0 blue:25/255.0 alpha:1.0];
 			}
 			else
 			{
 				dispP.colorP = [UIColor blackColor];
+				[dispP.colorP release];
 				
 			}
-			[dispP.colorP release];
+			//[dispP.colorP release];
 			dispP.fntSz = 16;
 			//dispP.fontP =  [self->fontGloP fontWithSize:16];
 			//[dispP.fontP retain];
@@ -444,11 +445,12 @@
 				dispP.height = 70;
 				if(vmailP->status==VMAIL_FAILED)
 				{
-					dispP.colorP = [UIColor redColor];
+					dispP.colorP = [UIColor colorWithRed:187/255.0 green:25/255.0 blue:25/255.0 alpha:1.0];
 				}
 				else
 				{
 					dispP.colorP = [UIColor blackColor];
+					[dispP.colorP release];
 					
 				}
 				
@@ -457,7 +459,7 @@
 				[stringStrP release];
 				dispP.colorP = [[UIColor alloc] initWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0];
 				dispP.fntSz = 14;
-				[dispP.colorP release];
+				//[dispP.colorP release];
 				[secLocP->elementP addObject:dispP];
 				
 				// [cell setNeedsDisplay];

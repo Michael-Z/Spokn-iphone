@@ -355,24 +355,24 @@
 			dispP.height = 60;
 			if((cdrP->direction & CALLTYPE_IN) && (cdrP->direction & CALLTYPE_MISSED))
 			{	
-				dispP.colorP = [UIColor redColor];
+				dispP.colorP = [UIColor colorWithRed:187/255.0 green:25/255.0 blue:25/255.0 alpha:1.0];//[UIColor redColor];
 				
 			}
 			else
 			{
 				dispP.colorP = [UIColor blackColor];
+				[dispP.colorP release];
 			}
 			
 			
 			dispP.fntSz = 16;
+			dispP.boldB = YES;
 			//dispP.fontP =  [self->fontGloP fontWithSize:16];
 			//[dispP.fontP retain];
 			//[dispP.fontP release];
 			stringStrP = [[NSString alloc] initWithUTF8String:objStrP ];
 			dispP.dataP = stringStrP;
 			[stringStrP release];
-			[dispP.colorP release];
-			
 			[secLocP->elementP addObject:dispP];
 			
 			if(secObjStrP)
