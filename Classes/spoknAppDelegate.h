@@ -76,6 +76,7 @@
 	Reachability* hostReach;
     Reachability* wifiReach;
 	Boolean wifiavailable;
+	SystemSoundID endcallsoundID;
 	SystemSoundID soundIncommingCallID;
 	//this store address of addressbook
 	int animation;
@@ -147,6 +148,7 @@ changed:(BOOL)changed;
 -(void)startRing;
 -(void)cancelLoginView;
 -(void) playonlineTone;
+-(void) playcallendTone;
 
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);

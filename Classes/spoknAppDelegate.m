@@ -96,6 +96,11 @@
 		AudioServicesDisposeSystemSoundID(soundIncommingCallID);
 		soundIncommingCallID = 0;
 	}
+	if(endcallsoundID)
+	{
+		AudioServicesDisposeSystemSoundID(endcallsoundID);
+		endcallsoundID = 0;
+	}
 	if(onlinesoundID)
 	{
 		AudioServicesDisposeSystemSoundID(onlinesoundID);
@@ -168,6 +173,31 @@
 	}	
 	return 1;
 	
+}
+
+-(void) playcallendTone
+{
+	endcallsoundID = 0;
+	
+	
+	NSBundle *mainBundle = [NSBundle mainBundle];
+	
+	NSString *path = [mainBundle pathForResource:@"doorbell" ofType:@"caf"];
+	if (!path)
+		return;
+	
+	NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
+	if (aFileURL != nil)  
+	{
+		SystemSoundID aSoundID;
+		OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
+														  &aSoundID);
+		if (error != kAudioServicesNoError)
+			return;
+		endcallsoundID = aSoundID;
+		
+	}
+	AudioServicesPlayAlertSound(endcallsoundID);	
 }
 
 -(void) playonlineTone
