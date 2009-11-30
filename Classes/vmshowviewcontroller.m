@@ -176,6 +176,10 @@
 		maxTimeLoc = 20;
 		strcpy(fileNameCharP,"temp");
 	}
+	if(selectedContactP)
+	{
+		[self setTitle:@"Send VMS"];
+	}	
 	[self makeView];
 	[self loadOtherView];
 	
