@@ -24,6 +24,7 @@
 @synthesize fntSz;
 @synthesize fntNameP;
 @synthesize textAlignmentType;
+@synthesize showOnEditB;
 -(id)init
 {
 	self = [super init];
@@ -39,6 +40,7 @@
 	fountCount = 0;
 	textAlignmentType = UITextAlignmentLeft;
 	boldB = NO;
+	showOnEditB = false;
 	return self;
 	
 }
@@ -66,6 +68,11 @@
 @end
 @implementation SpoknUITableViewCell
 @synthesize  spoknSubCellP;
+-(void)setEdit:(int)leditB
+{
+	[spoknSubCellP setEdit:leditB];
+	[spoknSubCellP setNeedsDisplay];
+}
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         // Initialization code
@@ -114,9 +121,9 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
-	spoknSubCellP.selectedVar = selected;
+	//spoknSubCellP.selectedVar = selected;
 	
-	[spoknSubCellP setNeedsDisplay];
+	//[spoknSubCellP setNeedsDisplay];
 }
 -(void)dealloc
 {
@@ -124,6 +131,19 @@
 
 	[spoknSubCellP release];
 	[super dealloc];
+}
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+	[super setHighlighted:highlighted animated:animated];
+	spoknSubCellP.selectedVar = highlighted;
+	printf("\n row highlited called");
+
+}
+- (void)drawRect:(CGRect)rect
+{
+	[super drawRect:rect];
+	
+	//spoknSubCellP.selectedVar = self.highlighted;
 }
 @end
 @implementation SpoknSubCell
@@ -139,6 +159,7 @@
 		
 		rectCell = frame;
 		self.backgroundColor = [UIColor whiteColor];
+		self->editCellB = false;
 		//printf("\n init with frame");
 		//savedImage = [UIImage imageNamed:@"Status-saved.png"];	
     }
@@ -149,6 +170,11 @@
 	
 	//	self.contentView.remove
 		[super dealloc];
+}
+-(void)setEdit:(int)leditB
+{
+	editCellB = leditB ;
+	
 }
 - (void)drawRect:(CGRect)rect
 {
@@ -179,6 +205,12 @@
 			displayDataP = [dataArrayP objectAtIndex:i];
 			if(displayDataP)
 			{
+				//added for edit cell
+				printf("\n draw now");
+				if(self->editCellB && !displayDataP.showOnEditB)
+				{
+					continue;
+				}
 				if(displayDataP.percent)
 				{
 					CGRect rec;

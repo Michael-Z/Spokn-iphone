@@ -228,6 +228,24 @@
 {
 	[dialviewP setStatusText:testStringP :0 :0];
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if(buttonIndex==0)
+	{
+		if(urlSendP)
+		{	
+			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlSendP]];
+		}
+		NSLog(@" url %@",urlSendP);
+	}
+	if(urlSendP)
+	{
+		[urlSendP release];
+		urlSendP = nil;
+	}
+	
+	
+}
 
 //@synthesize viewNavigationController;
 -(void)alertAction:(NSNotification*)note
@@ -280,7 +298,7 @@
 				[dialviewP setStatusText: @"connecting..." :START_LOGIN :0 ];
 			break;
 		case ALERT_ONLINE://login
-			
+			[vmsviewP setcomposeStatus:1 ];
 			#ifndef _LTP_
 			[nsTimerP invalidate];
 			
@@ -366,9 +384,49 @@
 		//	[self performSelectorOnMainThread : @ selector(newBadgeArrived: ) withObject:vmsNavigationController waitUntilDone:YES];
 			[self newBadgeArrived:vmsNavigationController];	
 			break;
-			case UA_ALERT:
-			switch(self->subID)
+		
+		case ALERT_SERVERMSG:
+			if(!upgradeAlerted)
 			{
+				
+							
+				char* token, href[MAX_PATH], seps[2],msg[MAX_PATH];
+							sprintf(seps,"%c\0",SEPARATOR);
+				token = strtok(srvMsgCharP, seps);
+				//if there's href and msg then show messagebox with OK & Cancel buttons
+				if (srvMsgCharP[0]!=SEPARATOR && token)
+				{
+					UIAlertView *alert;
+					NSString *msgStrP;
+					strcpy(href, token);
+					token = strtok(NULL, seps);
+					strcpy(msg, token);
+					msgStrP = [[NSString alloc] initWithUTF8String:msg];
+					if(urlSendP)
+					{
+						[urlSendP release];
+					}
+					urlSendP = [[NSString alloc] initWithUTF8String:href];
+					alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+														  message: [ NSString stringWithString:msgStrP ]
+														 delegate: self
+												cancelButtonTitle: nil
+												otherButtonTitles: @"OK", nil
+							 ];
+					[alert addButtonWithTitle:@"cancel"];
+					
+					[ alert show ];
+					[alert release];
+					[msgStrP release];
+				}  
+				upgradeAlerted = 1;
+			}
+			//just show a message}
+			break;
+			
+		case UA_ALERT:
+			switch(self->subID)
+		{
 				case REFRESH_CONTACT:
 					[self LoadContactView:contactviewP];
 					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:contactviewP waitUntilDone:YES];
@@ -538,6 +596,16 @@ void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned lon
 	{
 		self->incommingCallList[llineID] = dataVoidP;//this is ltp incomming call structure
 	}
+	if(ltpstatus==ALERT_SERVERMSG)
+	{
+		if(srvMsgCharP)
+		{	
+			free(srvMsgCharP);
+		}
+		srvMsgCharP = malloc(strlen((char*)dataVoidP)+4);
+		strcpy(srvMsgCharP,(char*)dataVoidP);
+		
+	}
 	
 }
 char * GetPathFunction(void *uData)
@@ -579,6 +647,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[ window addSubview: viewController->usernameP ];
 	//[ window addSubview: viewController->passwordP ];
 	wifiavailable = NO;
+	urlSendP = nil;
 	//char *userNameCharP;
 	//char *passwordCharP;
 	animation = 1;
@@ -698,7 +767,29 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	UACallBackInit(&uaCallback,ltpInterfacesP->ltpObjectP);
 	uaInit();
-	SetDeviceDetail("Spokn","2.0","Macos","3.0","iphone","1789023");
+	UIDevice *device = [UIDevice currentDevice];
+	NSString *uniqueIdentifier = [device uniqueIdentifier];
+	NSString *versionP;
+	versionP = [[UIDevice currentDevice] systemVersion] ;
+	//float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+	NSString *model = [[UIDevice currentDevice] model];
+	char *osVerP;
+	char *osModelP;
+	char *uniqueIDCharP;
+	osVerP = (char*)[versionP cStringUsingEncoding:NSUTF8StringEncoding];
+	osModelP = (char*)[model cStringUsingEncoding:NSUTF8StringEncoding];
+	uniqueIDCharP = (char*)[uniqueIdentifier cStringUsingEncoding:NSUTF8StringEncoding];
+		//SetDeviceDetail("spokn","1.0.12","windows desktop",osVerP,osModelP,uniqueIDCharP);
+//	SetDeviceDetail("spokn","1.0.3","Windows mobile",osVerP,osModelP,uniqueIDCharP);
+	SetDeviceDetail("Spokn","0.0.1","iphone",osVerP,osModelP,uniqueIDCharP);
+	
+//	[versionP release];
+	//[model release];
+	//[uniqueIdentifier release];
+	//[device release];
+	
+	
+	//;
 	//dialviewP.ltpTimerP  = ltpTimerP;
 	
 	dialviewP.ltpInterfacesP  = ltpInterfacesP;
@@ -766,6 +857,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 -(void)logOut
 {
 	animation = 1;
+	[vmsviewP setcomposeStatus:0 ];
 	logOut(ltpInterfacesP,true);
 }
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -783,7 +875,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	printf("\n  count %d tab %d",[dialviewP retainCount],[tabBarController retainCount]);
 	[tabBarController release];
 	[self destroyRing];
-	
+	if(srvMsgCharP)
+	{	
+		free(srvMsgCharP);
+		srvMsgCharP = 0;
+	}
+	[urlSendP release];
 	//[contactNavigationController release];
 	//[vmsNavigationController release];
 	//[calllogNavigationController release];
@@ -836,7 +933,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 -(void)cancelLoginView
 {
 	[tabBarController dismissModalViewControllerAnimated:YES];
-	//[ spoknViewControllerP cancelProgress];
+	printf("\n pridfd fdfd df");
+	[ spoknViewControllerP cancelProgress];
 }
 -(void)changeView
 {
@@ -1347,8 +1445,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			 {	 
 				 printf("\n richable set");
 				 wifiavailable = YES;
-				 SetConnection( ltpInterfacesP,2);
-				 [vmsviewP setcomposeStatus:1 ];
+				 if(SetConnection( ltpInterfacesP,2)==0)
+				 {	 
+					 [spoknViewControllerP startProgress];
+					 [vmsviewP setcomposeStatus:1 ];
+				 }	 
 			 }	 
 			 break;
 		}

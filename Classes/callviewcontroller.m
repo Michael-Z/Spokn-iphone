@@ -46,7 +46,7 @@
 	SetSpeakerOnOrOff(0,false);
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
-	callnoLabelP.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lcd_top_simple.png"]];
+	callnoLabelP.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lcd_top_call.png"]];
 
 	[self.view setBackgroundColor:[[[UIColor alloc] 
 									 initWithPatternImage:[UIImage defaultDesktopImage]]
@@ -58,7 +58,7 @@
 	self->viewKeypadP.hidden = YES;
 	self->hideKeypadButtonP.hidden = YES;
 	self->endCallKeypadButtonP.hidden = YES;
-	[viewKeypadP setImage:@"_keypad.png" : @"_keypad_pressed.png"];
+	[viewKeypadP setImage:@"keypad.png" : @"keypad_pressed.png"];
 	[viewKeypadP setElement:3 :4];
 	viewKeypadP.keypadProtocolP = self;
 	buttonBackground = [UIImage imageNamed:@"red.png"];

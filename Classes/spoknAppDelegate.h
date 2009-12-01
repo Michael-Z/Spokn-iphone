@@ -81,6 +81,9 @@
 	//this store address of addressbook
 	int animation;
 	SystemSoundID onlinesoundID;
+	int upgradeAlerted;
+	char *srvMsgCharP;
+	NSString *urlSendP;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;

@@ -149,7 +149,6 @@
 		8BAAB29E1042DA1800F3EE73 /* DECODE.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BAAB29D1042DA1800F3EE73 /* DECODE.c */; };
 		8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD86B4107F5222008FD911 /* WebViewController.m */; };
 		8BBD86B7107F5222008FD911 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD86B5107F5222008FD911 /* WebViewController.xib */; };
-		8BBD8A91107F7FBE008FD911 /* callviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD8A90107F7FBE008FD911 /* callviewcontroller.xib */; };
 		8BBF6C671083530D00E57ABE /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BBF6C661083530D00E57ABE /* blueButton.png */; };
 		8BC5683710BE8DFE0083F77D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC5683610BE8DFE0083F77D /* Default.png */; };
 		8BC568FC10BE9A590083F77D /* dialview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BC568FB10BE9A590083F77D /* dialview.xib */; };
@@ -157,6 +156,8 @@
 		8BCB06B21083020A00468EC7 /* custombutton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB06B11083020A00468EC7 /* custombutton.m */; };
 		8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */; };
 		8BCEEB2D104AD235001DF4AC /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCEEB2C104AD235001DF4AC /* OverlayView.xib */; };
+		8BD982EC10C400E0002793BE /* callviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD982EB10C400E0002793BE /* callviewcontroller.xib */; };
+		8BD983A110C40494002793BE /* lcd_top_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD983A010C40494002793BE /* lcd_top_call.png */; };
 		8BE3E2F11084D100008CB625 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3E2EF1084D100008CB625 /* Reachability.m */; };
 		8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */; };
 		8BE447B01080924400EB3A4A /* vmsprogressleft.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE447AF1080924400EB3A4A /* vmsprogressleft.png */; };
@@ -383,7 +384,6 @@
 		8BBD86B3107F5222008FD911 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		8BBD86B4107F5222008FD911 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8BBD86B5107F5222008FD911 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
-		8BBD8A90107F7FBE008FD911 /* callviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = callviewcontroller.xib; sourceTree = "<group>"; };
 		8BBF6C661083530D00E57ABE /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
 		8BC5683610BE8DFE0083F77D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8BC568FB10BE9A590083F77D /* dialview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = dialview.xib; sourceTree = "<group>"; };
@@ -394,6 +394,8 @@
 		8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = overlayviewcontroller.m; sourceTree = "<group>"; };
 		8BCEEAED104ACC87001DF4AC /* overlayviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = overlayviewcontroller.h; sourceTree = "<group>"; };
 		8BCEEB2C104AD235001DF4AC /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		8BD982EB10C400E0002793BE /* callviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = callviewcontroller.xib; sourceTree = "<group>"; };
+		8BD983A010C40494002793BE /* lcd_top_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lcd_top_call.png; path = rsc/lcd_top_call.png; sourceTree = "<group>"; };
 		8BE3E2EF1084D100008CB625 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8BE3E2F01084D100008CB625 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -522,7 +524,7 @@
 				F249AAB6106F6A340024AE84 /* keypadview.m */,
 				8B47D82F10720BA400EEEF61 /* callviewcontroller.h */,
 				8B47D83010720BA400EEEF61 /* callviewcontroller.m */,
-				8BBD8A90107F7FBE008FD911 /* callviewcontroller.xib */,
+				8BD982EB10C400E0002793BE /* callviewcontroller.xib */,
 				8B413C4C1075ED71005A400F /* spoknviewcontroller.h */,
 				8B413C4D1075ED71005A400F /* spoknviewcontroller.m */,
 				8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */,
@@ -575,6 +577,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8BD983A010C40494002793BE /* lcd_top_call.png */,
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
 				8B177BE3104674A600E42923 /* image */,
 				8B6739E2101209E900849952 /* spokn-Info.plist */,
@@ -970,7 +973,6 @@
 				8B39FFC9107C910200073950 /* vmshowviewcontroller.xib in Resources */,
 				8B1B8FDD107E0D3F00C77E3F /* spoknlog.png in Resources */,
 				8BBD86B7107F5222008FD911 /* WebViewController.xib in Resources */,
-				8BBD8A91107F7FBE008FD911 /* callviewcontroller.xib in Resources */,
 				8BE447B01080924400EB3A4A /* vmsprogressleft.png in Resources */,
 				8BBF6C671083530D00E57ABE /* blueButton.png in Resources */,
 				8B8626BE1084504C00718D16 /* whiteButton.png in Resources */,
@@ -1019,6 +1021,8 @@
 				8BA08A1110BFC27C00ED19B7 /* doorbell.caf in Resources */,
 				8BA08A7510BFC94000ED19B7 /* gling.caf in Resources */,
 				8BA08AE410BFD32D00ED19B7 /* spoknLogo.png in Resources */,
+				8BD982EC10C400E0002793BE /* callviewcontroller.xib in Resources */,
+				8BD983A110C40494002793BE /* lcd_top_call.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

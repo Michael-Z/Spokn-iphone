@@ -90,7 +90,7 @@ typedef struct IncommingCallType
 	void RejectInterface(LtpInterfaceType *ltpInterfaceP,int lineID);
     void SendDTMF(LtpInterfaceType *ltpInterfaceP,int lineid, char *dtmfMsgP);
 	void readSocketData(LtpInterfaceType *localLtpInterfaceObjectP);
-	void SetConnection( LtpInterfaceType *ltpInterfaceP,int activeB);
+	int SetConnection( LtpInterfaceType *ltpInterfaceP,int activeB);
 	int SetAddressBookDetails(LtpInterfaceType *ltpInterfaceP,int addressUId,int recordID);
 	int getAddressUid(LtpInterfaceType *ltpInterfaceP);
 

@@ -218,6 +218,21 @@
 	return 50;
 	
 }
+-(void)tableView:(UITableView*)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	
+	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
+	[cell setEdit:YES];
+	printf("swipe start");
+	
+}
+- (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
+	[cell setEdit:NO];
+
+	printf("swipe end");
+}
 - (void)addRow: (int )index sectionObject:(sectionType **)sectionPP
 {
 	struct AddressBook *addressP;
@@ -433,6 +448,7 @@
 			
 			
 			dispP.fntSz = 16;
+			dispP.showOnEditB = true;
 			[secLocP->elementP addObject:dispP];
 			
 			if(secObjStrP)
@@ -479,6 +495,7 @@
 			
 				dispP.fntSz = 14;
 				[dispP.colorP release];
+				dispP.showOnEditB = true;
 				[secLocP->elementP addObject:dispP];
 			}
 			if(sectionPP==0)//mean we dont need to return section object
@@ -571,6 +588,7 @@
 	//cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	[CellIdentifier release];
 	//cell.hidesAccessoryWhenEditing = YES;
+
 	return cell;
 	
 	

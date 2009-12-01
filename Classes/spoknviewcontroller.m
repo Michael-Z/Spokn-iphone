@@ -172,23 +172,26 @@
 											   target:self 
 											   action:@selector(LoginPressed)] autorelease];
 	printf("\n startProcess");
-	
+	stopProgressB = false;
 
 }
-/*
+
 -(void)cancelProgress
 {
+	stopProgressB = true;
+	printf("\n stop progress");
 	self.navigationItem.titleView = 0;
 	[activityIndicator stopAnimating];
-
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 											   initWithTitle:@"Sign-in" 
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
 											   action:@selector(LoginPressed)] autorelease];
 	
+
+		
 }
- */
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -198,6 +201,7 @@
 	   	
 	forwardNoCharP = malloc(100);
 	memset(forwardNoCharP,0,100);
+	if(stopProgressB==false)
 	[self startProgress];
 	
 	//[buttonCtlP setBackgroundColor:[UIColor greenColor]];
@@ -344,7 +348,15 @@ titleForHeaderInSection:(NSInteger)section
 	char s1[20];
 	NSString *stringStrP;
 	stringStrP = [[NSString alloc] initWithUTF8String:titleCharP ];
-	self.navigationItem.title = stringStrP;
+	
+	if(stringStrP.length >0)
+	{	
+		self.navigationItem.title = stringStrP;
+	}
+	else
+	{
+		self.navigationItem.title = nil;
+	}
 	[stringStrP release];
 	
 	

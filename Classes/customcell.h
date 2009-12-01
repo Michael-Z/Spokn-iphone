@@ -34,6 +34,7 @@
 	UITextAlignment textAlignmentType;
 //	@public
 	int fountCount;
+	BOOL showOnEditB;
 	
 	
 }
@@ -51,6 +52,7 @@
 @property (readwrite,retain) UIColor *colorP;
 @property (readwrite,retain) UIImage  *uiImageP;
 @property (readwrite,assign) int fntSz;
+@property (readwrite,assign) BOOL showOnEditB;
 -(id)init;
 
 
@@ -66,9 +68,11 @@
 	int rowHeight;
 	NSMutableArray *dataArrayP;  
 	CGRect rectCell;
+	int	editCellB;	
 	
 }
 - (void)drawRect:(CGRect)rect;
+-(void)setEdit:(int)editB;
 @property (readwrite,assign) void *userData;
 @property (readwrite,assign) Boolean ownerDrawB;
 @property (readwrite,assign) int rowHeight;
@@ -77,6 +81,7 @@
 @property(readwrite,assign)  UIFont         *font;  
 
 @end
+
 @interface SpoknUITableViewCell : UITableViewCell
 {
 	
@@ -84,6 +89,7 @@
 }
 -(void) resizeFrame;
 -(void) setAutoResize:(BOOL)onB;
+-(void)setEdit:(int)editB;
 @property (readwrite,assign) SpoknSubCell *spoknSubCellP;
 
 @end

@@ -551,13 +551,14 @@ void SendDTMF(LtpInterfaceType *ltpInterfaceP,int lineid, char *dtmfMsgP)
 	ltpMessageDTMF(ltpInterfaceP->ltpObjectP,  lineid,dtmfMsgP );
 
 }
-void SetConnection( LtpInterfaceType *ltpInterfaceP,int activeByte)
+int SetConnection( LtpInterfaceType *ltpInterfaceP,int activeByte)
 {
 	ltpInterfaceP->connectionActiveByte = activeByte;
 	if(activeByte==2)//mean send login packet
 	{
-		DoLtpLogin(ltpInterfaceP);
+		return DoLtpLogin(ltpInterfaceP);
 	}
+	return 0;
 	
 }
 int  SetAddressBookDetails(LtpInterfaceType *ltpInterfaceP,int addressUId,int recordID)

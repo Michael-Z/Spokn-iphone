@@ -35,6 +35,7 @@ typedef struct ImageNameType
 	int viewResult;
 	char *forwardNoCharP;
 	int viewCallB;
+	int stopProgressB;
 	ImageNameType imageName[3][MAXIMAGE];
 	UIActivityIndicatorView *activityIndicator;
 	
@@ -47,5 +48,5 @@ typedef struct ImageNameType
 - (IBAction)switchChange:(UISwitch*)sender;
 -(void)startProgress;
 -(void)showForwardScreen;
-//-(void)cancelProgress;
+-(void)cancelProgress;
 @end

@@ -60,7 +60,21 @@
  */
 
 #pragma mark Table view methods
-
+-(void)tableView:(UITableView*)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	
+	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
+	[cell setEdit:YES];
+	printf("swipe start");
+	
+}
+- (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
+	[cell setEdit:NO];
+	
+	printf("swipe end");
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView 
 {
 	////////printf("\n dilip sharma");
@@ -373,6 +387,7 @@
 			stringStrP = [[NSString alloc] initWithUTF8String:objStrP ];
 			dispP.dataP = stringStrP;
 			[stringStrP release];
+			dispP.showOnEditB = true;
 			[secLocP->elementP addObject:dispP];
 			
 			if(secObjStrP)
@@ -408,7 +423,7 @@
 			dispP.fntSz = 14;
 			[dispP.colorP release];
 					
-		
+			dispP.showOnEditB = true;
 			[secLocP->elementP addObject:dispP];
 			if(sectionPP==0)
 			{	
