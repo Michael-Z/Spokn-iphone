@@ -39,9 +39,9 @@ void readSocketData(LtpInterfaceType *localLtpInterfaceObjectP)
 	{
 		mutexLockInterface();
 		#ifdef _LTP_
-		////printf("\n length recv %d",length);
+		//////printf("\n length recv %d",length);
 			ltpOnPacket(localLtpInterfaceObjectP->ltpObjectP, (char *)localLtpInterfaceObjectP->ltpReceType.bufferUChar, length, localLtpInterfaceObjectP->ltpReceType.address, localLtpInterfaceObjectP->ltpReceType.port);
-		////printf("\n end length");
+		//////printf("\n end length");
 		#endif
 		mutexUnLockInterface();
 	}	
@@ -56,7 +56,7 @@ int DoPolling(LtpInterfaceType *localLtpInterfaceObjectP)
 		return 1;//error
 	}
 	mutexLockInterface();
-	////printf("\n start");
+	//////printf("\n start");
 
 	if(localLtpInterfaceObjectP->pthreadstopB)
 	{
@@ -66,14 +66,14 @@ int DoPolling(LtpInterfaceType *localLtpInterfaceObjectP)
 	ltpTick(localLtpInterfaceObjectP->ltpObjectP,time(NULL));
 	mutexUnLockInterface();
 	readSocketData(localLtpInterfaceObjectP);
-		////printf("\n end");
+		//////printf("\n end");
 	
 	return 0;
 }
 
 void alertInterface(void *udata,int lineid, int alertcode, void *data)
 {
-	//printf("\n%d %d ",lineid,alertcode);
+	////printf("\n%d %d ",lineid,alertcode);
 	void *ldata = data;
 	int subid = 0;
 	LtpInterfaceType *ltpInterfaceP;
@@ -135,7 +135,7 @@ int CallBackSoundPCM(void *uData,sampleFrame *pcmBufferP,unsigned int *lengthP,B
 	LtpInterfaceType *ltPInterfaceP;
 	ltPInterfaceP = (LtpInterfaceType *)uData;
 //	static sampleFrame temp[642];
-	////printf("\nltp st");
+	//////printf("\nltp st");
 	//ltpSoundInput(ltPInterfaceP->ltpObjectP,(short*)pcmBufferP,length,true);
 #ifdef _SNDLOOPBACK_
 	AddPcmData(ltpInterfaceP->playbackP,(unsigned short*)pcmBufferP,*lengthP,true);
@@ -145,7 +145,7 @@ int CallBackSoundPCM(void *uData,sampleFrame *pcmBufferP,unsigned int *lengthP,B
 #endif
 	/*if(length<640)
 	{
-		//printf("\nlength=%d",length);
+		////printf("\nlength=%d",length);
 		memset(temp,0,640*sizeof(sampleFrame));
 		memmove(temp,pcmBufferP,length*sizeof(sampleFrame));
 		ltpSoundInput(ltPInterfaceP->ltpObjectP,(short*)temp,640,true);
@@ -154,7 +154,7 @@ int CallBackSoundPCM(void *uData,sampleFrame *pcmBufferP,unsigned int *lengthP,B
 	}
 	else
 	{
-		//printf("\nspeex full length");
+		////printf("\nspeex full length");
 		ltpSoundInput(ltPInterfaceP->ltpObjectP,(short*)pcmBufferP,length,true);
 		
 		
@@ -162,7 +162,7 @@ int CallBackSoundPCM(void *uData,sampleFrame *pcmBufferP,unsigned int *lengthP,B
 	}
 	*/
 #endif	
-	////printf("\nltp end");
+	//////printf("\nltp end");
 	return 0;
 	
 }
@@ -170,13 +170,13 @@ int netWriteInterface(void *udata,void *msg, int length, unsigned int32 address,
 {
 	LtpInterfaceType *ltpInterfaceP;
 	ltpInterfaceP = (LtpInterfaceType *)udata;
-	////printf("\n%d",length);
+	//////printf("\n%d",length);
 	return netWriteLocal(ltpInterfaceP->socketID, msg, length, address, port);
 }
 
 void outputSoundInterface(void *udata,struct ltpStack *ps, struct Call *pc, short *pcm, int length)
 {
-	////printf("\npcm length %d",length);
+	//////printf("\npcm length %d",length);
 	LtpInterfaceType *ltpInterfaceP;
 	ltpInterfaceP = (LtpInterfaceType *)udata;
 	AddPcmData(ltpInterfaceP->playbackP,(unsigned short*)pcm,length,true);
@@ -304,7 +304,7 @@ void *PollThread(void *PollThreadP)
 			if(gP->connectionActiveByte==1)
 			{	
 				restartSocket(&gP->socketID);
-				//printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
+				////printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
 				ltpLogin(gP->ltpObjectP,CMD_LOGIN);
 				gP->connectionActiveByte = 2;
 			}
@@ -323,7 +323,7 @@ void *PollThread(void *PollThreadP)
 				if(diff>MAXTIME_RESYNC)
 				{
 					gP->currentTime = time(NULL);
-					printf("\n resync Called");
+					//printf("\n resync Called");
 					if(gP->ltpObjectP->call[gP->ltpObjectP->activeLine].ltpState = CALL_IDLE)
 					{	
 						profileResync();
@@ -432,7 +432,7 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 {
 	
-	printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
+	//printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
 
 	if(ltpInterfaceP->ltpObjectP==0)
 	{
@@ -445,15 +445,15 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 	if(ltpInterfaceP->connectionActiveByte)
 	{	
 		char errorstr[50];
-		printf("\n mukesh start ");
+		//printf("\n mukesh start ");
 		#ifdef _LTP_
 		restartSocket(&ltpInterfaceP->socketID);
 		#else
 		if(ltpInterfaceP->pjsipStartB==false)
 		{	
-			printf("\n start login ltp");
+			//printf("\n start login ltp");
 			if (!spokn_pj_init(errorstr)){
-				printf ("PJ not initiallized: %s\n",errorstr);
+				//printf ("PJ not initiallized: %s\n",errorstr);
 				return 1;
 			
 			}
@@ -461,7 +461,7 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 		}	
 		
 		#endif
-		//printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
+		////printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
 		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
 		ltpInterfaceP->alertNotifyP(START_LOGIN,0,0,ltpInterfaceP->userData,0);
 	}

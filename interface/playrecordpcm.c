@@ -57,7 +57,7 @@ int AddPcmData(void *libData,sampleFrame *dataPtr,int length,Boolean playB)
 	if(libData==NULL)
 		return 1;
 	//use some memory protection logic
-	////printf("\n size=%d",length);
+	//////printf("\n size=%d",length);
 	aqcP = (AQCallbackStruct*)libData;
 	if(aqcP->stopB)
 	{
@@ -79,7 +79,7 @@ int AddPcmData(void *libData,sampleFrame *dataPtr,int length,Boolean playB)
 		}
 		dataPtr = aqcP->buffPcm;
 		length = aqcP->buffsizeInt;
-		// //printf("\nbuff size = %d",length);
+		// ////printf("\nbuff size = %d",length);
 		aqcP->buffsizeInt = 0;
 		
 		
@@ -112,7 +112,7 @@ int AddPcmData(void *libData,sampleFrame *dataPtr,int length,Boolean playB)
 		
 		aqcP->frontCount = 0;
 		PlayBuffStart(aqcP);
-		//printf("\n queue start again");
+		////printf("\n queue start again");
 		
 		AudioQueueStart( aqcP->queue,0);
 	}
@@ -336,7 +336,7 @@ void AudioInputCallbackLocal(
 		if(aqcP->callBackSoundP)
 		{
 			sz = inBuffer->mAudioDataByteSize>>1;
-			////printf("\nsend %d",sz);
+			//////printf("\nsend %d",sz);
 			//inBuffer->mAudioDataByteSize>>1;
 			aqcP->callBackSoundP(aqcP->uData,inBuffer->mAudioData,&sz,true);
 		}
@@ -509,12 +509,12 @@ void AudioQueuePropertyListenerFunction(
 		if (result == noErr) {
 			if(isRunning)
 			{	
-				printf("\nrunning");
+				//printf("\nrunning");
 				
 			}
 			else
 			{
-				printf("\nstop");
+				//printf("\nstop");
 				aqcP->stopB = true;
 				if(aqcP->CallBackUIP)
 				{	
@@ -601,11 +601,11 @@ void AQBufferCallbackLocal(
 		return;
 	}
 	outQB->mAudioDataByteSize = aqcP->pcmBuffArray[aqcP->frontCount].bufferLength ;
-	////printf("\nout buff size %ld", outQB->mAudioDataByteSize);
-	//printf("\n				front count %d",aqcP->frontCount);
+	//////printf("\nout buff size %ld", outQB->mAudioDataByteSize);
+	////printf("\n				front count %d",aqcP->frontCount);
 	if(outQB->mAudioDataByteSize==0)
 	{
-		//printf("size is zero");
+		////printf("size is zero");
 	}
 	memmove(coreAudioBuffer,aqcP->pcmBuffArray[aqcP->frontCount].pcmBufferP ,aqcP->pcmBuffArray[aqcP->frontCount].bufferLength);
 	#ifdef _MAKE_NEW_MEMORY_ALWAYS_

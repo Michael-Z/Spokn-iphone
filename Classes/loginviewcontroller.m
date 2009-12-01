@@ -26,7 +26,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 
-	//printf("\n return pressed");
+	////printf("\n return pressed");
 	//[super textFieldShouldReturn:textField];
 	[usernameFieldP resignFirstResponder];
 	[passwordFieldP resignFirstResponder];
@@ -113,7 +113,7 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	//printf("\nmemory leak");
+	////printf("\nmemory leak");
 	// Release any cached data, images, etc that aren't in use.
 }
 
@@ -126,7 +126,7 @@
 
 
 - (void)dealloc {
-	//printf("\ndalloc");
+	////printf("\ndalloc");
 	//[usernameFieldP release];
 	//[passwordFieldP release];
     [super dealloc];

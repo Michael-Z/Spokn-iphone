@@ -13,7 +13,7 @@
 @implementation VmShowViewController
 - (void) doneSearching_Clicked:(id)sender {
 	
-	printf("\n done clicked");
+	//printf("\n done clicked");
 	[self->pickerviewcontrollerviewP removeKeyBoard];
 	//[self keyBoardOnOrOff:false];
 	return ;
@@ -80,7 +80,7 @@
 	
 	if(rootP==nil)
 	{
-		printf("\ndsfdsfdfdfdsf");
+		//printf("\ndsfdsfdfdfdsf");
 		rootP = self;
 	}
 	//showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP
@@ -88,7 +88,7 @@
 }
 -(int)getForwardNumber:(SelectedContctType*)  lcontactObjectP
 {
-	printf("\n forwardno the no");
+	//printf("\n forwardno the no");
 	if(openForwardNo)//mean it is on
 	{
 		//strcpy(lforwardNoP,forwardNoChar);
@@ -117,7 +117,7 @@
 	
 			//Parameters x = origion on x-axis, y = origon on y-axis.
 
-			printf("\n over view");
+			//printf("\n over view");
 			if(frameP==0)
 			{	
 				CGRect frame = CGRectMake(0, 50, width, height);
@@ -125,12 +125,12 @@
 			}
 			else
 			{
-				//printf("\n current frame %f %f %f %f",frameP->origin.x,frameP->origin.y,frameP->size.width,frameP->size.height);
+				////printf("\n current frame %f %f %f %f",frameP->origin.x,frameP->origin.y,frameP->size.width,frameP->size.height);
 				
 				CGRect frame = CGRectMake(0, frameP->size.height, width, height);
 				ovController.view.frame = frame;	
 			}
-		//	printf("%f %f %f %f",ovController.view.frame.origin.x,ovController.view.frame.origin.y,ovController.view.frame.size.width,ovController.view.frame.size.height);
+		//	//printf("%f %f %f %f",ovController.view.frame.origin.x,ovController.view.frame.origin.y,ovController.view.frame.size.width,ovController.view.frame.size.height);
 			ovController.view.backgroundColor = [UIColor clearColor];
 			//ovController.view.alpha = 0.5;
 	
@@ -168,7 +168,7 @@
 		
 	
 	
-	printf("\n\n\n\ncontact added\n\n\n");
+	//printf("\n\n\n\ncontact added\n\n\n");
 	vmstateType = lvmsState;
 	if(vmstateType==VMSStateRecord)
 	{	
@@ -195,7 +195,7 @@
 #pragma mark button action
 -(IBAction)sendPressed:(id)sender
 {
-	printf("\n send pressed");
+	//printf("\n send pressed");
 	if(vmstateType == VMSStatePlay)
 	{
 		openForwardNo = 0;
@@ -228,7 +228,7 @@
 		{
 			if( strlen(contactNumberP)>0)
 			{	
-				printf("\n forward no %s",contactNumberP);
+				//printf("\n forward no %s",contactNumberP);
 				if(vmstateType == VMSStateRecord)
 				{
 					if([ownerobject vmsSend:contactNumberP :fileNameCharP]!=0)
@@ -306,7 +306,7 @@
 {
 	[nsTimerP invalidate];
 	nsTimerP = 0;
-	printf("\n stop");
+	//printf("\n stop");
 	[PlayButtonP addTarget:self action:@selector(playPressed:) forControlEvents: UIControlEventTouchUpInside];
 	
 	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateForward )
@@ -384,12 +384,12 @@
 		[ownerobject vmsStop:!playB];
 		
 	}
-	printf("\n timer progress count %f",amt);
+	//printf("\n timer progress count %f",amt);
 	
 }
 -(IBAction)stopButtonPressed:(id)sender
 {
-	printf("\n stop pressed");
+	//printf("\n stop pressed");
 	Boolean playB;
 	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateRecord )
 	{
@@ -401,7 +401,7 @@
 	}
 	if([ownerobject vmsStop:!playB])
 	{
-		printf("\n error");
+		//printf("\n error");
 		[self VmsStop];
 	}
 	
@@ -409,7 +409,7 @@
 
 -(IBAction)playPressed:(id)sender
 {
-	printf("\n playPressed pressed");
+	//printf("\n playPressed pressed");
 	unsigned long sz;
 	if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward)
 	{
@@ -483,7 +483,7 @@
 -(IBAction)previewPressed:(id)sender
 {
 
-	printf("\n previewPressed pressed");
+	//printf("\n previewPressed pressed");
 	if(vmstateType==VMSStateRecord)
 	{
 		char *nameP=0;
@@ -644,6 +644,7 @@
 		cell.spoknSubCellP.ownerDrawB = true;
 		cell.spoknSubCellP.rowHeight = 50;
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		[cell.spoknSubCellP setNeedsDisplay];
 	}	
 	else
 	{
@@ -664,6 +665,7 @@
 	//cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	[CellIdentifier release];
 	//cell.hidesAccessoryWhenEditing = YES;
+	
 	return cell;
 	
 	
@@ -681,7 +683,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	else if(editingStyle == UITableViewCellEditingStyleInsert)
 	{
 		//  [dataController addData:@"New Row Added"];
-		printf("\n add clicked");
+		//printf("\n add clicked");
 		// [tableView reloadData];        
 	}
 }
@@ -715,7 +717,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	
 	//int index;
 	NSString *stringStrP;
-	printf("\nsection %d %d \n",lsection,row);
+	//printf("\nsection %d %d \n",lsection,row);
 	//objStrP = sectionArray[lsection].dataforSection[row].nameofRow;
 	objStrP = sectionArray[lsection].dataforSection[row].elementP;
 	typeCallP = sectionArray[lsection].dataforSection[row].secRowP;
@@ -826,7 +828,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
 {
-	printf("\n preeesed select");
+	//printf("\n preeesed select");
 	int row = [newIndexPath row];
 	int section = [newIndexPath section];
 	if(sectionArray[section].dataforSection[row].customViewP==0)
@@ -996,7 +998,7 @@ id createImage(float percentage)
 	[super viewDidAppear:animated];
 	if(openForwardNo)
 	{
-		printf("\n make changes");
+		//printf("\n make changes");
 		openForwardNo = 0;
 		/*[ownerobject vmsForward:forwardNoChar :fileNameCharP];		
 		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
@@ -1017,7 +1019,7 @@ id createImage(float percentage)
 		
 		if(vmstateType!=VMSStatePlay)
 		{	
-		//	printf("\n selected no %s",forwardNoChar);
+		//	//printf("\n selected no %s",forwardNoChar);
 			//forwardNoChar[0]=0;
 			returnValueInt = 0;
 			if(selectP)
@@ -1025,7 +1027,7 @@ id createImage(float percentage)
 				struct VMail* lvmailP;
 				lvmailP = vmailP;
 				vmailP =0;
-				//printf("\n selected type %s %s %s",forwardNoChar,selectP->nameChar,selectP->type);
+				////printf("\n selected type %s %s %s",forwardNoChar,selectP->nameChar,selectP->type);
 				//[self setvmsDetail: forwardNoChar : selectP->nameChar :selectP->type :playB :maxTime :lvmailP];
 				free(selectP);
 				if(lvmailP)
@@ -1242,7 +1244,7 @@ id createImage(float percentage)
 	amt = 0.0;
 	maxtimeDouble = maxTime;
 	[ownerobject setVmsDelegate:self];
-//	printf("\n maxtime download %d",self->maxTime);
+//	//printf("\n maxtime download %d",self->maxTime);
 	
 
 
@@ -1390,7 +1392,7 @@ id createImage(float percentage)
 	vmstateType = lVMSStateType;
 	maxTime = lmaxTime;
 	maxTimeLoc = maxTime;
-		printf("\n maxtime set %d",self->maxTime);
+		//printf("\n maxtime set %d",self->maxTime);
 	for(int i=0;i<MAX_SECTION;++i)
 	{
 		memset(&sectionArray[i],0,sizeof(SectionContactType));
@@ -1472,7 +1474,7 @@ id createImage(float percentage)
 
 
 - (void)dealloc {
-	printf("\n dealoc called");
+	//printf("\n dealoc called");
 	[ownerobject setVmsDelegate:nil];
 	if(nsTimerP)
 	{	

@@ -17,7 +17,7 @@
 {
 	self->navRootObject = lrootObject;
 	self->shiftRootB = rootB;
-	printf("\n i am here");
+	//printf("\n i am here");
 }
 -(void)setObject:(id) object 
 {
@@ -135,7 +135,7 @@ NSLog(@"\nSave123");
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	// Add right button
-	printf("\n load");
+	//printf("\n load");
 	self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 											   target: self

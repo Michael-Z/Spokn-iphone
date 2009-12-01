@@ -390,9 +390,15 @@ static void on_incoming_call(pjsua_acc_id acc_id, pjsua_call_id call_id,
 		return;
 	}
 
-	pc->kindOfCall = CALLTYPE_IN | CALLTYPE_CALL;	
+	pc->kindOfCall = CALLTYPE_IN | CALLTYPE_CALL;
+	#ifdef _MACOS_
+	
+		pstack->now = time(NULL);
+	
+	
+	
+	#endif
 	pc->timeStart = pstack->now;
-
 	//example of what is in c.remote_info.ptr "+919849026029" <sip:+919849026029@spokn.com>
 	//skip ahead of sip and '+' sign if any
 	p = ci.remote_info.ptr;
@@ -438,10 +444,24 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
 				break;
 			case PJSIP_INV_STATE_CONFIRMED:	    /**< After ACK is sent/received.	    */
 				pstack->call[i].ltpState = CALL_CONNECTED;
+				#ifdef _MACOS_
+										pstack->now = time(NULL);
+					
+					
+					
+				#endif	
 				pstack->call[i].timeStart = pstack->now; /* reset the call timer for the correct duration */
 				break;
 			case PJSIP_INV_STATE_DISCONNECTED:   /**< Session is terminated.		    */
 				pstack->call[i].ltpState = CALL_IDLE;
+				#ifdef _MACOS_
+				//	printf("\n time end");
+
+					pstack->now = time(NULL);
+					
+					
+					
+				#endif	
 				pstack->call[i].timeStop = pstack->now;
 				alert(pstack->call[i].lineId, ALERT_DISCONNECTED, "");
 				break;
@@ -947,6 +967,13 @@ int ltpRing(struct ltpStack *ps, char *remoteid, int command)
 	}
 
 	pc->kindOfCall = CALLTYPE_OUT | CALLTYPE_CALL;
+	#ifdef _MACOS_
+	
+	pstack->now = time(NULL);
+	
+	
+	
+	#endif
 	pc->timeStart = pstack->now;
 	ps->activeLine =pc->lineId;
 

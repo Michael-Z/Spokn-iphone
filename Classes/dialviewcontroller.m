@@ -128,7 +128,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	
 	}
 	//NSLog(string);
-	//////printf("\n mukesh");
+	////////printf("\n mukesh");
 	return YES;
 }
 
@@ -211,7 +211,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 - (void)controlPressed:(id) sender {
 	//[ self setPage ];
 	int index = segmentedControl.selectedSegmentIndex;
-	//////printf("%d",index);
+	////////printf("%d",index);
 	//index = 1;
 	switch(index)
 	{
@@ -254,7 +254,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
 - (void)dealloc {
-	printf("\n dialview dealloc");
+	//printf("\n dialview dealloc");
 	int i;
 	for (i = 1; i < 13; ++i)
 		if (sounds[i])
@@ -361,7 +361,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 -(IBAction)callLtp:(id)sender
 {
 	//[self->ownerobject->navigationController pushViewController: ownerobject.inCommingCallViewP animated: YES ];
-	printf("\n %d %d",onLineB,self->onLineB);
+	//printf("\n %d %d",onLineB,self->onLineB);
 	if(onLineB)
 	{	
 		char *numbercharP;
@@ -534,7 +534,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 {
 	
-	//	printf("\n%d",buttonIndex);
+	//	//printf("\n%d",buttonIndex);
 	if(buttonIndex==0)
 	{	
 		alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
@@ -578,9 +578,9 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				 target: self
 				 action: @selector(LogoutPressed) ] ;
 				//[self->ownerobject popLoginView];
-				printf("\n online code");
+				//printf("\n online code");
 				onLineB = true;
-				printf("\n %d",self->onLineB);
+				//printf("\n %d",self->onLineB);
 			//	[activityIndicator stopAnimating];
 			}	
 			break;
@@ -604,7 +604,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			//[self->ownerobject popLoginView];
 			[self setViewButton:0];
 		//	[activityIndicator stopAnimating];
-			//printf("\n offline code");
+			////printf("\n offline code");
 			onLineB = false;
 			break;
 		case ALERT_CONNECTED:
@@ -657,7 +657,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			timecallduration = [callViewControllerP stopTimer];
 			[self dismissModalViewControllerAnimated:YES];
 			callViewControllerP = 0;
-			//printf("\ndisconnected");
+			////printf("\ndisconnected");
 			calltimerP = nil;
 			//again for show time for sec
 			if(calltimerP==nil)

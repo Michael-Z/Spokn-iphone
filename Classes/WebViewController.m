@@ -59,7 +59,7 @@
 	
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {    
-	NSLog(@"Web View started loading...");
+	//NSLog(@"Web View started loading...");
 	[spinner stopAnimating];
 //[uiActionSheetP dismissWithClickedButtonIndex:0 animated:YES ];
 

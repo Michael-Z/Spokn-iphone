@@ -21,7 +21,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
-	printf("\n mukesh");
+	//printf("\n mukesh");
 	
 	//	[self dismissKeyboard:numberFieldP];
 	[upDateProtocolP upDateScreen];
@@ -76,7 +76,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
-	printf("\n mukesh shastri");
+	//printf("\n mukesh shastri");
 	/*if(modalB==false)
 	{
 		[txtDestNo resignFirstResponder];
@@ -199,7 +199,7 @@
 	
 	if([upDateProtocolP getForwardNumber:&selectedContact]==0)
 	{
-		printf("\n inside the no");
+		//printf("\n inside the no");
 
 		[self addSelectedContact:&selectedContact];
 		//[txtDestNo addCellWithString:[NSString stringWithUTF8String:nocharP :nameCharP]];
@@ -851,7 +851,7 @@
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;        // return NO to disallow editing.
 {
-	printf("\n key board");
+	//printf("\n key board");
 	if(modalB==false)
 	{
 		CGRect frame = txtDestNo.frame;
@@ -909,7 +909,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)theTextField {
 	
-	//printf("dffs");
+	////printf("dffs");
 	if(modalB==true)
 	{
 		return YES;

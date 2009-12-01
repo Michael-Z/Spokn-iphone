@@ -35,7 +35,7 @@
 	NSString *stringStrP;
 	objStrP = sectionArray[lsection].dataforSection[row].nameofRow;
 	secObjStrP = sectionArray[lsection].dataforSection[row].elementP;
-	printf("\n %s %s",objStrP,secObjStrP);
+	//printf("\n %s %s",objStrP,secObjStrP);
 	
 	{
 				
@@ -158,7 +158,7 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 {
 	
-//	printf("\n%d",buttonIndex);
+//	//printf("\n%d",buttonIndex);
 	if(buttonIndex==0)
 	{	
 		if(retValP)
@@ -182,7 +182,7 @@
 		[[self navigationController]  popViewControllerAnimated:YES];
 		if(callActionSheetB)
 		{
-			printf("\nname %s\n",stringSelected[buttonIndex]);
+			//printf("\nname %s\n",stringSelected[buttonIndex]);
 			[self->ownerobject makeCall:stringSelected[buttonIndex]];
 			[self->ownerobject changeView];
 		 
@@ -190,7 +190,7 @@
 		else
 		{
 			// NSLog(nsNumberP);
-			//printf("\n%s",callNoP);
+			////printf("\n%s",callNoP);
 			[ownerobject vmsShowRecordScreen:stringSelected[buttonIndex]];
 		}
 		
@@ -201,10 +201,10 @@
 {
 	NSString *nspP;
 	NSString *nsNumberP;
-	printf("User Pressed Button %d\n", buttonIndex + 1);
+	//printf("User Pressed Button %d\n", buttonIndex + 1);
 		nspP = [actionSheet buttonTitleAtIndex:buttonIndex];
 	NSLog(nspP);
-	printf("\n");
+	//printf("\n");
 
 	NSArray *wordArray = [nspP componentsSeparatedByString:@" "] ;
 	int countL;
@@ -235,7 +235,7 @@
 		else
 		{
 			NSLog(nsNumberP);
-			//printf("\n%s",callNoP);
+			////printf("\n%s",callNoP);
 			[ownerobject vmsShowRecordScreen:callNoP];
 		}
 	}
@@ -244,7 +244,7 @@
 }*/
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-//	printf("User Pressed Button %d\n", buttonIndex + 1);
+//	//printf("User Pressed Button %d\n", buttonIndex + 1);
 	[actionSheet release];
 }
 
@@ -301,7 +301,7 @@
 				for(int j=0;j<sectionArray[k].count;++j)
 				{	
 				
-					printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
+					//printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
 					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP ] ];
 					
 					stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
@@ -369,7 +369,7 @@
 				for(int j=0;j<sectionArray[k].count;++j)
 				{	
 					
-					printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
+					//printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
 					
 					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP] ];
 					
@@ -462,19 +462,19 @@
 	Boolean popupB = true;
 	if(updatecontact)
 	{	
-		printf("\n udate contact");
+		//printf("\n udate contact");
 		if(viewEnum==CONTACTADDVIEWENUM)
 		{	
 			if(  strlen(addressDataP->title)&&(  strlen(addressDataP->mobile) ||  strlen(addressDataP->business)|| strlen(addressDataP->home)||  strlen(addressDataP->email) ) )
 				
 				
-				{		printf("\n add contact");									 
+				{		//printf("\n add contact");									 
 					addContact(addressDataP->title,addressDataP->mobile,addressDataP->home,addressDataP->business,0,addressDataP->email,addressDataP->spoknid);
 					
 				}
 				else
 				{	
-						printf("\n alert contact");
+						//printf("\n alert contact");
 					UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
 																	   message: [ NSString stringWithString:@"invalid contact" ]
 																	  delegate: self
@@ -492,7 +492,7 @@
 			addrP = getContact(addressDataP->id);			
 			if(addrP)
 			{
-				printf("\n add contact");
+				//printf("\n add contact");
 				strcpy(addrP->title,addressDataP->title);
 				strcpy(addrP->mobile,addressDataP->mobile);
 				strcpy(addrP->business,addressDataP->business);
@@ -588,7 +588,7 @@
 		updatecontact = 1;
 		viewResult = 0;
 		self.navigationItem.rightBarButtonItem.enabled = YES;
-		printf("\n make changes");
+		//printf("\n make changes");
 		struct AddressBook *addressDataTmpP;
 		
 		
@@ -596,7 +596,7 @@
 		addressDataP = 0;
 		[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
 		free(addressDataTmpP);
-		//printf("\n erroer  ");
+		////printf("\n erroer  ");
 		[ self->tableView reloadData ];
 	}
 	NSIndexPath *nsP;
@@ -610,10 +610,10 @@
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 	// release view
-	printf("\n hello view disapper");
+	//printf("\n hello view disapper");
 	if(updatecontact)
 	{
-		printf("\n hello view disapper");
+		//printf("\n hello view disapper");
 	
 	}
 
@@ -630,7 +630,7 @@
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"ContactDetailsViewController" image:nil tag:3];
 	//self->tablesz = 0;
-	//printf("\n table = %d",self->tablesz);
+	////printf("\n table = %d",self->tablesz);
 	updatecontact = 0;
 	tableView.delegate = self;
 	tableView.dataSource = self;
@@ -812,7 +812,7 @@
 	if(viewEnum==CONTACTADDVIEWENUM || viewEnum == CONTACTFORWARDVMS)
 	{
 		viewP.hidden = !showAddButtonB;
-		printf("\n viewEnum");
+		//printf("\n viewEnum");
 		tableView.tableFooterView = viewP;
 		[viewP release];
 		if(viewEnum == CONTACTFORWARDVMS)
@@ -833,7 +833,7 @@
 	
 	addressDataTmpP = addressDataP;
 	addressDataP = 0;
-	printf("\n edit %d",self->editableB);
+	//printf("\n edit %d",self->editableB);
 	[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
 	free(addressDataTmpP);
 	
@@ -847,7 +847,7 @@
 	//[userNameP release];
 	[self setTitle:@"Info"];
 	
-	printf("\n secion  %d",sectionCount);
+	//printf("\n secion  %d",sectionCount);
 	if(editableB)
 	{	
 		[ self->tableView setEditing: YES animated: YES ];
@@ -929,6 +929,7 @@
 	cell.spoknSubCellP.dataArrayP = secLocP->elementP;
 	cell.spoknSubCellP.ownerDrawB = true;
 	cell.spoknSubCellP.rowHeight = 50;
+	[cell.spoknSubCellP setNeedsDisplay];
 	if(editableB)
 	{
 		//	cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;//UITableViewCellAccessoryDetailDisclosureButton; 
@@ -972,7 +973,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	else if(editingStyle == UITableViewCellEditingStyleInsert)
 	{
 		//  [dataController addData:@"New Row Added"];
-		printf("\n add clicked");
+		//printf("\n add clicked");
 		// [tableView reloadData];        
 	}
 }
@@ -1001,7 +1002,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	//selection = [[[UIFont familyNames] objectAtIndex:[newIndexPath row]] retain];
 	int row = [newIndexPath row];
 	int section = [newIndexPath section];
-	printf("\n got the no");
+	//printf("\n got the no");
 
 	if(editableB==false)
 	{	
@@ -1024,7 +1025,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 				}
 				if(self->rootObjectP)
 				{
-					printf("\n got the no");
+					//printf("\n got the no");
 					[[self navigationController]  popToViewController:self->rootObjectP animated:YES];
 				}
 			}
@@ -1087,7 +1088,7 @@ titleForHeaderInSection:(NSInteger)section
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-	printf("\n %d",sectionCount);
+	//printf("\n %d",sectionCount);
 	if(sectionCount)
 	return  sectionCount;
 	return 1;
@@ -1100,19 +1101,19 @@ titleForHeaderInSection:(NSInteger)section
 	 return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spokn.png"]];
 	 else
 	 return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spokn.png"]];*/
-	printf("\n section asked");
+	//printf("\n section asked");
 	return sectionArray[section].sectionView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	printf("\n%d",sectionArray[section].count);
+	//printf("\n%d",sectionArray[section].count);
 	return sectionArray[section].count;
 	//return [ fileList count ];
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	//	////////////printf("\n drawing...");
+	//	//////////////printf("\n drawing...");
 	
 }
 
@@ -1186,7 +1187,7 @@ titleForHeaderInSection:(NSInteger)section
 				sectionArray[0].dataforSection[firstSecCount].selected = 1;
 			}
 			sectionArray[0].count++;
-			printf("\n %s %s",sectionArray[0].dataforSection[firstSecCount].elementP,sectionArray[0].dataforSection[firstSecCount].nameofRow);
+			//printf("\n %s %s",sectionArray[0].dataforSection[firstSecCount].elementP,sectionArray[0].dataforSection[firstSecCount].nameofRow);
 			firstSecCount++;
 		}	
 		
@@ -1206,7 +1207,7 @@ titleForHeaderInSection:(NSInteger)section
 				sectionArray[1].dataforSection[secondSecCount].selected = 1;
 			}
 			sectionArray[1].count++;
-			printf("\nemail %s %s",sectionArray[0].dataforSection[secondSecCount].elementP,sectionArray[0].dataforSection[firstSecCount].nameofRow);
+			//printf("\nemail %s %s",sectionArray[0].dataforSection[secondSecCount].elementP,sectionArray[0].dataforSection[firstSecCount].nameofRow);
 		
 			secondSecCount++;
 		}	
@@ -1224,7 +1225,7 @@ titleForHeaderInSection:(NSInteger)section
 	}	
 	self->viewEnum = lviewEnum;
 	self->editableB = leditableB;
-	printf("\n %d",self->editableB);
+	//printf("\n %d",self->editableB);
 	self->tablesz = 0;
 	addressDataP = 0;
 	
@@ -1416,7 +1417,7 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			if(leditableB)
 			{
-				printf("\n email ");
+				//printf("\n email ");
 				sectionArray[sectionCount].dataforSection[0].section = 0;
 				strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"Email");
 				sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
@@ -1476,20 +1477,20 @@ titleForHeaderInSection:(NSInteger)section
 	
 	if(loadedB)
 	{
-		printf("\n  up to");
+		//printf("\n  up to");
 		nsp = [[NSString alloc] initWithUTF8String:(const char*)addressDataP->title ];
 		NSLog(@"%@  showB = %d",nsp,showAddButtonB);
 		
 		[userNameP setText:nsp];
 		[nsp release];
-		printf("\n noerror up to");
+		//printf("\n noerror up to");
 		if(tablesz)
 		{
 				
 			
 			if(editableB)
 			{	
-				printf("\n edit clocked");
+				//printf("\n edit clocked");
 				//[ self->tableView setEditing: YES animated: YES ];
 				self->tableView.allowsSelectionDuringEditing = YES;
 				self->delButtonP.hidden = NO;
@@ -1559,7 +1560,7 @@ titleForHeaderInSection:(NSInteger)section
 			}
 			if(tableView)
 			{	
-				printf("\n reloaded table %d\n",tablesz);
+				//printf("\n reloaded table %d\n",tablesz);
 				[tableView reloadData];
 			}	
 						
@@ -1585,7 +1586,7 @@ titleForHeaderInSection:(NSInteger)section
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 	loadedB = false;
-	printf("\n dealloc called");
+	//printf("\n dealloc called");
 	if(addressDataP)
 		free(addressDataP);
 	addressDataP = 0;
@@ -1614,7 +1615,7 @@ titleForHeaderInSection:(NSInteger)section
 		free(self->cdrP);
 	}
 	self->cdrP = 0;
-	printf("\n dealloc contactdetails");
+	//printf("\n dealloc contactdetails");
 	if(addressDataP)
 		free(addressDataP);
 	addressDataP = 0;

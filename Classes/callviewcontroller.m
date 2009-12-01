@@ -189,7 +189,7 @@
 	setMute(enable);
 	#endif
 	[butP setSelected:enable];
-	printf("%d",enable);
+	//printf("%d",enable);
 	
 }
 -(IBAction)HoldPressed:(id)sender
@@ -241,7 +241,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	enable = !butP.selected;
 	SetSpeakerOnOrOff(0,enable);
 	[butP setSelected:enable];
-	printf("%d",enable);
+	//printf("%d",enable);
 	
 }
 -(IBAction)keypadPressed:(id)sender
@@ -303,7 +303,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 - (void)dealloc {
 	SetSpeakerOnOrOff(0,true);
-	printf("\n vmail dealloc");
+	//printf("\n vmail dealloc");
 	[labelStrP release];
 	
     [super dealloc];

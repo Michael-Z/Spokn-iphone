@@ -44,7 +44,7 @@
 - (void) handleTimer: (id) timer
 {
 	
-	printf("\n resync called");
+	//printf("\n resync called");
 	profileResync();
 	
 }
@@ -85,7 +85,7 @@
 }
 - (void) PlayRing: (id) timer
 {
-	printf("\n ring play....");
+	//printf("\n ring play....");
 	AudioServicesPlayAlertSound(soundIncommingCallID);	
 }
 -(void) destroyRing
@@ -127,7 +127,7 @@
 		if (error != kAudioServicesNoError)
 			return;
 		soundIncommingCallID = aSoundID;
-		printf("\n ring created");
+		//printf("\n ring created");
 
 	
 	}
@@ -139,7 +139,7 @@
 {
 	if(soundIncommingCallID)
 	{	
-		printf("\n ring play");
+		//printf("\n ring play");
 		if(ringTimer==nil)
 		{	
 		
@@ -163,7 +163,7 @@
 {
 	if(ringTimer)
 	{	
-		printf("ring stop");
+		//printf("ring stop");
 		[ringTimer invalidate];
 		ringTimer = nil;
 		UInt32 route = kAudioSessionOverrideAudioRoute_None;
@@ -177,51 +177,55 @@
 
 -(void) playcallendTone
 {
-	endcallsoundID = 0;
 	
 	
-	NSBundle *mainBundle = [NSBundle mainBundle];
+	if(endcallsoundID==0)
+	{	
+		NSBundle *mainBundle = [NSBundle mainBundle];
 	
-	NSString *path = [mainBundle pathForResource:@"doorbell" ofType:@"caf"];
-	if (!path)
-		return;
-	
-	NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
-	if (aFileURL != nil)  
-	{
-		SystemSoundID aSoundID;
-		OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
-														  &aSoundID);
-		if (error != kAudioServicesNoError)
+		NSString *path = [mainBundle pathForResource:@"doorbell" ofType:@"caf"];
+		if (!path)
 			return;
-		endcallsoundID = aSoundID;
+	
+		NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
+		if (aFileURL != nil)  
+		{
+			SystemSoundID aSoundID;
+			OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
+														  &aSoundID);
+			if (error != kAudioServicesNoError)
+				return;
+			endcallsoundID = aSoundID;
 		
+		}
 	}
-	AudioServicesPlayAlertSound(endcallsoundID);	
+
+	AudioServicesPlaySystemSound(endcallsoundID);	
 }
 
 -(void) playonlineTone
 {
-	onlinesoundID = 0;
-	
-	
-	NSBundle *mainBundle = [NSBundle mainBundle];
-	
-	NSString *path = [mainBundle pathForResource:@"gling" ofType:@"caf"];
-	if (!path)
-		return;
-	
-	NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
-	if (aFileURL != nil)  
-	{
-		SystemSoundID aSoundID;
-		OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
-														  &aSoundID);
-		if (error != kAudioServicesNoError)
-			return;
-		onlinesoundID = aSoundID;
 		
-	}
+	if(onlinesoundID==0)
+	{	
+		NSBundle *mainBundle = [NSBundle mainBundle];
+	
+		NSString *path = [mainBundle pathForResource:@"gling" ofType:@"caf"];
+		if (!path)
+			return;
+	
+		NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
+		if (aFileURL != nil)  
+		{
+			SystemSoundID aSoundID;
+			OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
+															  &aSoundID);
+			if (error != kAudioServicesNoError)
+				return;
+			onlinesoundID = aSoundID;
+			
+		}
+	}	
 	AudioServicesPlayAlertSound(onlinesoundID);	
 }
 -(void) showText:(NSString *)testStringP
@@ -292,7 +296,7 @@
 		case START_LOGIN:
 				if(self->subID==1)//mean no connectivity
 				{
-					printf("\n start network request send");
+					//printf("\n start network request send");
 					[self startCheckNetwork];
 				}
 				[dialviewP setStatusText: @"connecting..." :START_LOGIN :0 ];
@@ -313,7 +317,7 @@
 													   repeats: YES];
 			#endif
 			#ifdef _LOG_DATA_
-			//printf("\nonline");
+			////printf("\nonline");
 			#endif
 			self->onLineB = true;
 			[dialviewP setStatusText: @"online" :ALERT_ONLINE :0 ];
@@ -347,7 +351,7 @@
 						break;
 					case LOGIN_STATUS_NO_ACCESS:
 							[dialviewP setStatusText: @"no access" :ALERT_OFFLINE :self->subID ];
-						printf("\n no access to network");
+						//printf("\n no access to network");
 						break;
 					default:
 							[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
@@ -362,7 +366,7 @@
 		case VMS_RECORD_KILL:	
 			//vmsDeInit(&vmsP);
 			
-			////printf("\n delete record object");
+			//////printf("\n delete record object");
 			//[self performSelectorOnMainThread : @ selector(vmsDeinitRecordPlay: ) withObject:nil waitUntilDone:YES];
 			[self vmsDeinitRecordPlay:nil];
 			break;
@@ -516,7 +520,7 @@
 	controllerP.tabBarItem.badgeValue= stringStrP;
 
 	[stringStrP release];
-	
+	[self playonlineTone];
 	
 	
 	}
@@ -549,7 +553,7 @@
 -(void)LoadInCommingView:(id)object
 {
 	IncommingCallViewController     *inCommingCallViewP;	
-	//printf("\nview added");
+	////printf("\nview added");
 	inCommingCallViewP = [[IncommingCallViewController alloc] initWithNibName:@"incommingcall" bundle:[NSBundle mainBundle]];
 	[inCommingCallViewP initVariable];
 	inCommingCallViewP.ltpInterfacesP = ltpInterfacesP;
@@ -631,7 +635,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	NSString *nsP;
 	nsP = [[NSString alloc] initWithUTF8String:pathCharP];
     [defaultManager createDirectoryAtPath:nsP attributes:nil];
-	//printf("\n %s\n",pathCharP);
+	////printf("\n %s\n",pathCharP);
 	
 	[nsP release];
 }
@@ -727,17 +731,17 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 	#endif
 	tabBarController = [ [ UITabBarController alloc ] init ];
-	printf("\n tab retain count %d",[tabBarController retainCount]);
+	//printf("\n tab retain count %d",[tabBarController retainCount]);
 	tabBarController.viewControllers = viewControllers;
 	[viewControllers release];
 	
-	printf("\n dialviewP retain count %d",[dialviewP retainCount]);
+	//printf("\n dialviewP retain count %d",[dialviewP retainCount]);
 
-	printf("\n tab retain count %d",[tabBarController retainCount]);
+	//printf("\n tab retain count %d",[tabBarController retainCount]);
 	
 	tabBarController.delegate = self; 	
 	[window addSubview:tabBarController.view];
-	printf("\n \n add tab retain count %d",[tabBarController retainCount]);
+	//printf("\n \n add tab retain count %d",[tabBarController retainCount]);
 		ltpTimerP = nil;	
 	#ifndef _OWN_THREAD_
 		ltpTimerP = [[LtpTimer alloc] init];
@@ -818,7 +822,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{	
 		if(strlen(userNameCharP)==0 || (strlen(idValueCharP)>0 && strcmp(userNameCharP,idValueCharP)!=0 ) )
 		{
-			printf("\n%s %s",idValueCharP,idPasswordCharP);
+			//printf("\n%s %s",idValueCharP,idPasswordCharP);
 			setLtpUserName(ltpInterfacesP, idValueCharP);
 			setLtpPassword(ltpInterfacesP, idPasswordCharP);
 			
@@ -845,13 +849,14 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[self LoadContactView:callviewP];
 	*/	
 
-	printf("\n tab retain count %d",[tabBarController retainCount]);
-	printf("\n after %d %d",[callviewP retainCount],[dialviewP retainCount]	);
+	//printf("\n tab retain count %d",[tabBarController retainCount]);
+	//printf("\n after %d %d",[callviewP retainCount],[dialviewP retainCount]	);
 	//tabBarController.selectedViewController = vmsNavigationController;
 	
 	tabBarController.selectedViewController = spoknViewNavigationController;
 	[vmsNavigationController.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"TB-VMS.png"] tag:4];
 	[self createRing];
+	SetSpeakerOnOrOff(0,true);
 		
 }
 -(void)logOut
@@ -859,6 +864,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	animation = 1;
 	[vmsviewP setcomposeStatus:0 ];
 	logOut(ltpInterfacesP,true);
+	self.vmsNavigationController.tabBarItem.badgeValue= nil;
+	SetSpeakerOnOrOff(0,true);
 }
 - (void)applicationWillTerminate:(UIApplication *)application
 {
@@ -872,7 +879,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	logOut(ltpInterfacesP,false);
 	endLtp(ltpInterfacesP);
 	[self stopCheckNetwork];
-	printf("\n  count %d tab %d",[dialviewP retainCount],[tabBarController retainCount]);
+	//printf("\n  count %d tab %d",[dialviewP retainCount],[tabBarController retainCount]);
 	[tabBarController release];
 	[self destroyRing];
 	if(srvMsgCharP)
@@ -881,6 +888,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		srvMsgCharP = 0;
 	}
 	[urlSendP release];
+	SetSpeakerOnOrOff(0,true);
 	//[contactNavigationController release];
 	//[vmsNavigationController release];
 	//[calllogNavigationController release];
@@ -933,7 +941,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 -(void)cancelLoginView
 {
 	[tabBarController dismissModalViewControllerAnimated:YES];
-	printf("\n pridfd fdfd df");
+	//printf("\n pridfd fdfd df");
 	[ spoknViewControllerP cancelProgress];
 }
 -(void)changeView
@@ -996,7 +1004,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 				//[]
 		NSLog(@"\n%@",tempStringP);
-	printf("\n calldsffdfd");
+	//printf("\n calldsffdfd");
 		[dialviewP setStatusText:tempStringP :TRYING_CALL :0];
 		//[tempStringP release];
 		[tempStringP release ];
@@ -1117,8 +1125,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[tempStringP release ];
 	//	[strP release ];
 		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
-		
-	}	
+			}	
 	
 	free(resultCharP);
 	return retB;
@@ -1130,6 +1137,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 	hangLtpInterface(self->ltpInterfacesP);
 	[dialviewP setStatusText: @"call end" :ALERT_DISCONNECTED :0];
+	SetSpeakerOnOrOff(0,true);
+	[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
+
 	//[tabBarController dismissModalViewControllerAnimated:YES];
 
 	return true;
@@ -1150,8 +1160,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 		return 2;
 	}
-	printf("\n");
-	printf(fileName);
+	//printf("\n");
+	//printf(fileName);
 	vmsP = vmsInit((unsigned long )self, alertNotiFication,false);
 	if(vmsP==0)
 	{
@@ -1165,12 +1175,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		return 1;
 	}
 	*sizeP = sz;
-	//printf("\nvms play");
+	////printf("\nvms play");
 	//[self VmsStreamStart: false];
 	//[ vmsController pushViewController: vmsRPViewP animated: YES ];
 	//tabBarController.selectedViewController = vmsController;
 	//[vmsRPViewP vmsPlayStart:sz];
-	//printf("\nvms start play");
+	////printf("\nvms start play");
 	return 0;
 }
 -(void)setVmsDelegate :(id)deligateP
@@ -1221,7 +1231,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[contactP setReturnVariable:navObject :lselectedContactP :resultP];
 	[ [navObject navigationController] pushViewController:contactP animated: YES ];
 	[contactP release];
-	printf("\n retain countact details count %d\n",[contactviewP retainCount]);
+	//printf("\n retain countact details count %d\n",[contactviewP retainCount]);
 	return 0;
 }
 -(int) vmsShowRecordScreen : (char*)noCharP
@@ -1230,12 +1240,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	char type[30];
 	int max = 20;
 	
-	//printf("\n test122323232323");
+	////printf("\n test122323232323");
 	addressP = getContactAndTypeCall(noCharP,type);	
 	if(addressP)
 	{
 		VmShowViewController     *vmShowViewControllerP;	
-		printf("\n %s %s",type,noCharP);
+		//printf("\n %s %s",type,noCharP);
 		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
 		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
 		[vmShowViewControllerP setFileName: "temp" :0];
@@ -1269,7 +1279,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		if([vmShowViewControllerP retainCount]>1)
 			[vmShowViewControllerP release];
-		printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);	
+		//printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);	
 	}
 	tabBarController.selectedViewController = vmsNavigationController;	
 	
@@ -1327,8 +1337,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 -(int)getFileSize:(char*)fileNameP :(unsigned long *)noSecP
 {
 	long sz;
-	printf("\n");
-	printf(fileNameP);
+	//printf("\n");
+	//printf(fileNameP);
 	FILE *fp;
 	fp = fopen(fileNameP,"rb");
 	if(fp)
@@ -1341,7 +1351,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		fclose(fp);
 		if(*noSecP==0)
 		{	
-			printf("\n file size %ld ",sz);
+			//printf("\n file size %ld ",sz);
 			return 1;
 			
 		}
@@ -1362,10 +1372,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 //	addr.sin_family = AF_INET;
 	
 	
-//	printf("\n host reach start");
+//	//printf("\n host reach start");
 	[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
 	[self stopCheckNetwork];
-	printf("\n start Reachability");
+	//printf("\n start Reachability");
 	hostReach = [[Reachability reachabilityWithHostName: @"www.spokn.com"] retain];
 	//hostReach = [[Reachability reachabilityWithAddress:&addr] retain];
 	[hostReach startNotifer];
@@ -1377,7 +1387,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 -(void) stopCheckNetwork
 {
 	
-	printf("\n host reach stop");
+	//printf("\n host reach stop");
 //	[hostReach stopNotifer];
 	//[wifiReach stopNotifer];
 	[hostReach release];
@@ -1397,7 +1407,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
     NetworkStatus netStatus = [curReach currentReachabilityStatus];
     BOOL connectionRequired= [curReach connectionRequired];
     NSString* statusString= @"";
-	printf("\n no network available\n\n");
+	//printf("\n no network available\n\n");
     switch (netStatus)
     {
         case NotReachable:
@@ -1412,7 +1422,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			[alert show];
 			[alert release];*/
 			SetConnection( ltpInterfacesP,0);
-			printf("\n offline set");
+			//printf("\n offline set");
 			alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
 			[vmsviewP setcomposeStatus:0 ];
             break;
@@ -1420,10 +1430,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
             
         case ReachableViaWWAN:
         {
-            printf("\n richebility on trough ReachableViaWWAN");
+            //printf("\n richebility on trough ReachableViaWWAN");
 			if(connectionRequired==NO)
 			{	 
-				printf("\n richable set via wwan");
+				//printf("\n richable set via wwan");
 				 wifiavailable = NO;
 				alertNotiFication(ALERT_ONLINE,0,NO_WIFI_AVAILABLE,(long)self,0);
 				[vmsviewP setcomposeStatus:1 ];
@@ -1443,7 +1453,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			[alert release];*/
 			 if(connectionRequired==NO)
 			 {	 
-				 printf("\n richable set");
+				 //printf("\n richable set");
 				 wifiavailable = YES;
 				 if(SetConnection( ltpInterfacesP,2)==0)
 				 {	 
@@ -1458,7 +1468,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
     {
         statusString= [NSString stringWithFormat: @"%@, Connection Required %d", statusString,netStatus];
 		SetConnection( ltpInterfacesP,0);
-		printf("\n offline set");
+		//printf("\n offline set");
 		alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
 		wifiavailable = NO;
 		 NSLog(statusString);

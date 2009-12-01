@@ -89,7 +89,7 @@
 		rectchange.size.width = elementWidth;
 		rectchange.size.height = elementHeight;
 		arrayPos = row*elementx+col;
-		printf("%d",  arrayPos);
+		//printf("%d",  arrayPos);
 		if(arrayPos<12)
 		{	
 			NSLog(@"\n%@ %c",keyStrs[arrayPos],keyValues[arrayPos]);

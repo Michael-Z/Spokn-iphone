@@ -127,7 +127,7 @@
 }
 -(void)dealloc
 {
-	////printf("\nSpoknUITableViewCell release  %d ",[spoknSubCellP retainCount] );
+	//////printf("\nSpoknUITableViewCell release  %d ",[spoknSubCellP retainCount] );
 
 	[spoknSubCellP release];
 	[super dealloc];
@@ -136,7 +136,7 @@
 {
 	[super setHighlighted:highlighted animated:animated];
 	spoknSubCellP.selectedVar = highlighted;
-	printf("\n row highlited called");
+	//printf("\n row highlited called");
 
 }
 - (void)drawRect:(CGRect)rect
@@ -160,7 +160,7 @@
 		rectCell = frame;
 		self.backgroundColor = [UIColor whiteColor];
 		self->editCellB = false;
-		//printf("\n init with frame");
+		////printf("\n init with frame");
 		//savedImage = [UIImage imageNamed:@"Status-saved.png"];	
     }
     return self;
@@ -189,7 +189,7 @@
 	UIColor *txtColor;
 	UIFont                *fontlP;
 	
-	//printf("\n drawing cell..");
+	////printf("\n drawing cell..");
 	/*	if (self.editing)
 	 {
 	 return;
@@ -206,7 +206,7 @@
 			if(displayDataP)
 			{
 				//added for edit cell
-				printf("\n draw now");
+				//printf("\n draw now");
 				if(self->editCellB && !displayDataP.showOnEditB)
 				{
 					continue;
@@ -221,7 +221,7 @@
 						if(displayDataP.left)
 						stX = displayDataP.left;//rect.origin.x;
 						height = (rect.size.height/100)*displayDataP.height;
-						//////printf("\nheight%d",height);
+						////////printf("\nheight%d",height);
 						stY = rect.origin.y+height;
 					}
 					rec.origin.x = stX + displayDataP.left + 1;
@@ -239,7 +239,7 @@
 					if(selectedVar)
 					{
 						txtColor = [UIColor whiteColor];
-						////////////printf("selected");
+						//////////////printf("selected");
 					}
 					else
 					{	
@@ -334,12 +334,12 @@
 -(void)dealloc
 {
 	//[elementP release];
-	//printf("\n dealloc called");
+	////printf("\n dealloc called");
 	while(elementP.count)
 	{
 		
 		id iD;
-	//	printf("\n element count %d",elementP.count);
+	//	//printf("\n element count %d",elementP.count);
 		//NSMutableArray *tmpObj;
 		iD = [elementP objectAtIndex:0];
 		[iD release];
@@ -404,16 +404,16 @@
 -(void)addObjectAtIndex:(id)objid :(int)index
 {
 	[objectArrayP replaceObjectAtIndex:index withObject:objid];
-	////printf("\nobject count st %d",objectArrayP.count);
+	//////printf("\nobject count st %d",objectArrayP.count);
 	//[objectArrayP addObject:objid];
-	////printf("\nobject count end %d",objectArrayP.count);
+	//////printf("\nobject count end %d",objectArrayP.count);
 	
 }
 -(void)addObject:(id)objid
 {
-	////printf("\nobject count st %d",objectArrayP.count);
+	//////printf("\nobject count st %d",objectArrayP.count);
 	[objectArrayP addObject:objid];
-	////printf("\nobject count end %d",objectArrayP.count);
+	//////printf("\nobject count end %d",objectArrayP.count);
 
 }
 -(id)init
@@ -426,12 +426,12 @@
 -(void)removeAll
 {
 		
-	////printf("\n remove all call %d",objectArrayP.count );
+	//////printf("\n remove all call %d",objectArrayP.count );
 	while(objectArrayP.count)
 	{
 		
 		id iD;
-		////printf("\n count %d",objectArrayP.count);
+		//////printf("\n count %d",objectArrayP.count);
 		NSMutableArray *tmpObj;
 		iD = [objectArrayP objectAtIndex:0];
 		if(type==arrayObject)
@@ -451,7 +451,7 @@
 		{	
 			[iD release];
 		}
-		////printf("\nremoved");
+		//////printf("\nremoved");
 		[objectArrayP removeObjectAtIndex:0];
 	}
 	[objectArrayP release];

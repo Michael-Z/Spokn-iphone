@@ -92,7 +92,7 @@
 	{
 		return;
 	}
-	printf("\n %s",self->ltpInDataP->userIdChar);
+	//printf("\n %s",self->ltpInDataP->userIdChar);
 	nsp = [[NSString alloc] initWithUTF8String:self->ltpInDataP->userIdChar ];
 	[self->textProP setString:@"Incoming call from \n"];
 	[self->textProP appendString:nsp];

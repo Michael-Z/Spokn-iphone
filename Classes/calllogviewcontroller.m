@@ -65,7 +65,7 @@
 	
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
 	[cell setEdit:YES];
-	printf("swipe start");
+	//printf("swipe start");
 	
 }
 - (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,11 +73,11 @@
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
 	[cell setEdit:NO];
 	
-	printf("swipe end");
+	//printf("swipe end");
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView 
 {
-	////////printf("\n dilip sharma");
+	//////////printf("\n dilip sharma");
 	return 1;
 }
 
@@ -95,12 +95,12 @@
 		self.navigationItem.leftBarButtonItem.enabled = NO;
 
 	}
-	///printf("\n mukesh sharma %d\n",count);
+	/////printf("\n mukesh sharma %d\n",count);
 	return count;
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	////////printf("mukeshsdsdsd");
+	//////////printf("mukeshsdsdsd");
 	
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -137,6 +137,7 @@
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	sectionType *secLocP;
+	
 	NSString *CellIdentifier = [[NSString alloc] initWithUTF8String:"any cell"];
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell *) [ tableView dequeueReusableCellWithIdentifier: CellIdentifier ];
 	if (cell == nil) {
@@ -166,6 +167,8 @@
 	cell.spoknSubCellP.dataArrayP = secLocP->elementP;
 	cell.spoknSubCellP.ownerDrawB = true;
 	cell.spoknSubCellP.rowHeight = 50;
+	[cell.spoknSubCellP setNeedsDisplay];
+	
 	//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//UITableViewCellAccessoryDetailDisclosureButton; 
 	cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	[CellIdentifier release];
@@ -192,7 +195,7 @@
 	char *addressBookNameP = 0;
 	char *addressBookTypeP = 0;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-	//////printf("\n index = %d\n",index);
+	////////printf("\n index = %d\n",index);
 	
 	objP = GetObjectAtIndex(showMisscallInt ,index);
 	if(objP)
@@ -253,6 +256,10 @@
 			}		
 		}
 		timeP = cdrP->date;
+		if(timeP==0)
+		{
+			//printf("\n  error time");
+		}
 		
 		tmP = localtime(&timeP);
 		
@@ -384,6 +391,7 @@
 			//dispP.fontP =  [self->fontGloP fontWithSize:16];
 			//[dispP.fontP retain];
 			//[dispP.fontP release];
+			
 			stringStrP = [[NSString alloc] initWithUTF8String:objStrP ];
 			dispP.dataP = stringStrP;
 			[stringStrP release];
@@ -492,7 +500,7 @@
 			
 			if([ContactControllerDetailsviewP retainCount]>1)
 				[ContactControllerDetailsviewP release];
-			printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+			//printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 			
 			
 			
@@ -530,7 +538,7 @@
 					
 					if([ContactControllerDetailsviewP retainCount]>1)
 						[ContactControllerDetailsviewP release];
-					printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+					//printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 				}	
 				
 			}
@@ -574,7 +582,7 @@
 				
 				if([ContactControllerDetailsviewP retainCount]>1)
 					[ContactControllerDetailsviewP release];
-				printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+				//printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 				
 				free(addressP);
 			}	
@@ -704,6 +712,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	
 	 */
+	//printf("\n call end ");
 	[ self->tableView reloadData ];
 	
 }/*
@@ -766,7 +775,7 @@ cancelButtonTitle: nil
 	[super viewDidAppear:animated];
 	if(resultInt)
 	{
-		printf("\nhello view deleted\n");
+		//printf("\nhello view deleted\n");
 		resultInt = 0;
 		
 		if(gcdrP)
@@ -800,11 +809,11 @@ cancelButtonTitle: nil
 	
 	
 	//self->fontGloP = [UIFont systemFontOfSize:16.0];
-	//////printf("\n my font count %d",[self->fontGloP  retainCount]);
+	////////printf("\n my font count %d",[self->fontGloP  retainCount]);
 	self->cellofcalllogP  = nil;	
 	
 	//self->tablesz = 0;
-	////////printf("\n table = %d",self->tablesz);
+	//////////printf("\n table = %d",self->tablesz);
 	tableView.delegate = self;
 	tableView.dataSource = self;
 //	tableView.tag = TABLE_VIEW_TAG;
@@ -870,7 +879,7 @@ cancelButtonTitle: nil
 	[missImageP release];
 	[inImageP release];
 	[outImageP release];
-	printf("\n calllog dealloc");
+	//printf("\n calllog dealloc");
 
     [super dealloc];
 }

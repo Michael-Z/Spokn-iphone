@@ -171,7 +171,7 @@
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
 											   action:@selector(LoginPressed)] autorelease];
-	printf("\n startProcess");
+	//printf("\n startProcess");
 	stopProgressB = false;
 
 }
@@ -179,7 +179,7 @@
 -(void)cancelProgress
 {
 	stopProgressB = true;
-	printf("\n stop progress");
+	//printf("\n stop progress");
 	self.navigationItem.titleView = 0;
 	[activityIndicator stopAnimating];
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
@@ -211,8 +211,12 @@
 	self->tableView.rowHeight = 50.0f;
 	//self->tableView.backgroundColor = [UIColor whiteColor];
 	
-	self->tableView.tableFooterView = buttonCtlP;
+	UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 74.0f)];
+	[buttonCtlP setFrame:CGRectMake(60,0,200,40)];
+	[subview addSubview:buttonCtlP];
 	[buttonCtlP release];
+	self->tableView.tableFooterView = subview;
+	[subview release];
 	// Build the sorted section array
 	[self createSectionList:wordArray];
 	//[wordArray release];
@@ -232,7 +236,7 @@
 	{
 		//updatecontact = 1;
 		viewResult = 0;
-		printf("\n make changes");
+		//printf("\n make changes");
 		if(strlen(forwardNoCharP)>0)
 		{
 			NSString *nsP;
@@ -252,7 +256,7 @@
 	{
 		if(viewCallB)
 		{
-			//printf("\n control on");
+			////printf("\n control on");
 			viewCallB = false;
 			//[switchView setOn:NO animated:NO]; 
 		}
@@ -282,7 +286,7 @@
 
 
 - (void)dealloc {
-	printf("\n controller release called");
+	//printf("\n controller release called");
 	[buttonCtlP release];
 	[listOfItems release];
 	//[label release];
@@ -311,7 +315,7 @@ titleForHeaderInSection:(NSInteger)section
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	
-	//////printf("\nmukesh");
+	////////printf("\nmukesh");
 	return nil;
 }
 #pragma mark Table view methods
@@ -333,7 +337,7 @@ titleForHeaderInSection:(NSInteger)section
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	//	////////////printf("\n drawing...");
+	//	//////////////printf("\n drawing...");
 	
 }
 
@@ -361,7 +365,7 @@ titleForHeaderInSection:(NSInteger)section
 	
 	
 	
-	printf("\n bal %f",balance);
+	//printf("\n bal %f",balance);
 	sprintf(s1,"$%.2f",balance);
 	stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
 	[labelBalance setText:stringStrP];
@@ -538,7 +542,7 @@ titleForHeaderInSection:(NSInteger)section
 	}	
 	else
 	{
-		printf("\n error ");
+		//printf("\n error ");
 	}
 	
     return cell;
