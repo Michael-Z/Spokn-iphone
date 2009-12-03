@@ -18,7 +18,7 @@ typedef struct ImageNameType
 	{
 		NSString *imageNameP;
 	}ImageNameType;
-#define MAXIMAGE 5
+#define MAXIMAGE 6
 @class SpoknAppDelegate;
 @interface SpoknViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
 	
@@ -31,6 +31,7 @@ typedef struct ImageNameType
 	UILabel *labelStatus;
 	UILabel *labelForword;
 	UILabel *labelSpoknNo;
+	UILabel *labelSpoknID;
 	UISwitch *switchView;
 	int viewResult;
 	char *forwardNoCharP;
@@ -38,13 +39,13 @@ typedef struct ImageNameType
 	int stopProgressB;
 	ImageNameType imageName[3][MAXIMAGE];
 	UIActivityIndicatorView *activityIndicator;
+	int statusInt;
 	
 
 }
 -(IBAction)buyCredit:(id)sender;
 -(void)setObject:(id) object ;
--(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward;
-
+-(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward spoknID:(char*)spoknLoginId;
 - (IBAction)switchChange:(UISwitch*)sender;
 -(void)startProgress;
 -(void)showForwardScreen;

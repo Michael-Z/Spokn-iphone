@@ -528,39 +528,47 @@
 {
 	char *forwardCharP;
 	int result=0;
+	char *unameP;
 	forwardCharP = getForwardNo(&result);
 	//if(self->onLineB==false)//if user not online
 	{
-		char *unameP; 
+		 
 		unameP = getLtpUserName(ltpInterfacesP);
 		if(!unameP || strlen(unameP)==0 )
 		{	
 			[vmsviewP setcomposeStatus:0 ];
 			self->subID  = LOGIN_STATUS_OFFLINE;
+			if(unameP)
+			{
+				free(unameP);
+				unameP = 0;
+			}
 		}	
-		if(unameP)
-		{
-			free(unameP);
-		}
+		
 		
 		
 	}
 	if(wifiavailable)
 	{	
 		
-		[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result ];
+		[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
 	}
 	else
 	{
 		if(self->onLineB)
 		{	
-			[spoknViewControllerP setDetails:getTitle() :self->onLineB :NO_WIFI_AVAILABLE :getBalance() :forwardCharP :getDidNo() forwardOn:result ];
+			[spoknViewControllerP setDetails:getTitle() :self->onLineB :NO_WIFI_AVAILABLE :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
 		}
 		else
 		{
-			[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result ];
+			[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
 			
 		}
+	}
+	if(unameP)
+	{
+		free(unameP);
+		unameP = 0;
 	}
 }
 -(void)LoadContactView:(id)object
