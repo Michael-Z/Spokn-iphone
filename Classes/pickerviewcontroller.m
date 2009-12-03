@@ -721,7 +721,7 @@
 		
 		if( try ) return YES;
 		
-		
+		/*
 		if( [string compare:@" "] == 0 ) {
 			if( [textField.text length] <= 1 ) return NO;
 			
@@ -729,7 +729,7 @@
 			
 			return NO;
 		}
-		
+		*/
 		if( txtDestNo.selectedCell )
 			txtDestNo.selectedCell = nil;
 	}
@@ -931,7 +931,11 @@
 		
 		if( ![temp isEqualToString:@""] )
 		{
-			[self update_txtDestNo:@""];
+			NSRange range = [temp rangeOfString:@" "];
+			if (range.location == NSNotFound ) 
+			{	
+				[self update_txtDestNo:@""];
+			}	
 		}
 		[self removeKeyBoard];
 		//[theTextField resignFirstResponder];
