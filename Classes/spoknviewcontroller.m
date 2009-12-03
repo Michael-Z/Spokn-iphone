@@ -139,6 +139,10 @@
     }
     return self;
 }
+-(void) cancelPressed {
+	[ownerobject logOut: false];
+	[self LoginPressed ];
+}
 
 -(void) LoginPressed {
 	alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
@@ -151,7 +155,7 @@
 }
 -(void) LogoutPressed {
 	
-	[ownerobject logOut];
+	[ownerobject logOut:true];
 	//alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
 	/*	[self.navigationItem.rightBarButtonItem initWithTitle: @"Sign-in" style:UIBarButtonItemStylePlain
 	 target: self
@@ -170,7 +174,7 @@
 											   initWithTitle:@"Cancel" 
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
-											   action:@selector(LoginPressed)] autorelease];
+											   action:@selector(cancelPressed)] autorelease];
 	//printf("\n startProcess");
 	stopProgressB = false;
 
@@ -182,11 +186,11 @@
 	//printf("\n stop progress");
 	self.navigationItem.titleView = 0;
 	[activityIndicator stopAnimating];
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+	/*self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 											   initWithTitle:@"Sign-in" 
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
-											   action:@selector(LoginPressed)] autorelease];
+											   action:@selector(LoginPressed)] autorelease];*/
 	
 
 		
@@ -394,10 +398,11 @@ titleForHeaderInSection:(NSInteger)section
 			switch(subStatus)
 			{
 				case LOGIN_STATUS_FAILED:
-					[labelStatus setText:@"Authentication failed"];
+					[labelStatus setText:@"Offline  "];
+					//[labelStatus setText:@"Authentication failed"];
 					break;
 				case LOGIN_STATUS_NO_ACCESS:
-					[labelStatus setText:@"no access  "];
+					[labelStatus setText:@"No Network "];
 					break;
 				default:
 					[labelStatus setText:@"Offline  "];	

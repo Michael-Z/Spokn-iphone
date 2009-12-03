@@ -529,8 +529,25 @@
 	char *forwardCharP;
 	int result=0;
 	forwardCharP = getForwardNo(&result);
+	//if(self->onLineB==false)//if user not online
+	{
+		char *unameP; 
+		unameP = getLtpUserName(ltpInterfacesP);
+		if(!unameP || strlen(unameP)==0 )
+		{	
+			[vmsviewP setcomposeStatus:0 ];
+			self->subID  = LOGIN_STATUS_OFFLINE;
+		}	
+		if(unameP)
+		{
+			free(unameP);
+		}
+		
+		
+	}
 	if(wifiavailable)
 	{	
+		
 		[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result ];
 	}
 	else
@@ -857,13 +874,22 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[vmsNavigationController.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"TB-VMS.png"] tag:4];
 	[self createRing];
 	SetSpeakerOnOrOff(0,true);
+	[vmsviewP setcomposeStatus:1 ];
 		
 }
--(void)logOut
+-(void)logOut:(Boolean) clearAllB
 {
 	animation = 1;
+	//popup all tab
+	if(clearAllB)
+	{
+		[vmsNavigationController popToRootViewControllerAnimated:NO];
+		[calllogNavigationController popToRootViewControllerAnimated:NO];
+		[contactNavigationController popToRootViewControllerAnimated:NO];
+		[spoknViewNavigationController popToRootViewControllerAnimated:NO];
+	}
 	[vmsviewP setcomposeStatus:0 ];
-	logOut(ltpInterfacesP,true);
+	logOut(ltpInterfacesP,clearAllB);
 	self.vmsNavigationController.tabBarItem.badgeValue= nil;
 	SetSpeakerOnOrOff(0,true);
 }
@@ -934,6 +960,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 //	[dialNavigationController popToRootViewControllerAnimated:TRUE];
 	[tabBarController dismissModalViewControllerAnimated:YES];
 	[ spoknViewControllerP startProgress];//start animation
+	[vmsviewP setcomposeStatus:0 ];
 	//[self changeView];
 
 
@@ -942,6 +969,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 	[tabBarController dismissModalViewControllerAnimated:YES];
 	//printf("\n pridfd fdfd df");
+	[self updateSpoknView:0];
 	[ spoknViewControllerP cancelProgress];
 }
 -(void)changeView
@@ -1424,7 +1452,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			SetConnection( ltpInterfacesP,0);
 			//printf("\n offline set");
 			alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
-			[vmsviewP setcomposeStatus:0 ];
+		//	[vmsviewP setcomposeStatus:0 ];
             break;
         }		
             
@@ -1436,7 +1464,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				//printf("\n richable set via wwan");
 				 wifiavailable = NO;
 				alertNotiFication(ALERT_ONLINE,0,NO_WIFI_AVAILABLE,(long)self,0);
-				[vmsviewP setcomposeStatus:1 ];
+				//[vmsviewP setcomposeStatus:1 ];
 				//wifiavailable = YES;
 				//SetConnection( ltpInterfacesP,2);
 			}	 
@@ -1458,7 +1486,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				 if(SetConnection( ltpInterfacesP,2)==0)
 				 {	 
 					 [spoknViewControllerP startProgress];
-					 [vmsviewP setcomposeStatus:1 ];
+				//	 [vmsviewP setcomposeStatus:1 ];
 				 }	 
 			 }	 
 			 break;

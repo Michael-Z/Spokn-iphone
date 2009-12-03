@@ -49,4 +49,7 @@ typedef struct ImageNameType
 -(void)startProgress;
 -(void)showForwardScreen;
 -(void)cancelProgress;
+-(void) cancelPressed ;
+-(void) LoginPressed ;
+-(void) LogoutPressed;
 @end
