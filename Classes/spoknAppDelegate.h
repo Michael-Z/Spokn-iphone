@@ -56,7 +56,7 @@
 #ifdef _TEST_MEMORY_
 	UINavigationController *testNavigationController;
 	testingview *testP;
-
+	
 #endif
 	
 	NSTimer *ringTimer;
@@ -100,7 +100,7 @@
 -(void)RejectCall:(IncommingCallType *)inComP;
 -(void)LoadContactView:(id)object;
 -(void)SendDTMF:(char *)dtmfVapP;
--(void)logOut;
+
 -(void)updateSpoknView:(id)object;
 /*
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -152,6 +152,6 @@ changed:(BOOL)changed;
 -(void)cancelLoginView;
 -(void) playonlineTone;
 -(void) playcallendTone;
-
+-(void)logOut:(Boolean) clearAllB;
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
