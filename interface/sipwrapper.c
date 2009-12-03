@@ -696,6 +696,7 @@ static void on_reg_state(pjsua_acc_id acc_id)
 		strcpy(errorstring, "Error in pjsua_init()");
 		return 0;
 	}
+#ifdef _SPEEX_CODEC_
 
 	//speex code
 	/* Set codec priority 
@@ -703,12 +704,12 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	 Use only "speex/8000" or "speex/16000". Set zero priority for others.
 	 
 	 */
-	/*
+	
 	pjsua_codec_set_priority(pj_cstr(&tmp, "speex/8000"), PJMEDIA_CODEC_PRIO_HIGHEST);
 	
 	pjsua_codec_set_priority(pj_cstr(&tmp, "speex/16000"), PJMEDIA_CODEC_PRIO_NEXT_HIGHER);
 	
-	pjsua_codec_set_priority(pj_cstr(&tmp, "speex/32000"), 0);s
+	pjsua_codec_set_priority(pj_cstr(&tmp, "speex/32000"), 0);
 	
 	pjsua_codec_set_priority(pj_cstr(&tmp, "pcmu"), 0);
 	
@@ -717,7 +718,9 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	pjsua_codec_set_priority(pj_cstr(&tmp, "ilbc"), 0);
 	
 	pjsua_codec_set_priority(pj_cstr(&tmp, "gsm"), 0);
-	*/
+	
+#endif	
+	
     /* Add UDP transport. */
 
 	pjsua_transport_config_default(&transcfg);

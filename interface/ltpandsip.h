@@ -9,4 +9,5 @@
 #ifndef _LTP_AND_SIP_H_
 	#define _LTP_AND_SIP_H_
 	//#define _LTP_
+#define _SPEEX_CODEC_
 #endif

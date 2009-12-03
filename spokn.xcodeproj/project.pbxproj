@@ -21,6 +21,7 @@
 		8B16790D108F36A3004D18C0 /* testingview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B16790A108F36A3004D18C0 /* testingview.xib */; };
 		8B16790E108F36A3004D18C0 /* testingview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B16790B108F36A3004D18C0 /* testingview.m */; };
 		8B1B8FDD107E0D3F00C77E3F /* spoknlog.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1B8FDC107E0D3F00C77E3F /* spoknlog.png */; };
+		8B2000FE10C79BC000CA2DF6 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2000FD10C79BC000CA2DF6 /* libspeex-arm-apple-darwin9.a */; };
 		8B20AB9410A86D48009E546A /* Call-log-Icons-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9110A86D48009E546A /* Call-log-Icons-incoming.png */; };
 		8B20AB9510A86D48009E546A /* Call-log-Icons-missed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9210A86D48009E546A /* Call-log-Icons-missed.png */; };
 		8B20AB9610A86D48009E546A /* Call-log-Icons-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9310A86D48009E546A /* Call-log-Icons-outgoing.png */; };
@@ -220,6 +221,7 @@
 		8B16790B108F36A3004D18C0 /* testingview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testingview.m; sourceTree = "<group>"; };
 		8B16790C108F36A3004D18C0 /* testingview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testingview.h; sourceTree = "<group>"; };
 		8B1B8FDC107E0D3F00C77E3F /* spoknlog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spoknlog.png; sourceTree = "<group>"; };
+		8B2000FD10C79BC000CA2DF6 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B20AB9110A86D48009E546A /* Call-log-Icons-incoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-incoming.png"; sourceTree = "<group>"; };
 		8B20AB9210A86D48009E546A /* Call-log-Icons-missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-missed.png"; sourceTree = "<group>"; };
 		8B20AB9310A86D48009E546A /* Call-log-Icons-outgoing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-outgoing.png"; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 				8B6609CE10A81B75000F8DAE /* libresample-arm-apple-darwin9.a in Frameworks */,
 				8B6609CF10A81B75000F8DAE /* libmilenage-arm-apple-darwin9.a in Frameworks */,
 				8B6609D010A81B75000F8DAE /* libgsmcodec-arm-apple-darwin9.a in Frameworks */,
+				8B2000FE10C79BC000CA2DF6 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,6 +675,7 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
+				8B2000FD10C79BC000CA2DF6 /* libspeex-arm-apple-darwin9.a */,
 				8B6609B510A81B74000F8DAE /* libpj-arm-apple-darwin9.a */,
 				8B6609B610A81B74000F8DAE /* libpjlib-util-arm-apple-darwin9.a */,
 				8B6609B710A81B74000F8DAE /* libpjsdp-arm-apple-darwin9.a */,
