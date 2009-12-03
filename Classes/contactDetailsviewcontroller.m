@@ -465,7 +465,7 @@
 		//printf("\n udate contact");
 		if(viewEnum==CONTACTADDVIEWENUM)
 		{	
-			if(  strlen(addressDataP->title)&&(  strlen(addressDataP->mobile) ||  strlen(addressDataP->business)|| strlen(addressDataP->home)||  strlen(addressDataP->email) ) )
+			if(  strlen(addressDataP->title)&&(  strlen(addressDataP->mobile) ||  strlen(addressDataP->business)|| strlen(addressDataP->home)||  strlen(addressDataP->email)||  strlen(addressDataP->other) ||  strlen(addressDataP->spoknid)) )
 				
 				
 				{		//printf("\n add contact");									 
@@ -510,7 +510,9 @@
 	}
 	if(popupB)
 	{	
-		if(viewEnum!=CONTACTADDVIEWENUM || modelViewB!=true)
+
+		
+		if(viewEnum!=CONTACTADDVIEWENUM || modelViewB==true)
 		{	
 			[ [self navigationController] popToRootViewControllerAnimated:YES ];
 		}	

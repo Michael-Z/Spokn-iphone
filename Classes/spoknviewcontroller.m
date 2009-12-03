@@ -9,12 +9,12 @@
 #import "spoknviewcontroller.h"
 #import "spoknAppDelegate.h"
 #import "LtpInterface.h"
-#define ALPHA @"123"
+#define ALPHANUM @"123"
 #import  "AddeditcellController.h"
 #import "WebViewController.h"
 #include "ua.h"
 #define SPOKNCOLOR [UIColor colorWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0]
-
+#define ROW_HEIGHT 42
 
 
 @implementation SpoknViewController
@@ -27,6 +27,7 @@
 	self->imageName[1][0].imageNameP = @"AS-callforward";
 	self->imageName[1][1].imageNameP = @"AS-forward-to";
 	self->imageName[2][0].imageNameP = @"AS-spokn";
+	self->imageName[2][1].imageNameP = @"AS-spokn";
 	//self.imageName[1][1].imageNameP = @"";
 	listOfItems = [[NSMutableArray alloc] init] ;
 	for (int i = 0; i < 3; i++)
@@ -42,7 +43,7 @@
 		if ([word length] == 0) continue;
 		
 		// determine which letter starts the name
-		NSRange range = [ALPHA rangeOfString:[[word substringToIndex:1] uppercaseString]];
+		NSRange range = [ALPHANUM rangeOfString:[[word substringToIndex:1] uppercaseString]];
 		
 		// Add the name to the proper array
 		[[listOfItems objectAtIndex:range.location] addObject:[word substringFromIndex:1]];
@@ -106,8 +107,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-		CGRect statusFrame = CGRectMake(120, 0, 170, 45);
-		CGRect LabelFrame2 = CGRectMake(160, 0, 117, 45);
+		CGRect statusFrame = CGRectMake(120, 0, 170, ROW_HEIGHT-5);
+		CGRect LabelFrame2 = CGRectMake(160, 0, 117, ROW_HEIGHT-5);
 		[self.tabBarItem initWithTitle:@"My Spokn" image:[UIImage imageNamed:@"TB-Spokn.png"] tag:5];
 		labelBalance = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelBalance.textAlignment = UITextAlignmentRight;
@@ -122,6 +123,10 @@
 		labelSpoknNo = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelSpoknNo.textAlignment = UITextAlignmentRight;
 		labelSpoknNo.tag = 5;
+		labelSpoknID = [[UILabel alloc] initWithFrame:LabelFrame2];
+		labelSpoknID.textAlignment = UITextAlignmentRight;
+		labelSpoknID.tag = 6;
+		
 		switchView = [[UISwitch alloc] initWithFrame: CGRectMake(210.0f, 10, 20.0f, 28.0f)]; 
 		[switchView setTag:3]; 
 		[switchView addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
@@ -199,6 +204,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	statusInt = 0;
 	tableView.scrollsToTop = YES;
 	tableView.delegate = self;
 	tableView.dataSource = self;
@@ -209,10 +215,10 @@
 	[self startProgress];
 	
 	//[buttonCtlP setBackgroundColor:[UIColor greenColor]];
-	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn Number";
+	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn Number""\n"@"3Spokn ID";
 	NSArray *wordArray = [wordstring componentsSeparatedByString:@"\n"] ;
 	// [self->tableView initWithStyle :UITableViewStyleGrouped];
-	self->tableView.rowHeight = 50.0f;
+	self->tableView.rowHeight = ROW_HEIGHT;
 	//self->tableView.backgroundColor = [UIColor whiteColor];
 	
 	UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 74.0f)];
@@ -225,7 +231,7 @@
 	[self createSectionList:wordArray];
 	//[wordArray release];
 	
-	
+		buttonCtlP.enabled = NO;
 	
 	
 	
@@ -291,6 +297,14 @@
 
 - (void)dealloc {
 	//printf("\n controller release called");
+	
+	[labelBalance release];
+	[labelStatus release];
+	[labelForword release];
+	[labelSpoknNo release];
+	[labelSpoknID release];
+	[switchView release];
+	
 	[buttonCtlP release];
 	[listOfItems release];
 	//[label release];
@@ -347,10 +361,10 @@ titleForHeaderInSection:(NSInteger)section
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 50;
+	return ROW_HEIGHT;
 	
 }
--(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward
+-(void)setDetails:(char *)titleCharP :(int )lstatusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward spoknID:(char*)spoknLoginId
 {
 	balance = balance/100;
 	char s1[20];
@@ -390,7 +404,22 @@ titleForHeaderInSection:(NSInteger)section
 			[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
 	}
 	*/
-	switch(statusInt)
+	if(statusInt!=lstatusInt)
+	{
+		statusInt = lstatusInt;
+		if(statusInt)
+		{
+			buttonCtlP.enabled = YES;
+		}
+		else
+		{
+			buttonCtlP.enabled = NO;
+		}
+		[self->tableView reloadData];
+		
+	}
+	
+	switch(lstatusInt)
 	{
 		case 0:
 			self.navigationItem.titleView = 0;
@@ -462,6 +491,12 @@ titleForHeaderInSection:(NSInteger)section
 		[labelSpoknNo setText:stringStrP];
 		[stringStrP release];
 	}
+	if(spoknLoginId)
+	{	
+		stringStrP = [[NSString alloc] initWithUTF8String:spoknLoginId ];
+		[labelSpoknID setText:stringStrP];
+		[stringStrP release];
+	}
 	
 	
 }
@@ -474,6 +509,9 @@ titleForHeaderInSection:(NSInteger)section
 	static NSString *CellIdentifier = @"Cell";
     UILabel *label1;
 	UILabel *label2;
+	printf("\nmystatus %d",statusInt);
+	NSArray *mycell = [[[listOfItems objectAtIndex:section] objectAtIndex:row] componentsSeparatedByString:@"\n"];
+	NSString *temp =[mycell objectAtIndex:0];
 	
     UITableViewCell *cell = [ltableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -481,13 +519,11 @@ titleForHeaderInSection:(NSInteger)section
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     
     
-		NSArray *mycell = [[[listOfItems objectAtIndex:section] objectAtIndex:row] componentsSeparatedByString:@"\n"];
 		[uiImageViewP = [UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self->imageName[section][row].imageNameP ofType:@"png" inDirectory:@"/"]]];
 		
 		uiImageViewP.frame = CGRectMake(4, 8, 25, 25);
 		[cell.contentView addSubview:uiImageViewP];
 		//cell.text = [mycell objectAtIndex:0];
-		NSString *temp =[mycell objectAtIndex:0];
 		//cell.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spoknlog" ofType:@"png" inDirectory:@"/"]];
 		CGRect LabelFrame1 = CGRectMake(32, 0, 150, 40);
 		label1 = [[UILabel alloc] initWithFrame:LabelFrame1];
@@ -514,13 +550,29 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			
 			label2 = labelBalance ;
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			if(statusInt)
+			{	
+				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			}
+			else
+			{
+				cell.accessoryType = UITableViewCellAccessoryNone;
+				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+			}
 		}
 		else if([temp isEqualToString:@"Forwarding to"])
 		{
 			
 			label2 = labelForword ;
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			if(statusInt)
+			{	
+				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			}
+			else
+			{
+				cell.accessoryType = UITableViewCellAccessoryNone;
+				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+			}
 			//[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		}
 		else if([temp isEqualToString:@"Spokn Number"])
@@ -529,24 +581,104 @@ titleForHeaderInSection:(NSInteger)section
 			label2 = labelSpoknNo ;
 			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		}
-		
+		else if([temp isEqualToString:@"Spokn ID"])
+		{
+			
+			label2 = labelSpoknID ;
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		}
 				
 	
 		if([temp isEqualToString:@"Call Forwarding"])
 		{
 			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 			[cell addSubview:switchView]; 
-			[switchView release];
+			if(statusInt)
+			{	
+				switchView.enabled = YES;
+			}
+			else
+			{
+				switchView.enabled = NO;
+			}
+			//[switchView release];
 		}
 		else
 		{
 			label2.textColor = SPOKNCOLOR;
 			[cell.contentView addSubview:label2];
-			[label2 release];
+			//[label2 release];
 		}
 	}	
 	else
 	{
+		if([temp isEqualToString:@"Status"])
+		{
+			
+			//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			//label2 = labelStatus ;
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+			
+		}
+		else if([temp isEqualToString:@"Account Balance"])
+		{
+			
+			//label2 = labelBalance ;
+			if(statusInt)
+			{	
+				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			}
+			else
+			{
+				cell.accessoryType = UITableViewCellAccessoryNone;
+				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+			}
+		}
+		else if([temp isEqualToString:@"Forwarding to"])
+		{
+			
+			//label2 = labelForword ;
+			if(statusInt)
+			{	
+				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			}
+			else
+			{
+				cell.accessoryType = UITableViewCellAccessoryNone;
+				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+			}
+			//[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		}
+		else if([temp isEqualToString:@"Spokn Number"])
+		{
+			
+			//label2 = labelSpoknNo ;
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		}
+		else if([temp isEqualToString:@"Spokn ID"])
+		{
+			
+			//label2 = labelSpoknID ;
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		}
+		
+		
+		if([temp isEqualToString:@"Call Forwarding"])
+		{
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+			//[cell addSubview:switchView]; 
+			if(statusInt)
+			{	
+				switchView.enabled = YES;
+			}
+			else
+			{
+				switchView.enabled = NO;
+			}
+			//[switchView release];
+		}
+		
+		
 		//printf("\n error ");
 	}
 	
@@ -574,7 +706,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 - (void)tableView:(UITableView *)ltableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	int row = [indexPath row];
 	int section = [indexPath section];
-	if(section==0 && row==1 )
+	if(section==0 && row==1 && statusInt)
 	{	
 		WebViewController     *WebViewControllerviewP;	
 		WebViewControllerviewP = [WebViewController alloc];
@@ -583,7 +715,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		[WebViewControllerviewP release];	
 	
 	}
-	if(section==1 && row==1)
+	if(section==1 && row==1 && statusInt)
 	{
 		[self showForwardScreen];
 	}
