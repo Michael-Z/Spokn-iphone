@@ -510,7 +510,7 @@
 	}
 	if(popupB)
 	{	
-		if(viewEnum!=CONTACTADDVIEWENUM && modelViewB!=true)
+		if(viewEnum!=CONTACTADDVIEWENUM || modelViewB!=true)
 		{	
 			[ [self navigationController] popToRootViewControllerAnimated:YES ];
 		}	

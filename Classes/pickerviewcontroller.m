@@ -725,7 +725,7 @@
 		if( [string compare:@" "] == 0 ) {
 			if( [textField.text length] <= 1 ) return NO;
 			
-			[self update_txtDestNo:@""];
+			//[self update_txtDestNo:@" "];
 			
 			return NO;
 		}
@@ -784,6 +784,17 @@
 {
 	if(modalB==false)
 	{
+		
+
+			NSString *temp = [txtDestNo.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			
+			if( ![temp isEqualToString:@""] )
+			{
+				[self update_txtDestNo:@""];
+			}
+
+			//[theTextField resignFirstResponder];
+	
 		[txtDestNo resignFirstResponder];
 		[self->upDateProtocolP keyBoardOnOrOff:NO :nil] ;
 		NSString *tmpStringP;
