@@ -141,7 +141,7 @@
 	}	
 	else
 	{
-		self->tableView.scrollEnabled = YES;
+		self->tableView.scrollEnabled = NO;
 		
 		[ovController.view removeFromSuperview];
 		[ovController release];
