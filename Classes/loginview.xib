@@ -36,16 +36,16 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUILabel" id="285987492">
+					<object class="IBUILabel" id="942240616">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{16, 265}, {125, 26}}</string>
+						<string key="NSFrame">{{16, 64}, {273, 26}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUITag">9</int>
+						<int key="IBUITag">1</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">New to Spokn?</string>
+						<string key="IBUIText">Sign-in with your Spokn ID and password</string>
 						<object class="NSFont" key="IBUIFont" id="617812573">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">1.700000e+01</double>
@@ -59,57 +59,6 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">1.000000e+01</float>
 					</object>
-					<object class="IBUILabel" id="942240616">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{16, 64}, {273, 26}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUITag">1</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Sign-in with your Spokn ID and password</string>
-						<reference key="IBUIFont" ref="617812573"/>
-						<reference key="IBUITextColor" ref="62945063"/>
-						<nil key="IBUIHighlightedColor"/>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">1.000000e+01</float>
-					</object>
-					<object class="IBUIButton" id="110164904">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{55, 301}, {209, 37}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<object class="NSColor" key="IBUIBackgroundColor" id="1038176338">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAxIDEAA</bytes>
-						</object>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUITag">10</int>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<object class="NSFont" key="IBUIFont" id="173334997">
-							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">1.500000e+01</double>
-							<int key="NSfFlags">16</int>
-						</object>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Create an account</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="702097448">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-						</object>
-						<reference key="IBUINormalTitleColor" ref="1038176338"/>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="188562671">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MC41AA</bytes>
-						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="168536390">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">login.png</string>
-						</object>
-					</object>
 					<object class="IBUIButton" id="907385918">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
@@ -121,14 +70,24 @@
 						<bool key="IBUIEnabled">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="173334997"/>
+						<object class="NSFont" key="IBUIFont" id="173334997">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">1.500000e+01</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<int key="IBUIButtonType">1</int>
-						<reference key="IBUIHighlightedTitleColor" ref="702097448"/>
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="702097448">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+						</object>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="188562671"/>
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="188562671">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC41AA</bytes>
+						</object>
 					</object>
 					<object class="IBUIButton" id="929182982">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -239,7 +198,10 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{222, 207}, {80, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="IBUIBackgroundColor" ref="1038176338"/>
+						<object class="NSColor" key="IBUIBackgroundColor" id="1038176338">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MSAxIDEAA</bytes>
+						</object>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUITag">8</int>
@@ -251,12 +213,15 @@
 						<reference key="IBUIHighlightedTitleColor" ref="702097448"/>
 						<reference key="IBUINormalTitleColor" ref="1038176338"/>
 						<reference key="IBUINormalTitleShadowColor" ref="188562671"/>
-						<reference key="IBUINormalBackgroundImage" ref="168536390"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">login.png</string>
+						</object>
 					</object>
 					<object class="IBUILabel" id="598620460">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{72, 407}, {156, 21}}</string>
+						<string key="NSFrame">{{72, 399}, {156, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -267,53 +232,6 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">1.000000e+01</float>
 						<int key="IBUITextAlignment">1</int>
-					</object>
-					<object class="IBUIButton" id="536325524">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{55, 349}, {210, 37}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="173334997"/>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Forgot Password</string>
-						<reference key="IBUIHighlightedTitleColor" ref="702097448"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">6</int>
-							<string key="NSCatalogName">System</string>
-							<string key="NSColorName">controlBackgroundColor</string>
-							<object class="NSColor" key="NSColor">
-								<int key="NSColorSpace">3</int>
-								<bytes key="NSWhite">MC42NjY2NjY2OQA</bytes>
-							</object>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="188562671"/>
-						<reference key="IBUINormalBackgroundImage" ref="168536390"/>
-					</object>
-					<object class="IBUIButton" id="617651007">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{16, 207}, {80, 37}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="173334997"/>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Cancel</string>
-						<reference key="IBUIHighlightedTitleColor" ref="702097448"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">6</int>
-							<string key="NSCatalogName">System</string>
-							<string key="NSColorName">highlightColor</string>
-							<reference key="NSColor" ref="702097448"/>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="188562671"/>
-						<reference key="IBUINormalBackgroundImage" ref="168536390"/>
 					</object>
 					<object class="IBUIButton" id="1026947736">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -399,33 +317,6 @@
 					<int key="connectionID">103</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">openUrl:</string>
-						<reference key="source" ref="110164904"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">104</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">forgotPassword:</string>
-						<reference key="source" ref="536325524"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">107</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">cancelPressed:</string>
-						<reference key="source" ref="617651007"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">109</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">spoknButtonP</string>
 						<reference key="source" ref="372490531"/>
@@ -458,12 +349,8 @@
 							<reference ref="466951694"/>
 							<reference ref="51511123"/>
 							<reference ref="598620460"/>
-							<reference ref="617651007"/>
 							<reference ref="1026947736"/>
 							<reference ref="907385918"/>
-							<reference ref="285987492"/>
-							<reference ref="536325524"/>
-							<reference ref="110164904"/>
 						</object>
 						<reference key="parent" ref="317526666"/>
 					</object>
@@ -529,28 +416,8 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">108</int>
-						<reference key="object" ref="617651007"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">113</int>
 						<reference key="object" ref="1026947736"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">91</int>
-						<reference key="object" ref="285987492"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">106</int>
-						<reference key="object" ref="536325524"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">93</int>
-						<reference key="object" ref="110164904"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
@@ -565,13 +432,9 @@
 					<string>1.IBPluginDependency</string>
 					<string>100.IBPluginDependency</string>
 					<string>105.IBPluginDependency</string>
-					<string>106.IBPluginDependency</string>
-					<string>108.IBPluginDependency</string>
 					<string>113.IBPluginDependency</string>
 					<string>56.IBPluginDependency</string>
-					<string>91.IBPluginDependency</string>
 					<string>92.IBPluginDependency</string>
-					<string>93.IBPluginDependency</string>
 					<string>94.IBPluginDependency</string>
 					<string>95.IBPluginDependency</string>
 					<string>96.IBPluginDependency</string>
@@ -584,10 +447,6 @@
 					<string>LoginViewController</string>
 					<string>UIResponder</string>
 					<string>{{140, 290}, {320, 480}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
