@@ -491,11 +491,19 @@ titleForHeaderInSection:(NSInteger)section
 		[labelSpoknNo setText:stringStrP];
 		[stringStrP release];
 	}
+	else
+	{
+		[labelSpoknNo setText:@""];
+	}
 	if(spoknLoginId)
 	{	
 		stringStrP = [[NSString alloc] initWithUTF8String:spoknLoginId ];
 		[labelSpoknID setText:stringStrP];
 		[stringStrP release];
+	}
+	else
+	{
+		[labelSpoknID setText:@""];
 	}
 	
 	

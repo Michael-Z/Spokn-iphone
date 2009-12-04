@@ -544,7 +544,7 @@
 				unameP = 0;
 			}
 		}	
-		
+		//printf("\nstatus %s",unameP);
 		
 		
 	}
