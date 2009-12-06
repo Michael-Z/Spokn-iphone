@@ -247,6 +247,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -284,8 +286,8 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>8B964AB810CBE4E800CB00DB</string>
-								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
+								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
@@ -294,11 +296,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>0</integer>
+									<integer>41</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1148}, {302, 654}}</string>
+							<string>{{0, 162}, {302, 654}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -328,14 +330,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>spoknapptest.m</string>
+								<string>spokn-Infotesting.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -343,11 +343,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>spoknapptest.m</string>
+										<string>spokn-Infotesting.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8BC645C210CBF7BB0076436F</string>
+										<string>8B7916A610CBF90300EE25AB</string>
 										<key>history</key>
 										<array>
 											<string>8B84B79A101480B800836F86</string>
@@ -721,7 +721,6 @@
 											<string>8BCF50F910C4F144004BD8C3</string>
 											<string>8BCF50FB10C4F144004BD8C3</string>
 											<string>8BCF50FE10C4F144004BD8C3</string>
-											<string>8BCF523F10C50F91004BD8C3</string>
 											<string>8BCF524010C50F91004BD8C3</string>
 											<string>8BCF54F910C52C32004BD8C3</string>
 											<string>8BCF54FC10C52C32004BD8C3</string>
@@ -745,7 +744,6 @@
 											<string>8BDBE15710C7E207001CE16C</string>
 											<string>8BDBE16910C7E67A001CE16C</string>
 											<string>8B3BF34D10C7F2510095524C</string>
-											<string>8B6A4A4110C80A5E0086AC6F</string>
 											<string>8BCE49FA10C81A7800F71B7C</string>
 											<string>8BCE49FC10C81A7800F71B7C</string>
 											<string>8BCE49FD10C81A7800F71B7C</string>
@@ -772,7 +770,11 @@
 											<string>8B964BA710CBEEFD00CB00DB</string>
 											<string>8B964BA810CBEEFD00CB00DB</string>
 											<string>8B964C2B10CBF3FE00CB00DB</string>
-											<string>8B964C4510CBF6E900CB00DB</string>
+											<string>8B79169C10CBF90300EE25AB</string>
+											<string>8B79169D10CBF90300EE25AB</string>
+											<string>8B79169E10CBF90300EE25AB</string>
+											<string>8B79169F10CBF90300EE25AB</string>
+											<string>8B7916A010CBF90300EE25AB</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -854,6 +856,11 @@
 											<string>8B964ABE10CBE51C00CB00DB</string>
 											<string>8B964BAB10CBEEFD00CB00DB</string>
 											<string>8B964BAC10CBEEFD00CB00DB</string>
+											<string>8B7916A110CBF90300EE25AB</string>
+											<string>8B7916A210CBF90300EE25AB</string>
+											<string>8B7916A310CBF90300EE25AB</string>
+											<string>8B7916A410CBF90300EE25AB</string>
+											<string>8B7916A510CBF90300EE25AB</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -911,9 +918,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8BC645C010CBF7BA0076436F</string>
+				<string>8B7916A710CBF90300EE25AB</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8BC645C110CBF7BA0076436F</string>
+				<string>8B7916A810CBF90300EE25AB</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -1052,7 +1059,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>281802663.809214</real>
+	<real>281803011.05011201</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -1067,6 +1074,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>8B93025A1011EBB8004BDA41</string>
 		<string>/Users/mukesh/mygit/iphone/spokn.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -1091,7 +1099,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>spoknapptest.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -1151,7 +1159,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8B93025A1011EBB8004BDA41</string>
-				<string>8B964AC710CBE5EE00CB00DB</string>
+				<string>8B79169B10CBF8FE00EE25AB</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

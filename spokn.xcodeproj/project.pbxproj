@@ -563,7 +563,7 @@
 		8B9302E21011EFC6004BDA41 /* UNPROTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UNPROTO.h; path = ../lib/gsm/UNPROTO.h; sourceTree = SOURCE_ROOT; };
 		8B9303A51011F11B004BDA41 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		8B964A9910CBE3BC00CB00DB /* spokn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spokn.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B964A9B10CBE3BC00CB00DB /* spokn-Info copy 2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "spokn-Info copy 2.plist"; sourceTree = "<group>"; };
+		8B964A9B10CBE3BC00CB00DB /* spokn-Infotesting.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "spokn-Infotesting.plist"; sourceTree = "<group>"; };
 		8B964AA510CBE3FA00CB00DB /* spoknTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = spoknTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B964AA610CBE3FA00CB00DB /* spoknTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "spoknTest-Info.plist"; sourceTree = "<group>"; };
 		8B964AB510CBE4E000CB00DB /* spoknapptest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknapptest.h; sourceTree = "<group>"; };
@@ -901,7 +901,7 @@
 				8B6739E2101209E900849952 /* spokn-Info.plist */,
 				8B93027E1011EDFA004BDA41 /* spokn.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8B964A9B10CBE3BC00CB00DB /* spokn-Info copy 2.plist */,
+				8B964A9B10CBE3BC00CB00DB /* spokn-Infotesting.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1777,7 +1777,7 @@
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
 				GCC_VERSION = 4.2;
 				GENERATE_PROFILING_CODE = YES;
-				INFOPLIST_FILE = "/Users/mukesh/mygit/iphone/spokn-Info copy 2.plist";
+				INFOPLIST_FILE = "spokn-Infotesting.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/../speexlib/build\\\"",
@@ -1817,7 +1817,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
 				GCC_VERSION = 4.2;
-				INFOPLIST_FILE = "/Users/mukesh/mygit/iphone/spokn-Info copy 2.plist";
+				INFOPLIST_FILE = "spokn-Infotesting.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/../speexlib/build\\\"",
@@ -1858,7 +1858,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
 				GCC_VERSION = 4.2;
-				INFOPLIST_FILE = "/Users/mukesh/mygit/iphone/spokn-Info copy 2.plist";
+				INFOPLIST_FILE = "spokn-Infotesting.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/../speexlib/build\\\"",
@@ -1899,7 +1899,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
 				GCC_VERSION = 4.2;
-				INFOPLIST_FILE = "/Users/mukesh/mygit/iphone/spokn-Info copy 2.plist";
+				INFOPLIST_FILE = "spokn-Infotesting.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\\\"$(SRCROOT)/../speexlib/build\\\"",
