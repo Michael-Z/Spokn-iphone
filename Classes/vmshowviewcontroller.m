@@ -632,15 +632,20 @@
 		//secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
 		}	
 	}
-	if(secLocP==0)
-	{
-		[CellIdentifier release];
-		return cell;
-	}	
+		
 	if(sectionArray[section].dataforSection[row].customViewP==0)
 	{	
-		cell.spoknSubCellP.userData = secLocP;
-		cell.spoknSubCellP.dataArrayP = secLocP->elementP;
+		if(secLocP)
+		{	
+			cell.spoknSubCellP.userData = secLocP;
+			cell.spoknSubCellP.dataArrayP = secLocP->elementP;
+		}
+		else
+		{
+			cell.spoknSubCellP.userData = 0;
+			cell.spoknSubCellP.dataArrayP = 0;
+
+		}
 		cell.spoknSubCellP.ownerDrawB = true;
 		cell.spoknSubCellP.rowHeight = 50;
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

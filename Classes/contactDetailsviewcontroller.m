@@ -927,9 +927,18 @@
 		[self addRow:section :row sectionObject:&secLocP];
 		//secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
 	}
-	if(secLocP==0) return nil;
-	cell.spoknSubCellP.userData = secLocP;
-	cell.spoknSubCellP.dataArrayP = secLocP->elementP;
+	if(secLocP)
+	{	
+		cell.spoknSubCellP.userData = secLocP;
+		cell.spoknSubCellP.dataArrayP = secLocP->elementP;
+	}
+	else
+	{
+		cell.spoknSubCellP.userData = 0;
+		cell.spoknSubCellP.dataArrayP = 0;
+		
+	}
+	
 	cell.spoknSubCellP.ownerDrawB = true;
 	cell.spoknSubCellP.rowHeight = 50;
 	[cell.spoknSubCellP setNeedsDisplay];

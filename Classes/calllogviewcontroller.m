@@ -162,9 +162,19 @@
 		[self addRow:[ indexPath indexAtPosition: 1 ] sectionObject:&secLocP];
 		//secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
 	}
-	if(secLocP==0) return nil;
-	cell.spoknSubCellP.userData = secLocP;
-	cell.spoknSubCellP.dataArrayP = secLocP->elementP;
+	if(secLocP)
+	{	
+		cell.spoknSubCellP.userData = secLocP;
+		cell.spoknSubCellP.dataArrayP = secLocP->elementP;
+	}
+	else
+	{
+		
+		cell.spoknSubCellP.userData = 0;
+		cell.spoknSubCellP.dataArrayP = 0;
+		
+	}
+	
 	cell.spoknSubCellP.ownerDrawB = true;
 	cell.spoknSubCellP.rowHeight = 50;
 	[cell.spoknSubCellP setNeedsDisplay];
@@ -450,6 +460,16 @@
 		//[CellIdentifier release];
 				
 	}
+	
+	else
+	{
+		if(sectionPP)
+			*sectionPP = 0;
+		//printf("\n no data for display");
+	}
+	
+		
+	
 	if(addressBookNameP)
 	free(addressBookNameP);
 	if(addressBookTypeP)

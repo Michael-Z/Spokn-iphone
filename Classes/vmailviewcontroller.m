@@ -248,7 +248,7 @@
 	NSString *stringStrP;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	
-	//////printf("\n index = %d\n",index);
+	//printf("\n index = %d\n",index);
 	
 	objP = GetObjectAtIndex(showFailInt ,index);
 	if(objP)
@@ -511,10 +511,17 @@
 			
 			
 		}
-		
+				
 		//[CellIdentifier release];
 		
 	}
+	else
+	{
+		if(sectionPP)
+		*sectionPP = 0;
+		//printf("\n no data for display");
+	}
+	
 	//return nil;
 }
 /*
@@ -567,6 +574,7 @@
 			cell =  [[ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
 			//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
 			[cell resizeFrame];
+			//printf("\n new ");
 			[self addRow:[ indexPath indexAtPosition: 1 ] sectionObject:&secLocP];
 			
 		}	
@@ -574,14 +582,24 @@
 	else
 	{	
 		secLocP = cell.spoknSubCellP.userData;
+		cell.spoknSubCellP.userData = nil;
 		[secLocP release];
-		
+		//printf("\n old ");
 		[self addRow:[ indexPath indexAtPosition: 1 ] sectionObject:&secLocP];
 		//secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
 	}
-	if(secLocP==0) return nil;
-	cell.spoknSubCellP.userData = secLocP;
-	cell.spoknSubCellP.dataArrayP = secLocP->elementP;
+	if(secLocP==0)
+	{
+		cell.spoknSubCellP.userData = 0;
+		cell.spoknSubCellP.dataArrayP = 0;
+
+	}
+	else
+	{
+		cell.spoknSubCellP.userData = secLocP;
+		cell.spoknSubCellP.dataArrayP = secLocP->elementP;
+
+	}
 	cell.spoknSubCellP.ownerDrawB = true;
 	cell.spoknSubCellP.rowHeight = 50;
 	[cell.spoknSubCellP setNeedsDisplay];
@@ -877,7 +895,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	if(viewPlayResult)
 	{
 		viewPlayResult = 0;
-		//printf("\n make changes");
+		printf("\n make changes");
 		[ self->tableView reloadData ];
 	}
 	if(openVmsCompose)
