@@ -473,7 +473,7 @@
 				stringStrP = [[NSString alloc] initWithUTF8String:secObjStrP ];
 				dispP.dataP = stringStrP;
 				[stringStrP release];
-				dispP.colorP = [[UIColor alloc] initWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0];
+				//dispP.colorP = [[UIColor alloc] initWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0];
 				dispP.fntSz = 14;
 				//[dispP.colorP release];
 				[secLocP->elementP addObject:dispP];

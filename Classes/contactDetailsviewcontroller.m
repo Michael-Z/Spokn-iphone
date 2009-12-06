@@ -109,7 +109,8 @@
 				}
 				else
 				{
-					dispP.colorP = [UIColor blackColor];
+					dispP.colorP = [[UIColor blackColor] autorelease];
+					
 				}
 				dispP.fntSz = 14;
 				dispP.boldB = YES;
@@ -709,10 +710,10 @@
 				[deleteButton setBackgroundImage:stretchImage forState:UIControlStateNormal];
 				
 				// Make the background color clear
-				deleteButton.backgroundColor = [UIColor clearColor];
+				deleteButton.backgroundColor =[[UIColor clearColor] autorelease];
 				
 				// Set the font properties
-				[deleteButton setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
+				[deleteButton setTitleShadowColor:[[UIColor blackColor] autorelease] forState:UIControlStateNormal];
 				deleteButton.font = [UIFont boldSystemFontOfSize:12];
 					
 				
@@ -741,7 +742,7 @@
 				msgLabelP.textAlignment = UITextAlignmentLeft;
 				msgLabelP.tag = 1;
 				msgLabelP.numberOfLines = 2;
-				msgLabelP.backgroundColor = [UIColor clearColor];
+				msgLabelP.backgroundColor = [[UIColor clearColor] autorelease];
 				//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 				
 				
@@ -806,7 +807,7 @@
 											   target: self
 											   action: @selector(cancelClicked) ] autorelease ];	*/
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	viewP.backgroundColor = [UIColor clearColor];
+	viewP.backgroundColor = [[UIColor clearColor] autorelease];
 	if(viewEnum==CONTACTADDVIEWENUM)
 	{
 		self.title = @"New Contact";
@@ -1521,11 +1522,11 @@ titleForHeaderInSection:(NSInteger)section
 				//setTitle:(NSString *)title forState:(UIControlState)state
 				if(noNameB)
 				{
-					[changeNameButtonP setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+					[changeNameButtonP setTitleColor:[[UIColor lightGrayColor] autorelease] forState:UIControlStateNormal];
 				}
 				else
 				{
-					[changeNameButtonP setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+					[changeNameButtonP setTitleColor:[[UIColor blackColor] autorelease] forState:UIControlStateNormal];
 					
 				}
 				[changeNameButtonP setTitle:userNameP.text forState:UIControlStateNormal];

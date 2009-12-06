@@ -76,7 +76,7 @@ imagePressed:(UIImage *)imagePressed
 	//retain for 2.2.1
 	[imagePressed retain];
 	   // in case the parent view draws with a custom color or gradient, use a transparent color
-	buttonObjectP.backgroundColor = [UIColor clearColor];
+	buttonObjectP.backgroundColor = [[UIColor clearColor] autorelease ];
 	
 	//return button;
 }

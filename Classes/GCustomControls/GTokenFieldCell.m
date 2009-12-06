@@ -37,13 +37,13 @@ static const NSInteger kDefaultLightSource = 125;
 		_number = nil;
 		_labelView = [[UILabel alloc] initWithFrame:CGRectZero];
 		_labelView.opaque = NO;
-		_labelView.backgroundColor = [UIColor clearColor];
-		_labelView.textColor = [UIColor blackColor];
-		_labelView.highlightedTextColor = [UIColor whiteColor];
+		_labelView.backgroundColor = [[UIColor clearColor] autorelease];
+		_labelView.textColor = [[UIColor blackColor] autorelease];
+		_labelView.highlightedTextColor = [[UIColor whiteColor] autorelease];
 		_labelView.lineBreakMode = UILineBreakModeTailTruncation;
 		[self addSubview:_labelView];
 		
-		self.backgroundColor = [UIColor clearColor];
+		self.backgroundColor = [[UIColor clearColor] autorelease];
 	}
 	return self;
 }

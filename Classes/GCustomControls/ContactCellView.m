@@ -61,14 +61,14 @@
 	UIColor *nameTextColor, *detailTextColor, *numberTextColor;
 	if( selected )
 	{
-		nameTextColor = [UIColor whiteColor];
-		detailTextColor = [UIColor whiteColor];
-		numberTextColor = [UIColor whiteColor];
+		nameTextColor = [[UIColor whiteColor] autorelease];
+		detailTextColor = [[UIColor whiteColor] autorelease];
+		numberTextColor = [[UIColor whiteColor] autorelease];
 	}else
 	{
-		nameTextColor = [UIColor blackColor];
-		detailTextColor = [UIColor grayColor];
-		numberTextColor = [UIColor grayColor];
+		nameTextColor = [[UIColor blackColor] autorelease];
+		detailTextColor = [[UIColor grayColor] autorelease];
+		numberTextColor = [[UIColor grayColor] autorelease];
 		
 	}
 	UIFont *nameFont = [UIFont boldSystemFontOfSize:NAME_FONT_SIZE];

@@ -158,7 +158,7 @@
         // Initialization code
 		
 		rectCell = frame;
-		self.backgroundColor = [UIColor whiteColor];
+		self.backgroundColor = [[UIColor whiteColor] autorelease];
 		self->editCellB = false;
 		////printf("\n init with frame");
 		//savedImage = [UIImage imageNamed:@"Status-saved.png"];	

@@ -94,7 +94,7 @@
 	{
 		SetOrReSetForwardNo(false,forwardNoCharP);
 		profileResync();
-		[labelForword setTextColor:[UIColor lightGrayColor]]; 	
+		[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
 
 	}
 	NSLog(@"togging  %s", sender.on ? "on" : "off");
@@ -481,7 +481,7 @@ titleForHeaderInSection:(NSInteger)section
 		else
 		{
 			switchView.on = NO;
-			[labelForword setTextColor:[UIColor lightGrayColor]]; 	
+			[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
 		}
 	}
 	

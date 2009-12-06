@@ -264,7 +264,7 @@
 				txtDestNo = [[GTokenField alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
 			}
 			txtDestNo.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
-			txtDestNo.backgroundColor = [UIColor whiteColor];
+			txtDestNo.backgroundColor = [[UIColor whiteColor] autorelease];
 			txtDestNo.delegate = self;
 			txtDestNo.autocorrectionType = UITextAutocorrectionTypeNo;
 			txtDestNo.autocapitalizationType = UITextAutocapitalizationTypeNone;	
@@ -286,16 +286,16 @@
 			MyLabel *toLabelScroll = [[MyLabel alloc] initWithFrame:CGRectMake(5, 0, 32, 38)];
 			toLabelScroll.userInteractionEnabled = NO;
 			toLabelScroll.text = @"To:";
-			toLabelScroll.backgroundColor = [UIColor clearColor];
-			toLabelScroll.textColor = [UIColor grayColor];
+			toLabelScroll.backgroundColor = [[UIColor clearColor] autorelease];
+			toLabelScroll.textColor = [[UIColor grayColor] autorelease];
 			toLabelScroll.upDateProtocolP = self;
 			[_composerScrollView addSubview:toLabelScroll];
 			
 			toLabelStart = [[MyLabel alloc] initWithFrame:CGRectMake(0, 0, 40, 42)];
 			toLabelStart.userInteractionEnabled = YES;
 			toLabelStart.text = @" To: ";
-			toLabelStart.backgroundColor = [UIColor whiteColor];
-			toLabelStart.textColor = [UIColor grayColor];
+			toLabelStart.backgroundColor = [[UIColor whiteColor] autorelease];
+			toLabelStart.textColor = [[UIColor grayColor] autorelease];
 			toLabelStart.upDateProtocolP = self;
 			toLabelStart.hidden = YES;
 			[self.view addSubview:toLabelStart];
@@ -303,8 +303,8 @@
 			toLabel = [[MyLabel alloc] initWithFrame:CGRectMake(40, 0, 286, 42)];
 			toLabel.userInteractionEnabled = YES;
 			toLabel.text = @" To: ";
-			toLabel.backgroundColor = [UIColor whiteColor];
-			toLabel.textColor = [UIColor blackColor];
+			toLabel.backgroundColor = [[UIColor whiteColor] autorelease];
+			toLabel.textColor = [[UIColor blackColor] autorelease];
 			toLabel.upDateProtocolP = self;
 			toLabel.hidden = YES;
 			[self.view addSubview:toLabel];

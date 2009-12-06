@@ -514,7 +514,7 @@ titleForHeaderInSection:(NSInteger)section
 	//Parameters x = origion on x-axis, y = origon on y-axis.
 	
 	(*ovControllerP).view.frame = frame;	
-	(*ovControllerP).view.backgroundColor = [UIColor grayColor];
+	(*ovControllerP).view.backgroundColor = [[UIColor grayColor] autorelease];
 	(*ovControllerP).view.alpha = 0.5;
 	
 	(*ovControllerP).rvController = controllerP;

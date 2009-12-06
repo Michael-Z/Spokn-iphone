@@ -131,7 +131,7 @@
 				ovController.view.frame = frame;	
 			}
 		//	//printf("%f %f %f %f",ovController.view.frame.origin.x,ovController.view.frame.origin.y,ovController.view.frame.size.width,ovController.view.frame.size.height);
-			ovController.view.backgroundColor = [UIColor clearColor];
+			ovController.view.backgroundColor = [[UIColor clearColor] autorelease ];
 			//ovController.view.alpha = 0.5;
 	
 			ovController.rvController = self;
@@ -465,16 +465,16 @@
 	sendButtonP.enabled  = NO;
 	previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
 	//previewButtonP.titleShadowOffset = CGSizeMake(0,-1);
-	[previewButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+	[previewButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease] forState:UIControlStateNormal];
 	[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
-	[previewButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+	[previewButtonP setTitleColor:[[UIColor grayColor] autorelease] forState:UIControlStateHighlighted];
 	[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 	sendButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
 	//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
 	//sendButtonP.titleShadowOffset = CGSizeMake(0,-1);
-	[sendButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+	[sendButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ] forState:UIControlStateNormal];
 	[sendButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
-	[sendButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+	[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ] forState:UIControlStateHighlighted];
 	[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 	
 	
@@ -518,16 +518,16 @@
 		sendButtonP.enabled  = NO;
 		previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
 		//previewButtonP.titleShadowOffset = CGSizeMake(0,-1);
-		[previewButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+		[previewButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ] forState:UIControlStateNormal];
 		[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
-		[previewButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+		[previewButtonP setTitleColor:[[UIColor GrayColor] autorelease ] forState:UIControlStateHighlighted];
 		[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 		sendButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
 		//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
 		//sendButtonP.titleShadowOffset = CGSizeMake(0,-1);
-		[sendButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+		[sendButtonP setTitleShadowColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateNormal];
 		[sendButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
-		[sendButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+		[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
 		[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 	}	
 	else
@@ -911,7 +911,7 @@ id createImage(float percentage)
 	CGContextClearRect(context, aRect);
 	
 	// Outer gray circle
-	CGContextSetFillColorWithColor(context, [[UIColor lightGrayColor] CGColor]);
+	CGContextSetFillColorWithColor(context, [[[UIColor lightGrayColor] autorelease ]  CGColor]);
 	CGContextFillEllipseInRect(context, aRect);
 	
 	// Inner circle with feedback levels
@@ -919,7 +919,7 @@ id createImage(float percentage)
 	CGContextFillEllipseInRect(context, CGRectInset(aRect, 4.0f, 4.0f));
 	
 	// Inner gray circle
-	CGContextSetFillColorWithColor(context, [[UIColor lightGrayColor] CGColor]);
+	CGContextSetFillColorWithColor(context, [[[UIColor lightGrayColor] autorelease ]  CGColor]);
 	CGContextFillEllipseInRect(context, CGRectInset(aRect, 16.0f, 16.0f));
 	
 	CGImageRef myRef = CGBitmapContextCreateImage (context);
@@ -959,7 +959,7 @@ id createImage(float percentage)
 		uiProgBarP.tag = 12;
 	#else
 		sliderP = [[UISlider alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 280.0f, 30.0f)];
-		sliderP.backgroundColor = [UIColor clearColor];
+		sliderP.backgroundColor = [[UIColor clearColor] autorelease ] ;
 		//activeImageP=[UIImage imageNamed:@"vms_out_Active.png"];
 		//dileverImageP=[UIImage imageNamed:@"vmail_out_newHigh.png"];
 		
@@ -1121,10 +1121,10 @@ id createImage(float percentage)
 			[deleteButton setBackgroundImage:stretchImage forState:UIControlStateNormal];
 		
 		// Make the background color clear
-			deleteButton.backgroundColor = [UIColor clearColor];
+			deleteButton.backgroundColor = [[UIColor clearColor] autorelease ] ;
 		
 		// Set the font properties
-			[deleteButton setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
+			[deleteButton setTitleShadowColor:[[UIColor blackColor] autorelease ]  forState:UIControlStateNormal];
 			deleteButton.font = [UIFont boldSystemFontOfSize:12];
 		
 		
@@ -1178,17 +1178,17 @@ id createImage(float percentage)
 			sendButtonP.enabled  = NO;
 			sendButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
 			//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
-			sendButtonP.titleShadowOffset = CGSizeMake(0,-1);
-			[sendButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+			//sendButtonP.titleShadowOffset = CGSizeMake(0,-1);
+			[sendButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ] forState:UIControlStateNormal];
 			[sendButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
-			[sendButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+			[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
 			[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 			previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
 			//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
-			previewButtonP.titleShadowOffset = CGSizeMake(0,-1);
-			[previewButtonP setTitleShadowColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+			//previewButtonP.titleShadowOffset = CGSizeMake(0,-1);
+			[previewButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ]  forState:UIControlStateNormal];
 			[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
-			[previewButtonP setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+			[previewButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
 			[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 			
 			[PlayButtonP setTitle:@"Record" forState:UIControlStateNormal];
@@ -1264,8 +1264,8 @@ id createImage(float percentage)
 		[self setTitle:@"VMS"];
 	}
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	firstSectionviewP.backgroundColor = [UIColor clearColor];
-	secondSectionviewP.backgroundColor = [UIColor clearColor];
+	firstSectionviewP.backgroundColor = [[UIColor clearColor] autorelease ] ;
+	secondSectionviewP.backgroundColor = [[UIColor clearColor] autorelease ] ;
 
 	tableView.delegate = self;
 	tableView.dataSource = self;

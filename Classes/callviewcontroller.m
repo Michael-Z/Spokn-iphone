@@ -51,8 +51,8 @@
 	[self.view setBackgroundColor:[[[UIColor alloc] 
 									 initWithPatternImage:[UIImage defaultDesktopImage]]
 									autorelease]];
-	[self->viewMenuP setBackgroundColor:[UIColor clearColor]];
-	[self->viewKeypadP setBackgroundColor:[UIColor clearColor]];
+	[self->viewMenuP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
+	[self->viewKeypadP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	callnoLabelP.numberOfLines = 2;
 	[callnoLabelP setText:labelStrP];
 	self->viewKeypadP.hidden = YES;

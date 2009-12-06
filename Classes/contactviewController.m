@@ -225,11 +225,11 @@
 	[searchbar resignFirstResponder];
 	CGFloat searchBarHeight = [searchbar frame].size.height;
 	[searchbar setFrame:CGRectMake(0,0,294,searchBarHeight)];
-	searchbar.backgroundColor = [UIColor clearColor];
+	searchbar.backgroundColor = [[UIColor clearColor] autorelease];
 	searchbar.tintColor = [UIColor colorWithRed:191/255.0 green:200/255.0 blue:206/255.0 alpha:1.0];
 	tempview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320,searchBarHeight )];
 	[tempview addSubview:searchbar];
-	tempview.backgroundColor = [UIColor clearColor];	
+	tempview.backgroundColor = [[UIColor clearColor] autorelease];	
 	tableView.tableHeaderView = tempview;
 	tableView.tableHeaderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"searchbarbackgroung.png"]];
 	[tempview release];
@@ -463,7 +463,7 @@
 	
 	#endif
 	ovController.view.frame = frame;	
-	ovController.view.backgroundColor = [UIColor grayColor];
+	ovController.view.backgroundColor = [[UIColor grayColor] autorelease];
 	ovController.view.alpha = 0.5;
 	
 	ovController.rvController = self;
@@ -571,11 +571,11 @@ titleForHeaderInSection:(NSInteger)section
 	
 	CGFloat searchBarHeight = [searchbar frame].size.height;
 	[searchbar setFrame:CGRectMake(0,0,294,searchBarHeight)];
-	searchbar.backgroundColor = [UIColor clearColor];
+	searchbar.backgroundColor = [[UIColor clearColor] autorelease];
 	searchbar.tintColor = [UIColor colorWithRed:191/255.0 green:200/255.0 blue:206/255.0 alpha:1.0];
 	tempview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320,searchBarHeight )];
 	[tempview addSubview:searchbar];
-	tempview.backgroundColor = [UIColor clearColor];
+	tempview.backgroundColor = [[UIColor clearColor] autorelease];
 
 	//CGRect cellFrame ;
 	//cellFrame = searchbar.bounds;
@@ -1129,6 +1129,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 		if([ContactControllerDetailsviewP retainCount]>1)
 			[ContactControllerDetailsviewP release];
+		free(addressP);
 		//ABMultiValueRef name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
 #ifdef _tmp_
 		name1 =(NSString*)ABRecordCopyValue(person,kABRealPropertyType);
@@ -1243,7 +1244,9 @@ titleForHeaderInSection:(NSInteger)section
 		
 		if([ContactControllerDetailsviewP retainCount]>1)
 			[ContactControllerDetailsviewP release];
-					free(secContactP);
+		
+		
+		free(secContactP);
 		free(addressP);
 		
 		
