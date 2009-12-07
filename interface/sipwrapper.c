@@ -678,12 +678,13 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	//app_config->media_cfg.snd_clock_rate = 44100;
 	//app_config->media_cfg.ec_options = 0;//0=default,1=speex, 2=suppressor
 	
-	//cfgmedia.ec_tail_len = 0;
+	cfgmedia.ec_tail_len = 0;
 	
 	// Enable/Disable VAD/silence detector
-	//cfgmedia.no_vad = NO;
+	cfgmedia.no_vad = 0;
 	
 	cfgmedia.snd_auto_close_time = 0;
+	cfgmedia.enable_ice =0;
 	//app_config->media_cfg.quality = 2;
 	//app_config->media_cfg.channel_count = 2;
 	
@@ -730,7 +731,7 @@ static void on_reg_state(pjsua_acc_id acc_id)
 		strcpy(errorstring, "Error creating transport");
 		return 0;
     }
-
+	
     /* Initialization is done, now start pjsua */
     status = pjsua_start();
 	if (status != PJ_SUCCESS){ 

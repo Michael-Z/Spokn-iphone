@@ -24,7 +24,7 @@
 -(IBAction)cancelClicked
 {
 	NSLog(@"Cancel");
-	
+	[self stopButtonPressed:nil];
 		if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward || modalB==true)
 		{	
 			[ [self navigationController] popViewControllerAnimated:YES ];
@@ -1268,6 +1268,7 @@ id createImage(float percentage)
 	{	
 		[self setTitle:@"VMS"];
 	}
+	
 	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	firstSectionviewP.backgroundColor = [[UIColor clearColor] autorelease ] ;
 	secondSectionviewP.backgroundColor = [[UIColor clearColor] autorelease ] ;
@@ -1279,6 +1280,8 @@ id createImage(float percentage)
 	[self loadOtherView];	
 	[self makeView];
 	[tableView reloadData];
+	self.navigationItem.backBarButtonItem.target = self;
+	self.navigationItem.backBarButtonItem.action =  @selector(cancelClicked);
 	/*self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 											   target: self
