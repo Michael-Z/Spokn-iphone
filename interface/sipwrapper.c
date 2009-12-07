@@ -681,10 +681,10 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	cfgmedia.ec_tail_len = 0;
 	
 	// Enable/Disable VAD/silence detector
-	cfgmedia.no_vad = 0;
+	cfgmedia.no_vad = 1;
 	
 	cfgmedia.snd_auto_close_time = 0;
-	cfgmedia.enable_ice =0;
+	cfgmedia.enable_ice =1;
 	//app_config->media_cfg.quality = 2;
 	//app_config->media_cfg.channel_count = 2;
 	

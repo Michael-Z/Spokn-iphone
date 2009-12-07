@@ -80,6 +80,8 @@
 		8B81B4AD10318AC300A18DA1 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */; };
 		8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4B010318ADB00A18DA1 /* AddressBook.framework */; };
 		8B8626BE1084504C00718D16 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8626BD1084504C00718D16 /* whiteButton.png */; };
+		8B8803DB10CD27F90091D0B8 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8803DA10CD27F90091D0B8 /* libspeex-arm-apple-darwin9.a */; };
+		8B8803DC10CD27F90091D0B8 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8803DA10CD27F90091D0B8 /* libspeex-arm-apple-darwin9.a */; };
 		8B9302811011EDFA004BDA41 /* contactDetailsviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */; };
 		8B9302821011EDFA004BDA41 /* contactDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302661011EDFA004BDA41 /* contactDetails.xib */; };
 		8B9302831011EDFA004BDA41 /* contactviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302681011EDFA004BDA41 /* contactviewController.m */; };
@@ -514,6 +516,7 @@
 		8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		8B81B4B010318ADB00A18DA1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		8B8626BD1084504C00718D16 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
+		8B8803DA10CD27F90091D0B8 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDetailsviewcontroller.h; sourceTree = "<group>"; };
 		8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDetailsviewcontroller.m; sourceTree = "<group>"; };
 		8B9302661011EDFA004BDA41 /* contactDetails.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contactDetails.xib; sourceTree = "<group>"; };
@@ -720,6 +723,7 @@
 				8B964B2610CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
 				8B964B2B10CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
+				8B8803DC10CD27F90091D0B8 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,6 +767,7 @@
 				8B964B2410CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
 				8B964B2910CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2A10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
+				8B8803DB10CD27F90091D0B8 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -983,6 +988,7 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
+				8B8803DA10CD27F90091D0B8 /* libspeex-arm-apple-darwin9.a */,
 				8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */,
 				8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */,
 				8B964B2110CBE78C00CB00DB /* libpjlib-util-i386-apple-darwin9.a */,
@@ -2034,8 +2040,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2053,8 +2059,8 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
+				PROVISIONING_PROFILE = "A1518653-B8FB-41AD-9AC0-6FEEA886BED9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1518653-B8FB-41AD-9AC0-6FEEA886BED9";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;
@@ -2064,8 +2070,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
@@ -2089,8 +2095,8 @@
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
+				PROVISIONING_PROFILE = "A1518653-B8FB-41AD-9AC0-6FEEA886BED9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1518653-B8FB-41AD-9AC0-6FEEA886BED9";
 			};
 			name = Distribution;
 		};

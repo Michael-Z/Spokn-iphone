@@ -1001,6 +1001,7 @@ id createImage(float percentage)
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+	
 	if(openForwardNo)
 	{
 		//printf("\n make changes");
@@ -1280,9 +1281,14 @@ id createImage(float percentage)
 	[self loadOtherView];	
 	[self makeView];
 	[tableView reloadData];
-	self.navigationItem.backBarButtonItem.target = self;
-	self.navigationItem.backBarButtonItem.action =  @selector(cancelClicked);
-	/*self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc]
+											   initWithTitle:@"All VMSes" 
+											   style:UIBarButtonItemStylePlain 
+											   target:self 
+											   action:@selector(cancelClicked)] autorelease];
+
+	
+		/*self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 											   target: self
 											   action: @selector(cancelClicked) ] autorelease ];*/
