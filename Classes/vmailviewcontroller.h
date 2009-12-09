@@ -45,5 +45,6 @@
 -(void)stopvmsPlay;
 -(void)startVmsProgress:(char*)fileNameCharP :(int) max :(struct VMail *)vmailP;
 -(void)setcomposeStatus:(int)lstatus;
+-(void)refreshView;
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 @end

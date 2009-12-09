@@ -973,17 +973,15 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	self.navigationItem.titleView = segmentedControl;
 	segmentedControl.selectedSegmentIndex = 0;
-	/*
-	self.navigationItem.leftBarButtonItem 
-	= [ [ [ UIBarButtonItem alloc ]
-		 initWithTitle: @"Clear" style:UIBarButtonItemStylePlain
-		 target: self
-		 action: @selector(clearPressed) ] autorelease ];*/
-	self.navigationItem.rightBarButtonItem 
-	= [ [ [ UIBarButtonItem alloc ]
-		 initWithBarButtonSystemItem: UIBarButtonSystemItemCompose
-		 target: self
-		 action: @selector(ComposeVmailPressed) ] autorelease ];
+	
+	self.navigationItem.leftBarButtonItem 	= [ [ [ UIBarButtonItem alloc ]
+												 initWithBarButtonSystemItem: UIBarButtonSystemItemRefresh
+												 target: self
+												 action: @selector(refreshView) ] autorelease ];
+	self.navigationItem.rightBarButtonItem 	= [ [ [ UIBarButtonItem alloc ]
+												 initWithBarButtonSystemItem: UIBarButtonSystemItemCompose
+												 target: self
+												 action: @selector(ComposeVmailPressed) ] autorelease ];
 	if(onLine)
 	{
 		self.navigationItem.rightBarButtonItem.enabled =YES;
@@ -998,7 +996,11 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 
 	
 }
-
+-(void)refreshView
+{
+	profileResync();
+	[self->tableView reloadData];
+}
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
