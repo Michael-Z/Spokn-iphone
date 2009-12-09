@@ -503,7 +503,7 @@
 		//previewButtonP.titleShadowOffset = CGSizeMake(0,-1);
 		[previewButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ] forState:UIControlStateNormal];
 		[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
-		[previewButtonP setTitleColor:[[UIColor GrayColor] autorelease ] forState:UIControlStateHighlighted];
+		[previewButtonP setTitleColor:[[UIColor grayColor] autorelease ] forState:UIControlStateHighlighted];
 		[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 		sendButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
 		//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
@@ -1264,11 +1264,11 @@ id createImage(float percentage)
 	[self loadOtherView];	
 	[self makeView];
 	[tableView reloadData];
-	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc]
+	/*self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc]
 											   initWithTitle:@"All VMSes" 
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
-											   action:@selector(cancelClicked)] autorelease];
+											   action:@selector(cancelClicked)] autorelease];*/
 
 	
 		/*self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
@@ -1282,12 +1282,12 @@ id createImage(float percentage)
 {
 	[super viewWillDisappear:animated];
 
-	[self cancelClicked];
+	[self stopButtonPressed:nil];
 }	
 -(IBAction)cancelClicked
 {
 	NSLog(@"Cancel");
-	[self stopButtonPressed:nil];
+	//[self stopButtonPressed:nil];
 	if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward || modalB==true)
 	{	
 		[ [self navigationController] popViewControllerAnimated:YES ];
