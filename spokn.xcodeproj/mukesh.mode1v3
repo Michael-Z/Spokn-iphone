@@ -247,6 +247,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -285,10 +287,14 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>8B964AB810CBE4E800CB00DB</string>
 								<string>080E96DDFE201D6D7F000001</string>
+								<string>29B97315FDCFA39411CA2CEA</string>
+								<string>8B9302A21011EEBE004BDA41</string>
+								<string>8B9302A91011EEBE004BDA41</string>
+								<string>8B9302CB1011EF6E004BDA41</string>
+								<string>8B9302A31011EEBE004BDA41</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>8B177BE3104674A600E42923</string>
 								<string>F2730CAF1070A9B300DF8852</string>
-								<string>8B53821C10A586F900BB244F</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
@@ -296,13 +302,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>54</integer>
-									<integer>5</integer>
-									<integer>0</integer>
+									<integer>187</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 635}, {344, 683}}</string>
+							<string>{{0, 2734}, {344, 683}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -332,14 +336,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>customcell.m</string>
+								<string>contactDetailsviewcontroller.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -347,11 +349,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>customcell.m</string>
+										<string>contactDetailsviewcontroller.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8BF55BA010CFF37500630E59</string>
+										<string>8BF55BCD10CFF84D00630E59</string>
 										<key>history</key>
 										<array>
 											<string>8B84B79A101480B800836F86</string>
@@ -531,7 +533,6 @@
 											<string>8B4FDAD6109088BF000FFF55</string>
 											<string>8BF827A0109171890044B6A2</string>
 											<string>8BE37292109854C900D6C74C</string>
-											<string>8B59A6CF10998EAD003BF3EA</string>
 											<string>8BE0893310999B00007945EE</string>
 											<string>8B8DA34B109B0FF300E756DA</string>
 											<string>8B8DA34D109B0FF300E756DA</string>
@@ -710,9 +711,7 @@
 											<string>8B8803FE10CD2C050091D0B8</string>
 											<string>8B8803FF10CD2C050091D0B8</string>
 											<string>8B88040010CD2C050091D0B8</string>
-											<string>8B88040210CD2C050091D0B8</string>
 											<string>8B88040310CD2C050091D0B8</string>
-											<string>8B88040510CD2C050091D0B8</string>
 											<string>8B88040610CD2C050091D0B8</string>
 											<string>8B88040710CD2C050091D0B8</string>
 											<string>8B88040810CD2C050091D0B8</string>
@@ -764,22 +763,29 @@
 											<string>8BF55AD510CFCFED00630E59</string>
 											<string>8BF55AD610CFCFED00630E59</string>
 											<string>8BF55AD710CFCFED00630E59</string>
-											<string>8BF55AD810CFCFED00630E59</string>
 											<string>8BF55ADA10CFCFED00630E59</string>
 											<string>8BF55ADD10CFCFED00630E59</string>
 											<string>8BF55ADF10CFCFED00630E59</string>
-											<string>8BF55B8810CFF37500630E59</string>
 											<string>8BF55B8910CFF37500630E59</string>
-											<string>8BF55B8A10CFF37500630E59</string>
-											<string>8BF55B8B10CFF37500630E59</string>
-											<string>8BF55B8C10CFF37500630E59</string>
-											<string>8BF55B8D10CFF37500630E59</string>
-											<string>8BF55B8E10CFF37500630E59</string>
-											<string>8BF55B8F10CFF37500630E59</string>
-											<string>8BF55B9010CFF37500630E59</string>
-											<string>8BF55B9110CFF37500630E59</string>
-											<string>8BF55B9210CFF37500630E59</string>
-											<string>8B8803FC10CD2C050091D0B8</string>
+											<string>8BF55BB210CFF63C00630E59</string>
+											<string>8BF55BB310CFF63C00630E59</string>
+											<string>8BF55BB410CFF63C00630E59</string>
+											<string>8BF55BB510CFF63C00630E59</string>
+											<string>8BF55BB610CFF63C00630E59</string>
+											<string>8BF55BB710CFF63C00630E59</string>
+											<string>8BF55BB810CFF63C00630E59</string>
+											<string>8BF55BB910CFF63C00630E59</string>
+											<string>8BF55BBA10CFF63C00630E59</string>
+											<string>8BF55BBB10CFF63C00630E59</string>
+											<string>8BF55BBC10CFF63C00630E59</string>
+											<string>8BF55BBD10CFF63C00630E59</string>
+											<string>8BF55BC810CFF84D00630E59</string>
+											<string>8BF55BC910CFF84D00630E59</string>
+											<string>8BF55BCA10CFF84D00630E59</string>
+										</array>
+										<key>nextStack</key>
+										<array>
+											<string>8BF55BCC10CFF84D00630E59</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -810,24 +816,17 @@
 											<string>8BF55AE110CFCFED00630E59</string>
 											<string>8BF55AE310CFCFED00630E59</string>
 											<string>8BF55AE410CFCFED00630E59</string>
-											<string>8BF55AE510CFCFED00630E59</string>
 											<string>8BF55AE610CFCFED00630E59</string>
-											<string>8BF55AE810CFCFED00630E59</string>
 											<string>8BF55AEB10CFCFED00630E59</string>
 											<string>8BF55B2710CFD23A00630E59</string>
 											<string>8BF55B9310CFF37500630E59</string>
 											<string>8BF55B9410CFF37500630E59</string>
 											<string>8BF55B9510CFF37500630E59</string>
-											<string>8BF55B9610CFF37500630E59</string>
-											<string>8BF55B9710CFF37500630E59</string>
-											<string>8BF55B9810CFF37500630E59</string>
-											<string>8BF55B9910CFF37500630E59</string>
-											<string>8BF55B9A10CFF37500630E59</string>
-											<string>8BF55B9B10CFF37500630E59</string>
-											<string>8BF55B9C10CFF37500630E59</string>
-											<string>8BF55B9D10CFF37500630E59</string>
-											<string>8BF55B9E10CFF37500630E59</string>
-											<string>8BF55B9F10CFF37500630E59</string>
+											<string>8BF55BBF10CFF63C00630E59</string>
+											<string>8BF55BC010CFF63C00630E59</string>
+											<string>8BF55BC110CFF63C00630E59</string>
+											<string>8BF55BC210CFF63C00630E59</string>
+											<string>8BF55BCB10CFF84D00630E59</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1026,7 +1025,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>282063733.27518702</real>
+	<real>282064973.65279502</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -1041,13 +1040,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>8BF55BCE10CFF84D00630E59</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>8BF55BA310CFF37500630E59</string>
 		<string>8BF55BA410CFF37500630E59</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>8B93025A1011EBB8004BDA41</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/mukesh/mygit/iphone/spokn.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>0 136 1440 742 0 0 1440 878 </string>
@@ -1284,12 +1284,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>spoknAppDelegate.m</string>
+										<string>vmshowviewcontroller.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1310,8 +1312,6 @@
 							<string>358pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

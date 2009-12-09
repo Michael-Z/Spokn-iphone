@@ -423,7 +423,7 @@
 	[AddeditcellControllerviewP setObject:self->ownerobject];
 	viewResult = 0;
 	
-	[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypeNamePhonePad :CONTACT_RANGE buttonType:0];
+	[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypeDefault :CONTACT_RANGE buttonType:0];
 	
 
 	[AddeditcellControllerviewP setData:addressDataP->title value:"Name of person" placeHolder:"First Last" returnValue:&viewResult];
