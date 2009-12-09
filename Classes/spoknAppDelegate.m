@@ -1322,7 +1322,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			[vmShowViewControllerP release];
 		//printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);	
 	}
-	tabBarController.selectedViewController = vmsNavigationController;	
+	//tabBarController.selectedViewController = vmsNavigationController;	
 	
 	return 0;
 }
