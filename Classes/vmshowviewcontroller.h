@@ -87,5 +87,5 @@ typedef enum  VMSStateType
 -(void) loadContactDetails :(char*) numberCharP;
 -(void)showForwardOrReplyScreen:(VMSStateType) lvmsState :(SelectedContctType *)selectedContactP;
 - (void) doneSearching_Clicked:(id)sender;
-
+-(IBAction)cancelClicked;
 @end

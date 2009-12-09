@@ -21,23 +21,6 @@
 	
 	
 }
--(IBAction)cancelClicked
-{
-	NSLog(@"Cancel");
-	[self stopButtonPressed:nil];
-		if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward || modalB==true)
-		{	
-			[ [self navigationController] popViewControllerAnimated:YES ];
-		}
-		else
-		{	
-				
-			[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
-		}	
-	
-}
-
-
 
 - (void)upDateScreen
 {
@@ -1292,6 +1275,28 @@ id createImage(float percentage)
 											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 											   target: self
 											   action: @selector(cancelClicked) ] autorelease ];*/
+	
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+
+	[self cancelClicked];
+}	
+-(IBAction)cancelClicked
+{
+	NSLog(@"Cancel");
+	[self stopButtonPressed:nil];
+	if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward || modalB==true)
+	{	
+		[ [self navigationController] popViewControllerAnimated:YES ];
+	}
+	else
+	{	
+		
+		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+	}	
 	
 }
 

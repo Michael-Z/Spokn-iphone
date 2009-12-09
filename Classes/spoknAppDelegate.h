@@ -65,6 +65,7 @@
 	LtpInterfaceType *ltpInterfacesP;
 	VmsPlayRecordType *vmsP;
 	Boolean onLineB;
+	Boolean onLineCounter;
 	float balance;
 //	@public
 	int status;
