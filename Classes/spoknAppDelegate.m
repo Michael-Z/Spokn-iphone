@@ -319,6 +319,10 @@
 			#ifdef _LOG_DATA_
 			////printf("\nonline");
 			#endif
+			if(self->onLineB == false)
+			{
+				[self playonlineTone];
+			}	
 			self->onLineB = true;
 			[dialviewP setStatusText: @"online" :ALERT_ONLINE :0 ];
 			
@@ -331,7 +335,7 @@
 			cdrLoad();
 			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 			[self LoadContactView:callviewP];
-			[self playonlineTone];
+
 			break;
 		case ALERT_OFFLINE:
 			
@@ -900,6 +904,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	logOut(ltpInterfacesP,clearAllB);
 	self.vmsNavigationController.tabBarItem.badgeValue= nil;
 	SetSpeakerOnOrOff(0,true);
+	self->onLineB = false;
 }
 - (void)applicationWillTerminate:(UIApplication *)application
 {
