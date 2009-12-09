@@ -23,6 +23,7 @@
 	UIImage  *failedImageP;
 	UIImage  *vnewImageP;
 	UIImage  *readImageP;
+	UIImage  *vnewoutImageP;
 	UIProgressView *uiProgressP;
 	UIActionSheet  *uiActionSheetP;
 	NSTimer        *nsTimerP;

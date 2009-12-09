@@ -130,7 +130,7 @@
 	//////printf("\nSpoknUITableViewCell release  %d ",[spoknSubCellP retainCount] );
 
 	[spoknSubCellP release];
-	[super dealloc];
+
 }
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {

@@ -400,7 +400,7 @@
 						dispP.uiImageP =  activeImageP;
 						break;
 					case VMAIL_NEW:
-						dispP.uiImageP =  vnewImageP;
+						dispP.uiImageP =  vnewoutImageP;
 						break;
 				}
 			}
@@ -938,10 +938,11 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 - (void)viewDidLoad {
     [super viewDidLoad];
 	activeImageP=[UIImage imageNamed:@"vms_out_Active.png"];
-	dileverImageP=[UIImage imageNamed:@"vmail_out_newHigh.png"];
+	dileverImageP=[UIImage imageNamed:@"vm_icons_outgoing_delivered.png"];
 	failedImageP=[UIImage imageNamed:@"vm_icons_outgoing_undelivered.png"];
 	vnewImageP=[UIImage imageNamed:@"vm_icons_incoming_new.png"];
 	readImageP=[UIImage imageNamed:@"vm_icons_incoming_read.png"];
+	vnewoutImageP=[UIImage imageNamed:@"vmail_out_newHigh.png"];
 	//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 	
 	//self.tabBarItem = [UITabBarItem alloc];
@@ -1019,6 +1020,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[failedImageP release];
 	[vnewImageP release];
 	[readImageP release];
+	[vnewoutImageP release];
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
