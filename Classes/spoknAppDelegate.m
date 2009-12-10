@@ -267,30 +267,33 @@
 			#endif
 			break;	
 		case ALERT_DISCONNECTED:
-			[dialviewP setStatusText: @"end call" :ALERT_DISCONNECTED :0 ];
-			//closeSoundInterface(ltpInterfacesP);
-			SetSpeakerOnOrOff(0,true);
-			[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
-			//reload log
-			[self LoadContactView:callviewP];
-			if([self stopRing]==0)
-			{
-				[tabBarController dismissModalViewControllerAnimated:YES];
-			}
-						
-			#ifndef _LTP_
-				[nsTimerP invalidate];
-			
-				nsTimerP = [NSTimer scheduledTimerWithTimeInterval: MAXTIME_RESYNC
-						
-														target: self
-						
-													  selector: @selector(handleTimer:)
-						
-													  userInfo: nil
-						
-													   repeats: YES];
-			 #endif
+			if(lineID == 0)
+			{	
+				[dialviewP setStatusText: @"end call" :ALERT_DISCONNECTED :0 ];
+				//closeSoundInterface(ltpInterfacesP);
+				SetSpeakerOnOrOff(0,true);
+				[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
+				//reload log
+				[self LoadContactView:callviewP];
+				if([self stopRing]==0)
+				{
+					[tabBarController dismissModalViewControllerAnimated:YES];
+				}
+							
+				#ifndef _LTP_
+					[nsTimerP invalidate];
+				
+					nsTimerP = [NSTimer scheduledTimerWithTimeInterval: MAXTIME_RESYNC
+							
+															target: self
+							
+														  selector: @selector(handleTimer:)
+							
+														  userInfo: nil
+							
+														   repeats: YES];
+				 #endif
+			}	
 			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 			break;
 		case START_LOGIN:
@@ -382,7 +385,15 @@
 			break;	
 		case ALERT_INCOMING_CALL:
 			//[self performSelectorOnMainThread : @ selector(LoadInCommingView: ) withObject:nil waitUntilDone:YES];
-			[self LoadInCommingView:0];	
+			if(lineID != 0)
+			{	
+				RejectInterface(self->ltpInterfacesP, lineID);
+				self->incommingCallList[lineID] = 0;
+			}
+			else
+			{
+				[self LoadInCommingView:0];	
+			}	
 			//[ navigationNavigationController pushViewNavigationController: inCommingCallViewP animated: YES ];
 			//[statusLabelP performSelectorOnMainThread : @ selector(setText: ) withObject:strP waitUntilDone:YES];
 			break;
