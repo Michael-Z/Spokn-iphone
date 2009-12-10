@@ -9,6 +9,7 @@
 #include <string.h>
 #define USERAGENT  "desktop-windows-d2-1.0"
 #include <pjsua-lib/pjsua.h>
+int bMissedCallReported = 0;
 
 #ifdef _WIN32_WCE
 #define stricmp _stricmp
@@ -445,22 +446,23 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
 			case PJSIP_INV_STATE_CONFIRMED:	    /**< After ACK is sent/received.	    */
 				pstack->call[i].ltpState = CALL_CONNECTED;
 				#ifdef _MACOS_
-										pstack->now = time(NULL);
-					
-					
-					
+				pstack->now = time(NULL);
 				#endif	
 				pstack->call[i].timeStart = pstack->now; /* reset the call timer for the correct duration */
 				break;
 			case PJSIP_INV_STATE_DISCONNECTED:   /**< Session is terminated.		    */
+				printf("on_call_state: i: %d\t lineid: %d\t call_id: %d\t ltpstate: %d\t bMissedCallReported:%d\n", i, pstack->call[i].lineId, call_id, pstack->call[i].ltpState,bMissedCallReported);
+				//bug#26361 - Check if its a missed call (not already reported in ltpHangup()).
+				if ((pstack->call[i].kindOfCall & CALLTYPE_IN) &&
+					(pstack->call[i].ltpState != CALL_CONNECTED) &&
+					(pstack->call[i].ltpState != CALL_HANGING) &&
+					!bMissedCallReported)
+					pstack->call[i].kindOfCall |= CALLTYPE_MISSED;
+				bMissedCallReported = 0;	
 				pstack->call[i].ltpState = CALL_IDLE;
+				pstack->call[i].InConference = 0;
 				#ifdef _MACOS_
-				//	printf("\n time end");
-
-					pstack->now = time(NULL);
-					
-					
-					
+				pstack->now = time(NULL);
 				#endif	
 				pstack->call[i].timeStop = pstack->now;
 				alert(pstack->call[i].lineId, ALERT_DISCONNECTED, "");
@@ -678,13 +680,12 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	//app_config->media_cfg.snd_clock_rate = 44100;
 	//app_config->media_cfg.ec_options = 0;//0=default,1=speex, 2=suppressor
 	
-	cfgmedia.ec_tail_len = 0;
+	//cfgmedia.ec_tail_len = 0;
 	
 	// Enable/Disable VAD/silence detector
-	cfgmedia.no_vad = 1;
+	//cfgmedia.no_vad = NO;
 	
 	cfgmedia.snd_auto_close_time = 0;
-	cfgmedia.enable_ice =1;
 	//app_config->media_cfg.quality = 2;
 	//app_config->media_cfg.channel_count = 2;
 	
@@ -731,7 +732,7 @@ static void on_reg_state(pjsua_acc_id acc_id)
 		strcpy(errorstring, "Error creating transport");
 		return 0;
     }
-	
+
     /* Initialization is done, now start pjsua */
     status = pjsua_start();
 	if (status != PJ_SUCCESS){ 
@@ -913,8 +914,13 @@ void ltpHangup(struct ltpStack *ps, int lineid)
 		if (ps->call[i].lineId == lineid && ps->call[i].ltpState != CALL_IDLE){
 			call_id = (pjsua_call_id) ps->call[i].ltpSession;
 			printf("ltpHangup: lineid: %d\t call_id: %d\t ltpstate: %d\n", ps->call[i].lineId, call_id, ps->call[i].ltpState);
-			if (ps->call[i].ltpState != CALL_CONNECTED)
+			//bug#26267 - Check if its a missed call
+			bMissedCallReported = 0;
+			if ((ps->call[i].ltpState != CALL_CONNECTED) && (ps->call[i].kindOfCall& CALLTYPE_IN))
+			{
+				bMissedCallReported = 1;
 				ps->call[i].kindOfCall |= CALLTYPE_MISSED;
+			}
 			//bug#26268, the incoming call has been rejected
 			if (ps->call[i].ltpState == CALL_RING_RECEIVED)
 			{
