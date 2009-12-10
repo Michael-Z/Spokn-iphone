@@ -30,9 +30,11 @@
 	
 	NSString *curText = [dtmfLabelP text];
 	[dtmfLabelP setText: [curText stringByAppendingString: stringkey]];
-	char numberchar[5]={0};
-	numberchar[0] = keyVal;
-	[ownerobject SendDTMF:numberchar];
+	//char numberchar[5]={0};
+	//numberchar[0] = keyVal;
+	char *numbercharP;
+	numbercharP = (char*)[stringkey cStringUsingEncoding:NSUTF8StringEncoding];
+	[ownerobject SendDTMF:numbercharP];
 	
 }
 - (void)keyPressedUp:(NSString *)stringkey keycode:(int)keyVal
