@@ -968,7 +968,7 @@ id createImage(float percentage)
 		
 		[sliderP addTarget:self action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
 		pickerviewcontrollerviewP = [[pickerviewcontroller alloc] init];
-		[pickerviewcontrollerviewP SetkeyBoardType:UIKeyboardTypePhonePad :10 buttonType:UIKeyboardTypeNamePhonePad];
+		[pickerviewcontrollerviewP SetkeyBoardType:UIKeyboardTypeEmailAddress :10 buttonType:UIKeyboardTypeEmailAddress];
 		[pickerviewcontrollerviewP setObject:self->ownerobject];
 		
 		[pickerviewcontrollerviewP setData:nil value:nil placeHolder:nil returnValue:nil];

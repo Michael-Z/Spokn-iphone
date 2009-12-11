@@ -271,7 +271,7 @@
 			txtDestNo.rightViewMode = UITextFieldViewModeAlways;
 			txtDestNo.clearsOnBeginEditing = NO;
 			//txtDestNo.placeholder = @"Numerics only";
-			txtDestNo.keyboardType = UIKeyboardTypeNamePhonePad;
+			txtDestNo.keyboardType = keyboardtype;
 			txtDestNo.returnKeyType = UIReturnKeyDefault;
 			txtDestNo.font = [UIFont systemFontOfSize:16.0];
 			[txtDestNo addTarget:self action:@selector(updateSearchTable:) forControlEvents:UIControlEventEditingChanged];
