@@ -88,7 +88,7 @@
 										  UIViewAutoresizingFlexibleBottomMargin);*/
 		spoknSubCellP.autoresizingMask = UIViewAutoresizingNone;
 		[self.contentView addSubview:spoknSubCellP];
-		[spoknSubCellP release];
+		//[spoknSubCellP release];
 		spoknSubCellP.font = self.font;
 		
 	}
@@ -130,6 +130,7 @@
 	//////printf("\nSpoknUITableViewCell release  %d ",[spoknSubCellP retainCount] );
 
 	[spoknSubCellP release];
+	[super dealloc];
 
 }
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
