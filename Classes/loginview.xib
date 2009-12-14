@@ -150,6 +150,7 @@
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">1.700000e+01</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
+							<int key="IBUIReturnKeyType">1</int>
 							<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 							<bool key="IBUISecureTextEntry">YES</bool>
 						</object>
@@ -193,40 +194,15 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">1.000000e+01</float>
 					</object>
-					<object class="IBUIButton" id="51511123">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{222, 207}, {80, 37}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<object class="NSColor" key="IBUIBackgroundColor" id="1038176338">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAxIDEAA</bytes>
-						</object>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-						<int key="IBUITag">8</int>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="173334997"/>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Sign-in</string>
-						<reference key="IBUIHighlightedTitleColor" ref="702097448"/>
-						<reference key="IBUINormalTitleColor" ref="1038176338"/>
-						<reference key="IBUINormalTitleShadowColor" ref="188562671"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">login.png</string>
-						</object>
-					</object>
 					<object class="IBUILabel" id="598620460">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{72, 399}, {156, 21}}</string>
+						<string key="NSFrame">{{88, 397}, {156, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">v0.1.0</string>
+						<string key="IBUIText">v0.1.1</string>
 						<reference key="IBUITextColor" ref="62945063"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -308,15 +284,6 @@
 					<int key="connectionID">102</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">loginLtp:</string>
-						<reference key="source" ref="51511123"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">103</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">spoknButtonP</string>
 						<reference key="source" ref="372490531"/>
@@ -347,10 +314,9 @@
 							<reference ref="359288594"/>
 							<reference ref="329432587"/>
 							<reference ref="466951694"/>
-							<reference ref="51511123"/>
-							<reference ref="598620460"/>
 							<reference ref="1026947736"/>
 							<reference ref="907385918"/>
+							<reference ref="598620460"/>
 						</object>
 						<reference key="parent" ref="317526666"/>
 					</object>
@@ -406,11 +372,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">100</int>
-						<reference key="object" ref="51511123"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">105</int>
 						<reference key="object" ref="598620460"/>
 						<reference key="parent" ref="191373211"/>
@@ -430,7 +391,6 @@
 					<string>-2.CustomClassName</string>
 					<string>1.IBEditorWindowLastContentRect</string>
 					<string>1.IBPluginDependency</string>
-					<string>100.IBPluginDependency</string>
 					<string>105.IBPluginDependency</string>
 					<string>113.IBPluginDependency</string>
 					<string>56.IBPluginDependency</string>
@@ -447,7 +407,6 @@
 					<string>LoginViewController</string>
 					<string>UIResponder</string>
 					<string>{{140, 290}, {320, 480}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

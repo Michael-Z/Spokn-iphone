@@ -370,6 +370,11 @@
 	//printf("\n timer progress count %f",amt);
 	
 }
+-(void)VmsStopRequest
+{
+	printf("\n called in\n");
+	[self stopButtonPressed:nil];
+}
 -(IBAction)stopButtonPressed:(id)sender
 {
 	//printf("\n stop pressed");
@@ -1239,6 +1244,19 @@ id createImage(float percentage)
 
 
 }
+// Called when the navigation controller shows a new top view controller via a push, pop or setting of the view controller stack.
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
+{
+	if(viewController !=self)
+	{
+		printf("\n view pushpop");
+		[self stopButtonPressed:nil];
+	}
+}
+- (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
+{
+	printf("\n view poped");
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -1264,6 +1282,7 @@ id createImage(float percentage)
 	[self loadOtherView];	
 	[self makeView];
 	[tableView reloadData];
+	[self navigationController].delegate = self;
 	/*self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc]
 											   initWithTitle:@"All VMSes" 
 											   style:UIBarButtonItemStylePlain 
@@ -1281,8 +1300,8 @@ id createImage(float percentage)
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
-
-	[self stopButtonPressed:nil];
+	printf("\n view will disappear") ;
+	
 }	
 -(IBAction)cancelClicked
 {
@@ -1486,6 +1505,7 @@ id createImage(float percentage)
 }
 
 - (void)viewDidUnload {
+	printf("\n view will unloaded");
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 	[ownerobject setVmsDelegate:nil];
@@ -1493,7 +1513,9 @@ id createImage(float percentage)
 
 
 - (void)dealloc {
-	//printf("\n dealoc called");
+	printf("\n dealoc called");
+	[self navigationController].delegate = nil;
+	
 	[ownerobject setVmsDelegate:nil];
 	if(nsTimerP)
 	{	

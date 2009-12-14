@@ -15,6 +15,7 @@
 @optional
 - (void)VmsStart;
 - (void)VmsStop;
+- (void)VmsStopRequest;
 
 @end
 typedef enum  VMSStateType
@@ -28,7 +29,7 @@ typedef enum  VMSStateType
 @class SpoknAppDelegate;
 @class pickerviewcontroller;
 @class OverlayViewController;
-@interface VmShowViewController : UIViewController<UpDateViewProtocol,UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,VmsProtocol> {
+@interface VmShowViewController : UIViewController<UpDateViewProtocol,UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,VmsProtocol,UINavigationControllerDelegate> {
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *msgLabelP;
 	IBOutlet UILabel *secondLabelP;
@@ -88,4 +89,5 @@ typedef enum  VMSStateType
 -(void)showForwardOrReplyScreen:(VMSStateType) lvmsState :(SelectedContctType *)selectedContactP;
 - (void) doneSearching_Clicked:(id)sender;
 -(IBAction)cancelClicked;
+-(void)VmsStopRequest;
 @end

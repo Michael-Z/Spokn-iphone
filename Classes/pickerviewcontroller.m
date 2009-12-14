@@ -367,8 +367,10 @@
 {
 	[searchedContacts removeAllObjects];
 	char *ltpsSearchStringP=0;
+	NSLog(@"search text %@",txtDestNo.text);
 	NSString *texttosearch = [txtDestNo.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	texttosearch = [self remSpChar:texttosearch];
+	NSLog(@"search text %@",texttosearch);
+	//texttosearch = [self remSpChar:texttosearch];
 	
 	// input validation
 	
@@ -711,6 +713,7 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+	//return YES;
 	if( textField == txtDestNo)
 	{		
 		BOOL try = ![string length];
@@ -721,15 +724,34 @@
 		
 		if( try ) return YES;
 		
-		/*
+		
 		if( [string compare:@" "] == 0 ) {
 			if( [textField.text length] <= 1 ) return NO;
 			
-			//[self update_txtDestNo:@" "];
+			NSString *text = [txtDestNo.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			if(![text isEqualToString:@""])
+			{	
+				if([SpoknAppDelegate emailValidate:text]==NO)
+				{	
+						
+						NSString *text1 = [text stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
+						
+					//NSLog(@"\n number %@\n",text1);
+						if(text1!=0 && [text1 length]!=0)
+						{
+							//txtDestNo.text = @" ";
+							return YES;
+							
+						}
+											
+				}
+			}	
+					
+			[self update_txtDestNo:@""];
 			
 			return NO;
 		}
-		*/
+		
 		if( txtDestNo.selectedCell )
 			txtDestNo.selectedCell = nil;
 	}

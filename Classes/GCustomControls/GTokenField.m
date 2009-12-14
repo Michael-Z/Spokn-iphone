@@ -179,6 +179,7 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
+	printf("\n make event ");
 	UITouch* touch = [touches anyObject];
 	if (touch.view == self) {
 		self.selectedCell = nil;

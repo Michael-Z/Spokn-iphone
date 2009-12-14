@@ -26,10 +26,11 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 
-	////printf("\n return pressed");
+	printf("\n return pressed");
 	//[super textFieldShouldReturn:textField];
-	[usernameFieldP resignFirstResponder];
-	[passwordFieldP resignFirstResponder];
+	//[usernameFieldP resignFirstResponder];
+	//[passwordFieldP resignFirstResponder];
+		[self loginLtp:nil];
 	return YES;
 }
 
@@ -82,6 +83,7 @@
 	}
 	usernameFieldP.delegate = self;
 	passwordFieldP.delegate = self;
+	[usernameFieldP becomeFirstResponder];
 	/*[passwordFieldP becomeFirstResponder];
 	passwordFieldP.delegate = self;
 

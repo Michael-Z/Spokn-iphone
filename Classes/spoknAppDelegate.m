@@ -385,6 +385,9 @@
 			break;	
 		case ALERT_INCOMING_CALL:
 			//[self performSelectorOnMainThread : @ selector(LoadInCommingView: ) withObject:nil waitUntilDone:YES];
+			printf("\n called from incomming\n");
+
+			[VmsProtocolP	VmsStopRequest];
 			if(lineID != 0)
 			{	
 				RejectInterface(self->ltpInterfacesP, lineID);
@@ -513,7 +516,7 @@
 {
 	vmsDeInit(&vmsP);
 	[VmsProtocolP VmsStop];
-		
+	
 			
 	
 }
