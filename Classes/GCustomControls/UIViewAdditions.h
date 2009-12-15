@@ -33,11 +33,4 @@
  */
 - (void)removeSubviews;
 
-/**
- * WARNING: This depends on undocumented APIs and may be fragile.  For testing only.
- */
-- (void)simulateTapAtPoint:(CGPoint)location;
-
-- (CGPoint)offsetFromView:(UIView*)otherView;
-
 @end

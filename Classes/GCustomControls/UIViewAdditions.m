@@ -4,87 +4,6 @@
 // This code for synthesizing touch events is derived from:
 // http://cocoawithlove.com/2008/10/synthesizing-touch-event-on-iphone.html
 
-@interface GSEventFake : NSObject {
-@public
-	int ignored1[5];
-	float x;
-	float y;
-	int ignored2[24];
-}
-@end
-
-@implementation GSEventFake
-@end
-
-@interface UIEventFake : NSObject {
-@public
-	CFTypeRef _event;
-	NSTimeInterval _timestamp;
-	NSMutableSet* _touches;
-	CFMutableDictionaryRef _keyedTouches;
-}
-@end
-
-@implementation UIEventFake
-@end
-
-@interface UITouch (TTCategory)
-
-- (id)initInView:(UIView *)view location:(CGPoint)location;
-- (void)changeToPhase:(UITouchPhase)phase;
-
-@end
-
-@implementation UITouch (TTCategory)
-
-- (id)initInView:(UIView *)view location:(CGPoint)location {
-	if (self = [super init]) {
-		_tapCount = 1;
-		_locationInWindow = location;
-		_previousLocationInWindow = location;
-		
-		UIView *target = [view.window hitTest:_locationInWindow withEvent:nil];
-		_view = [target retain];
-		_window = [view.window retain];
-		_phase = UITouchPhaseBegan;
-		_touchFlags._firstTouchForView = 1;
-		_touchFlags._isTap = 1;
-		_timestamp = [NSDate timeIntervalSinceReferenceDate];
-	}
-	return self;
-}
-
-- (void)changeToPhase:(UITouchPhase)phase {
-	_phase = phase;
-	_timestamp = [NSDate timeIntervalSinceReferenceDate];
-}
-
-@end
-
-@implementation UIEvent (TTCategory)
-
-- (id)initWithTouch:(UITouch *)touch {
-	if (self == [super init]) {
-		UIEventFake *selfFake = (UIEventFake*)self;
-		selfFake->_touches = [[NSMutableSet setWithObject:touch] retain];
-		selfFake->_timestamp = [NSDate timeIntervalSinceReferenceDate];
-		
-		CGPoint location = [touch locationInView:touch.window];
-		GSEventFake* fakeGSEvent = [[GSEventFake alloc] init];
-		fakeGSEvent->x = location.x;
-		fakeGSEvent->y = location.y;
-		selfFake->_event = fakeGSEvent;
-		
-		CFMutableDictionaryRef dict = CFDictionaryCreateMutable(kCFAllocatorDefault, 2,
-																&kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-		CFDictionaryAddValue(dict, touch.view, selfFake->_touches);
-		CFDictionaryAddValue(dict, touch.window, selfFake->_touches);
-		selfFake->_keyedTouches = dict;
-	}
-	return self;
-}
-
-@end
 
 @implementation UIView (TTCategory)
 
@@ -179,25 +98,6 @@
 	return y;
 }
 
-- (CGPoint)offsetFromView:(UIView*)otherView {
-	CGFloat x = 0, y = 0;
-	for (UIView* view = self; view && view != otherView; view = view.superview) {
-		x += view.left;
-		y += view.top;
-	}
-	return CGPointMake(x, y);
-}
-
-//- (CGFloat)orientationWidth {
-//  return UIDeviceOrientationIsLandscape(GDeviceOrientation())
-//    ? self.height : self.width;
-//}
-//
-//- (CGFloat)orientationHeight {
-//  return UIDeviceOrientationIsLandscape(GDeviceOrientation())
-//    ? self.width : self.height;
-//}
-
 - (UIScrollView*)findFirstScrollView {
 	if ([self isKindOfClass:[UIScrollView class]])
 		return (UIScrollView*)self;
@@ -251,16 +151,5 @@
 	}
 }
 
-- (void)simulateTapAtPoint:(CGPoint)location {
-	UITouch *touch = [[[UITouch alloc] initInView:self location:location] autorelease];
-	
-	UIEvent *eventDown = [[[UIEvent alloc] initWithTouch:touch] autorelease];
-	[touch.view touchesBegan:[NSSet setWithObject:touch] withEvent:eventDown];
-	
-	[touch changeToPhase:UITouchPhaseEnded];
-	
-	UIEvent *eventUp = [[[UIEvent alloc] initWithTouch:touch] autorelease];
-	[touch.view touchesEnded:[NSSet setWithObject:touch] withEvent:eventUp];
-}
 
 @end

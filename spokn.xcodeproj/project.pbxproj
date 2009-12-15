@@ -60,7 +60,6 @@
 		8B59A62E10998423003BF3EA /* ContactCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62310998423003BF3EA /* ContactCellView.m */; };
 		8B59A62F10998423003BF3EA /* GTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62510998423003BF3EA /* GTokenField.m */; };
 		8B59A63010998423003BF3EA /* GTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62710998423003BF3EA /* GTokenFieldCell.m */; };
-		8B59A63110998423003BF3EA /* UIColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62910998423003BF3EA /* UIColorAdditions.m */; };
 		8B59A63210998423003BF3EA /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62B10998423003BF3EA /* UIViewAdditions.m */; };
 		8B59A68E109987FB003BF3EA /* pickerviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */; };
 		8B59A68F109987FB003BF3EA /* pickerviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */; };
@@ -268,7 +267,6 @@
 		8B964A6810CBE3BC00CB00DB /* ContactCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62310998423003BF3EA /* ContactCellView.m */; };
 		8B964A6910CBE3BC00CB00DB /* GTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62510998423003BF3EA /* GTokenField.m */; };
 		8B964A6A10CBE3BC00CB00DB /* GTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62710998423003BF3EA /* GTokenFieldCell.m */; };
-		8B964A6B10CBE3BC00CB00DB /* UIColorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62910998423003BF3EA /* UIColorAdditions.m */; };
 		8B964A6C10CBE3BC00CB00DB /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62B10998423003BF3EA /* UIViewAdditions.m */; };
 		8B964A6D10CBE3BC00CB00DB /* pickerviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */; };
 		8B964A6F10CBE3BC00CB00DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -491,8 +489,6 @@
 		8B59A62510998423003BF3EA /* GTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTokenField.m; sourceTree = "<group>"; };
 		8B59A62610998423003BF3EA /* GTokenFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTokenFieldCell.h; sourceTree = "<group>"; };
 		8B59A62710998423003BF3EA /* GTokenFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTokenFieldCell.m; sourceTree = "<group>"; };
-		8B59A62810998423003BF3EA /* UIColorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorAdditions.h; sourceTree = "<group>"; };
-		8B59A62910998423003BF3EA /* UIColorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorAdditions.m; sourceTree = "<group>"; };
 		8B59A62A10998423003BF3EA /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
 		8B59A62B10998423003BF3EA /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = pickerviewcontroller.xib; sourceTree = "<group>"; };
@@ -965,8 +961,6 @@
 				8B59A62510998423003BF3EA /* GTokenField.m */,
 				8B59A62610998423003BF3EA /* GTokenFieldCell.h */,
 				8B59A62710998423003BF3EA /* GTokenFieldCell.m */,
-				8B59A62810998423003BF3EA /* UIColorAdditions.h */,
-				8B59A62910998423003BF3EA /* UIColorAdditions.m */,
 				8B59A62A10998423003BF3EA /* UIViewAdditions.h */,
 				8B59A62B10998423003BF3EA /* UIViewAdditions.m */,
 			);
@@ -1604,7 +1598,6 @@
 				8B59A62E10998423003BF3EA /* ContactCellView.m in Sources */,
 				8B59A62F10998423003BF3EA /* GTokenField.m in Sources */,
 				8B59A63010998423003BF3EA /* GTokenFieldCell.m in Sources */,
-				8B59A63110998423003BF3EA /* UIColorAdditions.m in Sources */,
 				8B59A63210998423003BF3EA /* UIViewAdditions.m in Sources */,
 				8B59A68F109987FB003BF3EA /* pickerviewcontroller.m in Sources */,
 			);
@@ -1668,7 +1661,6 @@
 				8B964A6810CBE3BC00CB00DB /* ContactCellView.m in Sources */,
 				8B964A6910CBE3BC00CB00DB /* GTokenField.m in Sources */,
 				8B964A6A10CBE3BC00CB00DB /* GTokenFieldCell.m in Sources */,
-				8B964A6B10CBE3BC00CB00DB /* UIColorAdditions.m in Sources */,
 				8B964A6C10CBE3BC00CB00DB /* UIViewAdditions.m in Sources */,
 				8B964A6D10CBE3BC00CB00DB /* pickerviewcontroller.m in Sources */,
 			);
