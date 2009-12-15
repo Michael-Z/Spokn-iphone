@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Ltptimer.h"
 #import "LtpInterface.h"
+@protocol LoginProtocol
+
+@optional
+-(void) startloginIndicator;
+-(void) stoploginIndicator;
+@end
 
 @class SpoknAppDelegate;
 @interface LoginViewController : UIViewController<UITextFieldDelegate> {
@@ -18,6 +24,7 @@
 	//LtpTimer *ltpTimerP;
 	SpoknAppDelegate * ownerobject;
 	LtpInterfaceType *ltpInterfacesP;
+	UIActivityIndicatorView *loginactivityIndicator;
 	
 	
 }
@@ -25,12 +32,10 @@
 
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 
-
 -(void)setObject:(id) object ;
 -(IBAction)loginLtp:(id)sender;
 -(IBAction)openUrl:(id)sender;
 -(IBAction)forgotPassword:(id)sender;
 -(IBAction)cancelPressed:(id)sender;
-
 
 @end

@@ -18,8 +18,8 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
-	[usernameFieldP resignFirstResponder];
-	[passwordFieldP resignFirstResponder];
+	//[usernameFieldP resignFirstResponder];
+	//[passwordFieldP resignFirstResponder];
 	
 	
 }
@@ -100,11 +100,23 @@
 	//ltpTimerP = [[LtpTimer alloc] init];
 	//ltpTimerP.ltpInterfacesP =  startLtp();
 	//setLtpServer("64.49.236.88");
-	
+	[ownerobject setLoginDelegate:self];
+	loginactivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+	[loginactivityIndicator setCenter:CGPointMake(160.0f, 140.0f)];
+	[self.view addSubview:loginactivityIndicator];
+
+
 }
 
+-(void) startloginIndicator
+{
+	[loginactivityIndicator startAnimating];
+}
 
-
+-(void) stoploginIndicator
+{
+	[loginactivityIndicator stopAnimating];	
+}
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
@@ -218,10 +230,12 @@
 		}
 		setLtpUserName(ltpInterfacesP,userNamecharP);
 		setLtpPassword(ltpInterfacesP,passwordcharP);
+		usernameFieldP.selected = FALSE;
+		passwordFieldP.selected = FALSE;
 		DoLtpLogin(ltpInterfacesP);
 		
 		//[self->ownerobject changeView];
-		[self->ownerobject popLoginView];
+		//[self->ownerobject popLoginView];
 	}	
 	
 	

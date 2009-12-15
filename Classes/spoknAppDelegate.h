@@ -23,6 +23,7 @@
 @class AddEditcontactViewController;
 #include "vmsplayrecord.h"
 #import "vmshowviewcontroller.h"
+#import "loginviewcontroller.h"
 #ifdef _TEST_MEMORY_
 #import "testingview.h"
 #endif
@@ -72,6 +73,7 @@
 	int subID;
 	int lineID;
 	id<VmsProtocol> VmsProtocolP;
+	id<LoginProtocol> loginProtocolP;
 	IncommingCallType *incommingCallList[MAXINCALL];
 //
 	Reachability* hostReach;
@@ -154,5 +156,6 @@ changed:(BOOL)changed;
 -(void) playonlineTone;
 -(void) playcallendTone;
 -(void)logOut:(Boolean) clearAllB;
+-(void)setLoginDelegate :(id)deligateP;
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);

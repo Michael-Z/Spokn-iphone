@@ -303,9 +303,12 @@
 					[self startCheckNetwork];
 				}
 				[dialviewP setStatusText: @"connecting..." :START_LOGIN :0 ];
+			[loginProtocolP startloginIndicator];
 			break;
 		case ALERT_ONLINE://login
 			[vmsviewP setcomposeStatus:1 ];
+			[loginProtocolP stoploginIndicator];
+			[self popLoginView];
 			#ifndef _LTP_
 			[nsTimerP invalidate];
 			
@@ -353,7 +356,7 @@
 							[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
 						break;
 					case LOGIN_STATUS_FAILED:
-							
+							[loginProtocolP stoploginIndicator];
 							[dialviewP setStatusText: @"Authentication failed" :ALERT_OFFLINE :self->subID ];
 						break;
 					case LOGIN_STATUS_NO_ACCESS:
@@ -1237,6 +1240,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[vmsRPViewP vmsPlayStart:sz];
 	////printf("\nvms start play");
 	return 0;
+}
+-(void)setLoginDelegate :(id)deligateP
+{
+	loginProtocolP = deligateP;
 }
 -(void)setVmsDelegate :(id)deligateP
 {
