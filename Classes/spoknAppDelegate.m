@@ -309,6 +309,7 @@
 			[vmsviewP setcomposeStatus:1 ];
 			[loginProtocolP stoploginIndicator];
 			[self popLoginView];
+			
 			#ifndef _LTP_
 			[nsTimerP invalidate];
 			
@@ -991,6 +992,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[tabBarController dismissModalViewControllerAnimated:YES];
 	[ spoknViewControllerP startProgress];//start animation
 	[vmsviewP setcomposeStatus:0 ];
+	loginProtocolP = nil;
 	//[self changeView];
 
 
