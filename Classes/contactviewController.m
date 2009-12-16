@@ -154,7 +154,7 @@
 		
 	[self showContactDetailScreen:nil :CONTACTPHONEADDRESSBOOKDETAIL contactBook:person];
 	
-	
+	//loadedNewViewB = 1;
 		
 	
 	
@@ -691,6 +691,19 @@ titleForHeaderInSection:(NSInteger)section
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+	if(loadedNewViewB)
+	{
+		[addressBookP release];
+		addressBookP = [[ABPeoplePickerNavigationController alloc] init];
+		[addressBookP setNavigationBarHidden:YES animated:NO];
+		[addressBookP setPeoplePickerDelegate:self];
+		//addressBookP.view.frame = self.view.frame;
+		addressBookP.view.hidden=YES;
+		[self controlPressed:nil];
+		loadedNewViewB = 0;
+		
+	}
+	
 	if(resultInt)
 	{
 		//("\nhello view deleted\n");
@@ -888,7 +901,7 @@ titleForHeaderInSection:(NSInteger)section
 	ABMultiValueRef name1 ;
 	struct AddressBook *addressP;
 	SelectedContctType *secContactP;
-	
+	BOOL alleastOneB = FALSE;	
 	nameP = [AddressBookContact getName:person];
 	//	NSLog(nameP);
 	numbercharP = (char*)[nameP  cStringUsingEncoding:NSUTF8StringEncoding];
@@ -933,6 +946,7 @@ titleForHeaderInSection:(NSInteger)section
 			strcpy(secContactP->number,numbercharP);
 			strcpy(secContactP->type,typeCharP);
 			//printf("\ntest123  %s %s",secContactP->number,secContactP->type);
+			alleastOneB = TRUE;
 			[ContactControllerDetailsviewP addContactDetails:secContactP];
 			
 			/*if([labelStringP isEqualToString:@"_$!<Mobile>!$_"])
@@ -987,6 +1001,7 @@ titleForHeaderInSection:(NSInteger)section
 			strcpy(secContactP->type,typeCharP);
 			if(strstr(numbercharP,"@"))//only email allowed
 			{	
+				alleastOneB = TRUE;
 				[ContactControllerDetailsviewP addContactDetails:secContactP];				//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
 			}
 			[numberStringP release];
@@ -1014,7 +1029,10 @@ titleForHeaderInSection:(NSInteger)section
 	free(secContactP);
 	free(addressP);
 	
-	
+	if(alleastOneB==FALSE)
+	{
+		return 1;
+	}
 	
 	
 	
@@ -1069,13 +1087,10 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	else
 	{
-		NSString *numberStringP;
-		NSString *labelStringP;
+		
 		NSString *nameP;
 		char *numbercharP;
-		NSString *text1;
-		char *typeCharP;
-		ABMultiValueRef name1 ;
+		BOOL alleastOneB = FALSE;	
 		struct AddressBook *addressP;
 		SelectedContctType *secContactP;
 		
@@ -1123,142 +1138,30 @@ titleForHeaderInSection:(NSInteger)section
 			viewEnum = CONTACTFORWARDVMS;
 		}
 		
-		[ContactViewController addDetailsFromAddressBook :ContactControllerDetailsviewP :viewEnum contactBook:person];
-		[ContactControllerDetailsviewP setObject:self->ownerobject];
-		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+		if([ContactViewController addDetailsFromAddressBook :ContactControllerDetailsviewP :viewEnum contactBook:person]==0)
+		{	
+			[ContactControllerDetailsviewP setObject:self->ownerobject];
+			[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+		}
+		else
+		{
+		UIAlertView*	alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
+												  message: [ NSString stringWithString:@"This contact does not have any number or email address." ]
+												 delegate: nil
+										cancelButtonTitle: nil
+										otherButtonTitles: @"OK", nil
+					 ];
+			
+			[ alert show ];
+			[alert release];
+			
 		
-		if([ContactControllerDetailsviewP retainCount]>1)
+		}
+		//if([ContactControllerDetailsviewP retainCount]>1)
 			[ContactControllerDetailsviewP release];
 		free(addressP);
 		//ABMultiValueRef name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
-#ifdef _tmp_
-		name1 =(NSString*)ABRecordCopyValue(person,kABRealPropertyType);
-		if(name1)
-		{	
-			
-			for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
-			{
-				numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
-				labelStringP=(NSString*)ABMultiValueCopyLabelAtIndex(name1,i);
-				if(numberStringP==0 || labelStringP==0)
-				{
-					continue;
-				}
-				//NSLog(numberStringP);
-				//NSLog(labelStringP);
-				//NSLog(@"\n%@ ", numbercharP);
-				//NSLog(@"\n%@ ", labelStringP);
-				//text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]];
-				text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>"]];
-				//NSLog(text1);
-				numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-				typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
-				
-				strcpy(secContactP->number,numbercharP);
-				strcpy(secContactP->type,typeCharP);
-					//printf("\ntest123  %s %s",secContactP->number,secContactP->type);
-				[ContactControllerDetailsviewP addContactDetails:secContactP];
-				
-				/*if([labelStringP isEqualToString:@"_$!<Mobile>!$_"])
-				{
-					numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-					strcpy(addressP->mobile,numbercharP);
-				}
-				else
-				{	
-					if([labelStringP isEqualToString:@"_$!<Home>!$_"])
-					{
-						numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-						strcpy(addressP->home,numbercharP);
-					}
-					else
-						if([labelStringP isEqualToString:@"_$!<Business>!$_"])
-						{
-							numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-							strcpy(addressP->business,numbercharP);
-						}
-						else
-						{
-							numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-							strcpy(addressP->other,numbercharP);
-							
-						}
-				}*/
-				//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
-				[numberStringP release];
-				[labelStringP release];
-			}
-			[name1 release];
-		}	
-		name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
-		if(name1)
-		{	
-			for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
-			{
-				numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
-				labelStringP=(NSString*)ABMultiValueCopyLabelAtIndex(name1,i);
-				if(numberStringP==0 || labelStringP==0)
-				{
-					continue;
-				}
-				text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>"]];
-				
-				
-				numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-				typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
-				//printf("\ntest123  %s %s",numbercharP,typeCharP);
-				strcpy(secContactP->number,numbercharP);
-				strcpy(secContactP->type,typeCharP);
-				if(strstr(numbercharP,"@"))//only email allowed
-				{	
-					[ContactControllerDetailsviewP addContactDetails:secContactP];				//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
-				}
-				[numberStringP release];
-				[labelStringP release];
-			}
-			[name1 release];
-		}	
-		if(parentView)
-		{
-			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
-		}
-		else
-		{	
-			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :viewEnum];
-		}
-		/* 
-		 ContactDetailsViewController     *ContactControllerDetailsviewP;	
-		 ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
-		 [ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTPHONEDETAIL];
-		 [ContactControllerDetailsviewP setObject:self->ownerobject];
-		 
-		 [ ownerobject.contactNavigationController pushViewController:ContactControllerDetailsviewP animated: YES ];
-		 
-		 if([ContactControllerDetailsviewP retainCount]>1)
-		 [ContactControllerDetailsviewP release];
-		 */
-		
-		//[self showContactDetailScreen:addressP :CONTACTPHONEADDRESSBOOKDETAIL contactBook:nil];
-		[ContactControllerDetailsviewP setObject:self->ownerobject];
-		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
-		
-		if([ContactControllerDetailsviewP retainCount]>1)
-			[ContactControllerDetailsviewP release];
-		
-		
-		free(secContactP);
-		free(addressP);
-		
-		
-		
-		
-		
-		//printf("\n selected contact123");
-		
-		
-	
-	
-#endif	
+
 	return NO;
 	}
 	
