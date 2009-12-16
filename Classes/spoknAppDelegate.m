@@ -990,7 +990,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 //	[dialNavigationController popToRootViewControllerAnimated:TRUE];
 	[tabBarController dismissModalViewControllerAnimated:YES];
 	[ spoknViewControllerP startProgress];//start animation
-	[vmsviewP setcomposeStatus:0 ];
+	//[vmsviewP setcomposeStatus:0 ];
 	//[self changeView];
 
 

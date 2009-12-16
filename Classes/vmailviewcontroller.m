@@ -358,36 +358,87 @@
 		secLocP->index = index;
 		makeB = true;
 		
+		
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+		if(secObjStrP)
+		{	
+			dispP = [ [displayData alloc] init];
+			dispP.left = 0;
+			dispP.top = 0;
+			dispP.width = 10;
+			dispP.height = 70;
+			
+			if (vmailP->direction == VMAIL_OUT) 
+			{
+				
+				switch(vmailP->status)
+				{
+					case VMAIL_DELIVERED:
+						dispP.uiImageP =  dileverImageP;
+						break;
+					case VMAIL_FAILED:
+						dispP.uiImageP =  failedImageP;
+						break;
+					case VMAIL_ACTIVE:
+						dispP.uiImageP =  activeImageP;
+						break;
+					case VMAIL_NEW:
+						dispP.uiImageP =  vnewoutImageP;
+						break;
+				}
+			}
+			if (vmailP->direction == VMAIL_IN) 
+			{
+				switch(vmailP->status)
+				{
+					case VMAIL_ACTIVE:
+						dispP.uiImageP =  vnewImageP;
+						break;
+					case VMAIL_DELIVERED:
+						dispP.uiImageP =  readImageP;
+						break;
+					case VMAIL_NEW:
+						dispP.uiImageP =  vnewImageP;
+						break;
+					case VMAIL_FAILED:
+						dispP.uiImageP =  failedImageP;
+						break;
+				}
+			}
+			dispP.showOnEditB = true;
+			[secLocP->elementP addObject:dispP];
+		}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		if(makeB)
 		{
 			secLocP->userData = objP;
 			secLocP->index = index;
 			dispP = [ [displayData alloc] init];
 			dispP.boldB = YES;
-			dispP.left = 0;
-			dispP.top = 0;
+			dispP.left = 5;
+			//dispP.top = 0;
 			if(secObjStrP)
 			{	
-				dispP.width = 65;
+				dispP.width = 55;
 			}
 			else
 			{
 				dispP.width = 100;
 			}
 			if(typeCallP)
-			dispP.height = 60;
-			else
-			dispP.height = 100;	
-			if (vmailP->direction == VMAIL_OUT) 
 			{
-				/*
-				 UIImage  *activeImageP;
-				 UIImage  *dileverImageP;
-				 UIImage  *failedImageP;
-				 UIImage  *vnewImageP;
-				 UIImage  *readImageP;
-				 
-				 */
+				dispP.height = 60;
+				dispP.top = 0;	
+			}	
+			else
+			{
+				dispP.height = 50;
+				dispP.top = 6;	
+			}	
+		/*	if (vmailP->direction == VMAIL_OUT) 
+			{
+
 				switch(vmailP->status)
 				{
 					case VMAIL_DELIVERED:
@@ -425,7 +476,7 @@
 						
 
 				}
-			}
+			}*/
 			if(vmailP->status==VMAIL_FAILED)
 			{
 				dispP.colorP = [UIColor colorWithRed:187/255.0 green:25/255.0 blue:25/255.0 alpha:1.0];
@@ -445,11 +496,11 @@
 			dispP.dataP = stringStrP;
 			[stringStrP release];
 			
-			
-			
 			dispP.fntSz = 16;
 			dispP.showOnEditB = true;
 			[secLocP->elementP addObject:dispP];
+			
+
 			
 			if(secObjStrP)
 			{	
