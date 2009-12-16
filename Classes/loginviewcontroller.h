@@ -17,7 +17,7 @@
 @end
 
 @class SpoknAppDelegate;
-@interface LoginViewController : UIViewController<UITextFieldDelegate> {
+@interface LoginViewController : UIViewController<UITextFieldDelegate,LoginProtocol> {
 	IBOutlet UITextField*usernameFieldP;
 	IBOutlet UITextField *passwordFieldP;
 	IBOutlet UIButton *spoknButtonP;

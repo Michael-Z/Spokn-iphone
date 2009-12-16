@@ -140,10 +140,13 @@
 
 
 - (void)dealloc {
+	[loginactivityIndicator release];
+	[ownerobject setLoginDelegate:nil];
 	////printf("\ndalloc");
 	//[usernameFieldP release];
 	//[passwordFieldP release];
     [super dealloc];
+	
 }
 -(IBAction)loginLtp:(id)sender
 {
