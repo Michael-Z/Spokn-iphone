@@ -307,7 +307,7 @@
 			break;
 		case ALERT_ONLINE://login
 			[vmsviewP setcomposeStatus:1 ];
-			[loginProtocolP stoploginIndicator];
+			//[loginProtocolP stoploginIndicator];
 			[self popLoginView];
 			
 			#ifndef _LTP_
@@ -358,6 +358,7 @@
 						break;
 					case LOGIN_STATUS_FAILED:
 							[loginProtocolP stoploginIndicator];
+							[loginProtocolP cleartextField];
 							[dialviewP setStatusText: @"Authentication failed" :ALERT_OFFLINE :self->subID ];
 						break;
 					case LOGIN_STATUS_NO_ACCESS:

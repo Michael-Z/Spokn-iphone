@@ -14,6 +14,7 @@
 @optional
 -(void) startloginIndicator;
 -(void) stoploginIndicator;
+-(void) cleartextField;
 @end
 
 @class SpoknAppDelegate;

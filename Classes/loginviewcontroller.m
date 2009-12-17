@@ -108,6 +108,11 @@
 
 }
 
+-(void) cleartextField
+{
+	passwordFieldP.text = @"";
+}
+
 -(void) startloginIndicator
 {
 	[loginactivityIndicator startAnimating];
@@ -236,7 +241,7 @@
 		usernameFieldP.selected = FALSE;
 		passwordFieldP.selected = FALSE;
 		DoLtpLogin(ltpInterfacesP);
-		
+
 		//[self->ownerobject changeView];
 		//[self->ownerobject popLoginView];
 	}	
