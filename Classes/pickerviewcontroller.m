@@ -826,8 +826,8 @@
 
 			//[theTextField resignFirstResponder];
 	
-		[txtDestNo resignFirstResponder];
-		[self->upDateProtocolP keyBoardOnOrOff:NO :nil] ;
+		//[txtDestNo resignFirstResponder];
+		//[self->upDateProtocolP keyBoardOnOrOff:NO :nil] ;
 		NSString *tmpStringP;
 		NSMutableString *resultStrP;
 		resultStrP = [[NSMutableString alloc] init];

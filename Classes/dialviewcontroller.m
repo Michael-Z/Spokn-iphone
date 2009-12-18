@@ -401,8 +401,8 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	}
 	else
 	{
-		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-														   message: [ NSString stringWithString:@"user not online" ]
+		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
+														   message: [ NSString stringWithString:@"No Network" ]
 														  delegate: nil
 												 cancelButtonTitle: nil
 												 otherButtonTitles: @"OK", nil
