@@ -125,6 +125,7 @@
 }
 -(IBAction)addContactPressed:(id)sender
 {
+
 	if(modalB)
 	[upDateProtocolP addContact:self];
 	else
@@ -337,6 +338,14 @@
 
 -(IBAction)addFromContact:(id)sender
 {
+	printf("addcontactpressed");
+	NSString *temp = [txtDestNo.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	
+	if( ![temp isEqualToString:@""] )
+	{
+		[self update_txtDestNo:@""];
+	}
+	
 	if(modalB)
 		[upDateProtocolP addContact:self];
 	else

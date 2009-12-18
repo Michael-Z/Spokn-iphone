@@ -687,6 +687,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	[nsP release];
 }
+
+#pragma mark STARTING POINT
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
 
     // Override point for customization after application launch
@@ -698,6 +700,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[ window addSubview: viewController.view ];
 	//[ window addSubview: viewController->usernameP ];
 	//[ window addSubview: viewController->passwordP ];
+		
 	wifiavailable = NO;
 	urlSendP = nil;
 	//char *userNameCharP;
@@ -908,6 +911,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[vmsviewP setcomposeStatus:1 ];
 		
 }
+
 -(void)logOut:(Boolean) clearAllB
 {
 	animation = 1;
