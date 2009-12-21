@@ -441,7 +441,7 @@
 	
 	if(viewEnum!=CONTACTADDVIEWENUM || modelViewB ==true)
 	{	
-		[ [self navigationController] popToRootViewControllerAnimated:YES ];
+		[ [self navigationController] popViewControllerAnimated:YES ];
 	}	
 	else
 	{
@@ -518,7 +518,7 @@
 		
 		if(viewEnum!=CONTACTADDVIEWENUM || modelViewB==true)
 		{	
-			[ [self navigationController] popToRootViewControllerAnimated:YES ];
+			[ [self navigationController] popViewControllerAnimated:YES ];
 			//[VmailProtocolP reload];
 		}	
 		else
@@ -832,6 +832,11 @@
 	{
 		tableView.tableFooterView = viewP;
 		[viewP release];
+		if(viewEnum == CONTACTDETAILFROMVMS)
+		{
+			[self setTitle:titlesP ];
+		}
+		
 		
 
 	}
@@ -1047,11 +1052,20 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			}
 			return;
 		}
+		if(viewEnum == CONTACTDETAILFROMVMS)
+		{
+			if(self->rootObjectP)
+			{
+			//printf("\n got the no");
+				[[self navigationController]  popToViewController:self->rootObjectP animated:YES];
+			}
+		}	
 		if(strstr( sectionArray[section].dataforSection[row].elementP,"@")==0)
 		{	
 			SetAddressBookDetails(ownerobject.ltpInterfacesP,addressID,recordID);
 			[self->ownerobject makeCall:sectionArray[section].dataforSection[row].elementP];
 			[self->ownerobject changeView];
+			
 		}	
 		else
 		{
@@ -1567,7 +1581,7 @@ titleForHeaderInSection:(NSInteger)section
 				{
 					self.navigationItem.rightBarButtonItem = nil;
 				}
-				if(CONTACTFORWARDVMS == viewEnum)
+				if(CONTACTFORWARDVMS == viewEnum || viewEnum == CONTACTDETAILFROMVMS)
 				{
 					self.navigationItem.rightBarButtonItem = nil;
 

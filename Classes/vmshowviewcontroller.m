@@ -1339,7 +1339,7 @@ id createImage(float percentage)
 		returnValueInt = 0;
 		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:self selectedContact:selectP] ;
 	
-		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
+		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILFROMVMS];
 		[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
 		[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:NO ];
 		[ContactControllerDetailsviewP setObject:self->ownerobject];
@@ -1368,7 +1368,7 @@ id createImage(float percentage)
 		returnValueInt = 0;
 		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:self selectedContact:0]  ;
 		
-		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTFORWARDVMS];
+		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILFROMVMS];
 		[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
 		[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:YES ];
 		[ContactControllerDetailsviewP setObject:self->ownerobject];
@@ -1514,6 +1514,8 @@ id createImage(float percentage)
 
 - (void)dealloc {
 	printf("\n dealoc called");
+	//[super dealloc];
+	//return;
 	[self navigationController].delegate = nil;
 	
 	[ownerobject setVmsDelegate:nil];
@@ -1548,7 +1550,7 @@ id createImage(float percentage)
 	if(vmailP)
 		free(vmailP);	
 	
-    [super dealloc];
+    
 }
 
 
