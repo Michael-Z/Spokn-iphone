@@ -702,7 +702,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	NSString *nsP;
 	nsP = [[NSString alloc] initWithUTF8String:pathCharP];
     [defaultManager createDirectoryAtPath:nsP attributes:nil];
-	////printf("\n %s\n",pathCharP);
+	printf("\n %s\n",pathCharP);
 	
 	[nsP release];
 }
