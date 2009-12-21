@@ -381,8 +381,9 @@
 							[dialviewP setStatusText: @"Authentication failed" :ALERT_OFFLINE :self->subID ];
 						break;
 					case LOGIN_STATUS_NO_ACCESS:
+							[loginProtocolP stoploginIndicator];
 							[dialviewP setStatusText: @"no access" :ALERT_OFFLINE :self->subID ];
-						//printf("\n no access to network");
+							//printf("\n no access to network");
 						break;
 					default:
 							[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
