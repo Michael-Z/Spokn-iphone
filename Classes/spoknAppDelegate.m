@@ -307,7 +307,7 @@
 			break;
 		case ALERT_ONLINE://login
 			[vmsviewP setcomposeStatus:1 ];
-			//[loginProtocolP stoploginIndicator];
+			[loginProtocolP stoploginIndicator];
 			[self popLoginView];
 			
 			#ifndef _LTP_
@@ -911,6 +911,34 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[vmsviewP setcomposeStatus:1 ];
 		
 }
+/*
+#pragma mark PUSH NOTIFICATIONS
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+	NSLog(@"devToken=%@", deviceToken);
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"APNS", @"") message:[NSString stringWithFormat:@"%@", deviceToken] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] autorelease];
+		[alert show];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {     
+    NSLog(@"Error in registration. Error: %@", err);
+	//	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Device Token", @"") message:[NSString stringWithFormat:@"%@", err] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] autorelease];
+	//	[alert show];
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"APNS" message:[NSString stringWithFormat:@"%@", launchOptions] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] autorelease];
+	[alert show];
+	[self applicationDidFinishLaunching:application];
+	return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"APNS" message:[NSString stringWithFormat:@"%@", userInfo] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] autorelease];
+	[alert show];
+}
+*/
+
 
 -(void)logOut:(Boolean) clearAllB
 {

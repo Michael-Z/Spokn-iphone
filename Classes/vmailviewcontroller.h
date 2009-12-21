@@ -11,6 +11,13 @@
 #include "ua.h"
 #include "vmsplayrecord.h"
 #import "customCell.h"
+
+@protocol VmailProtocol
+
+@optional
+- (void) reload ;
+@end
+
 @class SpoknAppDelegate;
 @interface VmailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate> {
 	IBOutlet UITableView *tableView;

@@ -13,6 +13,7 @@
 #import "SpoknAppDelegate.h"
 #import "AddEditcontactViewController.h"
 #import  "AddeditcellController.h"
+#import "vmailviewcontroller.h"
 //self.navigationItem.leftBarButtonItem.enabled = YES;
 @implementation ContactDetailsViewController
 
@@ -173,6 +174,7 @@
 	//[alertView release];
 }
 
+#pragma mark ACTIONSHEET
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
  {
 	 
@@ -470,7 +472,7 @@
 				
 				
 				{		//printf("\n add contact");									 
-					addContact(addressDataP->title,addressDataP->mobile,addressDataP->home,addressDataP->business,0,addressDataP->email,addressDataP->spoknid);
+					addContact(addressDataP->title,addressDataP->mobile,addressDataP->home,addressDataP->business,addressDataP->other,addressDataP->email,addressDataP->spoknid);
 					
 				}
 				else
@@ -499,6 +501,7 @@
 				strcpy(addrP->business,addressDataP->business);
 				strcpy(addrP->home,addressDataP->home);
 				strcpy(addrP->email,addressDataP->email);
+				strcpy(addrP->other,addressDataP->other);
 				addrP->dirty = true;
 			
 			}
@@ -516,6 +519,7 @@
 		if(viewEnum!=CONTACTADDVIEWENUM || modelViewB==true)
 		{	
 			[ [self navigationController] popToRootViewControllerAnimated:YES ];
+			//[VmailProtocolP reload];
 		}	
 		else
 		{

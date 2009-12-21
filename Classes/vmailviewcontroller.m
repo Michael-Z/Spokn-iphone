@@ -972,6 +972,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		self.navigationItem.rightBarButtonItem.enabled = NO;
 	}	
 }	
+
 -(void)setcomposeStatus:(int)lstatus
 {
 	onLine = lstatus;

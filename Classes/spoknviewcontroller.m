@@ -215,7 +215,7 @@
 	[self startProgress];
 	
 	//[buttonCtlP setBackgroundColor:[UIColor greenColor]];
-	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn Number""\n"@"3Spokn ID";
+	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn ID""\n"@"3Spokn Number";//Spokn Number
 	NSArray *wordArray = [wordstring componentsSeparatedByString:@"\n"] ;
 	// [self->tableView initWithStyle :UITableViewStyleGrouped];
 	self->tableView.rowHeight = ROW_HEIGHT;

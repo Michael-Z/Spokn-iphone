@@ -12,6 +12,7 @@
 #include "ua.h"
 #import "customcell.h"
 #import "custombutton.h"
+//#import "vmailviewcontroller.h"
 #define MAX_COUNT 10
 #define MAX_SECTION 4
 @class SpoknAppDelegate;
@@ -98,6 +99,7 @@ typedef enum ViewTypeEnum
 	Boolean modelViewB;
 	int addressID;
 	int recordID;
+	//id<VmailProtocol> VmailProtocolP;
 	
 }
 
