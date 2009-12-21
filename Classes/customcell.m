@@ -89,7 +89,7 @@
 		spoknSubCellP.autoresizingMask = UIViewAutoresizingNone;
 		[self.contentView addSubview:spoknSubCellP];
 		//[spoknSubCellP release];
-		spoknSubCellP.font = self.font;
+		//spoknSubCellP.font = self.font;
 		
 	}
     return self;
@@ -270,7 +270,12 @@
 					}
 					else
 					{	
+						
 						fontlP = self.font;
+						if(fontlP==nil)
+						{
+							printf("\n mukesh font");
+						}
 						//[fontlP retain];
 					}
 					[txtColor set];
@@ -297,7 +302,7 @@
 					stX+=width;
 					//stY+=height;
 					[txtColor release];
-				//	[fontlP release];
+				
 					
 					
 				}

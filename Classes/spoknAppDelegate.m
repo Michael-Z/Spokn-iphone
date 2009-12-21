@@ -620,6 +620,7 @@
 -(void)LoadInCommingView:(id)object
 {
 	IncommingCallViewController     *inCommingCallViewP;	
+	[tabBarController dismissModalViewControllerAnimated:NO];
 	////printf("\nview added");
 	inCommingCallViewP = [[IncommingCallViewController alloc] initWithNibName:@"incommingcall" bundle:[NSBundle mainBundle]];
 	[inCommingCallViewP initVariable];
