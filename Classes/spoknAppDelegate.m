@@ -256,6 +256,25 @@
 {
 	switch(self->status)
 	{
+		case ALERT_ERROR:
+		{
+			switch(self->lineID)
+			{
+				case ERR_CODE_CALL_FWD_DUPLICATE:
+				{
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
+																	message:@"Duplicate Forward Number"
+																   delegate:self 
+														  cancelButtonTitle:nil 
+														  otherButtonTitles:@"OK", nil];
+					[alert show];
+					[alert release];
+				}
+					break;	
+			
+			}
+		}
+			break;
 		case ALERT_CONNECTED:
 			[dialviewP setStatusText: @"ringing" :ALERT_CONNECTED :0];
 

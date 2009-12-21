@@ -31,6 +31,7 @@
 #define LOAD_LOGIN_VIEW 1
 #define TRYING_CALL 4000
 #define _SIP_ 5000
+#define ERR_CODE_CALL_FWD_DUPLICATE 402
 
 @class VmailViewController;
 @class SpoknViewController;

@@ -90,7 +90,8 @@
 	
 	
 	
-	TempP = (char*)[[txtField text]  cStringUsingEncoding:NSUTF8StringEncoding];
+	//TempP = (char*)[[txtField text]  cStringUsingEncoding:NSUTF8StringEncoding];
+	TempP = (char*)[[txtField.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>+"]]  cStringUsingEncoding:NSUTF8StringEncoding];
 	NSLog([txtField text]);
 	strcpy(rvalueCharP,TempP);
 		if(returnP)
