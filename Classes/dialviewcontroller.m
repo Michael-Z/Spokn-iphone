@@ -416,8 +416,8 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 }
 -(IBAction)hangLtp:(id)sender
 {
-	if(onLineB)
-	{
+	//if(onLineB)
+	//{
 		
 		if(currentView==1)
 		{	
@@ -469,8 +469,8 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				statusLabel2P.hidden = NO;
 			}	
 		}
-	}
-	else
+	//}
+	/*else
 	{
 		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
 														   message: [ NSString stringWithString:@"user not online"]
@@ -484,7 +484,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 		
 	
-	}
+	}*/
 }
 -(IBAction)dismissKeyboard: (id)sender {
 	[sender resignFirstResponder];
