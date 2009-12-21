@@ -782,7 +782,7 @@
 			if([SpoknAppDelegate emailValidate:text]==NO)
 			{	
 				
-				NSString *text1 = [text stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
+				NSString *text1 = [text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>+1234567890"]];
 				
 				
 				if(text1!=0 && [text1 length]!=0)
