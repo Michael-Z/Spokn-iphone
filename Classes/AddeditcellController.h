@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "LtpInterface.h"
 #include "ua.h"
+#import "VmailViewController.h"
+#import "calllogviewcontroller.h"
+#import "contactviewcontroller.h"
 @class SpoknAppDelegate;
 @class AddressBookContact;
 @class UIAddressBook;
@@ -31,6 +34,9 @@
 	int fieldRangeInt;
 	id navRootObject;
 	int buttonType;
+	id<VmailProtocol> VmailProtocolP;
+	id<CallogProtocol> CallogProtocolP;
+	id<ContactProtocol> ContactProtocolP;
 	
 }
 -(void)setData:/*out parameter*/(char *)valueCharP value:(char*)fieldP placeHolder:(char*)placeHolderP/*out parameter*/returnValue:(int *)returnP;

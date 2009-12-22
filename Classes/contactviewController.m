@@ -563,7 +563,7 @@ titleForHeaderInSection:(NSInteger)section
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+	refreshB = 0;
 	searchbar = [[UISearchBar alloc] init];
 	searchbar.delegate = self;
 	searchStartB = false;
@@ -762,6 +762,10 @@ titleForHeaderInSection:(NSInteger)section
 
 }	
 
+- (void) setrefreshBit
+{
+	refreshB = 1;
+}
  - (void)controlPressed:(id) sender {
  	 int index = segmentedControl.selectedSegmentIndex;
 	 switch(index)

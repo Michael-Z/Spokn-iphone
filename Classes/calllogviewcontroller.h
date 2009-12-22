@@ -11,6 +11,13 @@
 #include "ua.h"
 #import "customCell.h"
 
+@protocol CallogProtocol
+
+@optional
+- (void) setrefreshBit ;
+@end
+
+
 @class SpoknAppDelegate;
 @interface CalllogViewController : UIViewController< UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate> {
 	IBOutlet UITableView *tableView;
@@ -27,10 +34,12 @@
 	struct CDR *gcdrP;
 	Boolean hideB;
 	long count;
+	int refreshB;
 	
 }
 -(void)setObject:(id) object ;
 -(void)setObjType:(UAObjectType)luaObj;
 - (void)addRow: (int )index sectionObject:(sectionType **)sectionPP;
 -(void) hideLeftbutton:(Boolean) lhideB;
+- (void) reload;
 @end

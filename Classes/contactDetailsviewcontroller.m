@@ -519,7 +519,7 @@
 		if(viewEnum!=CONTACTADDVIEWENUM || modelViewB==true)
 		{	
 			[ [self navigationController] popViewControllerAnimated:YES ];
-			//[VmailProtocolP reload];
+			[ownerobject refreshallViews];
 		}	
 		else
 		{

@@ -826,7 +826,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		
 		
 	*/
+	if(refreshB)
 	[ self->tableView reloadData ];
+	refreshB = 0;
 }
 - (void) ComposeVmailPressed {
 /*	NSIndexPath * indexPath;
@@ -996,7 +998,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	readImageP=[UIImage imageNamed:@"vm_icons_incoming_read.png"];
 	vnewoutImageP=[UIImage imageNamed:@"vmail_out_newHigh.png"];
 	//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
-	
+	refreshB = 0;
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 	//self->tablesz = 0;
@@ -1043,7 +1045,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		self.navigationItem.rightBarButtonItem.enabled = NO;
 	}	
 	
-	
+ 
 
 
 	
@@ -1078,7 +1080,10 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
-
+- (void) setrefreshBit
+{
+	refreshB = 1;
+}
 
 - (void)dealloc {
 	//printf("\n vmail dealloc");

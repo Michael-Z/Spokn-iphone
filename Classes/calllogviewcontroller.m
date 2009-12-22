@@ -710,7 +710,10 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		
 	} 
 }
-
+- (void) setrefreshBit
+{
+	refreshB = 1;
+}
 - (void) reload {
 	//sectionType *secP;
 	
@@ -733,7 +736,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	 */
 	//printf("\n call end ");
+	if(refreshB)
 	[ self->tableView reloadData ];
+	refreshB = 0;
 	
 }/*
 - (void) startEditing {
@@ -826,7 +831,7 @@ cancelButtonTitle: nil
 	 
 	
 	
-	
+	refreshB = 0;
 	
 	//self->fontGloP = [UIFont systemFontOfSize:16.0];
 	////////printf("\n my font count %d",[self->fontGloP  retainCount]);

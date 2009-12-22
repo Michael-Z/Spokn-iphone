@@ -158,5 +158,6 @@ changed:(BOOL)changed;
 -(void) playcallendTone;
 -(void)logOut:(Boolean) clearAllB;
 -(void)setLoginDelegate :(id)deligateP;
+-(void)refreshallViews;
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);

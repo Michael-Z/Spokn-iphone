@@ -17,6 +17,13 @@
 #define ALPHA @"!ABCDEFGHIJKLMNOPQRSTUVWXYZ#"
 #define ALPHA_ARRAY [NSArray arrayWithObjects: @"{search}" , @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R",@"S",@"T", @"U", @"V", @"W", @"X", @"Y",@"Z",@"#" , nil] 
 
+@protocol ContactProtocol
+
+@optional
+- (void) setrefreshBit ;
+@end
+
+
 @class SpoknAppDelegate;
 
 @class AddressBookContact;
@@ -54,6 +61,7 @@
 	Boolean searchStartB;
 	UIView *mainViewP;
 	int loadedNewViewB;
+	int refreshB;
 	//NSArray *sectionNSArrayP;
 	#ifdef _NEW_ADDRESS_BOOK_
 		ABPeoplePickerNavigationController *addressBookP;

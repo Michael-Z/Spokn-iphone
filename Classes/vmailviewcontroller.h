@@ -15,7 +15,7 @@
 @protocol VmailProtocol
 
 @optional
-- (void) reload ;
+- (void) setrefreshBit ;
 @end
 
 @class SpoknAppDelegate;
@@ -42,6 +42,7 @@
 	int openVmsCompose;
 	char vmsNoChar[100];
 	int onLine;
+	int refreshB;
 
 
 }
@@ -53,5 +54,6 @@
 -(void)startVmsProgress:(char*)fileNameCharP :(int) max :(struct VMail *)vmailP;
 -(void)setcomposeStatus:(int)lstatus;
 -(void)refreshView;
+- (void) reload ;
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 @end

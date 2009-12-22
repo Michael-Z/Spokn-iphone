@@ -1479,6 +1479,14 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 
 }
+
+-(void)refreshallViews
+{
+	[vmsviewP reload];
+	[callviewP reload];
+	[contactviewP reload];
+}
+
 #pragma mark RECHABILITY
 -(void) startCheckNetwork
 {
