@@ -1313,6 +1313,7 @@ id createImage(float percentage)
 	}
 	else
 	{	
+		[self stopButtonPressed:nil];
 		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 	}	
 	
