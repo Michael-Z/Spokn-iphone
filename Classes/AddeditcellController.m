@@ -131,7 +131,7 @@ NSLog(@"\nSave123");
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+	self.tableView.scrollEnabled = NO;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
