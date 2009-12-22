@@ -75,7 +75,7 @@
 			dispP.dataP = stringStrP;
 			[stringStrP release];
 			//[dispP.colorP release];
-			
+			dispP.showOnEditB = true;
 			[secLocP->elementP addObject:dispP];
 			
 			if(secObjStrP)
@@ -115,6 +115,7 @@
 				}
 				dispP.fntSz = 14;
 				dispP.boldB = YES;
+				dispP.showOnEditB = NO;
 				//[dispP.colorP release];
 				[secLocP->elementP addObject:dispP];
 				
@@ -525,6 +526,10 @@
 		{
 			[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 		}
+		if(retValP)
+		{
+			*retValP = 1;
+		}		
 	}	//contactID = -1;
 		
 	
@@ -902,10 +907,42 @@
 
 
 #pragma mark Table view methods
+/*
+-(void)tableView:(UITableView*)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	
+	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
+	[cell setEdit:YES];
+	//printf("swipe start");
+	
+}
+- (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
+	[cell setEdit:NO];
+	
+	//printf("swipe end");
+}
+ */
 
 /*
  *   Table Data Source
  */
+-(void)tableView:(UITableView*)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	
+	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
+	[cell setEdit:YES];
+	//printf("swipe start");
+	
+}
+- (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
+	[cell setEdit:NO];
+	
+	//printf("swipe end");
+}
 
 - (UITableViewCell *)tableView:(UITableView *)aTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -981,15 +1018,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	// If row is deleted, remove it from the list.
 	if (editingStyle == UITableViewCellEditingStyleDelete) 
 	{
-		sectionArray[section].count--;
+		//sectionArray[section].count--;
 		if(sectionArray[section].dataforSection[row].elementP)
 		{
 			strcpy(sectionArray[section].dataforSection[row].elementP,"\0");//mean row is deleted
 			updatecontact = 1;
 		}
 		// [dataController removeDataAtIndex:indexPath.row-1];
-		[ltableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
-						  withRowAnimation:UITableViewRowAnimationFade];
+	//	[ltableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
+		//				  withRowAnimation:UITableViewRowAnimationFade];
+		[tableView reloadData]; 
 	}
 	else if(editingStyle == UITableViewCellEditingStyleInsert)
 	{
@@ -1001,7 +1039,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:
 (NSIndexPath *)indexPath
 {
-	/*int row = [indexPath row];
+	int row = [indexPath row];
 	int section = [indexPath section];
 	if(editableB)
 	{	
@@ -1014,7 +1052,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			return UITableViewCellEditingStyleDelete;
 		}
 	}	
-	*/
+	
 	return UITableViewCellEditingStyleNone;
 }
 
@@ -1364,7 +1402,7 @@ titleForHeaderInSection:(NSInteger)section
 				
 			}
 		}
-		
+		/*
 		if(strlen(addressDataP->other)>0)
 		{
 			//if(self->cdrP)
@@ -1391,7 +1429,7 @@ titleForHeaderInSection:(NSInteger)section
 				tablesz++;
 			
 			}
-		}
+		}*/
 		if(strlen(addressDataP->spoknid)>0)
 		{
 			//element[tablesz++] = addressDataP->spoknid;

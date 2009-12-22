@@ -54,7 +54,7 @@
 {
 	self->ownerobject = object;
 }
--(void)showForwardScreen
+-(void)showForwardNoScreen
 {
 	AddeditcellController     *AddeditcellControllerviewP;	
 	AddeditcellControllerviewP = [[AddeditcellController alloc]init];
@@ -84,7 +84,14 @@
 
 		char *forwordCharP;
 		forwordCharP = (char*)[[labelForword text] cStringUsingEncoding:NSUTF8StringEncoding];
-		
+		if(forwordCharP)
+		{
+			if(strlen(forwordCharP)==0)
+			{
+				[self showForwardNoScreen];
+				return;
+			}
+		}
 		[labelForword setTextColor:SPOKNCOLOR]; 
 		SetOrReSetForwardNo(true,forwordCharP);
 		profileResync();
@@ -233,7 +240,7 @@
 	
 		buttonCtlP.enabled = NO;
 	
-	
+	switchView.on = NO;
 	
 	
 	
@@ -260,12 +267,21 @@
 			}
 			memset(forwardNoCharP,0,100);
 		}
+		else
+		{
+			switchView.on = NO;
+			
+		}
 		//[ self->tableView reloadData ];
 	}
 	else
 	{
 		if(viewCallB)
 		{
+			if([labelForword.text length]==0)//mean off
+			{
+				switchView.on = NO;
+			}
 			////printf("\n control on");
 			viewCallB = false;
 			//[switchView setOn:NO animated:NO]; 
@@ -473,7 +489,7 @@ titleForHeaderInSection:(NSInteger)section
 		[labelForword setText:stringStrP];
 		[stringStrP release];
 		//if(strlen(lforwardNoCharP)>0)
-		if(forward)
+		if(forward && strlen(lforwardNoCharP)>0)
 		{
 			switchView.on = YES;
 			[labelForword setTextColor:SPOKNCOLOR]; 
@@ -725,7 +741,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}
 	if(section==1 && row==1 && statusInt)
 	{
-		[self showForwardScreen];
+		[self showForwardNoScreen];
 	}
 	[ltableView deselectRowAtIndexPath : indexPath animated:YES];
 	

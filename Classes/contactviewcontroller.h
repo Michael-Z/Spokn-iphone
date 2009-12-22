@@ -17,12 +17,6 @@
 #define ALPHA @"!ABCDEFGHIJKLMNOPQRSTUVWXYZ#"
 #define ALPHA_ARRAY [NSArray arrayWithObjects: @"{search}" , @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R",@"S",@"T", @"U", @"V", @"W", @"X", @"Y",@"Z",@"#" , nil] 
 
-@protocol ContactProtocol
-
-@optional
-- (void) setrefreshBit ;
-@end
-
 
 @class SpoknAppDelegate;
 
@@ -83,6 +77,7 @@
 -(int)  showContactDetailScreen: (struct AddressBook * )addressP :(ViewTypeEnum) viewEnum contactBook:(ABRecordRef)contactRefP;
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
 -(void)cancelSearch;
+- (void) doRefresh ;
 +(int) getNameAndType :(ABRecordID) recordID :(char*)lnumberCharP :(char **) nameStringP :(char**)typeP;
 +(int) addDetailsFromAddressBook :(ContactDetailsViewController     *)ContactControllerDetailsviewP :(ViewTypeEnum) viewEnum contactBook:(ABRecordRef)person;
 @end

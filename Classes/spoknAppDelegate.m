@@ -262,6 +262,7 @@
 			{
 				case ERR_CODE_CALL_FWD_DUPLICATE:
 				{
+					char *callFdP;
 					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
 																	message:@"Duplicate Forward Number"
 																   delegate:self 
@@ -269,6 +270,21 @@
 														  otherButtonTitles:@"OK", nil];
 					[alert show];
 					[alert release];
+					callFdP = getOldForwardNo();
+					printf("oldfno = %s",callFdP);
+					if(callFdP)
+					{	
+						if(strlen(callFdP)>0)
+							SetOrReSetForwardNo(1,callFdP);
+						else
+							SetOrReSetForwardNo(0,callFdP);
+					}
+					else
+					{
+						SetOrReSetForwardNo(0,callFdP);
+					}
+					profileResync();
+					[self updateSpoknView:0];
 				}
 					break;	
 			
@@ -1482,9 +1498,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 -(void)refreshallViews
 {
-	[vmsviewP reload];
-	[callviewP reload];
-	[contactviewP reload];
+	[vmsviewP doRefresh];
+	[callviewP doRefresh];
+	[contactviewP doRefresh];
 }
 
 #pragma mark RECHABILITY

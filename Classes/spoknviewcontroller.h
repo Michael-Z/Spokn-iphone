@@ -48,7 +48,7 @@ typedef struct ImageNameType
 -(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward spoknID:(char*)spoknLoginId;
 - (IBAction)switchChange:(UISwitch*)sender;
 -(void)startProgress;
--(void)showForwardScreen;
+-(void)showForwardNoScreen;
 -(void)cancelProgress;
 -(void) cancelPressed ;
 -(void) LoginPressed ;

@@ -12,11 +12,7 @@
 #include "vmsplayrecord.h"
 #import "customCell.h"
 
-@protocol VmailProtocol
 
-@optional
-- (void) setrefreshBit ;
-@end
 
 @class SpoknAppDelegate;
 @interface VmailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate> {
@@ -55,5 +51,6 @@
 -(void)setcomposeStatus:(int)lstatus;
 -(void)refreshView;
 - (void) reload ;
+- (void) doRefresh ;
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 @end

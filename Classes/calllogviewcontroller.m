@@ -710,7 +710,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		
 	} 
 }
-- (void) setrefreshBit
+- (void) doRefresh
 {
 	refreshB = 1;
 }
@@ -736,9 +736,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	 */
 	//printf("\n call end ");
-	if(refreshB)
+	
 	[ self->tableView reloadData ];
-	refreshB = 0;
+	
 	
 }/*
 - (void) startEditing {
@@ -816,6 +816,11 @@ cancelButtonTitle: nil
 	if(nsP)
 	{
 		[self->tableView deselectRowAtIndexPath : nsP animated:NO];
+	}
+	if(refreshB)
+	{
+		[self->tableView reloadData];
+		refreshB = 0;
 	}
 }	
 

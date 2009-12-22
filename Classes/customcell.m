@@ -272,10 +272,7 @@
 					{	
 						
 						fontlP = self.font;
-						if(fontlP==nil)
-						{
-							printf("\n mukesh font");
-						}
+						
 						//[fontlP retain];
 					}
 					[txtColor set];

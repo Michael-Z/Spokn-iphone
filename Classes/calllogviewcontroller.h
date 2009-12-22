@@ -11,11 +11,6 @@
 #include "ua.h"
 #import "customCell.h"
 
-@protocol CallogProtocol
-
-@optional
-- (void) setrefreshBit ;
-@end
 
 
 @class SpoknAppDelegate;
@@ -37,6 +32,7 @@
 	int refreshB;
 	
 }
+-(void)doRefresh;
 -(void)setObject:(id) object ;
 -(void)setObjType:(UAObjectType)luaObj;
 - (void)addRow: (int )index sectionObject:(sectionType **)sectionPP;

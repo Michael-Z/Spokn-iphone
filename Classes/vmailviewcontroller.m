@@ -826,10 +826,11 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		
 		
 	*/
-	if(refreshB)
+	
 	[ self->tableView reloadData ];
-	refreshB = 0;
+	
 }
+
 - (void) ComposeVmailPressed {
 /*	NSIndexPath * indexPath;
 	sectionType *secLocP;
@@ -972,7 +973,12 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	else
 	{
 		self.navigationItem.rightBarButtonItem.enabled = NO;
-	}	
+	}
+	if(refreshB)
+	{
+		[self->tableView reloadData];
+		refreshB = 0;
+	}
 }	
 
 -(void)setcomposeStatus:(int)lstatus
@@ -1080,7 +1086,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
-- (void) setrefreshBit
+- (void) doRefresh
 {
 	refreshB = 1;
 }

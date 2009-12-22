@@ -34,10 +34,7 @@
 	int fieldRangeInt;
 	id navRootObject;
 	int buttonType;
-	id<VmailProtocol> VmailProtocolP;
-	id<CallogProtocol> CallogProtocolP;
-	id<ContactProtocol> ContactProtocolP;
-	
+		
 }
 -(void)setData:/*out parameter*/(char *)valueCharP value:(char*)fieldP placeHolder:(char*)placeHolderP/*out parameter*/returnValue:(int *)returnP;
 -(IBAction)cancelPressed;

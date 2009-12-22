@@ -758,11 +758,15 @@ titleForHeaderInSection:(NSInteger)section
 		
 	#endif
 	
-	
+	if(refreshB)
+	{
+		[self->tableView reloadData];
+		refreshB = 0;
+	}
 
 }	
 
-- (void) setrefreshBit
+- (void) doRefresh
 {
 	refreshB = 1;
 }

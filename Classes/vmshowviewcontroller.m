@@ -1011,25 +1011,50 @@ id createImage(float percentage)
 	if(returnValueInt)
 	{
 		
-		if(vmstateType!=VMSStatePlay)
+		//if(vmstateType!=VMSStatePlay)
 		{	
 		//	//printf("\n selected no %s",forwardNoChar);
 			//forwardNoChar[0]=0;
 			returnValueInt = 0;
+			char type[40];
+			struct AddressBook * addressP;
 			if(selectP)
 			{
-				struct VMail* lvmailP;
-				lvmailP = vmailP;
-				vmailP =0;
+				//struct VMail* lvmailP;
+				//lvmailP = vmailP;
+				//vmailP =0;
 				////printf("\n selected type %s %s %s",forwardNoChar,selectP->nameChar,selectP->type);
 				//[self setvmsDetail: forwardNoChar : selectP->nameChar :selectP->type :playB :maxTime :lvmailP];
 				free(selectP);
+				//if(lvmailP)
+				//{
+				//	free(lvmailP);
+				//}
+				selectP = 0;
+			}
+			//now get address book
+				addressP = getContactAndTypeCall(noCharP,type);	
+			if(addressP)
+			{
+				struct VMail* lvmailP;
+				lvmailP = vmailP;
+				char*lnoCharP;
+				vmailP =0;
+				lnoCharP = noCharP;
+				noCharP = 0;
+				////printf("\n selected type %s %s %s",forwardNoChar,selectP->nameChar,selectP->type);
+				[self setvmsDetail: lnoCharP : addressP->title :type :vmstateType :maxTime :lvmailP];
+				if(lnoCharP)
+				{
+					free(lnoCharP);
+				}
 				if(lvmailP)
 				{
 					free(lvmailP);
 				}
-				selectP = 0;
+				
 			}
+			
 			//forwardNoChar[0]=0;
 			[self loadOtherView];
 			[self makeView];
@@ -1330,6 +1355,7 @@ id createImage(float percentage)
 	selectP = 0;
 	if(addressP)
 	{
+		printf("\n address find");
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		if(vmstateType==VMSStateRecord)
 		{	
@@ -1361,7 +1387,7 @@ id createImage(float percentage)
 		}
 		else
 		{	
-			strcpy(addressP->other,numberCharP);
+			strcpy(addressP->mobile,numberCharP);
 		}
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
