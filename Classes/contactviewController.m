@@ -105,7 +105,7 @@
 			text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>"]];
 			//NSLog(text1);
 			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-			normalizeNoCharP = NormalizeNumber(numbercharP);
+			normalizeNoCharP = NormalizeNumber(numbercharP,0);
 			res=  strcmp(normalizeNoCharP,lnumberCharP);
 			
 			////printf("\n\n %s %s \n\n\n",normalizeNoCharP,lnumberCharP);

@@ -1168,7 +1168,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	char typeP[30];
 	char *resultCharP;
 	struct AddressBook *addressP;
-	resultCharP = NormalizeNumber(noCharP);
+	resultCharP = NormalizeNumber(noCharP,0);
 	if(!wifiavailable)
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" 

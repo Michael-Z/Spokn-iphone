@@ -488,6 +488,7 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	if(lforwardNoCharP)
 	{	
+		printf("\n forwarno %s",lforwardNoCharP);
 		stringStrP = [[NSString alloc] initWithUTF8String:lforwardNoCharP ];
 		[labelForword setText:stringStrP];
 		[stringStrP release];
