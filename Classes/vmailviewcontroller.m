@@ -95,7 +95,15 @@
 		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
 		[vmShowViewControllerP setFileName: fileNameCharP :&viewPlayResult];
 		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
-		[vmShowViewControllerP setvmsDetail: vmailP->userid : vmailP->userid :"mobile" :VMSStatePlay :max : vmailP];
+		if(strstr(vmailP->userid,"@")==0)
+		{	
+			[vmShowViewControllerP setvmsDetail: vmailP->userid : vmailP->userid :"mobile" :VMSStatePlay :max : vmailP];
+		}
+		else
+		{
+			[vmShowViewControllerP setvmsDetail: vmailP->userid : vmailP->userid :"email" :VMSStatePlay :max : vmailP];
+		}
+
 		[vmShowViewControllerP setObject:self->ownerobject];
 		
 		[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];
