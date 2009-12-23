@@ -1381,13 +1381,20 @@ id createImage(float percentage)
 		memset(addressP,0,sizeof(struct AddressBook));
 		addressP->id = -1;
 		strcpy(addressP->title,numberCharP);
-		if(strlen(numberCharP)==SPOKN_ID_RANGE)
-		{
-			strcpy(addressP->spoknid,numberCharP);
+		if(strstr(numberCharP,"@")==0)
+		{	
+			if(strlen(numberCharP)==SPOKN_ID_RANGE)
+			{
+				strcpy(addressP->spoknid,numberCharP);
+			}
+			else
+			{	
+				strcpy(addressP->mobile,numberCharP);
+			}
 		}
 		else
-		{	
-			strcpy(addressP->mobile,numberCharP);
+		{
+				strcpy(addressP->email,numberCharP);//it is email address
 		}
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];

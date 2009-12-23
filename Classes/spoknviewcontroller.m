@@ -79,6 +79,7 @@
 }
 
 - (IBAction)switchChange:(UISwitch*)sender {
+	sender.enabled = NO;
 	if(sender.on)
 	{
 
@@ -270,6 +271,7 @@
 		else
 		{
 			switchView.on = NO;
+			switchView.enabled = YES;
 			
 		}
 		//[ self->tableView reloadData ];
@@ -278,6 +280,7 @@
 	{
 		if(viewCallB)
 		{
+			switchView.enabled = YES;
 			if([labelForword.text length]==0)//mean off
 			{
 				switchView.on = NO;
@@ -499,6 +502,7 @@ titleForHeaderInSection:(NSInteger)section
 			switchView.on = NO;
 			[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
 		}
+		switchView.enabled = YES;
 	}
 	
 	if(spoknCharP)
@@ -741,7 +745,10 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}
 	if(section==1 && row==1 && statusInt)
 	{
-		[self showForwardNoScreen];
+		if(switchView.enabled)
+		{	
+			[self showForwardNoScreen];
+		}	
 	}
 	[ltableView deselectRowAtIndexPath : indexPath animated:YES];
 	

@@ -579,7 +579,7 @@
 				}
 				else
 				{	
-					strcpy(addressP->other,cdrP->userid);
+					strcpy(addressP->mobile,cdrP->userid);
 				}
 				
 				
