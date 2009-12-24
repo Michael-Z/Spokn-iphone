@@ -297,36 +297,55 @@
 		[PlayButtonP setTitle:@"Play" forState:UIControlStateNormal];
 		[PlayButtonP setTitle:@"Play" forState:UIControlStateHighlighted];
 	}
-	else
-	{
-		[PlayButtonP setTitle:@"Rerecord" forState:UIControlStateNormal];
-		[PlayButtonP setTitle:@"Rerecord" forState:UIControlStateHighlighted];
-	}
+	
 	if(vmstateType == VMSStateRecord)
 	{	
-		if(previewPressedB==false)
+		
+		
+		if(recordingStartB == 1)
 		{	
-			[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTime - self->maxtimeDouble]];
+		
+			if(previewPressedB==false)
+			{	
+				if(self->maxtimeDouble==maxTime)
+				{
+					recordingStartB = 0;
+					[PlayButtonP setTitle:@"Record" forState:UIControlStateNormal];
+					[PlayButtonP setTitle:@"Record" forState:UIControlStateHighlighted];
+
+					[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTime ]];
+					return;
+				}
+				[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTime - self->maxtimeDouble]];
 			
-		}
-		else
-		{
-			[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTimeLoc]];
-		}
-		previewPressedB = false;
-		[msgLabelP setText:@"Press on send button to send VMS "];
-		recordVmsB = true;
-		self->maxtimeDouble=maxTime;
+			}
+			else
+			{
+				[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTimeLoc]];
+			}
+			[PlayButtonP setTitle:@"Rerecord" forState:UIControlStateNormal];
+			[PlayButtonP setTitle:@"Rerecord" forState:UIControlStateHighlighted];
+			
+			
+			previewPressedB = false;
+			[msgLabelP setText:@"Press on send button to send VMS "];
+			recordVmsB = true;
+			self->maxtimeDouble=maxTime;
+			previewButtonP.enabled  = YES;
+			sendButtonP.enabled  = YES;
+		}	
 	}
 	else
 	{
 		self->maxtimeDouble=maxTime;
 		[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTime ]];
+		previewButtonP.enabled  = YES;
+		sendButtonP.enabled  = YES;
+
 	}
 	
 	amt = 0.0;
-	previewButtonP.enabled  = YES;
-	sendButtonP.enabled  = YES;
+	
 	sliderP.value = 0.0f;
 
 	
@@ -399,6 +418,7 @@
 {
 	//printf("\n playPressed pressed");
 	unsigned long sz;
+	recordingStartB = 1;
 	if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward)
 	{
 		if([ownerobject vmsPlayStart:fileNameCharP :&sz])
@@ -485,6 +505,10 @@
 		if(nameP)
 		{	
 			free(nameP);
+		}
+		if(sz>20)
+		{
+			sz = 20;
 		}
 		previewPressedB = true;
 		[ownerobject VmsStreamStart:false];
@@ -1330,7 +1354,7 @@ id createImage(float percentage)
 }	
 -(IBAction)cancelClicked
 {
-	NSLog(@"Cancel");
+	
 	//[self stopButtonPressed:nil];
 	if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward || modalB==true)
 	{	
@@ -1338,8 +1362,11 @@ id createImage(float percentage)
 	}
 	else
 	{	
+		NSLog(@"Cancel");
 		[self stopButtonPressed:nil];
+		[ ownerobject.vmsNavigationController popViewControllerAnimated:NO ];
 		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+		
 	}	
 	
 }
@@ -1461,6 +1488,10 @@ id createImage(float percentage)
 	//nameCharP =[ [NSString alloc] initWithUTF8String:lnameCharP];
 	//typeCharP = [[NSString alloc] initWithUTF8String:ltypeCharP];
 	vmstateType = lVMSStateType;
+	if(lmaxTime>20 && lmaxTime<22)
+	{
+		lmaxTime = 20;
+	}
 	maxTime = lmaxTime;
 	maxTimeLoc = maxTime;
 		//printf("\n maxtime set %d",self->maxTime);

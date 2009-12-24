@@ -110,7 +110,7 @@
 	hour = 0;
 	min = 0;
 	sec = 0;
-	stringP = (char*)[labelStrP cStringUsingEncoding:NSUTF8StringEncoding];
+/*	stringP = (char*)[labelStrP cStringUsingEncoding:NSUTF8StringEncoding];
 	newLineP = malloc(strlen(stringP)+4);
 	strcpy(newLineP,stringP);
 	tmpStrP = strstr(newLineP,"\n");
@@ -122,7 +122,7 @@
 		[callnoLabelP setText:labelStrP];
 		
 	}
-	free(newLineP);
+	free(newLineP);*/
 }
 -(int)  stopTimer
 {

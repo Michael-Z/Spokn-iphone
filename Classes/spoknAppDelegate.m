@@ -1225,6 +1225,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	char *resultCharP;
 	struct AddressBook *addressP;
 	resultCharP = NormalizeNumber(noCharP,0);
+	printf("\n no = %s",resultCharP);
 	if(!wifiavailable)
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" 
@@ -1246,7 +1247,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			[tempStringP setString:strP];
 			[strP release];
 			strP = [[NSString alloc] initWithUTF8String:typeP] ;
-			[tempStringP appendString:@"\n calling " ];
+			[tempStringP appendString:@"\n" ];
+			//[tempStringP appendString:@"\n calling " ];
 			[tempStringP appendString:strP];
 			[strP release ];
 		}
@@ -1268,7 +1270,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 					if(addressBookTypeP)
 					{	
 						strP = [[NSString alloc] initWithUTF8String:addressBookTypeP] ;
-						[tempStringP appendString:@"\n calling " ];
+						//[tempStringP appendString:@"\n calling " ];
+						[tempStringP appendString:@"\n" ];
 						[tempStringP appendString:strP];
 						[strP release ];
 					}	
@@ -1287,7 +1290,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			
 				[tempStringP appendString:strP ];
 			//[tempStringP setString:addressP->title];
-				[tempStringP appendString:@"\n calling..." ];
+				//[tempStringP appendString:@"\n calling..." ];
+				[tempStringP appendString:@"\n" ];
 			//[tempStringP appendString:strP];
 				[strP release ];
 			}	

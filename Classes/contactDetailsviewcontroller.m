@@ -183,9 +183,10 @@
 	{	
 		SetAddressBookDetails(ownerobject.ltpInterfacesP,addressID,recordID);
 		
-		[[self navigationController]  popViewControllerAnimated:YES];
+		
 		if(callActionSheetB)
 		{
+			[[self navigationController]  popViewControllerAnimated:YES];
 			//printf("\nname %s\n",stringSelected[buttonIndex]);
 			[self->ownerobject makeCall:stringSelected[buttonIndex]];
 			[self->ownerobject changeView];

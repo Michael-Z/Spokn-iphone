@@ -23,6 +23,7 @@
 	//IBOutlet UITextField *numberFieldP;
 	IBOutlet UILabel *numberlebelP;
 	IBOutlet UIButton *hangUpButtonP;
+	IBOutlet UIButton *callButtonP;
 	IBOutlet Keypadview *keypadmain;
 	
 	SpoknAppDelegate *ownerobject;

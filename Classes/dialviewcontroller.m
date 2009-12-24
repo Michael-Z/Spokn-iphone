@@ -156,6 +156,9 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	[keypadmain setImage:@"dialerkeypad.png" : @"dialerkeypad_pressed.png"];
 	[keypadmain setElement:3 :4];
 	keypadmain.keypadProtocolP = self;
+	
+	callButtonP.exclusiveTouch = YES;
+	hangUpButtonP.exclusiveTouch = YES;
 	/*
 	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -625,7 +628,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			
 		case TRYING_CALL:
 		
-			[self setViewButton:1];
+			//[self setViewButton:1];
 			
 			if(callViewControllerP==0)
 			{	
@@ -636,7 +639,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				//callViewControllerP.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 				[callViewControllerP setLabel:callingstringP];
 				
-				[self presentModalViewController:callViewControllerP animated:YES];
+				[ownerobject.tabBarController presentModalViewController:callViewControllerP animated:YES];
 				
 				if([callViewControllerP retainCount]>1)
 					[callViewControllerP release];
@@ -655,7 +658,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			[self setViewButton:0];
 			[calltimerP invalidate];
 			timecallduration = [callViewControllerP stopTimer];
-			[self dismissModalViewControllerAnimated:YES];
+			[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 			callViewControllerP = 0;
 			////printf("\ndisconnected");
 			calltimerP = nil;
