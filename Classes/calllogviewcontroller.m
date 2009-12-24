@@ -793,6 +793,7 @@ cancelButtonTitle: nil
 										 otherButtonTitles: @"Yes", nil];
 [alert addButtonWithTitle:@"No"];
 	[ alert show ];
+	[alert release];
 
 }
 - (void)viewDidAppear:(BOOL)animated

@@ -88,6 +88,8 @@
 	int upgradeAlerted;
 	char *srvMsgCharP;
 	NSString *urlSendP;
+	int callOnB;
+	int handSetB;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -116,6 +118,8 @@
 
 */
 
+@property (nonatomic, assign) int callOnB;
+@property (nonatomic, assign) int handSetB;
 
 @property (nonatomic, assign) LtpInterfaceType *ltpInterfacesP;
 @property (nonatomic, assign) IBOutlet UINavigationController *vmsNavigationController;
@@ -161,3 +165,8 @@ changed:(BOOL)changed;
 -(void)refreshallViews;
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
+void MyAudioSessionPropertyListener(
+									void *                  inClientData,
+									AudioSessionPropertyID	inID,
+									UInt32                  inDataSize,
+									const void *            inData);

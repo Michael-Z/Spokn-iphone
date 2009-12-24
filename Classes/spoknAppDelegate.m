@@ -41,6 +41,8 @@
 @synthesize onLineB;
 @synthesize tabBarController;
 @synthesize ltpInterfacesP;
+@synthesize callOnB;
+@synthesize handSetB;
 - (void) handleTimer: (id) timer
 {
 	
@@ -146,7 +148,7 @@
 			UInt32 route = kAudioSessionOverrideAudioRoute_Speaker;
 			AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, 
 									 sizeof(route), &route);
-			
+			//SetAudioTypeLocal(0,0);
 			ringTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0
 				
 												target: self
@@ -293,7 +295,7 @@
 			break;
 		case ALERT_CONNECTED:
 			[dialviewP setStatusText: @"ringing" :ALERT_CONNECTED :0];
-
+			callOnB = true;
 			//openSoundInterface(ltpInterfacesP,1);
 			[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 			#ifndef _LTP_
@@ -302,6 +304,7 @@
 			#endif
 			break;	
 		case ALERT_DISCONNECTED:
+			callOnB = false;
 			if(lineID == 0)
 			{	
 				[dialviewP setStatusText: @"end call" :ALERT_DISCONNECTED :0 ];
@@ -437,6 +440,7 @@
 			else
 			{
 				[self LoadInCommingView:0];	
+				
 			}	
 			//[ navigationNavigationController pushViewNavigationController: inCommingCallViewP animated: YES ];
 			//[statusLabelP performSelectorOnMainThread : @ selector(setText: ) withObject:strP waitUntilDone:YES];
@@ -555,6 +559,7 @@
 }
 -(void)vmsDeinitRecordPlay:(id)object
 {
+	printf("\n call form deinit");
 	vmsDeInit(&vmsP);
 	[VmsProtocolP VmsStop];
 	
@@ -657,12 +662,61 @@
 	
 //	[ dialNavigationController pushViewController: inCommingCallViewP animated: YES ];
 	[self changeView];
+	
 	[self startRing];
 }
 -(void) sendMessage:(id)object
 {
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)object userInfo:nil];
+}
+void MyAudioSessionPropertyListener(
+									void *                  inClientData,
+									AudioSessionPropertyID	inID,
+									UInt32                  inDataSize,
+									const void *            inData)
+{
+	
+	
+	UInt32                              lioDataSize=0;
+	//char *dataP;
+	NSString *dataP=0;
+	AudioSessionGetPropertySize(kAudioSessionProperty_AudioRoute,&lioDataSize);
+	AudioSessionGetProperty(          kAudioSessionProperty_AudioRoute,
+							&lioDataSize,
+							&dataP);    
+	//NSLog(@"dada %@",dataP);
+	if(dataP)
+	{
+		SpoknAppDelegate *spoknDelP;
+		spoknDelP = (SpoknAppDelegate *)inClientData;
+
+		NSRange range = [dataP rangeOfString:@"Headset"];
+		if (range.location == NSNotFound ) 
+		{	
+						
+			if(spoknDelP.handSetB)
+			{	
+				NSLog(@"dada %@",dataP);
+				SetAudioTypeLocal(0,0);
+				if(spoknDelP)
+				{	
+					if(spoknDelP.callOnB==0)
+					{	
+						SetSpeakerOnOrOff(0,1);
+					}
+				}
+				spoknDelP.handSetB = false;
+
+			}	
+			
+		}
+		else
+		{
+			spoknDelP.handSetB = true;
+		}
+	}
+	//printf("\n prop %d %d %s",(int)inID,(int )lioDataSize,dataP);
 }
 void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned long userData,void *otherinfoP)
 {
@@ -946,6 +1000,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[self createRing];
 	SetSpeakerOnOrOff(0,true);
 	[vmsviewP setcomposeStatus:1 ];
+	SetAudioSessionPropertyListener(self,MyAudioSessionPropertyListener);
+	
 		
 }
 /*
@@ -1246,7 +1302,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		//	tempStringP = [NSMutableString stringWithString:@"calling "]	;
 		
 		
-		
+		callOnB =true;
 		retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
 	//[]
 		NSLog(@"\n%@",tempStringP);
@@ -1265,6 +1321,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 -(Boolean)endCall:(int)lineid
 {
+	callOnB =false;
+
 	hangLtpInterface(self->ltpInterfacesP);
 	[dialviewP setStatusText: @"call end" :ALERT_DISCONNECTED :0];
 	SetSpeakerOnOrOff(0,true);

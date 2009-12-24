@@ -399,6 +399,7 @@ LtpInterfaceType *	  startLtp(AlertNotificationCallbackP  alertNotiCallbackP,uns
 			pthread_create(&ltpInterfaceP->pthObj, 0,PollThread,ltpInterfaceP);
 		#endif
 	#endif	
+		SetAudioTypeLocal(0,0);
 		return ltpInterfaceP;
 	}
 	return NULL;

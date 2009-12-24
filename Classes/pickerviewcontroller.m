@@ -153,7 +153,7 @@
 		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Forward number should not be empty" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
 		
 		[alert show];
-		[alert release];
+	//	[alert release];
 	}
 	else
 	{

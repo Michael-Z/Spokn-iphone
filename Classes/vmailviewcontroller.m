@@ -736,6 +736,7 @@
 														 otherButtonTitles: @"OK", nil
 									  ];
 				[ alert show ];
+				[alert release];
 				
 				break;
 			case 1:
@@ -748,6 +749,7 @@
 									  ];
 				
 				[ alert show ];
+				[alert release];
 			//	
 
 				
@@ -907,6 +909,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
  return self;
  }
  */
+/*
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	if(buttonIndex==0)
@@ -918,7 +921,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}
 	//printf("\n button %d",buttonIndex);
 	
-}
+}*/
 -(void) clearPressed {
 	
 	UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
@@ -928,6 +931,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 											 otherButtonTitles: @"OK", nil];
 	[alert addButtonWithTitle:@"Cancel"];
 	[ alert show ];
+	[alert release];
 	
 }
 
