@@ -495,7 +495,7 @@
 			switch(self->subID)
 		{
 				case REFRESH_CONTACT:
-					[self LoadContactView:contactviewP];
+					//[self LoadContactView:contactviewP];
 					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:contactviewP waitUntilDone:YES];
 					//refresh cradit
 					//balance = getBalance();

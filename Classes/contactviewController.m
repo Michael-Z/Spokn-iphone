@@ -1324,12 +1324,21 @@ titleForHeaderInSection:(NSInteger)section
 			sectionData *secP;
 			addressP = GetObjectAtIndex(uaObject ,i);		
 			ignoreSpaceStrP = addressP->title;
+			//printf("\n %s   %d",addressP->title,i);
 			while(*ignoreSpaceStrP==' ')
 			{
 				ignoreSpaceStrP++;
 			}
-			CellIdentifier = [[NSString alloc] initWithUTF8String:ignoreSpaceStrP] ;
-			////NSLog(CellIdentifier);
+			if(strlen(ignoreSpaceStrP)==0)
+			{
+			//	ignoreSpaceStrP = " ";
+				CellIdentifier = [[NSString alloc] initWithUTF8String:" "] ;
+			}
+			else
+			{	
+				CellIdentifier = [[NSString alloc] initWithUTF8String:ignoreSpaceStrP] ;
+			}
+			//NSLog(CellIdentifier);
 			secP = [[sectionData alloc] init];
 			secP->recordid = addressP->id;
 			/*
@@ -1343,11 +1352,21 @@ titleForHeaderInSection:(NSInteger)section
 				setTypeP = [sectionArray objectAtIndex:0];
 				[ setTypeP->elementP addObject:secP];
 			}*/
-			rangeStringP = 	[[CellIdentifier substringToIndex:1] uppercaseString];
-			////NSLog(rangeStringP);
+			if(strlen(ignoreSpaceStrP)==0 || (*ignoreSpaceStrP>='0' && *ignoreSpaceStrP<='9'))
+			{
+				rangeStringP = @"#";//this for avoiding crash when only blank is there
+			}
+			else
+			{	
+				rangeStringP = 	[[CellIdentifier substringToIndex:1] uppercaseString];
+			}
+			//printf("\n range ");
+			//NSLog(rangeStringP);
+			//printf(" end");
 			NSRange range = [ALPHA rangeOfString:rangeStringP];
 			if (range.location != NSNotFound && range.location <MAXSEC) 
 			{	
+				//NSLog(@"range location %d %@\n",range.location,CellIdentifier);
 				if(fIndexfindInt==-1)
 				{
 					fIndexfindInt = range.location;

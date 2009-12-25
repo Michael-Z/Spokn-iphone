@@ -433,7 +433,7 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 {
 	
-	//printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
+	printf("\nloggedin %s %s",ltpInterfaceP->ltpObjectP->ltpUserid,ltpInterfaceP->ltpObjectP->ltpPassword);
 
 	if(ltpInterfaceP->ltpObjectP==0)
 	{

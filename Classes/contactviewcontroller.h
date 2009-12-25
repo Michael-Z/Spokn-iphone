@@ -78,6 +78,7 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
 -(void)cancelSearch;
 - (void) doRefresh ;
+- (void)controlPressed:(id) sender ;
 +(int) getNameAndType :(ABRecordID) recordID :(char*)lnumberCharP :(char **) nameStringP :(char**)typeP;
 +(int) addDetailsFromAddressBook :(ContactDetailsViewController     *)ContactControllerDetailsviewP :(ViewTypeEnum) viewEnum contactBook:(ABRecordRef)person;
 @end
