@@ -495,7 +495,7 @@
 			switch(self->subID)
 		{
 				case REFRESH_CONTACT:
-					//[self LoadContactView:contactviewP];
+					[self LoadContactView:contactviewP];
 					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:contactviewP waitUntilDone:YES];
 					//refresh cradit
 					//balance = getBalance();
@@ -1291,7 +1291,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				[tempStringP appendString:strP ];
 			//[tempStringP setString:addressP->title];
 				//[tempStringP appendString:@"\n calling..." ];
-				[tempStringP appendString:@"\n" ];
+				[tempStringP appendString:@"\nUnknown" ];
 			//[tempStringP appendString:strP];
 				[strP release ];
 			}	

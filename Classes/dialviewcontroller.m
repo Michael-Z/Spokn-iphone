@@ -375,7 +375,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			if(strlen(lastTypeNo)==0)
 			{
 				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-																   message: [ NSString stringWithString:@"please enter the number." ]
+																   message: [ NSString stringWithString:@"Please enter a valid number." ]
 																  delegate: nil
 														 cancelButtonTitle: nil
 														 otherButtonTitles: @"OK", nil
@@ -404,6 +404,34 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	}
 	else
 	{
+		char *numbercharP;
+		numbercharP = (char*)[[numberlebelP text] cStringUsingEncoding:NSUTF8StringEncoding];
+		if(numbercharP==NULL || strlen(numbercharP)==0)
+		{
+			
+			if(strlen(lastTypeNo)==0)
+			{
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+																   message: [ NSString stringWithString:@"Please enter a valid number." ]
+																  delegate: nil
+														 cancelButtonTitle: nil
+														 otherButtonTitles: @"OK", nil
+									  ];
+				[ alert show ];
+				[alert release];
+				
+			}
+			else
+			{
+				numberlebelP.text = [NSString stringWithUTF8String:lastTypeNo];
+				statusLabel1P.hidden = YES;
+				statusLabel2P.hidden = YES;
+			}
+			return;
+		}
+		strcpy(lastTypeNo,numbercharP);
+		
+		
 		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
 														   message: [ NSString stringWithString:@"No Network" ]
 														  delegate: nil
@@ -646,6 +674,10 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				
 			}	
 			[numberlebelP setText:@""];
+			statusLabel1P.hidden = NO;
+			statusLabel2P.hidden = NO;
+
+			
 
 			break;
 		case END_CALL_PRESSED:
@@ -673,6 +705,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 															userInfo: nil
 															 repeats: YES];
 					
+					printf("\n call end");
 					//dont get panic it will release in handleCallTimerend
 					calltimerP = nil;
 					timecallduration = -1;

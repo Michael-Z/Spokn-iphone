@@ -69,7 +69,7 @@
 		strcpy(forwardNoCharP,forwordCharP);
 	}
 	
-	[AddeditcellControllerviewP setData:forwardNoCharP value:"Enter forward no" placeHolder:"Enter forward no" returnValue:&viewResult];
+	[AddeditcellControllerviewP setData:forwardNoCharP value:"Enter forward number." placeHolder:"Enter forward number." returnValue:&viewResult];
 	
 	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
 	
