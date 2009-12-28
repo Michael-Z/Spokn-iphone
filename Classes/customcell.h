@@ -72,7 +72,7 @@
 	
 }
 - (void)drawRect:(CGRect)rect;
--(void)setEdit:(int)editB;
+-(void) subcellsetEdit:(int)editB;
 @property (readwrite,assign) void *userData;
 @property (readwrite,assign) Boolean ownerDrawB;
 @property (readwrite,assign) int rowHeight;
@@ -89,7 +89,7 @@
 }
 -(void) resizeFrame;
 -(void) setAutoResize:(BOOL)onB;
--(void)setEdit:(int)editB;
+-(void) tablecellsetEdit:(int)leditB :(int)needsdisplayB;
 @property (readwrite,assign) SpoknSubCell *spoknSubCellP;
 
 @end

@@ -913,14 +913,14 @@
 {
 	
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
-	[cell setEdit:YES];
+	[cell tablecellsetEdit:YES];
 	//printf("swipe start");
 	
 }
 - (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
-	[cell setEdit:NO];
+	[cell tablecellsetEdit:NO];
 	
 	//printf("swipe end");
 }
@@ -933,14 +933,14 @@
 {
 	
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
-	[cell setEdit:YES];
+	[cell tablecellsetEdit:YES :1];
 	//printf("swipe start");
 	
 }
 - (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
-	[cell setEdit:NO];
+	[cell tablecellsetEdit:NO :1];
 	
 	//printf("swipe end");
 }

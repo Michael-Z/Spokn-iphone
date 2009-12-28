@@ -68,10 +68,13 @@
 @end
 @implementation SpoknUITableViewCell
 @synthesize  spoknSubCellP;
--(void)setEdit:(int)leditB
+-(void) tablecellsetEdit:(int)leditB :(int)needsdisplayB 
 {
-	[spoknSubCellP setEdit:leditB];
-	[spoknSubCellP setNeedsDisplay];
+	[spoknSubCellP subcellsetEdit:leditB];
+	if(needsdisplayB)
+	{
+		[spoknSubCellP setNeedsDisplay];
+	}	
 }
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
@@ -172,7 +175,7 @@
 	//	self.contentView.remove
 		[super dealloc];
 }
--(void)setEdit:(int)leditB
+-(void)subcellsetEdit:(int)leditB
 {
 	editCellB = leditB ;
 	

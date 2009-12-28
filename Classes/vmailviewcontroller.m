@@ -230,14 +230,14 @@
 {
 	
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
-	[cell setEdit:YES];
+	[cell tablecellsetEdit:YES :1];
 	//printf("swipe start");
 	
 }
 - (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
-	[cell setEdit:NO];
+	[cell tablecellsetEdit:NO :1];
 
 	//printf("swipe end");
 }
@@ -787,7 +787,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		sectionType *secLocP;
 		
 		struct VMail *vmailP;
-		
+		[cell tablecellsetEdit:NO :0];
 		secLocP = cell.spoknSubCellP.userData;
 		vmailP =(struct VMail*) secLocP->userData;
 		vmsDelete(vmailP);
