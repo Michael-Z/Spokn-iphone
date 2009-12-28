@@ -113,7 +113,7 @@
 										 UIViewAutoresizingFlexibleTopMargin | 
 										 //UIViewAutoresizingFlexibleLeftMargin | 
 										 //UIViewAutoresizingFlexibleRightMargin | 
-										 UIViewAutoresizingFlexibleBottomMargin);
+										 UIViewAutoresizingFlexibleBottomMargin);	
 	}
 	else
 	{

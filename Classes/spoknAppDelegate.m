@@ -266,8 +266,8 @@
 				{
 					char *callFdP;
 					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
-																	message:@"Duplicate Forward Number"
-																   delegate:self 
+															message:@"The number you provided for call forwarding has already been used by someone else.Please provide another number and try again."
+															delegate:self 
 														  cancelButtonTitle:nil 
 														  otherButtonTitles:@"OK", nil];
 					[alert show];
