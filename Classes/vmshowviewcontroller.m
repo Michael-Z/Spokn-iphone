@@ -1134,7 +1134,7 @@ id createImage(float percentage)
 			{	
 				sprintf(s1,"%02d:%02d PM on  %02d %3s %d",(tmP1.tm_hour-12)?(tmP1.tm_hour-12):12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
 			}
-			if(vmailP->direction&VMAIL_IN)
+			if(vmailP->direction==VMAIL_IN)
 			{	
 				[msgLabelP setText:[NSString stringWithFormat:@"Incoming VMS\n%s", s1]];
 			}
