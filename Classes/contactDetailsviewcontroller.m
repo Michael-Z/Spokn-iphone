@@ -640,6 +640,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self->addButtonP.exclusiveTouch = YES;
+	self->vmsButtonP.exclusiveTouch = YES;
+	self->callButtonP.exclusiveTouch = YES;
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"ContactDetailsViewController" image:nil tag:3];
 	//self->tablesz = 0;
