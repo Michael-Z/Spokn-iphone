@@ -92,7 +92,24 @@
 		return;
 	}
 	#ifdef _NAME_IN_TABLE_
+	char* nameP;
+	nameP = lcontactObjectP->nameChar;
+	if(nameP)
+	{	
+		while(*nameP==' '){
+			nameP++;
+		}
+		if(*nameP=='\0')
+		{
+			strcpy(lcontactObjectP->nameChar,lcontactObjectP->number);
+		}
+	}	
+	else
+	{
+		strcpy(lcontactObjectP->nameChar,lcontactObjectP->number);
+	}
 		[txtDestNo addCellWithString:[NSString stringWithUTF8String:lcontactObjectP->nameChar] type:[NSString stringWithUTF8String:lcontactObjectP->number] ];
+
 	#else	
 		[txtDestNo addCellWithString:[NSString stringWithUTF8String:lcontactObjectP->number] type:[NSString stringWithUTF8String:lcontactObjectP->number] ];
 	
@@ -100,6 +117,7 @@
 	toLabel.hidden = YES;
 	toLabelStart.hidden = YES;
 	_composerScrollView.hidden = NO;
+	//free(nameP);
 }
 -(char*)getContactNumberList
 {

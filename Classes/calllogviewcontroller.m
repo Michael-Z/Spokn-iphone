@@ -258,8 +258,25 @@
 				[ContactViewController	getNameAndType:cdrP->addressUId :cdrP->userid :&addressBookNameP :&addressBookTypeP];
 				if(addressBookNameP)
 				{	
-					typeCallP = addressBookTypeP;
-					objStrP = addressBookNameP;
+					if(addressBookTypeP)
+					{	
+						typeCallP = addressBookTypeP;
+					}
+					char *nameP = addressBookNameP;
+					if(nameP)
+					{	
+						while(*nameP==' '){
+							nameP++;
+						}
+						if(*nameP!='\0')
+						{
+							objStrP = addressBookNameP;
+						}
+					}	
+					
+					
+					
+					
 				}
 				
 				

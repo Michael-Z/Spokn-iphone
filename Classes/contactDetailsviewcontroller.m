@@ -307,10 +307,12 @@
 				{	
 				
 					//printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP ] ];
+					if(strstr(sectionArray[k].dataforSection[j].elementP,"@")==0)
+					{	
+						[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP ] ];
 					
-					stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
-				
+						stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
+					}	
 				}
 			}	
 		
