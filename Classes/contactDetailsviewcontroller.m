@@ -494,9 +494,10 @@
 			{
 				//printf("\n add contact");
 				strcpy(addrP->title,addressDataP->title);
-				strcpy(addrP->mobile,addressDataP->mobile);
-				strcpy(addrP->business,addressDataP->business);
 				strcpy(addrP->home,addressDataP->home);
+				strcpy(addrP->business,addressDataP->business);
+				strcpy(addrP->mobile,addressDataP->mobile);
+				strcpy(addrP->spoknid,addressDataP->spoknid);
 				strcpy(addrP->email,addressDataP->email);
 				strcpy(addrP->other,addressDataP->other);
 				addrP->dirty = true;
