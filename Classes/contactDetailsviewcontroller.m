@@ -471,26 +471,21 @@
 		if(viewEnum==CONTACTADDVIEWENUM)
 		{	
 			if(  strlen(addressDataP->title)&&(  strlen(addressDataP->mobile) ||  strlen(addressDataP->business)|| strlen(addressDataP->home)||  strlen(addressDataP->email)||  strlen(addressDataP->other) ||  strlen(addressDataP->spoknid)) )
-				
-				
-				{		//printf("\n add contact");									 
-					addContact(addressDataP->title,addressDataP->mobile,addressDataP->home,addressDataP->business,addressDataP->other,addressDataP->email,addressDataP->spoknid);
-					
-				}
-				else
-				{	
+			{										 
+				addContact(addressDataP->title,addressDataP->mobile,addressDataP->home,addressDataP->business,addressDataP->other,addressDataP->email,addressDataP->spoknid);
+			}
+			else
+			{	
 						//printf("\n alert contact");
-					UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-																	   message: [ NSString stringWithString:@"invalid contact" ]
-																	  delegate: self
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+															 message: [ NSString stringWithString:@"invalid contact" ]
+															 delegate: self
 															 cancelButtonTitle: nil
-															 otherButtonTitles: @"OK", nil
-										  ];
+														 otherButtonTitles: @"OK", nil];
 					[ alert show ];
 					[alert release];
 					popupB = false;
-					
-				}	
+			}	
 		}
 		else
 		{
@@ -507,17 +502,26 @@
 				addrP->dirty = true;
 			
 			}
+			/*if(  !(strlen(addressDataP->title)&&(strlen(addressDataP->mobile) ||  strlen(addressDataP->business)|| strlen(addressDataP->home)||  strlen(addressDataP->email)||  strlen(addressDataP->other) ||  strlen(addressDataP->spoknid))) )
+			{
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+																   message: [ NSString stringWithString:@"invalid contact" ]
+																  delegate: self
+														 cancelButtonTitle: nil
+														 otherButtonTitles: @"OK", nil];
+				[ alert show ];
+				[alert release];
+				popupB = false;
+				
+			}	*/
+			
 		}
-	//[ [self navigationController] popToRootViewControllerAnimated:YES ];
-	//contactID = -1;
-	//profileResync();
+		
 		if(popupB)
-		profileResync();
+			profileResync();
 	}
 	if(popupB)
 	{	
-
-		
 		if(viewEnum!=CONTACTADDVIEWENUM || modelViewB==true)
 		{	
 			[ [self navigationController] popViewControllerAnimated:YES ];
@@ -532,10 +536,9 @@
 			*retValP = 1;
 		}		
 	}	//contactID = -1;
-		
-	
-	
 }
+
+
 -(IBAction)deleteClicked
 {
 	/*struct AddressBook *addressDataTmpP;
@@ -578,11 +581,9 @@
 		[addeditviewP release];*/
 	struct AddressBook *addressDataTmpP;
 	
-	self.navigationItem.rightBarButtonItem 
-	= [ [ [ UIBarButtonItem alloc ]
-		 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
-		 target: self
-		 action: @selector(doneClicked) ] autorelease ];	
+	self.navigationItem.rightBarButtonItem 	= [ [ [ UIBarButtonItem alloc ] initWithBarButtonSystemItem: UIBarButtonSystemItemDone
+																			target: self
+																			action: @selector(doneClicked) ] autorelease ];	
 	self.navigationItem.rightBarButtonItem.enabled = NO;
 	addressDataTmpP = addressDataP;
 	addressDataP = 0;
@@ -1028,6 +1029,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			strcpy(sectionArray[section].dataforSection[row].elementP,"\0");//mean row is deleted
 			updatecontact = 1;
 		}
+		self.navigationItem.rightBarButtonItem.enabled = YES;
 		// [dataController removeDataAtIndex:indexPath.row-1];
 	//	[ltableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] 
 		//				  withRowAnimation:UITableViewRowAnimationFade];
