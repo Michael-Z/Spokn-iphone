@@ -1104,6 +1104,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			if(self->rootObjectP)
 			{
 			//printf("\n got the no");
+				if(strstr( sectionArray[section].dataforSection[row].elementP,"@")==0)
 				[[self navigationController]  popToViewController:self->rootObjectP animated:YES];
 			}
 		}	

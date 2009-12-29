@@ -1220,6 +1220,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 	NSMutableString *tempStringP;
 	NSString *strP;
+	char *nameP;
 	Boolean retB = false;
 	char typeP[30];
 	char *resultCharP;
@@ -1243,7 +1244,24 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		addressP = getContactAndTypeCall(resultCharP,typeP);
 		if(addressP)
 		{
-			strP = [[NSString alloc] initWithUTF8String:addressP->title] ;
+			nameP = addressP->title;
+			if(nameP)
+			{	
+				while(*nameP==' '){
+					nameP++;
+				}
+				if(*nameP!='\0')
+				{
+					nameP = addressP->title;
+				}
+				else
+				{
+					nameP = resultCharP;
+				}
+				
+			}	
+			
+			strP = [[NSString alloc] initWithUTF8String:nameP] ;
 			[tempStringP setString:strP];
 			[strP release];
 			strP = [[NSString alloc] initWithUTF8String:typeP] ;
@@ -1263,8 +1281,25 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				[ContactViewController	getNameAndType:uID :resultCharP :&addressBookNameP :&addressBookTypeP];
 				if(addressBookNameP)
 				{	
+					nameP = addressBookNameP;
+					if(nameP)
+					{	
+						while(*nameP==' '){
+							nameP++;
+						}
+						if(*nameP!='\0')
+						{
+							nameP = addressBookNameP;
+						}
+						else
+						{
+							nameP = resultCharP;
+						}
+						
+					}	
 					
-					strP = [[NSString alloc] initWithUTF8String:addressBookNameP] ;
+					
+					strP = [[NSString alloc] initWithUTF8String:nameP] ;
 					[tempStringP setString:strP];
 					[strP release];
 					if(addressBookTypeP)
@@ -1274,7 +1309,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 						[tempStringP appendString:@"\n" ];
 						[tempStringP appendString:strP];
 						[strP release ];
-					}	
+					}
+					else
+					{
+						[tempStringP appendString:@"\nUnknown" ];
+					}
 					free(addressBookNameP);
 					if(addressBookTypeP)
 					{	
