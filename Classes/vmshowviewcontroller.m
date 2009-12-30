@@ -339,7 +339,14 @@
 	{
 		self->maxtimeDouble=maxTime;
 		[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTime ]];
-		previewButtonP.enabled  = YES;
+		if(vmstateType == VMSStateForward)
+		{
+			previewButtonP.enabled  = NO;
+		}
+		else
+		{
+			previewButtonP.enabled  = YES;
+		}	
 		sendButtonP.enabled  = YES;
 
 	}
@@ -1118,6 +1125,7 @@ id createImage(float percentage)
 		[sendButtonP setTitle:@"Forward" forState:UIControlStateHighlighted];
 		[previewButtonP setTitle:@"Reply" forState:UIControlStateNormal];
 		[previewButtonP setTitle:@"Reply" forState:UIControlStateHighlighted];
+			
 		struct tm tmP1,*tmP=0;
 		time_t timeP;
 		if(vmailP)
@@ -1199,7 +1207,16 @@ id createImage(float percentage)
 			self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 													   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 													   target: self
-													   action: @selector(cancelClicked) ] autorelease ];	
+													   action: @selector(cancelClicked) ] autorelease ];
+			if(vmstateType==VMSStateForward)
+			{
+				previewButtonP.enabled = NO;
+				previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
+				[previewButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ]  forState:UIControlStateNormal];
+				[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
+				[previewButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
+				[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+			}	
 			
 		
 		}
