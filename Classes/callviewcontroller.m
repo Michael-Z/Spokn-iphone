@@ -41,6 +41,17 @@
 {
 	
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	loadedB = true;
+	if(actualDismissB)
+	{
+		printf("\n view de");
+		//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+		actualDismissB = NO;
+	}
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -97,6 +108,10 @@
 */
 -(void) startTimer
 {
+	if(calltimerP)
+	{
+		return;
+	}
 	calltimerP = [NSTimer scheduledTimerWithTimeInterval: 1
 												  target: self
 												selector: @selector(handleCallTimer:)
@@ -126,9 +141,33 @@
 }
 -(int)  stopTimer
 {
+	actualDismissB = true;
 	[calltimerP invalidate];
 	calltimerP = nil;
+	if(loadedB==false)
+	{	
+		NSTimer *callEndtimerP;
+		callEndtimerP = [NSTimer scheduledTimerWithTimeInterval: 3
+												  target: self
+												selector: @selector(handleCallEndTimer:)
+												userInfo: nil
+												 repeats: NO];
+	//[callEndtimerP autorelease];
+	}
+	else
+	{
+		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+
+	}
 	return timecallduration;
+}
+- (void) handleCallEndTimer: (id) timer
+{
+	printf("\n delete view");
+	[timer invalidate];
+	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+	actualDismissB = NO;
+
 }
 - (void) handleCallTimer: (id) timer
 {
@@ -170,6 +209,7 @@
 -(void)setObject:(id) object 
 {
 	self->ownerobject = object;
+	actualDismissB = NO;
 }
 -(IBAction)endCallPressedKey:(id)sender
 {
@@ -188,7 +228,7 @@
 	
 	enable = !butP.selected;
 	#ifndef _LTP_
-	setMute(enable);
+	setMuteInterface(ownerobject.ltpInterfacesP,enable);
 	#endif
 	[butP setSelected:enable];
 	//printf("%d",enable);
@@ -203,7 +243,7 @@
 	
 	enable = !butP.selected;
 #ifndef _LTP_
-	setHold(ownerobject.ltpInterfacesP->ltpObjectP, enable);
+	setHoldInterface(ownerobject.ltpInterfacesP, enable);
 #endif
 	[butP setSelected:enable];
 }
@@ -305,7 +345,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 - (void)dealloc {
 	SetSpeakerOnOrOff(0,true);
-	//printf("\n vmail dealloc");
+	printf("\n call view dealloc");
 	[labelStrP release];
 	
     [super dealloc];

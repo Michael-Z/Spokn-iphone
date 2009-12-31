@@ -93,5 +93,7 @@ typedef struct IncommingCallType
 	int SetConnection( LtpInterfaceType *ltpInterfaceP,int activeB);
 	int SetAddressBookDetails(LtpInterfaceType *ltpInterfaceP,int addressUId,int recordID);
 	int getAddressUid(LtpInterfaceType *ltpInterfaceP);
+	int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB);
+	int setMuteInterface(LtpInterfaceType *ltpInterfaceP,int muteB);
 
 #endif

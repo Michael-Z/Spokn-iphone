@@ -25,7 +25,7 @@ int SetSpeakerOnOrOff(void *uData,Boolean onB)
 	AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, 
 							 sizeof(route), &route);
 	return 0;
-
+	
 }	
 int removePcmData(void *libData)
 {
@@ -164,7 +164,11 @@ void SetAudioTypeLocal(void *uData,int type)
 			
 	}
 	//this is added for iphone 3.0
-	AudioSessionInitialize(0,0,AudioSessionInterruptionListenerClient,uData);
+	if(uData)
+	{	
+		printf("\n \n\n\n\n\ data set--------------------\n");
+		AudioSessionInitialize(0,0,AudioSessionInterruptionListenerClient,uData);
+	}
 	AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);		//AudioQueueAddPropertyListener(aqcP->queue,kAudioQueueProperty_IsRunning,AudioQueuePropertyListenerFunction,aqcP);
 }
 void* InitAudio( void *udata,CallBackUIP callBackP,CallBackSoundP callBackSoundP)
@@ -353,11 +357,25 @@ void AudioInputCallbackLocal(
 	AudioQueueEnqueueBuffer(inAQ, inBuffer, 0, NULL);
 	
 }
+extern void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned long userData,void *otherinfoP);
 void AudioSessionInterruptionListenerClient(
 										   void *                  inClientData,
 										   UInt32                  inInterruptionState)
 {
+	
+	
+	if(inClientData)
+	{
+		alertNotiFication(INTERRUPT_ALERT,0,inInterruptionState,(unsigned long )inClientData,0);
+		printf("set state");
+	}
 	printf("state %d",(int)inInterruptionState);
+	/*if(inInterruptionState==0)
+	{
+		printf("state %d",(int)inInterruptionState);
+		//SetAudioTypeLocal(0,0);
+		//SetSpeakerOnOrOff(0,1);
+	}*/
 }
 int CreateSoundThread(int OutB,AQCallbackStruct *aqcP,Boolean sampleDataB,int samplesize)
 {

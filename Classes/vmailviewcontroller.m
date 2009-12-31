@@ -316,24 +316,20 @@
 			tmP2 = *tmP;
 			
 			difftime = tmP2.tm_yday -tmP1.tm_yday;
-			
-			
 			if(difftime<0)
 			{
 				difftime = difftime*(-1);
 			}	
-			
-			if(difftime==0)
+			switch(difftime)
 			{
-				sprintf(s1,"%02d:%02d",tmP1.tm_hour,tmP1.tm_min);
+				case 0:
+					sprintf(s1,"%02d:%02d",tmP1.tm_hour,tmP1.tm_min);
+				break;
+				case 1:
+					sprintf(s1,"Yesterday");
 				
-			}
-			if(difftime==1)
-			{
-				sprintf(s1,"Yesterday");
-			}
-			else
-			{
+				break;
+				default:
 				if(difftime<7)
 				{
 					sprintf(s1,days[tmP1.tm_wday]);
@@ -342,8 +338,12 @@
 				{
 					sprintf(s1,"%3s %02d",month[tmP1.tm_mon],tmP1.tm_mday);
 				}
+				break;
+			
 			}
 			
+			
+					
 			
 			//sprintf(disp,"%-20s %12s",objStrP,s1);
 			//free(tmP);

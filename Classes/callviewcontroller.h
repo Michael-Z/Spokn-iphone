@@ -26,6 +26,8 @@
 	int hour,min,sec;
 	NSString *labelStrP;
 	UIButton *_buttons[6];
+	Boolean  actualDismissB;
+	Boolean loadedB;
 	
 
 }
@@ -39,5 +41,6 @@
 -(void) startTimer;
 -(int)  stopTimer;
 -(IBAction)HoldPressed:(id)sender;
+- (void) handleCallEndTimer: (id) timer;
 
 @end

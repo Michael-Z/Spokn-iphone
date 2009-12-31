@@ -431,15 +431,29 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		}
 		strcpy(lastTypeNo,numbercharP);
 		
-		
-		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
-														   message: [ NSString stringWithString:@"No Network" ]
+		if(self->ownerobject.loginProgressStart)
+		{	
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
+														   message: [ NSString stringWithString:@"User not online" ]
 														  delegate: nil
 												 cancelButtonTitle: nil
 												 otherButtonTitles: @"OK", nil
 							  ];
-		[ alert show ];
-		[alert release];
+			[ alert show ];
+			[alert release];
+		}
+		else
+		{
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
+															   message: [ NSString stringWithString:@"No Network" ]
+															  delegate: nil
+													 cancelButtonTitle: nil
+													 otherButtonTitles: @"OK", nil
+								  ];
+			[ alert show ];
+			[alert release];
+			
+		}
 		//[self dismissKeyboard:numberFieldP];
 
 		
@@ -651,6 +665,12 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				hour = 0;
 				min = 0;
 				sec = 0;
+				//disconnectet call
+				if(callViewControllerP==0)
+				{
+					hangLtpInterface(ownerobject.ltpInterfacesP);
+				
+				}
 				[callViewControllerP startTimer];
 			}	
 			
@@ -686,11 +706,11 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				callViewControllerP = 0;
 			break;
 		case ALERT_DISCONNECTED:
-			
+			printf("\n call disconnected");
 			[self setViewButton:0];
 			[calltimerP invalidate];
 			timecallduration = [callViewControllerP stopTimer];
-			[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+			//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 			callViewControllerP = 0;
 			////printf("\ndisconnected");
 			calltimerP = nil;

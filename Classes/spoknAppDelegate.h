@@ -90,6 +90,7 @@
 	NSString *urlSendP;
 	int callOnB;
 	int handSetB;
+	int loginProgressStart;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -120,7 +121,7 @@
 
 @property (nonatomic, assign) int callOnB;
 @property (nonatomic, assign) int handSetB;
-
+@property (nonatomic,assign)  int loginProgressStart; 
 @property (nonatomic, assign) LtpInterfaceType *ltpInterfacesP;
 @property (nonatomic, assign) IBOutlet UINavigationController *vmsNavigationController;
 @property (nonatomic, assign) IBOutlet UINavigationController *calllogNavigationController;

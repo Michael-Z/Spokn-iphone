@@ -43,6 +43,7 @@
 @synthesize ltpInterfacesP;
 @synthesize callOnB;
 @synthesize handSetB;
+@synthesize loginProgressStart;
 - (void) handleTimer: (id) timer
 {
 	
@@ -296,6 +297,7 @@
 		case ALERT_CONNECTED:
 			[dialviewP setStatusText: @"ringing" :ALERT_CONNECTED :0];
 			callOnB = true;
+			printf("\n call connected");
 			//openSoundInterface(ltpInterfacesP,1);
 			[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 			#ifndef _LTP_
@@ -305,6 +307,7 @@
 			break;	
 		case ALERT_DISCONNECTED:
 			callOnB = false;
+			
 			if(lineID == 0)
 			{	
 				[dialviewP setStatusText: @"end call" :ALERT_DISCONNECTED :0 ];
@@ -315,7 +318,7 @@
 				[self LoadContactView:callviewP];
 				if([self stopRing]==0)
 				{
-					[tabBarController dismissModalViewControllerAnimated:YES];
+				//	[tabBarController dismissModalViewControllerAnimated:NO];
 				}
 							
 				#ifndef _LTP_
@@ -340,13 +343,20 @@
 					//printf("\n start network request send");
 					[self startCheckNetwork];
 				}
+				else
+				{
+					loginProgressStart = 1;
+				
+				}
 				[dialviewP setStatusText: @"connecting..." :START_LOGIN :0 ];
 			[loginProtocolP startloginIndicator];
 			break;
 		case ALERT_ONLINE://login
+			
+			loginProgressStart = 0;
 			[vmsviewP setcomposeStatus:1 ];
 			[loginProtocolP stoploginIndicator];
-			[self popLoginView];
+			
 			
 			#ifndef _LTP_
 			[nsTimerP invalidate];
@@ -367,6 +377,8 @@
 			if(self->onLineB == false)
 			{
 				[self playonlineTone];
+				[self popLoginView];
+				[self newBadgeArrived:vmsNavigationController];	
 			}	
 			self->onLineB = true;
 			[dialviewP setStatusText: @"online" :ALERT_ONLINE :0 ];
@@ -400,6 +412,7 @@
 							[dialviewP setStatusText: @"Authentication failed" :ALERT_OFFLINE :self->subID ];
 						break;
 					case LOGIN_STATUS_NO_ACCESS:
+							loginProgressStart = 0;
 							[loginProtocolP stoploginIndicator];
 							[dialviewP setStatusText: @"no access" :ALERT_OFFLINE :self->subID ];
 							//printf("\n no access to network");
@@ -450,6 +463,7 @@
 		
 		//	[self performSelectorOnMainThread : @ selector(newBadgeArrived: ) withObject:vmsNavigationController waitUntilDone:YES];
 			[self newBadgeArrived:vmsNavigationController];	
+			[self playonlineTone];
 			break;
 		
 		case ALERT_SERVERMSG:
@@ -490,7 +504,23 @@
 			}
 			//just show a message}
 			break;
-			
+		case INTERRUPT_ALERT:
+			switch(self->subID)
+			{
+				case 0:
+					printf("\n hold off");
+					SetAudioTypeLocal(self,0);
+					AudioSessionSetActive(true);
+					setHoldInterface(self->ltpInterfacesP, 0);
+					
+					break;
+				case 1:
+					printf("\n hold On");
+					setHoldInterface(self->ltpInterfacesP, 1);
+					[VmsProtocolP	VmsStopRequest];
+					break;
+			}
+			break;
 		case UA_ALERT:
 			switch(self->subID)
 		{
@@ -578,16 +608,20 @@
 	UINavigationController *controllerP;
 	controllerP = object;
 	char s1[30];
-	
-	sprintf(s1,"%d",newVMailCount());
-	stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
-	controllerP.tabBarItem.badgeValue= stringStrP;
+	int count;
+	count = newVMailCount();
+	if(count)
+	{	
+		sprintf(s1,"%d",count);
+		stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
+		controllerP.tabBarItem.badgeValue= stringStrP;
 
-	[stringStrP release];
-	[self playonlineTone];
+		[stringStrP release];
+		
+	}	
 	
 	
-	}
+}
 -(void)updateSpoknView:(id)object
 {
 	char *forwardCharP;
@@ -681,6 +715,7 @@ void MyAudioSessionPropertyListener(
 	UInt32                              lioDataSize=0;
 	//char *dataP;
 	NSString *dataP=0;
+	return;
 	AudioSessionGetPropertySize(kAudioSessionProperty_AudioRoute,&lioDataSize);
 	AudioSessionGetProperty(          kAudioSessionProperty_AudioRoute,
 							&lioDataSize,
@@ -698,7 +733,7 @@ void MyAudioSessionPropertyListener(
 			if(spoknDelP.handSetB)
 			{	
 				NSLog(@"dada %@",dataP);
-				SetAudioTypeLocal(0,0);
+				
 				if(spoknDelP)
 				{	
 					if(spoknDelP.callOnB==0)
@@ -1001,6 +1036,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	SetSpeakerOnOrOff(0,true);
 	[vmsviewP setcomposeStatus:1 ];
 	SetAudioSessionPropertyListener(self,MyAudioSessionPropertyListener);
+	[self newBadgeArrived:vmsNavigationController];	
 	
 		
 }
@@ -1227,6 +1263,20 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	struct AddressBook *addressP;
 	resultCharP = NormalizeNumber(noCharP,0);
 	printf("\n no = %s",resultCharP);
+	if(validateNo(resultCharP))//mean invalid number
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
+														message:@"Invalid number"
+													   delegate:self 
+											  cancelButtonTitle:nil 
+											  otherButtonTitles:@"OK", nil];
+		[alert show];
+		[alert release];
+		if(resultCharP)
+		free(resultCharP);
+		return retB;
+		
+	}
 	if(!wifiavailable)
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" 
@@ -1347,6 +1397,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		callOnB =true;
 		retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
+		//SetAddressBookDetails(self->ltpInterfacesP,0,0);
 	//[]
 		NSLog(@"\n%@",tempStringP);
 		[dialviewP setStatusText:tempStringP :TRYING_CALL :0];
@@ -1354,8 +1405,38 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[tempStringP release ];
 	//	[strP release ];
 		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
-			}	
+	}	
+	else
+	{
+		if(self->loginProgressStart)
+		{	
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
+															   message: [ NSString stringWithString:@"User not online" ]
+															  delegate: nil
+													 cancelButtonTitle: nil
+													 otherButtonTitles: @"OK", nil
+								  ];
+			[ alert show ];
+			[alert release];
+		}
+		else
+		{
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
+															   message: [ NSString stringWithString:@"No Network" ]
+															  delegate: nil
+													 cancelButtonTitle: nil
+													 otherButtonTitles: @"OK", nil
+								  ];
+			[ alert show ];
+			[alert release];
+			
+		}
+		
 	
+	
+	
+	
+	}
 	free(resultCharP);
 	return retB;
 		
@@ -1365,7 +1446,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 -(Boolean)endCall:(int)lineid
 {
 	callOnB =false;
-
+	printf("\n hang");
 	hangLtpInterface(self->ltpInterfacesP);
 	[dialviewP setStatusText: @"call end" :ALERT_DISCONNECTED :0];
 	SetSpeakerOnOrOff(0,true);

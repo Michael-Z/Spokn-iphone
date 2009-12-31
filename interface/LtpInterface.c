@@ -399,7 +399,8 @@ LtpInterfaceType *	  startLtp(AlertNotificationCallbackP  alertNotiCallbackP,uns
 			pthread_create(&ltpInterfaceP->pthObj, 0,PollThread,ltpInterfaceP);
 		#endif
 	#endif	
-		SetAudioTypeLocal(0,0);
+		printf("\n my udata %d",userData);
+		SetAudioTypeLocal(userData,0);
 		return ltpInterfaceP;
 	}
 	return NULL;
@@ -577,4 +578,12 @@ int getAddressUid(LtpInterfaceType *ltpInterfaceP)
 {
 	if(ltpInterfaceP==0) return 0;
 	return ltpInterfaceP->addressUId;
+}
+int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB)
+{
+	return setHold(ltpInterfaceP->ltpObjectP,holdB);
+}
+int setMuteInterface(LtpInterfaceType *ltpInterfaceP,int muteB)
+{
+	return setMute(muteB);
 }
