@@ -261,7 +261,7 @@
 	if(callB)
 	{	
 		uiActionSheetP= [[UIActionSheet alloc] 
-					 initWithTitle: @"Select a number to call" 
+					 initWithTitle: @"" 
 					 delegate:self
 					 cancelButtonTitle:nil 
 					 destructiveButtonTitle:nil
@@ -297,6 +297,14 @@
 				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
 		
 				stringSelected[i++] = addressDataP->other;
+			}
+			if( strlen(addressDataP->mobile) ||  strlen(addressDataP->business) || strlen(addressDataP->home)||  strlen(addressDataP->other) ||  strlen(addressDataP->spoknid) )
+			{	
+				uiActionSheetP.title = @"Select a Number to call";
+			}
+			else
+			{
+				uiActionSheetP.title = @"No Number to call";
 			}	
 		}
 		else
@@ -309,11 +317,21 @@
 					//printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
 					if(strstr(sectionArray[k].dataforSection[j].elementP,"@")==0)
 					{	
+						numberFound = 1;
 						[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP ] ];
-					
 						stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
-					}	
+					}
 				}
+			}
+			
+			if(numberFound)
+			{
+				uiActionSheetP.title = @"Select a Number to call";
+				numberFound = 0; 
+			}
+			else
+			{
+				uiActionSheetP.title = @"No Number to call";
 			}	
 		
 		
@@ -651,6 +669,7 @@
 	//[self.tabBarItem initWithTitle:@"ContactDetailsViewController" image:nil tag:3];
 	//self->tablesz = 0;
 	////printf("\n table = %d",self->tablesz);
+	numberFound = 0;
 	updatecontact = 0;
 	tableView.delegate = self;
 	tableView.dataSource = self;

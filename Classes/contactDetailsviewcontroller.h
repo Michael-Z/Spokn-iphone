@@ -100,6 +100,7 @@ typedef enum ViewTypeEnum
 	Boolean modelViewB;
 	int addressID;
 	int recordID;
+	int numberFound;
 	//id<VmailProtocol> VmailProtocolP;
 	
 }
