@@ -1493,7 +1493,7 @@ id createImage(float percentage)
 	tablesz = 0;
 	if(lVMSStateType==VMSStateRecord)
 	{
-		if(strlen(lnoCharP)>1)
+		if(strlen(lnoCharP)>0)
 		{	
 			openForwardNo = true;
 			strcpy(forwardContact.nameChar,lnameCharP);
