@@ -267,18 +267,33 @@
 	 [self setAddressBook:addressDataTmpP editable:false :viewEnum];
 	 free(addressDataTmpP);
 	 */
-	if(returnValLongP)
-	{	
-		*returnValLongP = 1;
-	}
-	vmsDeleteByID(vmailP->vmsid);
-	[ [self navigationController] popViewControllerAnimated:YES ];
+	
+	UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+													   message: [ NSString stringWithString:@"Are you sure you want to delete this voice mail?" ]
+													  delegate: self
+											 cancelButtonTitle: nil
+											 otherButtonTitles: @"OK", nil
+						  ];
+	[alert addButtonWithTitle:@"Cancel"];
+	[ alert show ];
+	[alert release];
+	
+}
 
-	//[ [self navigationController] popToRootViewControllerAnimated:YES ];
-	//contactID = -1;
-	profileResync();
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+{
 	
-	
+	//	//printf("\n%d",buttonIndex);
+	if(buttonIndex==0)
+	{	
+		if(returnValLongP)
+		{	
+			*returnValLongP = 1;
+		}
+		vmsDeleteByID(vmailP->vmsid);
+		[ [self navigationController] popViewControllerAnimated:YES ];
+		profileResync();
+	}
 }
 
 - (void)VmsStart
