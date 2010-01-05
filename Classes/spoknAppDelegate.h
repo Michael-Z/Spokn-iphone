@@ -164,6 +164,8 @@ changed:(BOOL)changed;
 -(void)logOut:(Boolean) clearAllB;
 -(void)setLoginDelegate :(id)deligateP;
 -(void)refreshallViews;
+
+-(char*) getNameAndTypeFromNumber:(char*)pnumberP :(char*)typeP :(Boolean*)pfindBP ;
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
 void MyAudioSessionPropertyListener(

@@ -25,8 +25,6 @@
 		8B20AB9410A86D48009E546A /* Call-log-Icons-incoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9110A86D48009E546A /* Call-log-Icons-incoming.png */; };
 		8B20AB9510A86D48009E546A /* Call-log-Icons-missed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9210A86D48009E546A /* Call-log-Icons-missed.png */; };
 		8B20AB9610A86D48009E546A /* Call-log-Icons-outgoing.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B20AB9310A86D48009E546A /* Call-log-Icons-outgoing.png */; };
-		8B2AA45310DF977500239344 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2AA45210DF977500239344 /* libspeex-arm-apple-darwin9.a */; };
-		8B2AA45410DF977500239344 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B2AA45210DF977500239344 /* libspeex-arm-apple-darwin9.a */; };
 		8B2C3D8C1096CB54003BB164 /* ltpandsip.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C3D8B1096CB54003BB164 /* ltpandsip.c */; };
 		8B39FFC8107C910200073950 /* vmshowviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B39FFC6107C910200073950 /* vmshowviewcontroller.m */; };
 		8B39FFC9107C910200073950 /* vmshowviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */; };
@@ -342,6 +340,8 @@
 		8BA08A1110BFC27C00ED19B7 /* doorbell.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8BA08A1010BFC27C00ED19B7 /* doorbell.caf */; };
 		8BA08A7510BFC94000ED19B7 /* gling.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8BA08A7410BFC94000ED19B7 /* gling.caf */; };
 		8BA08AE410BFD32D00ED19B7 /* spoknLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA08AE310BFD32D00ED19B7 /* spoknLogo.png */; };
+		8BA2C26910ED0C97001BC418 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BA2C26810ED0C97001BC418 /* libspeex-arm-apple-darwin9.a */; };
+		8BA2C26A10ED0C97001BC418 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BA2C26810ED0C97001BC418 /* libspeex-arm-apple-darwin9.a */; };
 		8BA8E3A11027EF800022801E /* addeditcontactviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */; };
 		8BA8E3A21027EF800022801E /* addeditcontact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E3A01027EF800022801E /* addeditcontact.xib */; };
 		8BA8E558102835BC0022801E /* vmailview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E555102835BC0022801E /* vmailview.xib */; };
@@ -445,7 +445,6 @@
 		8B20AB9110A86D48009E546A /* Call-log-Icons-incoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-incoming.png"; sourceTree = "<group>"; };
 		8B20AB9210A86D48009E546A /* Call-log-Icons-missed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-missed.png"; sourceTree = "<group>"; };
 		8B20AB9310A86D48009E546A /* Call-log-Icons-outgoing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Call-log-Icons-outgoing.png"; sourceTree = "<group>"; };
-		8B2AA45210DF977500239344 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B2C3D8A1096CB54003BB164 /* ltpandsip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpandsip.h; path = interface/ltpandsip.h; sourceTree = "<group>"; };
 		8B2C3D8B1096CB54003BB164 /* ltpandsip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpandsip.c; path = interface/ltpandsip.c; sourceTree = "<group>"; };
 		8B39FFC5107C910200073950 /* vmshowviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmshowviewcontroller.h; sourceTree = "<group>"; };
@@ -601,6 +600,7 @@
 		8BA08A1010BFC27C00ED19B7 /* doorbell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = doorbell.caf; sourceTree = "<group>"; };
 		8BA08A7410BFC94000ED19B7 /* gling.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gling.caf; sourceTree = "<group>"; };
 		8BA08AE310BFD32D00ED19B7 /* spoknLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spoknLogo.png; sourceTree = "<group>"; };
+		8BA2C26810ED0C97001BC418 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BA8E39E1027EF800022801E /* addeditcontactviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addeditcontactviewcontroller.h; sourceTree = "<group>"; };
 		8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addeditcontactviewcontroller.m; sourceTree = "<group>"; };
 		8BA8E3A01027EF800022801E /* addeditcontact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addeditcontact.xib; sourceTree = "<group>"; };
@@ -721,7 +721,7 @@
 				8B964B2610CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
 				8B964B2B10CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
-				8B2AA45410DF977500239344 /* libspeex-arm-apple-darwin9.a in Frameworks */,
+				8BA2C26A10ED0C97001BC418 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,7 +765,7 @@
 				8B964B2410CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
 				8B964B2910CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2A10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
-				8B2AA45310DF977500239344 /* libspeex-arm-apple-darwin9.a in Frameworks */,
+				8BA2C26910ED0C97001BC418 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -985,7 +985,7 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
-				8B2AA45210DF977500239344 /* libspeex-arm-apple-darwin9.a */,
+				8BA2C26810ED0C97001BC418 /* libspeex-arm-apple-darwin9.a */,
 				8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */,
 				8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */,
 				8B964B2110CBE78C00CB00DB /* libpjlib-util-i386-apple-darwin9.a */,
@@ -2036,8 +2036,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2055,8 +2055,8 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C649A8EE-7CDE-4198-96CE-5321CA3D9A5C";
+				PROVISIONING_PROFILE = "A1518653-B8FB-41AD-9AC0-6FEEA886BED9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1518653-B8FB-41AD-9AC0-6FEEA886BED9";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;
@@ -2066,8 +2066,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
@@ -2091,8 +2091,8 @@
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
+				PROVISIONING_PROFILE = "A1518653-B8FB-41AD-9AC0-6FEEA886BED9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1518653-B8FB-41AD-9AC0-6FEEA886BED9";
 			};
 			name = Distribution;
 		};

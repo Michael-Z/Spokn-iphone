@@ -569,9 +569,20 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	}
 	sec++;
 }
+- (void) handleCallTimerHang: (id) timer
+{
+	printf("\n hang timer ");
+	hangLtpInterface(ownerobject.ltpInterfacesP);
+	timecallduration = 0;
+	[(NSTimer*)timer invalidate];
+	
+
+}
 - (void) handleCallTimerEnd: (id) timer
 {
 	//[statusLabelP setText:@"end call"];
+	
+	hangLtpInterface(ownerobject.ltpInterfacesP);
 	timecallduration = 0;
 	[(NSTimer*)timer invalidate];
 	profileResync();//to get balance
@@ -668,16 +679,33 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				//disconnectet call
 				if(callViewControllerP==0)
 				{
-					hangLtpInterface(ownerobject.ltpInterfacesP);
+					
+					printf("\n sdbarman");
+					//hangLtpInterface(ownerobject.ltpInterfacesP);
+					calltimerP = [NSTimer scheduledTimerWithTimeInterval: 0.5
+																  target: self
+																selector: @selector(handleCallTimerHang:)
+																userInfo: nil
+																 repeats: YES];
+					
+					printf("\n call end");
+					//dont get panic it will release in handleCallTimerend
+					calltimerP = nil;
+					
+					break;
 				
 				}
+				else
+				{
+						printf("\n shankarjaikishan");
+				}	
 				[callViewControllerP startTimer];
 			}	
 			
 		case TRYING_CALL:
 		
 			//[self setViewButton:1];
-			
+			printf("\n try calling");
 			if(callViewControllerP==0)
 			{	
 				

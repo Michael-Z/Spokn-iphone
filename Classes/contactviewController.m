@@ -1352,7 +1352,7 @@ titleForHeaderInSection:(NSInteger)section
 				setTypeP = [sectionArray objectAtIndex:0];
 				[ setTypeP->elementP addObject:secP];
 			}*/
-			if(strlen(ignoreSpaceStrP)==0 || (*ignoreSpaceStrP>='0' && *ignoreSpaceStrP<='9'))
+			if(strlen(ignoreSpaceStrP)==0 || (!isalpha(*ignoreSpaceStrP)))
 			{
 				rangeStringP = @"#";//this for avoiding crash when only blank is there
 			}

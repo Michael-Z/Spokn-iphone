@@ -297,7 +297,7 @@
 		case ALERT_CONNECTED:
 			[dialviewP setStatusText: @"ringing" :ALERT_CONNECTED :0];
 			callOnB = true;
-			printf("\n call connected");
+			printf("\n call connected %d",self->lineID);
 			//openSoundInterface(ltpInterfacesP,1);
 			[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 			#ifndef _LTP_
@@ -316,9 +316,10 @@
 				[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
 				//reload log
 				[self LoadContactView:callviewP];
-				if([self stopRing]==0)
+				if([self stopRing]==0)//for incomming called not ans
 				{
-				//	[tabBarController dismissModalViewControllerAnimated:NO];
+					printf("\n view dismiss");
+					[tabBarController dismissModalViewControllerAnimated:NO];
 				}
 							
 				#ifndef _LTP_
@@ -1250,7 +1251,103 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 
 }
+-(char*) getNameAndTypeFromNumber:(char*)pnumberP :(char*)typeP :(Boolean*)pfindBP 
+{
+	struct AddressBook *addressP;
+	char *nameP=0;
+	char *returnCharP=0;
+	Boolean findB=false;
+	addressP = getContactAndTypeCall(pnumberP,typeP);
+	if(addressP)
+	{
+		nameP = addressP->title;
+		if(nameP)
+		{	
+			while(*nameP==' '){
+				nameP++;
+			}
+			if(*nameP!='\0')
+			{
+				nameP = addressP->title;
+				findB = true;
+			}
+			else
+			{
+				nameP = pnumberP;
+			}
+			
+		}	
+		returnCharP = malloc(strlen(nameP)+10);
+		strcpy(returnCharP,nameP);
+	}
+	else
+	{
+		int uID;
+		char *addressBookNameP = 0;
+		char *addressBookTypeP = 0;
+		uID = getAddressUid(self->ltpInterfacesP);
+		if(uID)
+		{
+			[ContactViewController	getNameAndType:uID :pnumberP :&addressBookNameP :&addressBookTypeP];
+			if(addressBookNameP)
+			{	
+				nameP = addressBookNameP;
+				if(nameP)
+				{	
+					while(*nameP==' '){
+						nameP++;
+					}
+					if(*nameP!='\0')
+					{
+						nameP = addressBookNameP;
+						findB = true;
+					}
+					else
+					{
+						nameP = pnumberP;
+					}
+					
+				}	
+				returnCharP = malloc(strlen(nameP)+10);
+				strcpy(returnCharP,nameP);
+				
+				if(addressBookTypeP)
+				{	
+					strcpy(typeP,addressBookTypeP);
+				}
+				else
+				{
+					strcpy(typeP,"Unknown");
+				}
+				free(addressBookNameP);
+				if(addressBookTypeP)
+				{	
+					free(addressBookTypeP);
+				}	
+				
+			}
+			
+		}
+		else
+		{
+			returnCharP = malloc(strlen(pnumberP)+10);
+			strcpy(returnCharP,pnumberP);
 
+			strcpy(typeP,"Unknown");
+		
+		}
+		
+	
+	
+	
+	}
+	if(pfindBP)
+	{
+		*pfindBP = findB;
+	}
+	return returnCharP;
+		
+}
 //text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ()<>-./"]];
 -(Boolean)makeCall:(char *)noCharP
 {
@@ -1291,119 +1388,24 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(self->onLineB)
 	{	
 		tempStringP = [[NSMutableString alloc] init] ;
-		addressP = getContactAndTypeCall(resultCharP,typeP);
-		if(addressP)
-		{
-			nameP = addressP->title;
-			if(nameP)
-			{	
-				while(*nameP==' '){
-					nameP++;
-				}
-				if(*nameP!='\0')
-				{
-					nameP = addressP->title;
-				}
-				else
-				{
-					nameP = resultCharP;
-				}
+		
+		nameP = [self getNameAndTypeFromNumber:resultCharP :typeP :0];
+		strP = [[NSString alloc] initWithUTF8String:nameP] ;
+		[tempStringP setString:strP];
+		[strP release];
+		strP = [[NSString alloc] initWithUTF8String:typeP] ;
+		[tempStringP appendString:@"\n" ];
+		//[tempStringP appendString:@"\n calling " ];
+		[tempStringP appendString:strP];
+		[strP release ];
+		free(nameP);
 				
-			}	
-			
-			strP = [[NSString alloc] initWithUTF8String:nameP] ;
-			[tempStringP setString:strP];
-			[strP release];
-			strP = [[NSString alloc] initWithUTF8String:typeP] ;
-			[tempStringP appendString:@"\n" ];
-			//[tempStringP appendString:@"\n calling " ];
-			[tempStringP appendString:strP];
-			[strP release ];
-		}
-		else
-		{
-			int uID;
-			char *addressBookNameP = 0;
-			char *addressBookTypeP = 0;
-			uID = getAddressUid(self->ltpInterfacesP);
-			if(uID)
-			{
-				[ContactViewController	getNameAndType:uID :resultCharP :&addressBookNameP :&addressBookTypeP];
-				if(addressBookNameP)
-				{	
-					nameP = addressBookNameP;
-					if(nameP)
-					{	
-						while(*nameP==' '){
-							nameP++;
-						}
-						if(*nameP!='\0')
-						{
-							nameP = addressBookNameP;
-						}
-						else
-						{
-							nameP = resultCharP;
-						}
-						
-					}	
-					
-					
-					strP = [[NSString alloc] initWithUTF8String:nameP] ;
-					[tempStringP setString:strP];
-					[strP release];
-					if(addressBookTypeP)
-					{	
-						strP = [[NSString alloc] initWithUTF8String:addressBookTypeP] ;
-						//[tempStringP appendString:@"\n calling " ];
-						[tempStringP appendString:@"\n" ];
-						[tempStringP appendString:strP];
-						[strP release ];
-					}
-					else
-					{
-						[tempStringP appendString:@"\nUnknown" ];
-					}
-					free(addressBookNameP);
-					if(addressBookTypeP)
-					{	
-						free(addressBookTypeP);
-					}	
-					
-				}
-				
-			}	
-			else
-			{	
-				strP = [[NSString alloc] initWithUTF8String:resultCharP] ;
-			
-				[tempStringP appendString:strP ];
-			//[tempStringP setString:addressP->title];
-				//[tempStringP appendString:@"\n calling..." ];
-				[tempStringP appendString:@"\nUnknown" ];
-			//[tempStringP appendString:strP];
-				[strP release ];
-			}	
-			
-		}
-		//strP = [[NSString alloc] initWithUTF8String:noCharP] ;
-		//[strP setString:@"Calling "];
-	
-		
-		
-
-		//	tempStringP = [NSMutableString stringWithString:@"calling "]	;
-		
-		
 		callOnB =true;
 		retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
-		//SetAddressBookDetails(self->ltpInterfacesP,0,0);
-	//[]
 		NSLog(@"\n%@",tempStringP);
 		[dialviewP setStatusText:tempStringP :TRYING_CALL :0];
-	//[tempStringP release];
-		[tempStringP release ];
-	//	[strP release ];
+			[tempStringP release ];
+	
 		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 	}	
 	else
@@ -1552,16 +1554,48 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 -(int) vmsShowRecordScreen : (char*)noCharP
 {
-	struct AddressBook * addressP;
+	//struct AddressBook * addressP;
 	char type[30];
 	int max = 20;
+	char *nameP;
+	Boolean findB= false;
 	
 	////printf("\n test122323232323");
-	addressP = getContactAndTypeCall(noCharP,type);	
+	nameP = [self getNameAndTypeFromNumber:noCharP :type :&findB];
+	
+	VmShowViewController     *vmShowViewControllerP;	
+	//printf("\n %s %s",type,noCharP);
+	//	
+	vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
+	//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
+	[vmShowViewControllerP setFileName: "temp" :0];
+	if(findB==true)
+	{	
+		[vmShowViewControllerP setvmsDetail: noCharP : nameP :type :VMSStateRecord :max :0];
+	}
+	else
+	{
+		[vmShowViewControllerP setvmsDetail: noCharP : noCharP :"" :VMSStateRecord :max : 0];
+		
+	}
+	[vmShowViewControllerP setObject:self];
+	[vmsNavigationController popToRootViewControllerAnimated:NO];
+	UINavigationController *tmpCtl;
+	tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: vmShowViewControllerP ] autorelease];
+	[tabBarController presentModalViewController:tmpCtl animated:YES];
+	
+	//[ vmsNavigationController pushViewController:vmShowViewControllerP animated: YES ];
+	
+	if([vmShowViewControllerP retainCount]>1)
+		[vmShowViewControllerP release];
+	free(nameP);
+	
+	/*addressP = getContactAndTypeCall(noCharP,type);	
 	if(addressP)
 	{
 		VmShowViewController     *vmShowViewControllerP;	
 		//printf("\n %s %s",type,noCharP);
+		//	
 		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
 		//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
 		[vmShowViewControllerP setFileName: "temp" :0];
@@ -1597,6 +1631,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			[vmShowViewControllerP release];
 		//printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);	
 	}
+	 */
 	//tabBarController.selectedViewController = vmsNavigationController;	
 	
 	return 0;
