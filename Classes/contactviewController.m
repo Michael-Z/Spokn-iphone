@@ -1252,6 +1252,8 @@ titleForHeaderInSection:(NSInteger)section
 	}	
 	else
 	{
+		[self buildSearchArrayFrom:searchStrP];
+		//[self reloadLocal:searchStrP :0];
 		firstSection = -1;
 	}
 	
@@ -1263,6 +1265,7 @@ titleForHeaderInSection:(NSInteger)section
 	{
 		return 0;
 	}
+	
 	////////////printf("\nmukesh");
 	if(uaObject==GETCONTACTLIST)
 	{
@@ -1433,7 +1436,8 @@ titleForHeaderInSection:(NSInteger)section
 		 target: self
 	    action: @selector(startEditing) ] autorelease ];	
 	}
-		[ self->tableView reloadData ];
+	printf("\n reload called");
+	[ self->tableView reloadData ];
 	if(firstSectionP)
 	{
 		*firstSectionP = fIndexfindInt;
