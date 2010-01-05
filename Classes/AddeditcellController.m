@@ -140,8 +140,26 @@ NSLog(@"\nSave123");
 	self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 											   target: self
-											   action: @selector(cancelPressed) ] autorelease ];	
+											   action: @selector(cancelPressed) ] autorelease ];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(handleTextFieldChanged:)
+												 name:UITextFieldTextDidChangeNotification
+											   object:txtField];
+	
 }
+
+- (void) handleTextFieldChanged:(id)sender
+{
+	if([txtField.text length])
+	{
+		self.navigationItem.rightBarButtonItem.enabled = YES;
+	}
+	else
+	{
+		self.navigationItem.rightBarButtonItem.enabled = NO;
+	}	
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
