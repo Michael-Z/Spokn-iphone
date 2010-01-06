@@ -1341,6 +1341,7 @@ id createImage(float percentage)
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	sliderP.userInteractionEnabled = NO;
 	recordVmsB = false;
 	[ownerobject setVmsDelegate:self];
 	if(vmstateType==VMSStateRecord)
