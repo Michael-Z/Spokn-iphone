@@ -725,12 +725,41 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	else
 	{	
-		NSIndexPath *nsP;
-		nsP = [self->tableView indexPathForSelectedRow];
-		if(nsP)
+		if(segmentedControl.selectedSegmentIndex==0)//spokn table view
 		{
-			[self->tableView deselectRowAtIndexPath : nsP animated:NO];
+			NSIndexPath *nsP;
+			nsP = [self->tableView indexPathForSelectedRow];
+			if(nsP)
+			{
+				[self->tableView deselectRowAtIndexPath : nsP animated:YES];
+			}	
+			
+		}
+		if(segmentedControl.selectedSegmentIndex==2)//different view
+		{	
+			CGPoint t={200,200};
+			UIView *viewHit;
+			viewHit = [addressBookP.view hitTest:t withEvent:0];
+			if(viewHit)
+			{
+				if([viewHit isKindOfClass:[UIView class]])
+				{
+					UITableView *talbP;
+					
+					NSIndexPath *nsP;
+					talbP = (UITableView*)viewHit;
+					nsP = [talbP indexPathForSelectedRow];
+					if(nsP)
+					{
+						[talbP deselectRowAtIndexPath : nsP animated:YES];
+					}
+
+				}
+
+			}
+						
 		}	
+
 	}
 	if(firstSection>=0)
 	{	
