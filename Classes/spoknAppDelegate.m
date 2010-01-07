@@ -253,6 +253,21 @@
 	
 	
 }
+- (void) handleIntrrept: (id) timer
+{
+	OSStatus x;
+	
+	SetAudioTypeLocal(self,0);
+	x = AudioSessionSetActive(true);
+	if(x==0)
+	{	
+		
+		setHoldInterface(self->ltpInterfacesP, 0);
+		printf("\n handleCallTimerHang ");
+		
+	}
+	[(NSTimer*)timer invalidate];
+}
 
 //@synthesize viewNavigationController;
 -(void)alertAction:(NSNotification*)note
@@ -519,6 +534,16 @@
 					printf("\n hold On");
 					setHoldInterface(self->ltpInterfacesP, 1);
 					[VmsProtocolP	VmsStopRequest];
+					if(callOnB)
+					{	
+						[NSTimer scheduledTimerWithTimeInterval: 0.5
+																  target: self
+																selector: @selector(handleIntrrept:)
+																userInfo: nil
+																 repeats: YES];
+					}
+					//AudioSessionSetActive(true);
+					//SetAudioTypeLocal(self,0);
 					break;
 			}
 			break;
@@ -716,12 +741,18 @@ void MyAudioSessionPropertyListener(
 	UInt32                              lioDataSize=0;
 	//char *dataP;
 	NSString *dataP=0;
+	if(inID==kAudioSessionProperty_ServerDied)
+	{
+		printf("\n some data died");
+	}
+	
+	
 	return;
 	AudioSessionGetPropertySize(kAudioSessionProperty_AudioRoute,&lioDataSize);
 	AudioSessionGetProperty(          kAudioSessionProperty_AudioRoute,
 							&lioDataSize,
 							&dataP);    
-	//NSLog(@"dada %@",dataP);
+	NSLog(@"dada %@",dataP);
 	if(dataP)
 	{
 		SpoknAppDelegate *spoknDelP;

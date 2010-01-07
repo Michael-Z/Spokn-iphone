@@ -703,12 +703,14 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			}	
 			
 		case TRYING_CALL:
-		
+			
 			//[self setViewButton:1];
 			printf("\n try calling");
 			if(callViewControllerP==0)
 			{	
-				
+				AudioSessionSetActive(true);
+				//SetAudioTypeLocal(self,0);
+				//setHoldInterface(ownerobject.ltpInterfacesP, 0);
 				callViewControllerP = [[CallViewController alloc] initWithNibName:@"callviewcontroller" bundle:[NSBundle mainBundle]];
 				[callViewControllerP setObject:self->ownerobject];
 				

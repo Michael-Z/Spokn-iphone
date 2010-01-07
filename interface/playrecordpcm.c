@@ -137,9 +137,25 @@ int  PlayBuffStart(AQCallbackStruct *aqcP)
 
 void SetAudioSessionPropertyListener( void *uDataP,AudioSessionPropertyListener        inProc)
 {
-	AudioSessionAddPropertyListener(    kAudioSessionProperty_AudioRouteChange,
-                                    inProc,
-                                    uDataP); 
+	void *uglobalDataP;
+	AudioSessionPropertyListener        inProcglobal;
+
+//if(inProc)
+	{
+		inProcglobal = inProc;
+	}
+	//if(uDataP)
+	{
+		uglobalDataP = uDataP;
+	}
+	
+	//AudioSessionAddPropertyListener(    kAudioSessionProperty_AudioRouteChange,
+    //                                inProcglobal,
+       //                             uglobalDataP); 
+	//AudioSessionAddPropertyListener(    kAudioSessionProperty_ServerDied,
+     //                               inProcglobal,
+          //                          uglobalDataP); 
+	
 	
 }
 
@@ -166,10 +182,12 @@ void SetAudioTypeLocal(void *uData,int type)
 	//this is added for iphone 3.0
 	if(uData)
 	{	
-		printf("\n \n\n\n\n\ data set--------------------\n");
+		//printf("\n \n\n\n\n\ data set--------------------\n");
+		
 		AudioSessionInitialize(0,0,AudioSessionInterruptionListenerClient,uData);
 	}
 	AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);		//AudioQueueAddPropertyListener(aqcP->queue,kAudioQueueProperty_IsRunning,AudioQueuePropertyListenerFunction,aqcP);
+//SetAudioSessionPropertyListener(0,0)
 }
 void* InitAudio( void *udata,CallBackUIP callBackP,CallBackSoundP callBackSoundP)
 {
@@ -177,7 +195,7 @@ void* InitAudio( void *udata,CallBackUIP callBackP,CallBackSoundP callBackSoundP
 	//UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;//kAudioSessionCategory_MediaPlayback
 	
 	//UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;//kAudioSessionCategory_MediaPlayback
-	
+	AudioSessionSetActive(true);
 	aqcP = (AQCallbackStruct*)malloc(sizeof(AQCallbackStruct));
 	memset(aqcP,0,sizeof(AQCallbackStruct));
 	aqcP->uData = udata;
