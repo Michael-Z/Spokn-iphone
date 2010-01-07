@@ -688,9 +688,50 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	
 }
-- (void)viewWillAppear:(BOOL)animated
+- (void) removeSelectionFromAddressBook
 {
-	[super viewWillAppear:animated];
+	CGPoint t={0,0};
+	UIView *viewHit;
+		
+	
+	viewHit = [self.view hitTest:t withEvent:0];
+	if(viewHit)
+	{
+		
+		UIView *superViewP;
+		superViewP = 	viewHit;	
+			
+			do
+			{	
+				if([superViewP isKindOfClass:[UITableView class]])
+				{
+					UITableView *talbP;
+					
+					//talbP = (UITableView*)[viewHit superview];
+					NSIndexPath *nsP;
+					talbP = (UITableView*)superViewP;
+					//printf("\n hit called");
+					nsP = [talbP indexPathForSelectedRow];
+					if(nsP)
+					{
+						[talbP deselectRowAtIndexPath : nsP animated:NO];
+					}
+					break;
+				}
+				
+				superViewP = [superViewP superview];
+				
+			//	NSLog(@"\n mdis = %@",[superViewP description]);
+			}while(superViewP);
+			
+		}		
+	
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
 	if(loadedNewViewB)
 	{
 		[addressBookP release];
@@ -731,33 +772,16 @@ titleForHeaderInSection:(NSInteger)section
 			nsP = [self->tableView indexPathForSelectedRow];
 			if(nsP)
 			{
-				[self->tableView deselectRowAtIndexPath : nsP animated:YES];
+				[self->tableView deselectRowAtIndexPath : nsP animated:NO];
 			}	
 			
 		}
 		if(segmentedControl.selectedSegmentIndex==2)//different view
 		{	
-			CGPoint t={200,200};
-			UIView *viewHit;
-			viewHit = [addressBookP.view hitTest:t withEvent:0];
-			if(viewHit)
-			{
-				if([viewHit isKindOfClass:[UIView class]])
-				{
-					UITableView *talbP;
-					
-					NSIndexPath *nsP;
-					talbP = (UITableView*)viewHit;
-					nsP = [talbP indexPathForSelectedRow];
-					if(nsP)
-					{
-						[talbP deselectRowAtIndexPath : nsP animated:YES];
-					}
-
-				}
-
-			}
-						
+			[self removeSelectionFromAddressBook];			
+			
+			
+									
 		}	
 
 	}
