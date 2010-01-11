@@ -22,7 +22,8 @@ typedef enum  VMSStateType
 	{
 		VMSStatePlay,
 		VMSStateRecord,
-		VMSStateForward
+		VMSStateForward,
+		VMSStatePrevious
 	}VMSStateType;
 	
 //#define PROGRESS_VIEW
@@ -70,6 +71,7 @@ typedef enum  VMSStateType
 	Boolean previewPressedB;
 	int recordingStartB;
 	int doNothing;
+	int audioStartB;
 	//(SelectedContctType *)lselectedContactP
 	
 	

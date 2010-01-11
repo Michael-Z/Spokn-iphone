@@ -58,7 +58,10 @@
 -(void)addContact:(UIViewController*)rootP
 {
 
-	doNothing = 1;
+	if(audioStartB==false)
+	{	
+		doNothing = 1;
+	}
 	openForwardNo = 0;
 	
 	if(rootP==nil)
@@ -152,25 +155,28 @@
 	
 	
 	//printf("\n\n\n\ncontact added\n\n\n");
-	vmstateType = lvmsState;
-	if(vmstateType==VMSStateRecord)
+	if(lvmsState!=VMSStatePrevious)
 	{	
-		maxTime = 20;
-		maxTimeLoc = 20;
-		strcpy(fileNameCharP,"temp");
+		vmstateType = lvmsState;
+		if(vmstateType==VMSStateRecord)
+		{	
+			maxTime = 20;
+			maxTimeLoc = 20;
+			strcpy(fileNameCharP,"temp");
+		}
+		[self makeView];
+		[self loadOtherView];
+		[self->tableView reloadData];
 	}
+	[pickerviewcontrollerviewP addSelectedContact:selectedContactP  ];
+	
 	if(selectedContactP)
 	{
 		
 		if(self.title == @"VMS")
-		[self setTitle:@"Send VMS"];
+			[self setTitle:@"Send VMS"];
 	}	
-	[self makeView];
-	[self loadOtherView];
 	
-	[pickerviewcontrollerviewP addSelectedContact:selectedContactP  ];
-	[self->tableView reloadData];
-
 	
 	
 	
@@ -304,15 +310,21 @@
 }
 - (void)VmsStop
 {
-	[nsTimerP invalidate];
-	nsTimerP = 0;
 	if(doNothing)
 	{
 		//if(recordingStartB != 1)
 		printf("\n Vmsstop return");
 		return;
 	}
+	if(audioStartB==false)
+	{
+		return;
+	}
+	audioStartB = false; 
 	printf("\n Vmsstop");
+	[nsTimerP invalidate];
+	nsTimerP = 0;
+
 	[PlayButtonP addTarget:self action:@selector(playPressed:) forControlEvents: UIControlEventTouchUpInside];
 	
 	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateForward )
@@ -428,6 +440,7 @@
 {
 	printf("\n stopButtonpressed");
 	Boolean playB;
+	
 	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateRecord )
 	{
 		playB = true;
@@ -449,6 +462,8 @@
 	//printf("\n playPressed pressed");
 	unsigned long sz;
 	recordingStartB = 1;
+	audioStartB = true;
+	[ownerobject setVmsDelegate:self];
 	if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward)
 	{
 		if([ownerobject vmsPlayStart:fileNameCharP :&sz])
@@ -522,6 +537,7 @@
 {
 
 	//printf("\n previewPressed pressed");
+	[ownerobject setVmsDelegate:self];
 	if(vmstateType==VMSStateRecord)
 	{
 		char *nameP=0;
@@ -541,6 +557,7 @@
 			sz = 20;
 		}
 		previewPressedB = true;
+		audioStartB = true;
 		[ownerobject VmsStreamStart:false];
 		self->maxtimeDouble=sz;
 		maxTimeLoc = sz;
@@ -1058,7 +1075,7 @@ id createImage(float percentage)
 							  ];
 		[ alert show ];
 		[alert release];*/
-		[self showForwardOrReplyScreen:vmstateType :&forwardContact];
+		[self showForwardOrReplyScreen:VMSStatePrevious :&forwardContact];
 		
 		
 		//forwardNoChar[0] = 0;

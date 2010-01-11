@@ -870,7 +870,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[ window addSubview: viewController.view ];
 	//[ window addSubview: viewController->usernameP ];
 	//[ window addSubview: viewController->passwordP ];
-		
+	prvCtlP = 0;	
 	wifiavailable = NO;
 	urlSendP = nil;
 	//char *userNameCharP;
@@ -1504,6 +1504,21 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 -(void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController
 {
+	
+	if(prvCtlP)
+	{
+		if([prvCtlP isKindOfClass:[UINavigationController class]])
+		{
+			[(UINavigationController*)prvCtlP popToRootViewControllerAnimated:NO];
+			if(prvCtlP==vmsNavigationController)
+			{	
+				[VmsProtocolP	VmsStopRequest];
+			}	
+		}
+		//printf("\n dele called");
+		
+	}
+	prvCtlP = viewController;
 }
 -(void)tabBarController:(UITabBarController*)tabBarController didEndCustomizingViewController:(NSArray*)viewcontrollers
 				changed:(BOOL)changed
@@ -1602,7 +1617,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	int max = 20;
 	char *nameP;
 	Boolean findB= false;
-	
+	[VmsProtocolP	VmsStopRequest];
 	////printf("\n test122323232323");
 	nameP = [self getNameAndTypeFromNumber:noCharP :type :&findB];
 	

@@ -95,7 +95,7 @@
 	int callOnB;
 	int handSetB;
 	int loginProgressStart;
-	
+	UIViewController *prvCtlP;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
