@@ -961,7 +961,6 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	if(viewPlayResult)
 	{
 		viewPlayResult = 0;
-		printf("\n make changes");
 		[ self->tableView reloadData ];
 	}
 	if(openVmsCompose)

@@ -69,6 +69,7 @@ typedef enum  VMSStateType
 	Boolean modalB;
 	Boolean previewPressedB;
 	int recordingStartB;
+	int doNothing;
 	//(SelectedContctType *)lselectedContactP
 	
 	

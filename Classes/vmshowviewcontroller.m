@@ -58,7 +58,7 @@
 -(void)addContact:(UIViewController*)rootP
 {
 
-	
+	doNothing = 1;
 	openForwardNo = 0;
 	
 	if(rootP==nil)
@@ -161,6 +161,8 @@
 	}
 	if(selectedContactP)
 	{
+		
+		if(self.title == @"VMS")
 		[self setTitle:@"Send VMS"];
 	}	
 	[self makeView];
@@ -304,7 +306,13 @@
 {
 	[nsTimerP invalidate];
 	nsTimerP = 0;
-	//printf("\n stop");
+	if(doNothing)
+	{
+		//if(recordingStartB != 1)
+		printf("\n Vmsstop return");
+		return;
+	}
+	printf("\n Vmsstop");
 	[PlayButtonP addTarget:self action:@selector(playPressed:) forControlEvents: UIControlEventTouchUpInside];
 	
 	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateForward )
@@ -413,12 +421,12 @@
 }
 -(void)VmsStopRequest
 {
-	printf("\n called in\n");
+	printf("\n VmsStopRequest\n");
 	[self stopButtonPressed:nil];
 }
 -(IBAction)stopButtonPressed:(id)sender
 {
-	//printf("\n stop pressed");
+	printf("\n stopButtonpressed");
 	Boolean playB;
 	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateRecord )
 	{
@@ -1035,7 +1043,8 @@ id createImage(float percentage)
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
+	doNothing = 0;
+	printf("\n viewDidAppear \n");
 	if(openForwardNo)
 	{
 		//printf("\n make changes");
@@ -1330,17 +1339,17 @@ id createImage(float percentage)
 {
 	if(viewController !=self)
 	{
-		printf("\n view pushpop");
 		[self stopButtonPressed:nil];
 	}
 }
 - (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
 {
-	printf("\n view poped");
+	//printf("\n view poped");
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	doNothing = 0;
 	sliderP.userInteractionEnabled = NO;
 	recordVmsB = false;
 	[ownerobject setVmsDelegate:self];
@@ -1382,7 +1391,7 @@ id createImage(float percentage)
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
-	printf("\n view will disappear") ;
+	printf("\n view will disappear \n") ;
 	
 }	
 -(IBAction)cancelClicked
