@@ -305,6 +305,18 @@
 					[self updateSpoknView:0];
 				}
 					break;	
+					
+				case ERR_CODE_VMS_NO_CREDITS:
+				{
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" 
+																	message:@"Your VMS could not be sent because you do not have enough credit. Please recharge & try again."
+																   delegate:self 
+														  cancelButtonTitle:nil 
+														  otherButtonTitles:@"OK", nil];
+					[alert show];
+					[alert release];
+				}
+					break;
 			
 			}
 		}

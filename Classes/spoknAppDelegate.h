@@ -32,6 +32,10 @@
 #define TRYING_CALL 4000
 #define _SIP_ 5000
 #define ERR_CODE_CALL_FWD_DUPLICATE 402
+#define ERR_CODE_VMS_SUCCESS 200
+#define ERR_CODE_VMS_NO_CREDITS 101
+#define ERR_CODE_VMS_BAD_HASH 102
+#define ERR_CODE_VMS_NO_ROUTING 103
 
 @class VmailViewController;
 @class SpoknViewController;
