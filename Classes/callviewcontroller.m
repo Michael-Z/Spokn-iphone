@@ -125,19 +125,27 @@
 	hour = 0;
 	min = 0;
 	sec = 0;
-/*	stringP = (char*)[labelStrP cStringUsingEncoding:NSUTF8StringEncoding];
+	stringP = (char*)[labelStrP cStringUsingEncoding:NSUTF8StringEncoding];
 	newLineP = malloc(strlen(stringP)+4);
 	strcpy(newLineP,stringP);
-	tmpStrP = strstr(newLineP,"\n");
+	tmpStrP = strstr(newLineP,"calling ");
 	if(tmpStrP)
 	{
+		
 		*tmpStrP = 0;
+		char *newStringP;
+		newStringP = malloc(strlen(stringP)+4);
+		strcpy(newStringP,newLineP);
+		tmpStrP = tmpStrP + strlen("calling ");
+		strcat(newStringP,tmpStrP);
 		[labelStrP release];
-		labelStrP = [[NSString alloc]initWithUTF8String:newLineP];
+		labelStrP = [[NSString alloc]initWithUTF8String:newStringP];
 		[callnoLabelP setText:labelStrP];
+		printf("\n call srring %s",newStringP);
+		free(newStringP);
 		
 	}
-	free(newLineP);*/
+	free(newLineP);
 }
 -(int)  stopTimer
 {

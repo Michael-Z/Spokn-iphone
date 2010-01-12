@@ -765,10 +765,6 @@ void MyAudioSessionPropertyListener(
 	UInt32                              lioDataSize=0;
 	//char *dataP;
 	NSString *dataP=0;
-	if(inID==kAudioSessionProperty_ServerDied)
-	{
-		printf("\n some data died");
-	}
 	
 	
 	return;
@@ -1255,7 +1251,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			[tempStringP setString:strP];
 			[strP release];
 			strP = [[NSString alloc] initWithUTF8String:typeP] ;
-			[tempStringP appendString:@"\n calling " ];
+			[tempStringP appendString:@"\n" ];
 			[tempStringP appendString:strP];
 			[strP release ];
 		}
@@ -1265,7 +1261,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			
 			[tempStringP appendString:strP ];
 			//[tempStringP setString:addressP->title];
-			[tempStringP appendString:@"\n calling..." ];
+			[tempStringP appendString:@"\nUnknown" ];
+			
 			//[tempStringP appendString:strP];
 			[strP release ];
 			
@@ -1444,6 +1441,26 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	if(self->onLineB)
 	{	
+		
+		UInt32 mic, size;
+		
+		// Verify if microphone is available (perhaps we should verify in another place ?)
+		size = sizeof(UInt32);
+		AudioSessionGetProperty(kAudioSessionProperty_AudioInputAvailable,
+								&size, &mic);
+		if (!mic)
+		{
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn"
+															message:@"No Microphone Available"
+														   delegate:nil 
+												  cancelButtonTitle:@"Ok"
+												  otherButtonTitles:nil];
+			[alert show];
+			[alert release];
+			return retB;
+		}
+		
+		
 		tempStringP = [[NSMutableString alloc] init] ;
 		
 		nameP = [self getNameAndTypeFromNumber:resultCharP :typeP :0];
@@ -1451,7 +1468,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[tempStringP setString:strP];
 		[strP release];
 		strP = [[NSString alloc] initWithUTF8String:typeP] ;
-		[tempStringP appendString:@"\n" ];
+		[tempStringP appendString:@"\ncalling " ];
 		//[tempStringP appendString:@"\n calling " ];
 		[tempStringP appendString:strP];
 		[strP release ];
@@ -1460,6 +1477,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		callOnB =true;
 		strcpy(self->callNumber.number,resultCharP);
 		self->callNumber.direction = 1;
+		retB = 1;
 	//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
 		NSLog(@"\n%@",tempStringP);
 		[dialviewP setStatusText:tempStringP :TRYING_CALL :0];

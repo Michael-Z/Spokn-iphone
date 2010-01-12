@@ -9,6 +9,7 @@
 #import "IncommingCallViewController.h"
 #include "LtpInterface.h"
 #import "SpoknAppDelegate.h"
+#include "ua.h"
 
 @implementation IncommingCallViewController
 @synthesize ltpInterfacesP;
@@ -86,15 +87,24 @@
 -(void)setIncommingData:(IncommingCallType *)lltpInDataP
 {
 	NSString *nsp;
-	
+	struct AddressBook *addressP;
 	self->ltpInDataP = lltpInDataP;
 	if(self->ltpInDataP==0)
 	{
 		return;
 	}
 	//printf("\n %s",self->ltpInDataP->userIdChar);
-	nsp = [[NSString alloc] initWithUTF8String:self->ltpInDataP->userIdChar ];
-	[self->textProP setString:@"Incoming call from \n"];
+	addressP = getContactAndTypeCall(self->ltpInDataP->userIdChar,0);
+	if(addressP)
+	{
+		nsp = [[NSString alloc] initWithUTF8String:addressP->title] ;
+		
+	}
+	else
+	{	
+		nsp = [[NSString alloc] initWithUTF8String:self->ltpInDataP->userIdChar ];
+	}
+	[self->textProP setString:@"Incoming call\n"];
 	[self->textProP appendString:nsp];
 	NSLog(self->textProP);
 	[nsp release];
