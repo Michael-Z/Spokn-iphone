@@ -473,7 +473,7 @@
 		for(int i=0;i<countLong;++i)
 		{
 			addressP = GetObjectAtIndex(uaObject ,i);
-			title = strstr(addressP->title,ltpsSearchStringP);
+			title = strcasestr(addressP->title,ltpsSearchStringP);
 			if(title)
 			{
 				

@@ -559,6 +559,18 @@
 					break;
 			}
 			break;
+		case CALL_ALERT:
+			switch(self->callNumber.direction)
+			{
+				case 1:
+					callLtpInterface(self->ltpInterfacesP,self->callNumber.number);
+					self->callNumber.direction = 0;
+					break;
+				case 2:
+					break;
+			}		
+			//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
+			break;
 		case UA_ALERT:
 			switch(self->subID)
 		{
@@ -1276,6 +1288,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[tempStringP release ];
 		//	[strP release ];
 		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+	
+	
 	AcceptInterface(ltpInterfacesP, inComP->lineid);
 	free(inComP);
 	//[self changeView];
@@ -1444,7 +1458,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		free(nameP);
 				
 		callOnB =true;
-		retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
+		strcpy(self->callNumber.number,resultCharP);
+		self->callNumber.direction = 1;
+	//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
 		NSLog(@"\n%@",tempStringP);
 		[dialviewP setStatusText:tempStringP :TRYING_CALL :0];
 			[tempStringP release ];

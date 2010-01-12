@@ -166,7 +166,7 @@
 	{	
 		if(retValP)
 		{	
-			*retValP = 1;
+			*retValP = 2;//mean delete
 		}
 	
 		[ [self navigationController] popToRootViewControllerAnimated:YES ];

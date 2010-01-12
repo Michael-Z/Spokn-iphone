@@ -36,11 +36,17 @@
 #define ERR_CODE_VMS_NO_CREDITS 101
 #define ERR_CODE_VMS_BAD_HASH 102
 #define ERR_CODE_VMS_NO_ROUTING 103
+#define CALL_ALERT 5001
 
 @class VmailViewController;
 @class SpoknViewController;
 @class testingview;
-
+typedef struct CallNumberType
+{
+	char number[100];
+	int direction;
+	int lineId;
+}CallNumberType;
 //
 @interface SpoknAppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate> {
   //  @public
@@ -96,6 +102,7 @@
 	int handSetB;
 	int loginProgressStart;
 	UIViewController *prvCtlP;
+	CallNumberType callNumber;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;

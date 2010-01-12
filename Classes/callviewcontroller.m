@@ -91,7 +91,7 @@
 	[CustomButton setImages:endCallKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
-	
+	alertNotiFication(CALL_ALERT,0,0,  (unsigned long)ownerobject,0);
 	
 
 

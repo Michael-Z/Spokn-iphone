@@ -820,14 +820,16 @@ cancelButtonTitle: nil
 	if(resultInt)
 	{
 		//printf("\nhello view deleted\n");
-		resultInt = 0;
 		
-		if(gcdrP)
-		{	
-			cdrRemove(gcdrP);
-		}
+		if(resultInt==2)//delete
+		{
+			if(gcdrP)
+			{	
+				cdrRemove(gcdrP);
+			}
+		}	
 		[tableView reloadData];
-				
+		resultInt = 0;		
 		
 	}
 	NSIndexPath *nsP;

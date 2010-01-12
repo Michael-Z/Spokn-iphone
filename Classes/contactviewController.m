@@ -748,10 +748,13 @@ titleForHeaderInSection:(NSInteger)section
 	if(resultInt)
 	{
 		//("\nhello view deleted\n");
-		resultInt = 0;
+		
 		if(segmentedControl.selectedSegmentIndex==0)//different view
 		{	
-			deleteContactLocal(contactID);
+			if(resultInt==2)//mean delete
+			{	
+				deleteContactLocal(contactID);
+			}
 			profileResync();
 		}	
 		NSIndexPath *nsP;
@@ -761,7 +764,7 @@ titleForHeaderInSection:(NSInteger)section
 			[self->tableView deselectRowAtIndexPath : nsP animated:NO];
 		}	
 		[self reload];
-		
+		resultInt = 0;
 		
 	}
 	else
