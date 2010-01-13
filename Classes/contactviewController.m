@@ -1571,8 +1571,6 @@ titleForHeaderInSection:(NSInteger)section
 	if (cell == nil) 
 	{
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"any-cell"] autorelease];
-		
-		
 	}
 		
 	addressP = (struct AddressBook *)getContact( secP->recordid);
@@ -1581,6 +1579,9 @@ titleForHeaderInSection:(NSInteger)section
 		CellIdentifier = [[NSString alloc] initWithUTF8String:addressP->title ] ;
 		//////////////printf("\n table %s  %ld %d",addressP->title ,secP->recordid,section);
 		cell.text = CellIdentifier;
+
+		
+
 		[CellIdentifier release];
 	}
 	

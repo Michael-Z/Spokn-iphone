@@ -15,6 +15,7 @@
 	IBOutlet UILabel *timeLabelP;
 	IBOutlet UILabel *dtmfLabelP;
 	IBOutlet UIView  *viewMenuP;
+	IBOutlet UILabel *callTypeLabelP;
 	IBOutlet Keypadview  *viewKeypadP;
 	IBOutlet UIButton  *endCallButtonP;
 	IBOutlet UIButton  *hideKeypadButtonP;
@@ -25,6 +26,7 @@
 	long timecallduration;
 	int hour,min,sec;
 	NSString *labelStrP;
+	NSString *labeltypeStrP;
 	UIButton *_buttons[6];
 	Boolean  actualDismissB;
 	Boolean loadedB;
@@ -32,7 +34,7 @@
 
 }
 -(void)setObject:(id) object ;
--(void)setLabel:(NSString *)strP;
+-(void)setLabel:(NSString *)strP :(NSString *)strtypeP;
 -(IBAction)mutePressed:(id)sender;
 -(IBAction)speakerPressed:(id)sender;
 -(IBAction)keypadPressed:(id)sender;

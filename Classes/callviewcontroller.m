@@ -66,8 +66,9 @@
 									autorelease]];
 	[self->viewMenuP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	[self->viewKeypadP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
-	callnoLabelP.numberOfLines = 2;
+	//callnoLabelP.numberOfLines = 2;
 	[callnoLabelP setText:labelStrP];
+	[callTypeLabelP setText:labeltypeStrP];
 	self->viewKeypadP.hidden = YES;
 	self->hideKeypadButtonP.hidden = YES;
 	self->endCallKeypadButtonP.hidden = YES;
@@ -120,12 +121,12 @@
 	char *newLineP;
 	char *stringP;
 	char*tmpStrP;
-	//timecallduration = time(0);
+	timecallduration = time(0);
 	timecallduration = 0;
 	hour = 0;
 	min = 0;
 	sec = 0;
-	stringP = (char*)[labelStrP cStringUsingEncoding:NSUTF8StringEncoding];
+	stringP = (char*)[labeltypeStrP cStringUsingEncoding:NSUTF8StringEncoding];
 	newLineP = malloc(strlen(stringP)+4);
 	strcpy(newLineP,stringP);
 	tmpStrP = strstr(newLineP,"calling ");
@@ -138,9 +139,9 @@
 		strcpy(newStringP,newLineP);
 		tmpStrP = tmpStrP + strlen("calling ");
 		strcat(newStringP,tmpStrP);
-		[labelStrP release];
-		labelStrP = [[NSString alloc]initWithUTF8String:newStringP];
-		[callnoLabelP setText:labelStrP];
+		[labeltypeStrP release];
+		labeltypeStrP = [[NSString alloc] initWithUTF8String:newStringP];
+		[callTypeLabelP setText:labeltypeStrP];
 		printf("\n call srring %s",newStringP);
 		free(newStringP);
 		
@@ -329,10 +330,13 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 	}
 }
--(void)setLabel:(NSString *)strP
+-(void)setLabel:(NSString *)strP :(NSString *)strtypeP
 {
+	
 	labelStrP = [[NSString alloc] initWithString:strP];
-	[callnoLabelP setText:strP];
+	[callnoLabelP setText:labelStrP];
+	labeltypeStrP = [[NSString alloc] initWithString:strtypeP];
+	[callTypeLabelP setText:labeltypeStrP];
 }
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -355,6 +359,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	SetSpeakerOnOrOff(0,true);
 	printf("\n call view dealloc");
 	[labelStrP release];
+	[labeltypeStrP release];
 	
     [super dealloc];
 }

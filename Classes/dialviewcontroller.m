@@ -104,6 +104,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
         // Custom initialization
 		[self.tabBarItem initWithTitle:@"Keypad" image:[UIImage imageNamed:@"Dial.png"] tag:3];
 		callingstringP = nil;
+		callingstringtypeP = nil;
     }
     return self;
 }
@@ -266,7 +267,12 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			sounds[i] = 0;
 		}
 	[calltimerP release];
-	[callingstringP release]; 
+	[callingstringP release];
+	if(callingstringtypeP != nil)
+	{	
+		[callingstringtypeP release];
+	}
+	
 	//[statusLabelP release];
 	//[numberFieldP release];
     [super dealloc];
@@ -715,7 +721,8 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				[callViewControllerP setObject:self->ownerobject];
 				
 				//callViewControllerP.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-				[callViewControllerP setLabel:callingstringP];
+
+				[callViewControllerP setLabel:callingstringP :callingstringtypeP];
 				
 				[ownerobject.tabBarController presentModalViewController:callViewControllerP animated:YES];
 				
@@ -785,7 +792,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 }
 
--(void)setStatusText:(NSString *)strP :(int)lstatus :(int)lsubStatus
+-(void)setStatusText:(NSString *)strP :(NSString *)strtypeP :(int)lstatus :(int)lsubStatus
 {
 	//statusLabelP.text = strP;
 		//[statusLabelP performSelector:@selector(setText:) withObject:@"Updated Text" afterDelay:0.1f];
@@ -797,6 +804,10 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			callingstringP = [[NSString alloc] initWithString:strP];
 
 			//[statusLabelP performSelectorOnMainThread : @ selector(setText: ) withObject:strP waitUntilDone:YES];
+		}
+		if(strtypeP)
+		{
+			callingstringtypeP = [[NSString alloc] initWithString:strtypeP];
 		}	
 	}
 		//[statusLabelP drawRect];

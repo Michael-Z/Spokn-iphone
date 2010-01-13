@@ -233,7 +233,7 @@
 }
 -(void) showText:(NSString *)testStringP
 {
-	[dialviewP setStatusText:testStringP :0 :0];
+	[dialviewP setStatusText:testStringP :nil :0 :0];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -322,7 +322,7 @@
 		}
 			break;
 		case ALERT_CONNECTED:
-			[dialviewP setStatusText: @"ringing" :ALERT_CONNECTED :0];
+			[dialviewP setStatusText: @"ringing" :nil :ALERT_CONNECTED :0];
 			callOnB = true;
 			printf("\n call connected %d",self->lineID);
 			//openSoundInterface(ltpInterfacesP,1);
@@ -337,7 +337,7 @@
 			
 			if(lineID == 0)
 			{	
-				[dialviewP setStatusText: @"end call" :ALERT_DISCONNECTED :0 ];
+				[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 ];
 				//closeSoundInterface(ltpInterfacesP);
 				SetSpeakerOnOrOff(0,true);
 				[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
@@ -376,7 +376,7 @@
 					loginProgressStart = 1;
 				
 				}
-				[dialviewP setStatusText: @"connecting..." :START_LOGIN :0 ];
+			[dialviewP setStatusText: @"connecting..." :nil :START_LOGIN :0 ];
 			[loginProtocolP startloginIndicator];
 			break;
 		case ALERT_ONLINE://login
@@ -409,7 +409,7 @@
 				[self newBadgeArrived:vmsNavigationController];	
 			}	
 			self->onLineB = true;
-			[dialviewP setStatusText: @"online" :ALERT_ONLINE :0 ];
+			[dialviewP setStatusText: @"online" :nil :ALERT_ONLINE :0 ];
 			
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];
@@ -432,21 +432,21 @@
 				{
 					case LOGIN_STATUS_OFFLINE:
 						
-							[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
+						[dialviewP setStatusText: @"Offline" :nil :ALERT_OFFLINE :self->subID ];
 						break;
 					case LOGIN_STATUS_FAILED:
 							[loginProtocolP stoploginIndicator];
 							[loginProtocolP cleartextField];
-							[dialviewP setStatusText: @"Authentication failed" :ALERT_OFFLINE :self->subID ];
+						[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :self->subID ];
 						break;
 					case LOGIN_STATUS_NO_ACCESS:
 							loginProgressStart = 0;
 							[loginProtocolP stoploginIndicator];
-							[dialviewP setStatusText: @"no access" :ALERT_OFFLINE :self->subID ];
+						[dialviewP setStatusText: @"no access" :nil :ALERT_OFFLINE :self->subID ];
 							//printf("\n no access to network");
 						break;
 					default:
-							[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
+						[dialviewP setStatusText: @"Offline" :nil :ALERT_OFFLINE :self->subID ];
 				}
 			
 			break;
@@ -579,7 +579,7 @@
 					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:contactviewP waitUntilDone:YES];
 					//refresh cradit
 					//balance = getBalance();
-					[dialviewP setStatusText: nil :UA_ALERT :REFRESH_CONTACT ];
+				[dialviewP setStatusText: nil :nil :UA_ALERT :REFRESH_CONTACT ];
 					[self updateSpoknView:0];
 					//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 					
@@ -1238,55 +1238,44 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[tabBarController dismissModalViewControllerAnimated:NO];
 
 	//[ dialNavigationController popToViewController: dialviewP animated: YES ];
-	NSMutableString *tempStringP;
+	//NSMutableString *tempStringP;
 	NSString *strP;
+	NSString *strtypeP;
 	char typeP[30];
 	struct AddressBook *addressP;
 		
-		tempStringP = [[NSMutableString alloc] init] ;
+		//tempStringP = [[NSMutableString alloc] init] ;
 		addressP = getContactAndTypeCall(inComP->userIdChar,typeP);
 		if(addressP)
 		{
 			strP = [[NSString alloc] initWithUTF8String:addressP->title] ;
-			[tempStringP setString:strP];
-			[strP release];
-			strP = [[NSString alloc] initWithUTF8String:typeP] ;
-			[tempStringP appendString:@"\n" ];
-			[tempStringP appendString:strP];
-			[strP release ];
+			//[tempStringP setString:strP];
+			//[strP release];
+			strtypeP = [[NSString alloc] initWithUTF8String:typeP] ;
+			//[tempStringP appendString:@"\n" ];
+			//[tempStringP appendString:strP];
+			//[strP release ];
 		}
 		else
 		{
 			strP = [[NSString alloc] initWithUTF8String:inComP->userIdChar] ;
-			
-			[tempStringP appendString:strP ];
+			strtypeP = [[NSString alloc] initWithString:@"Unknown"];
+			//[tempStringP appendString:strP ];
 			//[tempStringP setString:addressP->title];
-			[tempStringP appendString:@"\nUnknown" ];
-			
+			//[tempStringP appendString:@"\nUnknown" ];
 			//[tempStringP appendString:strP];
-			[strP release ];
+			//[strP release ];
 			
 		}
 		//strP = [[NSString alloc] initWithUTF8String:noCharP] ;
 		//[strP setString:@"Calling "];
-		
-		
-		
-		
 		//	tempStringP = [NSMutableString stringWithString:@"calling "]	;
-		
-		
-		
-				//[]
-		NSLog(@"\n%@",tempStringP);
-	//printf("\n calldsffdfd");
-		[dialviewP setStatusText:tempStringP :TRYING_CALL :0];
+	[dialviewP setStatusText:strP :strtypeP :TRYING_CALL :0];
 		//[tempStringP release];
-		[tempStringP release ];
-		//	[strP release ];
-		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
-	
-	
+		//[tempStringP release ];
+	[strP release ];
+	[strtypeP release];
+	[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 	AcceptInterface(ltpInterfacesP, inComP->lineid);
 	free(inComP);
 	//[self changeView];
@@ -1405,13 +1394,16 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 //text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ()<>-./"]];
 -(Boolean)makeCall:(char *)noCharP
 {
-	NSMutableString *tempStringP;
+	//NSMutableString *tempStringP;
 	NSString *strP;
+	NSString *strtypP;
+	NSString *tempP;
+	NSString *temp1P;
 	char *nameP;
 	Boolean retB = false;
 	char typeP[30];
 	char *resultCharP;
-	struct AddressBook *addressP;
+	//struct AddressBook *addressP;
 	resultCharP = NormalizeNumber(noCharP,0);
 	printf("\n no = %s",resultCharP);
 	if(validateNo(resultCharP))//mean invalid number
@@ -1461,27 +1453,34 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 		
 		
-		tempStringP = [[NSMutableString alloc] init] ;
+		//tempStringP = [[NSMutableString alloc] init] ;
 		
 		nameP = [self getNameAndTypeFromNumber:resultCharP :typeP :0];
 		strP = [[NSString alloc] initWithUTF8String:nameP] ;
-		[tempStringP setString:strP];
-		[strP release];
-		strP = [[NSString alloc] initWithUTF8String:typeP] ;
-		[tempStringP appendString:@"\ncalling " ];
-		//[tempStringP appendString:@"\n calling " ];
-		[tempStringP appendString:strP];
-		[strP release ];
+		//[tempStringP setString:strP];
+		//[strP release];
+		tempP = [[NSString alloc] initWithString:@"calling "];
+		
+		strtypP = [[NSString alloc] initWithUTF8String:typeP] ;
+		temp1P = [[NSString alloc] initWithString:[tempP stringByAppendingString:strtypP]];
+		//[strtypP appendString:@"\ncalling " ];
+		//[tempStringP appendString:@"\n" ];
+		//[tempStringP appendString:strP];
+		//[strP release ];
 		free(nameP);
-				
+		
 		callOnB =true;
 		strcpy(self->callNumber.number,resultCharP);
 		self->callNumber.direction = 1;
 		retB = 1;
-	//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
-		NSLog(@"\n%@",tempStringP);
-		[dialviewP setStatusText:tempStringP :TRYING_CALL :0];
-			[tempStringP release ];
+		//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
+		//	NSLog(@"\n%@",tempStringP);
+		[dialviewP setStatusText:strP :temp1P :TRYING_CALL :0];
+		//[tempStringP release ];
+		[strP release];
+		[strtypP release];
+		[tempP release];
+		[temp1P release];
 	
 		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 	}	
@@ -1527,7 +1526,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	callOnB =false;
 	printf("\n hang");
 	hangLtpInterface(self->ltpInterfacesP);
-	[dialviewP setStatusText: @"call end" :ALERT_DISCONNECTED :0];
+	[dialviewP setStatusText: @"call end" :nil :ALERT_DISCONNECTED :0];
 	SetSpeakerOnOrOff(0,true);
 	[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
 

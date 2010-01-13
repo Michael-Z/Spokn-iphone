@@ -40,6 +40,7 @@
 	int hour,min,sec;
 	CallViewController *callViewControllerP;
 	NSString *callingstringP;
+	NSString *callingstringtypeP;
 	char lastTypeNo[40];
 	int _downKey;
 	NSTimer *_deleteTimer;
@@ -57,7 +58,7 @@
 -(IBAction)backkeyReleased:(id)sender;
 - (IBAction)dismissKeyboard: (id)sender;
 - (IBAction)valueChanged: (id)sender;
--(void)setStatusText:(NSString *)strP :(int)status :(int)subStatus;
+-(void)setStatusText:(NSString *)strP :(NSString *)strtypeP :(int)status :(int)subStatus;
 //- (void)controlPressed:(id) sender;
 -(void)setViewButton:(int)viewButton;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
