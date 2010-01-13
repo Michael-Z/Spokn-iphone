@@ -333,7 +333,7 @@
 		[self.view addSubview:_composerScrollView];
 		if(modalB==false)
 		{	
-			tbl_contacts = [[UITableView alloc] initWithFrame:CGRectMake(0, 43, 320, 200) style:UITableViewStylePlain];
+			tbl_contacts = [[UITableView alloc] initWithFrame:CGRectMake(0, 43, 320, 160) style:UITableViewStylePlain];
 			
 		}
 		else
