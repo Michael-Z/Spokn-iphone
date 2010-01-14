@@ -1,27 +1,26 @@
-//
-//  pickerviewcontroller.h
-//  spokn
-//
-//  Created by Kaustubh Deshpande on 27/10/09.
-//  Copyright 2009 Geodesic Ltd. All rights reserved.
-//
+
+//  Created on 27/10/09.
+
+
 /**
- Copyright 2009 John Smith, <john.smith@example.com>
+ Copyright 2009,2010 Geodesic, <http://www.geodesic.com/>
  
- This file is part of FOOBAR.
+ Spokn SIP-VoIP for iPhone and iPod Touch.
  
- FOOBAR is free software: you can redistribute it and/or modify
+ This file is part of Spokn iphone.
+ 
+ Spokn iphone is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
  (at your option) any later version.
  
- FOOBAR is distributed in the hope that it will be useful,
+ Spokn iphone is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
  
  You should have received a copy of the GNU General Public License
- along with FOOBAR.  If not, see <http://www.gnu.org/licenses/>.
+ along with Spokn iphone.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #import <UIKit/UIKit.h>

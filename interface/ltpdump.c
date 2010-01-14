@@ -1,11 +1,6 @@
-/*
- *  ltpdump.c
- *  spoknclient
- *
- *  Created by Mukesh Sharma on 15/07/09.
- *  Copyright 2009 Geodesic Ltd.. All rights reserved.
- *
- */
+
+// Created on 15/07/09.
+
 
 #include "ltpdump.h"
 #include "string.h"
