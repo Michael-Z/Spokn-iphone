@@ -88,6 +88,7 @@ typedef enum ViewTypeEnum
 	int sectionCount;
 	int tablesz;
 	Boolean editableB;
+	Boolean animationB;
 	NSMutableArray *listOfItems;
 	struct CDR *cdrP;
 	Boolean callActionSheetB;
