@@ -1476,7 +1476,29 @@ id createImage(float percentage)
 		
 		if([ContactControllerDetailsviewP retainCount]>1)
 			[ContactControllerDetailsviewP release];
-	}	
+	}
+/*	else if(addressP)
+	{
+		printf("\n address find");
+		ContactDetailsViewController     *ContactControllerDetailsviewP;	
+		if(vmstateType==VMSStateRecord)
+		{	
+			selectP = (SelectedContctType*)malloc(sizeof(SelectedContctType)+4);
+		}
+		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+		returnValueInt = 0;
+		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:self selectedContact:selectP] ;
+		
+		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILFROMVMS];
+		[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
+		[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:NO ];
+		[ContactControllerDetailsviewP setObject:self->ownerobject];
+		
+		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+		
+		if([ContactControllerDetailsviewP retainCount]>1)
+			[ContactControllerDetailsviewP release];
+	}*/
 	else
 	{
 		addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));

@@ -105,6 +105,34 @@
 		//printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);
 		
 	}
+	else if(vmailP->addressUId)
+	{
+		//ABAddressBookRef addressBook = ABAddressBookCreate();
+		//ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,vmailP->addressUId);
+		char *addressBookNameP = 0;
+		char *addressBookTypeP = 0;
+		[ContactViewController	getNameAndType:vmailP->addressUId :vmailP->userid :&addressBookNameP :&addressBookTypeP];
+		if(addressBookNameP)
+		{
+			
+			VmShowViewController     *vmShowViewControllerP;	
+			vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
+			//[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILVIEWENUM];
+			[vmShowViewControllerP setFileName: fileNameCharP :&viewPlayResult];
+			[vmShowViewControllerP setvmsDetail: vmailP->userid : addressBookNameP :addressBookTypeP :VMSStatePlay :max :vmailP];
+			[vmShowViewControllerP setObject:self->ownerobject];
+			
+			[ [self navigationController] pushViewController:vmShowViewControllerP animated: YES ];
+			//UINavigationController *tmpCtl;
+			//tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: vmShowViewControllerP ] autorelease];
+			//[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
+			
+			
+			if([vmShowViewControllerP retainCount]>1)
+				[vmShowViewControllerP release];
+
+		}
+	}
 	else
 	{
 		VmShowViewController     *vmShowViewControllerP;	
@@ -131,6 +159,7 @@
 			[vmShowViewControllerP release];
 		//printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);	
 	}
+	
 	return;
 #endif
 	
@@ -270,6 +299,8 @@
 	char s1[30];
 	//int index;
 	NSString *stringStrP;
+	char *addressBookNameP = 0;
+	char *addressBookTypeP = 0;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	
 	//printf("\n index = %d\n",index);
@@ -315,6 +346,38 @@
 			}
 			objStrP = addressP->title;
 			
+		}
+		else
+		{
+			if(vmailP->addressUId)
+			{	
+				
+				[ContactViewController	getNameAndType:vmailP->addressUId :vmailP->userid :&addressBookNameP :&addressBookTypeP];
+				if(addressBookNameP)
+				{	
+					if(addressBookTypeP)
+					{	
+						typeCallP = addressBookTypeP;
+					}
+					char *nameP = addressBookNameP;
+					if(nameP)
+					{	
+						while(*nameP==' '){
+							nameP++;
+						}
+						if(*nameP!='\0')
+						{
+							objStrP = addressBookNameP;
+						}
+					}	
+					
+					
+					
+					
+				}
+				
+				
+			}		
 		}
 		timeP = vmailP->date;
 		tmP = localtime(&timeP);

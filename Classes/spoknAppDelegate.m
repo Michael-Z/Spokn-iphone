@@ -1775,7 +1775,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 -(int) vmsForward:(char*)numberP :(char*)fileNameCharP
 {
-	return sendVms(numberP,fileNameCharP);
+	return sendVms(numberP,fileNameCharP,0,0);
 }
 -(int) vmsSend:(char*)numberP :(char*)fileNameCharP
 {
@@ -1786,7 +1786,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		fileNameCharP="temp";
 	}
 	makeVmsFileName(fileNameCharP,&nameP);
-	er =  sendVms(numberP,nameP);
+	er =  sendVms(numberP,nameP,self->ltpInterfacesP->addressUId,self->ltpInterfacesP->recordID);
 	if(nameP)
 		free(nameP);
 	return er;
