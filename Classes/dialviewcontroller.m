@@ -396,14 +396,14 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			
 			if(strlen(lastTypeNo)==0)
 			{
-				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+				alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
 																   message: [ NSString stringWithString:@"Please enter a valid number." ]
 																  delegate: nil
 														 cancelButtonTitle: nil
 														 otherButtonTitles: @"OK", nil
 									  ];
 				[ alert show ];
-				[alert release];
+				;
 				
 			}
 			else
@@ -433,14 +433,13 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			
 			if(strlen(lastTypeNo)==0)
 			{
-				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+				alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
 																   message: [ NSString stringWithString:@"Please enter a valid number." ]
 																  delegate: nil
 														 cancelButtonTitle: nil
 														 otherButtonTitles: @"OK", nil
 									  ];
 				[ alert show ];
-				[alert release];
 				
 			}
 			else
@@ -455,14 +454,14 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		
 		if(self->ownerobject.loginProgressStart)
 		{	
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
+			alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
 														   message: [ NSString stringWithString:@"User not online" ]
 														  delegate: nil
 												 cancelButtonTitle: nil
 												 otherButtonTitles: @"OK", nil
 							  ];
 			[ alert show ];
-			[alert release];
+			
 		}
 		else
 		{
@@ -473,7 +472,6 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 													 otherButtonTitles: @"OK", nil
 								  ];
 			[ alert show ];
-			[alert release];
 			
 		}
 		//[self dismissKeyboard:numberFieldP];
@@ -507,14 +505,14 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 					
 					if(strlen(lastTypeNo)==0)
 					{
-						UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+						alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
 																		   message: [ NSString stringWithString:@"please enter the number." ]
 																		  delegate: nil
 																 cancelButtonTitle: nil
 																 otherButtonTitles: @"OK", nil
 											  ];
 						[ alert show ];
-						[alert release];
+						
 						
 					}
 					else
@@ -613,10 +611,14 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 {
 	
 	//	//printf("\n%d",buttonIndex);
-	if(buttonIndex==0)
+	
+	if(buttonIndex==0 && invalidUserB)
 	{	
 		alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
+		invalidUserB = false;
 	}
+	[alertView release];
+	alert = nil;
 	
 	//[alertView release];
 }
@@ -639,6 +641,9 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			{
 				NSString *stringStrP;
 				char *unameP;
+				[alert dismissWithClickedButtonIndex:0 animated:NO]	;
+				[alert release];
+				alert = nil;
 				unameP = getLtpUserName(ltpInterfacesP);
 				if(unameP && strlen(unameP)>0)
 				{	
@@ -664,20 +669,118 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			break;
 		case ALERT_OFFLINE:
 		//	statusLabelP. textAlignment=UITextAlignmentCenter;
-						
-			if(self->subStatus==LOGIN_STATUS_FAILED)
+			if(alert)
+			{	
+				if(alert.tag!=self->subStatus && alert.tag!=LOGIN_STATUS_FAILED)
+				{	
+					[alert dismissWithClickedButtonIndex:0 animated:NO]	;
+					[alert release];
+					alert = nil;
+				}
+				
+			}	
+			//[alert]
+			switch(self->subStatus)
 			{
-				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+				
+				case HOST_NAME_NOT_FOUND_ERROR:
+					alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+														  message: [ NSString stringWithString:@"Server not richebale" ]
+														 delegate: self
+												cancelButtonTitle: nil
+												otherButtonTitles: @"OK", nil
+							 ];
+					invalidUserB = true;
+					alert.tag=self->subStatus;
+					
+					//[alert addButtonWithTitle:@"Cancel"];
+					[ alert show ];
+					break;
+				case LOGIN_STATUS_OFFLINE:
+					if(alert==nil)
+					{	
+						alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+															  message: [ NSString stringWithString:@"Server not richebale" ]
+															 delegate: self
+													cancelButtonTitle: nil
+													otherButtonTitles: @"OK", nil
+								 ];
+						//invalidUserB = true;
+						alert.tag=self->subStatus;
+						
+						//[alert addButtonWithTitle:@"Cancel"];
+						[ alert show ];
+					}	
+					break;
+				case LOGIN_STATUS_FAILED:
+					{	
+						if(alert==nil)
+						{	
+							alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 									   message: [ NSString stringWithString:@"Authentication failed" ]
 									  delegate: self
 				 					 cancelButtonTitle: nil
 									 otherButtonTitles: @"OK", nil
 									  ];
+							invalidUserB = true;
+							alert.tag=self->subStatus;
+							
 				//[alert addButtonWithTitle:@"Cancel"];
-				[ alert show ];
-				[alert release];
+							[ alert show ];
+						}	
+						//[alert release];
 				
-			
+						break;
+					}
+					break;
+				case LOGIN_STATUS_NO_ACCESS:
+				{	
+					
+						
+					if(alert==nil)
+					{	
+						alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+															  message: [ NSString stringWithString:@"Network is not available" ]
+															 delegate: self
+													cancelButtonTitle: nil
+													otherButtonTitles: @"OK", nil
+								 ];
+						
+						alert.tag=self->subStatus;
+						
+						//[alert addButtonWithTitle:@"Cancel"];
+						[ alert show ];
+					}		
+						//[alert addButtonWithTitle:@"Cancel"];
+												
+						
+					
+					break;
+				}
+					break;
+				default:
+				{
+					
+					if(alert==nil)
+					{		
+						alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+																	   message: [ NSString stringWithString:@"Unable to connect server." ]
+																	  delegate: self
+															 cancelButtonTitle: nil
+															 otherButtonTitles: @"OK", nil
+										  ];
+					//[alert addButtonWithTitle:@"Cancel"];
+						alert.tag=self->subStatus;
+						[ alert show ];
+						
+						
+					}	
+					
+					break;
+					
+				}
+					
+					
 			}
 			//[self->ownerobject popLoginView];
 			[self setViewButton:0];

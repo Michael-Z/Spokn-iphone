@@ -290,6 +290,30 @@
 {
 	switch(self->status)
 	{
+		
+		case ATTEMPT_GPRS_LOGIN:
+			printf("\n gprs called");
+			profileResync();
+			//resync called
+			loginGprsB = true;
+			break;
+			
+		case ALERT_HOSTNOTFOUND:
+			printf("\n host callled");
+			if(loginGprsB)//this is for login via gprs
+			{
+				[loginProtocolP stoploginIndicator];
+				[loginProtocolP cleartextField];
+				//if(loginProtocolP)
+				{	
+					[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :HOST_NOT_FOUND ];
+				}
+				loginGprsB = false;
+				
+			}
+			break;
+			
+			break;
 		case ALERT_ERROR:
 		{
 			switch(self->lineID)
@@ -332,6 +356,16 @@
 					[alert show];
 					[alert release];
 				}
+				break;
+				case 401:
+					if(loginGprsB)//this is for login via gprs
+					{
+						[loginProtocolP stoploginIndicator];
+						[loginProtocolP cleartextField];
+						[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :LOGIN_STATUS_FAILED ];
+						loginGprsB = false;
+						
+					}
 					break;
 			
 			}
@@ -447,22 +481,32 @@
 				switch(self->subID)
 				{
 					case LOGIN_STATUS_OFFLINE:
-						
-						[dialviewP setStatusText: @"Offline" :nil :ALERT_OFFLINE :self->subID ];
+						[loginProtocolP stoploginIndicator];
+						if(loginProtocolP)//mean login screen is on
+						{
+							[dialviewP setStatusText: @"Offline" :nil :ALERT_OFFLINE :self->subID ];
+						}
 						break;
 					case LOGIN_STATUS_FAILED:
 							[loginProtocolP stoploginIndicator];
 							[loginProtocolP cleartextField];
-						[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :self->subID ];
-						break;
+							[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :self->subID ];
+								
+							break;
 					case LOGIN_STATUS_NO_ACCESS:
 							loginProgressStart = 0;
 							[loginProtocolP stoploginIndicator];
-						[dialviewP setStatusText: @"no access" :nil :ALERT_OFFLINE :self->subID ];
-							//printf("\n no access to network");
+						if(loginProtocolP)//mean login screen is on
+						{
+							[dialviewP setStatusText: @"no access" :nil :ALERT_OFFLINE :self->subID ];
+						}	//printf("\n no access to network");
 						break;
 					default:
-						[dialviewP setStatusText: @"Offline" :nil :ALERT_OFFLINE :self->subID ];
+						[loginProtocolP stoploginIndicator];
+						if(loginProtocolP)//mean login screen is on
+						{
+							[dialviewP setStatusText: @"Offline" :nil :ALERT_OFFLINE :self->subID ];
+						}
 				}
 			
 			break;
@@ -588,6 +632,20 @@
 			//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
 			break;
 		case UA_ALERT:
+			if(loginGprsB)
+			{	
+				loginProgressStart = 0;
+				[vmsviewP setcomposeStatus:1 ];
+				[loginProtocolP stoploginIndicator];
+				self->onLineB = true;
+				[dialviewP setStatusText: @"online" :nil :ALERT_ONLINE :0 ];
+				[self playonlineTone];
+				[self popLoginView];
+				[self newBadgeArrived:vmsNavigationController];	
+				
+				loginGprsB = false;
+				
+			}
 			switch(self->subID)
 		{
 				case REFRESH_CONTACT:
@@ -624,6 +682,10 @@
 				case LOAD_LOGIN_VIEW:
 				{
 					LoginViewController     *loginViewP;	
+					if(loginProtocolP)
+					{
+						break;//already in login view
+					}
 					loginViewP = [[LoginViewController alloc] initWithNibName:@"loginview" bundle:[NSBundle mainBundle]];
 					loginViewP.ltpInterfacesP  = ltpInterfacesP;
 					[loginViewP setObject:self];
@@ -1842,6 +1904,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
 	[self stopCheckNetwork];
 	//printf("\n start Reachability");
+	//hostReach = [[Reachability reachabilityForInternetConnection] retain];
+	
 	hostReach = [[Reachability reachabilityWithHostName: @"www.spokn.com"] retain];
 	//hostReach = [[Reachability reachabilityWithAddress:&addr] retain];
 	[hostReach startNotifer];
@@ -1858,7 +1922,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[wifiReach stopNotifer];
 	[hostReach release];
 	[wifiReach release];
-	
+	hostReach = nil;
+	wifiReach = nil;
+	 
 		
 }
 - (void)reachabilityChanged:(NSNotification *)note
@@ -1871,8 +1937,13 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 - (void) configureTextField: (Reachability*) curReach
 {
     NetworkStatus netStatus = [curReach currentReachabilityStatus];
-    BOOL connectionRequired= [curReach connectionRequired];
+    BOOL connectionRequired=NO;//[curReach connectionRequired];
     NSString* statusString= @"";
+	/*//only for wifi testing
+	if(netStatus==ReachableViaWiFi)
+	{
+		netStatus = ReachableViaWWAN;
+	}*/
 	//printf("\n no network available\n\n");
     switch (netStatus)
     {
@@ -1896,12 +1967,17 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
             
         case ReachableViaWWAN:
         {
-            //printf("\n richebility on trough ReachableViaWWAN");
+            printf("\n richebility on trough ReachableViaWWAN");
+			//connectionRequired = NO;
 			if(connectionRequired==NO)
 			{	 
 				//printf("\n richable set via wwan");
 				 wifiavailable = NO;
-				alertNotiFication(ALERT_ONLINE,0,NO_WIFI_AVAILABLE,(long)self,0);
+				[self logOut:NO];
+				//logOut(ltpInterfacesP,NO);
+				SetConnection( ltpInterfacesP,0);
+				
+				alertNotiFication(ATTEMPT_GPRS_LOGIN,0,NO_WIFI_AVAILABLE,(long)self,0);
 				//[vmsviewP setcomposeStatus:1 ];
 				//wifiavailable = YES;
 				//SetConnection( ltpInterfacesP,2);
@@ -1917,6 +1993,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 												  otherButtonTitles:@"OK", nil];
 			[alert show];
 			[alert release];*/
+			//connectionRequired = NO;//this need 
+			 printf("\n richebility on trough wifi");
 			 if(connectionRequired==NO)
 			 {	 
 				 //printf("\n richable set");

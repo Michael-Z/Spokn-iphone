@@ -59,7 +59,9 @@
 	NSString *callingstringtypeP;
 	char lastTypeNo[40];
 	int _downKey;
+	UIAlertView *alert;
 	NSTimer *_deleteTimer;
+	int invalidUserB;
 }
 
 

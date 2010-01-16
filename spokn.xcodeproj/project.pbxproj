@@ -80,6 +80,14 @@
 		8B81B4AD10318AC300A18DA1 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */; };
 		8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4B010318ADB00A18DA1 /* AddressBook.framework */; };
 		8B8626BE1084504C00718D16 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8626BD1084504C00718D16 /* whiteButton.png */; };
+		8B9002981100B30700EA8AE6 /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9002961100B30700EA8AE6 /* libpjmedia-audiodev-arm-apple-darwin9.a */; };
+		8B9002991100B30700EA8AE6 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9002971100B30700EA8AE6 /* libpjmedia-audiodev-i386-apple-darwin9.a */; };
+		8B90029A1100B30700EA8AE6 /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9002961100B30700EA8AE6 /* libpjmedia-audiodev-arm-apple-darwin9.a */; };
+		8B90029B1100B30700EA8AE6 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9002971100B30700EA8AE6 /* libpjmedia-audiodev-i386-apple-darwin9.a */; };
+		8B90029E1100B31F00EA8AE6 /* libportaudio-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B90029C1100B31F00EA8AE6 /* libportaudio-arm-apple-darwin9.a */; };
+		8B90029F1100B31F00EA8AE6 /* libportaudio-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B90029D1100B31F00EA8AE6 /* libportaudio-i386-apple-darwin9.a */; };
+		8B9002A01100B31F00EA8AE6 /* libportaudio-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B90029C1100B31F00EA8AE6 /* libportaudio-arm-apple-darwin9.a */; };
+		8B9002A11100B31F00EA8AE6 /* libportaudio-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B90029D1100B31F00EA8AE6 /* libportaudio-i386-apple-darwin9.a */; };
 		8B9302811011EDFA004BDA41 /* contactDetailsviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */; };
 		8B9302821011EDFA004BDA41 /* contactDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302661011EDFA004BDA41 /* contactDetails.xib */; };
 		8B9302831011EDFA004BDA41 /* contactviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302681011EDFA004BDA41 /* contactviewController.m */; };
@@ -380,8 +388,6 @@
 		8BE6DF5F104BC54700703BE8 /* netlayer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF58104BC54700703BE8 /* netlayer.c */; };
 		8BE6DF60104BC54700703BE8 /* LtpInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF5A104BC54700703BE8 /* LtpInterface.c */; };
 		8BE6DF61104BC54700703BE8 /* ltpdump.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF5C104BC54700703BE8 /* ltpdump.c */; };
-		8BEF308510FC79EE00464F9F /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEF308410FC79EE00464F9F /* libspeex-arm-apple-darwin9.a */; };
-		8BEF308610FC79EE00464F9F /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEF308410FC79EE00464F9F /* libspeex-arm-apple-darwin9.a */; };
 		8BF729B4103562B400C124B0 /* spoknalert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF729B3103562B400C124B0 /* spoknalert.m */; };
 		8BF795391085F76F00DBFC51 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF795361085F76F00DBFC51 /* red.png */; };
 		8BF7953A1085F76F00DBFC51 /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF795371085F76F00DBFC51 /* orange.png */; };
@@ -514,6 +520,10 @@
 		8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		8B81B4B010318ADB00A18DA1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		8B8626BD1084504C00718D16 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
+		8B9002961100B30700EA8AE6 /* libpjmedia-audiodev-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjmedia-audiodev-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B9002971100B30700EA8AE6 /* libpjmedia-audiodev-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-i386-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjmedia-audiodev-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B90029C1100B31F00EA8AE6 /* libportaudio-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libportaudio-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B90029D1100B31F00EA8AE6 /* libportaudio-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-i386-apple-darwin9.a"; path = "../pjproject/third_party/lib/libportaudio-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDetailsviewcontroller.h; sourceTree = "<group>"; };
 		8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDetailsviewcontroller.m; sourceTree = "<group>"; };
 		8B9302661011EDFA004BDA41 /* contactDetails.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contactDetails.xib; sourceTree = "<group>"; };
@@ -655,7 +665,6 @@
 		8BE6DF5A104BC54700703BE8 /* LtpInterface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LtpInterface.c; path = interface/LtpInterface.c; sourceTree = "<group>"; };
 		8BE6DF5B104BC54700703BE8 /* ltpdump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpdump.h; path = interface/ltpdump.h; sourceTree = "<group>"; };
 		8BE6DF5C104BC54700703BE8 /* ltpdump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpdump.c; path = interface/ltpdump.c; sourceTree = "<group>"; };
-		8BEF308410FC79EE00464F9F /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BF729B2103562B400C124B0 /* spoknalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknalert.h; sourceTree = "<group>"; };
 		8BF729B3103562B400C124B0 /* spoknalert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknalert.m; sourceTree = "<group>"; };
 		8BF795361085F76F00DBFC51 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
@@ -721,7 +730,10 @@
 				8B964B2610CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
 				8B964B2B10CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
-				8BEF308610FC79EE00464F9F /* libspeex-arm-apple-darwin9.a in Frameworks */,
+				8B90029A1100B30700EA8AE6 /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */,
+				8B90029B1100B30700EA8AE6 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */,
+				8B9002A01100B31F00EA8AE6 /* libportaudio-arm-apple-darwin9.a in Frameworks */,
+				8B9002A11100B31F00EA8AE6 /* libportaudio-i386-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,7 +777,10 @@
 				8B964B2410CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
 				8B964B2910CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2A10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
-				8BEF308510FC79EE00464F9F /* libspeex-arm-apple-darwin9.a in Frameworks */,
+				8B9002981100B30700EA8AE6 /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */,
+				8B9002991100B30700EA8AE6 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */,
+				8B90029E1100B31F00EA8AE6 /* libportaudio-arm-apple-darwin9.a in Frameworks */,
+				8B90029F1100B31F00EA8AE6 /* libportaudio-i386-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -985,7 +1000,10 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
-				8BEF308410FC79EE00464F9F /* libspeex-arm-apple-darwin9.a */,
+				8B90029C1100B31F00EA8AE6 /* libportaudio-arm-apple-darwin9.a */,
+				8B90029D1100B31F00EA8AE6 /* libportaudio-i386-apple-darwin9.a */,
+				8B9002961100B30700EA8AE6 /* libpjmedia-audiodev-arm-apple-darwin9.a */,
+				8B9002971100B30700EA8AE6 /* libpjmedia-audiodev-i386-apple-darwin9.a */,
 				8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */,
 				8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */,
 				8B964B2110CBE78C00CB00DB /* libpjlib-util-i386-apple-darwin9.a */,
@@ -1730,12 +1748,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = 4.0;
 				INFOPLIST_FILE = "spokn-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1755,8 +1773,8 @@
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "E51B5C06-C101-42F4-A731-7366DBABEC12";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E51B5C06-C101-42F4-A731-7366DBABEC12";
+				PROVISIONING_PROFILE = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
 			};
 			name = Release;
 		};
@@ -2039,7 +2057,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -2071,7 +2089,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = 4.0;
 				INFOPLIST_FILE = "spokn-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2197,10 +2215,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = 4.2;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -2216,8 +2234,8 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "E51B5C06-C101-42F4-A731-7366DBABEC12";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E51B5C06-C101-42F4-A731-7366DBABEC12";
+				PROVISIONING_PROFILE = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
 				SDKROOT = iphoneos2.2;
 			};
 			name = Release;

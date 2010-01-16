@@ -53,6 +53,8 @@
 #define ERR_CODE_VMS_BAD_HASH 102
 #define ERR_CODE_VMS_NO_ROUTING 103
 #define CALL_ALERT 5001
+#define ATTEMPT_GPRS_LOGIN 5002
+#define HOST_NAME_NOT_FOUND_ERROR 12
 
 @class VmailViewController;
 @class SpoknViewController;
@@ -119,6 +121,7 @@ typedef struct CallNumberType
 	int loginProgressStart;
 	UIViewController *prvCtlP;
 	CallNumberType callNumber;
+	int loginGprsB;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
