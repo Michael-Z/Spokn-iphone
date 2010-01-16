@@ -685,7 +685,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				
 				case HOST_NAME_NOT_FOUND_ERROR:
 					alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-														  message: [ NSString stringWithString:@"Server not richebale" ]
+														  message: [ NSString stringWithString:@"Server not richable" ]
 														 delegate: self
 												cancelButtonTitle: nil
 												otherButtonTitles: @"OK", nil

@@ -306,7 +306,7 @@
 				[loginProtocolP cleartextField];
 				//if(loginProtocolP)
 				{	
-					[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :HOST_NOT_FOUND ];
+					[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :HOST_NAME_NOT_FOUND_ERROR ];
 				}
 				loginGprsB = false;
 				
@@ -496,6 +496,7 @@
 					case LOGIN_STATUS_NO_ACCESS:
 							loginProgressStart = 0;
 							[loginProtocolP stoploginIndicator];
+						printf("\n no access ");
 						if(loginProtocolP)//mean login screen is on
 						{
 							[dialviewP setStatusText: @"no access" :nil :ALERT_OFFLINE :self->subID ];
@@ -1937,7 +1938,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 - (void) configureTextField: (Reachability*) curReach
 {
     NetworkStatus netStatus = [curReach currentReachabilityStatus];
-    BOOL connectionRequired=NO;//[curReach connectionRequired];
+    BOOL connectionRequired=[curReach connectionRequired];
     NSString* statusString= @"";
 	/*//only for wifi testing
 	if(netStatus==ReachableViaWiFi)
