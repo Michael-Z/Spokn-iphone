@@ -1982,7 +1982,27 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				//[vmsviewP setcomposeStatus:1 ];
 				//wifiavailable = YES;
 				//SetConnection( ltpInterfacesP,2);
-			}	 
+			}
+			else
+			{
+				
+				//this is for invoking internet library
+				NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.spokn.com"] cachePolicy:NO timeoutInterval:15.0] ;
+				
+				NSLog(@"\nurl= %@\n",urlRequest);
+				NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:nil];
+				if (theConnection) {
+					NSLog(@" Connection established");
+					connectionRequired	= NO;	
+				}
+				else {
+					NSLog(@"Connection failed");
+				}
+				
+				[theConnection autorelease];
+				
+			}
+			
 			break;
         }
         case ReachableViaWiFi:
