@@ -26,6 +26,8 @@
 #import "SpoknAppDelegate.h"
 #import "pickerviewcontroller.h"
 #import "overlayviewcontroller.h"
+#include "alertmessages.h"
+
 @implementation VmShowViewController
 - (void) doneSearching_Clicked:(id)sender {
 	
@@ -54,13 +56,13 @@
 	{	
 		if([ownerobject vmsForward:lallForwardContactP :fileNameCharP]==0)
 		{	
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:@"VMS sent successfuly." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:_VMS_SENT_ delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
 			
 			[alert show];
 		}
 		else
 		{
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:@"VMS sending failed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:_VMS_SENDING_FAILED_ delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
 			
 			[alert show];
 		}
@@ -240,7 +242,7 @@
 				{
 					if([ownerobject vmsSend:contactNumberP :fileNameCharP]!=0)
 					{
-						UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:@"VMS sending failed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+						UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:_VMS_SENDING_FAILED_ delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
 						
 						[alert show];
 						
@@ -268,7 +270,7 @@
 			
 		}	
 		
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"number should not be empty" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:_EMPTY_NUMBER_ delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
 			
 		[alert show];
 		
@@ -293,7 +295,7 @@
 	 */
 	
 	UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-													   message: [ NSString stringWithString:@"Are you sure you want to delete this voice mail?" ]
+													   message: [ NSString stringWithString:_DELETE_VMS_ ]
 													  delegate: self
 											 cancelButtonTitle: nil
 											 otherButtonTitles: @"OK", nil
@@ -487,7 +489,7 @@
 		if([ownerobject VmsStreamStart:false])
 		{
 			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-															   message: [ NSString  stringWithString:@" can not play vms"]
+															   message: [ NSString  stringWithString:_NO_VMS_PLAY_]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: @"OK", nil
@@ -507,7 +509,7 @@
 		if([ownerobject VmsStreamStart:true])
 		{
 			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-															   message: [ NSString  stringWithString:@" can not play vms"]
+															   message: [ NSString  stringWithString:_NO_VMS_PLAY_]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: @"OK", nil

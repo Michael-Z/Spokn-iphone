@@ -30,6 +30,7 @@
 #import "AddEditcontactViewController.h"
 #import  "AddeditcellController.h"
 #import "vmailviewcontroller.h"
+#include "alertmessages.h"
 //self.navigationItem.leftBarButtonItem.enabled = YES;
 @implementation ContactDetailsViewController
 
@@ -444,7 +445,7 @@
 {
 	
 	UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-													   message: [ NSString stringWithString:@"Are you sure you want to delete contact?" ]
+													   message: [ NSString stringWithString:_CONTACT_DELETE_ ]
 													  delegate: self
 											 cancelButtonTitle: nil
 											 otherButtonTitles: @"OK", nil
@@ -514,7 +515,7 @@
 			{	
 						//printf("\n alert contact");
 				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-															 message: [ NSString stringWithString:@"invalid contact" ]
+															 message: [ NSString stringWithString:_INVALID_CONTACT_ ]
 															 delegate: self
 															 cancelButtonTitle: nil
 														 otherButtonTitles: @"OK", nil];
@@ -590,7 +591,7 @@
 	 free(addressDataTmpP);
 	 */
 		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-													   message: [ NSString stringWithString:@"Are you sure you want to delete calllog?" ]
+													   message: [ NSString stringWithString:_DELETE_CALL_LOG_ ]
 													  delegate: self
 											 cancelButtonTitle: nil
 											 otherButtonTitles: @"OK", nil

@@ -32,6 +32,7 @@
 #import "ContactCell.h"
 #import "contactviewcontroller.h"
 #import "spoknAppDelegate.h"
+#include "alertmessages.h"
 
 @implementation MyLabel
 @synthesize upDateProtocolP;
@@ -185,7 +186,7 @@
 	allforwardNoCharP = [self getContactNumberList];
 	if(allforwardNoCharP==0)
 	{
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Forward number should not be empty" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:_EMPTY_FORWARD_NUMBER_ delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
 		
 		[alert show];
 	//	[alert release];

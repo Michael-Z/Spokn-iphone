@@ -30,7 +30,7 @@
 #import "customcell.h"
 #import "vmshowviewcontroller.h"
 #include "ua.h"
-
+#include "alertmessages.h"
 @implementation VmailViewController
 @synthesize ltpInterfacesP;
 
@@ -821,7 +821,7 @@
 			case 1:
 								
 				alert = [ [ UIAlertView alloc ] initWithTitle: @"The voice mail is still not downloaded." 
-																   message: [ NSString stringWithString:@"This can be due to slow Internet access.\r\nDo you want to try downloading now?" ]
+																   message: [ NSString stringWithString:_VMS_NOT_FULLY_DOWNLOADED ]
 																  delegate: self
 														 cancelButtonTitle: @"cancel"
 														 otherButtonTitles: @"OK", nil
@@ -1004,7 +1004,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 -(void) clearPressed {
 	
 	UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-													   message: [ NSString stringWithString:@"Are u sure u want to clear vmail?" ]
+													   message: [ NSString stringWithString:_CLEAR_VMS_LOG_ ]
 													  delegate: self
 											 cancelButtonTitle: nil
 											 otherButtonTitles: @"OK", nil];

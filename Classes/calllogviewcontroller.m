@@ -29,6 +29,7 @@
 #import "contactDetailsviewcontroller.h"
 #import "AddEditcontactViewController.h"
 #import "customcell.h"
+#include "alertmessages.h"
 @implementation CalllogViewController
 
 -(void) hideLeftbutton:(Boolean) lhideB
@@ -820,7 +821,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 -(void) clearPressed {
 	
 UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Recent calls" 
-message: [ NSString stringWithString:@"Clear all calls?" ]
+message: [ NSString stringWithString:_CLEAR_CALL_LOG_ ]
 delegate: self
 cancelButtonTitle: nil
 										 otherButtonTitles: @"Yes", nil];

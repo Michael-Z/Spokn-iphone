@@ -26,6 +26,8 @@
 #import "spoknAppDelegate.h"
 #import "contactDetailsviewcontroller.h"
 #include "ua.h"
+#include "alertmessages.h"
+
 @implementation AddeditcellController
 
 -(void) shiftToRoot: (id)lrootObject :(Boolean ) rootB
@@ -86,7 +88,7 @@
 				{	
 					UIAlertView *alert;
 					alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-													  message: [ NSString stringWithString:@"Invalid email address" ]
+													  message: [ NSString stringWithString:_INVALID_EMAIL_ ]
 													 delegate: self
 											cancelButtonTitle: nil
 											otherButtonTitles: @"OK", nil

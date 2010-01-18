@@ -39,6 +39,7 @@
 #import "spoknviewcontroller.h"
 //#import "testingview.h"
 //#import "NSFileManager.h"
+#include "alertmessages.h"
 @implementation SpoknAppDelegate
 /*
 @synthesize window;
@@ -322,7 +323,7 @@
 				{
 					char *callFdP;
 					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
-															message:@"The number you provided for call forwarding has already been used by someone else.Please provide another number and try again."
+															message:_DUPLICATE_FORWARD_NUMBER_
 															delegate:self 
 														  cancelButtonTitle:nil 
 														  otherButtonTitles:@"OK", nil];
@@ -349,7 +350,7 @@
 				case ERR_CODE_VMS_NO_CREDITS:
 				{
 					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" 
-																	message:@"Your VMS could not be sent because you do not have enough credit. Please recharge & try again."
+																	message:_NO_CREDITS_
 																   delegate:self 
 														  cancelButtonTitle:nil 
 														  otherButtonTitles:@"OK", nil];
@@ -1488,7 +1489,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(validateNo(resultCharP))//mean invalid number
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
-														message:@"Invalid number"
+														message:_INVALID_NUMBER_
 													   delegate:self 
 											  cancelButtonTitle:nil 
 											  otherButtonTitles:@"OK", nil];
@@ -1502,7 +1503,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(!wifiavailable)
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" 
-														message:@"wifi not available"
+														message:_NO_WIFI_
 													   delegate:self 
 											  cancelButtonTitle:nil 
 											  otherButtonTitles:@"OK", nil];
@@ -1522,7 +1523,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		if (!mic)
 		{
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn"
-															message:@"No Microphone Available"
+															message:_NO_MICROPHONE_
 														   delegate:nil 
 												  cancelButtonTitle:@"Ok"
 												  otherButtonTitles:nil];
@@ -1568,7 +1569,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		if(self->loginProgressStart)
 		{	
 			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
-															   message: [ NSString stringWithString:@"User not online" ]
+															   message: [ NSString stringWithString:_USER_OFFLINE_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: @"OK", nil
@@ -1579,7 +1580,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		else
 		{
 			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
-															   message: [ NSString stringWithString:@"No Network" ]
+															   message: [ NSString stringWithString:_NO_NETWORK_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: @"OK", nil

@@ -27,6 +27,7 @@
 #import "LtpInterface.h"
 #import "SpoknAppDelegate.h"
 #include "ua.h"
+#include "alertmessages.h"
 @implementation LoginViewController
 
 @synthesize ltpInterfacesP;
@@ -178,7 +179,7 @@
 	if([usernameFieldP.text length]==0)
 	{
 		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
-											  message: [ NSString stringWithString:@"user name can not be empty" ]
+											  message: [ NSString stringWithString:_EMPTY_USERNAME_ ]
 											 delegate: self
 									cancelButtonTitle: nil
 									otherButtonTitles: @"OK", nil
@@ -193,7 +194,7 @@
 		if([passwordFieldP.text length]==0)
 		{
 			alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
-												  message: [ NSString stringWithString:@"password can not be empty" ]
+												  message: [ NSString stringWithString:_EMPTY_PASSWORD_ ]
 												 delegate: self
 										cancelButtonTitle: nil
 										otherButtonTitles: @"OK", nil
@@ -209,7 +210,7 @@
 	if([userNameStrP length]==0)
 	{
 		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
-											  message: [ NSString stringWithString:@"user name should not contain white space" ]
+											  message: [ NSString stringWithString:_USERNAME_NO_WHITESPACE_ ]
 											 delegate: self
 									cancelButtonTitle: nil
 									otherButtonTitles: @"OK", nil
@@ -225,7 +226,7 @@
 	if([passwordStrP length]==0)
 	{
 		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
-											  message: [ NSString stringWithString:@"password should not contain white space" ]
+											  message: [ NSString stringWithString:_PASSWORD_NO_WHITESPACE_ ]
 											 delegate: self
 									cancelButtonTitle: nil
 									otherButtonTitles: @"OK", nil

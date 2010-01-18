@@ -35,6 +35,7 @@
 #import "AddeditcellController.h"
 //#import <UITableViewIndex.h>
 #import "customcell.h"
+#include "alertmessages.h"
 /*
 @interface MyNavControler : UINavigationBar 
 
@@ -1227,7 +1228,7 @@ titleForHeaderInSection:(NSInteger)section
 		else
 		{
 		UIAlertView*	alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
-												  message: [ NSString stringWithString:@"This contact does not have any number or email address." ]
+												  message: [ NSString stringWithString:_EMPTY_CONTACT_DETAILS_ ]
 												 delegate: nil
 										cancelButtonTitle: nil
 										otherButtonTitles: @"OK", nil

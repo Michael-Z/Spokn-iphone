@@ -31,6 +31,7 @@
 #import "keypadview.h"
 #import "callviewcontroller.h"
 #import <AudioToolbox/AudioToolbox.h>
+#include "alertmessages.h"
 @implementation DialviewController
 const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'};
 static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -397,7 +398,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			if(strlen(lastTypeNo)==0)
 			{
 				alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-																   message: [ NSString stringWithString:@"Please enter a valid number." ]
+																   message: [ NSString stringWithString:_INVALID_NUMBER_ ]
 																  delegate: nil
 														 cancelButtonTitle: nil
 														 otherButtonTitles: @"OK", nil
@@ -434,7 +435,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			if(strlen(lastTypeNo)==0)
 			{
 				alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-																   message: [ NSString stringWithString:@"Please enter a valid number." ]
+																   message: [ NSString stringWithString:_INVALID_NUMBER_ ]
 																  delegate: nil
 														 cancelButtonTitle: nil
 														 otherButtonTitles: @"OK", nil
@@ -455,7 +456,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		if(self->ownerobject.loginProgressStart)
 		{	
 			alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
-														   message: [ NSString stringWithString:@"User not online" ]
+														   message: [ NSString stringWithString:_USER_OFFLINE_ ]
 														  delegate: nil
 												 cancelButtonTitle: nil
 												 otherButtonTitles: @"OK", nil
@@ -466,7 +467,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		else
 		{
 			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
-															   message: [ NSString stringWithString:@"No Network" ]
+															   message: [ NSString stringWithString:_NO_NETWORK_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: @"OK", nil
@@ -506,7 +507,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 					if(strlen(lastTypeNo)==0)
 					{
 						alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-																		   message: [ NSString stringWithString:@"please enter the number." ]
+																		   message: [ NSString stringWithString:_ENTER_NUMEBR_ ]
 																		  delegate: nil
 																 cancelButtonTitle: nil
 																 otherButtonTitles: @"OK", nil
@@ -685,7 +686,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 				
 				case HOST_NAME_NOT_FOUND_ERROR:
 					alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-														  message: [ NSString stringWithString:@"Server not richable" ]
+														  message: [ NSString stringWithString:_SERVER_UNREACHABLE_ ]
 														 delegate: self
 												cancelButtonTitle: nil
 												otherButtonTitles: @"OK", nil
@@ -700,7 +701,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 					if(alert==nil)
 					{	
 						alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-															  message: [ NSString stringWithString:@"Server not richebale" ]
+															  message: [ NSString stringWithString:_SERVER_UNREACHABLE_ ]
 															 delegate: self
 													cancelButtonTitle: nil
 													otherButtonTitles: @"OK", nil
@@ -717,7 +718,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 						if(alert==nil)
 						{	
 							alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-									   message: [ NSString stringWithString:@"Authentication failed" ]
+									   message: [ NSString stringWithString:_AUTHENTICATION_FAILED_ ]
 									  delegate: self
 				 					 cancelButtonTitle: nil
 									 otherButtonTitles: @"OK", nil
@@ -740,7 +741,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 					if(alert==nil)
 					{	
 						alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-															  message: [ NSString stringWithString:@"Network is not available" ]
+															  message: [ NSString stringWithString:_NO_AVAILABLE_NETWORK_ ]
 															 delegate: self
 													cancelButtonTitle: nil
 													otherButtonTitles: @"OK", nil
@@ -764,7 +765,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 					if(alert==nil)
 					{		
 						alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-																	   message: [ NSString stringWithString:@"Unable to connect server." ]
+																	   message: [ NSString stringWithString:_CONNECTION_FAILED_ ]
 																	  delegate: self
 															 cancelButtonTitle: nil
 															 otherButtonTitles: @"OK", nil

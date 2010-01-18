@@ -24,7 +24,7 @@
 #import "AddEditcontactViewController.h"
 
 #import "SpoknAppDelegate.h"
-
+#include "alertmessages.h"
 @implementation AddEditcontactViewController
 @synthesize ltpInterfacesP;
 -(void)setObject:(id) object 
@@ -153,7 +153,7 @@
 	else
 	{										 
 		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
-														   message: [ NSString stringWithString:@"invalid contact" ]
+														   message: [ NSString stringWithString:_INVALID_CONTACT_ ]
 														  delegate: nil
 												 cancelButtonTitle: nil
 												 otherButtonTitles: @"OK", nil
