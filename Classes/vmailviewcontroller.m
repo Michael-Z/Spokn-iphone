@@ -869,9 +869,33 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		[cell tablecellsetEdit:NO :0];
 		secLocP = cell.spoknSubCellP.userData;
 		vmailP =(struct VMail*) secLocP->userData;
+		if(vmailP->direction==VMAIL_IN && vmailP->status==VMAIL_ACTIVE)		
+		{
+			vmailP->status=VMAIL_DELIVERED;
+			vmailP->dirty=1;
+			newVMailCountdecrease();
+			NSLog(@"new mail");
+		}
+		NSString *stringStrP;
+		char s1[30];
+		int count;
+		
+		count = newVMailCount();
+		printf("count %d",count);
+		if(count)
+		{	
+			sprintf(s1,"%d",count);
+			stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
+			[self navigationController].tabBarItem.badgeValue= stringStrP;
+			
+			[stringStrP release];
+		}
+		else
+		{
+			[self navigationController].tabBarItem.badgeValue= nil;
+		}
 		vmsDelete(vmailP);
 		profileResync();
-		
 		/* Delete cell from data source */
 		/*
 		 UITableViewCell *cell = [ self.tableView cellForRowAtIndexPath: indexPath ];
