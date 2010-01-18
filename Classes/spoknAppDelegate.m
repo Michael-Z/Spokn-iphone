@@ -1934,7 +1934,21 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
 	[self updateReachabilityStatus: curReach];
 }
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+	if(error)
+	{
+		SetConnection( ltpInterfacesP,0);
+		//printf("\n offline set");
+		alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
+		wifiavailable = NO;
+		
+	
+	}
 
+
+
+}
 - (void) configureTextField: (Reachability*) curReach
 {
     NetworkStatus netStatus = [curReach currentReachabilityStatus];
@@ -1990,7 +2004,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.spokn.com"] cachePolicy:NO timeoutInterval:15.0] ;
 				
 				NSLog(@"\nurl= %@\n",urlRequest);
-				NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:nil];
+				NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 				if (theConnection) {
 					NSLog(@" Connection established");
 					connectionRequired	= NO;	
