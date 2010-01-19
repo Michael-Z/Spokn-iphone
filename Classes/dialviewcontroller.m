@@ -397,7 +397,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			
 			if(strlen(lastTypeNo)==0)
 			{
-				alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 																   message: [ NSString stringWithString:_INVALID_NUMBER_ ]
 																  delegate: nil
 														 cancelButtonTitle: nil
@@ -434,7 +434,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			
 			if(strlen(lastTypeNo)==0)
 			{
-				alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 																   message: [ NSString stringWithString:_INVALID_NUMBER_ ]
 																  delegate: nil
 														 cancelButtonTitle: nil
@@ -506,7 +506,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 					
 					if(strlen(lastTypeNo)==0)
 					{
-						alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+						alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 																		   message: [ NSString stringWithString:_ENTER_NUMEBR_ ]
 																		  delegate: nil
 																 cancelButtonTitle: nil
@@ -538,7 +538,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	//}
 	/*else
 	{
-		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 														   message: [ NSString stringWithString:@"user not online"]
 														  delegate: nil
 												 cancelButtonTitle: nil
@@ -717,7 +717,7 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 					{	
 						if(alert==nil)
 						{	
-							alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+							alert = [ [ UIAlertView alloc ] initWithTitle: @"Sign-in Failed" 
 									   message: [ NSString stringWithString:_AUTHENTICATION_FAILED_ ]
 									  delegate: self
 				 					 cancelButtonTitle: nil

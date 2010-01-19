@@ -322,7 +322,7 @@
 				case ERR_CODE_CALL_FWD_DUPLICATE:
 				{
 					char *callFdP;
-					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn" 
 															message:_DUPLICATE_FORWARD_NUMBER_
 															delegate:self 
 														  cancelButtonTitle:nil 
@@ -1488,7 +1488,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	printf("\n no = %s",resultCharP);
 	if(validateNo(resultCharP))//mean invalid number
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" 
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn" 
 														message:_INVALID_NUMBER_
 													   delegate:self 
 											  cancelButtonTitle:nil 

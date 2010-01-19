@@ -270,7 +270,7 @@
 			
 		}	
 		
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:_EMPTY_NUMBER_ delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:_EMPTY_NUMBER_ delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
 			
 		[alert show];
 		
@@ -488,7 +488,7 @@
 			return;
 		if([ownerobject VmsStreamStart:false])
 		{
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 															   message: [ NSString  stringWithString:_NO_VMS_PLAY_]
 															  delegate: nil
 													 cancelButtonTitle: nil
@@ -508,7 +508,7 @@
 		}
 		if([ownerobject VmsStreamStart:true])
 		{
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 															   message: [ NSString  stringWithString:_NO_VMS_PLAY_]
 															  delegate: nil
 													 cancelButtonTitle: nil

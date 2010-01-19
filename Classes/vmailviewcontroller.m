@@ -808,7 +808,7 @@
 
 				break;
 			case 2:
-				alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 													  message: [ NSString stringWithString:@"vms is already playing" ]
 																  delegate: nil
 														 cancelButtonTitle: nil

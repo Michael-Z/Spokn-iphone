@@ -514,7 +514,7 @@
 			else
 			{	
 						//printf("\n alert contact");
-				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Invalid Contact" 
 															 message: [ NSString stringWithString:_INVALID_CONTACT_ ]
 															 delegate: self
 															 cancelButtonTitle: nil
@@ -542,7 +542,7 @@
 			}
 			/*if(  !(strlen(addressDataP->title)&&(strlen(addressDataP->mobile) ||  strlen(addressDataP->business)|| strlen(addressDataP->home)||  strlen(addressDataP->email)||  strlen(addressDataP->other) ||  strlen(addressDataP->spoknid))) )
 			{
-				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 																   message: [ NSString stringWithString:@"invalid contact" ]
 																  delegate: self
 														 cancelButtonTitle: nil
