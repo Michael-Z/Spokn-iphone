@@ -676,6 +676,9 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	 pjsua_media_config_default(&cfgmedia);
 	cfgmedia.clock_rate = 8000;
 	cfgmedia.snd_clock_rate = 8000;
+	cfgmedia.ec_tail_len = 0;
+	cfgmedia.media_cfg.no_vad = 0;
+	cfgmedia.media_cfg.enable_ice=0;
 	//app_config->media_cfg.clock_rate = 44100;
 	//app_config->media_cfg.snd_clock_rate = 44100;
 	//app_config->media_cfg.ec_options = 0;//0=default,1=speex, 2=suppressor
