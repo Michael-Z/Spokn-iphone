@@ -105,7 +105,7 @@
 		//printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);
 		
 	}
-	else if(vmailP->addressUId)
+/*	else if(vmailP->addressUId)
 	{
 		//ABAddressBookRef addressBook = ABAddressBookCreate();
 		//ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,vmailP->addressUId);
@@ -132,7 +132,7 @@
 				[vmShowViewControllerP release];
 
 		}
-	}
+	}*/
 	else
 	{
 		VmShowViewController     *vmShowViewControllerP;	
@@ -347,7 +347,7 @@
 			objStrP = addressP->title;
 			
 		}
-		else
+/*		else
 		{
 			if(vmailP->addressUId)
 			{	
@@ -378,7 +378,7 @@
 				
 				
 			}		
-		}
+		}	*/
 		timeP = vmailP->date;
 		tmP = localtime(&timeP);
 		
