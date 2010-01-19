@@ -152,7 +152,7 @@
 	
 	else
 	{										 
-		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Error" 
+		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 														   message: [ NSString stringWithString:_INVALID_CONTACT_ ]
 														  delegate: nil
 												 cancelButtonTitle: nil

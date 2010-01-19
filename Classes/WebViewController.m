@@ -113,7 +113,7 @@
 		{
 			
 			UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-															   message: [ NSString stringWithString:@"Error" ]
+															   message: [ NSString stringWithString:@"Unable to call the destination number." ]
 															  delegate: self
 													 cancelButtonTitle: nil
 													 otherButtonTitles: @"OK", nil];
