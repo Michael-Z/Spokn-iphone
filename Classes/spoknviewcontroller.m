@@ -124,6 +124,7 @@
 	}
 	NSLog(@"togging  %s", sender.on ? "on" : "off");
 
+		
 	
 	//return;
 }
@@ -259,6 +260,7 @@
 		buttonCtlP.enabled = NO;
 	
 	switchView.on = NO;
+	switchView.enabled = NO;
 	
 	
 	
@@ -520,7 +522,16 @@ titleForHeaderInSection:(NSInteger)section
 			switchView.on = NO;
 			[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
 		}
-		switchView.enabled = YES;
+//		switchView.enabled = YES;
+		if(statusInt)
+		{
+			switchView.enabled = YES;
+			
+		}
+		else
+		{
+			switchView.enabled = NO;
+		}
 	}
 	
 	if(spoknCharP)
