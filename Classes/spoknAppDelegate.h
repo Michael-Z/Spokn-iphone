@@ -27,7 +27,7 @@
 #include "LtpInterface.h"
 #import "Reachability.h"
 #include "playrecordpcm.h"
-
+#import "spoknaudio.h"
 @class LoginViewController;
 
 @class DialviewController;
@@ -90,7 +90,7 @@ typedef struct CallNumberType
 	
 #endif
 	
-	NSTimer *ringTimer;
+	int ringStartB;
 	NSTimer *nsTimerP;
 	UITabBarController *tabBarController;
 	LtpInterfaceType *ltpInterfacesP;
@@ -109,11 +109,11 @@ typedef struct CallNumberType
 	Reachability* hostReach;
     Reachability* wifiReach;
 	Boolean wifiavailable;
-	SystemSoundID endcallsoundID;
-	SystemSoundID soundIncommingCallID;
+//	SystemSoundID endcallsoundID;
+	//SystemSoundID soundIncommingCallID;
 	//this store address of addressbook
 	int animation;
-	SystemSoundID onlinesoundID;
+	//SystemSoundID onlinesoundID;
 	int upgradeAlerted;
 	char *srvMsgCharP;
 	NSString *urlSendP;
@@ -123,6 +123,9 @@ typedef struct CallNumberType
 	UIViewController *prvCtlP;
 	CallNumberType callNumber;
 	int loginGprsB;
+	SpoknAudio *incommingSoundP;
+	SpoknAudio *allSoundP;
+	NSTimer *ringTimer;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -198,6 +201,8 @@ changed:(BOOL)changed;
 -(void)refreshallViews;
 
 -(char*) getNameAndTypeFromNumber:(char*)pnumberP :(char*)typeP :(Boolean*)pfindBP ;
+-(int)playUrlPath:(NSString*)pathP;
+
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
 void MyAudioSessionPropertyListener(

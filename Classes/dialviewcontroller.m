@@ -34,7 +34,7 @@
 #include "alertmessages.h"
 @implementation DialviewController
 const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'};
-static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+//static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 @synthesize ltpInterfacesP;
 @synthesize currentView;
 - (void)keyPressedDown:(NSString *)stringkey keycode:(int)keyVal
@@ -86,28 +86,16 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 - (void)playSoundForKey:(int)key
 {
-	if (!sounds[key])
-	{
+	
+	//if (!sounds[key])
+	//{
 		NSBundle *mainBundle = [NSBundle mainBundle];
 		NSString *filename = [NSString stringWithFormat:@"dtmf-%c", (key == 10 ? 's' : _keyValues[key])];
 		NSString *path = [mainBundle pathForResource:filename ofType:@"aif"];
 		if (!path)
 			return;
 		
-		NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
-		if (aFileURL != nil)  
-		{
-			SystemSoundID aSoundID;
-			OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
-															  &aSoundID);
-			if (error != kAudioServicesNoError)
-				return;
-			
-			sounds[_downKey] = aSoundID;
-		}
-	}
-	
-	AudioServicesPlaySystemSound(sounds[_downKey]);
+	[ownerobject playUrlPath:path];
 }
 - (void)keyPressedUp:(NSString *)stringkey keycode:(int)keyVal
 {
@@ -276,13 +264,8 @@ static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 - (void)dealloc {
 	//printf("\n dialview dealloc");
-	int i;
-	for (i = 1; i < 13; ++i)
-		if (sounds[i])
-		{
-			AudioServicesDisposeSystemSoundID(sounds[i]);
-			sounds[i] = 0;
-		}
+	
+		
 	[calltimerP release];
 	[callingstringP release];
 	if(callingstringtypeP != nil)

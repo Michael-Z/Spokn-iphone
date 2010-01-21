@@ -520,6 +520,7 @@
 		}
 	}
 	maxTimeLoc = maxTime;
+	
 	nsTimerP = [NSTimer scheduledTimerWithTimeInterval: 1.0
 				
 												target: self

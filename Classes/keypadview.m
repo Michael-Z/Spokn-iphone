@@ -35,7 +35,7 @@
 	elementy = lelementy;
 	elementWidth = self.bounds.size.width/elementx;
 	elementHeight = self.bounds.size.height/elementy;
-	NSLog(@"\n element taken %f %f ",elementWidth,elementHeight);
+	//NSLog(@"\n element taken %f %f ",elementWidth,elementHeight);
 		
 }	
 
@@ -99,7 +99,7 @@
 		row =  point.y/self->elementHeight;
 		col = point.x/self->elementWidth;
 
-		NSLog(@"\n%f %f",point.x*4/self.bounds.size.width,point.y*4/self.bounds.size.height);
+//NSLog(@"\n%f %f",point.x*4/self.bounds.size.width,point.y*4/self.bounds.size.height);
 		rectchange.origin.x = col*elementWidth;
 		rectchange.origin.y = row*elementHeight;
 		rectchange.size.width = elementWidth;
@@ -108,7 +108,7 @@
 		//printf("%d",  arrayPos);
 		if(arrayPos<12)
 		{	
-			NSLog(@"\n%@ %c",keyStrs[arrayPos],keyValues[arrayPos]);
+//NSLog(@"\n%@ %c",keyStrs[arrayPos],keyValues[arrayPos]);
 			NSString *curTest = keyStrs[arrayPos];
 			if([curTest isEqualToString:@"0"])
 			{

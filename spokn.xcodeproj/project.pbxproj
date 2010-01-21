@@ -362,6 +362,12 @@
 		8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD86B4107F5222008FD911 /* WebViewController.m */; };
 		8BBD86B7107F5222008FD911 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD86B5107F5222008FD911 /* WebViewController.xib */; };
 		8BBF6C671083530D00E57ABE /* blueButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BBF6C661083530D00E57ABE /* blueButton.png */; };
+		8BC51C1A11085C0C00EC6597 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C1911085C0C00EC6597 /* libspeex-arm-apple-darwin9.a */; };
+		8BC51C1B11085C0C00EC6597 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C1911085C0C00EC6597 /* libspeex-arm-apple-darwin9.a */; };
+		8BC51C411108633600EC6597 /* spoknaudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC51C401108633600EC6597 /* spoknaudio.m */; };
+		8BC51C421108633600EC6597 /* spoknaudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC51C401108633600EC6597 /* spoknaudio.m */; };
+		8BC51C50110863A200EC6597 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C4F110863A200EC6597 /* AVFoundation.framework */; };
+		8BC51C51110863A200EC6597 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C4F110863A200EC6597 /* AVFoundation.framework */; };
 		8BC5683710BE8DFE0083F77D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC5683610BE8DFE0083F77D /* Default.png */; };
 		8BC568FC10BE9A590083F77D /* dialview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BC568FB10BE9A590083F77D /* dialview.xib */; };
 		8BCA77351043C3E90018419C /* customcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCA77341043C3E90018419C /* customcell.m */; };
@@ -626,6 +632,10 @@
 		8BBD86B4107F5222008FD911 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8BBD86B5107F5222008FD911 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		8BBF6C661083530D00E57ABE /* blueButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueButton.png; sourceTree = "<group>"; };
+		8BC51C1911085C0C00EC6597 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8BC51C3F1108633600EC6597 /* spoknaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknaudio.h; sourceTree = "<group>"; };
+		8BC51C401108633600EC6597 /* spoknaudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknaudio.m; sourceTree = "<group>"; };
+		8BC51C4F110863A200EC6597 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8BC5683610BE8DFE0083F77D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8BC568FB10BE9A590083F77D /* dialview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = dialview.xib; sourceTree = "<group>"; };
 		8BCA77331043C3E90018419C /* customcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customcell.h; sourceTree = "<group>"; };
@@ -719,6 +729,8 @@
 				8B964B2610CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
 				8B964B2B10CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
+				8BC51C1B11085C0C00EC6597 /* libspeex-arm-apple-darwin9.a in Frameworks */,
+				8BC51C51110863A200EC6597 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,6 +774,8 @@
 				8B964B2410CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
 				8B964B2910CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2A10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
+				8BC51C1A11085C0C00EC6597 /* libspeex-arm-apple-darwin9.a in Frameworks */,
+				8BC51C50110863A200EC6597 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,6 +858,8 @@
 				8BCB06B01083020A00468EC7 /* custombutton.h */,
 				8BCB06B11083020A00468EC7 /* custombutton.m */,
 				32C02D441104406600766AB6 /* alertmessages.h */,
+				8BC51C3F1108633600EC6597 /* spoknaudio.h */,
+				8BC51C401108633600EC6597 /* spoknaudio.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -905,6 +921,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BC51C4F110863A200EC6597 /* AVFoundation.framework */,
 				8B81B4B010318ADB00A18DA1 /* AddressBook.framework */,
 				8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */,
 				8BB5492C104BF2F300BD6C22 /* speexlib.xcodeproj */,
@@ -982,6 +999,7 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
+				8BC51C1911085C0C00EC6597 /* libspeex-arm-apple-darwin9.a */,
 				8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */,
 				8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */,
 				8B964B2110CBE78C00CB00DB /* libpjlib-util-i386-apple-darwin9.a */,
@@ -1600,6 +1618,7 @@
 				8B59A63010998423003BF3EA /* GTokenFieldCell.m in Sources */,
 				8B59A63210998423003BF3EA /* UIViewAdditions.m in Sources */,
 				8B59A68F109987FB003BF3EA /* pickerviewcontroller.m in Sources */,
+				8BC51C421108633600EC6597 /* spoknaudio.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1663,6 +1682,7 @@
 				8B964A6A10CBE3BC00CB00DB /* GTokenFieldCell.m in Sources */,
 				8B964A6C10CBE3BC00CB00DB /* UIViewAdditions.m in Sources */,
 				8B964A6D10CBE3BC00CB00DB /* pickerviewcontroller.m in Sources */,
+				8BC51C411108633600EC6597 /* spoknaudio.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

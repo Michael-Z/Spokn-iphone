@@ -103,92 +103,76 @@
 	
 	return YES;
 }
-- (void) PlayRing: (id) timer
-{
-	//printf("\n ring play....");
-	AudioServicesPlayAlertSound(soundIncommingCallID);	
-}
+
 -(void) destroyRing
 {
-
-	if(soundIncommingCallID)
-	{
-		AudioServicesDisposeSystemSoundID(soundIncommingCallID);
-		soundIncommingCallID = 0;
-	}
-	if(endcallsoundID)
-	{
-		AudioServicesDisposeSystemSoundID(endcallsoundID);
-		endcallsoundID = 0;
-	}
-	if(onlinesoundID)
-	{
-		AudioServicesDisposeSystemSoundID(onlinesoundID);
-		onlinesoundID = 0;
-	}
+	[SpoknAudio destorySoundUrl:&incommingSoundP];
+	[SpoknAudio destorySoundUrl:&allSoundP];
+	
 }
 -(void) createRing
 {
-		soundIncommingCallID = 0;
+		
 	
-	
-	NSBundle *mainBundle = [NSBundle mainBundle];
-	
-	NSString *path = [mainBundle pathForResource:@"phone" ofType:@"caf"];
-	if (!path)
-		return;
-	
-	NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
-	if (aFileURL != nil)  
-	{
-		SystemSoundID aSoundID;
-		OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
-														  &aSoundID);
-		if (error != kAudioServicesNoError)
-			return;
-		soundIncommingCallID = aSoundID;
-		//printf("\n ring created");
-
-	
-	}
-	
+		//[incommingP repeatPlay:-1];
 	
 	
 }
+- (void) PlayRing: (id) timer
+{
+	//printf("\n ring play....");
+	[incommingSoundP playSoundUrl];
+}
 -(void) startRing
 {
-	if(soundIncommingCallID)
-	{	
+	
 		//printf("\n ring play");
-		if(ringTimer==nil)
+		if(ringStartB==0)
 		{	
 		
 			UInt32 route = kAudioSessionOverrideAudioRoute_Speaker;
 			AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, 
 									 sizeof(route), &route);
-			//SetAudioTypeLocal(0,0);
-			ringTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0
-				
-												target: self
-				
-											  selector: @selector(PlayRing:)
-				
-											  userInfo: nil
-				
-											   repeats: YES];
+			
+			NSBundle *mainBundle = [NSBundle mainBundle];
+			
+			NSString *path = [mainBundle pathForResource:@"phone" ofType:@"caf"];
+			if (!path)
+				return;
+			
+			[SpoknAudio destorySoundUrl:&incommingSoundP];
+			
+			incommingSoundP = [SpoknAudio createSoundPlaybackUrl:path play:true];
+			
+			ringTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+						
+														target: self
+						
+													  selector: @selector(PlayRing:)
+						
+													  userInfo: nil
+						
+													   repeats: YES];
+		
+			
+		//	[incommingP playSoundUrl];
+			ringStartB = 1;
+			
 		}	
-	}	
+		
 }
 -(int) stopRing
 {
-	if(ringTimer)
+	if(ringStartB)
 	{	
 		//printf("ring stop");
+			ringStartB = 0;
 		[ringTimer invalidate];
 		ringTimer = nil;
 		UInt32 route = kAudioSessionOverrideAudioRoute_None;
 		AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, 
 								 sizeof(route), &route);
+		[SpoknAudio destorySoundUrl:&incommingSoundP];
 		return 0;
 	}	
 	return 1;
@@ -199,54 +183,38 @@
 {
 	
 	
-	if(endcallsoundID==0)
-	{	
-		NSBundle *mainBundle = [NSBundle mainBundle];
+	NSBundle *mainBundle = [NSBundle mainBundle];
 	
 		NSString *path = [mainBundle pathForResource:@"doorbell" ofType:@"caf"];
 		if (!path)
 			return;
-	
-		NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
-		if (aFileURL != nil)  
-		{
-			SystemSoundID aSoundID;
-			OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
-														  &aSoundID);
-			if (error != kAudioServicesNoError)
-				return;
-			endcallsoundID = aSoundID;
+	[self playUrlPath:path]	;
 		
-		}
-	}
+	
 
-	AudioServicesPlaySystemSound(endcallsoundID);	
+		
 }
+-(int)playUrlPath:(NSString*)pathP
+{
+	NSLog(@"\n%@",pathP);
+	[SpoknAudio destorySoundUrl:&allSoundP];
+	allSoundP = [SpoknAudio createSoundPlaybackUrl:pathP play:true];
+	if(allSoundP)
+		return 0;
+	return 1;
 
+}
 -(void) playonlineTone
 {
+	
 		
-	if(onlinesoundID==0)
-	{	
 		NSBundle *mainBundle = [NSBundle mainBundle];
 	
 		NSString *path = [mainBundle pathForResource:@"gling" ofType:@"caf"];
 		if (!path)
 			return;
-	
-		NSURL *aFileURL = [NSURL fileURLWithPath:path isDirectory:NO];
-		if (aFileURL != nil)  
-		{
-			SystemSoundID aSoundID;
-			OSStatus error = AudioServicesCreateSystemSoundID((CFURLRef)aFileURL, 
-															  &aSoundID);
-			if (error != kAudioServicesNoError)
-				return;
-			onlinesoundID = aSoundID;
-			
-		}
-	}	
-	AudioServicesPlayAlertSound(onlinesoundID);	
+	[self playUrlPath:path]	;
+		
 }
 -(void) showText:(NSString *)testStringP
 {
@@ -1554,6 +1522,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		strcpy(self->callNumber.number,resultCharP);
 		self->callNumber.direction = 1;
 		retB = 1;
+		[SpoknAudio destorySoundUrl:&allSoundP];
 		//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
 		//	NSLog(@"\n%@",tempStringP);
 		[dialviewP setStatusText:strP :temp1P :TRYING_CALL :0];
