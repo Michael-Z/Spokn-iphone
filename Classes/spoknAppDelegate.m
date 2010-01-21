@@ -169,10 +169,11 @@
 			ringStartB = 0;
 		[ringTimer invalidate];
 		ringTimer = nil;
+		[SpoknAudio destorySoundUrl:&incommingSoundP];
 		UInt32 route = kAudioSessionOverrideAudioRoute_None;
 		AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, 
 								 sizeof(route), &route);
-		[SpoknAudio destorySoundUrl:&incommingSoundP];
+		
 		return 0;
 	}	
 	return 1;
