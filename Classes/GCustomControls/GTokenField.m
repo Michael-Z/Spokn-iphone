@@ -8,7 +8,19 @@
 
 #import "GTokenField.h"
 #import "GTokenFieldCell.h"
-#import "UIViewAdditions.h"
+
+@implementation  UIView(FindSuperview)
+- (UIView*)findRootViewOfClass:(Class)cls {
+	if ([self isKindOfClass:cls]) {
+		return self;
+	} else if (self.superview) {
+		return [self.superview findRootViewOfClass:cls];
+	} else {
+		return nil;
+	}
+}
+
+@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -488,7 +500,7 @@ static CGFloat kMinCursorWidth = 50;
 
 - (void)scrollToVisibleLine:(BOOL)animated {
 	if (self.editing) {
-		UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+		UIScrollView* scrollView = (UIScrollView*)[self findRootViewOfClass:[UIScrollView class]];
 		if (scrollView) {
 			[scrollView setContentOffset:CGPointMake(0, self.frame.origin.y) animated:animated];
 		}
@@ -496,7 +508,7 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (void)scrollToEditingLine:(BOOL)animated {
-	UIScrollView* scrollView = (UIScrollView*)[self firstParentOfClass:[UIScrollView class]];
+	UIScrollView* scrollView = (UIScrollView*)[self findRootViewOfClass:[UIScrollView class]];
 	if (scrollView) 
 	{
 //		CGFloat offset = _lineCount == 1 ? 0 : [self topOfLine:_lineCount-1];

@@ -81,10 +81,10 @@ typedef enum ViewTypeEnum
 	IBOutlet UIView *viewP;
 	
 	IBOutlet CustomButton  *delButtonP;
-	IBOutlet CustomButton  *vmsButtonP;
-	IBOutlet CustomButton  *callButtonP;
+	IBOutlet UIButton  *vmsButtonP;
+	IBOutlet UIButton  *callButtonP;
 	IBOutlet UIButton  *changeNameButtonP;
-	IBOutlet CustomButton  *addButtonP;
+	IBOutlet UIButton  *addButtonP;
 	int sectionCount;
 	int tablesz;
 	Boolean editableB;

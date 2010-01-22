@@ -953,12 +953,20 @@ int ltpRing(struct ltpStack *ps, char *remoteid, int command)
 		}
 		else
 		{	
-			sprintf(struri, "sip:+%s@spokn.com", remoteid);
+			if(strlen(remoteid)<6)//this changes is temp
+			{
+				sprintf(struri, "sip:%s@spokn.com", remoteid);
+			}
+			else
+			{	
+				sprintf(struri, "sip:+%s@spokn.com", remoteid);
+			}	
 		}	
 	}
 	else
 		strcpy(struri, remoteid);
 
+//	printf("\m calling no %s",struri);
 	uri = pj_str(struri);
 	if (pjsua_call_make_call(pjsua_acc_get_default(), &uri, 0, NULL, NULL, &call_id) == PJ_SUCCESS){
 		strcpy(pc->remoteUserid, remoteid);

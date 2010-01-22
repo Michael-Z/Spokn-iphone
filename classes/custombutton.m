@@ -35,7 +35,7 @@
     return self;
 }
 
-
+/*
 - (void)drawRect:(CGRect)rect {
     // Drawing code
 //	[super drawRect:rect];
@@ -49,7 +49,7 @@
 //	[self CGContextAddRoundRect : rect1 :5.0];
 	
 }
-
+*/
 -(void) CGContextAddRoundRect :(CGRect)rect :(float)radius
 
 {
@@ -77,22 +77,31 @@
 }
 +(void)setImages:	(UIButton *)buttonObjectP
 image:(UIImage *)image
-imagePressed:(UIImage *)imagePressed
+	imagePressed:(UIImage *)imagePressed change:(int)changeB
 
 {	
-	buttonObjectP.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-	buttonObjectP.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 	
-	UIImage *newImage = [image stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
-	[buttonObjectP setBackgroundImage:newImage forState:UIControlStateNormal];
-	//retain for 2.2.1
-	[image retain];
-	UIImage *newPressedImage = [imagePressed stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
-	[buttonObjectP setBackgroundImage:newPressedImage forState:UIControlStateHighlighted];
-	//retain for 2.2.1
-	[imagePressed retain];
-	   // in case the parent view draws with a custom color or gradient, use a transparent color
-	buttonObjectP.backgroundColor = [[UIColor clearColor] autorelease ];
+	if(changeB==YES)
+	{	
+		buttonObjectP.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+		buttonObjectP.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+	
+		UIImage *newImage = [image stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+		[buttonObjectP setBackgroundImage:newImage forState:UIControlStateNormal];
+		//retain for 2.2.1
+		[image retain];
+		UIImage *newPressedImage = [imagePressed stretchableImageWithLeftCapWidth:12.0 topCapHeight:0.0];
+		[buttonObjectP setBackgroundImage:newPressedImage forState:UIControlStateHighlighted];
+		//retain for 2.2.1
+		[imagePressed retain];
+		   // in case the parent view draws with a custom color or gradient, use a transparent color
+		buttonObjectP.backgroundColor = [[UIColor clearColor] autorelease ];
+	}
+	else
+	{
+		[buttonObjectP setBackgroundImage:image forState:UIControlStateNormal];
+		[buttonObjectP setBackgroundImage:imagePressed forState:UIControlStateHighlighted];
+	}
 	
 	//return button;
 }

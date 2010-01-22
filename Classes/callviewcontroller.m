@@ -85,27 +85,33 @@
 	//callnoLabelP.numberOfLines = 2;
 	[callnoLabelP setText:labelStrP];
 	[callTypeLabelP setText:labeltypeStrP];
+	
+	callTypeLabelP.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lcd_top_call.png"]];
+
 	self->viewKeypadP.hidden = YES;
 	self->hideKeypadButtonP.hidden = YES;
 	self->endCallKeypadButtonP.hidden = YES;
 	[viewKeypadP setImage:@"keypad.png" : @"keypad_pressed.png"];
 	[viewKeypadP setElement:3 :4];
 	viewKeypadP.keypadProtocolP = self;
-	buttonBackground = [UIImage imageNamed:@"red.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
-	[CustomButton setImages:endCallButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
+	
+	buttonBackground = [UIImage imageNamed:@"End_Call.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"End_Call_pressed.png"];
+	[CustomButton setImages:endCallButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:YES];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
+	endCallButtonP.backgroundColor =  [UIColor clearColor];
 	
-	buttonBackground = [UIImage imageNamed:@"red.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
-	[CustomButton setImages:hideKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
+	buttonBackground = [UIImage imageNamed:@"hide.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"hide_pressed.png"];
+	[CustomButton setImages:hideKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:YES];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
-	
-	buttonBackground = [UIImage imageNamed:@"red.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
-	[CustomButton setImages:endCallKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
+	hideKeypadButtonP.backgroundColor =  [UIColor clearColor];
+	buttonBackground = [UIImage imageNamed:@"declinebackground.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"decline_pressed.png"];
+	[CustomButton setImages:endCallKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:YES];
+	endCallKeypadButtonP.backgroundColor =  [UIColor clearColor];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	alertNotiFication(CALL_ALERT,0,0,  (unsigned long)ownerobject,0);
@@ -372,7 +378,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 
 - (void)dealloc {
-	SetSpeakerOnOrOff(0,true);
+	//SetSpeakerOnOrOff(0,true);
 	printf("\n call view dealloc");
 	[labelStrP release];
 	[labeltypeStrP release];

@@ -31,6 +31,7 @@
 #import  "AddeditcellController.h"
 #import "vmailviewcontroller.h"
 #include "alertmessages.h"
+#define MAX_ROW_HIGHT 40
 //self.navigationItem.leftBarButtonItem.enabled = YES;
 @implementation ContactDetailsViewController
 
@@ -685,6 +686,7 @@
 	self->addButtonP.exclusiveTouch = YES;
 	self->vmsButtonP.exclusiveTouch = YES;
 	self->callButtonP.exclusiveTouch = YES;
+	self->delButtonP.exclusiveTouch = YES;
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"ContactDetailsViewController" image:nil tag:3];
 	//self->tablesz = 0;
@@ -694,8 +696,9 @@
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	loadedB = true;
-	UIImage *buttonBackground = [UIImage imageNamed:@"green.png"];
-	UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
+	/*
+	UIImage *buttonBackground = [UIImage imageNamed:@"blueButton.png"];
+	UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"green.png"];
 	[CustomButton setImages:callButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
@@ -716,7 +719,15 @@
 	[CustomButton setImages:addButtonP image:buttonBackground imagePressed:buttonBackgroundPressed];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
+	*/
+	UIImage *buttonBackground;
+	UIImage *buttonBackgroundPressed;
 	
+	buttonBackground = [UIImage imageNamed:@"red.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
+	[CustomButton setImages:delButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:YES];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
 	
 	//tableView.tag = TABLE_VIEW_TAG;
 	if(self.navigationItem.rightBarButtonItem==nil)
@@ -1033,7 +1044,7 @@
 	}
 	
 	cell.spoknSubCellP.ownerDrawB = true;
-	cell.spoknSubCellP.rowHeight = 50;
+	cell.spoknSubCellP.rowHeight = MAX_ROW_HIGHT;
 	[cell.spoknSubCellP setNeedsDisplay];
 	if(editableB)
 	{
@@ -1236,7 +1247,7 @@ titleForHeaderInSection:(NSInteger)section
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 50;
+	return MAX_ROW_HIGHT;
 	
 }
 -(void)setCdr:(struct CDR *)lcdrP

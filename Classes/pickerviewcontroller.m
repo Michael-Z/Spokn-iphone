@@ -27,7 +27,6 @@
 #include "ua.h"
 #import "GTokenField.h"
 #import "GTokenFieldCell.h"
-#import "UIViewAdditions.h"
 #import "Contact.h"
 #import "ContactCell.h"
 #import "contactviewcontroller.h"

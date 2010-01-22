@@ -39,7 +39,7 @@
 					<object class="IBUITableView" id="721003761">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{9, 3}, {311, 457}}</string>
+						<string key="NSFrame">{{5, 3}, {311, 457}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">2</int>
@@ -88,7 +88,7 @@
 							<object class="IBUIButton" id="172174305">
 								<reference key="NSNextResponder" ref="139589346"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{139, 59}</string>
+								<string key="NSFrame">{{1, 0}, {135, 40}}</string>
 								<reference key="NSSuperview" ref="139589346"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIAutoresizesSubviews">NO</bool>
@@ -101,34 +101,26 @@
 									<double key="NSSize">1.500000e+01</double>
 									<int key="NSfFlags">16</int>
 								</object>
+								<int key="IBUIButtonType">1</int>
 								<string key="IBUIHighlightedTitle">VMS</string>
 								<string key="IBUINormalTitle">VMS</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="1049220797">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleColor" id="346118328">
+								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAxIDEAA</bytes>
+									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<object class="NSColor" key="IBUINormalTitleShadowColor" id="579832469">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
-								<object class="NSCustomResource" key="IBUISelectedImage" id="1002547695">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">answer.png</string>
-								</object>
-								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="124778887">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">callblue.png</string>
-								</object>
-								<reference key="IBUISelectedBackgroundImage" ref="124778887"/>
 							</object>
 							<object class="IBUIButton" id="714687318">
 								<reference key="NSNextResponder" ref="139589346"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{142, 0}, {139, 59}}</string>
+								<string key="NSFrame">{{158, 0}, {135, 40}}</string>
 								<reference key="NSSuperview" ref="139589346"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIAutoresizesSubviews">NO</bool>
@@ -137,6 +129,7 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="4737424"/>
+								<int key="IBUIButtonType">1</int>
 								<double key="IBUIImageEdgeInsets.top">0.000000e+00</double>
 								<double key="IBUIImageEdgeInsets.bottom">0.000000e+00</double>
 								<double key="IBUIImageEdgeInsets.left">0.000000e+00</double>
@@ -144,17 +137,16 @@
 								<string key="IBUIHighlightedTitle">Call</string>
 								<string key="IBUINormalTitle">Call</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1049220797"/>
-								<reference key="IBUINormalTitleColor" ref="346118328"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="579832469"/>
-								<reference key="IBUISelectedImage" ref="1002547695"/>
-								<reference key="IBUINormalImage" ref="1002547695"/>
-								<reference key="IBUIHighlightedBackgroundImage" ref="124778887"/>
-								<reference key="IBUISelectedBackgroundImage" ref="124778887"/>
 							</object>
 							<object class="IBUIButton" id="815585431">
 								<reference key="NSNextResponder" ref="139589346"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{10, 8}, {280, 37}}</string>
+								<string key="NSFrame">{{11, 8}, {280, 37}}</string>
 								<reference key="NSSuperview" ref="139589346"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -167,19 +159,23 @@
 								<reference key="IBUIFont" ref="4737424"/>
 								<string key="IBUINormalTitle">Delete contact</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1049220797"/>
-								<reference key="IBUINormalTitleColor" ref="346118328"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MSAxIDEAA</bytes>
+								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="579832469"/>
 							</object>
 							<object class="IBUIButton" id="589428040">
 								<reference key="NSNextResponder" ref="139589346"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{10, 64}, {275, 37}}</string>
+								<string key="NSFrame">{{3, 64}, {288, 40}}</string>
 								<reference key="NSSuperview" ref="139589346"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="4737424"/>
+								<int key="IBUIButtonType">1</int>
 								<string key="IBUINormalTitle">Add contact</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1049220797"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
@@ -364,8 +360,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="2078895"/>
 							<reference ref="139589346"/>
-							<reference ref="721003761"/>
 							<reference ref="821059074"/>
+							<reference ref="721003761"/>
 						</object>
 						<reference key="parent" ref="317526666"/>
 					</object>
@@ -439,34 +435,28 @@
 					<string>1.IBPluginDependency</string>
 					<string>32.IBPluginDependency</string>
 					<string>33.IBPluginDependency</string>
-					<string>36.CustomClassName</string>
 					<string>36.IBPluginDependency</string>
-					<string>37.CustomClassName</string>
 					<string>37.IBPluginDependency</string>
 					<string>38.IBPluginDependency</string>
 					<string>42.CustomClassName</string>
 					<string>42.IBPluginDependency</string>
 					<string>47.IBPluginDependency</string>
-					<string>59.CustomClassName</string>
 					<string>59.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ContactDetailsViewController</string>
 					<string>UIResponder</string>
-					<string>{{294, 136}, {320, 480}}</string>
+					<string>{{388, 176}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>CustomButton</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>CustomButton</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>CustomButton</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>CustomButton</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -533,15 +523,15 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>CustomButton</string>
-							<string>CustomButton</string>
+							<string>UIButton</string>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>CustomButton</string>
 							<string>id</string>
 							<string>UITableView</string>
 							<string>UILabel</string>
 							<string>UIView</string>
-							<string>CustomButton</string>
+							<string>UIButton</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

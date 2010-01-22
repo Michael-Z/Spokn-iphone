@@ -130,9 +130,7 @@
 		if(ringStartB==0)
 		{	
 		
-			UInt32 route = kAudioSessionOverrideAudioRoute_Speaker;
-			AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, 
-									 sizeof(route), &route);
+			
 			
 			NSBundle *mainBundle = [NSBundle mainBundle];
 			
@@ -170,10 +168,7 @@
 		[ringTimer invalidate];
 		ringTimer = nil;
 		[SpoknAudio destorySoundUrl:&incommingSoundP];
-		UInt32 route = kAudioSessionOverrideAudioRoute_None;
-		AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute, 
-								 sizeof(route), &route);
-		
+				
 		return 0;
 	}	
 	return 1;
@@ -346,7 +341,13 @@
 			callOnB = true;
 			printf("\n call connected %d",self->lineID);
 			//openSoundInterface(ltpInterfacesP,1);
-			[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+		#ifdef __IPHONE_3_0
+					[UIDevice currentDevice].proximityMonitoringEnabled = YES;
+		#else
+					[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+		#endif
+			
+			
 			#ifndef _LTP_
 				[nsTimerP invalidate];
 				nsTimerP = nil;
@@ -360,7 +361,12 @@
 				[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 ];
 				//closeSoundInterface(ltpInterfacesP);
 				SetSpeakerOnOrOff(0,true);
-				[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
+				#ifdef __IPHONE_3_0
+								[UIDevice currentDevice].proximityMonitoringEnabled = NO;
+				#else
+								[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
+				#endif
+				
 				//reload log
 				[self LoadContactView:callviewP];
 				if([self stopRing]==0)//for incomming called not ans
@@ -502,7 +508,11 @@
 		case ALERT_INCOMING_CALL:
 			//[self performSelectorOnMainThread : @ selector(LoadInCommingView: ) withObject:nil waitUntilDone:YES];
 			printf("\n called from incomming\n");
-			[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+			#ifdef __IPHONE_3_0
+						[UIDevice currentDevice].proximityMonitoringEnabled = YES;
+			#else
+						[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+			#endif
 			[VmsProtocolP	VmsStopRequest];
 			if(lineID != 0)
 			{	
@@ -1325,7 +1335,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		//[tempStringP release ];
 	[strP release ];
 	[strtypeP release];
-	[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+	#ifdef __IPHONE_3_0
+		[UIDevice currentDevice].proximityMonitoringEnabled = YES;
+	#else
+		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+	#endif
 	AcceptInterface(ltpInterfacesP, inComP->lineid);
 	free(inComP);
 	//[self changeView];
@@ -1533,7 +1547,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[tempP release];
 		[temp1P release];
 	
-		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+		#ifdef __IPHONE_3_0
+				[UIDevice currentDevice].proximityMonitoringEnabled = YES;
+		#else
+				[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+		#endif
 	}	
 	else
 	{
@@ -1578,9 +1596,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	printf("\n hang");
 	hangLtpInterface(self->ltpInterfacesP);
 	[dialviewP setStatusText: @"call end" :nil :ALERT_DISCONNECTED :0];
-	SetSpeakerOnOrOff(0,true);
-	[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
-
+	//SetSpeakerOnOrOff(0,true);
+	#ifdef __IPHONE_3_0
+		[UIDevice currentDevice].proximityMonitoringEnabled = NO;
+	#else
+		[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
+	#endif
 	//[tabBarController dismissModalViewControllerAnimated:YES];
 
 	return true;
@@ -1618,6 +1639,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	//printf("\n");
 	//printf(fileName);
+	SetSpeakerOnOrOff(0,true);
 	vmsP = vmsInit((unsigned long )self, alertNotiFication,false);
 	if(vmsP==0)
 	{
@@ -1960,16 +1982,29 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			//connectionRequired = NO;
 			if(connectionRequired==NO)
 			{	 
-				//printf("\n richable set via wwan");
-				 wifiavailable = NO;
-				[self logOut:NO];
-				//logOut(ltpInterfacesP,NO);
-				SetConnection( ltpInterfacesP,0);
 				
-				alertNotiFication(ATTEMPT_GPRS_LOGIN,0,NO_WIFI_AVAILABLE,(long)self,0);
+				//#define _TEST_QUALITY_ON_GPRS_ 
+				#ifdef _TEST_QUALITY_ON_GPRS_
+				//printf("\n richable set");
+				wifiavailable = YES;
+				if(SetConnection( ltpInterfacesP,2)==0)
+				{	 
+					[spoknViewControllerP startProgress];
+					//	 [vmsviewP setcomposeStatus:1 ];
+				}	 
+				#else
+				
+				//printf("\n richable set via wwan");
+					wifiavailable = NO;
+					[self logOut:NO];
+				//logOut(ltpInterfacesP,NO);
+					SetConnection( ltpInterfacesP,0);
+				
+					alertNotiFication(ATTEMPT_GPRS_LOGIN,0,NO_WIFI_AVAILABLE,(long)self,0);
 				//[vmsviewP setcomposeStatus:1 ];
 				//wifiavailable = YES;
 				//SetConnection( ltpInterfacesP,2);
+				#endif
 			}
 			else
 			{

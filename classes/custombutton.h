@@ -30,7 +30,7 @@
 }
 -(void) CGContextAddRoundRect :(CGRect)rect :(float)radius;
 +(void)setImages:	(UIButton *)buttonObjectP
-		   image:(UIImage *)image
-	imagePressed:(UIImage *)imagePressed;
+		   image:(UIImage *)image 
+	imagePressed:(UIImage *)imagePressed   change:(int)changeB;
 
 @end

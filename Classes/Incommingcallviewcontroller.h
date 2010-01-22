@@ -24,6 +24,7 @@
 
 #import <UIKit/UIKit.h>
 #include "LtpInterface.h"
+#import "custombutton.h"
 @class SpoknAppDelegate;
 
 //IncommingCallType *ownerobject;
@@ -31,7 +32,8 @@
 	IBOutlet UILabel *incomingStatusLabelP;
 	SpoknAppDelegate *ownerobject;
 	IncommingCallType *ltpInDataP;
-
+	IBOutlet CustomButton *ansP;//ans button
+	IBOutlet CustomButton *declineP;//ans button
 	LtpInterfaceType *ltpInterfacesP;
 	//NSString *textProP;
 	NSMutableString *textProP;

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "GTokenFieldCell.h"
+@interface UIView (FindSuperview)
+
+- (UIView*)findRootViewOfClass:(Class)cls;
+
+
+@end
 
 @class GTokenFieldCell;
 
