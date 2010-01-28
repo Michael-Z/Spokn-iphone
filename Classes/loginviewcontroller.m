@@ -118,8 +118,9 @@
 	//setLtpServer("64.49.236.88");
 	[ownerobject setLoginDelegate:self];
 	loginactivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-	[loginactivityIndicator setCenter:CGPointMake(160.0f, 140.0f)];
+	[loginactivityIndicator setCenter:CGPointMake(80.0f, 140.0f)];
 	[self.view addSubview:loginactivityIndicator];
+	loginstatusLabel.hidden = YES;
 
 
 }
@@ -132,11 +133,19 @@
 -(void) startloginIndicator
 {
 	[loginactivityIndicator startAnimating];
+	loginstatusLabel.hidden = NO;
+	lineViewButton.hidden = YES;
+	usernameFieldP.hidden = YES;
+	passwordFieldP.hidden = YES;
 }
 
 -(void) stoploginIndicator
 {
 	[loginactivityIndicator stopAnimating];	
+	loginstatusLabel.hidden = YES;
+	lineViewButton.hidden = NO;
+	usernameFieldP.hidden = NO;
+	passwordFieldP.hidden = NO;
 }
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

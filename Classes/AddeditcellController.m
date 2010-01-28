@@ -134,16 +134,71 @@ NSLog(@"\nSave123");
 		}	
 	}
 }
--(void)setData:/*out parameter*/(char *)lvalueCharP value:(char*)fieldP placeHolder:(char*)lplaceHolderP/*out parameter*/returnValue:(int *)lreturnP;
+-(void)setData:/*out parameter*/(char *)lvalueCharP value:(char*)fieldP placeHolder:(char*)lplaceHolderP title:(char*)titleP/*out parameter*/returnValue:(int *)lreturnP
 
 
 {
 		
 	rvalueCharP = lvalueCharP;
 	returnP = lreturnP;
+	//char titleChar[80];
 	StringP = [[NSString alloc] initWithUTF8String:lvalueCharP];
-	typeP = [[NSString alloc] initWithUTF8String:fieldP];
+	//typeP = [[NSString alloc] initWithUTF8String:fieldP];
+	titleStrP = [[NSString alloc] initWithUTF8String:titleP];
 	placeHolderP = [[NSString alloc] initWithUTF8String:lplaceHolderP];
+	if(strcasestr(titleP,"email"))
+	{
+		typeP = [[NSString alloc] initWithUTF8String:"Type valid email address"];
+		exampleStrP = [[NSString alloc] initWithUTF8String:"Example : mukesh.s@geodesic.com"];
+	}
+	else
+	{
+		if(strcasestr(titleP,"Name"))
+		{
+			typeP = [[NSString alloc] initWithUTF8String:"Enter name"];
+			exampleStrP = [[NSString alloc] initWithUTF8String:""];
+
+		}
+		else
+		{	
+			typeP = [[NSString alloc] initWithUTF8String:"Type a 7-digit Spokn ID or phone number with the country code "];
+			exampleStrP = [[NSString alloc] initWithUTF8String:"Example : 1 847 425 5380"];
+		}	
+	}
+/*	if(strcasestr(lplaceHolderP,"email"))
+	{
+		placeHolderP = [[NSString alloc] initWithUTF8String:"email"];
+		sprintf(titleChar,"%s Email",titleP);
+		
+	}
+	else
+	{
+		if(strcasestr(lplaceHolderP,"first"))
+		{
+			placeHolderP = [[NSString alloc] initWithUTF8String:"Name"];
+			//sprintf(titleChar,"%s Name",titleP);
+			strcpy(titleChar,titleP);
+		
+		}
+		else
+		{
+			placeHolderP = [[NSString alloc] initWithUTF8String:"Phone"];
+			if(strcasestr(titleP,"forward")==0)
+			{	
+				sprintf(titleChar,"%s Phone",titleP);
+			}
+			else
+			{
+				strcpy(titleChar,titleP);
+			}
+		}
+		
+	}
+	titleStrP = [[NSString alloc] initWithUTF8String:titleChar];
+	NSLog(@"title %@     %s",titleStrP,lplaceHolderP);
+*/	self.title = titleStrP;
+	
+	
 	
 }
 - (void)viewDidLoad {
@@ -162,7 +217,7 @@ NSLog(@"\nSave123");
 											 selector:@selector(handleTextFieldChanged:)
 												 name:UITextFieldTextDidChangeNotification
 											   object:txtField];
-	
+	self.title = titleStrP;
 }
 
 - (void) handleTextFieldChanged:(id)sender
@@ -197,9 +252,11 @@ NSLog(@"\nSave123");
 	}
 	self.navigationItem.rightBarButtonItem.enabled = NO;
 	headLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	footerLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	
 	[headLabelP setText:typeP];
+	[footerLabelP setText:exampleStrP];
 	
 
 }	
@@ -218,6 +275,16 @@ NSLog(@"\nSave123");
 	headLabelP.numberOfLines = 2;
 	self.tableView.tableHeaderView = headLabelP;
 	[headLabelP release];
+	
+	//CGRect LabelFrame2 = CGRectMake(0, 5, 320, 60);
+	footerLabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
+	footerLabelP.textAlignment = UITextAlignmentCenter;
+	footerLabelP.tag = 2;
+	footerLabelP.numberOfLines = 2;
+	self.tableView.tableFooterView = footerLabelP;
+	[footerLabelP release];
+	
+	
 	self->shiftRootB  = false;
 	keyboardtype = UIKeyboardTypePhonePad;
 	fieldRangeInt = NUMBER_RANGE;
@@ -245,7 +312,7 @@ NSLog(@"\nSave123");
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 50;
+	return 60;
 	
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -290,7 +357,7 @@ NSLog(@"\nSave123");
 				switch(row)
 				{
 					case(0):
-						txtField = [[UITextField alloc] initWithFrame:CGRectMake(20.0f, self.tableView.rowHeight/3, 280.0f, 50.0f)];
+						txtField = [[UITextField alloc] initWithFrame:CGRectMake(20.0f, self.tableView.rowHeight/3, 280.0f, 70.0f)];
 						txtField.delegate = self;
 						[cell.contentView addSubview:txtField]; 
 						[txtField becomeFirstResponder];
@@ -303,6 +370,7 @@ NSLog(@"\nSave123");
 						{	
 							txtField.text =StringP;
 						}
+						txtField.font = [UIFont systemFontOfSize:30];
 						//else
 						//{
 							//txtField.text = @"";
@@ -359,6 +427,8 @@ NSLog(@"\nSave123");
 }
 
 - (void)dealloc {
+	[exampleStrP release];
+	[titleStrP release];
 	[placeHolderP release];
 	//[headLabelP release];
 	//[txtField release];

@@ -36,12 +36,15 @@
 	
 	UITextField* txtField;
 	UILabel *headLabelP;
+	UILabel *footerLabelP;
 	SpoknAppDelegate *ownerobject;
 	//struct AddressBook *addressDataP;
 	Boolean editable;
 	NSString *StringP;
 	NSString *typeP;
+	NSString *titleStrP;
 	NSString *placeHolderP;
+	NSString *exampleStrP;
 	int contactID;
 	int *returnP;
 	char *rvalueCharP;
@@ -52,7 +55,7 @@
 	int buttonType;
 		
 }
--(void)setData:/*out parameter*/(char *)valueCharP value:(char*)fieldP placeHolder:(char*)placeHolderP/*out parameter*/returnValue:(int *)returnP;
+-(void)setData:/*out parameter*/(char *)lvalueCharP value:(char*)fieldP placeHolder:(char*)lplaceHolderP title:(char*)titleP/*out parameter*/returnValue:(int *)lreturnP;
 -(IBAction)cancelPressed;
 -(IBAction)savePressed;
 -(void)setObject:(id) object;

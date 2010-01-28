@@ -208,7 +208,7 @@
 {
 	struct AddressBook *addressP;
 	void *objP;
-	char *typeCallP = "unknown";
+	char *typeCallP = 0;//"unknown";
 	char *objStrP=0;
 	char *secObjStrP = 0;
 	struct tm *tmP=0;
@@ -289,13 +289,7 @@
 							objStrP = addressBookNameP;
 						}
 					}	
-					
-					
-					
-					
 				}
-				
-				
 			}		
 		}
 		timeP = cdrP->date;
@@ -416,7 +410,14 @@
 			{
 				dispP.width = 100;
 			}
-			dispP.height = 60;
+			if(typeCallP)
+			{	
+				dispP.height = 60;
+			}	
+			else
+			{
+				dispP.height = 100;
+			}
 			if((cdrP->direction & CALLTYPE_IN) && (cdrP->direction & CALLTYPE_MISSED))
 			{	
 				dispP.colorP = [UIColor colorWithRed:187/255.0 green:25/255.0 blue:25/255.0 alpha:1.0];//[UIColor redColor];
@@ -445,7 +446,7 @@
 			{	
 				dispP = [ [displayData alloc] init];
 				dispP.left = 15;
-				dispP.top = 0;
+				dispP.top = 3;
 				dispP.width = 27;
 				dispP.textAlignmentType = UITextAlignmentRight;
 				dispP.height = 100;
@@ -459,23 +460,25 @@
 				
 				// [cell setNeedsDisplay];
 			}	
-			
-			dispP = [ [displayData alloc] init];
-			dispP.left = 15;
-			dispP.top = 2;
-			dispP.width = 70;
-			dispP.row = 1;
-			dispP.height = 40;
-			stringStrP = [[NSString alloc] initWithUTF8String:typeCallP ];
-			dispP.dataP = stringStrP;
-			[stringStrP release];
-			dispP.colorP = [UIColor lightGrayColor];
-			
-			dispP.fntSz = 14;
-			[dispP.colorP release];
-					
-			dispP.showOnEditB = true;
-			[secLocP->elementP addObject:dispP];
+			if(typeCallP)
+			{	
+				dispP = [ [displayData alloc] init];
+				dispP.left = 15;
+				dispP.top = 2;
+				dispP.width = 70;
+				dispP.row = 1;
+				dispP.height = 40;
+				stringStrP = [[NSString alloc] initWithUTF8String:typeCallP ];
+				dispP.dataP = stringStrP;
+				[stringStrP release];
+				dispP.colorP = [UIColor lightGrayColor];
+				
+				dispP.fntSz = 14;
+				[dispP.colorP release];
+						
+				dispP.showOnEditB = true;
+				[secLocP->elementP addObject:dispP];
+			}	
 			if(sectionPP==0)
 			{	
 				[self->cellofcalllogP addObject:secLocP];	
@@ -769,7 +772,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	
 	 */
-	//printf("\n call end ");
+	printf("\n calllog  rloaded  ");
 	
 	[ self->tableView reloadData ];
 	
@@ -937,7 +940,7 @@ cancelButtonTitle: nil
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
-	[self->fontGloP release];
+	//[self->fontGloP release];
 }
 
 

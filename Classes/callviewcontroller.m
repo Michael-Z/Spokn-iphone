@@ -72,21 +72,23 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	//[ownerobject setStatusBarStyle:UIStatusBarStyleBlackTranslucent animation:NO];
+	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleBlackTranslucent;
 	SetSpeakerOnOrOff(0,false);
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
-	callnoLabelP.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lcd_top_call.png"]];
-
+	callnoLabelP.backgroundColor = [UIColor clearColor];
+	[ callnoLabelP setOpaque:YES];
 	[self.view setBackgroundColor:[[[UIColor alloc] 
-									 initWithPatternImage:[UIImage defaultDesktopImage]]
+									 initWithPatternImage:[UIImage imageNamed:@"spokncall.png"]]
 									autorelease]];
 	[self->viewMenuP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	[self->viewKeypadP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	//callnoLabelP.numberOfLines = 2;
 	[callnoLabelP setText:labelStrP];
 	[callTypeLabelP setText:labeltypeStrP];
+	callTypeLabelP.backgroundColor = [UIColor clearColor];
 	
-	callTypeLabelP.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"lcd_top_call.png"]];
 
 	self->viewKeypadP.hidden = YES;
 	self->hideKeypadButtonP.hidden = YES;
@@ -187,6 +189,7 @@
 	}
 	else
 	{
+		printf("\n dismissModalViewControllerAnimated view");
 		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 
 	}
@@ -378,6 +381,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 
 - (void)dealloc {
+	[ownerobject playcallendTone];
 	//SetSpeakerOnOrOff(0,true);
 	printf("\n call view dealloc");
 	[labelStrP release];

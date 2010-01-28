@@ -38,6 +38,9 @@
 	IBOutlet UITextField*usernameFieldP;
 	IBOutlet UITextField *passwordFieldP;
 	IBOutlet UIButton *spoknButtonP;
+	IBOutlet UIButton *mainViewButton;
+	IBOutlet UIButton *lineViewButton;
+	IBOutlet UILabel *loginstatusLabel;
 	//LtpTimer *ltpTimerP;
 	SpoknAppDelegate * ownerobject;
 	LtpInterfaceType *ltpInterfacesP;

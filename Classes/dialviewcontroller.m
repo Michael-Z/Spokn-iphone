@@ -869,7 +869,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 					//dont get panic it will release in handleCallTimerend
 					calltimerP = nil;
 					timecallduration = -1;
-					[ownerobject playcallendTone];
+					
 				}	
 				//timecallduration = time(0);
 				

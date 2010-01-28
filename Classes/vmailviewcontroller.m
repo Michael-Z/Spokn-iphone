@@ -520,8 +520,8 @@
 			}	
 			else
 			{
-				dispP.height = 50;
-				dispP.top = 6;	
+				dispP.height = 80;
+				dispP.top = 3;	
 			}	
 		/*	if (vmailP->direction == VMAIL_OUT) 
 			{
@@ -596,7 +596,7 @@
 				dispP.top = 5;
 				dispP.width = 25;
 				dispP.textAlignmentType = UITextAlignmentRight;
-				dispP.height = 70;
+				dispP.height = 90;
 				if(vmailP->status==VMAIL_FAILED)
 				{
 					dispP.colorP = [UIColor colorWithRed:187/255.0 green:25/255.0 blue:25/255.0 alpha:1.0];
@@ -1191,13 +1191,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }
 
 - (void)viewDidUnload {
-	[activeImageP release];
-	[dileverImageP release];
-	[failedImageP release];
-	[vnewImageP release];
-	[readImageP release];
-	[vnewoutImageP release];
-	// Release any retained subviews of the main view.
+		// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
 - (void) doRefresh
@@ -1206,6 +1200,13 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }
 
 - (void)dealloc {
+	[activeImageP release];
+	[dileverImageP release];
+	[failedImageP release];
+	[vnewImageP release];
+	[readImageP release];
+	[vnewoutImageP release];
+	
 	//printf("\n vmail dealloc");
     [super dealloc];
 }

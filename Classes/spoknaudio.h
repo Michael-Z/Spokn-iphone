@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-#define DEFAULT_VOLUME 1.0
+#define DEFAULT_VOLUME 0.5
 @interface SpoknAudio : NSObject {
 	AVAudioPlayer *playP;
 

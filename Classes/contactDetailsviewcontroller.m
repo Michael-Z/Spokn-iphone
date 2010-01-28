@@ -55,6 +55,12 @@
 	objStrP = sectionArray[lsection].dataforSection[row].nameofRow;
 	secObjStrP = sectionArray[lsection].dataforSection[row].elementP;
 	//printf("\n %s %s",objStrP,secObjStrP);
+	if(objStrP==0 || strlen(objStrP)==0)
+	{
+		objStrP = secObjStrP;
+		secObjStrP = 0;
+	}
+	
 	
 	{
 				
@@ -81,11 +87,29 @@
 			}
 			
 			dispP.height = 50;
+			if(secObjStrP)
+			{	
+				dispP.colorP = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
+				dispP.fntSz = 14;
+			}
+			else
+			{
+				if(noNameB)
+				{	
+					dispP.colorP =[[UIColor lightGrayColor] autorelease]; 
+					objStrP = "First Last";
+					dispP.boldB = NO;
+				}
+				else
+				{	
+					dispP.colorP = [[UIColor blackColor] autorelease];
+					dispP.boldB = YES;
+				}	
+				dispP.fntSz = 30;
+				//dispP.height = 60;
+			}
 			
-			dispP.colorP = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
 			
-			dispP.fntSz = 14;
-			dispP.boldB = YES;
 			//dispP.fontP =  [self->fontGloP fontWithSize:16];
 			//[dispP.fontP retain];
 			//[dispP.fontP release];
@@ -101,7 +125,7 @@
 				dispP = [ [displayData alloc] init];
 				dispP.left = 0;
 				dispP.top = 0;
-				dispP.width = 60;
+				dispP.width = 56;
 				dispP.textAlignmentType = UITextAlignmentRight;
 				dispP.height = 70;
 				stringStrP = [[NSString alloc] initWithUTF8String:secObjStrP ];
@@ -179,17 +203,18 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 {
 	
-//	//printf("\n%d",buttonIndex);
-	if(buttonIndex==0)
+	//printf("\n%d",buttonIndex);
+	if(buttonIndex==0 && showAlertB==NO)
 	{	
 		if(retValP)
 		{	
 			*retValP = 2;//mean delete
+			[ownerobject refreshallViews];
 		}
 	
 		[ [self navigationController] popToRootViewControllerAnimated:YES ];
 	}
-	
+	showAlertB = NO;
 	//[alertView release];
 }
 
@@ -204,10 +229,13 @@
 		
 		if(callActionSheetB)
 		{
-			[[self navigationController]  popViewControllerAnimated:YES];
+			//
 			//printf("\nname %s\n",stringSelected[buttonIndex]);
-			[self->ownerobject makeCall:stringSelected[buttonIndex]];
-			[self->ownerobject changeView];
+			if([self->ownerobject makeCall:stringSelected[buttonIndex]]==YES)
+			{	
+				//[[self navigationController]  popViewControllerAnimated:YES];
+				[self->ownerobject changeView];
+			}	
 		 
 		}
 		else
@@ -305,7 +333,7 @@
 		
 			if(strlen(addressDataP->spoknid)>0)
 			{		
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "Spokn",addressDataP->spoknid] ];
+				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "spokn",addressDataP->spoknid] ];
 				stringSelected[i++] = addressDataP->spoknid;
 			}	
 
@@ -426,11 +454,48 @@
 			
 		
 	}
-	[uiActionSheetP addButtonWithTitle:@"Cancel"];
-	stringSelected[i++] = 0;
-	uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-	[uiActionSheetP showInView:[ownerobject tabBarController].view];
 	
+	switch(i)
+	{
+		case 0://no element found
+			[uiActionSheetP release];
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn" 
+															message:_NO_NUMBER_IN_CONTACT_
+														   delegate:self 
+												  cancelButtonTitle:nil 
+												  otherButtonTitles:@"OK", nil];
+			[alert show];
+			[alert release];
+			showAlertB = YES;
+			
+			break;
+		case 1:
+			if(callActionSheetB)
+			{
+				//
+				//printf("\nname %s\n",stringSelected[buttonIndex]);
+				if([self->ownerobject makeCall:stringSelected[0]]==YES)
+				{	
+					//[[self navigationController]  popViewControllerAnimated:YES];
+					[self->ownerobject changeView];
+				}	
+				
+			}
+			else
+			{
+				// NSLog(nsNumberP);
+				////printf("\n%s",callNoP);
+				[ownerobject vmsShowRecordScreen:stringSelected[0]];
+			}
+			[uiActionSheetP release];
+			break;
+		default:
+			[uiActionSheetP addButtonWithTitle:@"Cancel"];
+			uiActionSheetP.cancelButtonIndex = i;
+			stringSelected[i++] = 0;
+			uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+			[uiActionSheetP showInView:[ownerobject tabBarController].view];
+	}
 }
 
 
@@ -447,7 +512,7 @@
 	
 	UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 													   message: [ NSString stringWithString:_CONTACT_DELETE_ ]
-													  delegate: self
+													  delegate: nil
 											 cancelButtonTitle: nil
 											 otherButtonTitles: @"OK", nil
 						  ];
@@ -467,8 +532,15 @@
 	
 	[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypeDefault :CONTACT_RANGE buttonType:0];
 	
-
-	[AddeditcellControllerviewP setData:addressDataP->title value:"Name of person" placeHolder:"First Last" returnValue:&viewResult];
+	if(viewEnum!=CONTACTADDVIEWENUM)
+	{	
+		[AddeditcellControllerviewP setData:addressDataP->title value:"Name of person" placeHolder:"First Last" title:"Edit Name" returnValue:&viewResult];
+	}
+	else
+	{
+		[AddeditcellControllerviewP setData:addressDataP->title value:"Name of person" placeHolder:"First Last" title:"Add Name" returnValue:&viewResult];
+		
+	}
 	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
 	
 	[AddeditcellControllerviewP release];
@@ -523,6 +595,7 @@
 					[ alert show ];
 					[alert release];
 					popupB = false;
+					showAlertB = YES;
 			}	
 		}
 		else
@@ -530,15 +603,33 @@
 			addrP = getContact(addressDataP->id);			
 			if(addrP)
 			{
+				
 				//printf("\n add contact");
-				strcpy(addrP->title,addressDataP->title);
-				strcpy(addrP->home,addressDataP->home);
-				strcpy(addrP->business,addressDataP->business);
-				strcpy(addrP->mobile,addressDataP->mobile);
-				strcpy(addrP->spoknid,addressDataP->spoknid);
-				strcpy(addrP->email,addressDataP->email);
-				strcpy(addrP->other,addressDataP->other);
-				addrP->dirty = true;
+				if(validName(addressDataP->title) &&(validName(addressDataP->home) || validName(addressDataP->business) || validName(addressDataP->mobile)
+														|| validName(addressDataP->spoknid)  || validName(addressDataP->email) || validName(addressDataP->other)))
+				{
+					strcpy(addrP->title,addressDataP->title);
+					strcpy(addrP->home,addressDataP->home);
+					strcpy(addrP->business,addressDataP->business);
+					strcpy(addrP->mobile,addressDataP->mobile);
+					strcpy(addrP->spoknid,addressDataP->spoknid);
+					strcpy(addrP->email,addressDataP->email);
+					strcpy(addrP->other,addressDataP->other);
+					addrP->dirty = true;
+				}
+				else
+				{
+					UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Invalid Contact" 
+																	   message: [ NSString stringWithString:_INVALID_CONTACT_ ]
+																	  delegate: self
+															 cancelButtonTitle: nil
+															 otherButtonTitles: @"OK", nil];
+					[ alert show ];
+					[alert release];
+					popupB = false;
+					showAlertB = YES;
+				
+				}
 			
 			}
 			/*if(  !(strlen(addressDataP->title)&&(strlen(addressDataP->mobile) ||  strlen(addressDataP->business)|| strlen(addressDataP->home)||  strlen(addressDataP->email)||  strlen(addressDataP->other) ||  strlen(addressDataP->spoknid))) )
@@ -720,6 +811,8 @@
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	*/
+	
+	//[changeNameButtonP setFrame:CGRectMake(55,0,250,40)];
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
 	
@@ -824,26 +917,26 @@
 					
 					if(tmP1.tm_hour<12)
 					{	
-						sprintf(s1,"%02d:%02d AM on  %02d %3s %d",(tmP1.tm_hour)?tmP1.tm_hour:12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
+						sprintf(s1,"   %02d:%02d AM on  %02d %3s %d",(tmP1.tm_hour)?tmP1.tm_hour:12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
 					}
 					else
 					{	
-						sprintf(s1,"%02d:%02d PM on  %02d %3s %d",(tmP1.tm_hour-12)?(tmP1.tm_hour-12):12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
+						sprintf(s1,"   %02d:%02d PM on  %02d %3s %d",(tmP1.tm_hour-12)?(tmP1.tm_hour-12):12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
 					}
 					if(cdrP->direction&CALLTYPE_IN)
 					{	
 						if(cdrP->direction&CALLTYPE_MISSED)
 						{	
-							[msgLabelP setText:[NSString stringWithFormat:@"Incoming call\n%s", s1]];
+							[msgLabelP setText:[NSString stringWithFormat:@"   Incoming call\n%s", s1]];
 						}	
 						else
 						{
-							[msgLabelP setText:[NSString stringWithFormat:@"Incoming call\n%s", s1]];
+							[msgLabelP setText:[NSString stringWithFormat:@"   Incoming call\n%s", s1]];
 						}
 					}
 					else
 					{
-						[msgLabelP setText:[NSString stringWithFormat:@"Outgoing call\n%s", s1]];
+						[msgLabelP setText:[NSString stringWithFormat:@"   Outgoing call\n%s", s1]];
 					}
 					
 				}	
@@ -1007,57 +1100,90 @@
 	int row = [indexPath row];
 	int section = [indexPath section];
 	sectionType *secLocP;
-	NSString *CellIdentifier = [[NSString alloc] initWithUTF8String:"any cell"];
+	char*tmpCellP =0;
+	if(sectionArray[section].dataforSection[row].customViewP)
+	{
+		tmpCellP = "any-cell";
+	}
+	else
+	{
+		tmpCellP = "any-cell1";
+	}
+	
+	NSString *CellIdentifier = [[NSString alloc] initWithUTF8String:tmpCellP];
+	
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell *) [ tableView dequeueReusableCellWithIdentifier: CellIdentifier ];
 	if (cell == nil) {
 		
 		//	secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
 		//	if(secLocP)
 		{	
-			CGRect cellRect = CGRectMake(0, 0, 320, 50);
 			
-			cell = [ [ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
-			//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
-			[self addRow:section :row sectionObject:&secLocP];
-			[cell setAutoResize:YES];
+			if(sectionArray[section].dataforSection[row].customViewP)
+			{
+				cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+				
+				
+				[cell.contentView addSubview:sectionArray[section].dataforSection[row].customViewP];
+				[sectionArray[section].dataforSection[row].customViewP release];
+				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+			}
+			else
+			{	
+				CGRect cellRect = CGRectMake(0, 0, 320, 50);
+				cell = [ [ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
+				//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
+				[self addRow:section :row sectionObject:&secLocP];
+				[cell setAutoResize:YES];
+			}	
 			
 		}	
 	}	
 	else
 	{	
-		secLocP = cell.spoknSubCellP.userData;
-		[secLocP release];
+		if(sectionArray[section].dataforSection[row].customViewP==0)
+		{	
+			secLocP = cell.spoknSubCellP.userData;
+			[secLocP release];
 		
-		[self addRow:section :row sectionObject:&secLocP];
+			[self addRow:section :row sectionObject:&secLocP];
 		//secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
+		}	
 	}
-	if(secLocP)
+	if(sectionArray[section].dataforSection[row].customViewP==0)
 	{	
-		cell.spoknSubCellP.userData = secLocP;
-		cell.spoknSubCellP.dataArrayP = secLocP->elementP;
+		if(secLocP)
+		{	
+			cell.spoknSubCellP.userData = secLocP;
+			cell.spoknSubCellP.dataArrayP = secLocP->elementP;
+		}
+		else
+		{
+			cell.spoknSubCellP.userData = 0;
+			cell.spoknSubCellP.dataArrayP = 0;
+			
+		}
+		
+		cell.spoknSubCellP.ownerDrawB = true;
+		cell.spoknSubCellP.rowHeight = MAX_ROW_HIGHT;
+		[cell.spoknSubCellP setNeedsDisplay];
+		if(editableB)
+		{
+			//	cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;//UITableViewCellAccessoryDetailDisclosureButton; 
+			//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			//cell.hidesAccessoryWhenEditing = NO;
+			cell.accessoryType = UITableViewCellAccessoryNone;
+		}
+		else
+		{
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			//cell.editingAccessoryType = UITableViewCellAccessoryNone;//UITableViewCellAccessoryDetailDisclosureButton; 
+			
+		}
 	}
 	else
 	{
-		cell.spoknSubCellP.userData = 0;
-		cell.spoknSubCellP.dataArrayP = 0;
-		
-	}
-	
-	cell.spoknSubCellP.ownerDrawB = true;
-	cell.spoknSubCellP.rowHeight = MAX_ROW_HIGHT;
-	[cell.spoknSubCellP setNeedsDisplay];
-	if(editableB)
-	{
-		//	cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;//UITableViewCellAccessoryDetailDisclosureButton; 
-		//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		//cell.hidesAccessoryWhenEditing = NO;
-		cell.accessoryType = UITableViewCellAccessoryNone;
-	}
-	else
-	{
-		cell.accessoryType = UITableViewCellAccessoryNone;
-		//cell.editingAccessoryType = UITableViewCellAccessoryNone;//UITableViewCellAccessoryDetailDisclosureButton; 
-		
+			cell.accessoryType = UITableViewCellAccessoryNone;
 	}
 	//cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	[CellIdentifier release];
@@ -1161,9 +1287,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		if(strstr( sectionArray[section].dataforSection[row].elementP,"@")==0)
 		{	
 			SetAddressBookDetails(ownerobject.ltpInterfacesP,addressID,recordID);
-			[self->ownerobject makeCall:sectionArray[section].dataforSection[row].elementP];
-			[self->ownerobject changeView];
-			
+			if([self->ownerobject makeCall:sectionArray[section].dataforSection[row].elementP]==YES)
+			{	
+				[self->ownerobject changeView];
+			}
+			else
+			{
+				NSIndexPath *nsP;
+				nsP = [self->tableView indexPathForSelectedRow];
+				if(nsP)
+				{
+					[self->tableView deselectRowAtIndexPath : nsP animated:NO];
+				}
+			}
 		}	
 		else
 		{
@@ -1172,12 +1308,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	}	
 	else
 	{
+		if(strcmp(sectionArray[section].dataforSection[row].placeholder,"FirstLast")==0)
+		{
+			return [self changeNamePressed:nil];
+		}
+		
+		
 		
 		AddeditcellController     *AddeditcellControllerviewP;	
 		AddeditcellControllerviewP = [[AddeditcellController alloc]init];
 		[AddeditcellControllerviewP setObject:self->ownerobject];
 		viewResult = 0;
-		if(section==1)
+		if(section==2)
 		{
 			[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypeEmailAddress :EMAIL_RANGE buttonType:0];
 		}
@@ -1187,10 +1329,28 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			{
 				[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :SPOKN_ID_RANGE buttonType:0];
 			}
+			else
+			{
+				[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :NUMBER_RANGE buttonType:0];
+				
+				
+			}
 			
 		}
-		[AddeditcellControllerviewP setData:sectionArray[section].dataforSection[row].elementP value:sectionArray[section].dataforSection[row].nameofRow placeHolder:sectionArray[section].dataforSection[row].nameofRow returnValue:&viewResult];
-		
+		if(viewEnum!=CONTACTADDVIEWENUM)
+		{	
+			char titleChar[80];
+			sprintf(titleChar,"Edit %s",sectionArray[section].dataforSection[row].placeholder);
+			[AddeditcellControllerviewP setData:sectionArray[section].dataforSection[row].elementP value:sectionArray[section].dataforSection[row].nameofRow placeHolder:sectionArray[section].dataforSection[row].placeholder  title:titleChar returnValue:&viewResult];
+		}
+		else
+		{
+			char titleChar[80];
+			sprintf(titleChar,"Add %s",sectionArray[section].dataforSection[row].placeholder);
+			
+			[AddeditcellControllerviewP setData:sectionArray[section].dataforSection[row].elementP value:sectionArray[section].dataforSection[row].nameofRow placeHolder:sectionArray[section].dataforSection[row].placeholder title:titleChar returnValue:&viewResult];
+			
+		}
 		[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
 		[AddeditcellControllerviewP release];
 		
@@ -1247,6 +1407,15 @@ titleForHeaderInSection:(NSInteger)section
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	int row = [indexPath row];
+	int section = [indexPath section];
+	if(sectionArray[section].dataforSection[row].rowHeight)
+	{
+		return sectionArray[section].dataforSection[row].rowHeight;
+	
+	}
+	
+	
 	return MAX_ROW_HIGHT;
 	
 }
@@ -1309,6 +1478,7 @@ titleForHeaderInSection:(NSInteger)section
 			
 			sectionArray[0].dataforSection[firstSecCount].section = 0;
 			strcpy(sectionArray[0].dataforSection[firstSecCount].nameofRow,lcontactdataP->type);
+			strcpy(sectionArray[0].dataforSection[firstSecCount].placeholder,"Phone");
 			sectionArray[0].dataforSection[firstSecCount].elementP = sectionArray[0].dataforSection[firstSecCount].contactdataP->number;
 			if(!strcmp(selectNoCharP,sectionArray[0].dataforSection[firstSecCount].elementP ))
 			{
@@ -1329,6 +1499,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 			sectionArray[1].dataforSection[secondSecCount].section = 1;
 			strcpy(sectionArray[1].dataforSection[secondSecCount].nameofRow,lcontactdataP->type);
+			strcpy(sectionArray[0].dataforSection[firstSecCount].placeholder,"Email");
 			sectionArray[1].dataforSection[secondSecCount].elementP = sectionArray[1].dataforSection[secondSecCount].contactdataP->number;
 			if(!strcmp(selectNoCharP,sectionArray[1].dataforSection[secondSecCount].elementP ))
 			{
@@ -1364,43 +1535,65 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			memset(&sectionArray[i],0,sizeof(SectionContactType));
 		}
-	
-	
-		sectionArray[0].sectionView = msgLabelP;
-		sectionArray[0].sectionheight = 50;
 		
-		sectionCount = 1;
-		
+		sectionCount = 0;
 		addressDataP = malloc(sizeof(struct AddressBook)+4);//extra 4 for padding
 		memset(addressDataP,0,sizeof(struct AddressBook));
 		if(laddressDataP)
 		{
 			*addressDataP=*laddressDataP;
-		
+			
 		}
+		
+		if(leditableB)
+		{
+			sectionArray[sectionCount].dataforSection[0].section = 0;
+			strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"");
+			strcpy(sectionArray[sectionCount].dataforSection[0].placeholder,"FirstLast");
+			sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->title;
+			sectionArray[sectionCount].dataforSection[0].rowHeight = 50;
+			sectionArray[sectionCount].count++;
+			printf("\n title %s", addressDataP->title);
+			sectionCount++;
+			sectionArray[sectionCount].sectionView = msgLabelP;
+			sectionArray[sectionCount].sectionheight = 10;
+			
+		}
+		else
+		{
+			sectionArray[sectionCount].sectionView = msgLabelP;
+			sectionArray[sectionCount].sectionheight = 50;
+		}
+		
+		
+		
+		//sectionArray[sectionCount] = 1;
+		
 		if(strlen(addressDataP->home)>0)
 		{
 			//if(self->cdrP)
 				if(!strcmp(selectNoCharP,addressDataP->home ))
 				{
-					sectionArray[0].dataforSection[tablesz].selected = 1;
+					sectionArray[sectionCount].dataforSection[tablesz].selected = 1;
 				}
 			//element[tablesz++] = addressDataP->home;
-			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Home");
-			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->home;
-			sectionArray[0].count++;
+			sectionArray[sectionCount].dataforSection[tablesz].section = 0;
+			strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"home");
+			strcpy(sectionArray[sectionCount].dataforSection[tablesz].placeholder,"Phone");
+			sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->home;
+			sectionArray[sectionCount].count++;
 			tablesz++;
 		}
 		else
 		{
 			if(leditableB)
 			{
-				sectionArray[0].dataforSection[tablesz].section = 0;
-				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Home");
-				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->home;
-				sectionArray[0].count++;
-				sectionArray[0].dataforSection[tablesz].addNewB = true;
+				sectionArray[sectionCount].dataforSection[tablesz].section = 0;
+				strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"home");
+				strcpy(sectionArray[sectionCount].dataforSection[tablesz].placeholder,"Phone");
+				sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->home;
+				sectionArray[sectionCount].count++;
+				sectionArray[sectionCount].dataforSection[tablesz].addNewB = true;
 				tablesz++;
 					
 					
@@ -1411,13 +1604,14 @@ titleForHeaderInSection:(NSInteger)section
 			//if(self->cdrP)
 				if(!strcmp(selectNoCharP,addressDataP->business ))
 				{
-					sectionArray[0].dataforSection[tablesz].selected = 1;
+					sectionArray[sectionCount].dataforSection[tablesz].selected = 1;
 				}
 			//element[tablesz++] = addressDataP->business;
-			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Business");
-			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->business;
-			sectionArray[0].count++;
+			sectionArray[sectionCount].dataforSection[tablesz].section = 0;
+			strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"business");
+			strcpy(sectionArray[sectionCount].dataforSection[tablesz].placeholder,"Phone");
+			sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->business;
+			sectionArray[sectionCount].count++;
 			tablesz++;
 			
 		}
@@ -1425,11 +1619,12 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			if(leditableB)
 			{
-				sectionArray[0].dataforSection[tablesz].section = 0;
-				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Business");
-				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->business;
-				sectionArray[0].count++;
-				sectionArray[0].dataforSection[tablesz].addNewB = true;
+				sectionArray[sectionCount].dataforSection[tablesz].section = 0;
+				strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"business");
+				strcpy(sectionArray[sectionCount].dataforSection[tablesz].placeholder,"Phone");
+				sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->business;
+				sectionArray[sectionCount].count++;
+				sectionArray[sectionCount].dataforSection[tablesz].addNewB = true;
 					tablesz++;
 				
 			}
@@ -1439,13 +1634,14 @@ titleForHeaderInSection:(NSInteger)section
 			//if(self->cdrP)
 				if(!strcmp(selectNoCharP,addressDataP->mobile ))
 				{
-					sectionArray[0].dataforSection[tablesz].selected = 1;
+					sectionArray[sectionCount].dataforSection[tablesz].selected = 1;
 				}
 			//element[tablesz++] = addressDataP->mobile;
-			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Mobile");
-			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->mobile;
-			sectionArray[0].count++;
+			sectionArray[sectionCount].dataforSection[tablesz].section = 0;
+			strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"mobile");
+			strcpy(sectionArray[sectionCount].dataforSection[tablesz].placeholder,"Phone");
+			sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->mobile;
+			sectionArray[sectionCount].count++;
 			
 			tablesz++;
 		}
@@ -1453,11 +1649,12 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			if(leditableB)
 			{
-				sectionArray[0].dataforSection[tablesz].section = 0;
-				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Mobile ");
-				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->mobile;
-				sectionArray[0].count++;
-				sectionArray[0].dataforSection[tablesz].addNewB = true;
+				sectionArray[sectionCount].dataforSection[tablesz].section = 0;
+				strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"mobile ");
+				strcpy(sectionArray[sectionCount].dataforSection[tablesz].placeholder,"Phone");
+				sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->mobile;
+				sectionArray[sectionCount].count++;
+				sectionArray[sectionCount].dataforSection[tablesz].addNewB = true;
 					tablesz++;
 				
 			}
@@ -1468,24 +1665,24 @@ titleForHeaderInSection:(NSInteger)section
 			//if(self->cdrP)
 				if(!strcmp(selectNoCharP,addressDataP->other ))
 				{
-					sectionArray[0].dataforSection[tablesz].selected = 1;
+					sectionArray[sectionCount].dataforSection[tablesz].selected = 1;
 				}
 			//element[tablesz++] = addressDataP->other;
-			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Other");
-			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->other;
-			sectionArray[0].count++;
+			sectionArray[sectionCount].dataforSection[tablesz].section = 0;
+			strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"Other");
+			sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->other;
+			sectionArray[sectionCount].count++;
 			tablesz++;
 		}
 		else
 		{
 			if(leditableB)
 			{
-				sectionArray[0].dataforSection[tablesz].section = 0;
-				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Other");
-				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->other;
-				sectionArray[0].count++;
-				sectionArray[0].dataforSection[tablesz].addNewB = true;
+				sectionArray[sectionCount].dataforSection[tablesz].section = 0;
+				strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"Other");
+				sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->other;
+				sectionArray[sectionCount].count++;
+				sectionArray[sectionCount].dataforSection[tablesz].addNewB = true;
 				tablesz++;
 			
 			}
@@ -1496,12 +1693,13 @@ titleForHeaderInSection:(NSInteger)section
 			//if(self->cdrP)
 			if(!strcmp(selectNoCharP,addressDataP->spoknid ))
 			{
-				sectionArray[0].dataforSection[tablesz].selected = 1;
+				sectionArray[sectionCount].dataforSection[tablesz].selected = 1;
 			}
-			sectionArray[0].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Spokn ID");
-			sectionArray[0].dataforSection[tablesz].elementP = addressDataP->spoknid;
-			sectionArray[0].count++;
+			sectionArray[sectionCount].dataforSection[tablesz].section = 0;
+			strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"spokn");
+			strcpy(sectionArray[sectionCount].dataforSection[tablesz].placeholder,"Phone");
+			sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->spoknid;
+			sectionArray[sectionCount].count++;
 			tablesz++;
 			
 		}
@@ -1509,11 +1707,12 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			if(leditableB)
 			{
-				sectionArray[0].dataforSection[tablesz].section = 0;
-				strcpy(sectionArray[0].dataforSection[tablesz].nameofRow,"Spokn ID");
-				sectionArray[0].dataforSection[tablesz].elementP = addressDataP->spoknid;
-				sectionArray[0].count++;
-				sectionArray[0].dataforSection[tablesz].addNewB = true;
+				sectionArray[sectionCount].dataforSection[tablesz].section = 0;
+				strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"spokn");
+				strcpy(sectionArray[sectionCount].dataforSection[tablesz].placeholder,"Phone");
+				sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->spoknid;
+				sectionArray[sectionCount].count++;
+				sectionArray[sectionCount].dataforSection[tablesz].addNewB = true;
 				tablesz++;
 				
 			}
@@ -1523,6 +1722,10 @@ titleForHeaderInSection:(NSInteger)section
 			sectionCount = 0;
 			
 		}
+		else
+		{
+			sectionCount++;
+		}
 		if(strlen(addressDataP->email)>0)
 		{
 			//element[tablesz++] = addressDataP->email;
@@ -1531,15 +1734,12 @@ titleForHeaderInSection:(NSInteger)section
 				sectionArray[sectionCount].dataforSection[0].selected = 1;
 			}
 			sectionArray[sectionCount].dataforSection[0].section = 0;
-			strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"Email");
+			strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"email");
+			strcpy(sectionArray[sectionCount].dataforSection[0].placeholder,"Email");
 			sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
 			sectionArray[sectionCount].count++;
 			//tablesz++;
-			if(sectionCount)	
-				sectionCount = 2;
-			else
-				sectionCount = 1;
-			
+			sectionCount++;
 		}
 		else
 		{
@@ -1547,15 +1747,12 @@ titleForHeaderInSection:(NSInteger)section
 			{
 				//printf("\n email ");
 				sectionArray[sectionCount].dataforSection[0].section = 0;
-				strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"Email");
+				strcpy(sectionArray[sectionCount].dataforSection[0].nameofRow,"email");
+				strcpy(sectionArray[sectionCount].dataforSection[0].placeholder,"Email");
 				sectionArray[sectionCount].dataforSection[0].elementP = addressDataP->email;
 				sectionArray[sectionCount].count++;
 				sectionArray[sectionCount].dataforSection[0].addNewB = true;
-				if(sectionCount)	
-					sectionCount = 2;
-				else
-					sectionCount = 1;
-				
+				sectionCount++;
 			}
 		}
 		if(sectionCount==0)
@@ -1571,8 +1768,8 @@ titleForHeaderInSection:(NSInteger)section
 	else
 	{
 		sectionCount = 0;
-		sectionArray[0].sectionView = msgLabelP;
-		sectionArray[0].sectionheight = 50;
+		sectionArray[sectionCount].sectionView = msgLabelP;
+		sectionArray[sectionCount].sectionheight = 50;
 		if(laddressDataP)
 		{	
 			addressDataP = malloc(sizeof(struct AddressBook)+4);//extra 4 for padding
@@ -1606,7 +1803,7 @@ titleForHeaderInSection:(NSInteger)section
 	if(loadedB)
 	{
 		//printf("\n  up to");
-		nsp = [[NSString alloc] initWithUTF8String:(const char*)addressDataP->title ];
+		nsp = [[NSString alloc] initWithFormat:@" %s",(const char*)addressDataP->title ];
 		NSLog(@"%@  showB = %d",nsp,showAddButtonB);
 		
 		[userNameP setText:nsp];
@@ -1625,8 +1822,8 @@ titleForHeaderInSection:(NSInteger)section
 				self->vmsButtonP.hidden = YES;
 				self->callButtonP.hidden = YES;
 				self->addButtonP.hidden = !showAddButtonB;
-				changeNameButtonP.hidden = NO;
-				if([[userNameP text] length]==0)
+				//changeNameButtonP.hidden = NO;
+				if([[userNameP text] length]<2 )//space added in number
 				{
 				//	[userNameP setTextColor:[UIColor grayColor]];
 					[userNameP setText:@"    First Last"];
@@ -1645,7 +1842,7 @@ titleForHeaderInSection:(NSInteger)section
 			//	[changeNameButtonP addSubview:userNameP];
 				//[userNameP release];
 				//setTitle:(NSString *)title forState:(UIControlState)state
-				if(noNameB)
+				/*if(noNameB)
 				{
 					[changeNameButtonP setTitleColor:[[UIColor lightGrayColor] autorelease] forState:UIControlStateNormal];
 				}
@@ -1653,10 +1850,11 @@ titleForHeaderInSection:(NSInteger)section
 				{
 					[changeNameButtonP setTitleColor:[[UIColor blackColor] autorelease] forState:UIControlStateNormal];
 					
-				}
-				[changeNameButtonP setTitle:userNameP.text forState:UIControlStateNormal];
-				tableView.tableHeaderView = changeNameButtonP;
+				}*/
+				//[changeNameButtonP setTitle:userNameP.text forState:UIControlStateNormal];
+				//tableView.tableHeaderView = changeNameButtonP;
 				//[changeNameButtonP release];
+				tableView.tableHeaderView = nil;
 				//if(viewEnum!=CONTACTADDVIEWENUM)
 				{
 					self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
@@ -1671,7 +1869,7 @@ titleForHeaderInSection:(NSInteger)section
 				self->delButtonP.hidden = YES;
 				self->vmsButtonP.hidden = NO;
 				self->callButtonP.hidden = NO;
-				changeNameButtonP.hidden = YES;
+				//changeNameButtonP.hidden = YES;
 				self->addButtonP.hidden = !showAddButtonB;
 				tableView.tableHeaderView = userNameP;
 			//	[userNameP release];
@@ -1728,12 +1926,6 @@ titleForHeaderInSection:(NSInteger)section
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-	loadedB = false;
-	//printf("\n dealloc called");
-	if(addressDataP)
-		free(addressDataP);
-	addressDataP = 0;
 }
 
 
@@ -1751,7 +1943,7 @@ titleForHeaderInSection:(NSInteger)section
 	}	
 	
 	[titlesP release];
-	[changeNameButtonP release];
+	//[changeNameButtonP release];
 	[userNameP release];
 	[msgLabelP release];
 	if(self->cdrP)

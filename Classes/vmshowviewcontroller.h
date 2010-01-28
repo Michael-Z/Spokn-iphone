@@ -87,6 +87,8 @@ typedef enum  VMSStateType
 	int recordingStartB;
 	int doNothing;
 	int audioStartB;
+	int shiftVmailB;
+	Boolean contactFindB;
 	//(SelectedContctType *)lselectedContactP
 	
 	

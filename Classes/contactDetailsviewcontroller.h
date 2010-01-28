@@ -45,10 +45,12 @@ typedef struct DataForSection
 	int selected;
 	Boolean addNewB;
 	char nameofRow[40];
+	char placeholder[40];
 	char *secRowP;
 	char *elementP;
 	SelectedContctType *contactdataP;
 	UIView *customViewP;
+	int rowHeight;
 	
 }DataForSection;
 	
@@ -57,7 +59,7 @@ typedef struct SectionContactType
 		int count;
 		int sectionheight;
 		UIView *sectionView;
-		//int rowHeight;
+		
 		
 		DataForSection dataforSection[MAX_COUNT];
 	}SectionContactType;
@@ -83,7 +85,7 @@ typedef enum ViewTypeEnum
 	IBOutlet CustomButton  *delButtonP;
 	IBOutlet UIButton  *vmsButtonP;
 	IBOutlet UIButton  *callButtonP;
-	IBOutlet UIButton  *changeNameButtonP;
+	//IBOutlet UIButton  *changeNameButtonP;
 	IBOutlet UIButton  *addButtonP;
 	int sectionCount;
 	int tablesz;
@@ -118,6 +120,7 @@ typedef enum ViewTypeEnum
 	int addressID;
 	int recordID;
 	int numberFound;
+	int showAlertB;
 	//id<VmailProtocol> VmailProtocolP;
 	
 }

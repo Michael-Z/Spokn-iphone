@@ -374,9 +374,10 @@
 
 	
 }
+
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
-	//("\nkeyboard");
+	
 	
 	#ifdef _NO_SEARCH_MOVE_
 	CGFloat searchBarHeight = [searchbar frame].size.height;
@@ -464,8 +465,10 @@
 	
 	//Add the overlay view.
 	if(ovController == nil)
+	{	
 		ovController = [[OverlayViewController alloc] initWithNibName:@"OverlayView" bundle:[NSBundle mainBundle]];
 	
+	}
 	CGFloat width = self.view.frame.size.width;
 	CGFloat height = self.view.frame.size.height;
 
@@ -501,7 +504,17 @@
 		
 		[self reload];
 		[self->tableView insertSubview:ovController.view aboveSubview:self.parentViewController.view];
-		
+		if(firstSection>=0)
+		{	
+			NSIndexPath *nsP;
+			printf("\n record deleted %d",firstSection);
+			nsP = [NSIndexPath indexPathForRow:0 inSection:firstSection] ;
+			if(nsP)
+			{	
+				[tableView scrollToRowAtIndexPath:nsP atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+			}	
+			firstSection = -1;
+		}
 		return;
 	}
 	else
@@ -578,6 +591,46 @@ titleForHeaderInSection:(NSInteger)section
 	////////printf("\nmukesh");
 	return nil;
 }
+-(void) keyboardWillShow:(NSNotification *) note
+{
+    UITabBar *tabP;
+	if(viewDidLodadedB==false)
+	{
+		return;
+	}
+	tableframe = self->tableView.frame;
+	CGRect r  = tableframe, t;
+    [[note.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue: &t];
+	//printf("\nkey val show  %f %f %f %f",t.origin.x,t.origin.y,
+	//	   t.size.width,t.size.height);
+    r.size.height -=  t.size.height;
+	if(ownerobject.tabBarController.modalViewController==0)
+	{	
+		tabP = ownerobject.tabBarController.tabBar;//get tabbar height
+			
+		r.size.height +=tabP.frame.size.height;
+			
+	}	
+		
+	
+    self->tableView.frame = r;
+}
+
+-(void) keyboardWillHide:(NSNotification *) note
+{
+	if(viewDidLodadedB==false)
+	{
+		return;
+	}
+	//CGRect r  = self->tableView.frame, t;
+    //[[note.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue: &t];
+    //r.origin.y +=  t.size.height;
+    self->tableView.frame = tableframe;
+	//printf("\nwill hide  %f %f %f %f",self->tableView.frame.origin.x,self->tableView.frame.origin.y,
+	//   self->tableView.frame.size.width,self->tableView.frame.size.height);
+
+}
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -693,6 +746,12 @@ titleForHeaderInSection:(NSInteger)section
 													action: @selector(addContactUI) ] autorelease ];
 		
 	}
+	
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	[nc addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
+	[nc addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
+	//NSLog(@"\n size %@",self->tableView.frame);
+	//viewDidLodadedB = true;
 	[ self reload ];
 }
 - (void)viewWillDisappear:(BOOL)animated
@@ -750,6 +809,11 @@ titleForHeaderInSection:(NSInteger)section
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+	if(viewDidLodadedB==false)
+	{	
+		tableframe = self->tableView.frame;
+		viewDidLodadedB = true;
+	}	
 	if(loadedNewViewB)
 	{
 		[addressBookP release];
@@ -762,7 +826,9 @@ titleForHeaderInSection:(NSInteger)section
 		loadedNewViewB = 0;
 		
 	}
-	
+	printf("\nviewDidAppear  %f %f %f %f",self->tableView.frame.origin.x,self->tableView.frame.origin.y,
+		   self->tableView.frame.size.width,self->tableView.frame.size.height);
+
 	if(resultInt)
 	{
 		//("\nhello view deleted\n");
@@ -806,6 +872,7 @@ titleForHeaderInSection:(NSInteger)section
 		}	
 
 	}
+	/*
 	if(firstSection>=0)
 	{	
 		NSIndexPath *nsP;
@@ -820,16 +887,17 @@ titleForHeaderInSection:(NSInteger)section
 			}	
 		}	
 		firstSection = -1;
-	}	
+	}
+	 */
 	#ifdef _HIDDEN_NAVBAR
 	[self navigationController].navigationBarHidden =searchStartB;
 	#else
-		if(searchStartB)
+		/*if(searchStartB)
 		{
 			self.navigationItem.rightBarButtonItem = nil;
 		}
 		
-		
+		*/
 	#endif
 	
 	if(refreshB)
@@ -913,13 +981,13 @@ titleForHeaderInSection:(NSInteger)section
 
 
 
-/*
+
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-*/
+
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -1448,6 +1516,11 @@ titleForHeaderInSection:(NSInteger)section
 				{
 					fIndexfindInt = range.location;
 				}
+				else
+				{
+					if(range.location<fIndexfindInt)
+					fIndexfindInt = range.location;
+				}
 				setTypeP = [sectionArray objectAtIndex:range.location];
 				if(searchStrP)
 				{	
@@ -1510,7 +1583,7 @@ titleForHeaderInSection:(NSInteger)section
 		 target: self
 	    action: @selector(startEditing) ] autorelease ];	
 	}
-	printf("\n reload called");
+//	printf("\n reload called");
 	[ self->tableView reloadData ];
 	if(firstSectionP)
 	{
@@ -1692,9 +1765,6 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES; 
-}
 
 -(void)setObjType:(UAObjectType)luaObj
 {

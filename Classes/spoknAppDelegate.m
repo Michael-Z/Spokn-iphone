@@ -177,8 +177,8 @@
 
 -(void) playcallendTone
 {
-	
-	
+	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleDefault;
+	//[self setStatusBarStyle:UIStatusBarStyleDefault animation:NO];
 	NSBundle *mainBundle = [NSBundle mainBundle];
 	
 		NSString *path = [mainBundle pathForResource:@"doorbell" ofType:@"caf"];

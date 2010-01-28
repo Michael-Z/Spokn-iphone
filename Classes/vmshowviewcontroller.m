@@ -134,13 +134,20 @@
 				CGRect frame = CGRectMake(0, frameP->size.height, width, height);
 				ovController.view.frame = frame;	
 			}
+			//UILabel *labP;
+			//labP = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, width, 50)];
+			//labP.backgroundColor=[UIColor clearColor];
+			//labP.text = @"mukesh";
 		//	//printf("%f %f %f %f",ovController.view.frame.origin.x,ovController.view.frame.origin.y,ovController.view.frame.size.width,ovController.view.frame.size.height);
 			ovController.view.backgroundColor = [[UIColor clearColor] autorelease ];
-			//ovController.view.alpha = 0.5;
-	
+			[ovController.view addSubview:msgLabelP];
+			
+			[ovController.view addSubview:secondLabelP];
+			
 			ovController.rvController = self;
 			self->tableView.scrollEnabled = NO;
 			[self->tableView insertSubview:ovController.view aboveSubview:self.parentViewController.view];
+			
 		}	
 	}	
 	else
@@ -148,8 +155,12 @@
 		self->tableView.scrollEnabled = NO;
 		
 		[ovController.view removeFromSuperview];
+		
 		[ovController release];
 		ovController = nil;
+		[firstSectionviewP addSubview:msgLabelP];
+		
+		[firstSectionviewP addSubview:secondLabelP];
 		
 	}	
 
@@ -264,6 +275,7 @@
 				}
 				free(contactNumberP);
 				[self cancelClicked];//remove dialog
+				shiftVmailB = YES;
 				return;
 			}
 			free(contactNumberP);
@@ -381,7 +393,7 @@
 			
 			
 			previewPressedB = false;
-			[msgLabelP setText:@"Press on send button to send VMS "];
+			[msgLabelP setText:_VMS_RECORDING_MSG3_];
 			recordVmsB = true;
 			self->maxtimeDouble=maxTime;
 			previewButtonP.enabled  = YES;
@@ -518,6 +530,7 @@
 			[alert release];
 			return;
 		}
+		[msgLabelP setText:_VMS_RECORDING_MSG2_];
 	}
 	maxTimeLoc = maxTime;
 	
@@ -828,9 +841,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 				if(strlen(secObjStrP)>0)
 					dispP.width = 40;
 			}
-			
-			dispP.height = 50;
-			
+			if(contactFindB)
+			{	
+				dispP.height = 50;
+			}
+			else
+			{
+				dispP.height = 90;
+			}
 			dispP.colorP = [UIColor colorWithRed:40/255.0 green:108/255.0 blue:214/255.0 alpha:1.0];
 			
 			dispP.boldB = YES;
@@ -872,7 +890,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 				
 				// [cell setNeedsDisplay];
 			}	
-			if(typeCallP)
+			if(typeCallP && contactFindB)
 			{	
 				dispP = [ [displayData alloc] init];
 				dispP.left = 5;
@@ -1196,11 +1214,11 @@ id createImage(float percentage)
 			
 			if(tmP1.tm_hour<12)
 			{	
-				sprintf(s1,"%02d:%02d AM on  %02d %3s %d",(tmP1.tm_hour)?tmP1.tm_hour:12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
+				sprintf(s1,"%02d:%02d AM on %02d %3s %d",(tmP1.tm_hour)?tmP1.tm_hour:12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
 			}
 			else
 			{	
-				sprintf(s1,"%02d:%02d PM on  %02d %3s %d",(tmP1.tm_hour-12)?(tmP1.tm_hour-12):12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
+				sprintf(s1,"%02d:%02d PM on %02d %3s %d",(tmP1.tm_hour-12)?(tmP1.tm_hour-12):12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
 			}
 			if(vmailP->direction==VMAIL_IN)
 			{	
@@ -1292,7 +1310,7 @@ id createImage(float percentage)
 		tableView.tableHeaderView =  pickerviewcontrollerviewP.view;
 		if(recordVmsB==false)
 		{	
-			[msgLabelP setText:@"Press the record button to record a\n20 second long VMS "];
+			[msgLabelP setText:_VMS_RECORDING_MSG1_];
 			[secondLabelP setText:[NSString stringWithFormat:@"%d", self->maxTime]];
 			previewButtonP.enabled  = NO;
 			sendButtonP.enabled  = NO;
@@ -1391,7 +1409,7 @@ id createImage(float percentage)
 	[ownerobject setVmsDelegate:self];
 	if(vmstateType==VMSStateRecord)
 	{
-		[self setTitle:@"New VMS"];
+		[self setTitle:@"Record VMS"];
 	}
 	else
 	{	
@@ -1427,6 +1445,8 @@ id createImage(float percentage)
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
+	
+	
 	printf("\n view will disappear \n") ;
 	
 }	
@@ -1568,6 +1588,12 @@ id createImage(float percentage)
 	typeCharP = malloc(strlen(ltypeCharP)+4);
 	strcpy(typeCharP,ltypeCharP);
 	vmailP = 0;
+	contactFindB = 1;
+	if(strcmp(lnoCharP, lnameCharP)==0)
+	{
+		contactFindB = 0;
+	
+	}
 	if(lvmailP)
 	{
 		vmailP = malloc(sizeof(struct VMail)+4);
@@ -1672,11 +1698,14 @@ id createImage(float percentage)
 	printf("\n view will unloaded");
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
-	[ownerobject setVmsDelegate:nil];
 }
 
 
 - (void)dealloc {
+	if(shiftVmailB)
+	{	
+		ownerobject.tabBarController.selectedViewController =ownerobject.vmsNavigationController;
+	}
 	printf("\n dealoc called");
 	//[super dealloc];
 	//return;
@@ -1694,10 +1723,12 @@ id createImage(float percentage)
 		{
 			[ownerobject vmsStop:false];
 		}
+		nsTimerP =nil;
 	}
 	if(fileNameCharP)
 	{
 		free(fileNameCharP);
+		fileNameCharP = 0;
 	}
 	if(selectP)
 	{
@@ -1713,6 +1744,15 @@ id createImage(float percentage)
 	free(typeCharP);
 	if(vmailP)
 		free(vmailP);	
+	
+	ownerobject = 0;
+	noCharP = 0;
+	nameCharP = 0;
+	typeCharP = 0;
+	vmailP = 0;
+	[super dealloc];
+	//self = nil;
+	
 	
     
 }

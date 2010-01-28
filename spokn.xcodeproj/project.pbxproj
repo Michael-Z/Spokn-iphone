@@ -353,6 +353,8 @@
 		8B964B2A10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */; };
 		8B964B2B10CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */; };
 		8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */; };
+		8B98C08C1110369F0031AE6F /* spokncall.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B98C08B1110369F0031AE6F /* spokncall.png */; };
+		8B98C08D1110369F0031AE6F /* spokncall.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B98C08B1110369F0031AE6F /* spokncall.png */; };
 		8B9929E410A5679600EBD16F /* TB-VMS.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9929E110A5679600EBD16F /* TB-VMS.png */; };
 		8B9929E510A5679600EBD16F /* TB-Spokn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9929E210A5679600EBD16F /* TB-Spokn.png */; };
 		8BA08A1110BFC27C00ED19B7 /* doorbell.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8BA08A1010BFC27C00ED19B7 /* doorbell.caf */; };
@@ -626,10 +628,11 @@
 		8B964B2210CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-arm-apple-darwin9.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B98C08B1110369F0031AE6F /* spokncall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spokncall.png; sourceTree = "<group>"; };
 		8B9929E110A5679600EBD16F /* TB-VMS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-VMS.png"; sourceTree = "<group>"; };
 		8B9929E210A5679600EBD16F /* TB-Spokn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB-Spokn.png"; sourceTree = "<group>"; };
 		8BA08A1010BFC27C00ED19B7 /* doorbell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = doorbell.caf; sourceTree = "<group>"; };
-		8BA08A7410BFC94000ED19B7 /* gling.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gling.caf; sourceTree = "<group>"; };
+		8BA08A7410BFC94000ED19B7 /* gling.caf */ = {isa = PBXFileReference; lastKnownFileType = text; path = gling.caf; sourceTree = "<group>"; };
 		8BA08AE310BFD32D00ED19B7 /* spoknLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spoknLogo.png; sourceTree = "<group>"; };
 		8BA8E39E1027EF800022801E /* addeditcontactviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addeditcontactviewcontroller.h; sourceTree = "<group>"; };
 		8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addeditcontactviewcontroller.m; sourceTree = "<group>"; };
@@ -1182,6 +1185,7 @@
 		F2730CAF1070A9B300DF8852 /* rsc */ = {
 			isa = PBXGroup;
 			children = (
+				8B98C08B1110369F0031AE6F /* spokncall.png */,
 				8B0F407A1109E08D0037E60A /* answer_call_pressed.png */,
 				8B0F407B1109E08D0037E60A /* decline_pressed.png */,
 				8B0F407C1109E08D0037E60A /* delete_small_pressed.png */,
@@ -1462,6 +1466,7 @@
 				8B0F40861109E08D0037E60A /* delete_small_pressed.png in Resources */,
 				8B0F40871109E08D0037E60A /* End_Call_pressed.png in Resources */,
 				8B0F40881109E08D0037E60A /* hide_pressed.png in Resources */,
+				8B98C08D1110369F0031AE6F /* spokncall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1583,6 +1588,7 @@
 				8B0F40811109E08D0037E60A /* delete_small_pressed.png in Resources */,
 				8B0F40821109E08D0037E60A /* End_Call_pressed.png in Resources */,
 				8B0F40831109E08D0037E60A /* hide_pressed.png in Resources */,
+				8B98C08C1110369F0031AE6F /* spokncall.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2104,10 +2110,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -2123,8 +2129,8 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6B02C5FB-0C09-4C96-9840-186CF451BAC8";
+				PROVISIONING_PROFILE = "E51B5C06-C101-42F4-A731-7366DBABEC12";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E51B5C06-C101-42F4-A731-7366DBABEC12";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;
@@ -2139,7 +2145,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = 4.2;
 				INFOPLIST_FILE = "spokn-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

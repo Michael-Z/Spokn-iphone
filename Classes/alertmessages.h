@@ -35,6 +35,9 @@
 #define _DELETE_CALL_LOG_ @"Are you sure you want to delete calllog?"
 #define _VMS_SENT_ @"VMS sent successfuly."
 #define _VMS_SENDING_FAILED_ @"VMS sending failed."
+#define _VMS_RECORDING_MSG1_ @"Press the record button to record a\n20 second long VMS. "
+#define _VMS_RECORDING_MSG2_ @"Press the stop button to finish recording."
+#define _VMS_RECORDING_MSG3_ @"Press the preview button to listen the message or press the send button to send the message."
 #define _EMPTY_NUMBER_ @"Number field should not be empty."
 #define _DELETE_VMS_ @"Are you sure you want to delete this voice mail?"
 #define _NO_VMS_PLAY_ @" can not play vms"
@@ -44,7 +47,7 @@
 #define _NO_WIFI_ @"Wi-Fi not available"
 #define _NO_MICROPHONE_ @"No Microphone Available"
 #define _USER_OFFLINE_ @"User not online"
-
+#define _NO_NUMBER_IN_CONTACT_ @"no number in contact"
 
 
 #endif

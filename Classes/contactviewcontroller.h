@@ -68,10 +68,13 @@
 	int resultInt;
 	int firstSection;	
 	CGRect gframe;
+	CGRect tableframe;
 	Boolean searchStartB;
 	UIView *mainViewP;
 	int loadedNewViewB;
 	int refreshB;
+	int viewDidLodadedB;
+	
 	//NSArray *sectionNSArrayP;
 	#ifdef _NEW_ADDRESS_BOOK_
 		ABPeoplePickerNavigationController *addressBookP;

@@ -86,7 +86,7 @@
 		strcpy(forwardNoCharP,forwordCharP);
 	}
 	
-	[AddeditcellControllerviewP setData:forwardNoCharP value:"Enter forward number." placeHolder:"Enter forward number." returnValue:&viewResult];
+	[AddeditcellControllerviewP setData:forwardNoCharP value:"Enter forward number." placeHolder:"Number" title:"Forward Number" returnValue:&viewResult];
 	
 	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
 	
@@ -146,6 +146,7 @@
 		labelForword = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelForword.textAlignment = UITextAlignmentRight;
 		labelForword.tag = 4;
+		LabelFrame2.size.width+=10;
 		labelSpoknNo = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelSpoknNo.textAlignment = UITextAlignmentRight;
 		labelSpoknNo.tag = 5;
@@ -153,7 +154,7 @@
 		labelSpoknID.textAlignment = UITextAlignmentRight;
 		labelSpoknID.tag = 6;
 		
-		switchView = [[UISwitch alloc] initWithFrame: CGRectMake(210.0f, 10, 20.0f, 28.0f)]; 
+		switchView = [[UISwitch alloc] initWithFrame: CGRectMake(200.0f, 10, 30.0f, 28.0f)]; 
 		[switchView setTag:3]; 
 		[switchView addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
 		activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
@@ -248,7 +249,7 @@
 	//self->tableView.backgroundColor = [UIColor whiteColor];
 	
 	UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 74.0f)];
-	[buttonCtlP setFrame:CGRectMake(60,0,200,40)];
+	[buttonCtlP setFrame:CGRectMake(7,0,306,40)];
 	[subview addSubview:buttonCtlP];
 	[buttonCtlP release];
 	self->tableView.tableFooterView = subview;
@@ -536,7 +537,16 @@ titleForHeaderInSection:(NSInteger)section
 	
 	if(spoknCharP)
 	{	
-		stringStrP = [[NSString alloc] initWithUTF8String:spoknCharP ];
+		
+		if(strlen(spoknCharP)>0)
+		{
+			stringStrP = [[NSString alloc] initWithFormat:@"+%s",(const char*)spoknCharP ];
+
+		}
+		else
+		{	
+			stringStrP = [[NSString alloc] initWithUTF8String:spoknCharP ];
+		}	
 		[labelSpoknNo setText:stringStrP];
 		[stringStrP release];
 	}
@@ -566,7 +576,7 @@ titleForHeaderInSection:(NSInteger)section
 	static NSString *CellIdentifier = @"Cell";
     UILabel *label1;
 	UILabel *label2;
-	printf("\nmystatus %d",statusInt);
+	//printf("\nmystatus %d",statusInt);
 	NSArray *mycell = [[[listOfItems objectAtIndex:section] objectAtIndex:row] componentsSeparatedByString:@"\n"];
 	NSString *temp =[mycell objectAtIndex:0];
 	

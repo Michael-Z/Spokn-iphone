@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="6"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -89,7 +89,10 @@
 							<double key="NSSize">1.700000e+01</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<reference key="IBUITextColor" ref="817511073"/>
+						<object class="NSColor" key="IBUITextColor" id="977154895">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwIDAAA</bytes>
+						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">1.000000e+01</float>
@@ -114,7 +117,7 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<string key="IBUIHighlightedTitle">EndCall</string>
-						<string key="IBUINormalTitle">EndCall</string>
+						<string key="IBUINormalTitle"> End Call</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="601979502">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -141,7 +144,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="842541695"/>
-						<string key="IBUINormalTitle">EndCall</string>
+						<string key="IBUINormalTitle"> End Call</string>
 						<reference key="IBUIHighlightedTitleColor" ref="601979502"/>
 						<reference key="IBUINormalTitleColor" ref="817511073"/>
 						<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
@@ -159,7 +162,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="842541695"/>
-						<string key="IBUINormalTitle">Hidekeypad</string>
+						<string key="IBUINormalTitle">Hide keypad</string>
 						<reference key="IBUIHighlightedTitleColor" ref="601979502"/>
 						<reference key="IBUINormalTitleColor" ref="817511073"/>
 						<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
@@ -424,10 +427,7 @@
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MCAwIDAAA</bytes>
-				</object>
+				<reference key="IBUIBackgroundColor" ref="977154895"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 			</object>
 		</object>
