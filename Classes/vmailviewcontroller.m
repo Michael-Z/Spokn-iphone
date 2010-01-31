@@ -520,8 +520,8 @@
 			}	
 			else
 			{
-				dispP.height = 80;
-				dispP.top = 3;	
+				dispP.height = 60;
+				dispP.top = 6;	
 			}	
 		/*	if (vmailP->direction == VMAIL_OUT) 
 			{

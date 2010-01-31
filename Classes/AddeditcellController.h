@@ -53,6 +53,8 @@
 	int fieldRangeInt;
 	id navRootObject;
 	int buttonType;
+	int onlyOneB;
+	int activeAditButtonB;
 		
 }
 -(void)setData:/*out parameter*/(char *)lvalueCharP value:(char*)fieldP placeHolder:(char*)lplaceHolderP title:(char*)titleP/*out parameter*/returnValue:(int *)lreturnP;

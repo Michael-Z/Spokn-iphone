@@ -27,6 +27,7 @@
 #import "spoknAppDelegate.h"
 #import "LtpInterface.h"
 #define ALPHANUM @"123"
+#define SIGN_IN_TEXT @"Change user" //@"Sign-in"
 #import  "AddeditcellController.h"
 #import "WebViewController.h"
 #include "ua.h"
@@ -173,14 +174,17 @@
 }
 -(void) cancelPressed {
 	[ownerobject logOut: false];
-	[self LoginPressed ];
+	alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
+	
 }
 
 -(void) LoginPressed {
+	[ownerobject logOut:true];
 	alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
+	
 	//self.navigationItem.rightBarButtonItem = nil;	
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithTitle:@"Sign-in" 
+											   initWithTitle:SIGN_IN_TEXT 
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
 											   action:@selector(LoginPressed)] autorelease];
@@ -189,11 +193,12 @@
 	
 	[ownerobject logOut:true];
 	//alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
-	/*	[self.navigationItem.rightBarButtonItem initWithTitle: @"Sign-in" style:UIBarButtonItemStylePlain
+	/*	[self.navigationItem.rightBarButtonItem initWithTitle: SIGN_IN_TEXT style:UIBarButtonItemStylePlain
 	 target: self
 	 action: @selector(LoginPressed) ] ;
 	*/
-	[self LoginPressed];
+	alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
+	
 	//[activityIndicator startAnimating];
 	
 	
@@ -219,7 +224,7 @@
 	self.navigationItem.titleView = 0;
 	[activityIndicator stopAnimating];
 	/*self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithTitle:@"Sign-in" 
+											   initWithTitle:SIGN_IN_TEXT 
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
 											   action:@selector(LoginPressed)] autorelease];*/
@@ -285,13 +290,26 @@
 			{	
 				SetOrReSetForwardNo(true,forwardNoCharP);
 				profileResync();
+				switchView.enabled = NO;
 			}
 			memset(forwardNoCharP,0,100);
 		}
 		else
 		{
+			//switchView.on = NO;
+			//switchView.enabled = YES;
+			NSString *nsP;
+			nsP = [[NSString alloc] initWithUTF8String:forwardNoCharP];
+			[labelForword setText:nsP];
+			[nsP release];
+			//if(switchView.on)
+			{	
+				SetOrReSetForwardNo(false,forwardNoCharP);
+				profileResync();
+			}
+			switchView.enabled = NO;
 			switchView.on = NO;
-			switchView.enabled = YES;
+			memset(forwardNoCharP,0,100);
 			
 		}
 		//[ self->tableView reloadData ];
@@ -376,11 +394,13 @@ titleForHeaderInSection:(NSInteger)section
 	return nil;
 }
 #pragma mark Table view methods
+
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Detemine if it's in editing mode
    
     return UITableViewCellEditingStyleNone;
 }
+ 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if([listOfItems count])
 	return [listOfItems count];
@@ -443,20 +463,22 @@ titleForHeaderInSection:(NSInteger)section
 			[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
 	}
 	*/
+	printf("\n status int %d",statusInt);
 	if(statusInt!=lstatusInt)
 	{
 		statusInt = lstatusInt;
-		if(statusInt)
-		{
-			buttonCtlP.enabled = YES;
-		}
-		else
-		{
-			buttonCtlP.enabled = NO;
-		}
 		[self->tableView reloadData];
 		
 	}
+	if(statusInt)
+	{
+		buttonCtlP.enabled = YES;
+	}
+	else
+	{
+		buttonCtlP.enabled = NO;
+	}
+	
 	
 	switch(lstatusInt)
 	{
@@ -476,7 +498,7 @@ titleForHeaderInSection:(NSInteger)section
 					[labelStatus setText:@"Offline  "];	
 			}
 			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-													   initWithTitle:@"Sign-in" 
+													   initWithTitle:SIGN_IN_TEXT 
 													   style:UIBarButtonItemStylePlain 
 													   target:self 
 													   action:@selector(LoginPressed)] autorelease];

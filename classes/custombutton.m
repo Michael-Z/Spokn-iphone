@@ -99,7 +99,9 @@ image:(UIImage *)image
 	}
 	else
 	{
+		[image retain];
 		[buttonObjectP setBackgroundImage:image forState:UIControlStateNormal];
+		[imagePressed retain];
 		[buttonObjectP setBackgroundImage:imagePressed forState:UIControlStateHighlighted];
 	}
 	

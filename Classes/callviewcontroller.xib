@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="34"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -116,8 +116,6 @@
 							<double key="NSSize">1.500000e+01</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<string key="IBUIHighlightedTitle">EndCall</string>
-						<string key="IBUINormalTitle"> End Call</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="601979502">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -127,11 +125,6 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUIHighlightedImage" id="371282590">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">decline.png</string>
-						</object>
-						<reference key="IBUINormalImage" ref="371282590"/>
 					</object>
 					<object class="IBUIButton" id="21769260">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -144,12 +137,9 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="842541695"/>
-						<string key="IBUINormalTitle"> End Call</string>
 						<reference key="IBUIHighlightedTitleColor" ref="601979502"/>
 						<reference key="IBUINormalTitleColor" ref="817511073"/>
 						<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
-						<reference key="IBUIHighlightedImage" ref="371282590"/>
-						<reference key="IBUINormalImage" ref="371282590"/>
 					</object>
 					<object class="IBUIButton" id="355225762">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -162,11 +152,9 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="842541695"/>
-						<string key="IBUINormalTitle">Hide keypad</string>
 						<reference key="IBUIHighlightedTitleColor" ref="601979502"/>
 						<reference key="IBUINormalTitleColor" ref="817511073"/>
 						<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
-						<reference key="IBUIHighlightedImage" ref="371282590"/>
 					</object>
 					<object class="IBUIView" id="598707238">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -206,6 +194,10 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">contacts.png</string>
+								</object>
 								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="516611949">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">sixsqbuttonsel_6.png</string>
@@ -577,6 +569,15 @@
 					</object>
 					<int key="connectionID">78</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">addContactPressed:</string>
+						<reference key="source" ref="79742761"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">79</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -746,7 +747,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CallViewController</string>
 					<string>UIResponder</string>
-					<string>{{552, 264}, {320, 480}}</string>
+					<string>{{292, 346}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -788,7 +789,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">78</int>
+			<int key="maxID">79</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -801,6 +802,7 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>HoldPressed:</string>
+							<string>addContactPressed:</string>
 							<string>endCallPressed:</string>
 							<string>endCallPressedKey:</string>
 							<string>keypadPressed:</string>
@@ -809,6 +811,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

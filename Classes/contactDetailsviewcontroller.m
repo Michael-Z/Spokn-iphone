@@ -34,7 +34,10 @@
 #define MAX_ROW_HIGHT 40
 //self.navigationItem.leftBarButtonItem.enabled = YES;
 @implementation ContactDetailsViewController
-
+-(void)hideCallAndVmailButton:(Boolean)showB
+{
+	hideCallAndVmailButtonB = showB;
+}
  
 
 -(void)setObject:(id) object 
@@ -221,31 +224,52 @@
 #pragma mark ACTIONSHEET
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
  {
+	 switch(actionSheetType)
+	 {
+			 
+		 case 2:
+			 if(buttonIndex==0)
+			 {	 
+				 if(retValP)
+				 {	
+					 *retValP = 2;//mean delete
+					 [ownerobject refreshallViews];
+				 }
+			 
+				 [ [self navigationController] popToRootViewControllerAnimated:YES ];
+			 }
+			 break;
+		 default:
+			 if(stringSelected[buttonIndex])
+			 {	
+				 SetAddressBookDetails(ownerobject.ltpInterfacesP,addressID,recordID);
+				 
+				 
+				 if(actionSheetType)
+				 {
+					 //
+					 //printf("\nname %s\n",stringSelected[buttonIndex]);
+					 if([self->ownerobject makeCall:stringSelected[buttonIndex]]==YES)
+					 {	
+						 //[[self navigationController]  popViewControllerAnimated:YES];
+						 [self->ownerobject changeView];
+					 }	
+					 
+				 }
+				 else
+				 {
+					 // NSLog(nsNumberP);
+					 ////printf("\n%s",callNoP);
+					 [ownerobject vmsShowRecordScreen:stringSelected[buttonIndex]];
+				 }
+				 
+			 } 
+			 
 	 
-	if(stringSelected[buttonIndex])
-	{	
-		SetAddressBookDetails(ownerobject.ltpInterfacesP,addressID,recordID);
-		
-		
-		if(callActionSheetB)
-		{
-			//
-			//printf("\nname %s\n",stringSelected[buttonIndex]);
-			if([self->ownerobject makeCall:stringSelected[buttonIndex]]==YES)
-			{	
-				//[[self navigationController]  popViewControllerAnimated:YES];
-				[self->ownerobject changeView];
-			}	
-		 
-		}
-		else
-		{
-			// NSLog(nsNumberP);
-			////printf("\n%s",callNoP);
-			[ownerobject vmsShowRecordScreen:stringSelected[buttonIndex]];
-		}
-		
-	} 
+	 }		 
+	
+	 
+	 
 	[actionSheet release];
  }
 /*- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -299,202 +323,219 @@
 	[actionSheet release];
 }
 
-- (void) presentSheet:(bool)callB
+- (void) presentSheet:(int)typeInt
 {
 	UIActionSheet *uiActionSheetP;
-	callActionSheetB = callB;
+	actionSheetType = typeInt;
 	int i=0;
-	if(callB)
+	if(typeInt==1 || typeInt ==0)
 	{	
-		uiActionSheetP= [[UIActionSheet alloc] 
-					 initWithTitle: @"" 
-					 delegate:self
-					 cancelButtonTitle:nil 
-					 destructiveButtonTitle:nil
-					 otherButtonTitles:nil, nil];
-		if(firstSecCount==0 && secondSecCount==0)
+		if(typeInt)
 		{	
-			if(strlen(addressDataP->home)>0)
-			{	
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
-				stringSelected[i++] = addressDataP->home;
-			}
-			if(strlen(addressDataP->business)>0)
-			{	
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
-				stringSelected[i++] = addressDataP->business;
-			}	
-			if(strlen(addressDataP->mobile)>0)
-			{	
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
-				stringSelected[i++] = addressDataP->mobile;
-			}	
-
-		
-			if(strlen(addressDataP->spoknid)>0)
-			{		
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "spokn",addressDataP->spoknid] ];
-				stringSelected[i++] = addressDataP->spoknid;
-			}	
-
-		
-			if(strlen(addressDataP->other)>0)
-			{	
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
-		
-				stringSelected[i++] = addressDataP->other;
-			}
-			if( strlen(addressDataP->mobile) ||  strlen(addressDataP->business) || strlen(addressDataP->home)||  strlen(addressDataP->other) ||  strlen(addressDataP->spoknid) )
-			{	
-				uiActionSheetP.title = @"Select a Number to call";
-			}
-			else
-			{
-				uiActionSheetP.title = @"No Number to call";
-			}	
-		}
-		else
-		{
-			for(int k=0;k<1;++k)
-			{	
-				for(int j=0;j<sectionArray[k].count;++j)
-				{	
-				
-					//printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
-					if(strstr(sectionArray[k].dataforSection[j].elementP,"@")==0)
-					{	
-						numberFound = 1;
-						[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP ] ];
-						stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
-					}
-				}
-			}
-			
-			if(numberFound)
-			{
-				uiActionSheetP.title = @"Select a Number to call";
-				numberFound = 0; 
-			}
-			else
-			{
-				uiActionSheetP.title = @"No Number to call";
-			}	
-		
-		
-		}
-	
-			
-	}
-	else
-	{
-		uiActionSheetP= [[UIActionSheet alloc] 
-						 initWithTitle: @"Select a number to vms" 
+			uiActionSheetP= [[UIActionSheet alloc] 
+						 initWithTitle: @"" 
 						 delegate:self
 						 cancelButtonTitle:nil 
 						 destructiveButtonTitle:nil
 						 otherButtonTitles:nil, nil];
-		if(firstSecCount==0 && secondSecCount==0)
-		{	
-			if(strlen(addressDataP->home)>0)
+			if(firstSecCount==0 && secondSecCount==0)
 			{	
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
-				stringSelected[i++] = addressDataP->home;
-			}
-			if(strlen(addressDataP->business)>0)
-			{	
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
-				stringSelected[i++] = addressDataP->business;
-			}	
-			if(strlen(addressDataP->mobile)>0)
-			{	
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
-				stringSelected[i++] = addressDataP->mobile;
-			}	
-		
-		
-			if(strlen(addressDataP->spoknid)>0)
-			{		
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "Spokn",addressDataP->spoknid] ];
-				stringSelected[i++] = addressDataP->spoknid;
-			}	
-		
-		
-			if(strlen(addressDataP->other)>0)
-			{	
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
-			
-				stringSelected[i++] = addressDataP->other;
-			}			
-		
-			if(strlen(addressDataP->email)>0)
-			{	
-				[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","email", addressDataP->email] ];
-		
-				stringSelected[i++] = addressDataP->email;
-			}	
-		}	
-		else
-		{
-			for(int k=0;k<MAX_SECTION;++k)
-			{	
-				for(int j=0;j<sectionArray[k].count;++j)
+				if(strlen(addressDataP->home)>0)
 				{	
-					
-					//printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
-					
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP] ];
-					
-					stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
-					
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
+					stringSelected[i++] = addressDataP->home;
 				}
-			}	
-		
-		}
+				if(strlen(addressDataP->business)>0)
+				{	
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
+					stringSelected[i++] = addressDataP->business;
+				}	
+				if(strlen(addressDataP->mobile)>0)
+				{	
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
+					stringSelected[i++] = addressDataP->mobile;
+				}	
 
 			
-		
-	}
-	
-	switch(i)
-	{
-		case 0://no element found
-			[uiActionSheetP release];
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn" 
-															message:_NO_NUMBER_IN_CONTACT_
-														   delegate:self 
-												  cancelButtonTitle:nil 
-												  otherButtonTitles:@"OK", nil];
-			[alert show];
-			[alert release];
-			showAlertB = YES;
-			
-			break;
-		case 1:
-			if(callActionSheetB)
-			{
-				//
-				//printf("\nname %s\n",stringSelected[buttonIndex]);
-				if([self->ownerobject makeCall:stringSelected[0]]==YES)
-				{	
-					//[[self navigationController]  popViewControllerAnimated:YES];
-					[self->ownerobject changeView];
+				if(strlen(addressDataP->spoknid)>0)
+				{		
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "spokn",addressDataP->spoknid] ];
+					stringSelected[i++] = addressDataP->spoknid;
 				}	
-				
+
+			
+				if(strlen(addressDataP->other)>0)
+				{	
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
+			
+					stringSelected[i++] = addressDataP->other;
+				}
+				if( strlen(addressDataP->mobile) ||  strlen(addressDataP->business) || strlen(addressDataP->home)||  strlen(addressDataP->other) ||  strlen(addressDataP->spoknid) )
+				{	
+					uiActionSheetP.title = @"Select a Number to call";
+				}
+				else
+				{
+					uiActionSheetP.title = @"No Number to call";
+				}	
 			}
 			else
 			{
-				// NSLog(nsNumberP);
-				////printf("\n%s",callNoP);
-				[ownerobject vmsShowRecordScreen:stringSelected[0]];
+				for(int k=0;k<1;++k)
+				{	
+					for(int j=0;j<sectionArray[k].count;++j)
+					{	
+					
+						//printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
+						if(strstr(sectionArray[k].dataforSection[j].elementP,"@")==0)
+						{	
+							numberFound = 1;
+							[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP ] ];
+							stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
+						}
+					}
+				}
+				
+				if(numberFound)
+				{
+					uiActionSheetP.title = @"Select a Number to call";
+					numberFound = 0; 
+				}
+				else
+				{
+					uiActionSheetP.title = @"No Number to call";
+				}	
+			
+			
 			}
-			[uiActionSheetP release];
-			break;
-		default:
-			[uiActionSheetP addButtonWithTitle:@"Cancel"];
-			uiActionSheetP.cancelButtonIndex = i;
-			stringSelected[i++] = 0;
-			uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-			[uiActionSheetP showInView:[ownerobject tabBarController].view];
+		
+				
+		}
+		else
+		{
+			uiActionSheetP= [[UIActionSheet alloc] 
+							 initWithTitle: @"Select a number to vms" 
+							 delegate:self
+							 cancelButtonTitle:nil 
+							 destructiveButtonTitle:nil
+							 otherButtonTitles:nil, nil];
+			if(firstSecCount==0 && secondSecCount==0)
+			{	
+				if(strlen(addressDataP->home)>0)
+				{	
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
+					stringSelected[i++] = addressDataP->home;
+				}
+				if(strlen(addressDataP->business)>0)
+				{	
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
+					stringSelected[i++] = addressDataP->business;
+				}	
+				if(strlen(addressDataP->mobile)>0)
+				{	
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
+					stringSelected[i++] = addressDataP->mobile;
+				}	
+			
+			
+				if(strlen(addressDataP->spoknid)>0)
+				{		
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "Spokn",addressDataP->spoknid] ];
+					stringSelected[i++] = addressDataP->spoknid;
+				}	
+			
+			
+				if(strlen(addressDataP->other)>0)
+				{	
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
+				
+					stringSelected[i++] = addressDataP->other;
+				}			
+			
+				if(strlen(addressDataP->email)>0)
+				{	
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","email", addressDataP->email] ];
+			
+					stringSelected[i++] = addressDataP->email;
+				}	
+			}	
+			else
+			{
+				for(int k=0;k<MAX_SECTION;++k)
+				{	
+					for(int j=0;j<sectionArray[k].count;++j)
+					{	
+						
+						//printf("\n element= %-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP);
+						
+						[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP] ];
+						
+						stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
+						
+					}
+				}	
+			
+			}
+
+				
+			
+		}
+		
+		switch(i)
+		{
+			case 0://no element found
+				[uiActionSheetP release];
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn" 
+																message:_NO_NUMBER_IN_CONTACT_
+															   delegate:self 
+													  cancelButtonTitle:nil 
+													  otherButtonTitles:@"OK", nil];
+				[alert show];
+				[alert release];
+				showAlertB = YES;
+				
+				break;
+			case 1:
+				if(actionSheetType)
+				{
+					//
+					//printf("\nname %s\n",stringSelected[buttonIndex]);
+					if([self->ownerobject makeCall:stringSelected[0]]==YES)
+					{	
+						//[[self navigationController]  popViewControllerAnimated:YES];
+						[self->ownerobject changeView];
+					}	
+					
+				}
+				else
+				{
+					// NSLog(nsNumberP);
+					////printf("\n%s",callNoP);
+					[ownerobject vmsShowRecordScreen:stringSelected[0]];
+				}
+				[uiActionSheetP release];
+				break;
+			default:
+				[uiActionSheetP addButtonWithTitle:@"Cancel"];
+				uiActionSheetP.cancelButtonIndex = i;
+				stringSelected[i++] = 0;
+				uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+				[uiActionSheetP showInView:[ownerobject tabBarController].view];
+		}
+	}
+	else
+	{
+		uiActionSheetP= [[UIActionSheet alloc] 
+						 initWithTitle: @"" 
+						 delegate:self
+						 cancelButtonTitle:@"Cancel" 
+						 destructiveButtonTitle:@"Delete"
+						 otherButtonTitles:nil, nil];
+		
+		uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+		[uiActionSheetP showInView:[ownerobject tabBarController].view];
+	
+	
 	}
 }
 
@@ -510,7 +551,7 @@
 -(IBAction)deletePressed:(id)sender
 {
 	
-	UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+	/*UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 													   message: [ NSString stringWithString:_CONTACT_DELETE_ ]
 													  delegate: nil
 											 cancelButtonTitle: nil
@@ -519,7 +560,8 @@
 	[alert addButtonWithTitle:@"Cancel"];
 	[ alert show ];
 	[alert release];
-	
+	*/
+	[self presentSheet:2];
 
 	
 }
@@ -551,7 +593,7 @@
 	NSLog(@"Cancel");
 	
 	
-	if(viewEnum!=CONTACTADDVIEWENUM || modelViewB ==true)
+	if(viewEnum!=CONTACTADDVIEWENUM || modelViewB ==true || hideCallAndVmailButtonB==true )
 	{	
 		[ [self navigationController] popViewControllerAnimated:YES ];
 	}	
@@ -647,12 +689,12 @@
 			
 		}
 		
-		if(popupB)
+		if(popupB  && hideCallAndVmailButtonB==false)
 			profileResync();
 	}
 	if(popupB)
 	{	
-		if(viewEnum!=CONTACTADDVIEWENUM || modelViewB==true)
+		if(viewEnum!=CONTACTADDVIEWENUM || modelViewB==true || hideCallAndVmailButtonB==true)
 		{	
 			[ [self navigationController] popViewControllerAnimated:YES ];
 			[ownerobject refreshallViews];
@@ -682,7 +724,7 @@
 	 [self setAddressBook:addressDataTmpP editable:false :viewEnum];
 	 free(addressDataTmpP);
 	 */
-		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+	/*	UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 													   message: [ NSString stringWithString:_DELETE_CALL_LOG_ ]
 													  delegate: self
 											 cancelButtonTitle: nil
@@ -691,7 +733,8 @@
 	[alert addButtonWithTitle:@"Cancel"];
 	[ alert show ];
 	[alert release];
-	
+	*/
+	[self presentSheet:2];
 	//[ [self navigationController] popToRootViewControllerAnimated:YES ];
 	//contactID = -1;
 	//profileResync();
@@ -787,6 +830,23 @@
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	loadedB = true;
+	
+	UIImage *buttonBackground;
+	UIImage *buttonBackgroundPressed;
+	if(hideCallAndVmailButtonB)
+	{
+		vmsButtonP.hidden = YES;
+		callButtonP.hidden = YES;
+	
+	
+	}
+	
+	buttonBackground = [UIImage imageNamed:@"6_deletetweeked_270_45_normal.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"6_deletetweeked_270_45_pressed.png"];
+	[CustomButton setImages:delButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
+	delButtonP.backgroundColor =  [UIColor clearColor];	
 	/*
 	UIImage *buttonBackground = [UIImage imageNamed:@"blueButton.png"];
 	UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"green.png"];
@@ -813,8 +873,8 @@
 	*/
 	
 	//[changeNameButtonP setFrame:CGRectMake(55,0,250,40)];
-	UIImage *buttonBackground;
-	UIImage *buttonBackgroundPressed;
+	//UIImage *buttonBackground;
+	//UIImage *buttonBackgroundPressed;
 	
 	buttonBackground = [UIImage imageNamed:@"red.png"];
 	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
@@ -855,29 +915,25 @@
 			{	
 				deleteButton = [[UIButton alloc] init];
 				// The default size for the save button is 49x30 pixels
-				deleteButton.frame = CGRectMake(0, 0, 60, 30.0);
+				deleteButton.frame = CGRectMake(0, 0, 60, 32.0);
 				
 				// Center the text vertically and horizontally
 				deleteButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 				deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 				
-				UIImage *image = [UIImage imageNamed:@"bottombarred_pressed.png"];
+				UIImage *buttonBackground;
+				UIImage *buttonBackgroundPressed;
 				
-				// Make a stretchable image from the original image
-				UIImage *stretchImage = [image stretchableImageWithLeftCapWidth:15.0 topCapHeight:0.0];
 				
-				// Set the background to the stretchable image
-				[deleteButton setBackgroundImage:stretchImage forState:UIControlStateNormal];
-				
-				// Make the background color clear
-				deleteButton.backgroundColor =[[UIColor clearColor] autorelease];
-				
-				// Set the font properties
-				[deleteButton setTitleShadowColor:[[UIColor blackColor] autorelease] forState:UIControlStateNormal];
-				deleteButton.font = [UIFont boldSystemFontOfSize:12];
+				buttonBackground = [UIImage imageNamed:@"3_delete_50_30_normal.png"];
+				buttonBackgroundPressed = [UIImage imageNamed:@"3_delete_50_30_pressed.png"];
+				[CustomButton setImages:deleteButton image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
+				[buttonBackground release];
+				[buttonBackgroundPressed release];
+				deleteButton.backgroundColor =  [UIColor clearColor];	
 					
 				
-				[deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+				//[deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
 				
 				[deleteButton addTarget:self action:@selector(deleteClicked) forControlEvents:UIControlEventTouchUpInside];
 				
@@ -1243,6 +1299,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
 {
+	if(hideCallAndVmailButtonB && editableB==false)//dont to any thing
+	{
+		[self->tableView deselectRowAtIndexPath : newIndexPath animated:YES];
+
+		return;
+	}
+	
 	//selection = [[[UIFont familyNames] objectAtIndex:[newIndexPath row]] retain];
 	int row = [newIndexPath row];
 	int section = [newIndexPath section];
@@ -1867,8 +1930,18 @@ titleForHeaderInSection:(NSInteger)section
 			else
 			{
 				self->delButtonP.hidden = YES;
-				self->vmsButtonP.hidden = NO;
-				self->callButtonP.hidden = NO;
+				if(hideCallAndVmailButtonB)
+				{
+					vmsButtonP.hidden = YES;
+					callButtonP.hidden = YES;
+					
+					
+				}
+				else
+				{	
+					self->vmsButtonP.hidden = NO;
+					self->callButtonP.hidden = NO;
+				}	
 				//changeNameButtonP.hidden = YES;
 				self->addButtonP.hidden = !showAddButtonB;
 				tableView.tableHeaderView = userNameP;

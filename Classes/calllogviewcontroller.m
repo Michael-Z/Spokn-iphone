@@ -416,7 +416,8 @@
 			}	
 			else
 			{
-				dispP.height = 100;
+				dispP.height = 60;
+				dispP.top = 6;
 			}
 			if((cdrP->direction & CALLTYPE_IN) && (cdrP->direction & CALLTYPE_MISSED))
 			{	

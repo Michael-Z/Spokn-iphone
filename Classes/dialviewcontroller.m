@@ -826,8 +826,9 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				//callViewControllerP.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 
 				[callViewControllerP setLabel:callingstringP :callingstringtypeP];
-				
-				[ownerobject.tabBarController presentModalViewController:callViewControllerP animated:YES];
+				UINavigationController *tmpCtl;
+				tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: callViewControllerP ] autorelease];
+				[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
 				
 				if([callViewControllerP retainCount]>1)
 					[callViewControllerP release];

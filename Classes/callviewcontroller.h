@@ -24,6 +24,7 @@
 
 #import <UIKit/UIKit.h>
 #import "keypadview.h"
+#import "contactDetailsviewcontroller.h"
 @class SpoknAppDelegate;
 
 @interface CallViewController : UIViewController<KeypadProtocol> {
@@ -43,7 +44,7 @@
 	int hour,min,sec;
 	NSString *labelStrP;
 	NSString *labeltypeStrP;
-	UIButton *_buttons[6];
+	Boolean navBarShow;
 	Boolean  actualDismissB;
 	Boolean loadedB;
 	
@@ -59,6 +60,7 @@
 -(void) startTimer;
 -(int)  stopTimer;
 -(IBAction)HoldPressed:(id)sender;
+-(IBAction)addContactPressed:(id)sender;
 - (void) handleCallEndTimer: (id) timer;
 
 @end

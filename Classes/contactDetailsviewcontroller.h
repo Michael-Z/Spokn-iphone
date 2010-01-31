@@ -93,7 +93,7 @@ typedef enum ViewTypeEnum
 	Boolean animationB;
 	NSMutableArray *listOfItems;
 	struct CDR *cdrP;
-	Boolean callActionSheetB;
+	int actionSheetType;
 	int firstSecCount;
 	int secondSecCount;
 	SectionContactType sectionArray[MAX_SECTION];
@@ -121,10 +121,11 @@ typedef enum ViewTypeEnum
 	int recordID;
 	int numberFound;
 	int showAlertB;
+	Boolean hideCallAndVmailButtonB;
 	//id<VmailProtocol> VmailProtocolP;
 	
 }
-
+-(void)hideCallAndVmailButton:(Boolean)showB;
 - (void)addRow: (int)lsection:(int )row sectionObject:(sectionType **)sectionPP;
 -(void)setObject:(id) object ;
 -(void)setCdr:(struct CDR *)lcdrP;
@@ -134,7 +135,7 @@ typedef enum ViewTypeEnum
 -(IBAction)deletePressed:(id)sender;
 -(IBAction)changeNamePressed:(id)sender;
 -(IBAction)addContactPressed:(id)sender;
-- (void) presentSheet:(bool)callB;
+- (void) presentSheet:(int)typeInt;
 -(void)setReturnValue:(int*)lretValB selectedContactNumber:(char*)lnumberCharP rootObject:(id)rootObject selectedContact:(SelectedContctType*)lselectContactP;
 -(void)setTitlesString:(NSString*)nsP;
 -(void)setSelectedNumber:(char*)noCharP showAddButton:(BOOL)lshowB;

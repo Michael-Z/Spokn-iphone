@@ -45,6 +45,8 @@
 
 @interface ContactViewController : UIViewController<ABPeoplePickerNavigationControllerDelegate , UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate>  {
 	IBOutlet UITableView *tableView;
+	IBOutlet UIView *noResultViewP;
+	IBOutlet UILabel*noResultLabelP;
 	//IBOutlet UIView *viewP;
 	//IBOutlet UITableView *addressBookTableView;
 	IBOutlet AddressBookContact *addressBookTableDelegate;
@@ -74,6 +76,8 @@
 	int loadedNewViewB;
 	int refreshB;
 	int viewDidLodadedB;
+	int noserchResultShowB;
+	Boolean hideCallAndVmailButtonB;
 	
 	//NSArray *sectionNSArrayP;
 	#ifdef _NEW_ADDRESS_BOOK_
@@ -86,6 +90,7 @@
 @property (readwrite,assign) UAObjectType uaObject;
 @property(readwrite,assign) int parentView;
 -(void)setObject:(id) object ;
+-(void)hideCallAndVmailButton:(Boolean)showB;
 - (void) reload;
 - (void) startEditing;
 - (void) stopEditing;

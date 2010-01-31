@@ -58,7 +58,10 @@
 @synthesize ltpInterfacesP;
 @synthesize  uaObject;
 @synthesize parentView;
-
+-(void)hideCallAndVmailButton:(Boolean)showB
+{
+	hideCallAndVmailButtonB = showB;
+}
 #pragma mark _ADDRESSBOOKDELEGATE_START
 +(int) getNameAndType :(ABRecordID) recordID :(char*)lnumberCharP :(char **) nameStringP :(char**)typeP
 {
@@ -1007,6 +1010,7 @@ titleForHeaderInSection:(NSInteger)section
 		[addressBookP release];
 	#endif
 	//printf("\n contact dealloc");
+	
 	[mainViewP retain]; 
 	[ovController release];	
 	[addressBookTableDelegate release];
@@ -1020,8 +1024,10 @@ titleForHeaderInSection:(NSInteger)section
 		[setTypeP release];
 		[sectionArray removeObjectAtIndex:0];
 	}
+	printf("\n contact deleted");
 	[sectionArray release];
-    
+	[noResultLabelP release];
+    [noResultViewP release];
 	[super dealloc];
 }
 -(void) setReturnVariable:(id) rootObject :(SelectedContctType *)lselectedContactP: (int *)lvalP
@@ -1200,6 +1206,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+		[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];
 		if(parentView)
 		{	
 			if(returnPtr)
@@ -1261,8 +1268,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
-		
-		//[ ContactControllerDetailsviewP setRecordID:(int)ABRecordGetRecordID(person) : 0];
+		[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];		//[ ContactControllerDetailsviewP setRecordID:(int)ABRecordGetRecordID(person) : 0];
 		if(parentView)
 		{	
 			if(returnPtr)
@@ -1352,16 +1358,27 @@ titleForHeaderInSection:(NSInteger)section
 	 */
 	ContactDetailsViewController     *ContactControllerDetailsviewP;	
 	ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+	[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];
 	[ContactControllerDetailsviewP setObject:self->ownerobject];
 	[ContactControllerDetailsviewP setAddressBook:0 editable:true :CONTACTADDVIEWENUM];
-	UINavigationController *tmpCtl;
-	tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: ContactControllerDetailsviewP ] autorelease];
+	[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];
+	if(hideCallAndVmailButtonB==NO)
+	{	
+		UINavigationController *tmpCtl;
+		tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: ContactControllerDetailsviewP ] autorelease];
 	//[tmpCtl release];
 	
 	//[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
 		
-	[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
-	
+		[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
+	}
+	else
+	{
+		[ContactControllerDetailsviewP setReturnValue:returnPtr selectedContactNumber:0  rootObject:rootControllerObject selectedContact:selectedContactP] ;
+		
+		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+		
+	}
 	if([ContactControllerDetailsviewP retainCount]>1)
 		[ContactControllerDetailsviewP release];
 	//[self presentModalViewController:self animated:YES];
@@ -1402,6 +1419,7 @@ titleForHeaderInSection:(NSInteger)section
 }
 - (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP {
 	int count = 0; 
+	int noShowB = false;
 	int fIndexfindInt = -1;
 	if(segmentedControl.selectedSegmentIndex==2)//different view
 	{
@@ -1531,15 +1549,18 @@ titleForHeaderInSection:(NSInteger)section
 						{	
 					////////printf("\n%s %ld %d",addressP->title,addressP->id ,i);
 							[ setTypeP->elementP addObject:secP];
+							noShowB = true;
 						}	
 					}
 					else
 					{
+						noShowB = true;
 						[ setTypeP->elementP addObject:secP];
 					}
 				}
 				else
 				{
+					noShowB = true;
 					if(setTypeP)
 					{	
 						[ setTypeP->elementP addObject:secP];
@@ -1588,6 +1609,32 @@ titleForHeaderInSection:(NSInteger)section
 	if(firstSectionP)
 	{
 		*firstSectionP = fIndexfindInt;
+	}
+	printf("\n section count %d",sectionArray.count);
+	if(noShowB==0)
+	{
+		printf("\nview shown");
+		if(searchStrP)//mean string is their for search
+		{
+			noserchResultShowB = true;
+			noResultViewP.hidden = NO;
+			noResultLabelP.textColor = [UIColor grayColor];
+			noResultViewP.backgroundColor=[UIColor clearColor];
+			
+			[self->tableView insertSubview:noResultViewP aboveSubview:self.parentViewController.view];
+			
+		}
+	
+	}
+	else
+	{
+		if(noserchResultShowB)
+		{
+			noserchResultShowB = false;
+			[noResultViewP removeFromSuperview];
+			noResultViewP.hidden = YES;
+			
+		}
 	}
 	return count;
 }

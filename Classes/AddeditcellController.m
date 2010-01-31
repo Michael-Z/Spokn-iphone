@@ -86,6 +86,14 @@
 			case UIKeyboardTypeEmailAddress:		
 				if([SpoknAppDelegate emailValidate:[txtField text]]==NO)
 				{	
+					if(activeAditButtonB)//mean in edit mode allow edit email
+					{
+					
+						if([[txtField text] length]==0)//mean delete field
+							break;
+					
+					}
+					
 					UIAlertView *alert;
 					alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 													  message: [ NSString stringWithString:_INVALID_EMAIL_ ]
@@ -143,6 +151,10 @@ NSLog(@"\nSave123");
 	returnP = lreturnP;
 	//char titleChar[80];
 	StringP = [[NSString alloc] initWithUTF8String:lvalueCharP];
+	if(lreturnP && strlen(lvalueCharP)>0)
+	{
+		activeAditButtonB = YES;
+	}
 	//typeP = [[NSString alloc] initWithUTF8String:fieldP];
 	titleStrP = [[NSString alloc] initWithUTF8String:titleP];
 	placeHolderP = [[NSString alloc] initWithUTF8String:lplaceHolderP];
@@ -203,6 +215,7 @@ NSLog(@"\nSave123");
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+	onlyOneB = true;
 	self.tableView.scrollEnabled = NO;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -228,6 +241,7 @@ NSLog(@"\nSave123");
 	}
 	else
 	{
+		if(activeAditButtonB==NO)
 		self.navigationItem.rightBarButtonItem.enabled = NO;
 	}	
 }
@@ -235,29 +249,32 @@ NSLog(@"\nSave123");
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	if(buttonType==0)
+	if(onlyOneB)
 	{	
-		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+		if(buttonType==0)
+		{	
+			self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 													initWithBarButtonSystemItem: UIBarButtonSystemItemSave
 													target: self
 													action: @selector(savePressed) ] autorelease ];
-	}
-	else
-	{
-		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
-													initWithBarButtonSystemItem: UIBarButtonSystemItemDone
-													target: self
-													action: @selector(savePressed) ] autorelease ];
+		}
+		else
+		{
+			self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+														initWithBarButtonSystemItem: UIBarButtonSystemItemDone
+														target: self
+														action: @selector(savePressed) ] autorelease ];
+			
+		}
+		self.navigationItem.rightBarButtonItem.enabled = NO;
+		headLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+		footerLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+		//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 		
+		[headLabelP setText:typeP];
+		[footerLabelP setText:exampleStrP];
+		onlyOneB = false;
 	}
-	self.navigationItem.rightBarButtonItem.enabled = NO;
-	headLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	footerLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	
-	[headLabelP setText:typeP];
-	[footerLabelP setText:exampleStrP];
-	
 
 }	
 
@@ -268,6 +285,7 @@ NSLog(@"\nSave123");
 		self.title = @"Edit";
 	}
 	buttonType = 0;
+	activeAditButtonB = NO;
 	CGRect LabelFrame2 = CGRectMake(0, 5, 320, 60);
 	headLabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
 	headLabelP.textAlignment = UITextAlignmentCenter;
@@ -312,7 +330,11 @@ NSLog(@"\nSave123");
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 60;
+	if(keyboardtype==UIKeyboardTypePhonePad|| keyboardtype==UIKeyboardTypeNumberPad)
+	{
+		return 60;
+	}
+	return 50;
 	
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -321,7 +343,7 @@ NSLog(@"\nSave123");
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
 	//NSLog(@"\n%@\n",string);
-	if([textField.text length]<=1 && [string length]==0 )
+	if([textField.text length]<=1 && [string length]==0 && activeAditButtonB ==NO)
 	{
 		self.navigationItem.rightBarButtonItem.enabled = NO;	
 	}
@@ -370,8 +392,11 @@ NSLog(@"\nSave123");
 						{	
 							txtField.text =StringP;
 						}
-						txtField.font = [UIFont systemFontOfSize:30];
-						//else
+						if(keyboardtype==UIKeyboardTypePhonePad|| keyboardtype==UIKeyboardTypeNumberPad)
+						{
+							txtField.font = [UIFont systemFontOfSize:30];
+						}
+							//else
 						//{
 							//txtField.text = @"";
 						//}

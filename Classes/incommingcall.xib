@@ -49,12 +49,11 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<object class="NSFont" key="IBUIFont" id="762981669">
+						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">1.500000e+01</double>
+							<double key="NSSize">2.400000e+01</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<string key="IBUINormalTitle">Accept</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="67647974">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -66,10 +65,6 @@
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="699729417">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
-						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">answer.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="316396064">
@@ -85,15 +80,14 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="762981669"/>
-						<string key="IBUINormalTitle">decline</string>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">1.500000e+01</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<reference key="IBUIHighlightedTitleColor" ref="67647974"/>
 						<reference key="IBUINormalTitleColor" ref="115714445"/>
 						<reference key="IBUINormalTitleShadowColor" ref="699729417"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">decline.png</string>
-						</object>
 					</object>
 					<object class="IBUILabel" id="297661062">
 						<reference key="NSNextResponder" ref="191373211"/>

@@ -76,15 +76,16 @@
 -(void)addContact:(UIViewController*)rootP
 {
 
+	
 	if(audioStartB==false)
 	{	
 		doNothing = 1;
 	}
 	openForwardNo = 0;
-	
+	printf("\n contact can open");
 	if(rootP==nil)
 	{
-		//printf("\ndsfdsfdfdfdsf");
+		printf("\ndsfdsfdfdfdsf");
 		rootP = self;
 	}
 	//showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP
@@ -553,14 +554,17 @@
 	[previewButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease] forState:UIControlStateNormal];
 	[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
 	[previewButtonP setTitleColor:[[UIColor grayColor] autorelease] forState:UIControlStateHighlighted];
-	[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+	//[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+	[previewButtonP setTitleColor:[[UIColor grayColor] autorelease]  forState:UIControlStateDisabled];
+	
 	sendButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
 	//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
 	//sendButtonP.titleShadowOffset = CGSizeMake(0,-1);
 	[sendButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ] forState:UIControlStateNormal];
 	[sendButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
 	[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ] forState:UIControlStateHighlighted];
-	[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+	//[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+	[sendButtonP setTitleColor:[[UIColor grayColor] autorelease]  forState:UIControlStateDisabled];
 	
 	
 
@@ -612,14 +616,18 @@
 		[previewButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ] forState:UIControlStateNormal];
 		[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
 		[previewButtonP setTitleColor:[[UIColor grayColor] autorelease ] forState:UIControlStateHighlighted];
-		[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+		//[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+		[previewButtonP setTitleColor:[[UIColor grayColor] autorelease]  forState:UIControlStateDisabled];
+		
 		sendButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
 		//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
 		//sendButtonP.titleShadowOffset = CGSizeMake(0,-1);
 		[sendButtonP setTitleShadowColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateNormal];
 		[sendButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
 		[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
-		[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+		//[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+		[sendButtonP setTitleColor:[[UIColor grayColor] autorelease]  forState:UIControlStateDisabled];
+		
 	}	
 	else
 	{
@@ -1241,24 +1249,22 @@ id createImage(float percentage)
 			deleteButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 			deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 		
-			UIImage *image = [UIImage imageNamed:@"bottombarred_pressed.png"];
-		
-		// Make a stretchable image from the original image
-			UIImage *stretchImage = [image stretchableImageWithLeftCapWidth:15.0 topCapHeight:0.0];
-		
-		// Set the background to the stretchable image
-			[deleteButton setBackgroundImage:stretchImage forState:UIControlStateNormal];
-		
-		// Make the background color clear
-			deleteButton.backgroundColor = [[UIColor clearColor] autorelease ] ;
-		
-		// Set the font properties
-			[deleteButton setTitleShadowColor:[[UIColor blackColor] autorelease ]  forState:UIControlStateNormal];
-			deleteButton.font = [UIFont boldSystemFontOfSize:12];
-		
-		
-			[deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
-		
+			UIImage *buttonBackground;
+			UIImage *buttonBackgroundPressed;
+			
+			
+			buttonBackground = [UIImage imageNamed:@"3_delete_50_30_normal.png"];
+			buttonBackgroundPressed = [UIImage imageNamed:@"3_delete_50_30_pressed.png"];
+			[CustomButton setImages:deleteButton image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
+			[buttonBackground release];
+			[buttonBackgroundPressed release];
+			deleteButton.backgroundColor =  [UIColor clearColor];	
+			
+			
+			//[deleteButton setTitle:@"Delete" forState:UIControlStateNormal];
+			
+			[deleteButton addTarget:self action:@selector(deleteClicked) forControlEvents:UIControlEventTouchUpInside];
+			
 			[deleteButton addTarget:self action:@selector(deleteClicked) forControlEvents:UIControlEventTouchUpInside];
 		
 			UIBarButtonItem *navButton = [[UIBarButtonItem alloc] initWithCustomView:deleteButton];
@@ -1320,14 +1326,18 @@ id createImage(float percentage)
 			[sendButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ] forState:UIControlStateNormal];
 			[sendButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
 			[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
-			[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+			[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateDisabled];
+			
+			//[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 			previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
 			//[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
 			//previewButtonP.titleShadowOffset = CGSizeMake(0,-1);
 			[previewButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ]  forState:UIControlStateNormal];
 			[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
 			[previewButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
-			[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+			[previewButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateDisabled];
+			
+			//[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 			
 			[PlayButtonP setTitle:@"Record" forState:UIControlStateNormal];
 			[PlayButtonP setTitle:@"Record" forState:UIControlStateHighlighted];
@@ -1423,6 +1433,16 @@ id createImage(float percentage)
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	tableView.scrollEnabled = NO;
+	UIImage *buttonBackground;
+	UIImage *buttonBackgroundPressed;
+	
+	buttonBackground = [UIImage imageNamed:@"5_play_270_45_normal.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"5_play_270_45_pressed.png"];
+	[CustomButton setImages:PlayButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
+	PlayButtonP.backgroundColor =  [UIColor clearColor];
+	
 	loadedB = true;
 	[self loadOtherView];	
 	[self makeView];

@@ -29,6 +29,7 @@
 #include "custombutton.h"
 #include "sipwrapper.h"
 #include "ltpandsip.h"
+#include "contactviewcontroller.h"
 @implementation CallViewController
 
 /*
@@ -60,6 +61,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+	if(navBarShow)
+	{
+		navBarShow = NO;
+		[[self navigationController] setNavigationBarHidden:YES animated:NO];
+	}
 	loadedB = true;
 	if(actualDismissB)
 	{
@@ -97,28 +103,28 @@
 	[viewKeypadP setElement:3 :4];
 	viewKeypadP.keypadProtocolP = self;
 	
-	buttonBackground = [UIImage imageNamed:@"End_Call.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"End_Call_pressed.png"];
-	[CustomButton setImages:endCallButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:YES];
+	buttonBackground = [UIImage imageNamed:@"2_endcall_270_45_normal.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"2_endcall_270_45_pressed.png"];
+	[CustomButton setImages:endCallButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	endCallButtonP.backgroundColor =  [UIColor clearColor];
 	
-	buttonBackground = [UIImage imageNamed:@"hide.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"hide_pressed.png"];
-	[CustomButton setImages:hideKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:YES];
+	buttonBackground = [UIImage imageNamed:@"2_hidekeypad_125_45_normal.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"2_hidekeypad_125_45_pressed.png"];
+	[CustomButton setImages:hideKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	hideKeypadButtonP.backgroundColor =  [UIColor clearColor];
-	buttonBackground = [UIImage imageNamed:@"declinebackground.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"decline_pressed.png"];
-	[CustomButton setImages:endCallKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:YES];
+	buttonBackground = [UIImage imageNamed:@"2_endcall_125_45_normal.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"2_endcall_125_45_pressed.png"];
+	[CustomButton setImages:endCallKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	endCallKeypadButtonP.backgroundColor =  [UIColor clearColor];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	alertNotiFication(CALL_ALERT,0,0,  (unsigned long)ownerobject,0);
 	
-
+	[[self navigationController] setNavigationBarHidden:YES animated:NO];
 
 	
 }
@@ -267,6 +273,29 @@
 	[butP setSelected:enable];
 	//printf("%d",enable);
 	
+}
+-(IBAction)addContactPressed:(id)sender
+{
+	
+	ContactViewController *contactP;
+	navBarShow = YES;
+	self.title = @"Call";
+	[[self navigationController] setNavigationBarHidden:YES animated:NO];
+	contactP = [[ContactViewController alloc] initWithNibName:@"contact" bundle:[NSBundle mainBundle]];
+	[contactP hideCallAndVmailButton:YES];
+	contactP.parentView = 0;
+	[contactP setObject:ownerobject];
+	contactP.uaObject = GETCONTACTLIST;
+	[contactP setObjType:GETCONTACTLIST];
+	contactP.ltpInterfacesP =ownerobject.ltpInterfacesP;
+	//navBarShow = NO;
+	[[self navigationController] setNavigationBarHidden:NO animated:NO];
+
+	[contactP setReturnVariable:self :0 :0];
+	[ [self navigationController] pushViewController:contactP animated: YES ];
+	[contactP release];
+	
+
 }
 -(IBAction)HoldPressed:(id)sender
 {

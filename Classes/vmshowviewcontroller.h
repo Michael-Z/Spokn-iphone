@@ -49,7 +49,7 @@ typedef enum  VMSStateType
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *msgLabelP;
 	IBOutlet UILabel *secondLabelP;
-	UIProgressView *uiProgBarP;
+	
 	IBOutlet UIButton *sendButtonP;
 	IBOutlet UIButton *PlayButtonP;
 	IBOutlet UIButton *previewButtonP;
@@ -74,6 +74,8 @@ typedef enum  VMSStateType
 	int *returnValLongP;
 	int openForwardNo;
 	SelectedContctType      forwardContact;
+	
+	UIProgressView *uiProgBarP;
 	UISlider *sliderP;
 	UIImage *knob;
 	int returnValueInt;

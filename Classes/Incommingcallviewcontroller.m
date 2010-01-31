@@ -59,15 +59,15 @@
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
 	
-	buttonBackground = [UIImage imageNamed:@"answer_call.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"answer_call_pressed.png"];
-	[CustomButton setImages:ansP image:buttonBackground imagePressed:buttonBackgroundPressed change:YES];
+	buttonBackground = [UIImage imageNamed:@"1_answer_125_45_normal.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"1_answer_125_45_pressed.png"];
+	[CustomButton setImages:ansP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	ansP.backgroundColor =  [UIColor clearColor];
-	buttonBackground = [UIImage imageNamed:@"declinebackground.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"decline_pressed.png"];
-	[CustomButton setImages:declineP image:buttonBackground imagePressed:buttonBackgroundPressed change:YES];
+	buttonBackground = [UIImage imageNamed:@"1_decline_125_45_normal.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"1_decline_125_45_pressed.png"];
+	[CustomButton setImages:declineP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	declineP.backgroundColor =  [UIColor clearColor];
