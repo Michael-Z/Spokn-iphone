@@ -761,11 +761,11 @@
 	self.navigationItem.rightBarButtonItem.enabled = NO;
 	addressDataTmpP = addressDataP;
 	addressDataP = 0;
-	animationB = YES;
+//	animationB = YES;
 	[self setAddressBook:addressDataTmpP editable:true :viewEnum];
 	free(addressDataTmpP);
 	
-	animationB = NO;
+//	animationB = NO;
 	
 	
 }
@@ -817,7 +817,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	animationB = NO;
+//	animationB = NO;
 	self->addButtonP.exclusiveTouch = YES;
 	self->vmsButtonP.exclusiveTouch = YES;
 	self->callButtonP.exclusiveTouch = YES;
@@ -1961,7 +1961,7 @@ titleForHeaderInSection:(NSInteger)section
 			if(tableView)
 			{	
 				//printf("\n reloaded table %d\n",tablesz);
-				if(animationB)
+		/*		if(animationB)
 				{
 					tableView.transform = CGAffineTransformMakeScale(0.5,0.5);
 					[UIView beginAnimations:nil context:NULL];
@@ -1976,8 +1976,8 @@ titleForHeaderInSection:(NSInteger)section
 				{
 					[tableView reloadData];
 				}
-				
-				//[tableView reloadData];
+			*/	
+				[tableView reloadData];
 			}	
 						
 		}
