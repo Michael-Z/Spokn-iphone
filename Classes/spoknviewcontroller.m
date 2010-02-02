@@ -267,7 +267,7 @@
 	
 	switchView.on = NO;
 	switchView.enabled = NO;
-	
+	[ownerobject updateSpoknView:self];
 	
 	
 }

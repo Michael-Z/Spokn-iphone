@@ -780,7 +780,7 @@
 						
 						NSString *text1 = [text stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
 						
-					//NSLog(@"\n number %@\n",text1);
+					NSLog(@"\n number %@\n",text1);
 						if(text1!=0 && [text1 length]!=0)
 						{
 							//txtDestNo.text = @" ";

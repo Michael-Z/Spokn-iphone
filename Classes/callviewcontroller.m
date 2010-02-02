@@ -274,6 +274,7 @@
 	//printf("%d",enable);
 	
 }
+
 -(IBAction)addContactPressed:(id)sender
 {
 	
@@ -292,7 +293,7 @@
 	[[self navigationController] setNavigationBarHidden:NO animated:NO];
 
 	[contactP setReturnVariable:self :0 :0];
-	[ [self navigationController] pushViewController:contactP animated: YES ];
+	[ [self navigationController] pushViewController:contactP animated: NO ];
 	[contactP release];
 	
 

@@ -41,7 +41,7 @@ typedef enum  VMSStateType
 		VMSStatePrevious
 	}VMSStateType;
 	
-//#define PROGRESS_VIEW
+#define PROGRESS_VIEW
 @class SpoknAppDelegate;
 @class pickerviewcontroller;
 @class OverlayViewController;
@@ -74,9 +74,11 @@ typedef enum  VMSStateType
 	int *returnValLongP;
 	int openForwardNo;
 	SelectedContctType      forwardContact;
-	
-	UIProgressView *uiProgBarP;
-	UISlider *sliderP;
+	#ifdef PROGRESS_VIEW
+		UIProgressView *uiProgBarP;
+	#else
+		UISlider *sliderP;
+	#endif
 	UIImage *knob;
 	int returnValueInt;
 	UIButton *deleteButton;

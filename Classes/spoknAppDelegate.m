@@ -404,13 +404,14 @@
 				}
 			[dialviewP setStatusText: @"connecting..." :nil :START_LOGIN :0 ];
 			[loginProtocolP startloginIndicator];
+			[spoknViewControllerP startProgress];
 			break;
 		case ALERT_ONLINE://login
 			
 			loginProgressStart = 0;
 			[vmsviewP setcomposeStatus:1 ];
 			[loginProtocolP stoploginIndicator];
-			
+			[ spoknViewControllerP cancelProgress];
 			
 			#ifndef _LTP_
 			[nsTimerP invalidate];
@@ -433,6 +434,7 @@
 				[self playonlineTone];
 				[self popLoginView];
 				[self newBadgeArrived:vmsNavigationController];	
+				//tabBarController.selectedViewController = dialviewP;
 			}	
 			self->onLineB = true;
 			[dialviewP setStatusText: @"online" :nil :ALERT_ONLINE :0 ];
@@ -449,7 +451,7 @@
 
 			break;
 		case ALERT_OFFLINE:
-			
+			[ spoknViewControllerP cancelProgress];
 			self->onLineB = false;
 			//logOut(ltpInterfacesP,false);
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
@@ -1142,7 +1144,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//printf("\n after %d %d",[callviewP retainCount],[dialviewP retainCount]	);
 	//tabBarController.selectedViewController = vmsNavigationController;
 	
-	tabBarController.selectedViewController = spoknViewNavigationController;
+	tabBarController.selectedViewController = spoknViewNavigationController;//dialviewP;
 	[vmsNavigationController.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"TB-VMS.png"] tag:4];
 	[self createRing];
 	SetSpeakerOnOrOff(0,true);
@@ -1983,7 +1985,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			if(connectionRequired==NO)
 			{	 
 				
-				//#define _TEST_QUALITY_ON_GPRS_ 
+				#define _TEST_QUALITY_ON_GPRS_ 
 				#ifdef _TEST_QUALITY_ON_GPRS_
 				//printf("\n richable set");
 				wifiavailable = YES;

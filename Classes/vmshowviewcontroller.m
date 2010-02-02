@@ -197,7 +197,9 @@
 		[self makeView];
 		[self loadOtherView];
 		[self->tableView reloadData];
+		printf("\n reply");
 	}
+	printf("\n showForwardOrReplyScreen");
 	[pickerviewcontrollerviewP addSelectedContact:selectedContactP  ];
 	
 	if(selectedContactP)
@@ -307,7 +309,7 @@
 	 free(addressDataTmpP);
 	 */
 	
-	UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+	/*UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
 													   message: [ NSString stringWithString:_DELETE_VMS_ ]
 													  delegate: self
 											 cancelButtonTitle: nil
@@ -315,9 +317,46 @@
 						  ];
 	[alert addButtonWithTitle:@"Cancel"];
 	[ alert show ];
-	[alert release];
+	[alert release];*/
+	
+	UIActionSheet *uiActionSheetP;
+	uiActionSheetP= [[UIActionSheet alloc] 
+					 initWithTitle: @"" 
+					 delegate:self
+					 cancelButtonTitle:@"Cancel" 
+					 destructiveButtonTitle:@"delete voice mail"
+					 otherButtonTitles:nil, nil];
+	
+	uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+	[uiActionSheetP showInView:[ownerobject tabBarController].view];
+	
 	
 }
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if(buttonIndex==0)//mean delete button
+	{
+		if(returnValLongP)
+		{	
+			*returnValLongP = 1;
+		}
+		vmsDeleteByID(vmailP->vmsid);
+		[ [self navigationController] popViewControllerAnimated:YES ];
+		profileResync();
+		
+		
+	}
+	
+	[actionSheet release];
+	
+}
+
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet
+{
+	
+	[actionSheet release];
+}
+
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 {
@@ -418,8 +457,13 @@
 	}
 	
 	amt = 0.0;
+	#ifdef PROGRESS_VIEW
+	[uiProgBarP setProgress: 0.0f];	
 	
-	sliderP.value = 0.0f;
+	#else
+		sliderP.value = 0.0f;
+	#endif
+	
 
 	
 }
@@ -660,6 +704,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	int row = [indexPath row];
+	int section = [indexPath section];
+
+	if(sectionArray[section].dataforSection[row].customViewP)
+		return 30;
+	
 	return 50;
 	
 }
@@ -702,7 +752,7 @@
 			{
 				cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 				
-			
+				//cell.backgroundColor =[UIColor viewFlipsideBackgroundColor];
 				[cell.contentView addSubview:sectionArray[section].dataforSection[row].customViewP];
 				[sectionArray[section].dataforSection[row].customViewP release];
 				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -1060,17 +1110,21 @@ id createImage(float percentage)
 	#ifdef PROGRESS_VIEW
 		uiProgBarP = [[UIProgressView alloc] initWithFrame:
 					  			   
-					   CGRectMake(10.0f, 17.0f, 280.0f, 20.0f)];
+					   CGRectMake(10.0f, 10.0f, 280.0f, 30.0f)];
 		//[uiProgBarP backgroundColor:[UIColor redColor]];
-		uiProgBarP.progressViewStyle = UIProgressViewStyleBar;
+		//uiProgBarP.progressViewStyle = UIProgressViewStyleBar;
 		//uiProgBarP.backgroundColor = uiActionSheetP.backgroundColor;//[UIColor blueColor];
-		uiProgBarP.progressViewStyle= UIProgressViewStyleBar;
+		uiProgBarP.progressViewStyle= UIProgressViewStyleDefault;
 		uiProgBarP.tag = 12;
+		[uiProgBarP setProgress:0.0f];
 	#else
 		sliderP = [[UISlider alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 280.0f, 30.0f)];
 		sliderP.backgroundColor = [[UIColor clearColor] autorelease ] ;
 		//activeImageP=[UIImage imageNamed:@"vms_out_Active.png"];
 		//dileverImageP=[UIImage imageNamed:@"vmail_out_newHigh.png"];
+	//	[sliderP setThumbImage:[UIImage imageNamed:@"speaker.png"] forState:UIControlStateNormal];
+		//[sliderP setMinimumTrackImage:[UIImage imageNamed:@"thumb_blue.png"] forState:UIControlStateNormal];
+		//[sliderP setMaximumTrackImage:[UIImage imageNamed:@"bg.png"] forState:UIControlStateNormal];
 		
 		sliderP.minimumValueImage = [UIImage imageNamed:@"vmsprogressleft.png"];
 		[sliderP.minimumValueImage release];
@@ -1088,15 +1142,15 @@ id createImage(float percentage)
 		//[sliderP setThumbImage:knob forState:UIControlStateHighlighted];
 		
 		[sliderP addTarget:self action:@selector(updateValue:) forControlEvents:UIControlEventValueChanged];
+				//[contentView addSubview: slider];
+		//[sliderP release];
+		
+	#endif		
 		pickerviewcontrollerviewP = [[pickerviewcontroller alloc] init];
 		[pickerviewcontrollerviewP SetkeyBoardType:UIKeyboardTypeEmailAddress :10 buttonType:UIKeyboardTypeEmailAddress];
 		[pickerviewcontrollerviewP setObject:self->ownerobject];
 		
 		[pickerviewcontrollerviewP setData:nil value:nil placeHolder:nil returnValue:nil];
-		//[contentView addSubview: slider];
-		//[sliderP release];
-		
-	#endif		
 		
     }
     return self;
@@ -1299,7 +1353,7 @@ id createImage(float percentage)
 				[previewButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ]  forState:UIControlStateNormal];
 				[previewButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
 				[previewButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
-				[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
+				[previewButtonP setTitleColor:[[UIColor grayColor] autorelease]  forState:UIControlStateDisabled];
 			}	
 			
 		
@@ -1414,7 +1468,13 @@ id createImage(float percentage)
 - (void)viewDidLoad {
     [super viewDidLoad];
 	doNothing = 0;
+#ifdef PROGRESS_VIEW
+	uiProgBarP.userInteractionEnabled = NO;
+	
+#else
 	sliderP.userInteractionEnabled = NO;
+#endif
+	
 	recordVmsB = false;
 	[ownerobject setVmsDelegate:self];
 	if(vmstateType==VMSStateRecord)
@@ -1666,7 +1726,7 @@ id createImage(float percentage)
 	
 	sectionArray[secIndex].dataforSection[tablesz].elementP = 0;//addressDataP->home;
 	sectionArray[secIndex].dataforSection[tablesz].secRowP = 0;
-	sectionArray[secIndex].sectionheight = 100;
+	sectionArray[secIndex].sectionheight = 120;
 	sectionArray[secIndex].sectionView = 0;
 	//if(playB)
 	sectionArray[secIndex].sectionView = firstSectionviewP;

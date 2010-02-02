@@ -175,6 +175,10 @@
 		8B81B4AD10318AC300A18DA1 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */; };
 		8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4B010318ADB00A18DA1 /* AddressBook.framework */; };
 		8B8626BE1084504C00718D16 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8626BD1084504C00718D16 /* whiteButton.png */; };
+		8B906B7F1116D739000ED3F7 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B906B7D1116D739000ED3F7 /* bg.png */; };
+		8B906B801116D739000ED3F7 /* thumb_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B906B7E1116D739000ED3F7 /* thumb_blue.png */; };
+		8B906B811116D739000ED3F7 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B906B7D1116D739000ED3F7 /* bg.png */; };
+		8B906B821116D739000ED3F7 /* thumb_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B906B7E1116D739000ED3F7 /* thumb_blue.png */; };
 		8B9302811011EDFA004BDA41 /* contactDetailsviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */; };
 		8B9302821011EDFA004BDA41 /* contactDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302661011EDFA004BDA41 /* contactDetails.xib */; };
 		8B9302831011EDFA004BDA41 /* contactviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302681011EDFA004BDA41 /* contactviewController.m */; };
@@ -661,6 +665,8 @@
 		8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		8B81B4B010318ADB00A18DA1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		8B8626BD1084504C00718D16 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
+		8B906B7D1116D739000ED3F7 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		8B906B7E1116D739000ED3F7 /* thumb_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb_blue.png; sourceTree = "<group>"; };
 		8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDetailsviewcontroller.h; sourceTree = "<group>"; };
 		8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDetailsviewcontroller.m; sourceTree = "<group>"; };
 		8B9302661011EDFA004BDA41 /* contactDetails.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contactDetails.xib; sourceTree = "<group>"; };
@@ -1177,6 +1183,8 @@
 		8B7E51301112AF0500A707B1 /* Spokn buttons n icons */ = {
 			isa = PBXGroup;
 			children = (
+				8B906B7D1116D739000ED3F7 /* bg.png */,
+				8B906B7E1116D739000ED3F7 /* thumb_blue.png */,
 				8B7E53B31113059E00A707B1 /* 5_play_270_45_pressed.png */,
 				8B7E52C41112D2B200A707B1 /* sliderminmax.png */,
 				8B7E51311112AF0500A707B1 /* 1_answer_125_45_normal.png */,
@@ -1665,6 +1673,8 @@
 				8B7E519F1112AF0500A707B1 /* 7_vmslog_30_30.png in Resources */,
 				8B7E52C61112D2B200A707B1 /* sliderminmax.png in Resources */,
 				8B7E53B51113059E00A707B1 /* 5_play_270_45_pressed.png in Resources */,
+				8B906B811116D739000ED3F7 /* bg.png in Resources */,
+				8B906B821116D739000ED3F7 /* thumb_blue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1825,6 +1835,8 @@
 				8B7E517A1112AF0500A707B1 /* 7_vmslog_30_30.png in Resources */,
 				8B7E52C51112D2B200A707B1 /* sliderminmax.png in Resources */,
 				8B7E53B41113059E00A707B1 /* 5_play_270_45_pressed.png in Resources */,
+				8B906B7F1116D739000ED3F7 /* bg.png in Resources */,
+				8B906B801116D739000ED3F7 /* thumb_blue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

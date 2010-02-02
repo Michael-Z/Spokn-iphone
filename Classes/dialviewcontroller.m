@@ -179,6 +179,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	*/ 
 	status = 0;
 	subStatus = 0;
+	activityIndicator.hidesWhenStopped = YES;
 	//[numberFieldP becomeFirstResponder];
 	//numberFieldP.delegate = self;
 	/*
@@ -264,8 +265,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 
 - (void)dealloc {
 	//printf("\n dialview dealloc");
-	
-		
+	[activityIndicator release];
+	[mainstatusLabelP release];	
 	[calltimerP release];
 	[callingstringP release];
 	if(callingstringtypeP != nil)
@@ -613,11 +614,16 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	{
 		case START_LOGIN:
 			//statusLabelP. textAlignment=UITextAlignmentLeft;
-
-		//	[activityIndicator startAnimating];
-			[self.navigationItem.leftBarButtonItem initWithTitle: @"Cancel" style:UIBarButtonItemStylePlain
+			#ifdef _SHOW_ANIMATION_
+				statusLabel1P.hidden = YES;
+				statusLabel2P.hidden = YES;
+				mainstatusLabelP.hidden = NO;
+				mainstatusLabelP.text = callingstringP;
+				[activityIndicator startAnimating];
+			#endif
+			/*[self.navigationItem.leftBarButtonItem initWithTitle: @"Cancel" style:UIBarButtonItemStylePlain
 			 target: self
-			 action: @selector(LogoutPressed) ] ;
+			 action: @selector(LogoutPressed) ] ;*/
 			
 
 			break;
@@ -628,6 +634,13 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				[alert dismissWithClickedButtonIndex:0 animated:NO]	;
 				[alert release];
 				alert = nil;
+				#ifdef _SHOW_ANIMATION_
+					statusLabel1P.hidden = NO;
+					statusLabel2P.hidden = NO;
+					mainstatusLabelP.hidden = YES;
+					mainstatusLabelP.text = callingstringP;
+					[activityIndicator stopAnimating];
+				#endif
 				unameP = getLtpUserName(ltpInterfacesP);
 				if(unameP && strlen(unameP)>0)
 				{	
@@ -648,10 +661,17 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				//printf("\n online code");
 				onLineB = true;
 				//printf("\n %d",self->onLineB);
-			//	[activityIndicator stopAnimating];
+				
+				
 			}	
 			break;
 		case ALERT_OFFLINE:
+		#ifdef _SHOW_ANIMATION_
+			mainstatusLabelP.hidden = YES;
+			//mainstatusLabelP.text = callingstringP;
+			[activityIndicator stopAnimating];
+		#endif			
+			
 		//	statusLabelP. textAlignment=UITextAlignmentCenter;
 			if(alert)
 			{	
@@ -768,7 +788,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			}
 			//[self->ownerobject popLoginView];
 			[self setViewButton:0];
-		//	[activityIndicator stopAnimating];
+			
 			////printf("\n offline code");
 			onLineB = false;
 			break;

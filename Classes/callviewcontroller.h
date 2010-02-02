@@ -27,7 +27,7 @@
 #import "contactDetailsviewcontroller.h"
 @class SpoknAppDelegate;
 
-@interface CallViewController : UIViewController<KeypadProtocol> {
+@interface CallViewController : UIViewController<KeypadProtocol,UIActionSheetDelegate> {
 	IBOutlet UILabel *callnoLabelP;
 	IBOutlet UILabel *timeLabelP;
 	IBOutlet UILabel *dtmfLabelP;

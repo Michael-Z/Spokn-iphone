@@ -812,6 +812,28 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
  }
  */
 #define TABLE_VIEW_TAG			2010
+#pragma mark ACTIONSHEET
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if(buttonIndex==0)//mean delete button
+	{
+		cdrRemoveAll();
+		[self->tableView reloadData];
+
+		
+	}
+	
+	[actionSheet release];
+	
+}
+
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet
+{
+	
+	[actionSheet release];
+}
+
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	if(buttonIndex==0)
@@ -824,7 +846,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }
 -(void) clearPressed {
 	
-UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Recent calls" 
+/*UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Recent calls" 
 message: [ NSString stringWithString:_CLEAR_CALL_LOG_ ]
 delegate: self
 cancelButtonTitle: nil
@@ -832,7 +854,19 @@ cancelButtonTitle: nil
 [alert addButtonWithTitle:@"No"];
 	[ alert show ];
 	[alert release];
-
+*/
+	UIActionSheet *uiActionSheetP;
+	uiActionSheetP= [[UIActionSheet alloc] 
+					 initWithTitle: @"" 
+					 delegate:self
+					 cancelButtonTitle:@"Cancel" 
+					 destructiveButtonTitle:_CLEAR_CALL_LOG_
+					 otherButtonTitles:nil, nil];
+	
+	uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+	[uiActionSheetP showInView:[ownerobject tabBarController].view];
+	
+	
 }
 - (void)viewDidAppear:(BOOL)animated
 {

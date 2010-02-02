@@ -38,13 +38,14 @@
 	//IBOutlet UILabel *ltpNameLabelP;
 	//IBOutlet UITextField *numberFieldP;
 	IBOutlet UILabel *numberlebelP;
+	IBOutlet UILabel *mainstatusLabelP;
 	IBOutlet UIButton *hangUpButtonP;
 	IBOutlet UIButton *callButtonP;
 	IBOutlet Keypadview *keypadmain;
 	
 	SpoknAppDelegate *ownerobject;
 	LtpInterfaceType *ltpInterfacesP;
-	//IBOutlet UIActivityIndicatorView *activityIndicator;
+	IBOutlet UIActivityIndicatorView *activityIndicator;
 	//UISegmentedControl *segmentedControl;
 	int status;
 	int subStatus;

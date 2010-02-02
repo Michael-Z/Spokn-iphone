@@ -30,7 +30,7 @@
 
 
 @class SpoknAppDelegate;
-@interface CalllogViewController : UIViewController< UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate> {
+@interface CalllogViewController : UIViewController< UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,UIActionSheetDelegate> {
 	IBOutlet UITableView *tableView;
 	SpoknAppDelegate *ownerobject;	
 	UAObjectType uaObject;

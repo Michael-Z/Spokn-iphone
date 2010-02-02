@@ -41,7 +41,7 @@
 #define _EMPTY_NUMBER_ @"Number field should not be empty."
 #define _DELETE_VMS_ @"Are you sure you want to delete this voice mail?"
 #define _NO_VMS_PLAY_ @" can not play vms"
-#define _CLEAR_CALL_LOG_ @"Clear all calls?"
+#define _CLEAR_CALL_LOG_ @"Clear all calls"
 #define _DUPLICATE_FORWARD_NUMBER_ @"The number you provided for call forwarding has already been used by someone else.Please provide another number and try again."
 #define _NO_CREDITS_ @"Your VMS could not be sent because you do not have enough credit. Please recharge & try again."
 #define _NO_WIFI_ @"Wi-Fi not available"
