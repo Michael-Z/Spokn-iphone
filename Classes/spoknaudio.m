@@ -11,7 +11,11 @@
 
 
 @implementation SpoknAudio
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+	printf("\n finish %d",flag);
 
+}
 + (SpoknAudio*) createSoundPlaybackUrl:(NSString*)pathP play:(int)playB
 {
 	NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: pathP];
@@ -21,11 +25,16 @@
 	}
 	SpoknAudio *spoknAudioP = [[SpoknAudio alloc] init];
 	spoknAudioP->playP = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+	spoknAudioP->playP.delegate = self;
+	spoknAudioP->playP.volume = DEFAULT_VOLUME;
+
 	if(playB)
 	{
 		[spoknAudioP->playP play];
+		
+	//	printf("\n play retain count %d",[spoknAudioP->playP retainCount]);
 	}
-	spoknAudioP->playP.volume = DEFAULT_VOLUME;
+		[fileURL release];
 	return spoknAudioP;
 }
 -(int) setUrlToPlay:(NSString*)pathP
@@ -39,11 +48,13 @@
 	if(self->playP==nil)
 		return 1;
 	self->playP.volume = DEFAULT_VOLUME;
+	[fileURL release];
 	return 0;
 }
 -(int) stopSoundUrl
 {
 	if(playP==0) return 1;
+	if(playP.isPlaying)
 	[playP stop];
 	return 0;
 }
@@ -61,7 +72,9 @@
 		localspoknAudioP = *spoknAudioPP;
 		if(localspoknAudioP)
 		{	
-			[localspoknAudioP->playP stop];
+		//	printf("\n before stop retain count %d",[localspoknAudioP->playP retainCount]);
+			[localspoknAudioP stopSoundUrl];
+			//printf("\n stop retain count %d",[localspoknAudioP->playP retainCount]);
 			[localspoknAudioP->playP release];
 			localspoknAudioP->playP = nil;
 			[localspoknAudioP release];
@@ -73,8 +86,9 @@
 	return 1;
 }
 - (void)dealloc {
-	[self->playP stop];
+	[self stopSoundUrl];
 	[self->playP release];
+	self->playP = nil;
     [super dealloc];
 	
 }

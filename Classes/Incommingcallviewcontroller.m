@@ -46,14 +46,18 @@
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	buttonPressedB = NO;
     [super viewDidLoad];
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"IncommingCall" image:nil tag:2];
 	incomingStatusLabelP.backgroundColor = [UIColor clearColor];
 	[incomingStatusLabelP setText:textProP];
-	[self.view setBackgroundColor:[[[UIColor alloc] 
+	/*[self.view setBackgroundColor:[[[UIColor alloc] 
 									initWithPatternImage:[UIImage imageNamed:@"spokncall.png"]]
-								   autorelease]];	
+								   autorelease]];	*/
+	[self.view setBackgroundColor:[[[UIColor alloc] 
+									initWithPatternImage:[UIImage imageNamed:@"320x480-watermark.png"]]
+								   autorelease]];
 	//self.incomingStatusLabelP.text =textProP;
 	//[incomingStatusLabelP performSelectorOnMainThread : @ selector(setText: ) withObject:textProP waitUntilDone:YES];
 	UIImage *buttonBackground;
@@ -103,14 +107,25 @@
 }
 -(IBAction)Accept:(id)sender
 {
-	[self->ownerobject AcceptCall:self->ltpInDataP];	
+	printf("\n call button");
+	if(buttonPressedB)
+		return;
+	[self->ownerobject AcceptCall:self->ltpInDataP];
+	buttonPressedB =YES;
 }
 -(IBAction)Reject:(id)sender
 {
+	printf("\n call button");
+	if(buttonPressedB)
+		return;
+		
 	[self->ownerobject RejectCall:self->ltpInDataP];
+	buttonPressedB =YES;
+
 }
 -(void)setObject:(id) object 
 {
+	
 	self->ownerobject = object;
 }
 -(void)setIncommingData:(IncommingCallType *)lltpInDataP

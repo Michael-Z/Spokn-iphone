@@ -30,6 +30,8 @@
 #import "keypadview.h"
 @class SpoknAppDelegate;
 @class CallViewController;
+#import "spoknaudio.h"
+#define MAX_TONE 13 
 @interface DialviewController : UIViewController<UITextFieldDelegate, KeypadProtocol> {
 //	@public
 	//IBOutlet UITextField*statusFieldP;
@@ -63,6 +65,11 @@
 	UIAlertView *alert;
 	NSTimer *_deleteTimer;
 	int invalidUserB;
+	int buttonPressedB;
+	#ifdef MAX_TONE
+		SpoknAudio *dtmfTone[MAX_TONE];
+	int prvKey;
+	#endif
 }
 
 
@@ -84,4 +91,6 @@
 - (void)playSoundForKey:(int)key;
 - (void)stopTimer;
 - (void)deleteRepeat;
+-(void)makeDTMF;
+-(void)destroyDTMF;
 @end

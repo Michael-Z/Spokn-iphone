@@ -55,7 +55,7 @@
 -( void)sendForwardVms:(char*)forwardP;
 -(void)addContact:(UIViewController*)rootP;
 -(int)getForwardNumber:(SelectedContctType*)  lcontactObjectP;
--(int)keyBoardOnOrOff:(BOOL)onB :(CGRect*) frameP;
+-(int)keyBoardOnOrOff:(BOOL)onB :(CGRect*) frameP viewHeight:(float)height;
 
 @end
 @class pickerviewcontroller;
@@ -88,6 +88,9 @@
 	id<UpDateViewProtocol> upDateProtocolP;
 	NSString *allDestno;
 	BOOL keyBoardOnB;
+	BOOL showTableB;
+	CGRect frameRect;
+	CGRect prevRect;
 	//NSString *detailStrP;
 
 }

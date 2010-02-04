@@ -58,14 +58,19 @@
 {
 	
 }
-- (void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL) animated
 {
-	[super viewDidAppear:animated];
 	if(navBarShow)
 	{
 		navBarShow = NO;
 		[[self navigationController] setNavigationBarHidden:YES animated:NO];
 	}
+	[super viewWillAppear:animated];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
 	loadedB = true;
 	if(actualDismissB)
 	{
@@ -78,6 +83,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.title = @"Call";
 	//[ownerobject setStatusBarStyle:UIStatusBarStyleBlackTranslucent animation:NO];
 	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleBlackTranslucent;
 	SetSpeakerOnOrOff(0,false);
@@ -85,8 +91,11 @@
 	UIImage *buttonBackgroundPressed;
 	callnoLabelP.backgroundColor = [UIColor clearColor];
 	[ callnoLabelP setOpaque:YES];
+	/*[self.view setBackgroundColor:[[[UIColor alloc] 
+									initWithPatternImage:[UIImage imageNamed:@"spokncall.png"]]
+								   autorelease]];	*/
 	[self.view setBackgroundColor:[[[UIColor alloc] 
-									 initWithPatternImage:[UIImage imageNamed:@"spokncall.png"]]
+									 initWithPatternImage:[UIImage imageNamed:@"320x480-watermark.png"]]
 									autorelease]];
 	[self->viewMenuP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	[self->viewKeypadP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
@@ -278,6 +287,7 @@
 -(IBAction)addContactPressed:(id)sender
 {
 	
+	
 	ContactViewController *contactP;
 	navBarShow = YES;
 	self.title = @"Call";
@@ -290,10 +300,11 @@
 	[contactP setObjType:GETCONTACTLIST];
 	contactP.ltpInterfacesP =ownerobject.ltpInterfacesP;
 	//navBarShow = NO;
-	[[self navigationController] setNavigationBarHidden:NO animated:NO];
+	
 
 	[contactP setReturnVariable:self :0 :0];
-	[ [self navigationController] pushViewController:contactP animated: NO ];
+	//[self presentModalViewController:contactP animated: NO ];
+	[ [self navigationController] pushViewController:contactP animated: YES ];
 	[contactP release];
 	
 

@@ -100,7 +100,7 @@
 				if(noNameB)
 				{	
 					dispP.colorP =[[UIColor lightGrayColor] autorelease]; 
-					objStrP = "First Last";
+					objStrP = "Name";
 					dispP.boldB = NO;
 				}
 				else
@@ -504,7 +504,7 @@
 					if([self->ownerobject makeCall:stringSelected[0]]==YES)
 					{	
 						//[[self navigationController]  popViewControllerAnimated:YES];
-						[self->ownerobject changeView];
+					//	[self->ownerobject changeView];
 					}	
 					
 				}
@@ -877,12 +877,12 @@
 	//UIImage *buttonBackground;
 	//UIImage *buttonBackgroundPressed;
 	
-	buttonBackground = [UIImage imageNamed:@"red.png"];
+	/*buttonBackground = [UIImage imageNamed:@"red.png"];
 	buttonBackgroundPressed = [UIImage imageNamed:@"blueButton.png"];
 	[CustomButton setImages:delButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:YES];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
-	
+	*/
 	//tableView.tag = TABLE_VIEW_TAG;
 	if(self.navigationItem.rightBarButtonItem==nil)
 	{	
@@ -2025,7 +2025,7 @@ titleForHeaderInSection:(NSInteger)section
 		free(self->cdrP);
 	}
 	self->cdrP = 0;
-	//printf("\n dealloc contactdetails");
+	printf("\n dealloc contactdetails");
 	if(addressDataP)
 		free(addressDataP);
 	addressDataP = 0;

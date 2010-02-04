@@ -32,6 +32,7 @@
 #import "callviewcontroller.h"
 #import <AudioToolbox/AudioToolbox.h>
 #include "alertmessages.h"
+
 @implementation DialviewController
 const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'};
 //static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -83,7 +84,55 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	[self playSoundForKey:_downKey];
 
 }
+#ifdef MAX_TONE
+-(void)destroyDTMF
+{
+	int i;
+	for(i=0;i<MAX_TONE;++i)
+	{
+		if(dtmfTone[i])
+		[SpoknAudio destorySoundUrl:&dtmfTone[i]];
+			
+	}
+		
+}
+ -(void)makeDTMF
+{
+	int i;
+	NSBundle *mainBundle = [NSBundle mainBundle];
+	for(i=0;i<MAX_TONE;++i)
+	{
+		NSString *filename = [NSString stringWithFormat:@"dtmf-%c", (i == 10 ? 's' : _keyValues[i])];
+		NSString *path = [mainBundle pathForResource:filename ofType:@"aif"];
+		if (path)
+		{
+			dtmfTone[i]=[SpoknAudio createSoundPlaybackUrl:path play:false];
+		
+		}
+		
+	
+	}
+	prvKey = -1;
+}
+- (void)playSoundForKey:(int)key
+{
+	
+	if(prvKey>=0)
+	{
+		if(dtmfTone[prvKey])
+		{
+			[dtmfTone[prvKey] stopSoundUrl]; 
+		}
+	}
+	if(dtmfTone[key])
+	{
+		[dtmfTone[key] playSoundUrl];
+	}
+	prvKey = key;
+	//[path release];
+}
 
+#else
 - (void)playSoundForKey:(int)key
 {
 	
@@ -96,7 +145,10 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			return;
 		
 	[ownerobject playUrlPath:path];
+	
+	//[path release];
 }
+#endif
 - (void)keyPressedUp:(NSString *)stringkey keycode:(int)keyVal
 {
 
@@ -137,9 +189,16 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	////////printf("\n mukesh");
 	return YES;
 }
-
+- (void)viewDidAppear:(BOOL)animated
+{
+	buttonPressedB = NO;
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	buttonPressedB = NO;
+	#ifdef MAX_TONE
+	[self makeDTMF];
+	#endif
   //  [super viewDidLoad];
 	//numberFieldP.text = @"19176775362";
 	//numberFieldP.text = @"19176775335";
@@ -264,6 +323,9 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 
 
 - (void)dealloc {
+	#ifdef MAX_TONE
+		[self destroyDTMF];
+	#endif	
 	//printf("\n dialview dealloc");
 	[activityIndicator release];
 	[mainstatusLabelP release];	
@@ -370,6 +432,9 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 }
 -(IBAction)callLtp:(id)sender
 {
+	printf("\n call button");
+	if(buttonPressedB)
+		return;
 	//[self->ownerobject->navigationController pushViewController: ownerobject.inCommingCallViewP animated: YES ];
 	//printf("\n %d %d",onLineB,self->onLineB);
 	if(onLineB)
@@ -407,6 +472,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			numberlebelP.text = @"";
 			statusLabel1P.hidden = NO;
 			statusLabel2P.hidden = NO;
+			buttonPressedB = YES;
 		}	
 	}
 	else
@@ -450,13 +516,13 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		}
 		else
 		{
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
+			UIAlertView *lalert = [ [ UIAlertView alloc ] initWithTitle: @"" 
 															   message: [ NSString stringWithString:_NO_NETWORK_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: @"OK", nil
 								  ];
-			[ alert show ];
+			[ lalert show ];
 			
 		}
 		//[self dismissKeyboard:numberFieldP];
@@ -466,6 +532,9 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 }
 -(IBAction)hangLtp:(id)sender
 {
+	printf("\n call button");
+	if(buttonPressedB)
+		return;
 	//if(onLineB)
 	//{
 		
@@ -517,6 +586,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				numberlebelP.text = @"";
 				statusLabel1P.hidden = NO;
 				statusLabel2P.hidden = NO;
+				buttonPressedB = YES;
 			}	
 		}
 	//}
@@ -849,7 +919,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				UINavigationController *tmpCtl;
 				tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: callViewControllerP ] autorelease];
 				[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
-				
+				buttonPressedB = NO;
 				if([callViewControllerP retainCount]>1)
 					[callViewControllerP release];
 				

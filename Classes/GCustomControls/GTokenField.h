@@ -22,6 +22,7 @@
 	GTokenFieldCell* _selectedCell;
 	int _lineCount;
 	CGPoint _cursorOrigin;
+	int tableonB;
 }
 
 @property(nonatomic,copy)NSString* text;
@@ -51,6 +52,7 @@
 - (NSString*)numberForObject:(id)object;
 -(int) totalObject;
 -(NSString *)GetNameAtIndex:(int)index;
+-(void)setTableOn:(int)onB;
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

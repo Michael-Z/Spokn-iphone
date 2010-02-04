@@ -1061,7 +1061,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 #define TABLE_VIEW_TAG			2000
 - (void)viewDidAppear:(BOOL)animated
 {
+	printf("\n view did madanmohan");
 	[super viewDidAppear:animated];
+	
 	if(viewPlayResult)
 	{
 		viewPlayResult = 0;
@@ -1094,6 +1096,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		[self->tableView reloadData];
 		refreshB = 0;
 	}
+	printf("\n view did shankarji");
 }	
 
 -(void)setcomposeStatus:(int)lstatus
@@ -1112,6 +1115,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[self retain];
 	activeImageP=[UIImage imageNamed:@"vms_out_Active.png"];
 	dileverImageP=[UIImage imageNamed:@"vm_icons_outgoing_delivered.png"];
 	failedImageP=[UIImage imageNamed:@"vm_icons_outgoing_undelivered.png"];
@@ -1201,6 +1205,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }
 
 - (void)dealloc {
+	printf("\n shankar jaikishan");
 	[activeImageP release];
 	[dileverImageP release];
 	[failedImageP release];

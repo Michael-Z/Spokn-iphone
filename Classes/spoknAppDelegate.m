@@ -108,11 +108,27 @@
 {
 	[SpoknAudio destorySoundUrl:&incommingSoundP];
 	[SpoknAudio destorySoundUrl:&allSoundP];
+	[SpoknAudio destorySoundUrl:&onLineSoundP];
+	[SpoknAudio destorySoundUrl:&endSoundP];
 	
 }
 -(void) createRing
 {
-		
+	NSBundle *mainBundle = [NSBundle mainBundle];
+	[SpoknAudio destorySoundUrl:&incommingSoundP];
+	[SpoknAudio destorySoundUrl:&onLineSoundP];
+	[SpoknAudio destorySoundUrl:&endSoundP];
+	
+	NSString *path = [mainBundle pathForResource:@"phone" ofType:@"caf"];
+	if (!path)
+		incommingSoundP = [SpoknAudio createSoundPlaybackUrl:path play:false];
+	path = [mainBundle pathForResource:@"gling" ofType:@"caf"];
+	if (path)
+			onLineSoundP = [SpoknAudio createSoundPlaybackUrl:path play:false];
+	path = [mainBundle pathForResource:@"doorbell" ofType:@"caf"];
+	if (path)
+		endSoundP = [SpoknAudio createSoundPlaybackUrl:path play:false];
+
 	
 		//[incommingP repeatPlay:-1];
 	
@@ -132,16 +148,7 @@
 		
 			
 			
-			NSBundle *mainBundle = [NSBundle mainBundle];
-			
-			NSString *path = [mainBundle pathForResource:@"phone" ofType:@"caf"];
-			if (!path)
-				return;
-			
-			[SpoknAudio destorySoundUrl:&incommingSoundP];
-			
-			incommingSoundP = [SpoknAudio createSoundPlaybackUrl:path play:true];
-			
+						
 			ringTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
 						
 														target: self
@@ -155,7 +162,7 @@
 			
 		//	[incommingP playSoundUrl];
 			ringStartB = 1;
-			
+		//	[path release];
 		}	
 		
 }
@@ -167,7 +174,7 @@
 			ringStartB = 0;
 		[ringTimer invalidate];
 		ringTimer = nil;
-		[SpoknAudio destorySoundUrl:&incommingSoundP];
+		//[SpoknAudio destorySoundUrl:&incommingSoundP];
 				
 		return 0;
 	}	
@@ -177,6 +184,10 @@
 
 -(void) playcallendTone
 {
+#ifdef DTMF_TONE
+	[endSoundP playSoundUrl];
+	
+#else
 	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleDefault;
 	//[self setStatusBarStyle:UIStatusBarStyleDefault animation:NO];
 	NSBundle *mainBundle = [NSBundle mainBundle];
@@ -185,14 +196,15 @@
 		if (!path)
 			return;
 	[self playUrlPath:path]	;
+	//[path release];
 		
-	
+#endif	
 
 		
 }
 -(int)playUrlPath:(NSString*)pathP
 {
-	NSLog(@"\n%@",pathP);
+	//NSLog(@"\n%@",pathP);
 	[SpoknAudio destorySoundUrl:&allSoundP];
 	allSoundP = [SpoknAudio createSoundPlaybackUrl:pathP play:true];
 	if(allSoundP)
@@ -204,13 +216,18 @@
 {
 	
 		
+	#ifdef DTMF_TONE
+	[onLineSoundP playSoundUrl];
+	#else
+	
 		NSBundle *mainBundle = [NSBundle mainBundle];
 	
 		NSString *path = [mainBundle pathForResource:@"gling" ofType:@"caf"];
 		if (!path)
 			return;
-	[self playUrlPath:path]	;
-		
+		[self playUrlPath:path]	;
+	#endif	
+	//[path release];	
 }
 -(void) showText:(NSString *)testStringP
 {
@@ -1528,7 +1545,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		tempP = [[NSString alloc] initWithString:@"calling "];
 		
 		strtypP = [[NSString alloc] initWithUTF8String:typeP] ;
-		temp1P = [[NSString alloc] initWithString:[tempP stringByAppendingString:strtypP]];
+		//temp1P = [[NSString alloc] initWithString:[tempP stringByAppendingString:strtypP]];
+		temp1P = [tempP stringByAppendingString:strtypP];
 		//[strtypP appendString:@"\ncalling " ];
 		//[tempStringP appendString:@"\n" ];
 		//[tempStringP appendString:strP];
@@ -1612,15 +1630,19 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 -(void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController
 {
 	
-	if(prvCtlP)
+	if(prvCtlP )
 	{
+		//NSLog(@"\n class name%@\n",[prvCtlP description]);
 		if([prvCtlP isKindOfClass:[UINavigationController class]])
 		{
-			[(UINavigationController*)prvCtlP popToRootViewControllerAnimated:NO];
 			if(prvCtlP==vmsNavigationController)
 			{	
 				[VmsProtocolP	VmsStopRequest];
 			}	
+			
+			[(UINavigationController*)prvCtlP popToRootViewControllerAnimated:NO];
+		//	printf("\n root delete called");
+			
 		}
 		//printf("\n dele called");
 		

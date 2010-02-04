@@ -111,6 +111,7 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (void)updateHeight {
+	printf("\n change height");
 	CGFloat previousHeight = self.frame.size.height;
 	CGFloat newHeight = [self layoutCells];
 	if (previousHeight && newHeight != previousHeight) {
@@ -339,12 +340,18 @@ static CGFloat kMinCursorWidth = 50;
 //	return CGRectMake(0, self.bottom-1, superview.frame.size.width, tableHeight+1);
 //}
 //
+-(void)setTableOn:(int)onB
+{
+	tableonB = onB;
+}
 - (BOOL)shouldUpdate:(BOOL)emptyText {
 	if (emptyText && !self.hasText && !self.selectedCell && self.cells.count) {
 		//backspace select last cell
+		printf("\n start");
 		self.text = kEmpty;
 		[self selectLastCell];
 		[self scrollToVisibleLine:YES];
+		[self scrollToEditingLine:YES];
 		return NO;
 	} else if (emptyText && self.selectedCell) {
 		//remove last cell
@@ -352,7 +359,12 @@ static CGFloat kMinCursorWidth = 50;
 		return NO;
 	} else {
 		//normal text
-		[self scrollToEditingLine:YES];
+		if(tableonB)
+		{	
+			[self scrollToEditingLine:YES];
+		//	tableonB = NO:
+			
+		}	
 		return YES;
 	}
 }
@@ -511,10 +523,9 @@ static CGFloat kMinCursorWidth = 50;
 	UIScrollView* scrollView = (UIScrollView*)[self findRootViewOfClass:[UIScrollView class]];
 	if (scrollView) 
 	{
-//		CGFloat offset = _lineCount == 1 ? 0 : [self topOfLine:_lineCount-1];
-//		[scrollView setContentOffset:CGPointMake(0, self.frame.origin.y + offset) animated:animated];
+		//CGFloat offset = _lineCount == 1 ? 0 : [self topOfLine:_lineCount-1];
+		//[scrollView setContentOffset:CGPointMake(0, self.frame.origin.y + offset) animated:animated];
 		[scrollView setContentOffset:CGPointMake(0, self.frame.size.height - 42) animated:YES];
 	}
 }
-
 @end

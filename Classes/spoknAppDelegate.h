@@ -124,6 +124,8 @@ typedef struct CallNumberType
 	CallNumberType callNumber;
 	int loginGprsB;
 	SpoknAudio *incommingSoundP;
+	SpoknAudio *onLineSoundP;
+	SpoknAudio *endSoundP;
 	SpoknAudio *allSoundP;
 	NSTimer *ringTimer;
 	@public

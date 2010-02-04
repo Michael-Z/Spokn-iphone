@@ -299,6 +299,7 @@
 			{
 				txtDestNo = [[GTokenField alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
 			}
+			frameRect = txtDestNo.frame;
 			txtDestNo.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 			txtDestNo.backgroundColor = [[UIColor whiteColor] autorelease];
 			txtDestNo.delegate = self;
@@ -719,15 +720,36 @@
 
 - (void) showSearchTable
 {
+	CGRect tableBound;
 	if(modalB==false)
 	{	
 		self.view.frame = CGRectMake(0, 0, 320,200 );	
-		[upDateProtocolP upDateScreen];
-		[self->upDateProtocolP keyBoardOnOrOff:NO :nil];
+		//[upDateProtocolP upDateScreen];
+		[self->upDateProtocolP keyBoardOnOrOff:NO :nil viewHeight:0];
 	}
+	/*
+	if(self->txtDestNo.frame.size.height>45 && showTableB==FALSE)//mean in second row
+	{	
+		showTableB = TRUE;
+		frameRect = self->txtDestNo.frame;
+		self->txtDestNo.frame = CGRectMake(0, 0, 320,50 );
+		[self updateLayout];
+		[txtDestNo scrollToEditingLine:NO];
+	}*/
+	/*tableBound.origin.x = 0;
+	tableBound.origin.y = self->txtDestNo.frame.size.height+1;
+	tableBound.size.width = 320;
+	tableBound.size.height = 203-(self->txtDestNo.frame.size.height-43);
 	
+	tbl_contacts.frame =  tableBound;
+	*/
+	if(!showTableB)
+	{	
+		[self->txtDestNo setTableOn:YES];
+		showTableB = YES;
+	}	
 	tbl_contacts.hidden = NO;
-	_composerScrollView.scrollEnabled = NO;
+	//_composerScrollView.scrollEnabled = NO;
 }
 
 - (void) hideSearchTable
@@ -737,12 +759,24 @@
 	{	
 		//self.view.frame = CGRectMake(0, 0, 320,txtDestNo.frame.size.height );
 		//[upDateProtocolP upDateScreen];
+		
+		/*if(showTableB)
+		{	
+			self->txtDestNo.frame=frameRect ;
+		
+			[self updateLayout];
+			[txtDestNo scrollToEditingLine:NO];
+			showTableB = FALSE;
+		}*/
+		showTableB = false;
+		[self->txtDestNo setTableOn:NO];
 		if(keyBoardOnB)
 		{	
-			[self->upDateProtocolP keyBoardOnOrOff:YES :nil];
+			
+			[self->upDateProtocolP keyBoardOnOrOff:YES :nil viewHeight:self->txtDestNo.frame.size.height];
 		}
 	}
-	_composerScrollView.scrollEnabled = YES;	
+	//_composerScrollView.scrollEnabled = YES;	
 }
 
 
@@ -767,6 +801,7 @@
 		}
 		
 		if( try ) return YES;
+		
 		
 		
 		if( [string compare:@" "] == 0 ) {
@@ -867,7 +902,7 @@
 		NSMutableString *resultStrP;
 		resultStrP = [[NSMutableString alloc] init];
 		[txtDestNo resignFirstResponder];
-		[self->upDateProtocolP keyBoardOnOrOff:NO :nil] ;
+		[self->upDateProtocolP keyBoardOnOrOff:NO :nil viewHeight:0] ;
 		toLabelStart.hidden = NO;
 		toLabelStart.userInteractionEnabled = YES;
 		
@@ -921,7 +956,7 @@
 {
 	if(modalB==false)
 	{
-		[self->upDateProtocolP keyBoardOnOrOff:NO :nil];
+		[self->upDateProtocolP keyBoardOnOrOff:NO :nil viewHeight:0];
 	}
 	keyBoardOnB = FALSE;
 	return YES;
@@ -933,7 +968,7 @@
 	{
 		CGRect frame = txtDestNo.frame;
 	
-		[self->upDateProtocolP keyBoardOnOrOff:YES :&frame];
+		[self->upDateProtocolP keyBoardOnOrOff:YES :&frame viewHeight:self->txtDestNo.frame.size.height];
 	
 		self.view.frame = CGRectMake(0, 0, 320,200 );	
 		[upDateProtocolP upDateScreen];
@@ -1031,14 +1066,19 @@
 
 - (void)dealloc {
 
-		[tbl_contacts release];
-	[searchedContacts release];
+	[tbl_contacts release];
+	
 	if(txtDestNo != nil)
 	{
 		[txtDestNo release];
 		txtDestNo = nil;
 	}
-
+	[searchedContacts release];
+	searchedContacts = 0;
+	[searchArray release];
+	searchArray = 0;
+	
+	
 	[super dealloc];
 }
 

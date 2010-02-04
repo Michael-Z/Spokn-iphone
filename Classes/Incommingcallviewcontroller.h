@@ -37,6 +37,7 @@
 	LtpInterfaceType *ltpInterfacesP;
 	//NSString *textProP;
 	NSMutableString *textProP;
+	int buttonPressedB;
 	
 }
 

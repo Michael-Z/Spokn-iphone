@@ -755,11 +755,19 @@ titleForHeaderInSection:(NSInteger)section
 	[nc addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
 	//NSLog(@"\n size %@",self->tableView.frame);
 	//viewDidLodadedB = true;
+	if(hideCallAndVmailButtonB)
+	{
+		[[self navigationController] setNavigationBarHidden:NO animated:NO];
+	}
 	[ self reload ];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
+	/*if(hideCallAndVmailButtonB)
+	{
+		[[self navigationController] setNavigationBarHidden:YES animated:NO];
+	}*/
 	if(searchStartB)
 	{	
 	#ifdef _HIDDEN_NAVBAR
@@ -812,6 +820,8 @@ titleForHeaderInSection:(NSInteger)section
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+	
+	
 	if(viewDidLodadedB==false)
 	{	
 		tableframe = self->tableView.frame;

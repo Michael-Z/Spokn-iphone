@@ -3,7 +3,7 @@
 
 /**
  Copyright 2009,2010 Geodesic, <http://www.geodesic.com/>
- 
+ self setButtonTitle
  Spokn SIP-VoIP for iPhone and iPod Touch.
  
  This file is part of Spokn iphone.
@@ -54,19 +54,12 @@
 {
 	if(lallForwardContactP)
 	{	
-		if([ownerobject vmsForward:lallForwardContactP :fileNameCharP]==0)
-		{	
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:_VMS_SENT_ delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-			
-			[alert show];
-		}
-		else
+		if([ownerobject vmsForward:lallForwardContactP :fileNameCharP]!=0)
 		{
 			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:_VMS_SENDING_FAILED_ delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
-			
+		
 			[alert show];
 		}
-		
 		
 		//[ownerobject vmsSend:contactNumberP :fileNameCharP];
 	
@@ -107,7 +100,7 @@
 	return 1;
 
 }
--(int)keyBoardOnOrOff:(BOOL)onB :(CGRect*) frameP
+-(int)keyBoardOnOrOff:(BOOL)onB :(CGRect*) frameP viewHeight:(float)lheight
 {
 	
 	if(onB)
@@ -141,6 +134,7 @@
 			//labP.text = @"mukesh";
 		//	//printf("%f %f %f %f",ovController.view.frame.origin.x,ovController.view.frame.origin.y,ovController.view.frame.size.width,ovController.view.frame.size.height);
 			ovController.view.backgroundColor = [[UIColor clearColor] autorelease ];
+			
 			[ovController.view addSubview:msgLabelP];
 			
 			[ovController.view addSubview:secondLabelP];
@@ -148,7 +142,11 @@
 			ovController.rvController = self;
 			self->tableView.scrollEnabled = NO;
 			[self->tableView insertSubview:ovController.view aboveSubview:self.parentViewController.view];
-			
+			if(lheight>100 && frameP==nil)
+			{
+				msgLabelP.hidden = YES;
+				secondLabelP.hidden = YES;
+			}
 		}	
 	}	
 	else
@@ -162,6 +160,8 @@
 		[firstSectionviewP addSubview:msgLabelP];
 		
 		[firstSectionviewP addSubview:secondLabelP];
+		msgLabelP.hidden = NO;
+		secondLabelP.hidden = NO;
 		
 	}	
 
@@ -399,8 +399,8 @@
 	
 	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateForward )
 	{	
-		[PlayButtonP setTitle:@"Play" forState:UIControlStateNormal];
-		[PlayButtonP setTitle:@"Play" forState:UIControlStateHighlighted];
+		[self setButtonTitle:@"Play" forState:UIControlStateNormal];
+		[self setButtonTitle:@"Play" forState:UIControlStateHighlighted];
 	}
 	
 	if(vmstateType == VMSStateRecord)
@@ -415,8 +415,8 @@
 				if(self->maxtimeDouble==maxTime)
 				{
 					recordingStartB = 0;
-					[PlayButtonP setTitle:@"Record" forState:UIControlStateNormal];
-					[PlayButtonP setTitle:@"Record" forState:UIControlStateHighlighted];
+					[self setButtonTitle:@"Record" forState:UIControlStateNormal];
+					[self setButtonTitle:@"Record" forState:UIControlStateHighlighted];
 
 					[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTime ]];
 					return;
@@ -428,8 +428,8 @@
 			{
 				[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTimeLoc]];
 			}
-			[PlayButtonP setTitle:@"Rerecord" forState:UIControlStateNormal];
-			[PlayButtonP setTitle:@"Rerecord" forState:UIControlStateHighlighted];
+			[self setButtonTitle:@"Rerecord" forState:UIControlStateNormal];
+			[self setButtonTitle:@"Rerecord" forState:UIControlStateHighlighted];
 			
 			
 			previewPressedB = false;
@@ -589,8 +589,8 @@
 				
 											   repeats: YES];
 	[PlayButtonP addTarget:self action:@selector(stopButtonPressed:) forControlEvents: UIControlEventTouchUpInside];
-	[PlayButtonP setTitle:@"Stop" forState:UIControlStateNormal];
-	[PlayButtonP setTitle:@"Stop" forState:UIControlStateHighlighted];
+	[self setButtonTitle:@"Stop" forState:UIControlStateNormal];
+	[self setButtonTitle:@"Stop" forState:UIControlStateHighlighted];
 	previewButtonP.enabled  = NO;
 	sendButtonP.enabled  = NO;
 	previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
@@ -651,8 +651,8 @@
 				
 											   repeats: YES];
 		[PlayButtonP addTarget:self action:@selector(stopButtonPressed:) forControlEvents: UIControlEventTouchUpInside];
-		[PlayButtonP setTitle:@"Stop" forState:UIControlStateNormal];
-		[PlayButtonP setTitle:@"Stop" forState:UIControlStateHighlighted];
+		[self setButtonTitle:@"Stop" forState:UIControlStateNormal];
+		[self setButtonTitle:@"Stop" forState:UIControlStateHighlighted];
 		previewButtonP.enabled  = NO;
 		sendButtonP.enabled  = NO;
 		previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
@@ -1155,7 +1155,12 @@ id createImage(float percentage)
     }
     return self;
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+	printf("\n viewwillAppear \n");
+	[super viewWillAppear:animated];
 
+}
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
@@ -1259,8 +1264,8 @@ id createImage(float percentage)
 		char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 		
 		//char *month[12]={"January","February","March","April","May","June","July","August","September","October","November","December"};
-		[PlayButtonP setTitle:@"Play" forState:UIControlStateNormal];
-		[PlayButtonP setTitle:@"Play" forState:UIControlStateHighlighted];
+		[self setButtonTitle:@"Play" forState:UIControlStateNormal];
+		[self setButtonTitle:@"Play" forState:UIControlStateHighlighted];
 		[sendButtonP setTitle:@"Forward" forState:UIControlStateNormal];
 		[sendButtonP setTitle:@"Forward" forState:UIControlStateHighlighted];
 		[previewButtonP setTitle:@"Reply" forState:UIControlStateNormal];
@@ -1393,8 +1398,8 @@ id createImage(float percentage)
 			
 			//[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 			
-			[PlayButtonP setTitle:@"Record" forState:UIControlStateNormal];
-			[PlayButtonP setTitle:@"Record" forState:UIControlStateHighlighted];
+			[self setButtonTitle:@"Record" forState:UIControlStateNormal];
+			[self setButtonTitle:@"Record" forState:UIControlStateHighlighted];
 			[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
 			[sendButtonP setTitle:@"Send" forState:UIControlStateHighlighted];
 			[previewButtonP setTitle:@"Preview" forState:UIControlStateNormal];
@@ -1452,9 +1457,11 @@ id createImage(float percentage)
 
 
 }
+#pragma mark NAVIGATIONOBJECT
 // Called when the navigation controller shows a new top view controller via a push, pop or setting of the view controller stack.
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
 {
+	printf("\n problem comes");
 	if(viewController !=self)
 	{
 		[self stopButtonPressed:nil];
@@ -1464,10 +1471,77 @@ id createImage(float percentage)
 {
 	//printf("\n view poped");
 }
+#pragma mark NAVIGATIONEND
+- (void)setButtonTitle : (NSString *)ltitle forState: (UIControlState)state
+{
+	NSString *title;
+	title = [ltitle uppercaseString ];
+	NSLog(@"\n %@",title);
+	if([title isEqualToString:@"PLAY"])
+	{
+		UIImage *buttonBackground;
+		UIImage *buttonBackgroundPressed;
+		
+		buttonBackground = [UIImage imageNamed:@"5_play_270_45_normal.png"];
+		buttonBackgroundPressed = [UIImage imageNamed:@"5_play_270_45_pressed.png"];
+		[CustomButton setImages:PlayButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
+		[buttonBackground release];
+		[buttonBackgroundPressed release];
+		PlayButtonP.backgroundColor =  [UIColor clearColor];
+		
+		
+	}
+	if([title isEqualToString:@"RECORD"])
+	{
+		UIImage *buttonBackground;
+		UIImage *buttonBackgroundPressed;
+		
+		buttonBackground = [UIImage imageNamed:@"5_record_270_45_normal.png"];
+		buttonBackgroundPressed = [UIImage imageNamed:@"5_record_270_45_normal.png"];
+		[CustomButton setImages:PlayButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
+		[buttonBackground release];
+		[buttonBackgroundPressed release];
+		PlayButtonP.backgroundColor =  [UIColor clearColor];
+		
+		
+	}
+	if([title isEqualToString:@"STOP"])
+	{
+		
+		UIImage *buttonBackground;
+		UIImage *buttonBackgroundPressed;
+		
+		buttonBackground = [UIImage imageNamed:@"5_done_270_45_normal.png"];
+		buttonBackgroundPressed = [UIImage imageNamed:@"5_done_270_45_pressed.png"];
+		[CustomButton setImages:PlayButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
+		[buttonBackground release];
+		[buttonBackgroundPressed release];
+		PlayButtonP.backgroundColor =  [UIColor clearColor];
+		
+	}
+	if([title isEqualToString:@"RERECORD"])
+	{
+		
+		UIImage *buttonBackground;
+		UIImage *buttonBackgroundPressed;
+		
+		buttonBackground = [UIImage imageNamed:@"5_rerecord_270_45_normal.png"];
+		buttonBackgroundPressed = [UIImage imageNamed:@"5_rerecord_270_45_pressed.png"];
+		[CustomButton setImages:PlayButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
+		[buttonBackground release];
+		[buttonBackgroundPressed release];
+		PlayButtonP.backgroundColor =  [UIColor clearColor];
+		
+		
+	}
+	
+	
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	doNothing = 0;
+	
 #ifdef PROGRESS_VIEW
 	uiProgBarP.userInteractionEnabled = NO;
 	
@@ -1782,14 +1856,16 @@ id createImage(float percentage)
 
 
 - (void)dealloc {
+	//[self navigationController].delegate = nil;
+	ownerobject.vmsNavigationController.delegate = nil;
 	if(shiftVmailB)
 	{	
-		ownerobject.tabBarController.selectedViewController =ownerobject.vmsNavigationController;
+		ownerobject.tabBarController.selectedViewController = ownerobject.vmsNavigationController;
 	}
 	printf("\n dealoc called");
 	//[super dealloc];
 	//return;
-	[self navigationController].delegate = nil;
+	
 	
 	[ownerobject setVmsDelegate:nil];
 	if(nsTimerP)
@@ -1815,9 +1891,12 @@ id createImage(float percentage)
 		free(selectP);
 		selectP = 0;
 	}
+
+	[pickerviewcontrollerviewP release];
 	
 	if(noCharP)
 	free(noCharP);
+	
 	if(nameCharP)
 	free(nameCharP);
 	if(typeCharP)
@@ -1825,12 +1904,15 @@ id createImage(float percentage)
 	if(vmailP)
 		free(vmailP);	
 	
+	pickerviewcontrollerviewP  = nil;
 	ownerobject = 0;
 	noCharP = 0;
 	nameCharP = 0;
 	typeCharP = 0;
 	vmailP = 0;
+	
 	[super dealloc];
+	printf("\nmyfreee");
 	//self = nil;
 	
 	
