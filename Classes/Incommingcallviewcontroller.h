@@ -38,6 +38,7 @@
 	//NSString *textProP;
 	NSMutableString *textProP;
 	int buttonPressedB;
+	int acceptPressedB;
 	
 }
 

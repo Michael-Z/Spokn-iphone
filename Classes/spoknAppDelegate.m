@@ -120,8 +120,11 @@
 	[SpoknAudio destorySoundUrl:&endSoundP];
 	
 	NSString *path = [mainBundle pathForResource:@"phone" ofType:@"caf"];
-	if (!path)
+	if (path)
+	{
 		incommingSoundP = [SpoknAudio createSoundPlaybackUrl:path play:false];
+		[incommingSoundP setvolume:1.0];
+	}
 	path = [mainBundle pathForResource:@"gling" ofType:@"caf"];
 	if (path)
 			onLineSoundP = [SpoknAudio createSoundPlaybackUrl:path play:false];
@@ -136,7 +139,7 @@
 }
 - (void) PlayRing: (id) timer
 {
-	//printf("\n ring play....");
+	
 	[incommingSoundP playSoundUrl];
 }
 -(void) startRing
@@ -829,8 +832,9 @@
 }
 -(void) sendMessage:(id)object
 {
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)object userInfo:nil];
+	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)object userInfo:nil];
+	[object alertAction:nil];
 }
 void MyAudioSessionPropertyListener(
 									void *                  inClientData,
@@ -886,10 +890,19 @@ void MyAudioSessionPropertyListener(
 void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned long userData,void *otherinfoP)
 {
 	SpoknAppDelegate *spoknDelP;
+	NSAutoreleasePool *autoreleasePool = [[ NSAutoreleasePool alloc ] init];
 	spoknDelP = (SpoknAppDelegate *)userData;
 	[spoknDelP setLtpInfo:type :valSubLong :lineID :otherinfoP];
-	[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:YES];
-	
+	if( pthread_main_np() ){
+		printf("\n main thread");
+		 [spoknDelP sendMessage:spoknDelP];
+		[autoreleasePool release];
+		return;
+	}
+	//[self postNotificationOnMainThreadWithName:name object:object userInfo:userInfo waitUntilDone:NO];
+	printf("\n other thread");
+	[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:NO];
+	[autoreleasePool release];
 	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)spoknDelP userInfo:nil];
 

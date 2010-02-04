@@ -896,7 +896,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				}
 				else
 				{
-						printf("\n shankarjaikishan");
+					printf("\n shankarjaikishan");
 				}	
 				[callViewControllerP startTimer];
 			}	
@@ -904,9 +904,10 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		case TRYING_CALL:
 			
 			//[self setViewButton:1];
-			printf("\n try calling");
+			
 			if(callViewControllerP==0)
 			{	
+				printf("\n try calling");
 				AudioSessionSetActive(true);
 				//SetAudioTypeLocal(self,0);
 				//setHoldInterface(ownerobject.ltpInterfacesP, 0);
@@ -918,10 +919,27 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				[callViewControllerP setLabel:callingstringP :callingstringtypeP];
 				UINavigationController *tmpCtl;
 				tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: callViewControllerP ] autorelease];
-				[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
-				buttonPressedB = NO;
-				if([callViewControllerP retainCount]>1)
+				if(tmpCtl)
+				{	
+					if(self->subStatus)
+					{
+						[ownerobject.tabBarController presentModalViewController:tmpCtl animated:NO];//incomming call
+					}
+					else
+					{	
+						[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
+					}	
+					buttonPressedB = NO;
+					if([callViewControllerP retainCount]>1)
+						[callViewControllerP release];
+				}
+				else
+				{
+					printf("\n no view display");
 					[callViewControllerP release];
+					callViewControllerP = nil;
+					
+				}
 				
 			}	
 			[numberlebelP setText:@""];

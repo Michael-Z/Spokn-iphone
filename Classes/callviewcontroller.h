@@ -47,6 +47,7 @@
 	Boolean navBarShow;
 	Boolean  actualDismissB;
 	Boolean loadedB;
+	//Boolean needTOStartTimerB;
 	
 
 }

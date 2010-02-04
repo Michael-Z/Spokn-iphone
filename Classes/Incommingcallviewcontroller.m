@@ -44,8 +44,20 @@
 	textProP = [[NSMutableString alloc] init];
 	return self;
 }
+- (void) viewDidDisappear:(BOOL)animated
+{
+	[super viewDidDisappear:animated];
+	/*printf("\n view did disappear %d",acceptPressedB);
+	if(acceptPressedB)
+	{
+		[self->ownerobject AcceptCall:self->ltpInDataP];
+	
+	}*/
+
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	acceptPressedB = NO;
 	buttonPressedB = NO;
     [super viewDidLoad];
 	//self.tabBarItem = [UITabBarItem alloc];
@@ -102,25 +114,30 @@
 
 
 - (void)dealloc {
+	printf("\ndealloc called incomming");
 	[self->textProP release];
     [super dealloc];
 }
 -(IBAction)Accept:(id)sender
 {
-	printf("\n call button");
+	printf("\n call Accept");
 	if(buttonPressedB)
 		return;
-	[self->ownerobject AcceptCall:self->ltpInDataP];
+	acceptPressedB = 1;
+	//[ownerobject.tabBarController dismissModalViewControllerAnimated:NO];
 	buttonPressedB =YES;
+	[self->ownerobject AcceptCall:self->ltpInDataP];
+	
+	
 }
 -(IBAction)Reject:(id)sender
 {
-	printf("\n call button");
+	printf("\n call Reject");
 	if(buttonPressedB)
 		return;
-		
+	buttonPressedB =YES;	
 	[self->ownerobject RejectCall:self->ltpInDataP];
-	buttonPressedB =YES;
+	
 
 }
 -(void)setObject:(id) object 
