@@ -94,6 +94,7 @@
 			{	
 				dispP.colorP = [UIColor colorWithRed:81.0/255.0 green:102.0/255.0 blue:145.0/255.0 alpha:1.0];
 				dispP.fntSz = 14;
+				dispP.boldB = YES;
 			}
 			else
 			{
@@ -1339,6 +1340,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			}
 			return;
 		}
+		/*
 		if(viewEnum == CONTACTDETAILFROMVMS)
 		{
 			if(self->rootObjectP)
@@ -1347,7 +1349,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 				if(strstr( sectionArray[section].dataforSection[row].elementP,"@")==0)
 				[[self navigationController]  popToViewController:self->rootObjectP animated:YES];
 			}
-		}	
+		}*/	
 		if(strstr( sectionArray[section].dataforSection[row].elementP,"@")==0)
 		{	
 			SetAddressBookDetails(ownerobject.ltpInterfacesP,addressID,recordID);
