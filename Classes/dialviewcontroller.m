@@ -218,7 +218,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	//statusLabelP.textAlignment=UITextAlignmentCenter;
 	keypadmain.objectId = 0;
 	//keypadmain.dataStringP = @"mukesh\nsharma";
-	[keypadmain setImage:@"dialerkeypad.png" : @"dialerkeypad_pressed.png"];
+	[keypadmain setImage:@"keypad-normal.png" : @"keypad-pressed.png"];
 	[keypadmain setElement:3 :4];
 	keypadmain.keypadProtocolP = self;
 	

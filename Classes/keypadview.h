@@ -40,8 +40,8 @@
 	int touchDown;
 	int elementx;
 	int elementy;
-	int elementWidth;
-	int elementHeight;
+	float elementWidth;
+	float elementHeight;
 	CGRect rectchange;
 	id<KeypadProtocol> keypadProtocolP;
 	NSTimer *_plusTimer;

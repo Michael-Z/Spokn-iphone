@@ -213,6 +213,7 @@ NSLog(@"\nSave123");
 	
 	
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	onlyOneB = true;
@@ -231,6 +232,8 @@ NSLog(@"\nSave123");
 												 name:UITextFieldTextDidChangeNotification
 											   object:txtField];
 	self.title = titleStrP;
+	
+
 }
 
 - (void) handleTextFieldChanged:(id)sender
@@ -245,18 +248,16 @@ NSLog(@"\nSave123");
 		self.navigationItem.rightBarButtonItem.enabled = NO;
 	}	
 }
-
-- (void)viewWillAppear:(BOOL)animated
+- (void)updateUI:(id) objectP
 {
-	[super viewWillAppear:animated];
 	if(onlyOneB)
 	{	
 		if(buttonType==0)
 		{	
 			self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
-													initWithBarButtonSystemItem: UIBarButtonSystemItemSave
-													target: self
-													action: @selector(savePressed) ] autorelease ];
+														initWithBarButtonSystemItem: UIBarButtonSystemItemSave
+														target: self
+														action: @selector(savePressed) ] autorelease ];
 		}
 		else
 		{
@@ -275,7 +276,13 @@ NSLog(@"\nSave123");
 		[footerLabelP setText:exampleStrP];
 		onlyOneB = false;
 	}
-
+	
+	
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self updateUI:nil];
 }	
 
 - (AddeditcellController *) init

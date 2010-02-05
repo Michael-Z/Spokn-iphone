@@ -30,6 +30,7 @@
 #include "sipwrapper.h"
 #include "ltpandsip.h"
 #include "contactviewcontroller.h"
+#import "spokncalladd.h"
 @implementation CallViewController
 
 /*
@@ -108,7 +109,8 @@
 	self->viewKeypadP.hidden = YES;
 	self->hideKeypadButtonP.hidden = YES;
 	self->endCallKeypadButtonP.hidden = YES;
-	[viewKeypadP setImage:@"keypad.png" : @"keypad_pressed.png"];
+	[viewKeypadP setImage:@"keypad.png" : @"keypad.png"];
+	
 	[viewKeypadP setElement:3 :4];
 	viewKeypadP.keypadProtocolP = self;
 	
@@ -288,10 +290,10 @@
 {
 	
 	
-	ContactViewController *contactP;
+/*	ContactViewController *contactP;
 	navBarShow = YES;
 	self.title = @"Call";
-	[[self navigationController] setNavigationBarHidden:YES animated:NO];
+	//[[self navigationController] setNavigationBarHidden:NO animated:NO];
 	contactP = [[ContactViewController alloc] initWithNibName:@"contact" bundle:[NSBundle mainBundle]];
 	[contactP hideCallAndVmailButton:YES];
 	contactP.parentView = 0;
@@ -301,13 +303,19 @@
 	contactP.ltpInterfacesP =ownerobject.ltpInterfacesP;
 	//navBarShow = NO;
 	
-
-	[contactP setReturnVariable:self :0 :0];
-	//[self presentModalViewController:contactP animated: NO ];
-	[ [self navigationController] pushViewController:contactP animated: YES ];
-	[contactP release];
 	
-
+	[contactP setReturnVariable:self :0 :0];
+	UINavigationController *tmpCtl;
+	tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: contactP ] autorelease];
+	if(tmpCtl)
+	[[self navigationController] presentModalViewController:tmpCtl animated: YES ];
+	//[ [self navigationController] pushViewController:contactP animated: YES ];
+	
+	[contactP release];
+	*/
+	Spokncalladd *spoknViewCallP;
+	spoknViewCallP = [[Spokncalladd alloc] initWithNibName:@"spokncalladd" bundle:[NSBundle mainBundle]];
+	[[self navigationController] presentModalViewController:spoknViewCallP animated: YES ];
 }
 -(IBAction)HoldPressed:(id)sender
 {

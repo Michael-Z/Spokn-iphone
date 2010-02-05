@@ -58,6 +58,7 @@
 @synthesize ltpInterfacesP;
 @synthesize  uaObject;
 @synthesize parentView;
+
 -(void)hideCallAndVmailButton:(Boolean)showB
 {
 	hideCallAndVmailButtonB = showB;
@@ -225,7 +226,16 @@
 }
 -(IBAction)cancelClicked
 {
-	[ [self navigationController] popViewControllerAnimated:YES ];
+	if(hideCallAndVmailButtonB==NO)
+	{	
+		[ [self navigationController] popViewControllerAnimated:YES ];
+	}
+	else
+	{
+		[self.parentViewController dismissModalViewControllerAnimated:YES ];
+	
+	}
+	
 }
 -(void)cancelSearch
 {
@@ -636,6 +646,7 @@ titleForHeaderInSection:(NSInteger)section
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	printf("\n view loaded");
     [super viewDidLoad];
 	refreshB = 0;
 	searchbar = [[UISearchBar alloc] init];
@@ -758,11 +769,18 @@ titleForHeaderInSection:(NSInteger)section
 	if(hideCallAndVmailButtonB)
 	{
 		[[self navigationController] setNavigationBarHidden:NO animated:NO];
+		/*self.navigationItem.leftBarButtonItem 
+		= [ [ [ UIBarButtonItem alloc ]
+			 initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
+			 target: self
+			 action: @selector(cancelClicked) ] autorelease ];	*/
+		//[[UIApplication sharedApplication] setStatusBarHidden:YES animated:NO];
 	}
 	[ self reload ];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
+	printf("\n view disappear");
 	[super viewWillDisappear:animated];
 	/*if(hideCallAndVmailButtonB)
 	{
@@ -815,13 +833,8 @@ titleForHeaderInSection:(NSInteger)section
 		}		
 	
 }
-
-
-- (void)viewDidAppear:(BOOL)animated
+- (void)updateUI:(id) objectP
 {
-	[super viewDidAppear:animated];
-	
-	
 	if(viewDidLodadedB==false)
 	{	
 		tableframe = self->tableView.frame;
@@ -841,7 +854,7 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	printf("\nviewDidAppear  %f %f %f %f",self->tableView.frame.origin.x,self->tableView.frame.origin.y,
 		   self->tableView.frame.size.width,self->tableView.frame.size.height);
-
+	
 	if(resultInt)
 	{
 		//("\nhello view deleted\n");
@@ -852,7 +865,10 @@ titleForHeaderInSection:(NSInteger)section
 			{	
 				deleteContactLocal(contactID);
 			}
-			profileResync();
+			if(hideCallAndVmailButtonB==NO)//if call is on dont sync
+			{
+				profileResync();
+			}	
 		}	
 		NSIndexPath *nsP;
 		nsP = [self->tableView indexPathForSelectedRow];
@@ -881,44 +897,53 @@ titleForHeaderInSection:(NSInteger)section
 			[self removeSelectionFromAddressBook];			
 			
 			
-									
+			
 		}	
-
+		
 	}
 	/*
-	if(firstSection>=0)
-	{	
-		NSIndexPath *nsP;
-		nsP = [NSIndexPath indexPathForRow:0 inSection:firstSection] ;
-		if(nsP)
-		{	
-			UITableViewCell *uicellP;
-			uicellP =[tableView cellForRowAtIndexPath:nsP];
-			if(uicellP)
-			{	
-				[tableView scrollToRowAtIndexPath:nsP atScrollPosition:UITableViewScrollPositionTop animated:NO];
-			}	
-		}	
-		firstSection = -1;
-	}
+	 if(firstSection>=0)
+	 {	
+	 NSIndexPath *nsP;
+	 nsP = [NSIndexPath indexPathForRow:0 inSection:firstSection] ;
+	 if(nsP)
+	 {	
+	 UITableViewCell *uicellP;
+	 uicellP =[tableView cellForRowAtIndexPath:nsP];
+	 if(uicellP)
+	 {	
+	 [tableView scrollToRowAtIndexPath:nsP atScrollPosition:UITableViewScrollPositionTop animated:NO];
+	 }	
+	 }	
+	 firstSection = -1;
+	 }
 	 */
-	#ifdef _HIDDEN_NAVBAR
+#ifdef _HIDDEN_NAVBAR
 	[self navigationController].navigationBarHidden =searchStartB;
-	#else
-		/*if(searchStartB)
-		{
-			self.navigationItem.rightBarButtonItem = nil;
-		}
-		
-		*/
-	#endif
+#else
+	/*if(searchStartB)
+	 {
+	 self.navigationItem.rightBarButtonItem = nil;
+	 }
+	 
+	 */
+#endif
 	
 	if(refreshB)
 	{
 		[self->tableView reloadData];
 		refreshB = 0;
 	}
+	
+	
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	[self updateUI:nil]; 
+	
 }	
 
 - (void) doRefresh
@@ -1162,7 +1187,7 @@ titleForHeaderInSection:(NSInteger)section
 			
 			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 			typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
-			//printf("\ntest123  %s %s",numbercharP,typeCharP);
+			printf("\ntest123  %s %s",numbercharP,typeCharP);
 			strcpy(secContactP->number,numbercharP);
 			strcpy(secContactP->type,typeCharP);
 			if(strstr(numbercharP,"@"))//only email allowed

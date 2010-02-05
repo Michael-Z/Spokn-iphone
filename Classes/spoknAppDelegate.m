@@ -1328,7 +1328,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	dialviewP.currentView = 1;//mean show hang button
 	[tabBarController dismissModalViewControllerAnimated:NO];
-
+	printf("\n delete modelview");
 	//[ dialNavigationController popToViewController: dialviewP animated: YES ];
 	//NSMutableString *tempStringP;
 	NSString *strP;

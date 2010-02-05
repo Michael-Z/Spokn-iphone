@@ -210,6 +210,8 @@
 		8B9302F11011EFC6004BDA41 /* STRING.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302E01011EFC6004BDA41 /* STRING.c */; };
 		8B9302F21011EFC6004BDA41 /* Table.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302E11011EFC6004BDA41 /* Table.c */; };
 		8B9303A61011F11B004BDA41 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B9303A51011F11B004BDA41 /* AudioToolbox.framework */; };
+		8B957294111C52BF00761EDB /* TTSearchlightLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B957293111C52BF00761EDB /* TTSearchlightLabel.m */; };
+		8B957295111C52BF00761EDB /* TTSearchlightLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B957293111C52BF00761EDB /* TTSearchlightLabel.m */; };
 		8B9649CD10CBE3BC00CB00DB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		8B9649CE10CBE3BC00CB00DB /* contactDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302661011EDFA004BDA41 /* contactDetails.xib */; };
 		8B9649CF10CBE3BC00CB00DB /* incommingcall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B93026F1011EDFA004BDA41 /* incommingcall.xib */; };
@@ -442,6 +444,18 @@
 		8BA08A1110BFC27C00ED19B7 /* doorbell.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8BA08A1010BFC27C00ED19B7 /* doorbell.caf */; };
 		8BA08A7510BFC94000ED19B7 /* gling.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8BA08A7410BFC94000ED19B7 /* gling.caf */; };
 		8BA08AE410BFD32D00ED19B7 /* spoknLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA08AE310BFD32D00ED19B7 /* spoknLogo.png */; };
+		8BA11021111C117800433364 /* spokncalladd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1101F111C117800433364 /* spokncalladd.m */; };
+		8BA11022111C117800433364 /* spokncalladd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11020111C117800433364 /* spokncalladd.xib */; };
+		8BA11023111C117800433364 /* spokncalladd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1101F111C117800433364 /* spokncalladd.m */; };
+		8BA11024111C117800433364 /* spokncalladd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11020111C117800433364 /* spokncalladd.xib */; };
+		8BA11129111C2C5400433364 /* keypad-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11127111C2C5400433364 /* keypad-normal.png */; };
+		8BA1112A111C2C5400433364 /* keypad-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11128111C2C5400433364 /* keypad-pressed.png */; };
+		8BA1112B111C2C5400433364 /* keypad-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11127111C2C5400433364 /* keypad-normal.png */; };
+		8BA1112C111C2C5400433364 /* keypad-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11128111C2C5400433364 /* keypad-pressed.png */; };
+		8BA111C5111C372D00433364 /* _keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA111C3111C372D00433364 /* _keypad.png */; };
+		8BA111C6111C372D00433364 /* _keypad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA111C4111C372D00433364 /* _keypad_pressed.png */; };
+		8BA111C7111C372D00433364 /* _keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA111C3111C372D00433364 /* _keypad.png */; };
+		8BA111C8111C372D00433364 /* _keypad_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BA111C4111C372D00433364 /* _keypad_pressed.png */; };
 		8BA8E3A11027EF800022801E /* addeditcontactviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */; };
 		8BA8E3A21027EF800022801E /* addeditcontact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E3A01027EF800022801E /* addeditcontact.xib */; };
 		8BA8E558102835BC0022801E /* vmailview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E555102835BC0022801E /* vmailview.xib */; };
@@ -508,8 +522,6 @@
 		8BC4109C11194D2800B4FC7B /* 5_done_270_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC4109A11194D2800B4FC7B /* 5_done_270_45_pressed.png */; };
 		8BC4109D11194D2800B4FC7B /* 5_done_270_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC4109911194D2800B4FC7B /* 5_done_270_45_normal.png */; };
 		8BC4109E11194D2800B4FC7B /* 5_done_270_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC4109A11194D2800B4FC7B /* 5_done_270_45_pressed.png */; };
-		8BC51C1A11085C0C00EC6597 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C1911085C0C00EC6597 /* libspeex-arm-apple-darwin9.a */; };
-		8BC51C1B11085C0C00EC6597 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C1911085C0C00EC6597 /* libspeex-arm-apple-darwin9.a */; };
 		8BC51C411108633600EC6597 /* spoknaudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC51C401108633600EC6597 /* spoknaudio.m */; };
 		8BC51C421108633600EC6597 /* spoknaudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC51C401108633600EC6597 /* spoknaudio.m */; };
 		8BC51C50110863A200EC6597 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C4F110863A200EC6597 /* AVFoundation.framework */; };
@@ -760,6 +772,8 @@
 		8B9302E11011EFC6004BDA41 /* Table.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Table.c; path = ../lib/gsm/Table.c; sourceTree = SOURCE_ROOT; };
 		8B9302E21011EFC6004BDA41 /* UNPROTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UNPROTO.h; path = ../lib/gsm/UNPROTO.h; sourceTree = SOURCE_ROOT; };
 		8B9303A51011F11B004BDA41 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
+		8B957292111C52BF00761EDB /* TTSearchlightLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTSearchlightLabel.h; sourceTree = "<group>"; };
+		8B957293111C52BF00761EDB /* TTSearchlightLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTSearchlightLabel.m; sourceTree = "<group>"; };
 		8B964A9910CBE3BC00CB00DB /* spokn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spokn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B964A9B10CBE3BC00CB00DB /* spokn-Infotesting.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "spokn-Infotesting.plist"; sourceTree = "<group>"; };
 		8B964AA510CBE3FA00CB00DB /* spoknTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = spoknTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -801,6 +815,13 @@
 		8BA08A1010BFC27C00ED19B7 /* doorbell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = doorbell.caf; sourceTree = "<group>"; };
 		8BA08A7410BFC94000ED19B7 /* gling.caf */ = {isa = PBXFileReference; lastKnownFileType = text; path = gling.caf; sourceTree = "<group>"; };
 		8BA08AE310BFD32D00ED19B7 /* spoknLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spoknLogo.png; sourceTree = "<group>"; };
+		8BA1101E111C117800433364 /* spokncalladd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spokncalladd.h; sourceTree = "<group>"; };
+		8BA1101F111C117800433364 /* spokncalladd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spokncalladd.m; sourceTree = "<group>"; };
+		8BA11020111C117800433364 /* spokncalladd.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spokncalladd.xib; sourceTree = "<group>"; };
+		8BA11127111C2C5400433364 /* keypad-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypad-normal.png"; path = "Spokn buttons n icons/keypad/keypad-normal.png"; sourceTree = "<group>"; };
+		8BA11128111C2C5400433364 /* keypad-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypad-pressed.png"; path = "Spokn buttons n icons/keypad/keypad-pressed.png"; sourceTree = "<group>"; };
+		8BA111C3111C372D00433364 /* _keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = _keypad.png; sourceTree = "<group>"; };
+		8BA111C4111C372D00433364 /* _keypad_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = _keypad_pressed.png; sourceTree = "<group>"; };
 		8BA8E39E1027EF800022801E /* addeditcontactviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addeditcontactviewcontroller.h; sourceTree = "<group>"; };
 		8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addeditcontactviewcontroller.m; sourceTree = "<group>"; };
 		8BA8E3A01027EF800022801E /* addeditcontact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addeditcontact.xib; sourceTree = "<group>"; };
@@ -850,7 +871,6 @@
 		8BC4107D111947EE00B4FC7B /* 10_bggrey_94_113_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10_bggrey_94_113_right.png; sourceTree = "<group>"; };
 		8BC4109911194D2800B4FC7B /* 5_done_270_45_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_done_270_45_normal.png; sourceTree = "<group>"; };
 		8BC4109A11194D2800B4FC7B /* 5_done_270_45_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_done_270_45_pressed.png; sourceTree = "<group>"; };
-		8BC51C1911085C0C00EC6597 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BC51C3F1108633600EC6597 /* spoknaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknaudio.h; sourceTree = "<group>"; };
 		8BC51C401108633600EC6597 /* spoknaudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknaudio.m; sourceTree = "<group>"; };
 		8BC51C4F110863A200EC6597 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -947,7 +967,6 @@
 				8B964B2610CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
 				8B964B2B10CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
-				8BC51C1B11085C0C00EC6597 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 				8BC51C51110863A200EC6597 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -992,7 +1011,6 @@
 				8B964B2410CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
 				8B964B2910CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2A10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
-				8BC51C1A11085C0C00EC6597 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 				8BC51C50110863A200EC6597 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1010,6 +1028,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8B957292111C52BF00761EDB /* TTSearchlightLabel.h */,
+				8B957293111C52BF00761EDB /* TTSearchlightLabel.m */,
 				8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */,
 				8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */,
 				8B59A68D109987FB003BF3EA /* pickerviewcontroller.h */,
@@ -1078,6 +1098,9 @@
 				32C02D441104406600766AB6 /* alertmessages.h */,
 				8BC51C3F1108633600EC6597 /* spoknaudio.h */,
 				8BC51C401108633600EC6597 /* spoknaudio.m */,
+				8BA1101E111C117800433364 /* spokncalladd.h */,
+				8BA1101F111C117800433364 /* spokncalladd.m */,
+				8BA11020111C117800433364 /* spokncalladd.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1215,7 +1238,6 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
-				8BC51C1911085C0C00EC6597 /* libspeex-arm-apple-darwin9.a */,
 				8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */,
 				8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */,
 				8B964B2110CBE78C00CB00DB /* libpjlib-util-i386-apple-darwin9.a */,
@@ -1452,6 +1474,10 @@
 		F2730CAF1070A9B300DF8852 /* rsc */ = {
 			isa = PBXGroup;
 			children = (
+				8BA111C3111C372D00433364 /* _keypad.png */,
+				8BA111C4111C372D00433364 /* _keypad_pressed.png */,
+				8BA11127111C2C5400433364 /* keypad-normal.png */,
+				8BA11128111C2C5400433364 /* keypad-pressed.png */,
 				8B7E51301112AF0500A707B1 /* Spokn buttons n icons */,
 				8B98C08B1110369F0031AE6F /* spokncall.png */,
 				8B0F407A1109E08D0037E60A /* answer_call_pressed.png */,
@@ -1798,6 +1824,11 @@
 				8BC4109D11194D2800B4FC7B /* 5_done_270_45_normal.png in Resources */,
 				8BC4109E11194D2800B4FC7B /* 5_done_270_45_pressed.png in Resources */,
 				8B0175F21119698A00AA644B /* 5_record_270_45_normal.png in Resources */,
+				8BA11024111C117800433364 /* spokncalladd.xib in Resources */,
+				8BA1112B111C2C5400433364 /* keypad-normal.png in Resources */,
+				8BA1112C111C2C5400433364 /* keypad-pressed.png in Resources */,
+				8BA111C7111C372D00433364 /* _keypad.png in Resources */,
+				8BA111C8111C372D00433364 /* _keypad_pressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1983,6 +2014,11 @@
 				8BC4109B11194D2800B4FC7B /* 5_done_270_45_normal.png in Resources */,
 				8BC4109C11194D2800B4FC7B /* 5_done_270_45_pressed.png in Resources */,
 				8B0175F11119698A00AA644B /* 5_record_270_45_normal.png in Resources */,
+				8BA11022111C117800433364 /* spokncalladd.xib in Resources */,
+				8BA11129111C2C5400433364 /* keypad-normal.png in Resources */,
+				8BA1112A111C2C5400433364 /* keypad-pressed.png in Resources */,
+				8BA111C5111C372D00433364 /* _keypad.png in Resources */,
+				8BA111C6111C372D00433364 /* _keypad_pressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2072,6 +2108,8 @@
 				8B59A63010998423003BF3EA /* GTokenFieldCell.m in Sources */,
 				8B59A68F109987FB003BF3EA /* pickerviewcontroller.m in Sources */,
 				8BC51C421108633600EC6597 /* spoknaudio.m in Sources */,
+				8BA11023111C117800433364 /* spokncalladd.m in Sources */,
+				8B957295111C52BF00761EDB /* TTSearchlightLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2135,6 +2173,8 @@
 				8B964A6A10CBE3BC00CB00DB /* GTokenFieldCell.m in Sources */,
 				8B964A6D10CBE3BC00CB00DB /* pickerviewcontroller.m in Sources */,
 				8BC51C411108633600EC6597 /* spoknaudio.m in Sources */,
+				8BA11021111C117800433364 /* spokncalladd.m in Sources */,
+				8B957294111C52BF00761EDB /* TTSearchlightLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

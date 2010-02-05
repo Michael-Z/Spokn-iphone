@@ -535,8 +535,14 @@
 						 otherButtonTitles:nil, nil];
 		
 		uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-		[uiActionSheetP showInView:[ownerobject tabBarController].view];
-	
+		if(hideCallAndVmailButtonB==NO)
+		{	
+			[uiActionSheetP showInView:[ownerobject tabBarController].view];
+		}
+		else
+		{
+			[uiActionSheetP showInView:self.view];
+		}
 	
 	}
 }
@@ -771,9 +777,10 @@
 	
 }
 #define TABLE_VIEW_TAG			2000
-- (void)viewDidAppear:(BOOL)animated
+
+- (void)updateUI:(id) objectP
 {
-	[super viewDidAppear:animated];
+
 	if(viewResult)
 	{
 		updatecontact = 1;
@@ -797,6 +804,12 @@
 		[self->tableView deselectRowAtIndexPath : nsP animated:NO];
 	}
 	
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	[self updateUI:nil];
+		
 }	
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
@@ -917,7 +930,7 @@
 			{	
 				deleteButton = [[UIButton alloc] init];
 				// The default size for the save button is 49x30 pixels
-				deleteButton.frame = CGRectMake(0, 0, 60, 32.0);
+				deleteButton.frame = CGRectMake(0, 0, 50, 30.0);
 				
 				// Center the text vertically and horizontally
 				deleteButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;

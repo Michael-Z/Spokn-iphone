@@ -141,6 +141,6 @@ typedef enum ViewTypeEnum
 -(void)setSelectedNumber:(char*)noCharP showAddButton:(BOOL)lshowB;
 -(void) addContactDetails:(SelectedContctType *)lcontactdataP;
 -(void) setRecordID:(int)laddressID :(int)lrecordId;
-
+- (void)updateUI:(id) objectP;
 @end
 

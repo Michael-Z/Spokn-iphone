@@ -104,6 +104,7 @@
 - (void) doRefresh ;
 - (void) removeSelectionFromAddressBook;
 - (void)controlPressed:(id) sender ;
+- (void)updateUI:(id) objectP;
 +(int) getNameAndType :(ABRecordID) recordID :(char*)lnumberCharP :(char **) nameStringP :(char**)typeP;
 +(int) addDetailsFromAddressBook :(ContactDetailsViewController     *)ContactControllerDetailsviewP :(ViewTypeEnum) viewEnum contactBook:(ABRecordRef)person;
 @end

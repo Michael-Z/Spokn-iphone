@@ -35,7 +35,7 @@
 	elementy = lelementy;
 	elementWidth = self.bounds.size.width/elementx;
 	elementHeight = self.bounds.size.height/elementy;
-	//NSLog(@"\n element taken %f %f ",elementWidth,elementHeight);
+	NSLog(@"\n element taken %f %f ",elementWidth,elementHeight);
 		
 }	
 
@@ -45,8 +45,8 @@
 	pressedImageP = [[UIImage imageNamed:pressedImgP] retain];
 	CGRect tmpBound;
 	tmpBound = self.bounds;
-//	NSLog(@"\n normal %f %f ",keypadImageP.size.width,keypadImageP.size.height);
-	//NSLog(@"\n pressed %f %f ",pressedImageP.size.width,pressedImageP.size.height);
+	NSLog(@"\n normal %f %f ",keypadImageP.size.width,keypadImageP.size.height);
+	NSLog(@"\n pressed %f %f ",pressedImageP.size.width,pressedImageP.size.height);
 	//NSLog(@"\n bound %f %f ",tmpBound.size.width,tmpBound.size.height);
 	
 	tmpBound.size.width = keypadImageP.size.width;

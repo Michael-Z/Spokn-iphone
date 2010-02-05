@@ -1302,7 +1302,7 @@ id createImage(float percentage)
 		{	
 			deleteButton = [[UIButton alloc] init];
 		// The default size for the save button is 49x30 pixels
-			deleteButton.frame = CGRectMake(0, 0, 60, 30.0);
+			deleteButton.frame = CGRectMake(0, 0, 50, 30.0);
 		
 		// Center the text vertically and horizontally
 			deleteButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -1497,7 +1497,7 @@ id createImage(float percentage)
 		UIImage *buttonBackgroundPressed;
 		
 		buttonBackground = [UIImage imageNamed:@"5_record_270_45_normal.png"];
-		buttonBackgroundPressed = [UIImage imageNamed:@"5_record_270_45_normal.png"];
+		buttonBackgroundPressed = [UIImage imageNamed:@"5_record_270_45_pressed.png"];
 		[CustomButton setImages:PlayButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 		[buttonBackground release];
 		[buttonBackgroundPressed release];

@@ -64,6 +64,7 @@
 -(void) shiftToRoot:(id)lnavRootObject :(Boolean ) rootB;
 -(void) SetkeyBoardType:(UIKeyboardType) type : (int) maxCharInt buttonType:(int)lbuttonType;
 - (void) handleTextFieldChanged:(id)sender;
+- (void)updateUI:(id) objectP;
 @end
 
 
