@@ -26,6 +26,14 @@
 #import "keypadview.h"
 #import "contactDetailsviewcontroller.h"
 @class SpoknAppDelegate;
+@protocol ShowContactCallOnDelegate
+
+@optional
+- (void)upDateUI;
+-(void)objectDestory; 
+
+
+@end
 
 @interface CallViewController : UIViewController<KeypadProtocol,UIActionSheetDelegate> {
 	IBOutlet UILabel *callnoLabelP;
@@ -47,6 +55,7 @@
 	Boolean navBarShow;
 	Boolean  actualDismissB;
 	Boolean loadedB;
+	id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 	//Boolean needTOStartTimerB;
 	
 
@@ -63,5 +72,7 @@
 -(IBAction)HoldPressed:(id)sender;
 -(IBAction)addContactPressed:(id)sender;
 - (void) handleCallEndTimer: (id) timer;
+
+@property (readwrite,assign) id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 
 @end

@@ -32,7 +32,7 @@
 #include "contactviewcontroller.h"
 #import "spokncalladd.h"
 @implementation CallViewController
-
+@synthesize showContactCallOnDelegate;
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -85,6 +85,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.title = @"Call";
+	self->showContactCallOnDelegate = nil;
 	//[ownerobject setStatusBarStyle:UIStatusBarStyleBlackTranslucent animation:NO];
 	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleBlackTranslucent;
 	SetSpeakerOnOrOff(0,false);
@@ -222,6 +223,11 @@
 }
 - (void) handleCallTimer: (id) timer
 {
+	
+	if(self->showContactCallOnDelegate)
+	{	
+		[self->showContactCallOnDelegate upDateUI];	
+	}
 	self->timecallduration++;
 	time_t timeP = {0};
 	struct tm ;// tmLoc;
@@ -315,7 +321,10 @@
 	*/
 	Spokncalladd *spoknViewCallP;
 	spoknViewCallP = [[Spokncalladd alloc] initWithNibName:@"spokncalladd" bundle:[NSBundle mainBundle]];
+	[spoknViewCallP setParent:self];
 	[[self navigationController] presentModalViewController:spoknViewCallP animated: YES ];
+	printf("\n retain count %d",[spoknViewCallP retainCount]);
+	[spoknViewCallP release];
 }
 -(IBAction)HoldPressed:(id)sender
 {
@@ -430,6 +439,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 
 - (void)dealloc {
+	[showContactCallOnDelegate objectDestory];
 	[ownerobject playcallendTone];
 	//SetSpeakerOnOrOff(0,true);
 	printf("\n call view dealloc");

@@ -126,8 +126,9 @@
 	acceptPressedB = 1;
 	//[ownerobject.tabBarController dismissModalViewControllerAnimated:NO];
 	buttonPressedB =YES;
+	[self retain];
 	[self->ownerobject AcceptCall:self->ltpInDataP];
-	
+	[self autorelease];
 	
 }
 -(IBAction)Reject:(id)sender
@@ -136,7 +137,9 @@
 	if(buttonPressedB)
 		return;
 	buttonPressedB =YES;	
+	[self retain];
 	[self->ownerobject RejectCall:self->ltpInDataP];
+	[self autorelease];
 	
 
 }

@@ -122,7 +122,9 @@
 	NSString *path = [mainBundle pathForResource:@"phone" ofType:@"caf"];
 	if (path)
 	{
-		incommingSoundP = [SpoknAudio createSoundPlaybackUrl:path play:false];
+		incommingSoundP = [[SpoknAudio alloc] init];
+		[incommingSoundP setUrlToPlay:path];
+		//incommingSoundP = [SpoknAudio createSoundPlaybackUrl:path play:false];
 		[incommingSoundP setvolume:1.0];
 	}
 	path = [mainBundle pathForResource:@"gling" ofType:@"caf"];
@@ -320,11 +322,11 @@
 						if(strlen(callFdP)>0)
 							SetOrReSetForwardNo(1,callFdP);
 						else
-							SetOrReSetForwardNo(0,callFdP);
+							SetOrReSetForwardNo(2,callFdP);
 					}
 					else
 					{
-						SetOrReSetForwardNo(0,callFdP);
+						SetOrReSetForwardNo(2,callFdP);
 					}
 					profileResync();
 					[self updateSpoknView:0];

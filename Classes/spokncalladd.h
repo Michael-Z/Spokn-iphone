@@ -11,13 +11,25 @@
 //#import "TTDefaultStyleSheet.h"
 @class ContactViewController;
 @class SpoknAppDelegate;
-@interface Spokncalladd : UIViewController<UINavigationControllerDelegate> {
-	UILabel *label;
+@class CallViewController;
+#define _HILIGHT_SEARCH_
+@protocol ShowContactCallOnDelegate;
+@interface Spokncalladd : UIViewController<UINavigationControllerDelegate,ShowContactCallOnDelegate> {
+	
 	IBOutlet UIView *viewP;
 	SpoknAppDelegate      *ownerobject;
 	ContactViewController *contactP;
 	UINavigationController *tmpCtl;
-	//TTSearchlightLabel* label;
+	CallViewController *callViewCtlP;
+#ifdef _HILIGHT_SEARCH_
+	TTSearchlightLabel* label;
+#else
+	int cycle;
+	UILabel *label;
+#endif
+	
+		//
 }
 -(void)setObject:(id) object ;
+-(void)setParent:(CallViewController *)lcallViewCtlP;
 @end

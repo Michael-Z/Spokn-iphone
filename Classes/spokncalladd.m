@@ -5,7 +5,7 @@
 //  Created by Mukesh Sharma on 05/02/10.
 //  Copyright 2010 Geodesic Ltd.. All rights reserved.
 //
-
+#import "callviewcontroller.h"
 #import "spokncalladd.h"
 #import "contactviewcontroller.h"
 #import "spoknAppDelegate.h"
@@ -51,22 +51,59 @@
 {
 	ownerobject = object;
 }
+-(void)objectDestory
+{
+	callViewCtlP = nil;
+}
+-(void)upDateUI
+{
+	//printf("\n shankar");
+	#ifdef _HILIGHT_SEARCH_
+		[label updateSpotlight];
+	#else
+	/*
+	if(label.alpha>=1.0)
+	{
+		cycle = -1;
+	}
+	if(label.alpha<=0.1)
+	{
+		cycle = 1;
+	}
+	label.alpha= label.alpha + cycle*0.1;*/
+	#endif
+
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	label = [[[UILabel alloc] init] autorelease];
+	
+	
+	#ifdef _HILIGHT_SEARCH_
+	label = [[TTSearchlightLabel alloc] init] ;
+	callViewCtlP.showContactCallOnDelegate = self;
+	
+	#else
+	
+		label = [[UILabel alloc] init] ;
+	#endif
+	
 	label.text = @"Touch to return to call";
 	label.font = [UIFont systemFontOfSize:25];
 	label.textAlignment = UITextAlignmentCenter;
 	label.contentMode = UIViewContentModeCenter;
-	label.backgroundColor = [UIColor grayColor];
-	label.textColor = [UIColor whiteColor];
+	label.backgroundColor = [UIColor blackColor];
+	label.textColor = [UIColor grayColor];
 	[label sizeToFit];
 	label.frame = CGRectMake(0, 0, 320, 40);
 	//label.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backview.png"]];
-	[self.view addSubview:label];
-	//[label startAnimating];
 	
+		[self.view addSubview:label];
+	#ifdef _HILIGHT_SEARCH_
+	label.spotlightColor =[UIColor whiteColor];
+	[label startAnimationWithoutTimer];
+	//	[label startAnimating];
+	#endif
 	
 	
 	//[[self navigationController] setNavigationBarHidden:NO animated:NO];
@@ -109,7 +146,12 @@
 	printf("\n my view is appear");
 	//[contactP updateUI]; 
 	
-}	
+}
+- (void)viewDidDisappear:(BOOL)animated;  // Called after the view was dismissed, covered or otherwise hidden. Default does nothing
+{
+	[super viewDidAppear:animated];
+	
+}
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -122,17 +164,37 @@
 	// e.g. self.myOutlet = nil;
 }
 
+-(void)setParent:(CallViewController *)lcallViewCtlP
+{
+	#ifdef _HILIGHT_SEARCH_
+		printf("\n parent called");
+		callViewCtlP=lcallViewCtlP;
+	#else
+	callViewCtlP = nil;
 
+	#endif
+}
 - (void)dealloc {
+	callViewCtlP.showContactCallOnDelegate = nil;
+	
 	tmpCtl.delegate =nil;
 	[contactP release];
+	contactP = nil;
 	[viewP release];
-	[tmpCtl release];
-	printf("\n call add make end");
-	tmpCtl = nil;
 	viewP = nil;
-    [super dealloc];
-}
+	[tmpCtl release];
+	tmpCtl = nil;
+	[label release];
+	label = nil;
 
+	printf("\n call add make end");
+	
+	
+	[super dealloc];
+}
+-(void) upDateCallFromTimer
+{
+	//- (void)updateSpotlight;
+}
 
 @end

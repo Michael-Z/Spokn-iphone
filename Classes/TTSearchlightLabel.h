@@ -13,6 +13,7 @@
   CGFloat _spotlightPoint;
   CGContextRef _maskContext;
   void* _maskData;
+  int showSearchLight; 	
 }
 
 @property(nonatomic,copy) NSString* text;
@@ -23,5 +24,7 @@
 
 - (void)startAnimating;
 - (void)stopAnimating;
+- (void)updateSpotlight;
+-(void)startAnimationWithoutTimer;
 
 @end

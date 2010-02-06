@@ -20,6 +20,9 @@
 }
 + (SpoknAudio*) createSoundPlaybackUrl:(NSString*)pathP play:(int)playB
 {
+	#ifdef NOT_PLAY_AUDIO_FILE
+		return nil;
+	#endif
 	NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: pathP];
 	if(fileURL==nil)
 	{
@@ -41,6 +44,7 @@
 }
 -(int) setUrlToPlay:(NSString*)pathP
 {
+
 	NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: pathP];
 	if(fileURL==nil)
 	{
@@ -62,12 +66,14 @@
 }
 -(int) playSoundUrl
 {
+	
 	if(playP==0) return 1;
 	[playP play];
 	return 0;
 }
 +(int) destorySoundUrl:(SpoknAudio**)spoknAudioPP
 {
+	
 	if(spoknAudioPP)
 	{
 		SpoknAudio *localspoknAudioP;
@@ -96,10 +102,12 @@
 }
 -(void)setvolume:(float)valFloat
 {
+
 	self->playP.volume = valFloat;
 }
 -(void) repeatPlay:(int)valInt
 {
+
 	self->playP.numberOfLoops = valInt;
 }
 

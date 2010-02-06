@@ -66,19 +66,35 @@
 }
 
 - (void)updateSpotlight {
-  _spotlightPoint += 1.3/32;
-  if (_spotlightPoint > 2) {
-    _spotlightPoint = -0.5;
-  }
-  if (_spotlightPoint <= 1.5) {
-    [self setNeedsDisplay];
-  }
+	
+ if(_timer)
+ { 	 
+	 _spotlightPoint += 1.3/32;
+	 if (_spotlightPoint > 2) {
+		 _spotlightPoint = -0.5;
+	 }
+	 if (_spotlightPoint <= 1.5) {
+		 [self setNeedsDisplay];
+	 }
+ }
+ else
+ {
+	 _spotlightPoint += 0.15;
+	 if (_spotlightPoint > 1) {
+		 _spotlightPoint = 0;
+	 }
+	 if (_spotlightPoint <= 2) {
+		 [self setNeedsDisplay];
+	 }
+	 
+ }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // UIView
 
 - (void)drawRect:(CGRect)rect {
+	printf("\n spot %f",_spotlightPoint);
   CGContextRef context = UIGraphicsGetCurrentContext();
 
   CGSize textSize = [self sizeThatFits:CGSizeZero];
@@ -106,7 +122,7 @@
   CGContextSetFillColorWithColor(context, textColor.CGColor);
   CGContextShowTextAtPoint(context, x, y, [self.text UTF8String], self.text.length);
 
-  if (_timer) {
+  if (_timer  || showSearchLight==YES) {
     CGPoint spotOrigin = CGPointMake(x + (textSize.width * _spotlightPoint),
       y - ceil(self.font.capHeight/2));
     CGFloat spotRadius = self.font.capHeight*2;
@@ -132,6 +148,7 @@
       selector:@selector(updateSpotlight) userInfo:nil repeats:YES];
     _spotlightPoint = -0.5;
     [self newMask];
+	  showSearchLight = YES;
   }
 }
 
@@ -139,9 +156,21 @@
   if (_timer) {
     [_timer invalidate];
     _timer = nil;
-    [self releaseMask];
+   
+	  
+  }
+  if(showSearchLight)
+  {
+   [self releaseMask];
+	   showSearchLight = NO;
   }
   [self setNeedsDisplay];	
 }
-
+-(void)startAnimationWithoutTimer
+{
+	printf("\nstartAnimationWithoutTimer");
+	_spotlightPoint = 0;
+    [self newMask];
+	 showSearchLight = YES;
+}
 @end
