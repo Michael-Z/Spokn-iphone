@@ -34,18 +34,13 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
-	//[usernameFieldP resignFirstResponder];
-	//[passwordFieldP resignFirstResponder];
+	
 	
 	
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 
-	printf("\n return pressed");
-	//[super textFieldShouldReturn:textField];
-	//[usernameFieldP resignFirstResponder];
-	//[passwordFieldP resignFirstResponder];
 		[self loginLtp:nil];
 	return YES;
 }
@@ -157,7 +152,6 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	////printf("\nmemory leak");
 	// Release any cached data, images, etc that aren't in use.
 }
 
@@ -172,10 +166,7 @@
 - (void)dealloc {
 	[loginactivityIndicator release];
 	[ownerobject setLoginDelegate:nil];
-	////printf("\ndalloc");
-	//[usernameFieldP release];
-	//[passwordFieldP release];
-    [super dealloc];
+	[super dealloc];
 	
 }
 -(IBAction)loginLtp:(id)sender
@@ -231,7 +222,6 @@
 		
 	}
 	passwordStrP = [passwordFieldP.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	//NSLog(@" %@",passwordFieldP.text);
 	if([passwordStrP length]==0)
 	{
 		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 

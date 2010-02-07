@@ -94,7 +94,6 @@
 // UIView
 
 - (void)drawRect:(CGRect)rect {
-	printf("\n spot %f",_spotlightPoint);
   CGContextRef context = UIGraphicsGetCurrentContext();
 
   CGSize textSize = [self sizeThatFits:CGSizeZero];
@@ -168,7 +167,6 @@
 }
 -(void)startAnimationWithoutTimer
 {
-	printf("\nstartAnimationWithoutTimer");
 	_spotlightPoint = 0;
     [self newMask];
 	 showSearchLight = YES;

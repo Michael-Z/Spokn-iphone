@@ -133,20 +133,17 @@
 	
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
 	[cell tablecellsetEdit:YES :1];
-	//printf("swipe start");
-	
 }
 - (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
 	[cell tablecellsetEdit:NO :1];
 	
-	//printf("swipe end");
+	
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView 
 {
-	//////////printf("\n dilip sharma");
-	return 1;
+		return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)aTableView numberOfRowsInSection:(NSInteger)section 
@@ -164,13 +161,11 @@
 		self.navigationItem.leftBarButtonItem.enabled = NO;
 
 	}
-	/////printf("\n mukesh sharma %d\n",count);
-	return count;
+		return count;
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	//////////printf("mukeshsdsdsd");
-	
+		
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -274,7 +269,7 @@
 	char *addressBookNameP = 0;
 	char *addressBookTypeP = 0;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-	////////printf("\n index = %d\n",index);
+	
 	
 	objP = GetObjectAtIndex(showMisscallInt ,index);
 	if(objP)
@@ -346,11 +341,7 @@
 			}		
 		}
 		timeP = cdrP->date;
-		if(timeP==0)
-		{
-			//printf("\n  error time");
-		}
-		
+				
 		tmP = localtime(&timeP);
 		
 		
@@ -555,7 +546,7 @@
 	{
 		if(sectionPP)
 			*sectionPP = 0;
-		//printf("\n no data for display");
+		
 	}
 	
 		
@@ -591,7 +582,6 @@
 			[ [self navigationController] pushViewController:addeditviewP animated: YES ];
 			[addeditviewP  setContactDetail:addressP];
 			[addeditviewP setObject:self->ownerobject];	
-			////NSLog(@"retainCount:%d", [addeditviewP retainCount]);
 			if([addeditviewP retainCount]>1)
 				[addeditviewP release];*/
 			ContactDetailsViewController     *ContactControllerDetailsviewP;	
@@ -610,7 +600,6 @@
 			
 			if([ContactControllerDetailsviewP retainCount]>1)
 				[ContactControllerDetailsviewP release];
-			//printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 			
 			
 			
@@ -648,7 +637,7 @@
 					
 					if([ContactControllerDetailsviewP retainCount]>1)
 						[ContactControllerDetailsviewP release];
-					//printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
+					
 				}	
 				
 			}
@@ -692,8 +681,7 @@
 				
 				if([ContactControllerDetailsviewP retainCount]>1)
 					[ContactControllerDetailsviewP release];
-				//printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
-				
+								
 				free(addressP);
 			}	
 			return;
@@ -737,7 +725,6 @@
 			[ [self navigationController] pushViewController:addeditviewP animated: YES ];
 			[addeditviewP  setContactDetail:addressP];
 			[addeditviewP setObject:self->ownerobject];	
-			////NSLog(@"retainCount:%d", [addeditviewP retainCount]);
 			if([addeditviewP retainCount]>1)
 				[addeditviewP release];
 			
@@ -826,7 +813,6 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	
 	 */
-	printf("\n calllog  rloaded  ");
 	
 	[ self->tableView reloadData ];
 	
@@ -926,7 +912,7 @@ cancelButtonTitle: nil
 	[super viewDidAppear:animated];
 	if(resultInt)
 	{
-		//printf("\nhello view deleted\n");
+		
 		
 		if(resultInt==2)//delete
 		{
@@ -968,11 +954,11 @@ cancelButtonTitle: nil
 	refreshB = 0;
 	
 	//self->fontGloP = [UIFont systemFontOfSize:16.0];
-	////////printf("\n my font count %d",[self->fontGloP  retainCount]);
+	
 	self->cellofcalllogP  = nil;	
 	
 	//self->tablesz = 0;
-	//////////printf("\n table = %d",self->tablesz);
+	
 	tableView.delegate = self;
 	tableView.dataSource = self;
 //	tableView.tag = TABLE_VIEW_TAG;
@@ -1038,7 +1024,7 @@ cancelButtonTitle: nil
 	[missImageP release];
 	[inImageP release];
 	[outImageP release];
-	//printf("\n calllog dealloc");
+	
 
     [super dealloc];
 }

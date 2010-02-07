@@ -15,7 +15,7 @@
 // Called when the navigation controller shows a new top view controller via a push, pop or setting of the view controller stack.
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
 {
-	printf("\n problem comes");
+	
 	/*if(viewController ==self->contactP)
 	{
 		[contactP updateUI];
@@ -24,13 +24,11 @@
 	
 	if ([viewController respondsToSelector:method])
 	{	
-		printf("\n method find");
 		[viewController performSelector:method withObject:nil];
 	}	
 }
 - (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
 {
-	//printf("\n view poped");
 }
 
 
@@ -57,8 +55,7 @@
 }
 -(void)upDateUI
 {
-	//printf("\n shankar");
-	#ifdef _HILIGHT_SEARCH_
+		#ifdef _HILIGHT_SEARCH_
 		[label updateSpotlight];
 	#else
 	/*
@@ -143,7 +140,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	printf("\n my view is appear");
+	
 	//[contactP updateUI]; 
 	
 }
@@ -167,7 +164,6 @@
 -(void)setParent:(CallViewController *)lcallViewCtlP
 {
 	#ifdef _HILIGHT_SEARCH_
-		printf("\n parent called");
 		callViewCtlP=lcallViewCtlP;
 	#else
 	callViewCtlP = nil;
@@ -187,7 +183,6 @@
 	[label release];
 	label = nil;
 
-	printf("\n call add make end");
 	
 	
 	[super dealloc];

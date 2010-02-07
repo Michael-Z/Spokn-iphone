@@ -69,7 +69,7 @@
 	CGContextAddLineToPoint(context, rect.origin.x + radius, rect.origin.y);
 	CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + radius, radius, 
 					-M_PI / 2, M_PI, 1);
-	//printf("\n draw");
+	
 }
 
 - (void)dealloc {

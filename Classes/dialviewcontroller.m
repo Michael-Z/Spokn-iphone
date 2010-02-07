@@ -41,7 +41,6 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 - (void)keyPressedDown:(NSString *)stringkey keycode:(int)keyVal
 {
 		
-	//NSLog(@"%@   %d",stringkey ,keyVal);
 	NSString *curText = [numberlebelP text];
 	int length = [curText length];
 	
@@ -185,8 +184,6 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		SendDTMF(ltpInterfacesP,0,numbercharP);
 	
 	}
-	//NSLog(string);
-	////////printf("\n mukesh");
 	return YES;
 }
 - (void)viewDidAppear:(BOOL)animated
@@ -280,7 +277,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 - (void)controlPressed:(id) sender {
 	//[ self setPage ];
 	int index = segmentedControl.selectedSegmentIndex;
-	////////printf("%d",index);
+
 	//index = 1;
 	switch(index)
 	{
@@ -326,7 +323,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	#ifdef MAX_TONE
 		[self destroyDTMF];
 	#endif	
-	//printf("\n dialview dealloc");
+	
 	[activityIndicator release];
 	[mainstatusLabelP release];	
 	[calltimerP release];
@@ -432,11 +429,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 }
 -(IBAction)callLtp:(id)sender
 {
-	printf("\n call button");
 	if(buttonPressedB)
 		return;
-	//[self->ownerobject->navigationController pushViewController: ownerobject.inCommingCallViewP animated: YES ];
-	//printf("\n %d %d",onLineB,self->onLineB);
 	if(onLineB)
 	{	
 		char *numbercharP;
@@ -532,7 +526,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 }
 -(IBAction)hangLtp:(id)sender
 {
-	printf("\n call button");
+	
 	if(buttonPressedB)
 		return;
 	//if(onLineB)
@@ -646,7 +640,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 }
 - (void) handleCallTimerHang: (id) timer
 {
-	printf("\n hang timer ");
+	
 	hangLtpInterface(ownerobject.ltpInterfacesP);
 	timecallduration = 0;
 	[(NSTimer*)timer invalidate];
@@ -665,7 +659,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 {
 	
-	//	//printf("\n%d",buttonIndex);
+	
 	
 	if(buttonIndex==0 && invalidUserB)
 	{	
@@ -727,10 +721,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				[self.navigationItem.leftBarButtonItem initWithTitle: @"Logout" style:UIBarButtonItemStylePlain
 				 target: self
 				 action: @selector(LogoutPressed) ] ;
-				//[self->ownerobject popLoginView];
-				//printf("\n online code");
+				
 				onLineB = true;
-				//printf("\n %d",self->onLineB);
 				
 				
 			}	
@@ -856,10 +848,10 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 					
 					
 			}
-			//[self->ownerobject popLoginView];
+			
 			[self setViewButton:0];
 			
-			////printf("\n offline code");
+			
 			onLineB = false;
 			break;
 		case ALERT_CONNECTED:
@@ -879,7 +871,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				if(callViewControllerP==0)
 				{
 					
-					printf("\n sdbarman");
+					
 					//hangLtpInterface(ownerobject.ltpInterfacesP);
 					calltimerP = [NSTimer scheduledTimerWithTimeInterval: 0.5
 																  target: self
@@ -887,17 +879,13 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 																userInfo: nil
 																 repeats: YES];
 					
-					printf("\n call end");
-					//dont get panic it will release in handleCallTimerend
+										//dont get panic it will release in handleCallTimerend
 					calltimerP = nil;
 					
 					break;
 				
 				}
-				else
-				{
-					printf("\n shankarjaikishan");
-				}	
+				
 				[callViewControllerP startTimer];
 			}	
 			
@@ -907,7 +895,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			
 			if(callViewControllerP==0)
 			{	
-				printf("\n try calling");
+				
 				AudioSessionSetActive(true);
 				//SetAudioTypeLocal(self,0);
 				//setHoldInterface(ownerobject.ltpInterfacesP, 0);
@@ -935,7 +923,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				}
 				else
 				{
-					printf("\n no view display");
+					
 					[callViewControllerP release];
 					callViewControllerP = nil;
 					
@@ -955,13 +943,12 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				callViewControllerP = 0;
 			break;
 		case ALERT_DISCONNECTED:
-			printf("\n call disconnected");
-			[self setViewButton:0];
+					[self setViewButton:0];
 			[calltimerP invalidate];
 			timecallduration = [callViewControllerP stopTimer];
 			//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 			callViewControllerP = 0;
-			////printf("\ndisconnected");
+			
 			calltimerP = nil;
 			//again for show time for sec
 			if(calltimerP==nil)
@@ -974,8 +961,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 															userInfo: nil
 															 repeats: YES];
 					
-					printf("\n call end");
-					//dont get panic it will release in handleCallTimerend
+									//dont get panic it will release in handleCallTimerend
 					calltimerP = nil;
 					timecallduration = -1;
 					

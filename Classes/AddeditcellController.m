@@ -34,15 +34,14 @@
 {
 	self->navRootObject = lrootObject;
 	self->shiftRootB = rootB;
-	//printf("\n i am here");
-}
+	}
 -(void)setObject:(id) object 
 {
 	self->ownerobject = object;
 }
 -(IBAction)cancelPressed
 {
-	NSLog(@"Cancel");
+	
 	[txtField resignFirstResponder];
 	
 	[[self navigationController]  popViewControllerAnimated:YES];
@@ -117,21 +116,18 @@
 	
 	TempP = (char*)[[txtField text]  cStringUsingEncoding:NSUTF8StringEncoding];
 	//TempP = (char*)[[txtField.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>+"]]  cStringUsingEncoding:NSUTF8StringEncoding];
-	NSLog([txtField text]);
 	strcpy(rvalueCharP,TempP);
 		if(returnP)
 	{
 		*returnP = 1;
 	}
 	//addressDataP->dirty = true;
-NSLog(@"\nSave123");
 	if(self->shiftRootB==false)
 	{	
 		[[self navigationController]  popViewControllerAnimated:YES];
 	}	
 	else
 	{
-		NSLog(@"Save");
 		if(self->navRootObject)
 		{
 			[[self navigationController]  popToViewController:self->navRootObject animated:NO];
@@ -207,7 +203,6 @@ NSLog(@"\nSave123");
 		
 	}
 	titleStrP = [[NSString alloc] initWithUTF8String:titleChar];
-	NSLog(@"title %@     %s",titleStrP,lplaceHolderP);
 */	self.title = titleStrP;
 	
 	
@@ -222,7 +217,7 @@ NSLog(@"\nSave123");
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	// Add right button
-	//printf("\n load");
+	
 	self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
 											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 											   target: self
@@ -349,7 +344,6 @@ NSLog(@"\nSave123");
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-	//NSLog(@"\n%@\n",string);
 	if([textField.text length]<=1 && [string length]==0 && activeAditButtonB ==NO)
 	{
 		self.navigationItem.rightBarButtonItem.enabled = NO;	

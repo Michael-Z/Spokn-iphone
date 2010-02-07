@@ -122,8 +122,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
-	//////printf("shankarjaikishan");
-	if(sectionArray.count)
+		if(sectionArray.count)
 		return [sectionArray count];
 	return 1;
 }
@@ -133,13 +132,11 @@ titleForHeaderInSection:(NSInteger)section
 { 
 	sectionType *setTypeP;
 	
-	//////printf("\nsdbarman %d",sectionArray.count);
-	if(section<sectionArray.count)
+		if(section<sectionArray.count)
 	{	
 		setTypeP = [sectionArray objectAtIndex:section];
 		if(setTypeP->elementP.count)
 		{	
-			//////printf("%d data ",setTypeP->index);
 			return [NSString stringWithFormat:@"%@", 
 					[ALPHA_ARRAY objectAtIndex:setTypeP->index]];
 		}	
@@ -184,7 +181,6 @@ titleForHeaderInSection:(NSInteger)section
 	[firstName release];
 	[lastName release];
 	[biz release];
-	//NSLog(resultP);
 	return resultP    ;
 }
 
@@ -194,8 +190,7 @@ titleForHeaderInSection:(NSInteger)section
 		int row = [indexPath row];
 	int section = [indexPath section];
 	// Create a cell if one is not already available
-	////////printf("mukesh sharma");
-	
+		
 	UITableViewCell *cell =(UITableViewCell *) [self->tableView dequeueReusableCellWithIdentifier:@"any-cell"];
 	if (cell == nil) 
 	{
@@ -209,7 +204,6 @@ titleForHeaderInSection:(NSInteger)section
 		
 	// Set up the cell by coloring its text
 	//NSArray *dataP = [[setTypeP->elementP objectAtIndex:row] componentsSeparatedByString:@"#"];
-	////////printf("mukesh");
 	//secP = (sectionData*)[dataP objectAtIndex:0];
 	id person = [setTypeP->elementP objectAtIndex:row];
 	NSString *resP = [self getName:person];
@@ -227,7 +221,7 @@ titleForHeaderInSection:(NSInteger)section
 	
 	
 	
-	////////printf("\n where are u");
+	
 	/*
 	if (ABPersonHasImageData(person))
 	{
@@ -251,7 +245,7 @@ titleForHeaderInSection:(NSInteger)section
 	//NSString* mobile=@"";
 	NSString* numberStringP;
 	char *numbercharP;
-////printf("\nidentifire = %ld\n",property);
+
 	for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
 	{
 		
@@ -273,32 +267,9 @@ titleForHeaderInSection:(NSInteger)section
 			[numberStringP release];
 			
 		}
-		/*mobileLabel=(NSString*)ABMultiValueCopyLabelAtIndex(name1, i);
-		NSLog(@"\n all = %@\n",mobileLabel);
-		if([mobileLabel isEqualToString:@"_$!<Mobile>!$_"])
-		{
-			mobile=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
-			NSLog(@"\n%@",mobile);
-			[mobile release];
-			
-		}
-		[mobileLabel release];*/
-	}
+			}
 	[name1 release];
 	
-/*	
-	if(property == kABPersonPhoneProperty)
-	{
-		CFStringRef *tmp;
-		tmp = (CFStringRef *)ABRecordCopyValue(person, property);
-		////printf("\nmukesh");
-		
-	}
-	
-	//int x = ABRecordCopyValue(person, property);
-	////printf("\nPerson name");
-//	NSLog(firstName);
-*/
 	return NO;
 }
 
@@ -322,10 +293,6 @@ titleForHeaderInSection:(NSInteger)section
 	
 	setTypeP = [sectionArray objectAtIndex:section] ;
 	
-	// Set up the cell by coloring its text
-	//NSArray *dataP = [[setTypeP->elementP objectAtIndex:row] componentsSeparatedByString:@"#"];
-	////////printf("mukesh");
-	//secP = (sectionData*)[dataP objectAtIndex:0];
 	id person  = [setTypeP->elementP objectAtIndex:row]; 
 		
 	/*
@@ -341,7 +308,6 @@ titleForHeaderInSection:(NSInteger)section
 	addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook)+10);
 	memset(addressP,0,sizeof(struct AddressBook));
 	nameP = [AddressBookContact getName:person];
-//	NSLog(nameP);
 	numbercharP = (char*)[nameP  cStringUsingEncoding:NSUTF8StringEncoding];
 	
 	strncpy(addressP->title,numbercharP,98);
@@ -383,7 +349,6 @@ titleForHeaderInSection:(NSInteger)section
 
 					}
 			}
-		//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
 			[numberStringP release];
 			[labelStringP release];
 		}
@@ -403,7 +368,6 @@ titleForHeaderInSection:(NSInteger)section
 			}
 			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 			strcpy(addressP->email,numbercharP);
-		//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
 			[numberStringP release];
 			[labelStringP release];
 		}
@@ -441,9 +405,6 @@ titleForHeaderInSection:(NSInteger)section
 		setTypeP->index = i;
 		[sectionArray addObject: setTypeP] ;
 	}
-	////printf("\n %d people count ",peopleArray.count);
-	
-	//searchArray = [[NSMutableArray alloc] init];
 	for (NSString *person in peopleArray)
 	{
 		NSString *searchStrP;
@@ -466,21 +427,18 @@ titleForHeaderInSection:(NSInteger)section
 				NSRange range1 = [[searchStrP uppercaseString] rangeOfString:upString];//[[[self getName:person] uppercaseString] rangeOfString:upString];
 				if (range1.location != NSNotFound) 
 				{	
-					////////printf("\n%s %ld %d",addressP->title,addressP->id ,i);
 					[ setTypeP->elementP addObject:person];
 				}	
 			}	
 			else
 			{
-				//////printf("\n find str");
-				[ setTypeP->elementP addObject:person];
+					[ setTypeP->elementP addObject:person];
 				
 			}
 		}
 		else
 		{
-			//////printf("\n find str");
-			[ setTypeP->elementP addObject:person];
+						[ setTypeP->elementP addObject:person];
 			
 		}
 		[searchStrP release];
@@ -496,7 +454,7 @@ titleForHeaderInSection:(NSInteger)section
 		NSRange range = [[[self getName:person] uppercaseString] rangeOfString:upString];
 		if (range.location != NSNotFound) [searchArray addObject:person];*/
 	}
-	//////printf("count %d",sectionArray.count);
+	
 	[self->tableView reloadData];
 }
 
@@ -609,14 +567,7 @@ titleForHeaderInSection:(NSInteger)section
 		[self loadViewLoc];
 		[self->tableView reloadData];
 	}
-	if(tableP)
-	{	
-		//////printf("\n mukesh");
-	}
-	else
-	{
-		//////printf("\n dilip");
-	}
+	
 }
 // Prepare the Table View
 - (void)loadViewLoc
@@ -642,8 +593,7 @@ titleForHeaderInSection:(NSInteger)section
 // Clean up
 -(void) dealloc
 {
-	//printf("\n dalloc");
-	sectionType *setTypeP;
+		sectionType *setTypeP;
 	if(sectionArray)
 	{	
 		while(sectionArray.count)
@@ -703,31 +653,6 @@ titleForHeaderInSection:(NSInteger)section
 {
 	id theProperty = (id)ABRecordCopyValue(person, property);
 	int propertyType = ABPersonGetTypeOfProperty(property);
-	
-	if (propertyType == kABStringPropertyType)	 {
-		//////printf("%s\n", [theProperty UTF8String]);
-	} else if (propertyType == kABIntegerPropertyType)	 {
-		//////printf("%d\n", [theProperty integerValue]);
-	} else if (propertyType == kABRealPropertyType)	 {
-		//////printf("%d\n", [theProperty floatValue]);
-	} else if (propertyType == kABDateTimePropertyType)	 {
-		//////printf("%s\n", [[theProperty description] UTF8String]);
-	} else if (propertyType == kABMultiStringPropertyType)	 {
-		//////printf("%s\n",
-			 //  [[(NSArray *)ABMultiValueCopyArrayOfAllValues(theProperty) objectAtIndex:identifier] UTF8String]);
-	} else if (propertyType == kABMultiIntegerPropertyType)	 {
-		//////printf("%d\n",	[[(NSArray *)ABMultiValueCopyArrayOfAllValues(theProperty) objectAtIndex:identifier] integerValue]);
-	} else if (propertyType == kABMultiRealPropertyType)	 {
-		//////printf("%f\n",	[[(NSArray *)ABMultiValueCopyArrayOfAllValues(theProperty) objectAtIndex:identifier] floatValue]);
-		
-	} else if (propertyType == kABMultiDateTimePropertyType)	 {
-		//////printf("%s\n",	[[[(NSArray *)ABMultiValueCopyArrayOfAllValues(theProperty) objectAtIndex:identifier] description] UTF8String]);
-		
-	} else if (propertyType == kABMultiDictionaryPropertyType)	 {
-		//////printf("%s\n",	[[[(NSArray *)ABMultiValueCopyArrayOfAllValues(theProperty) objectAtIndex:identifier] description] UTF8String]);
-	}
-	
-	
 	[uiControllerP dismissModalViewControllerAnimated:YES];
 	CFRelease(theProperty);
 	[peoplePicker release];

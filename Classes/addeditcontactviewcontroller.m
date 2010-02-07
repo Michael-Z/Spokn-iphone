@@ -168,7 +168,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-		NSLog(@"test log");
 	
 	
 	}
@@ -206,7 +205,6 @@
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
-    NSLog(@"memory leak");
 	[super didReceiveMemoryWarning];
 	
 	// Release any cached data, images, etc that aren't in use.
@@ -219,7 +217,6 @@
 
 
 - (void)dealloc {
-	NSLog(@"dealloc ");
     [super dealloc];
 }
 

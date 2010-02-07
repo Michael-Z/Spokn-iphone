@@ -111,7 +111,7 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (void)updateHeight {
-	printf("\n change height");
+
 	CGFloat previousHeight = self.frame.size.height;
 	CGFloat newHeight = [self layoutCells];
 	if (previousHeight && newHeight != previousHeight) {
@@ -192,7 +192,6 @@ static CGFloat kMinCursorWidth = 50;
 }
 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
-	printf("\n make event ");
 	UITouch* touch = [touches anyObject];
 	if (touch.view == self) {
 		self.selectedCell = nil;
@@ -347,7 +346,7 @@ static CGFloat kMinCursorWidth = 50;
 - (BOOL)shouldUpdate:(BOOL)emptyText {
 	if (emptyText && !self.hasText && !self.selectedCell && self.cells.count) {
 		//backspace select last cell
-		printf("\n start");
+		
 		self.text = kEmpty;
 		[self selectLastCell];
 		[self scrollToVisibleLine:YES];

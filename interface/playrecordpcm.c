@@ -68,7 +68,6 @@ int AddPcmData(void *libData,sampleFrame *dataPtr,int length,Boolean playB)
 	if(libData==NULL)
 		return 1;
 	//use some memory protection logic
-	//////printf("\n size=%d",length);
 	aqcP = (AQCallbackStruct*)libData;
 	if(aqcP->stopB)
 	{
@@ -90,7 +89,7 @@ int AddPcmData(void *libData,sampleFrame *dataPtr,int length,Boolean playB)
 		}
 		dataPtr = aqcP->buffPcm;
 		length = aqcP->buffsizeInt;
-		// ////printf("\nbuff size = %d",length);
+		
 		aqcP->buffsizeInt = 0;
 		
 		
@@ -123,7 +122,7 @@ int AddPcmData(void *libData,sampleFrame *dataPtr,int length,Boolean playB)
 		
 		aqcP->frontCount = 0;
 		PlayBuffStart(aqcP);
-		////printf("\n queue start again");
+		
 		
 		AudioQueueStart( aqcP->queue,0);
 	}
@@ -193,7 +192,7 @@ void SetAudioTypeLocal(void *uData,int type)
 	//this is added for iphone 3.0
 	if(uData)
 	{	
-		//printf("\n \n\n\n\n\ data set--------------------\n");
+		
 		
 		AudioSessionInitialize(0,0,AudioSessionInterruptionListenerClient,uData);
 	}
@@ -378,8 +377,7 @@ void AudioInputCallbackLocal(
 		if(aqcP->callBackSoundP)
 		{
 			sz = inBuffer->mAudioDataByteSize>>1;
-			//////printf("\nsend %d",sz);
-			//inBuffer->mAudioDataByteSize>>1;
+			
 			aqcP->callBackSoundP(aqcP->uData,inBuffer->mAudioData,&sz,true);
 		}
 	}	
@@ -396,15 +394,8 @@ void AudioSessionInterruptionListenerClient(
 	if(inClientData)
 	{
 		alertNotiFication(INTERRUPT_ALERT,0,inInterruptionState,(unsigned long )inClientData,0);
-		printf("set state");
+		
 	}
-	printf("state %d",(int)inInterruptionState);
-	/*if(inInterruptionState==0)
-	{
-		printf("state %d",(int)inInterruptionState);
-		//SetAudioTypeLocal(0,0);
-		//SetSpeakerOnOrOff(0,1);
-	}*/
 }
 int CreateSoundThread(int OutB,AQCallbackStruct *aqcP,Boolean sampleDataB,int samplesize)
 {
@@ -563,14 +554,9 @@ void AudioQueuePropertyListenerFunction(
 										   );
 		
 		if (result == noErr) {
-			if(isRunning)
-			{	
-				//printf("\nrunning");
-				
-			}
-			else
+			
+			if(!isRunning)
 			{
-				//printf("\nstop");
 				aqcP->stopB = true;
 				if(aqcP->CallBackUIP)
 				{	
@@ -657,11 +643,9 @@ void AQBufferCallbackLocal(
 		return;
 	}
 	outQB->mAudioDataByteSize = aqcP->pcmBuffArray[aqcP->frontCount].bufferLength ;
-	//////printf("\nout buff size %ld", outQB->mAudioDataByteSize);
-	////printf("\n				front count %d",aqcP->frontCount);
 	if(outQB->mAudioDataByteSize==0)
 	{
-		////printf("size is zero");
+		
 	}
 	memmove(coreAudioBuffer,aqcP->pcmBuffArray[aqcP->frontCount].pcmBufferP ,aqcP->pcmBuffArray[aqcP->frontCount].bufferLength);
 	#ifdef _MAKE_NEW_MEMORY_ALWAYS_

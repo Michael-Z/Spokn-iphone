@@ -47,12 +47,7 @@
 - (void) viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
-	/*printf("\n view did disappear %d",acceptPressedB);
-	if(acceptPressedB)
-	{
-		[self->ownerobject AcceptCall:self->ltpInDataP];
 	
-	}*/
 
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -114,13 +109,11 @@
 
 
 - (void)dealloc {
-	printf("\ndealloc called incomming");
 	[self->textProP release];
     [super dealloc];
 }
 -(IBAction)Accept:(id)sender
 {
-	printf("\n call Accept");
 	if(buttonPressedB)
 		return;
 	acceptPressedB = 1;
@@ -133,7 +126,6 @@
 }
 -(IBAction)Reject:(id)sender
 {
-	printf("\n call Reject");
 	if(buttonPressedB)
 		return;
 	buttonPressedB =YES;	
@@ -157,7 +149,6 @@
 	{
 		return;
 	}
-	//printf("\n %s",self->ltpInDataP->userIdChar);
 	addressP = getContactAndTypeCall(self->ltpInDataP->userIdChar,0);
 	if(addressP)
 	{
@@ -170,7 +161,6 @@
 	}
 	[self->textProP setString:@"Incoming call\n"];
 	[self->textProP appendString:nsp];
-	NSLog(self->textProP);
 	[nsp release];
 	
 }

@@ -44,7 +44,6 @@
 */
 - (void)keyPressedDown:(NSString *)stringkey keycode:(int)keyVal
 {
-	NSLog(@"%@   %d",stringkey ,keyVal);
 	
 	NSString *curText = [dtmfLabelP text];
 	[dtmfLabelP setText: [curText stringByAppendingString: stringkey]];
@@ -75,7 +74,7 @@
 	loadedB = true;
 	if(actualDismissB)
 	{
-		printf("\n view de");
+		
 		//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 		actualDismissB = NO;
 	}
@@ -184,7 +183,7 @@
 		[labeltypeStrP release];
 		labeltypeStrP = [[NSString alloc] initWithUTF8String:newStringP];
 		[callTypeLabelP setText:labeltypeStrP];
-		printf("\n call srring %s",newStringP);
+		
 		free(newStringP);
 		
 	}
@@ -207,7 +206,7 @@
 	}
 	else
 	{
-		printf("\n dismissModalViewControllerAnimated view");
+		
 		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 
 	}
@@ -215,7 +214,6 @@
 }
 - (void) handleCallEndTimer: (id) timer
 {
-	printf("\n delete view");
 	[timer invalidate];
 	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 	actualDismissB = NO;
@@ -288,7 +286,7 @@
 	setMuteInterface(ownerobject.ltpInterfacesP,enable);
 	#endif
 	[butP setSelected:enable];
-	//printf("%d",enable);
+	
 	
 }
 
@@ -323,7 +321,6 @@
 	spoknViewCallP = [[Spokncalladd alloc] initWithNibName:@"spokncalladd" bundle:[NSBundle mainBundle]];
 	[spoknViewCallP setParent:self];
 	[[self navigationController] presentModalViewController:spoknViewCallP animated: YES ];
-	printf("\n retain count %d",[spoknViewCallP retainCount]);
 	[spoknViewCallP release];
 }
 -(IBAction)HoldPressed:(id)sender
@@ -375,7 +372,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	enable = !butP.selected;
 	SetSpeakerOnOrOff(0,enable);
 	[butP setSelected:enable];
-	//printf("%d",enable);
+	
 	
 }
 -(IBAction)keypadPressed:(id)sender
@@ -442,7 +439,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	[showContactCallOnDelegate objectDestory];
 	[ownerobject playcallendTone];
 	//SetSpeakerOnOrOff(0,true);
-	printf("\n call view dealloc");
+	
 	[labelStrP release];
 	[labeltypeStrP release];
 	

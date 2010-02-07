@@ -38,9 +38,6 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
-	//printf("\n mukesh");
-	
-	//	[self dismissKeyboard:numberFieldP];
 	[upDateProtocolP upDateScreen];
 }
 @end
@@ -93,12 +90,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
-	//printf("\n mukesh shastri");
-	/*if(modalB==false)
-	{
-		[txtDestNo resignFirstResponder];
-	}
-	*/	//	[self dismissKeyboard:numberFieldP];
+	
 	
 }
 -(void)addSelectedContact:(SelectedContctType*)  lcontactObjectP
@@ -235,11 +227,10 @@
 	
 	if([upDateProtocolP getForwardNumber:&selectedContact]==0)
 	{
-		//printf("\n inside the no");
+		
 
 		[self addSelectedContact:&selectedContact];
-		//[txtDestNo addCellWithString:[NSString stringWithUTF8String:nocharP :nameCharP]];
-
+	
 	}
 
 }
@@ -374,7 +365,6 @@
 
 -(IBAction)addFromContact:(id)sender
 {
-	printf("addcontactpressed");
 	NSString *temp = [txtDestNo.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	
 	if( ![temp isEqualToString:@""] )
@@ -412,9 +402,7 @@
 {
 	[searchedContacts removeAllObjects];
 	char *ltpsSearchStringP=0;
-	NSLog(@"search text %@",txtDestNo.text);
 	NSString *texttosearch = [txtDestNo.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	NSLog(@"search text %@",texttosearch);
 	//texttosearch = [self remSpChar:texttosearch];
 	
 	// input validation
@@ -815,7 +803,6 @@
 						
 						NSString *text1 = [text stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
 						
-					NSLog(@"\n number %@\n",text1);
 						if(text1!=0 && [text1 length]!=0)
 						{
 							//txtDestNo.text = @" ";
@@ -844,7 +831,6 @@
 	
 	NSString *text = [txtDestNo.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	NSString *texttype = [typeStrP stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	NSLog(@"\nmm = %@\n",text);
 	if(![text isEqualToString:@""])
 	{	
 		if(typeStrP==nil || [typeStrP isEqualToString:@""])
@@ -963,7 +949,7 @@
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;        // return NO to disallow editing.
 {
-	//printf("\n key board");
+	
 	if(modalB==false)
 	{
 		CGRect frame = txtDestNo.frame;
@@ -1021,7 +1007,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)theTextField {
 	
-	////printf("dffs");
+	
 	if(modalB==true)
 	{
 		return YES;

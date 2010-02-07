@@ -47,7 +47,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	////printf("\n touch");
+	
 	[super touchesBegan:touches withEvent:event];
 	[self resignFirstResponder];
 }
@@ -86,9 +86,7 @@
 	//	[addressBook release];
 		return 1;
 	}
-	//printf("\n recordID %d",(int)person);
-	nameP = [AddressBookContact getName:person];
-	//	NSLog(nameP);
+		nameP = [AddressBookContact getName:person];
 	if(nameP==0)
 	{
 		//[addressBook release];
@@ -117,20 +115,14 @@
 			{
 				continue;
 			}
-			//NSLog(numberStringP);
-			//NSLog(labelStringP);
-			//NSLog(@"\n%@ ", numbercharP);
-			//NSLog(@"\n%@ ", labelStringP);
-			//text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]];
 			 
 				 
 			text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>"]];
-			//NSLog(text1);
 			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 			normalizeNoCharP = NormalizeNumber(numbercharP,0);
 			res=  strcmp(normalizeNoCharP,lnumberCharP);
 			
-			////printf("\n\n %s %s \n\n\n",normalizeNoCharP,lnumberCharP);
+			
 			free(normalizeNoCharP);
 			if(res==0)
 			{
@@ -163,7 +155,7 @@
 // The delegate is responsible for dismissing the peoplePicker
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
 {
-	//printf("\n search cancel");
+
 }
 
 // Called after a person has been selected by the user.
@@ -181,15 +173,14 @@
 	
 	
 	
-	//printf("\n selected contact123");
-	return NO;
+		return NO;
 }
 // Called after a value has been selected by the user.
 // Return YES if you want default action to be performed.
 // Return NO to do nothing (the delegate is responsible for dismissing the peoplePicker).
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
 {
-	//printf("\n selected contact");
+	
 	return NO;
 }
 
@@ -197,13 +188,12 @@
 #pragma mark _ADDRESSBOOKDELEGATE_END
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	////printf("\n touch");
-	[super touchesBegan:touches withEvent:event];
+		[super touchesBegan:touches withEvent:event];
 	[self resignFirstResponder];
 }/*
 - (NSTimeInterval)keyboardAnimationDurationForNotification:(NSNotification*)notification
 {
-	//printf("\nkey board");
+	
 	NSDictionary* info = [notification userInfo];
     NSValue* value = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSTimeInterval duration = 0;
@@ -361,7 +351,7 @@
 	}
 	*/
 	#else
-		//printf("\n mukesh");
+		
 		searchbar.text = @"";
 		[searchbar resignFirstResponder];
 	
@@ -520,7 +510,7 @@
 		if(firstSection>=0)
 		{	
 			NSIndexPath *nsP;
-			printf("\n record deleted %d",firstSection);
+		
 			nsP = [NSIndexPath indexPathForRow:0 inSection:firstSection] ;
 			if(nsP)
 			{	
@@ -601,8 +591,7 @@ titleForHeaderInSection:(NSInteger)section
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	
-	////////printf("\nmukesh");
-	return nil;
+		return nil;
 }
 -(void) keyboardWillShow:(NSNotification *) note
 {
@@ -614,9 +603,7 @@ titleForHeaderInSection:(NSInteger)section
 	tableframe = self->tableView.frame;
 	CGRect r  = tableframe, t;
     [[note.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue: &t];
-	//printf("\nkey val show  %f %f %f %f",t.origin.x,t.origin.y,
-	//	   t.size.width,t.size.height);
-    r.size.height -=  t.size.height;
+	r.size.height -=  t.size.height;
 	if(ownerobject.tabBarController.modalViewController==0)
 	{	
 		tabP = ownerobject.tabBarController.tabBar;//get tabbar height
@@ -639,15 +626,13 @@ titleForHeaderInSection:(NSInteger)section
     //[[note.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue: &t];
     //r.origin.y +=  t.size.height;
     self->tableView.frame = tableframe;
-	//printf("\nwill hide  %f %f %f %f",self->tableView.frame.origin.x,self->tableView.frame.origin.y,
-	//   self->tableView.frame.size.width,self->tableView.frame.size.height);
+	
 
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	printf("\n view loaded");
-    [super viewDidLoad];
+	[super viewDidLoad];
 	refreshB = 0;
 	searchbar = [[UISearchBar alloc] init];
 	searchbar.delegate = self;
@@ -764,7 +749,6 @@ titleForHeaderInSection:(NSInteger)section
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
 	[nc addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
-	//NSLog(@"\n size %@",self->tableView.frame);
 	//viewDidLodadedB = true;
 	if(hideCallAndVmailButtonB)
 	{
@@ -780,7 +764,7 @@ titleForHeaderInSection:(NSInteger)section
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
-	printf("\n view disappear");
+	
 	[super viewWillDisappear:animated];
 	/*if(hideCallAndVmailButtonB)
 	{
@@ -816,7 +800,7 @@ titleForHeaderInSection:(NSInteger)section
 					//talbP = (UITableView*)[viewHit superview];
 					NSIndexPath *nsP;
 					talbP = (UITableView*)superViewP;
-					//printf("\n hit called");
+					
 					nsP = [talbP indexPathForSelectedRow];
 					if(nsP)
 					{
@@ -827,7 +811,6 @@ titleForHeaderInSection:(NSInteger)section
 				
 				superViewP = [superViewP superview];
 				
-			//	NSLog(@"\n mdis = %@",[superViewP description]);
 			}while(superViewP);
 			
 		}		
@@ -852,8 +835,6 @@ titleForHeaderInSection:(NSInteger)section
 		loadedNewViewB = 0;
 		
 	}
-	printf("\nviewDidAppear  %f %f %f %f",self->tableView.frame.origin.x,self->tableView.frame.origin.y,
-		   self->tableView.frame.size.width,self->tableView.frame.size.height);
 	
 	if(resultInt)
 	{
@@ -1048,7 +1029,6 @@ titleForHeaderInSection:(NSInteger)section
 	#ifdef _NEW_ADDRESS_BOOK_
 		[addressBookP release];
 	#endif
-	//printf("\n contact dealloc");
 	
 	[mainViewP retain]; 
 	[ovController release];	
@@ -1063,7 +1043,6 @@ titleForHeaderInSection:(NSInteger)section
 		[setTypeP release];
 		[sectionArray removeObjectAtIndex:0];
 	}
-	printf("\n contact deleted");
 	[sectionArray release];
 	[noResultLabelP release];
     [noResultViewP release];
@@ -1098,7 +1077,6 @@ titleForHeaderInSection:(NSInteger)section
 	SelectedContctType *secContactP;
 	BOOL alleastOneB = FALSE;	
 	nameP = [AddressBookContact getName:person];
-	//	NSLog(nameP);
 	numbercharP = (char*)[nameP  cStringUsingEncoding:NSUTF8StringEncoding];
 	if(numbercharP==0)
 	{
@@ -1128,48 +1106,19 @@ titleForHeaderInSection:(NSInteger)section
 			{
 				continue;
 			}
-			//NSLog(numberStringP);
-			//NSLog(labelStringP);
-			//NSLog(@"\n%@ ", numbercharP);
-			//NSLog(@"\n%@ ", labelStringP);
+		
 			//text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]];
 			text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>"]];
-			//NSLog(text1);
+			
 			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 			typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
 			
 			strcpy(secContactP->number,numbercharP);
 			strcpy(secContactP->type,typeCharP);
-			//printf("\ntest123  %s %s",secContactP->number,secContactP->type);
-			alleastOneB = TRUE;
+						alleastOneB = TRUE;
 			[ContactControllerDetailsviewP addContactDetails:secContactP];
 			
-			/*if([labelStringP isEqualToString:@"_$!<Mobile>!$_"])
-			 {
-			 numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-			 strcpy(addressP->mobile,numbercharP);
-			 }
-			 else
-			 {	
-			 if([labelStringP isEqualToString:@"_$!<Home>!$_"])
-			 {
-			 numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-			 strcpy(addressP->home,numbercharP);
-			 }
-			 else
-			 if([labelStringP isEqualToString:@"_$!<Business>!$_"])
-			 {
-			 numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-			 strcpy(addressP->business,numbercharP);
-			 }
-			 else
-			 {
-			 numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-			 strcpy(addressP->other,numbercharP);
-			 
-			 }
-			 }*/
-			//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
+			
 			[numberStringP release];
 			[labelStringP release];
 		}
@@ -1191,13 +1140,13 @@ titleForHeaderInSection:(NSInteger)section
 			
 			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 			typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
-			printf("\ntest123  %s %s",numbercharP,typeCharP);
+			
 			strcpy(secContactP->number,numbercharP);
 			strcpy(secContactP->type,typeCharP);
 			if(strstr(numbercharP,"@"))//only email allowed
 			{	
 				alleastOneB = TRUE;
-				[ContactControllerDetailsviewP addContactDetails:secContactP];				//	NSLog(@"\n%@ %@\n",numberStringP,labelStringP);
+				[ContactControllerDetailsviewP addContactDetails:secContactP];				
 			}
 			[numberStringP release];
 			[labelStringP release];
@@ -1272,7 +1221,6 @@ titleForHeaderInSection:(NSInteger)section
 		
 		if([ContactControllerDetailsviewP retainCount]>1)
 			[ContactControllerDetailsviewP release];
-		////printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
 		
 		
 		
@@ -1291,8 +1239,7 @@ titleForHeaderInSection:(NSInteger)section
 		SelectedContctType *secContactP;
 		
 		nameP = [AddressBookContact getName:person];
-		//	NSLog(nameP);
-		numbercharP = (char*)[nameP  cStringUsingEncoding:NSUTF8StringEncoding];
+				numbercharP = (char*)[nameP  cStringUsingEncoding:NSUTF8StringEncoding];
 		if(numbercharP==0)
 		{
 			return 1;
@@ -1391,7 +1338,6 @@ titleForHeaderInSection:(NSInteger)section
 	[ [self navigationController] pushViewController:addeditviewP animated: YES ];
 	[addeditviewP setContactDetail:nil];
 	[addeditviewP setObject:self->ownerobject];
-	//NSLog(@"retainCount:%d", [addeditviewP retainCount]);
 	if([addeditviewP retainCount]>1)
 		[addeditviewP release];
 	 */
@@ -1421,19 +1367,11 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	if([ContactControllerDetailsviewP retainCount]>1)
 		[ContactControllerDetailsviewP release];
-	//[self presentModalViewController:self animated:YES];
-	//ownerobject.tabBarController.view.hidden = YES;
-	////printf("\n retain countact details count %d\n",[ContactControllerDetailsviewP retainCount]);
-	
-	
-	//[ ownerobject.ContactControllerController pushViewController:ownerobject->addeditviewP animated: YES ];
-	//[ownerobject->addeditviewP setContactDetail:nil];
 }
 -(void) reload
 {
 	//int firstSection = 1;
 	firstSection = 1;
-//	//printf("\nreload called");
 	NSString *searchStrP;
 	searchStrP = searchbar.text;
 	if([searchStrP length]==0 ||searchStrP == 0)
@@ -1441,7 +1379,6 @@ titleForHeaderInSection:(NSInteger)section
 		if([self reloadLocal:nil :&firstSection])
 		{	
 			//- (void)scrollToRowAtIndexPath:(NSIndexPath *)indexPath atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
-		//	//printf("\n section%d",firstSection);
 			//	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:firstSection] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 		}
 		else
@@ -1466,7 +1403,7 @@ titleForHeaderInSection:(NSInteger)section
 		return 0;
 	}
 	
-	////////////printf("\nmukesh");
+	
 	if(uaObject==GETCONTACTLIST)
 	{
 		if(self.navigationItem.rightBarButtonItem==nil && searchStartB==false)
@@ -1512,22 +1449,22 @@ titleForHeaderInSection:(NSInteger)section
 			[setTypeP release];
 			[sectionArray removeObjectAtIndex:0];
 		}
-	////////////printf("removed");
+	
 		for (i = 0; i < MAXSEC; i++){
 			
 			setTypeP = [[sectionType alloc] init];
 			setTypeP->index = i;
 			[sectionArray addObject: setTypeP] ;
-			//("\n%d",i);
+		
 		}
 		count = GetTotalCount(uaObject);
-		//for(int i=0;i<sectionArray)
+		
 		for (i=0;i<count;++i)
 		{
 			sectionData *secP;
 			addressP = GetObjectAtIndex(uaObject ,i);		
 			ignoreSpaceStrP = addressP->title;
-			//printf("\n %s   %d",addressP->title,i);
+			
 			while(*ignoreSpaceStrP==' ')
 			{
 				ignoreSpaceStrP++;
@@ -1541,7 +1478,6 @@ titleForHeaderInSection:(NSInteger)section
 			{	
 				CellIdentifier = [[NSString alloc] initWithUTF8String:ignoreSpaceStrP] ;
 			}
-			//NSLog(CellIdentifier);
 			secP = [[sectionData alloc] init];
 			secP->recordid = addressP->id;
 			/*
@@ -1551,7 +1487,7 @@ titleForHeaderInSection:(NSInteger)section
 				sectionData *secP;
 				secP = [[sectionData alloc] init];
 				secP->recordid = -1;
-				//////printf("dummy aded");
+				
 				setTypeP = [sectionArray objectAtIndex:0];
 				[ setTypeP->elementP addObject:secP];
 			}*/
@@ -1563,13 +1499,9 @@ titleForHeaderInSection:(NSInteger)section
 			{	
 				rangeStringP = 	[[CellIdentifier substringToIndex:1] uppercaseString];
 			}
-			//printf("\n range ");
-			//NSLog(rangeStringP);
-			//printf(" end");
 			NSRange range = [ALPHA rangeOfString:rangeStringP];
 			if (range.location != NSNotFound && range.location <MAXSEC) 
 			{	
-				//NSLog(@"range location %d %@\n",range.location,CellIdentifier);
 				if(fIndexfindInt==-1)
 				{
 					fIndexfindInt = range.location;
@@ -1587,7 +1519,6 @@ titleForHeaderInSection:(NSInteger)section
 						NSRange range1 = [[CellIdentifier uppercaseString] rangeOfString:searchStrP];//[[[self getName:person] uppercaseString] rangeOfString:upString];
 						if (range1.location != NSNotFound) 
 						{	
-					////////printf("\n%s %ld %d",addressP->title,addressP->id ,i);
 							[ setTypeP->elementP addObject:secP];
 							noShowB = true;
 						}	
@@ -1607,7 +1538,7 @@ titleForHeaderInSection:(NSInteger)section
 					}
 					else
 					{
-					//	//printf("\n error");
+					
 					}
 
 				}
@@ -1618,11 +1549,9 @@ titleForHeaderInSection:(NSInteger)section
 			[CellIdentifier release];
 		}
 		
-	//////printf("\n session count %d",sectionArray.count);
 		for(i=0;i<sectionArray.count;++i)
 		{
 			setTypeP = [sectionArray objectAtIndex:i];
-		//	//////////////printf("\n count %d %d ",tmp.count,i);
 			if(setTypeP->elementP.count==0)
 			{
 				
@@ -1631,8 +1560,6 @@ titleForHeaderInSection:(NSInteger)section
 				//--i;
 			}	
 		}
-			////////printf("\n session count after remove %d",sectionArray.count);
-
 		
 		
 	}
@@ -1644,16 +1571,14 @@ titleForHeaderInSection:(NSInteger)section
 		 target: self
 	    action: @selector(startEditing) ] autorelease ];	
 	}
-//	printf("\n reload called");
 	[ self->tableView reloadData ];
 	if(firstSectionP)
 	{
 		*firstSectionP = fIndexfindInt;
 	}
-	printf("\n section count %d",sectionArray.count);
+
 	if(noShowB==0)
 	{
-		printf("\nview shown");
 		if(searchStrP)//mean string is their for search
 		{
 			noserchResultShowB = true;
@@ -1715,7 +1640,6 @@ titleForHeaderInSection:(NSInteger)section
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//	//////////////printf("\n drawing...");
 
 }
 
@@ -1735,16 +1659,14 @@ titleForHeaderInSection:(NSInteger)section
 	int row = [indexPath row];
 	int section = [indexPath section];
 	// Create a cell if one is not already available
-	////////////////printf("mukesh sharma");
 	sectionType *setTypeP;
 	setTypeP = [sectionArray objectAtIndex:section] ;
 	
 	// Set up the cell by coloring its text
 	//NSArray *dataP = [[setTypeP->elementP objectAtIndex:row] componentsSeparatedByString:@"#"];
-	////////////////printf("mukesh");
+	
 	//secP = (sectionData*)[dataP objectAtIndex:0];
 	secP = (sectionData*)[setTypeP->elementP objectAtIndex:row]; 
-	//////printf("\n %ld",secP->recordid);
 	UITableViewCell *cell =(UITableViewCell *) [self->tableView dequeueReusableCellWithIdentifier:@"any-cell"];
 	if (cell == nil) 
 	{
@@ -1755,7 +1677,6 @@ titleForHeaderInSection:(NSInteger)section
 	if(addressP)
 	{	
 		CellIdentifier = [[NSString alloc] initWithUTF8String:addressP->title ] ;
-		//////////////printf("\n table %s  %ld %d",addressP->title ,secP->recordid,section);
 		cell.text = CellIdentifier;
 
 		
@@ -1801,7 +1722,6 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	// Set up the cell by coloring its text
 	//NSArray *dataP = [[setTypeP->elementP objectAtIndex:row] componentsSeparatedByString:@"#"];
-	//////////////printf("mukesh shastri");
 	//secP = (sectionData*)[dataP objectAtIndex:0];
 	secP = (sectionData*)[setTypeP->elementP objectAtIndex:row]; 
 	deleteContactLocal(secP->recordid);
@@ -1826,7 +1746,6 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	// Set up the cell by coloring its text
 	//NSArray *dataP = [[setTypeP->elementP objectAtIndex:row] componentsSeparatedByString:@"#"];
-	////////////////printf("mukesh");
 	//secP = (sectionData*)[dataP objectAtIndex:0];
 	secP = (sectionData*)[setTypeP->elementP objectAtIndex:row]; 
 	addressP = (struct AddressBook *)getContact( secP->recordid);

@@ -31,9 +31,8 @@
 @implementation VmShowViewController
 - (void) doneSearching_Clicked:(id)sender {
 	
-	//printf("\n done clicked");
+	
 	[self->pickerviewcontrollerviewP removeKeyBoard];
-	//[self keyBoardOnOrOff:false];
 	return ;
 	
 	
@@ -75,10 +74,8 @@
 		doNothing = 1;
 	}
 	openForwardNo = 0;
-	printf("\n contact can open");
 	if(rootP==nil)
 	{
-		printf("\ndsfdsfdfdfdsf");
 		rootP = self;
 	}
 	//showContactScreen:(id) navObject returnnumber:(char*) noCharP  result:(int *) resultP
@@ -86,7 +83,6 @@
 }
 -(int)getForwardNumber:(SelectedContctType*)  lcontactObjectP
 {
-	//printf("\n forwardno the no");
 	if(openForwardNo)//mean it is on
 	{
 		//strcpy(lforwardNoP,forwardNoChar);
@@ -115,7 +111,6 @@
 	
 			//Parameters x = origion on x-axis, y = origon on y-axis.
 
-			//printf("\n over view");
 			if(frameP==0)
 			{	
 				CGRect frame = CGRectMake(0, 50, width, height);
@@ -123,7 +118,6 @@
 			}
 			else
 			{
-				////printf("\n current frame %f %f %f %f",frameP->origin.x,frameP->origin.y,frameP->size.width,frameP->size.height);
 				
 				CGRect frame = CGRectMake(0, frameP->size.height, width, height);
 				ovController.view.frame = frame;	
@@ -132,7 +126,6 @@
 			//labP = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, width, 50)];
 			//labP.backgroundColor=[UIColor clearColor];
 			//labP.text = @"mukesh";
-		//	//printf("%f %f %f %f",ovController.view.frame.origin.x,ovController.view.frame.origin.y,ovController.view.frame.size.width,ovController.view.frame.size.height);
 			ovController.view.backgroundColor = [[UIColor clearColor] autorelease ];
 			
 			[ovController.view addSubview:msgLabelP];
@@ -184,7 +177,6 @@
 		
 	
 	
-	//printf("\n\n\n\ncontact added\n\n\n");
 	if(lvmsState!=VMSStatePrevious)
 	{	
 		vmstateType = lvmsState;
@@ -197,9 +189,8 @@
 		[self makeView];
 		[self loadOtherView];
 		[self->tableView reloadData];
-		printf("\n reply");
 	}
-	printf("\n showForwardOrReplyScreen");
+
 	[pickerviewcontrollerviewP addSelectedContact:selectedContactP  ];
 	
 	if(selectedContactP)
@@ -218,7 +209,7 @@
 #pragma mark button action
 -(IBAction)sendPressed:(id)sender
 {
-	//printf("\n send pressed");
+	
 	if(vmstateType == VMSStatePlay)
 	{
 		openForwardNo = 0;
@@ -251,7 +242,7 @@
 		{
 			if( strlen(contactNumberP)>0)
 			{	
-				//printf("\n forward no %s",contactNumberP);
+				
 				if(vmstateType == VMSStateRecord)
 				{
 					if([ownerobject vmsSend:contactNumberP :fileNameCharP]!=0)
@@ -361,7 +352,7 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 {
 	
-	//	//printf("\n%d",buttonIndex);
+	
 	if(buttonIndex==0)
 	{	
 		if(returnValLongP)
@@ -383,7 +374,6 @@
 	if(doNothing)
 	{
 		//if(recordingStartB != 1)
-		printf("\n Vmsstop return");
 		return;
 	}
 	if(audioStartB==false)
@@ -391,7 +381,6 @@
 		return;
 	}
 	audioStartB = false; 
-	printf("\n Vmsstop");
 	[nsTimerP invalidate];
 	nsTimerP = 0;
 
@@ -503,17 +492,14 @@
 		[ownerobject vmsStop:!playB];
 		
 	}
-	//printf("\n timer progress count %f",amt);
 	
 }
 -(void)VmsStopRequest
 {
-	printf("\n VmsStopRequest\n");
 	[self stopButtonPressed:nil];
 }
 -(IBAction)stopButtonPressed:(id)sender
 {
-	printf("\n stopButtonpressed");
 	Boolean playB;
 	
 	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateRecord )
@@ -526,7 +512,7 @@
 	}
 	if([ownerobject vmsStop:!playB])
 	{
-		//printf("\n error");
+		
 		[self VmsStop];
 	}
 	
@@ -534,7 +520,7 @@
 
 -(IBAction)playPressed:(id)sender
 {
-	//printf("\n playPressed pressed");
+	
 	unsigned long sz;
 	recordingStartB = 1;
 	audioStartB = true;
@@ -616,7 +602,7 @@
 -(IBAction)previewPressed:(id)sender
 {
 
-	//printf("\n previewPressed pressed");
+	
 	[ownerobject setVmsDelegate:self];
 	if(vmstateType==VMSStateRecord)
 	{
@@ -836,9 +822,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	}
 	else if(editingStyle == UITableViewCellEditingStyleInsert)
 	{
-		//  [dataController addData:@"New Row Added"];
-		//printf("\n add clicked");
-		// [tableView reloadData];        
+		    
 	}
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:
@@ -871,8 +855,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	
 	//int index;
 	NSString *stringStrP;
-	//printf("\nsection %d %d \n",lsection,row);
-	//objStrP = sectionArray[lsection].dataforSection[row].nameofRow;
 	objStrP = sectionArray[lsection].dataforSection[row].elementP;
 	typeCallP = sectionArray[lsection].dataforSection[row].secRowP;
 	
@@ -987,7 +969,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
 {
-	//printf("\n preeesed select");
+	
 	int row = [newIndexPath row];
 	int section = [newIndexPath section];
 	if(sectionArray[section].dataforSection[row].customViewP==0)
@@ -1157,7 +1139,7 @@ id createImage(float percentage)
 }
 - (void)viewWillAppear:(BOOL)animated
 {
-	printf("\n viewwillAppear \n");
+	
 	[super viewWillAppear:animated];
 
 }
@@ -1165,20 +1147,11 @@ id createImage(float percentage)
 {
 	[super viewDidAppear:animated];
 	doNothing = 0;
-	printf("\n viewDidAppear \n");
+	
 	if(openForwardNo)
 	{
-		//printf("\n make changes");
+		
 		openForwardNo = 0;
-		/*[ownerobject vmsForward:forwardNoChar :fileNameCharP];		
-		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-														   message: [ NSString  stringWithFormat:@" vmail is sent to %s", forwardNoChar]
-														  delegate: nil
-												 cancelButtonTitle: nil
-												 otherButtonTitles: @"OK", nil
-							  ];
-		[ alert show ];
-		[alert release];*/
 		[self showForwardOrReplyScreen:VMSStatePrevious :&forwardContact];
 		
 		
@@ -1189,23 +1162,13 @@ id createImage(float percentage)
 		
 		//if(vmstateType!=VMSStatePlay)
 		{	
-		//	//printf("\n selected no %s",forwardNoChar);
-			//forwardNoChar[0]=0;
 			returnValueInt = 0;
 			char type[40];
 			struct AddressBook * addressP;
 			if(selectP)
 			{
-				//struct VMail* lvmailP;
-				//lvmailP = vmailP;
-				//vmailP =0;
-				////printf("\n selected type %s %s %s",forwardNoChar,selectP->nameChar,selectP->type);
-				//[self setvmsDetail: forwardNoChar : selectP->nameChar :selectP->type :playB :maxTime :lvmailP];
 				free(selectP);
-				//if(lvmailP)
-				//{
-				//	free(lvmailP);
-				//}
+				
 				selectP = 0;
 			}
 			//now get address book
@@ -1218,7 +1181,6 @@ id createImage(float percentage)
 				vmailP =0;
 				lnoCharP = noCharP;
 				noCharP = 0;
-				////printf("\n selected type %s %s %s",forwardNoChar,selectP->nameChar,selectP->type);
 				[self setvmsDetail: lnoCharP : addressP->title :type :vmstateType :maxTime :lvmailP];
 				if(lnoCharP)
 				{
@@ -1451,7 +1413,6 @@ id createImage(float percentage)
 	amt = 0.0;
 	maxtimeDouble = maxTime;
 	[ownerobject setVmsDelegate:self];
-//	//printf("\n maxtime download %d",self->maxTime);
 	
 
 
@@ -1461,7 +1422,7 @@ id createImage(float percentage)
 // Called when the navigation controller shows a new top view controller via a push, pop or setting of the view controller stack.
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
 {
-	printf("\n problem comes");
+	
 	if(viewController !=self)
 	{
 		[self stopButtonPressed:nil];
@@ -1469,14 +1430,13 @@ id createImage(float percentage)
 }
 - (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
 {
-	//printf("\n view poped");
+	
 }
 #pragma mark NAVIGATIONEND
 - (void)setButtonTitle : (NSString *)ltitle forState: (UIControlState)state
 {
 	NSString *title;
 	title = [ltitle uppercaseString ];
-	NSLog(@"\n %@",title);
 	if([title isEqualToString:@"PLAY"])
 	{
 		UIImage *buttonBackground;
@@ -1601,8 +1561,7 @@ id createImage(float percentage)
 	[super viewWillDisappear:animated];
 	
 	
-	printf("\n view will disappear \n") ;
-	
+		
 }	
 -(IBAction)cancelClicked
 {
@@ -1614,7 +1573,7 @@ id createImage(float percentage)
 	}
 	else
 	{	
-		NSLog(@"Cancel");
+		
 		[self stopButtonPressed:nil];
 		[ ownerobject.vmsNavigationController popViewControllerAnimated:NO ];
 		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
@@ -1634,7 +1593,7 @@ id createImage(float percentage)
 	selectP = 0;
 	if(addressP)
 	{
-		printf("\n address find");
+		
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		if(vmstateType==VMSStateRecord)
 		{	
@@ -1654,28 +1613,6 @@ id createImage(float percentage)
 		if([ContactControllerDetailsviewP retainCount]>1)
 			[ContactControllerDetailsviewP release];
 	}
-/*	else if(addressP)
-	{
-		printf("\n address find");
-		ContactDetailsViewController     *ContactControllerDetailsviewP;	
-		if(vmstateType==VMSStateRecord)
-		{	
-			selectP = (SelectedContctType*)malloc(sizeof(SelectedContctType)+4);
-		}
-		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
-		returnValueInt = 0;
-		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:self selectedContact:selectP] ;
-		
-		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILFROMVMS];
-		[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
-		[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:NO ];
-		[ContactControllerDetailsviewP setObject:self->ownerobject];
-		
-		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
-		
-		if([ContactControllerDetailsviewP retainCount]>1)
-			[ContactControllerDetailsviewP release];
-	}*/
 	else
 	{
 		addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));
@@ -1774,7 +1711,6 @@ id createImage(float percentage)
 	}
 	maxTime = lmaxTime;
 	maxTimeLoc = maxTime;
-		//printf("\n maxtime set %d",self->maxTime);
 	for(int i=0;i<MAX_SECTION;++i)
 	{
 		memset(&sectionArray[i],0,sizeof(SectionContactType));
@@ -1849,7 +1785,6 @@ id createImage(float percentage)
 }
 
 - (void)viewDidUnload {
-	printf("\n view will unloaded");
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
@@ -1862,10 +1797,7 @@ id createImage(float percentage)
 	{	
 		ownerobject.tabBarController.selectedViewController = ownerobject.vmsNavigationController;
 	}
-	printf("\n dealoc called");
-	//[super dealloc];
-	//return;
-	
+		
 	
 	[ownerobject setVmsDelegate:nil];
 	if(nsTimerP)
@@ -1912,7 +1844,7 @@ id createImage(float percentage)
 	vmailP = 0;
 	
 	[super dealloc];
-	printf("\nmyfreee");
+	
 	//self = nil;
 	
 	

@@ -123,7 +123,7 @@
 		[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
 
 	}
-	NSLog(@"togging  %s", sender.on ? "on" : "off");
+
 
 		
 	
@@ -212,7 +212,7 @@
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
 											   action:@selector(cancelPressed)] autorelease];
-	//printf("\n startProcess");
+	
 	[labelStatus setText:@"connecting..."];
 	stopProgressB = false;
 
@@ -221,7 +221,7 @@
 -(void)cancelProgress
 {
 	stopProgressB = true;
-	//printf("\n stop progress");
+	
 	self.navigationItem.titleView = 0;
 	[activityIndicator stopAnimating];
 	/*self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
@@ -280,7 +280,7 @@
 	{
 		//updatecontact = 1;
 		viewResult = 0;
-		//printf("\n make changes");
+		
 		if(strlen(forwardNoCharP)>0)
 		{
 			NSString *nsP;
@@ -324,7 +324,6 @@
 			{
 				switchView.on = NO;
 			}
-			////printf("\n control on");
 			viewCallB = false;
 			//[switchView setOn:NO animated:NO]; 
 		}
@@ -354,7 +353,6 @@
 
 
 - (void)dealloc {
-	//printf("\n controller release called");
 	
 	[labelBalance release];
 	[labelStatus release];
@@ -391,8 +389,7 @@ titleForHeaderInSection:(NSInteger)section
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
 	
-	////////printf("\nmukesh");
-	return nil;
+		return nil;
 }
 #pragma mark Table view methods
 
@@ -415,7 +412,7 @@ titleForHeaderInSection:(NSInteger)section
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	//	//////////////printf("\n drawing...");
+	
 	
 }
 
@@ -443,7 +440,7 @@ titleForHeaderInSection:(NSInteger)section
 	
 	
 	
-	//printf("\n bal %f",balance);
+	
 	sprintf(s1,"$%.2f",balance);
 	stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
 	[labelBalance setText:stringStrP];
@@ -464,7 +461,7 @@ titleForHeaderInSection:(NSInteger)section
 			[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
 	}
 	*/
-	printf("\n status int %d",statusInt);
+	
 	if(statusInt!=lstatusInt)
 	{
 		statusInt = lstatusInt;
@@ -531,7 +528,6 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	if(lforwardNoCharP)
 	{	
-		printf("\n forwarno %s",lforwardNoCharP);
 		stringStrP = [[NSString alloc] initWithUTF8String:lforwardNoCharP ];
 		[labelForword setText:stringStrP];
 		[stringStrP release];
@@ -599,7 +595,7 @@ titleForHeaderInSection:(NSInteger)section
 	static NSString *CellIdentifier = @"Cell";
     UILabel *label1;
 	UILabel *label2;
-	//printf("\nmystatus %d",statusInt);
+	
 	NSArray *mycell = [[[listOfItems objectAtIndex:section] objectAtIndex:row] componentsSeparatedByString:@"\n"];
 	NSString *temp =[mycell objectAtIndex:0];
 	
@@ -769,7 +765,6 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		
 		
-		//printf("\n error ");
 	}
 	
     return cell;

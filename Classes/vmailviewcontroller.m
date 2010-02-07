@@ -41,15 +41,12 @@
 	{	
 		amt += 1;
 		[uiProgressP setProgress: (amt / maxtime)];
-		//	if (amt > maxtime) { [timer invalidate];}
-		////printf("\n timer progress count %d",[uiProgressP retainCount]);
-
+		
 	}
 		
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	//////printf("User Pressed Button %d\n", buttonIndex + 1);
 	if(uiActionSheetP)
 	{	
 		[ownerobject vmsStop:false];
@@ -77,7 +74,6 @@
 #ifdef _TEST_VMAIL_
 	struct AddressBook * addressP;
 	char type[30];
-	//printf("\n max time %d",max);
 	viewPlayResult = 0;
 	UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
 	temporaryBarButtonItem.title = @"All VMSes";
@@ -102,7 +98,6 @@
 				
 		if([vmShowViewControllerP retainCount]>1)
 			[vmShowViewControllerP release];
-		//printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);
 		
 	}
 /*	else if(vmailP->addressUId)
@@ -157,7 +152,6 @@
 		
 		if([vmShowViewControllerP retainCount]>1)
 			[vmShowViewControllerP release];
-		//printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);	
 	}
 	
 	return;
@@ -249,7 +243,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)aTableView 
 {
-	////////printf("\n dilip sharma");
+	
 	return 1;
 }
 
@@ -258,12 +252,11 @@
 	int count;
 	/*return [[UIFont	familyNames] count];*/
 	count = GetTotalCount(showFailInt);
-	////printf("\n mukesh sharma %d",count);
-		return count;
+	return count;
 }
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	////////printf("mukeshsdsdsd");
+	
 	
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -276,7 +269,7 @@
 	
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
 	[cell tablecellsetEdit:YES :1];
-	//printf("swipe start");
+	
 	
 }
 - (void)tableView:(UITableView*)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
@@ -284,7 +277,7 @@
 	SpoknUITableViewCell *cell = (SpoknUITableViewCell*)[ self->tableView cellForRowAtIndexPath: indexPath ];
 	[cell tablecellsetEdit:NO :1];
 
-	//printf("swipe end");
+	
 }
 - (void)addRow: (int )index sectionObject:(sectionType **)sectionPP
 {
@@ -303,7 +296,7 @@
 	char *addressBookTypeP = 0;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	
-	//printf("\n index = %d\n",index);
+	
 	
 	objP = GetObjectAtIndex(showFailInt ,index);
 	if(objP)
@@ -312,7 +305,7 @@
 		struct VMail *vmailP;
 		vmailP =(struct VMail*) objP;
 		objStrP = vmailP->userid;
-		//printf("\n %s\n",objStrP);
+		
 		addressP = getContactOf(objStrP);
 		if(addressP)
 		{
@@ -657,7 +650,7 @@
 	{
 		if(sectionPP)
 		*sectionPP = 0;
-		//printf("\n no data for display");
+		
 	}
 	
 	//return nil;
@@ -712,7 +705,6 @@
 			cell =  [[ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
 			//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
 			[cell resizeFrame];
-			//printf("\n new ");
 			[self addRow:[ indexPath indexAtPosition: 1 ] sectionObject:&secLocP];
 			
 		}	
@@ -722,7 +714,7 @@
 		secLocP = cell.spoknSubCellP.userData;
 		cell.spoknSubCellP.userData = nil;
 		[secLocP release];
-		//printf("\n old ");
+		
 		[self addRow:[ indexPath indexAtPosition: 1 ] sectionObject:&secLocP];
 		//secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
 	}
@@ -855,7 +847,7 @@
 			profileResync();
 			break;
 	}
-	//printf("\n%d",buttonIndex);
+	
 }
 - (void)tableView:(UITableView *)tableView 
 commitEditingStyle:(UITableViewCellEditingStyle) editingStyle 
@@ -875,14 +867,13 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 			vmailP->status=VMAIL_DELIVERED;
 			vmailP->dirty=1;
 			newVMailCountdecrease();
-			NSLog(@"new mail");
 		}
 		NSString *stringStrP;
 		char s1[30];
 		int count;
 		
 		count = newVMailCount();
-		printf("count %d",count);
+		
 		if(count)
 		{	
 			sprintf(s1,"%d",count);
@@ -919,28 +910,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 - (void) reload {
 	
 	
-		//sectionType *secP;
-		
-		/*self.navigationItem.rightBarButtonItem 
-		 = [ [ [ UIBarButtonItem alloc ]
-		 initWithBarButtonSystemItem: UIBarButtonSystemItemEdit
-		 target: self
-		 action: @selector(startEditing) ] autorelease ];	*/
-		/*
-		[self->cellofvmsP release];
-		self->cellofvmsP = [[CellObjectContainer alloc] init];
-		int i,noObj;
-		noObj = GetTotalCount(GETVMAILLIST);
-	////printf("\n%d",noObj);
-		for(i=0;i<noObj;++i)
-		{	
-			[self addRow:i sectionObject:0];
-		}	
-		
-		
-		
-	*/
-	
+			
 	[ self->tableView reloadData ];
 	
 }
@@ -980,7 +950,6 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	if([vmShowViewControllerP retainCount]>1)
 		[vmShowViewControllerP release];
-	//printf("\n retain countact details count %d\n",[vmShowViewControllerP retainCount]);	
 	vmsNoChar[0] = 0;
 	
 	//openVmsCompose = 0;
@@ -1023,7 +992,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		[self->tableView reloadData];
 		
 	}
-	//printf("\n button %d",buttonIndex);
+	
 	
 }*/
 -(void) clearPressed {
@@ -1061,7 +1030,6 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 #define TABLE_VIEW_TAG			2000
 - (void)viewDidAppear:(BOOL)animated
 {
-	printf("\n view did madanmohan");
 	[super viewDidAppear:animated];
 	
 	if(viewPlayResult)
@@ -1071,7 +1039,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}
 	if(openVmsCompose)
 	{
-			//printf("\n make changes 123");
+			
 		openVmsCompose = 0;
 		[ownerobject vmsShowRecordScreen:vmsNoChar];
 		vmsNoChar[0] = 0;
@@ -1096,7 +1064,6 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		[self->tableView reloadData];
 		refreshB = 0;
 	}
-	printf("\n view did shankarji");
 }	
 
 -(void)setcomposeStatus:(int)lstatus
@@ -1127,7 +1094,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 	//self->tablesz = 0;
-	////////printf("\n table = %d",self->tablesz);
+	
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	self->cellofvmsP  = nil;
@@ -1205,7 +1172,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }
 
 - (void)dealloc {
-	printf("\n shankar jaikishan");
+	
 	[activeImageP release];
 	[dileverImageP release];
 	[failedImageP release];
@@ -1213,7 +1180,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[readImageP release];
 	[vnewoutImageP release];
 	
-	//printf("\n vmail dealloc");
+	
     [super dealloc];
 }
 -(void)setObjType:(UAObjectType)luaObj

@@ -15,7 +15,6 @@
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-	printf("\n finish %d",flag);
 
 }
 + (SpoknAudio*) createSoundPlaybackUrl:(NSString*)pathP play:(int)playB
@@ -37,7 +36,6 @@
 	{
 		[spoknAudioP->playP play];
 		
-	//	printf("\n play retain count %d",[spoknAudioP->playP retainCount]);
 	}
 		[fileURL release];
 	return spoknAudioP;
@@ -80,9 +78,7 @@
 		localspoknAudioP = *spoknAudioPP;
 		if(localspoknAudioP)
 		{	
-		//	printf("\n before stop retain count %d",[localspoknAudioP->playP retainCount]);
 			[localspoknAudioP stopSoundUrl];
-			//printf("\n stop retain count %d",[localspoknAudioP->playP retainCount]);
 			[localspoknAudioP->playP release];
 			localspoknAudioP->playP = nil;
 			[localspoknAudioP release];

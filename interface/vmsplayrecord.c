@@ -83,8 +83,6 @@ int CallBackVmsSoundPCM(void * userData,sampleFrame *pcmBufferP,unsigned int *le
 			 }
 			 else
 			 {
-			// ////printf("\nspeex full length");
-			// ltpSoundInput(ltPInterfaceP->ltpObjectP,(short*)pcmBufferP,length,true);
 			 
 				  pcmP = pcmBufferP;
 			 
@@ -112,13 +110,7 @@ int CallBackVmsSoundPCM(void * userData,sampleFrame *pcmBufferP,unsigned int *le
 			index = 0;
 			for ( i = 0; i < nsamples; i+= 33){
 				gsm_decode(vmsObjP->playRecordObj,(gsm_byte *)(audioBuff + i),(short*) pcmP + index );
-				/*pcmLoopP =  pcmP + index ;
-				for(j=0;j<160;++j)
-				{
-					*pcmLoopP = *pcmLoopP*8;
-					pcmLoopP++;
-					////printf("pcminc ");
-				}*/
+				
 				index += 160;
 			}
 			
@@ -165,7 +157,6 @@ int openPlayRecordFile(VmsPlayRecordType *vmsP,char *nameP,char *modeP)
 int vmsSetFilePlay(VmsPlayRecordType *vmsP,char *nameP,unsigned long *noSecP)
 {
 	long sz;
-	////printf(nameP);
 	if(openPlayRecordFile(vmsP,nameP,"rb")==0)
 	{
 		
@@ -176,7 +167,6 @@ int vmsSetFilePlay(VmsPlayRecordType *vmsP,char *nameP,unsigned long *noSecP)
 		fseek(vmsP->playRecordFP,0,SEEK_SET);
 		if(*noSecP==0)
 		{	
-			//printf("\n file size %ld ",sz);
 			return 1;
 		
 		}	

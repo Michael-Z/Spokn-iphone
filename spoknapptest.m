@@ -42,7 +42,6 @@
     
     
     STAssertNotNil(spoknDelP, @"UIApplication failed to find the AppDelegate");
-	printf("\n make call called");
 	[spoknDelP makeCall:"919892029162"];
 	//while(1);
     
@@ -58,7 +57,6 @@
 #else                           // all code under test must be linked into the Unit Test bundle
 
 - (void) testMath {
-    printf("\n testMath");
     STAssertTrue((1+1)==2, @"Compiler isn't feeling well today :-(" );
     
 }

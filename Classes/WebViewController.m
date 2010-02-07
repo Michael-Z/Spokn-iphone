@@ -75,7 +75,6 @@
 	
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {    
-	//NSLog(@"Web View started loading...");
 	[spinner stopAnimating];
 //[uiActionSheetP dismissWithClickedButtonIndex:0 animated:YES ];
 
@@ -96,13 +95,7 @@
 
 	
 	NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-	if (theConnection) {
-        NSLog(@" Connection established");
-	}
-    else {
-        NSLog(@"Connection failed");
-    }   
-	
+		
 	if (range.location != NSNotFound) 
 	{
 		NSString * urlnumberP;
@@ -127,7 +120,6 @@
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-	 NSLog(@"Recieved response");
 }
 /*
 // Override to allow orientations other than the default portrait orientation.
