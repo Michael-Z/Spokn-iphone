@@ -13,7 +13,7 @@
 @implementation Spokncalladd
 #pragma mark NAVIGATIONOBJECT
 // Called when the navigation controller shows a new top view controller via a push, pop or setting of the view controller stack.
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
 {
 	printf("\n problem comes");
 	/*if(viewController ==self->contactP)

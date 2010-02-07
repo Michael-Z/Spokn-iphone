@@ -710,9 +710,11 @@
 		else
 		{
 			[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+			[ownerobject refreshallViews];
 		}
 		if(retValP)
 		{
+			printf("\n send data");
 			*retValP = 1;
 		}		
 	}	//contactID = -1;

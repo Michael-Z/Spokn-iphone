@@ -48,6 +48,9 @@
 	int refreshB;
 	
 }
+-(int)missCallSetCount;
+-(int)resetMissCallCount;
+-(int)setMissCallCount;
 -(void)doRefresh;
 -(void)setObject:(id) object ;
 -(void)setObjType:(UAObjectType)luaObj;

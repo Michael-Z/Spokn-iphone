@@ -396,7 +396,10 @@
 					printf("\n view dismiss");
 					[tabBarController dismissModalViewControllerAnimated:NO];
 				}
-							
+				if(self->subID)
+				{
+					[callviewP missCallSetCount];
+				}
 				#ifndef _LTP_
 					[nsTimerP invalidate];
 				
@@ -1183,7 +1186,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[vmsviewP setcomposeStatus:1 ];
 	SetAudioSessionPropertyListener(self,MyAudioSessionPropertyListener);
 	[self newBadgeArrived:vmsNavigationController];	
-	
+	loadMissCall();
+	[callviewP setMissCallCount];
 		
 }
 /*
@@ -1243,6 +1247,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//logOut(ltpInterfacesP);
 	logOut(ltpInterfacesP,false);
 	endLtp(ltpInterfacesP);
+	saveMissCall();
 	[self stopCheckNetwork];
 	//printf("\n  count %d tab %d",[dialviewP retainCount],[tabBarController retainCount]);
 	[tabBarController release];
@@ -1654,7 +1659,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			{	
 				[VmsProtocolP	VmsStopRequest];
 			}	
-			
+			if(prvCtlP==calllogNavigationController && viewController!=calllogNavigationController)
+			{
+				printf("\n val seeew");
+				[callviewP resetMissCallCount];
+			}
 			[(UINavigationController*)prvCtlP popToRootViewControllerAnimated:NO];
 		//	printf("\n root delete called");
 			
@@ -1662,6 +1671,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		//printf("\n dele called");
 		
 	}
+	NSLog(@"\n class name%@\n",[viewController description]);
 	prvCtlP = viewController;
 }
 -(void)tabBarController:(UITabBarController*)tabBarController didEndCustomizingViewController:(NSArray*)viewcontrollers

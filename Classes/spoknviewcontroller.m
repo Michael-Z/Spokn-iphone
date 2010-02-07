@@ -213,6 +213,7 @@
 											   target:self 
 											   action:@selector(cancelPressed)] autorelease];
 	//printf("\n startProcess");
+	[labelStatus setText:@"connecting..."];
 	stopProgressB = false;
 
 }

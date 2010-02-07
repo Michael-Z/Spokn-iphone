@@ -868,7 +868,11 @@ titleForHeaderInSection:(NSInteger)section
 			if(hideCallAndVmailButtonB==NO)//if call is on dont sync
 			{
 				profileResync();
-			}	
+			}
+			else
+			{
+				refreshB = true;
+			}
 		}	
 		NSIndexPath *nsP;
 		nsP = [self->tableView indexPathForSelectedRow];
@@ -1409,7 +1413,8 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	else
 	{
-		[ContactControllerDetailsviewP setReturnValue:returnPtr selectedContactNumber:0  rootObject:rootControllerObject selectedContact:selectedContactP] ;
+		resultInt = 0;
+		[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContactNumber:0  rootObject:rootControllerObject selectedContact:selectedContactP] ;
 		
 		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
 		

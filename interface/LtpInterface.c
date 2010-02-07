@@ -116,7 +116,12 @@ void alertInterface(void *udata,int lineid, int alertcode, void *data)
 					   0, ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall,ltpInterfaceP->addressUId ,ltpInterfaceP->recordID);
 			ltpInterfaceP->addressUId  = 0;
 			ltpInterfaceP->recordID = 0;
-			break;
+			subid = 0;					
+			if((ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall&CALLTYPE_IN) && (ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall&CALLTYPE_MISSED))
+			{
+				subid = 1;
+			}
+				break;
 		case ALERT_OFFLINE:
 				subid = ltpInterfaceP->ltpObjectP->loginStatus;
 			

@@ -31,7 +31,59 @@
 #import "customcell.h"
 #include "alertmessages.h"
 @implementation CalllogViewController
+#pragma mark MISSEDCALL
+-(int)missCallSetCount
+{
+	char s1[50];
+	NSString *stringStrP;
+	long countMiss;
+	countMiss = incriseMissCallCount();
+	sprintf(s1,"%ld",countMiss);
+	stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
+	[self navigationController].tabBarItem.badgeValue= stringStrP;
+	
+	[stringStrP release];
+	return countMiss;
+}
+-(int)setMissCallCount
+{
 
+	char s1[50];
+	NSString *stringStrP;
+	long missCount = getMissCount();
+	
+	if(missCount)
+	{	
+		sprintf(s1,"%ld",missCount);
+		stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
+		[self navigationController].tabBarItem.badgeValue= stringStrP;
+	
+		[stringStrP release];
+	}
+	else {
+		[self navigationController].tabBarItem.badgeValue= nil;
+
+	}
+
+	return missCount;
+	
+	
+	
+	
+}
+-(int)resetMissCallCount
+{
+	
+	
+	
+	if(resetMissCallCount()==0)
+	{
+	
+		[self navigationController].tabBarItem.badgeValue= nil;
+		return 0;
+	}
+	return 1;
+}
 -(void) hideLeftbutton:(Boolean) lhideB
 {
 	hideB = lhideB;
@@ -108,6 +160,7 @@
 	}
 	else
 	{
+		[self resetMissCallCount];
 		self.navigationItem.leftBarButtonItem.enabled = NO;
 
 	}
@@ -902,6 +955,7 @@ cancelButtonTitle: nil
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	showMisscallInt = GETCALLLOGLIST;
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Calllog" image:nil tag:2];
 	missImageP = [UIImage imageNamed:@"Call-log-Icons-missed.png"];
@@ -932,7 +986,7 @@ cancelButtonTitle: nil
 	[ segmentedControl insertSegmentWithTitle: @"Missed" atIndex: 2 animated: NO ];
 	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
 	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
-	showMisscallInt = GETCALLLOGLIST;
+	
 	[ segmentedControl addTarget: self action: @selector(controlPressed:) forControlEvents:UIControlEventValueChanged ];
 	
 	self.navigationItem.titleView = segmentedControl;
