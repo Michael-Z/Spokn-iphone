@@ -334,9 +334,9 @@
 {
 	if(keyboardtype==UIKeyboardTypePhonePad|| keyboardtype==UIKeyboardTypeNumberPad)
 	{
-		return 60;
+		return 50;
 	}
-	return 50;
+	return 40;
 	
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -380,7 +380,8 @@
 				switch(row)
 				{
 					case(0):
-						txtField = [[UITextField alloc] initWithFrame:CGRectMake(20.0f, self.tableView.rowHeight/3, 280.0f, 70.0f)];
+						
+						txtField = [[UITextField alloc] initWithFrame:CGRectMake(20.0f, 6, 280.0f, self.tableView.rowHeight-4)];
 						txtField.delegate = self;
 						[cell.contentView addSubview:txtField]; 
 						[txtField becomeFirstResponder];
@@ -396,6 +397,10 @@
 						if(keyboardtype==UIKeyboardTypePhonePad|| keyboardtype==UIKeyboardTypeNumberPad)
 						{
 							txtField.font = [UIFont systemFontOfSize:30];
+						}
+						else
+						{
+							txtField.font = [UIFont systemFontOfSize:20];
 						}
 							//else
 						//{
