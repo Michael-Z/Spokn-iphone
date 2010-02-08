@@ -9,6 +9,7 @@
 #import "spokncalladd.h"
 #import "contactviewcontroller.h"
 #import "spoknAppDelegate.h"
+#import "alertmessages.h"
 
 @implementation Spokncalladd
 #pragma mark NAVIGATIONOBJECT
@@ -85,7 +86,7 @@
 		label = [[UILabel alloc] init] ;
 	#endif
 	
-	label.text = @"Touch to return to call";
+	label.text = _RETURN_TO_CALL_;
 	label.font = [UIFont systemFontOfSize:25];
 	label.textAlignment = UITextAlignmentCenter;
 	label.contentMode = UIViewContentModeCenter;

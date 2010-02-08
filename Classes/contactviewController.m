@@ -35,7 +35,7 @@
 #import "AddeditcellController.h"
 //#import <UITableViewIndex.h>
 #import "customcell.h"
-#include "alertmessages.h"
+#import "alertmessages.h"
 /*
 @interface MyNavControler : UINavigationBar 
 
@@ -252,7 +252,7 @@
 	[tempview addSubview:searchbar];
 	tempview.backgroundColor = [[UIColor clearColor] autorelease];	
 	tableView.tableHeaderView = tempview;
-	tableView.tableHeaderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"searchbarbackgroung.png"]];
+	tableView.tableHeaderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:_SEARCHBAR_PNG_ ]];
 	[tempview release];
 	
 #ifdef _NO_SEARCH_MOVE_
@@ -687,7 +687,7 @@ titleForHeaderInSection:(NSInteger)section
 	//tableView.tag = 2001;
 
 	tableView.tableHeaderView = tempview;
-	tableView.tableHeaderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"searchbarbackgroung.png"]];
+	tableView.tableHeaderView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:_SEARCHBAR_PNG_]];
 	[tempview release];
 	addressBookTableDelegate = [[AddressBookContact alloc] init];
 	[addressBookTableDelegate setObject:ownerobject];
@@ -1287,11 +1287,11 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		else
 		{
-		UIAlertView*	alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
+		UIAlertView*	alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 												  message: [ NSString stringWithString:_EMPTY_CONTACT_DETAILS_ ]
 												 delegate: nil
 										cancelButtonTitle: nil
-										otherButtonTitles: @"OK", nil
+										otherButtonTitles: _OK_, nil
 					 ];
 			
 			[ alert show ];

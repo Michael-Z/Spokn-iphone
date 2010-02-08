@@ -215,7 +215,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	//statusLabelP.textAlignment=UITextAlignmentCenter;
 	keypadmain.objectId = 0;
 	//keypadmain.dataStringP = @"mukesh\nsharma";
-	[keypadmain setImage:@"keypad-normal.png" : @"keypad-pressed.png"];
+	[keypadmain setImage:_DIALPAD_NORMAL_PNG_ : _DIALAD_PRESSED_PNG_];
 	[keypadmain setElement:3 :4];
 	keypadmain.keypadProtocolP = self;
 	
@@ -440,11 +440,11 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			
 			if(strlen(lastTypeNo)==0)
 			{
-				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+				alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 																   message: [ NSString stringWithString:_INVALID_NUMBER_ ]
 																  delegate: nil
 														 cancelButtonTitle: nil
-														 otherButtonTitles: @"OK", nil
+														 otherButtonTitles: _OK_, nil
 									  ];
 				[ alert show ];
 				;
@@ -478,11 +478,11 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			
 			if(strlen(lastTypeNo)==0)
 			{
-				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+				alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 																   message: [ NSString stringWithString:_INVALID_NUMBER_ ]
 																  delegate: nil
 														 cancelButtonTitle: nil
-														 otherButtonTitles: @"OK", nil
+														 otherButtonTitles: _OK_, nil
 									  ];
 				[ alert show ];
 				
@@ -503,7 +503,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 														   message: [ NSString stringWithString:_USER_OFFLINE_ ]
 														  delegate: nil
 												 cancelButtonTitle: nil
-												 otherButtonTitles: @"OK", nil
+												 otherButtonTitles: _OK_, nil
 							  ];
 			[ alert show ];
 			
@@ -514,7 +514,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 															   message: [ NSString stringWithString:_NO_NETWORK_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil
-													 otherButtonTitles: @"OK", nil
+													 otherButtonTitles: _OK_, nil
 								  ];
 			[ lalert show ];
 			
@@ -553,11 +553,11 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 					
 					if(strlen(lastTypeNo)==0)
 					{
-						alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+						alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 																		   message: [ NSString stringWithString:_ENTER_NUMEBR_ ]
 																		  delegate: nil
 																 cancelButtonTitle: nil
-																 otherButtonTitles: @"OK", nil
+																 otherButtonTitles: _OK_, nil
 											  ];
 						[ alert show ];
 						
@@ -750,11 +750,11 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			{
 				
 				case HOST_NAME_NOT_FOUND_ERROR:
-					alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+					alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 														  message: [ NSString stringWithString:_SERVER_UNREACHABLE_ ]
 														 delegate: self
 												cancelButtonTitle: nil
-												otherButtonTitles: @"OK", nil
+												otherButtonTitles: _OK_, nil
 							 ];
 					invalidUserB = true;
 					alert.tag=self->subStatus;
@@ -765,11 +765,11 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				case LOGIN_STATUS_OFFLINE:
 					if(alert==nil)
 					{	
-						alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+						alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 															  message: [ NSString stringWithString:_SERVER_UNREACHABLE_ ]
 															 delegate: self
 													cancelButtonTitle: nil
-													otherButtonTitles: @"OK", nil
+													otherButtonTitles: _OK_, nil
 								 ];
 						//invalidUserB = true;
 						alert.tag=self->subStatus;
@@ -786,7 +786,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 									   message: [ NSString stringWithString:_AUTHENTICATION_FAILED_ ]
 									  delegate: self
 				 					 cancelButtonTitle: nil
-									 otherButtonTitles: @"OK", nil
+									 otherButtonTitles: _OK_, nil
 									  ];
 							invalidUserB = true;
 							alert.tag=self->subStatus;
@@ -805,11 +805,11 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 						
 					if(alert==nil)
 					{	
-						alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+						alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 															  message: [ NSString stringWithString:_NO_AVAILABLE_NETWORK_ ]
 															 delegate: self
 													cancelButtonTitle: nil
-													otherButtonTitles: @"OK", nil
+													otherButtonTitles: _OK_, nil
 								 ];
 						
 						alert.tag=self->subStatus;
@@ -829,11 +829,11 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 					
 					if(alert==nil)
 					{		
-						alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+						alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 																	   message: [ NSString stringWithString:_CONNECTION_FAILED_ ]
 																	  delegate: self
 															 cancelButtonTitle: nil
-															 otherButtonTitles: @"OK", nil
+															 otherButtonTitles: _OK_, nil
 										  ];
 					//[alert addButtonWithTitle:@"Cancel"];
 						alert.tag=self->subStatus;

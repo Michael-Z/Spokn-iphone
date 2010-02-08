@@ -324,11 +324,11 @@
 				}
 				if( strlen(addressDataP->mobile) ||  strlen(addressDataP->business) || strlen(addressDataP->home)||  strlen(addressDataP->other) ||  strlen(addressDataP->spoknid) )
 				{	
-					uiActionSheetP.title = @"Select a Number to call";
+					uiActionSheetP.title = _SELECT_NUM_TO_CALL_;
 				}
 				else
 				{
-					uiActionSheetP.title = @"No Number to call";
+					uiActionSheetP.title = _NO_NUMBER_TO_CALL_;
 				}	
 			}
 			else
@@ -349,12 +349,12 @@
 				
 				if(numberFound)
 				{
-					uiActionSheetP.title = @"Select a Number to call";
+					uiActionSheetP.title = _SELECT_NUM_TO_CALL_;
 					numberFound = 0; 
 				}
 				else
 				{
-					uiActionSheetP.title = @"No Number to call";
+					uiActionSheetP.title = _NO_NUMBER_TO_CALL_;
 				}	
 			
 			
@@ -435,11 +435,11 @@
 		{
 			case 0://no element found
 				[uiActionSheetP release];
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn" 
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_TITLE_ 
 																message:_NO_NUMBER_IN_CONTACT_
 															   delegate:self 
 													  cancelButtonTitle:nil 
-													  otherButtonTitles:@"OK", nil];
+													  otherButtonTitles:_OK_, nil];
 				[alert show];
 				[alert release];
 				showAlertB = YES;
@@ -463,7 +463,7 @@
 				[uiActionSheetP release];
 				break;
 			default:
-				[uiActionSheetP addButtonWithTitle:@"Cancel"];
+				[uiActionSheetP addButtonWithTitle:_CANCEL_];
 				uiActionSheetP.cancelButtonIndex = i;
 				stringSelected[i++] = 0;
 				uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
@@ -475,8 +475,8 @@
 		uiActionSheetP= [[UIActionSheet alloc] 
 						 initWithTitle: @"" 
 						 delegate:self
-						 cancelButtonTitle:@"Cancel" 
-						 destructiveButtonTitle:@"Delete"
+						 cancelButtonTitle:_CANCEL_ 
+						 destructiveButtonTitle:_DELETE_
 						 otherButtonTitles:nil, nil];
 		
 		uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
@@ -585,7 +585,7 @@
 															 message: [ NSString stringWithString:_INVALID_CONTACT_ ]
 															 delegate: self
 															 cancelButtonTitle: nil
-														 otherButtonTitles: @"OK", nil];
+														 otherButtonTitles: _OK_, nil];
 					[ alert show ];
 					[alert release];
 					popupB = false;
@@ -617,7 +617,7 @@
 																	   message: [ NSString stringWithString:_INVALID_CONTACT_ ]
 																	  delegate: self
 															 cancelButtonTitle: nil
-															 otherButtonTitles: @"OK", nil];
+															 otherButtonTitles: _OK_, nil];
 					[ alert show ];
 					[alert release];
 					popupB = false;
@@ -791,8 +791,8 @@
 	
 	}
 	
-	buttonBackground = [UIImage imageNamed:@"6_deletetweeked_270_45_normal.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"6_deletetweeked_270_45_pressed.png"];
+	buttonBackground = [UIImage imageNamed:_DEL_NORMAL_PNG_];
+	buttonBackgroundPressed = [UIImage imageNamed:_DEL_PRESSED_PNG_];
 	[CustomButton setImages:delButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
@@ -875,8 +875,8 @@
 				UIImage *buttonBackgroundPressed;
 				
 				
-				buttonBackground = [UIImage imageNamed:@"3_delete_50_30_normal.png"];
-				buttonBackgroundPressed = [UIImage imageNamed:@"3_delete_50_30_pressed.png"];
+				buttonBackground = [UIImage imageNamed:_TAB_DEL_NORMAL_PNG_];
+				buttonBackgroundPressed = [UIImage imageNamed:_TAB_DEL_PRESSED_PNG_];
 				[CustomButton setImages:deleteButton image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 				[buttonBackground release];
 				[buttonBackgroundPressed release];

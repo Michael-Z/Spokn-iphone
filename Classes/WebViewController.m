@@ -24,6 +24,7 @@
 
 #import "WebViewController.h"
 #import "ua.h"
+#import "alertmessages.h"
 
 @implementation WebViewController
 @synthesize accountswebView;
@@ -105,11 +106,11 @@
 		if(numbercharP==NULL || strlen(numbercharP)==0)
 		{
 			
-			UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-															   message: [ NSString stringWithString:@"Unable to call the destination number." ]
+			UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
+															   message: [ NSString stringWithString:_CALLING_FAILED_ ]
 															  delegate: self
 													 cancelButtonTitle: nil
-													 otherButtonTitles: @"OK", nil];
+													 otherButtonTitles: _OK_, nil];
 			[ alert show ];
 			[alert release];
 			

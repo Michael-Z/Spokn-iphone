@@ -178,11 +178,11 @@
 	NSString *passwordStrP;
 	if([usernameFieldP.text length]==0)
 	{
-		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
+		alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 											  message: [ NSString stringWithString:_EMPTY_USERNAME_ ]
 											 delegate: self
 									cancelButtonTitle: nil
-									otherButtonTitles: @"OK", nil
+									otherButtonTitles: _OK_, nil
 				 ];
 		
 		[ alert show ];
@@ -193,11 +193,11 @@
 	{
 		if([passwordFieldP.text length]==0)
 		{
-			alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
+			alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 												  message: [ NSString stringWithString:_EMPTY_PASSWORD_ ]
 												 delegate: self
 										cancelButtonTitle: nil
-										otherButtonTitles: @"OK", nil
+										otherButtonTitles: _OK_, nil
 					 ];
 			
 			[ alert show ];
@@ -209,11 +209,11 @@
 	userNameStrP = [usernameFieldP.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if([userNameStrP length]==0)
 	{
-		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
+		alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 											  message: [ NSString stringWithString:_USERNAME_NO_WHITESPACE_ ]
 											 delegate: self
 									cancelButtonTitle: nil
-									otherButtonTitles: @"OK", nil
+									otherButtonTitles: _OK_, nil
 				 ];
 		
 		[ alert show ];
@@ -224,11 +224,11 @@
 	passwordStrP = [passwordFieldP.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if([passwordStrP length]==0)
 	{
-		alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn." 
+		alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 											  message: [ NSString stringWithString:_PASSWORD_NO_WHITESPACE_ ]
 											 delegate: self
 									cancelButtonTitle: nil
-									otherButtonTitles: @"OK", nil
+									otherButtonTitles: _OK_, nil
 				 ];
 		
 		[ alert show ];
@@ -266,7 +266,7 @@
 -(IBAction)openUrl:(id)sender
 {
 	//[self->ownerobject popLoginView];
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.spokn.com/cgi-bin/signup.cgi"]];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:_URL_SIGNUP_]];
 
 
 }
@@ -274,7 +274,7 @@
 {
 	
 	
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.spokn.com/services/wm/forgot-password"]];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:_URL_FORGOT_PASS_]];
 	/*NSString *srtrP; 
 	 srtrP = [[NSString alloc] initWithString:@"http://www.spokn.com/services/wm/forgot-password"];
 	 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:srtrP]];

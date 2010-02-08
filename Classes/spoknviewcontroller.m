@@ -31,6 +31,7 @@
 #import  "AddeditcellController.h"
 #import "WebViewController.h"
 #include "ua.h"
+#import "alertmessages.h"
 #define SPOKNCOLOR [UIColor colorWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0]
 #define ROW_HEIGHT 42
 
@@ -40,12 +41,12 @@
 - (void) createSectionList: (id) wordArray
 {
 	// Build an array with 4 sub-array sections
-	self->imageName[0][0].imageNameP = @"AS-status";
-	self->imageName[0][1].imageNameP = @"AS-credits";
-	self->imageName[1][0].imageNameP = @"AS-callforward";
-	self->imageName[1][1].imageNameP = @"AS-forward-to";
-	self->imageName[2][0].imageNameP = @"AS-spokn";
-	self->imageName[2][1].imageNameP = @"AS-spokn";
+	self->imageName[0][0].imageNameP = _SPOKN_STATUS_PNG_;
+	self->imageName[0][1].imageNameP = _SPOKN_CREDITS_PNG_;
+	self->imageName[1][0].imageNameP = _SPOKN_FORWARD_PNG_;
+	self->imageName[1][1].imageNameP = _SPOKN_FORWARD_TO_PNG_;
+	self->imageName[2][0].imageNameP = _SPOKN_LOGO_PNG_;
+	self->imageName[2][1].imageNameP = _SPOKN_LOGO_PNG_;
 	//self.imageName[1][1].imageNameP = @"";
 	listOfItems = [[NSMutableArray alloc] init] ;
 	for (int i = 0; i < 3; i++)
@@ -139,7 +140,7 @@
 
 		CGRect LabelFrame2 = CGRectMake(160, 0, 117, ROW_HEIGHT-5);
 		CGRect LabelFrame3 = CGRectMake(160, 0, 127, ROW_HEIGHT-5);
-		[self.tabBarItem initWithTitle:@"My Spokn" image:[UIImage imageNamed:@"TB-Spokn.png"] tag:5];
+		[self.tabBarItem initWithTitle:@"My Spokn" image:[UIImage imageNamed:_TAB_MY_SPOKN_PNG_] tag:5];
 		labelBalance = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelBalance.textAlignment = UITextAlignmentRight;
 		labelBalance.tag = 1;
@@ -211,12 +212,12 @@
 	self.navigationItem.titleView = activityIndicator;
 	[activityIndicator startAnimating];
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithTitle:@"Cancel" 
+											   initWithTitle:_CANCEL_ 
 											   style:UIBarButtonItemStylePlain 
 											   target:self 
 											   action:@selector(cancelPressed)] autorelease];
 	
-	[labelStatus setText:@"connecting..."];
+	[labelStatus setText:@"Connecting..."];
 	stopProgressB = false;
 
 }

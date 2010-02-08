@@ -247,7 +247,7 @@
 				{
 					if([ownerobject vmsSend:contactNumberP :fileNameCharP]!=0)
 					{
-						UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:_VMS_SENDING_FAILED_ delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+						UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_TITLE_ message:_VMS_SENDING_FAILED_ delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 						
 						[alert show];
 						
@@ -276,7 +276,7 @@
 			
 		}	
 		
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:_EMPTY_NUMBER_ delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_TITLE_ message:_EMPTY_NUMBER_ delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 			
 		[alert show];
 		
@@ -314,7 +314,7 @@
 	uiActionSheetP= [[UIActionSheet alloc] 
 					 initWithTitle: @"" 
 					 delegate:self
-					 cancelButtonTitle:@"Cancel" 
+					 cancelButtonTitle:_CANCEL_ 
 					 destructiveButtonTitle:@"delete voice mail"
 					 otherButtonTitles:nil, nil];
 	
@@ -531,11 +531,11 @@
 			return;
 		if([ownerobject VmsStreamStart:false])
 		{
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 															   message: [ NSString  stringWithString:_NO_VMS_PLAY_]
 															  delegate: nil
 													 cancelButtonTitle: nil
-													 otherButtonTitles: @"OK", nil
+													 otherButtonTitles: _OK_, nil
 								  ];
 			[ alert show ];
 			[alert release];
@@ -551,11 +551,11 @@
 		}
 		if([ownerobject VmsStreamStart:true])
 		{
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_
 															   message: [ NSString  stringWithString:_NO_VMS_PLAY_]
 															  delegate: nil
 													 cancelButtonTitle: nil
-													 otherButtonTitles: @"OK", nil
+													 otherButtonTitles: _OK_, nil
 								  ];
 			[ alert show ];
 			[alert release];
@@ -1108,9 +1108,9 @@ id createImage(float percentage)
 		//[sliderP setMinimumTrackImage:[UIImage imageNamed:@"thumb_blue.png"] forState:UIControlStateNormal];
 		//[sliderP setMaximumTrackImage:[UIImage imageNamed:@"bg.png"] forState:UIControlStateNormal];
 		
-		sliderP.minimumValueImage = [UIImage imageNamed:@"vmsprogressleft.png"];
+		sliderP.minimumValueImage = [UIImage imageNamed:_VMS_PROGRESS_LEFT_PNG_];
 		[sliderP.minimumValueImage release];
-		sliderP.maximumValueImage = [UIImage imageNamed:@"vmsprogressleft.png"];
+		sliderP.maximumValueImage = [UIImage imageNamed:_VMS_PROGRESS_LEFT_PNG_];
 		[sliderP.maximumValueImage release];
 		sliderP.minimumValue = 0.0f;
 		sliderP.maximumValue = 1.0f;
@@ -1274,8 +1274,8 @@ id createImage(float percentage)
 			UIImage *buttonBackgroundPressed;
 			
 			
-			buttonBackground = [UIImage imageNamed:@"3_delete_50_30_normal.png"];
-			buttonBackgroundPressed = [UIImage imageNamed:@"3_delete_50_30_pressed.png"];
+			buttonBackground = [UIImage imageNamed:_TAB_DEL_NORMAL_PNG_];
+			buttonBackgroundPressed = [UIImage imageNamed:_TAB_DEL_PRESSED_PNG_];
 			[CustomButton setImages:deleteButton image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 			[buttonBackground release];
 			[buttonBackgroundPressed release];
@@ -1442,8 +1442,8 @@ id createImage(float percentage)
 		UIImage *buttonBackground;
 		UIImage *buttonBackgroundPressed;
 		
-		buttonBackground = [UIImage imageNamed:@"5_play_270_45_normal.png"];
-		buttonBackgroundPressed = [UIImage imageNamed:@"5_play_270_45_pressed.png"];
+		buttonBackground = [UIImage imageNamed:_PLAY_NORMAL_PNG_];
+		buttonBackgroundPressed = [UIImage imageNamed:_PLAY_PRESSED_PNG_];
 		[CustomButton setImages:PlayButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 		[buttonBackground release];
 		[buttonBackgroundPressed release];
@@ -1456,8 +1456,8 @@ id createImage(float percentage)
 		UIImage *buttonBackground;
 		UIImage *buttonBackgroundPressed;
 		
-		buttonBackground = [UIImage imageNamed:@"5_record_270_45_normal.png"];
-		buttonBackgroundPressed = [UIImage imageNamed:@"5_record_270_45_pressed.png"];
+		buttonBackground = [UIImage imageNamed:_RECORD_NORMAL_PNG_];
+		buttonBackgroundPressed = [UIImage imageNamed:_RECORD_PRESSED_PNG_];
 		[CustomButton setImages:PlayButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 		[buttonBackground release];
 		[buttonBackgroundPressed release];
@@ -1471,8 +1471,8 @@ id createImage(float percentage)
 		UIImage *buttonBackground;
 		UIImage *buttonBackgroundPressed;
 		
-		buttonBackground = [UIImage imageNamed:@"5_done_270_45_normal.png"];
-		buttonBackgroundPressed = [UIImage imageNamed:@"5_done_270_45_pressed.png"];
+		buttonBackground = [UIImage imageNamed:_DONE_NORMAL_PNG_];
+		buttonBackgroundPressed = [UIImage imageNamed:_DONE_PRESSED_PNG_];
 		[CustomButton setImages:PlayButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 		[buttonBackground release];
 		[buttonBackgroundPressed release];
@@ -1485,8 +1485,8 @@ id createImage(float percentage)
 		UIImage *buttonBackground;
 		UIImage *buttonBackgroundPressed;
 		
-		buttonBackground = [UIImage imageNamed:@"5_rerecord_270_45_normal.png"];
-		buttonBackgroundPressed = [UIImage imageNamed:@"5_rerecord_270_45_pressed.png"];
+		buttonBackground = [UIImage imageNamed:_RERECORD_NORMAL_PNG_];
+		buttonBackgroundPressed = [UIImage imageNamed:_RERECORD_PRESSED_PNG_];
 		[CustomButton setImages:PlayButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 		[buttonBackground release];
 		[buttonBackgroundPressed release];

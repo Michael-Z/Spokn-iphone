@@ -167,7 +167,7 @@
 	uiActionSheetP = [[UIActionSheet alloc] 
 			initWithTitle: @"" 
 			delegate:self
-			cancelButtonTitle:@"Cancel"
+			cancelButtonTitle:_CANCEL_
 			destructiveButtonTitle:nil
 			otherButtonTitles:nil, nil, nil];
 	//rectSheet = uiActionSheetP.bounds;
@@ -800,11 +800,11 @@
 
 				break;
 			case 2:
-				alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+				alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 													  message: [ NSString stringWithString:@"vms is already playing" ]
 																  delegate: nil
 														 cancelButtonTitle: nil
-														 otherButtonTitles: @"OK", nil
+														 otherButtonTitles: _OK_, nil
 									  ];
 				[ alert show ];
 				[alert release];
@@ -815,8 +815,8 @@
 				alert = [ [ UIAlertView alloc ] initWithTitle: @"The voice mail is still not downloaded." 
 																   message: [ NSString stringWithString:_VMS_NOT_FULLY_DOWNLOADED ]
 																  delegate: self
-														 cancelButtonTitle: @"cancel"
-														 otherButtonTitles: @"OK", nil
+														 cancelButtonTitle:_CANCEL_
+														 otherButtonTitles: _OK_, nil
 									  ];
 				
 				[ alert show ];
@@ -997,12 +997,12 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }*/
 -(void) clearPressed {
 	
-	UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+	UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 													   message: [ NSString stringWithString:_CLEAR_VMS_LOG_ ]
 													  delegate: self
 											 cancelButtonTitle: nil
-											 otherButtonTitles: @"OK", nil];
-	[alert addButtonWithTitle:@"Cancel"];
+											 otherButtonTitles: _OK_, nil];
+	[alert addButtonWithTitle:_CANCEL_];
 	[ alert show ];
 	[alert release];
 	
@@ -1083,12 +1083,12 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self retain];
-	activeImageP=[UIImage imageNamed:@"vms_out_Active.png"];
-	dileverImageP=[UIImage imageNamed:@"vm_icons_outgoing_delivered.png"];
-	failedImageP=[UIImage imageNamed:@"vm_icons_outgoing_undelivered.png"];
-	vnewImageP=[UIImage imageNamed:@"vm_icons_incoming_new.png"];
-	readImageP=[UIImage imageNamed:@"vm_icons_incoming_read.png"];
-	vnewoutImageP=[UIImage imageNamed:@"vmail_out_newHigh.png"];
+	activeImageP=[UIImage imageNamed:_VMS_OUT_ACTIVE_PNG_];
+	dileverImageP=[UIImage imageNamed:_VMS_OUT_DELIVERED_PNG_];
+	failedImageP=[UIImage imageNamed:_VMS_OUT_UNDELIVERED_PNG_];
+	vnewImageP=[UIImage imageNamed:_VMS_IN_NEW_PNG_];
+	readImageP=[UIImage imageNamed:_VMS_IN_READ_PNG_];
+	vnewoutImageP=[UIImage imageNamed:_VMS_OUT_NEWHIGH_PNG_];
 	//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 	refreshB = 0;
 	//self.tabBarItem = [UITabBarItem alloc];
@@ -1109,9 +1109,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	
-	[ segmentedControl insertSegmentWithTitle: @"All" atIndex: 0 animated: NO ];
+	[ segmentedControl insertSegmentWithTitle: _ALL_ atIndex: 0 animated: NO ];
 	[ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: NO ];
-	[ segmentedControl insertSegmentWithTitle: @"Undelivered" atIndex: 2 animated: NO ];
+	[ segmentedControl insertSegmentWithTitle: _UNDELIVERED_ atIndex: 2 animated: NO ];
 	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
 	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
 	showFailInt = GETVMAILLIST;

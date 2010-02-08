@@ -177,7 +177,7 @@
 	allforwardNoCharP = [self getContactNumberList];
 	if(allforwardNoCharP==0)
 	{
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:_EMPTY_FORWARD_NUMBER_ delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_TITLE_ message:_EMPTY_FORWARD_NUMBER_ delegate:self cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 		
 		[alert show];
 	//	[alert release];
@@ -251,7 +251,7 @@
 		contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 		self.navigationItem.rightBarButtonItem 
 		= [ [ [ UIBarButtonItem alloc ]
-			 initWithTitle: @"Send" style:UIBarButtonItemStyleDone
+			 initWithTitle: _SEND_ style:UIBarButtonItemStyleDone
 			 target: self
 			 action: @selector(sendPressed) ] autorelease ];	
 	}
@@ -495,7 +495,7 @@
 					
 					
 					
-					object.Detail = @"mobile";
+					object.Detail = _MOBILE_;
 					object.Number = numberP;
 					
 					//object.Detail = [NSString stringWithString:(NSString *)xyz];
@@ -520,7 +520,7 @@
 					
 					
 					
-					object.Detail = @"home";
+					object.Detail = _HOME_;
 					object.Number = numberP;
 					
 					//object.Detail = [NSString stringWithString:(NSString *)xyz];
@@ -545,7 +545,7 @@
 					
 					
 					
-					object.Detail = @"business";
+					object.Detail = _BUSINESS_;
 					object.Number = numberP;
 					
 					//object.Detail = [NSString stringWithString:(NSString *)xyz];
@@ -571,7 +571,7 @@
 					
 					
 					
-					object.Detail = @"Spokn ID";
+					object.Detail = _SPOKN_ID_;
 					object.Number = numberP;
 					
 					//object.Detail = [NSString stringWithString:(NSString *)xyz];
@@ -596,7 +596,7 @@
 					
 					
 					
-					object.Detail = @"Other";
+					object.Detail = _OTHER_;
 					object.Number = numberP;
 					
 					//object.Detail = [NSString stringWithString:(NSString *)xyz];
@@ -621,7 +621,7 @@
 					
 					
 					
-					object.Detail = @"email";
+					object.Detail = _EMAIL_;
 					object.Number = numberP;
 					
 					//object.Detail = [NSString stringWithString:(NSString *)xyz];

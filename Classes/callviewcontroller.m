@@ -31,6 +31,7 @@
 #include "ltpandsip.h"
 #include "contactviewcontroller.h"
 #import "spokncalladd.h"
+#import "alertmessages.h"
 @implementation CallViewController
 @synthesize showContactCallOnDelegate;
 /*
@@ -96,7 +97,7 @@
 									initWithPatternImage:[UIImage imageNamed:@"spokncall.png"]]
 								   autorelease]];	*/
 	[self.view setBackgroundColor:[[[UIColor alloc] 
-									 initWithPatternImage:[UIImage imageNamed:@"320x480-watermark.png"]]
+									 initWithPatternImage:[UIImage imageNamed:_CALL_WATERMARK_PNG_]]
 									autorelease]];
 	[self->viewMenuP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	[self->viewKeypadP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
@@ -109,26 +110,26 @@
 	self->viewKeypadP.hidden = YES;
 	self->hideKeypadButtonP.hidden = YES;
 	self->endCallKeypadButtonP.hidden = YES;
-	[viewKeypadP setImage:@"keypad.png" : @"keypad.png"];
+	[viewKeypadP setImage:_KEYPAD_NORMAL_PNG_ : _KEYPAD_PRESSED_PNG_];
 	
 	[viewKeypadP setElement:3 :4];
 	viewKeypadP.keypadProtocolP = self;
 	
-	buttonBackground = [UIImage imageNamed:@"2_endcall_270_45_normal.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"2_endcall_270_45_pressed.png"];
+	buttonBackground = [UIImage imageNamed:_ENDCALL_NORMAL_PNG_];
+	buttonBackgroundPressed = [UIImage imageNamed:_ENDCALL_PRESSED_PNG_];
 	[CustomButton setImages:endCallButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	endCallButtonP.backgroundColor =  [UIColor clearColor];
 	
-	buttonBackground = [UIImage imageNamed:@"2_hidekeypad_125_45_normal.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"2_hidekeypad_125_45_pressed.png"];
+	buttonBackground = [UIImage imageNamed:_HIDE_KEYPAD_NORMAL_PNG_];
+	buttonBackgroundPressed = [UIImage imageNamed:_HIDE_KEYPAD_PRESSED_PNG_];
 	[CustomButton setImages:hideKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	hideKeypadButtonP.backgroundColor =  [UIColor clearColor];
-	buttonBackground = [UIImage imageNamed:@"2_endcall_125_45_normal.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"2_endcall_125_45_pressed.png"];
+	buttonBackground = [UIImage imageNamed:_SMALL_ENDCALL_NORMAL_PNG_];
+	buttonBackgroundPressed = [UIImage imageNamed:_SMALL_ENDCALL_PRESSED_PNG_];
 	[CustomButton setImages:endCallKeypadButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	endCallKeypadButtonP.backgroundColor =  [UIColor clearColor];
 	[buttonBackground release];

@@ -25,6 +25,7 @@
 #include "LtpInterface.h"
 #import "SpoknAppDelegate.h"
 #include "ua.h"
+#import "alertmessages.h"
 
 @implementation IncommingCallViewController
 @synthesize ltpInterfacesP;
@@ -70,14 +71,14 @@
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
 	
-	buttonBackground = [UIImage imageNamed:@"1_answer_125_45_normal.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"1_answer_125_45_pressed.png"];
+	buttonBackground = [UIImage imageNamed:_ANSWER_NORMAL_PNG_];
+	buttonBackgroundPressed = [UIImage imageNamed:_ANSWER_PRESSED_PNG_];
 	[CustomButton setImages:ansP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	ansP.backgroundColor =  [UIColor clearColor];
-	buttonBackground = [UIImage imageNamed:@"1_decline_125_45_normal.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"1_decline_125_45_pressed.png"];
+	buttonBackground = [UIImage imageNamed:_DECLINE_NORMAL_PNG_];
+	buttonBackgroundPressed = [UIImage imageNamed:_DECLINE_PRESSED_PNG_];
 	[CustomButton setImages:declineP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];

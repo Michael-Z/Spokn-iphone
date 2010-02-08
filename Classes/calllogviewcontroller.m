@@ -898,7 +898,7 @@ cancelButtonTitle: nil
 	uiActionSheetP= [[UIActionSheet alloc] 
 					 initWithTitle: @"" 
 					 delegate:self
-					 cancelButtonTitle:@"Cancel" 
+					 cancelButtonTitle:_CANCEL_
 					 destructiveButtonTitle:_CLEAR_CALL_LOG_
 					 otherButtonTitles:nil, nil];
 	
@@ -944,9 +944,9 @@ cancelButtonTitle: nil
 	showMisscallInt = GETCALLLOGLIST;
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Calllog" image:nil tag:2];
-	missImageP = [UIImage imageNamed:@"Call-log-Icons-missed.png"];
-	inImageP = [UIImage imageNamed:@"Call-log-Icons-incoming.png"];
-	outImageP = [UIImage imageNamed:@"Call-log-Icons-outgoing.png"];
+	missImageP = [UIImage imageNamed:_CALL_MISS_PNG_];
+	inImageP = [UIImage imageNamed:_CALL_IN_PNG_];
+	outImageP = [UIImage imageNamed:_CALL_OUT_PNG_];
 	
 	 
 	
@@ -967,9 +967,9 @@ cancelButtonTitle: nil
 	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	
-	[ segmentedControl insertSegmentWithTitle: @"All" atIndex: 0 animated: NO ];
+	[ segmentedControl insertSegmentWithTitle: _ALL_ atIndex: 0 animated: NO ];
 	[ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: NO ];
-	[ segmentedControl insertSegmentWithTitle: @"Missed" atIndex: 2 animated: NO ];
+	[ segmentedControl insertSegmentWithTitle: _MISSED_ atIndex: 2 animated: NO ];
 	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
 	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
 	

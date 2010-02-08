@@ -94,11 +94,11 @@
 					}
 					
 					UIAlertView *alert;
-					alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+					alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 													  message: [ NSString stringWithString:_INVALID_EMAIL_ ]
 													 delegate: self
 											cancelButtonTitle: nil
-											otherButtonTitles: @"OK", nil
+											otherButtonTitles: _OK_, nil
 						 ];
 					[ alert show ];
 					[alert release];

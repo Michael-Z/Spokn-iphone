@@ -119,7 +119,7 @@
 	[SpoknAudio destorySoundUrl:&onLineSoundP];
 	[SpoknAudio destorySoundUrl:&endSoundP];
 	
-	NSString *path = [mainBundle pathForResource:@"phone" ofType:@"caf"];
+	NSString *path = [mainBundle pathForResource:_TONE_PHONE_ ofType:_TONE_FILE_TYPE_];
 	if (path)
 	{
 		incommingSoundP = [[SpoknAudio alloc] init];
@@ -127,10 +127,10 @@
 		//incommingSoundP = [SpoknAudio createSoundPlaybackUrl:path play:false];
 		[incommingSoundP setvolume:1.0];
 	}
-	path = [mainBundle pathForResource:@"gling" ofType:@"caf"];
+	path = [mainBundle pathForResource:_TONE_ONLINE_ ofType:_TONE_FILE_TYPE_];
 	if (path)
 			onLineSoundP = [SpoknAudio createSoundPlaybackUrl:path play:false];
-	path = [mainBundle pathForResource:@"doorbell" ofType:@"caf"];
+	path = [mainBundle pathForResource:_TONE_CALL_END_ ofType:_TONE_FILE_TYPE_];
 	if (path)
 		endSoundP = [SpoknAudio createSoundPlaybackUrl:path play:false];
 
@@ -194,7 +194,7 @@
 	//[self setStatusBarStyle:UIStatusBarStyleDefault animation:NO];
 	NSBundle *mainBundle = [NSBundle mainBundle];
 	
-		NSString *path = [mainBundle pathForResource:@"doorbell" ofType:@"caf"];
+		NSString *path = [mainBundle pathForResource:_TONE_CALL_END_ ofType:_TONE_FILE_TYPE_];
 		if (!path)
 			return;
 	[self playUrlPath:path]	;
@@ -223,7 +223,7 @@
 	
 		NSBundle *mainBundle = [NSBundle mainBundle];
 	
-		NSString *path = [mainBundle pathForResource:@"gling" ofType:@"caf"];
+		NSString *path = [mainBundle pathForResource:_TONE_ONLINE_ ofType:_TONE_FILE_TYPE_];
 		if (!path)
 			return;
 		[self playUrlPath:path]	;
@@ -300,11 +300,11 @@
 				case ERR_CODE_CALL_FWD_DUPLICATE:
 				{
 					char *callFdP;
-					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn" 
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_TITLE_ 
 															message:_DUPLICATE_FORWARD_NUMBER_
 															delegate:self 
 														  cancelButtonTitle:nil 
-														  otherButtonTitles:@"OK", nil];
+														  otherButtonTitles:_OK_, nil];
 					[alert show];
 					[alert release];
 					callFdP = getOldForwardNo();
@@ -331,7 +331,7 @@
 																	message:_NO_CREDITS_
 																   delegate:self 
 														  cancelButtonTitle:nil 
-														  otherButtonTitles:@"OK", nil];
+														  otherButtonTitles:_OK_, nil];
 					[alert show];
 					[alert release];
 				}
@@ -419,7 +419,7 @@
 					loginProgressStart = 1;
 				
 				}
-			[dialviewP setStatusText: @"connecting..." :nil :START_LOGIN :0 ];
+			[dialviewP setStatusText:_STATUS_CONNECTING_ :nil :START_LOGIN :0 ];
 			[loginProtocolP startloginIndicator];
 			[spoknViewControllerP startProgress];
 			break;
@@ -454,7 +454,7 @@
 				//tabBarController.selectedViewController = dialviewP;
 			}	
 			self->onLineB = true;
-			[dialviewP setStatusText: @"online" :nil :ALERT_ONLINE :0 ];
+			[dialviewP setStatusText:_STATUS_ONLINE_ :nil :ALERT_ONLINE :0 ];
 			
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];
@@ -479,13 +479,13 @@
 						[loginProtocolP stoploginIndicator];
 						if(loginProtocolP)//mean login screen is on
 						{
-							[dialviewP setStatusText: @"Offline" :nil :ALERT_OFFLINE :self->subID ];
+							[dialviewP setStatusText: _STATUS_OFFLINE_ :nil :ALERT_OFFLINE :self->subID ];
 						}
 						break;
 					case LOGIN_STATUS_FAILED:
 							[loginProtocolP stoploginIndicator];
 							[loginProtocolP cleartextField];
-							[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :self->subID ];
+							[dialviewP setStatusText: _STATUS_AUTHENTICATION_FAILED_ :nil :ALERT_OFFLINE :self->subID ];
 								
 							break;
 					case LOGIN_STATUS_NO_ACCESS:
@@ -493,14 +493,14 @@
 							[loginProtocolP stoploginIndicator];
 							if(loginProtocolP)//mean login screen is on
 							{
-								[dialviewP setStatusText: @"no access" :nil :ALERT_OFFLINE :self->subID ];
+								[dialviewP setStatusText: _STATUS_NO_ACCESS_ :nil :ALERT_OFFLINE :self->subID ];
 							}	
 							break;
 					default:
 						[loginProtocolP stoploginIndicator];
 						if(loginProtocolP)//mean login screen is on
 						{
-							[dialviewP setStatusText: @"Offline" :nil :ALERT_OFFLINE :self->subID ];
+							[dialviewP setStatusText: _STATUS_OFFLINE_ :nil :ALERT_OFFLINE :self->subID ];
 						}
 				}
 			
@@ -573,13 +573,13 @@
 						[urlSendP release];
 					}
 					urlSendP = [[NSString alloc] initWithUTF8String:href];
-					alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+					alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 														  message: [ NSString stringWithString:msgStrP ]
 														 delegate: self
 												cancelButtonTitle: nil
-												otherButtonTitles: @"OK", nil
+												otherButtonTitles: _OK_, nil
 							 ];
-					[alert addButtonWithTitle:@"cancel"];
+					[alert addButtonWithTitle:_CANCEL_];
 					
 					[ alert show ];
 					[alert release];
@@ -633,7 +633,7 @@
 				[vmsviewP setcomposeStatus:1 ];
 				[loginProtocolP stoploginIndicator];
 				self->onLineB = true;
-				[dialviewP setStatusText: @"online" :nil :ALERT_ONLINE :0 ];
+				[dialviewP setStatusText: _STATUS_ONLINE_ :nil :ALERT_ONLINE :0 ];
 				[self playonlineTone];
 				[self popLoginView];
 				[self newBadgeArrived:vmsNavigationController];	
@@ -1481,11 +1481,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	if(validateNo(resultCharP))//mean invalid number
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn" 
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_TITLE_ 
 														message:_INVALID_NUMBER_
 													   delegate:self 
 											  cancelButtonTitle:nil 
-											  otherButtonTitles:@"OK", nil];
+											  otherButtonTitles:_OK_, nil];
 		[alert show];
 		[alert release];
 		if(resultCharP)
@@ -1499,7 +1499,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 														message:_NO_WIFI_
 													   delegate:self 
 											  cancelButtonTitle:nil 
-											  otherButtonTitles:@"OK", nil];
+											  otherButtonTitles:_OK_, nil];
 		[alert show];
 		[alert release];
 		return retB;
@@ -1515,10 +1515,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 								&size, &mic);
 		if (!mic)
 		{
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn"
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_TITLE_
 															message:_NO_MICROPHONE_
 														   delegate:nil 
-												  cancelButtonTitle:@"Ok"
+												  cancelButtonTitle:_OK_
 												  otherButtonTitles:nil];
 			[alert show];
 			[alert release];
@@ -1570,7 +1570,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 															   message: [ NSString stringWithString:_USER_OFFLINE_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil
-													 otherButtonTitles: @"OK", nil
+													 otherButtonTitles: _OK_, nil
 								  ];
 			[ alert show ];
 			[alert release];
@@ -1581,7 +1581,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 															   message: [ NSString stringWithString:_NO_NETWORK_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil
-													 otherButtonTitles: @"OK", nil
+													 otherButtonTitles: _OK_, nil
 								  ];
 			[ alert show ];
 			[alert release];
