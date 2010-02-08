@@ -177,7 +177,7 @@
 		ringStartB = 0;
 		[ringTimer invalidate];
 		ringTimer = nil;
-				
+		[incommingSoundP stopSoundUrl];		
 		return 0;
 	}	
 	return 1;

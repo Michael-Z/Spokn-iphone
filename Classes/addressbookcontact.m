@@ -206,8 +206,12 @@ titleForHeaderInSection:(NSInteger)section
 	//NSArray *dataP = [[setTypeP->elementP objectAtIndex:row] componentsSeparatedByString:@"#"];
 	//secP = (sectionData*)[dataP objectAtIndex:0];
 	id person = [setTypeP->elementP objectAtIndex:row];
-	NSString *resP = [self getName:person];
-	cell.text = resP;
+	NSString *resP = [AddressBookContact getName:person];
+	#ifdef __IPHONE_3_
+		cell.textLabel.text = resP;
+	#else
+	//	cell.text = resP;
+	#endif
 	[resP release];
 
 	//cell.textColor = [self getColor:[crayon objectAtIndex:1]];
@@ -268,7 +272,7 @@ titleForHeaderInSection:(NSInteger)section
 			
 		}
 			}
-	[name1 release];
+	[(id)name1 release];
 	
 	return NO;
 }
@@ -352,7 +356,7 @@ titleForHeaderInSection:(NSInteger)section
 			[numberStringP release];
 			[labelStringP release];
 		}
-		[name1 release];
+		[(id)name1 release];
 	}	
 	
 	name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
@@ -371,7 +375,7 @@ titleForHeaderInSection:(NSInteger)section
 			[numberStringP release];
 			[labelStringP release];
 		}
-		[name1 release];
+		[(id)name1 release];
 	}	
 	
 	
@@ -491,7 +495,7 @@ titleForHeaderInSection:(NSInteger)section
 	(*ovControllerP).view.backgroundColor = [[UIColor grayColor] autorelease];
 	(*ovControllerP).view.alpha = 0.5;
 	
-	(*ovControllerP).rvController = controllerP;
+	(*ovControllerP).rvController = (id) controllerP;
 	
 	[self->tableView insertSubview:(*ovControllerP).view aboveSubview:controllerP.parentViewController.view];
 	
@@ -652,7 +656,7 @@ titleForHeaderInSection:(NSInteger)section
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
 {
 	id theProperty = (id)ABRecordCopyValue(person, property);
-	int propertyType = ABPersonGetTypeOfProperty(property);
+	//int propertyType = ABPersonGetTypeOfProperty(property);
 	[uiControllerP dismissModalViewControllerAnimated:YES];
 	CFRelease(theProperty);
 	[peoplePicker release];

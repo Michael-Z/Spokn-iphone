@@ -292,8 +292,8 @@
 	char s1[30];
 	//int index;
 	NSString *stringStrP;
-	char *addressBookNameP = 0;
-	char *addressBookTypeP = 0;
+	//char *addressBookNameP = 0;
+	//char *addressBookTypeP = 0;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	
 	

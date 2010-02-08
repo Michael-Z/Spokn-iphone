@@ -132,7 +132,7 @@
 			
 			[ovController.view addSubview:secondLabelP];
 			
-			ovController.rvController = self;
+			ovController.rvController = (id)self;
 			self->tableView.scrollEnabled = NO;
 			[self->tableView insertSubview:ovController.view aboveSubview:self.parentViewController.view];
 			if(lheight>100 && frameP==nil)

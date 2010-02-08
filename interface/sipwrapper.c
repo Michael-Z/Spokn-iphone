@@ -7,6 +7,7 @@
 #include <ltpmobile.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #define USERAGENT  "desktop-windows-d2-1.0"
 #include <pjsua-lib/pjsua.h>
 int bMissedCallReported = 0;
@@ -745,8 +746,7 @@ struct ltpStack  *ltpInit(int maxslots, int maxbitrate, int framesPerPacket)
 	int	i;
 	struct Call *p;
 	struct ltpStack *ps;
-	char	errorstr[100];
-
+	
 	ps = (struct ltpStack *)malloc(sizeof(struct ltpStack));
 	if (!ps)
 		return NULL;
@@ -1016,7 +1016,7 @@ void sipSwitchReinvite(struct ltpStack *ps, int lineid)
 
 void startConference ()
 {
-	int	i, inConf=0;
+	int	i;
 
 	for (i = 0; i < pstack->maxSlots; i++)
 		if (pstack->call[i].ltpState != CALL_IDLE){

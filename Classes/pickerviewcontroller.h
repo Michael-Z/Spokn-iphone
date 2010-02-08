@@ -97,8 +97,8 @@
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier;
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker;
 -(void)setData:/*out parameter*/(char *)valueCharP value:(char*)fieldP placeHolder:(char*)placeHolderP/*out parameter*/returnValue:(int *)returnP;
--(IBAction)cancelPressed;
--(IBAction)savePressed;
+//-(IBAction)cancelPressed;
+//-(IBAction)savePressed;
 -(void)setObject:(id) object;
 -(void) SetkeyBoardType:(UIKeyboardType) type : (int) maxCharInt buttonType:(int)lbuttonType;
 - (IBAction) updateSearchTable : (id) sender;
@@ -107,7 +107,7 @@
 - (void)update_txtDestNo :(NSString *)typeStrP;
 -(NSString*)remSpChar:(NSString *)str;
 -(void)addSelectedContact:(SelectedContctType*)  lcontactObjectP;
--(void) delNode :(BOOL) allB;
+//-(void) delNode :(BOOL) allB;
 -(void) viewLoadedModal:(BOOL)lmodalB;
 -(char*) getContactNumberList;
 -(IBAction)addContactPressed:(id)sender;

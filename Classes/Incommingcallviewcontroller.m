@@ -64,7 +64,7 @@
 									initWithPatternImage:[UIImage imageNamed:@"spokncall.png"]]
 								   autorelease]];	*/
 	[self.view setBackgroundColor:[[[UIColor alloc] 
-									initWithPatternImage:[UIImage imageNamed:@"320x480-watermark.png"]]
+									initWithPatternImage:[UIImage imageNamed:_CALL_WATERMARK_PNG_]]
 								   autorelease]];
 	//self.incomingStatusLabelP.text =textProP;
 	//[incomingStatusLabelP performSelectorOnMainThread : @ selector(setText: ) withObject:textProP waitUntilDone:YES];

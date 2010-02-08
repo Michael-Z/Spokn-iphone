@@ -95,7 +95,7 @@
 	NSRange range = [urlString rangeOfString : search];
 
 	
-	NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+	//NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 		
 	if (range.location != NSNotFound) 
 	{

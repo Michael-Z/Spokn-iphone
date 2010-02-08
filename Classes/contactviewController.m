@@ -1122,7 +1122,7 @@ titleForHeaderInSection:(NSInteger)section
 			[numberStringP release];
 			[labelStringP release];
 		}
-		[name1 release];
+		[(id)name1 release];
 	}	
 	name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
 	if(name1)
@@ -1151,7 +1151,7 @@ titleForHeaderInSection:(NSInteger)section
 			[numberStringP release];
 			[labelStringP release];
 		}
-		[name1 release];
+		[(id)name1 release];
 	}	
 	
 		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :viewEnum];
@@ -1234,7 +1234,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 		NSString *nameP;
 		char *numbercharP;
-		BOOL alleastOneB = FALSE;	
+		
 		struct AddressBook *addressP;
 		SelectedContctType *secContactP;
 		
@@ -1677,8 +1677,11 @@ titleForHeaderInSection:(NSInteger)section
 	if(addressP)
 	{	
 		CellIdentifier = [[NSString alloc] initWithUTF8String:addressP->title ] ;
+	#ifdef __IPHONE_3_0
+		cell.textLabel.text = CellIdentifier;	
+	#else
 		cell.text = CellIdentifier;
-
+	#endif	
 		
 
 		[CellIdentifier release];

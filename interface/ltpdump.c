@@ -22,8 +22,8 @@ LtpRtpDumpType* CreateDumpFile(char *pathP,char *nameP,int pcmB)
 	if(pcmB)
 	{
 		//write riff header
-		WriteData(ltprtpDumpP->fprecord ,&refTypeP,sizeof(RiffHeaderType));
-		WriteData(ltprtpDumpP->fpPlay ,&refTypeP,sizeof(RiffHeaderType));
+		WriteData(ltprtpDumpP->fprecord ,(unsigned char*)&refTypeP,sizeof(RiffHeaderType));
+		WriteData(ltprtpDumpP->fpPlay ,(unsigned char*)&refTypeP,sizeof(RiffHeaderType));
 	}
 	return ltprtpDumpP;
 	
@@ -81,7 +81,7 @@ int CloseDumpFile(LtpRtpDumpType **ltprtpDumpP,int pcmB)
 		UpdateRiffHeader(&refTypeP,1,8000,length);
 		fseek(tmpLtp->fpPlay,0,SEEK_SET);
 		
-		WriteData(tmpLtp->fpPlay ,&refTypeP,sizeof(RiffHeaderType));
+		WriteData(tmpLtp->fpPlay ,(unsigned char*)&refTypeP,sizeof(RiffHeaderType));
 		fseek(tmpLtp->fpPlay,0,SEEK_SET);
 		memset(&refTypeP,0,sizeof(RiffHeaderType));
 		fread(&refTypeP,1,sizeof(RiffHeaderType),tmpLtp->fpPlay);
@@ -90,7 +90,7 @@ int CloseDumpFile(LtpRtpDumpType **ltprtpDumpP,int pcmB)
 		length = ftell(tmpLtp->fprecord);
 		UpdateRiffHeader(&refTypeP,1,8000,length);
 		fseek(tmpLtp->fprecord,0,SEEK_SET);
-		WriteData(tmpLtp->fprecord ,&refTypeP,sizeof(RiffHeaderType));
+		WriteData(tmpLtp->fprecord ,(unsigned char*)&refTypeP,sizeof(RiffHeaderType));
 		fseek(tmpLtp->fprecord,0,SEEK_SET);
 		memset(&refTypeP,0,sizeof(RiffHeaderType));
 		fread(&refTypeP,1,sizeof(RiffHeaderType),tmpLtp->fpPlay);

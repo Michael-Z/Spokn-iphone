@@ -401,7 +401,7 @@
 - (IBAction) updateSearchTable : (id) sender
 {
 	[searchedContacts removeAllObjects];
-	char *ltpsSearchStringP=0;
+	const char *ltpsSearchStringP=0;
 	NSString *texttosearch = [txtDestNo.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	//texttosearch = [self remSpChar:texttosearch];
 	
@@ -708,7 +708,6 @@
 
 - (void) showSearchTable
 {
-	CGRect tableBound;
 	if(modalB==false)
 	{	
 		self.view.frame = CGRectMake(0, 0, 320,200 );	

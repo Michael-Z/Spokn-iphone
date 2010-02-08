@@ -36,7 +36,7 @@
 pthread_mutexattr_t    attr;
 pthread_mutex_t         mutex;
 
-
+void setHold(struct ltpStack *ps,int enableB);
 //#define _SNDLOOPBACK_
 //#import <Foundation/Foundation.h>
 
@@ -415,7 +415,7 @@ LtpInterfaceType *	  startLtp(AlertNotificationCallbackP  alertNotiCallbackP,uns
 		#endif
 	#endif	
 	
-		SetAudioTypeLocal(userData,0);
+		SetAudioTypeLocal((void*)userData,0);
 		return ltpInterfaceP;
 	}
 	return NULL;
@@ -595,9 +595,11 @@ int getAddressUid(LtpInterfaceType *ltpInterfaceP)
 }
 int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB)
 {
-	return setHold(ltpInterfaceP->ltpObjectP,holdB);
+	 setHold(ltpInterfaceP->ltpObjectP,holdB);
+	return 0;
 }
 int setMuteInterface(LtpInterfaceType *ltpInterfaceP,int muteB)
 {
-	return setMute(muteB);
+	 setMute(muteB);
+	return 0;
 }

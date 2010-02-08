@@ -144,7 +144,7 @@ typedef struct CallNumberType
 -(void)RejectCall:(IncommingCallType *)inComP;
 -(void)LoadContactView:(id)object;
 -(void)SendDTMF:(char *)dtmfVapP;
--(void)AlertFromMainThread :(id)object;
+
 -(void)updateSpoknView:(id)object;
 /*
 @property (nonatomic, retain) IBOutlet UIWindow *window;

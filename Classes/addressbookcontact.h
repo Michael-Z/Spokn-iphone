@@ -42,6 +42,7 @@
 	Boolean searchB;
 	
 }
+
 +(NSString *) getName: (ABRecordRef) person;
 -(void)setObject:(id) object ;
 - (void)loadViewLoc;

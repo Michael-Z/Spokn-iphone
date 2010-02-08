@@ -74,6 +74,7 @@ extern "C" {
 	int CloseDumpFile(LtpRtpDumpType **ltpdumpP,int pcmB);
 	int ConvertFileToWav(char *srcFileP,char *destFileP,int codec);
 	int InitRiffHeader (RiffHeaderType* riffHeader);
+	int UpdateRiffHeader (RiffHeaderType* riffHeader,int nochanel,int sampleRate,long sizeFile);
 #ifdef __cplusplus
 }
 #endif 

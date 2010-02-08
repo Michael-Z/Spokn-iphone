@@ -135,7 +135,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-		CGRect statusFrame = CGRectMake(120, 0, 170, ROW_HEIGHT-5);
+		//CGRect statusFrame = CGRectMake(120, 0, 170, ROW_HEIGHT-5);
 		CGRect statusFrame1 = CGRectMake(112, 3, 178, ROW_HEIGHT-8);
 
 		CGRect LabelFrame2 = CGRectMake(160, 0, 117, ROW_HEIGHT-5);
