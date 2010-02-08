@@ -135,23 +135,26 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
 		CGRect statusFrame = CGRectMake(120, 0, 170, ROW_HEIGHT-5);
+		CGRect statusFrame1 = CGRectMake(112, 3, 178, ROW_HEIGHT-8);
+
 		CGRect LabelFrame2 = CGRectMake(160, 0, 117, ROW_HEIGHT-5);
+		CGRect LabelFrame3 = CGRectMake(160, 0, 127, ROW_HEIGHT-5);
 		[self.tabBarItem initWithTitle:@"My Spokn" image:[UIImage imageNamed:@"TB-Spokn.png"] tag:5];
 		labelBalance = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelBalance.textAlignment = UITextAlignmentRight;
 		labelBalance.tag = 1;
 	//	LabelFrame2 = CGRectMake(160, 0, 117, 40);
-		labelStatus = [[UILabel alloc] initWithFrame:statusFrame];
+		labelStatus = [[UILabel alloc] initWithFrame:statusFrame1];
 		labelStatus.textAlignment = UITextAlignmentRight;
 		labelStatus.tag = 2;
 		labelForword = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelForword.textAlignment = UITextAlignmentRight;
 		labelForword.tag = 4;
 		LabelFrame2.size.width+=10;
-		labelSpoknNo = [[UILabel alloc] initWithFrame:LabelFrame2];
+		labelSpoknNo = [[UILabel alloc] initWithFrame:LabelFrame3];
 		labelSpoknNo.textAlignment = UITextAlignmentRight;
 		labelSpoknNo.tag = 5;
-		labelSpoknID = [[UILabel alloc] initWithFrame:LabelFrame2];
+		labelSpoknID = [[UILabel alloc] initWithFrame:LabelFrame3];
 		labelSpoknID.textAlignment = UITextAlignmentRight;
 		labelSpoknID.tag = 6;
 		
@@ -486,14 +489,14 @@ titleForHeaderInSection:(NSInteger)section
 			switch(subStatus)
 			{
 				case LOGIN_STATUS_FAILED:
-					[labelStatus setText:@"Offline  "];
+					[labelStatus setText:@"Offline"];
 					//[labelStatus setText:@"Authentication failed"];
 					break;
 				case LOGIN_STATUS_NO_ACCESS:
-					[labelStatus setText:@"No Network "];
+					[labelStatus setText:@"No Network"];
 					break;
 				default:
-					[labelStatus setText:@"Offline  "];	
+					[labelStatus setText:@"Offline"];	
 			}
 			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 													   initWithTitle:SIGN_IN_TEXT 
@@ -513,7 +516,7 @@ titleForHeaderInSection:(NSInteger)section
 				[labelStatus setText:@"No wifi available"];
 				break;
 				default:
-				[labelStatus setText:@"Online  "];
+				[labelStatus setText:@"Online"];
 			}
 			//[labelStatus setText:@"Online  "];
 			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
@@ -592,16 +595,17 @@ titleForHeaderInSection:(NSInteger)section
 	NSInteger row = [indexPath row];
 	NSInteger section = [indexPath section];
     
-	static NSString *CellIdentifier = @"Cell";
+	NSString *CellIdentifier = @"Cell";
     UILabel *label1;
 	UILabel *label2;
-	
+	CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",section,row];
 	NSArray *mycell = [[[listOfItems objectAtIndex:section] objectAtIndex:row] componentsSeparatedByString:@"\n"];
 	NSString *temp =[mycell objectAtIndex:0];
 	
     UITableViewCell *cell = [ltableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		UIImageView *uiImageViewP;
+		
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     
     
@@ -698,6 +702,7 @@ titleForHeaderInSection:(NSInteger)section
 	}	
 	else
 	{
+		
 		if([temp isEqualToString:@"Status"])
 		{
 			
@@ -766,8 +771,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 		
 	}
-	
-    return cell;
+	 return cell;
 }
 - (void)tableView:(UITableView *)tableView 
 accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath 

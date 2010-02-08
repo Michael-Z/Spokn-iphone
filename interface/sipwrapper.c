@@ -40,7 +40,6 @@ struct MD5Context {
 		uint32 bits[2];
 		unsigned char in[64];
 };*/
-
 static void zeroMemory(void *p, int countBytes)
 {
 	char *q;
@@ -451,7 +450,6 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
 				pstack->call[i].timeStart = pstack->now; /* reset the call timer for the correct duration */
 				break;
 			case PJSIP_INV_STATE_DISCONNECTED:   /**< Session is terminated.		    */
-				printf("on_call_state: i: %d\t lineid: %d\t call_id: %d\t ltpstate: %d\t bMissedCallReported:%d\n", i, pstack->call[i].lineId, call_id, pstack->call[i].ltpState,bMissedCallReported);
 				//bug#26361 - Check if its a missed call (not already reported in ltpHangup()).
 				if ((pstack->call[i].kindOfCall & CALLTYPE_IN) &&
 					(pstack->call[i].ltpState != CALL_CONNECTED) &&
@@ -566,7 +564,6 @@ static void on_call_media_state(pjsua_call_id call_id)
 		// When media is active, connect call to sound device.
 		pjsua_conf_connect(ci.conf_slot, 0);
 		pjsua_conf_connect(0, ci.conf_slot);
-		printf ("FARHAN: connected  %d to the sound card.\n", ci.conf_slot);
     }
 
 	//update the call status
@@ -590,7 +587,6 @@ static void on_call_media_state(pjsua_call_id call_id)
 							pjsua_call_get_info(other_call, &ci);
 							pjsua_conf_disconnect(ci.conf_slot, 0);
 							pjsua_conf_disconnect(0, ci.conf_slot);
-							printf ("FARHAN: disconnected  %d to the sound card.\n", ci.conf_slot);
 						}
 					}
 				} // end of handling non-conference call
@@ -654,7 +650,6 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	pjsua_media_config cfgmedia;
 	pj_str_t tmp;
 	pjsua_destroy();
-	printf("\n pj init");
     /* Create pjsua first! */
     status = pjsua_create();
 
@@ -794,12 +789,6 @@ struct ltpStack  *ltpInit(int maxslots, int maxbitrate, int framesPerPacket)
 		ps->bigEndian = 0;
 	else
 		ps->bigEndian = 1;
-/*
-	if (!spokn_pj_init(errorstr)){
-		printf ("PJ not initiallized: %s\n",errorstr);
-		free(ps);
-		return NULL;
-	}*/
 	return ps;
 }
 
@@ -903,8 +892,7 @@ void ltpHangup(struct ltpStack *ps, int lineid)
 	{
 		if (ps->call[i].lineId == lineid && ps->call[i].ltpState != CALL_IDLE){
 			call_id = (pjsua_call_id) ps->call[i].ltpSession;
-			printf("ltpHangup: lineid: %d\t call_id: %d\t ltpstate: %d\n", ps->call[i].lineId, call_id, ps->call[i].ltpState);
-			//bug#26267 - Check if its a missed call
+//bug#26267 - Check if its a missed call
 			bMissedCallReported = 0;
 			if ((ps->call[i].ltpState != CALL_CONNECTED) && (ps->call[i].kindOfCall& CALLTYPE_IN))
 			{
@@ -966,7 +954,6 @@ int ltpRing(struct ltpStack *ps, char *remoteid, int command)
 	else
 		strcpy(struri, remoteid);
 
-//	printf("\m calling no %s",struri);
 	uri = pj_str(struri);
 	if (pjsua_call_make_call(pjsua_acc_get_default(), &uri, 0, NULL, NULL, &call_id) == PJ_SUCCESS){
 		strcpy(pc->remoteUserid, remoteid);
