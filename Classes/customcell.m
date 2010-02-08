@@ -26,6 +26,7 @@
 
 
 @implementation displayData
+@synthesize noChangeDimentationB;
 @synthesize percent;
 @synthesize left;
 @synthesize top;
@@ -57,6 +58,7 @@
 	textAlignmentType = UITextAlignmentLeft;
 	boldB = NO;
 	showOnEditB = false;
+	noChangeDimentationB = NO;
 	return self;
 	
 }
@@ -242,7 +244,7 @@
 					height = (rect.size.height/100)*displayDataP.height;
 					rec.size.width = width;
 					rec.size.height = height;
-					//if(displayDataP.height==100)
+					if(displayDataP.noChangeDimentationB==NO)
 					{
 						rec.origin.y += height/4;
 					}

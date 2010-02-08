@@ -67,7 +67,7 @@
 							<object class="IBUIButton" id="172174305">
 								<reference key="NSNextResponder" ref="139589346"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{1, 0}, {135, 40}}</string>
+								<string key="NSFrame">{{3, 1}, {136, 40}}</string>
 								<reference key="NSSuperview" ref="139589346"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIAutoresizesSubviews">NO</bool>
@@ -75,9 +75,9 @@
 								<int key="IBUITag">7</int>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<object class="NSFont" key="IBUIFont" id="4737424">
+								<object class="NSFont" key="IBUIFont" id="33375385">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">1.500000e+01</double>
+									<double key="NSSize">1.600000e+01</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<int key="IBUIButtonType">1</int>
@@ -99,7 +99,7 @@
 							<object class="IBUIButton" id="714687318">
 								<reference key="NSNextResponder" ref="139589346"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{158, 0}, {135, 40}}</string>
+								<string key="NSFrame">{{164, 1}, {136, 40}}</string>
 								<reference key="NSSuperview" ref="139589346"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIAutoresizesSubviews">NO</bool>
@@ -107,7 +107,7 @@
 								<int key="IBUITag">8</int>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="4737424"/>
+								<reference key="IBUIFont" ref="33375385"/>
 								<int key="IBUIButtonType">1</int>
 								<double key="IBUIImageEdgeInsets.top">0.000000e+00</double>
 								<double key="IBUIImageEdgeInsets.bottom">0.000000e+00</double>
@@ -125,7 +125,7 @@
 							<object class="IBUIButton" id="815585431">
 								<reference key="NSNextResponder" ref="139589346"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{12, 8}, {270, 45}}</string>
+								<string key="NSFrame">{{16, 8}, {270, 45}}</string>
 								<reference key="NSSuperview" ref="139589346"/>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
@@ -135,7 +135,11 @@
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="4737424"/>
+								<object class="NSFont" key="IBUIFont">
+									<string key="NSName">Helvetica-Bold</string>
+									<double key="NSSize">1.500000e+01</double>
+									<int key="NSfFlags">16</int>
+								</object>
 								<reference key="IBUIHighlightedTitleColor" ref="1049220797"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
@@ -146,13 +150,13 @@
 							<object class="IBUIButton" id="589428040">
 								<reference key="NSNextResponder" ref="139589346"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{3, 61}, {288, 45}}</string>
+								<string key="NSFrame">{{3, 56}, {300, 40}}</string>
 								<reference key="NSSuperview" ref="139589346"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIFont" ref="4737424"/>
+								<reference key="IBUIFont" ref="33375385"/>
 								<int key="IBUIButtonType">1</int>
 								<string key="IBUINormalTitle">Add contact</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1049220797"/>
@@ -216,14 +220,6 @@
 						<reference key="destination" ref="191373211"/>
 					</object>
 					<int key="connectionID">9</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">tableView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="721003761"/>
-					</object>
-					<int key="connectionID">34</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -309,6 +305,14 @@
 					</object>
 					<int key="connectionID">61</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">tableView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="721003761"/>
+					</object>
+					<int key="connectionID">72</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -381,7 +385,7 @@
 						<reference key="parent" ref="139589346"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">32</int>
+						<int key="objectID">71</int>
 						<reference key="object" ref="721003761"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -395,7 +399,6 @@
 					<string>-2.CustomClassName</string>
 					<string>1.IBEditorWindowLastContentRect</string>
 					<string>1.IBPluginDependency</string>
-					<string>32.IBPluginDependency</string>
 					<string>33.IBPluginDependency</string>
 					<string>36.IBPluginDependency</string>
 					<string>37.IBPluginDependency</string>
@@ -403,6 +406,7 @@
 					<string>42.CustomClassName</string>
 					<string>42.IBPluginDependency</string>
 					<string>59.IBPluginDependency</string>
+					<string>71.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -414,8 +418,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>CustomButton</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -440,7 +444,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">63</int>
+			<int key="maxID">72</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -39,6 +39,7 @@
 	int width;
 	int height;
 	int row;
+	int noChangeDimentationB;
 	//UIFont *fontP;
 	int fntSz;
 	BOOL boldB;
@@ -54,6 +55,7 @@
 	
 	
 }
+@property (readwrite,assign) int noChangeDimentationB;
 @property (readwrite,assign) BOOL boldB;
 @property (readwrite,assign) UITextAlignment textAlignmentType;
 @property (readwrite,assign) Boolean percent;

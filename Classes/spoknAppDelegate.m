@@ -1204,6 +1204,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[vmsviewP setcomposeStatus:0 ];
 	logOut(ltpInterfacesP,clearAllB);
 	self.vmsNavigationController.tabBarItem.badgeValue= nil;
+	self.calllogNavigationController.tabBarItem.badgeValue= nil;
 	SetSpeakerOnOrOff(0,true);
 	self->onLineB = false;
 }
