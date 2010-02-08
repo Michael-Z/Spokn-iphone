@@ -497,6 +497,7 @@ int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 		{	
 			profileClear();
 			cdrRemoveAll();
+			resetMissCallCount();
 			setLtpUserName(ltpInterfaceP,"");
 			setLtpPassword(ltpInterfaceP,"");
 		}	
