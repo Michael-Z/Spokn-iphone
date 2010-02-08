@@ -61,16 +61,14 @@
 							<bytes key="NSWhite">MAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="63493700"/>
-						<object class="NSCustomResource" key="IBUIHighlightedImage">
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">delete_pressed.png</string>
+							<string key="NSResourceName">backspace-pressed.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage" id="48865375">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">delete.png</string>
+							<string key="NSResourceName">backspace-normal.png</string>
 						</object>
-						<reference key="IBUIHighlightedBackgroundImage" ref="48865375"/>
-						<reference key="IBUINormalBackgroundImage" ref="48865375"/>
 					</object>
 					<object class="IBUIButton" id="1006116493">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -88,8 +86,6 @@
 						<double key="IBUIImageEdgeInsets.bottom">0.000000e+00</double>
 						<double key="IBUIImageEdgeInsets.left">0.000000e+00</double>
 						<double key="IBUIImageEdgeInsets.right">5.000000e+00</double>
-						<string key="IBUIHighlightedTitle">Call</string>
-						<string key="IBUINormalTitle">Call</string>
 						<reference key="IBUIHighlightedTitleColor" ref="817066248"/>
 						<object class="NSColor" key="IBUINormalTitleColor" id="762398229">
 							<int key="NSColorSpace">1</int>
@@ -103,15 +99,17 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">answer.png</string>
 						</object>
-						<reference key="IBUINormalImage" ref="622330925"/>
-						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="390849338">
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">call-pressed.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUISelectedBackgroundImage" id="285792018">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">callblue.png</string>
 						</object>
-						<reference key="IBUISelectedBackgroundImage" ref="390849338"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">call.png</string>
+							<string key="NSResourceName">call-normal.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="554878694">
@@ -126,17 +124,18 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="227102048"/>
-						<string key="IBUIHighlightedTitle">VMS</string>
-						<string key="IBUINormalTitle">VMS</string>
 						<reference key="IBUIHighlightedTitleColor" ref="817066248"/>
 						<reference key="IBUINormalTitleColor" ref="762398229"/>
 						<reference key="IBUINormalTitleShadowColor" ref="106545694"/>
 						<reference key="IBUISelectedImage" ref="622330925"/>
-						<reference key="IBUIHighlightedBackgroundImage" ref="390849338"/>
-						<reference key="IBUISelectedBackgroundImage" ref="390849338"/>
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">vms-pressed.png</string>
+						</object>
+						<reference key="IBUISelectedBackgroundImage" ref="285792018"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">vms.png</string>
+							<string key="NSResourceName">vms-normal.png</string>
 						</object>
 					</object>
 					<object class="IBUIView" id="722111373">
@@ -222,7 +221,7 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="106545694"/>
-						<reference key="IBUINormalBackgroundImage" ref="390849338"/>
+						<reference key="IBUINormalBackgroundImage" ref="285792018"/>
 					</object>
 					<object class="IBUILabel" id="805596281">
 						<reference key="NSNextResponder" ref="191373211"/>

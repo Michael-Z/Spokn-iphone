@@ -177,6 +177,26 @@
 		8B81B4AD10318AC300A18DA1 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */; };
 		8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4B010318ADB00A18DA1 /* AddressBook.framework */; };
 		8B8626BE1084504C00718D16 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8626BD1084504C00718D16 /* whiteButton.png */; };
+		8B865760112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */; };
+		8B865761112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */; };
+		8B86577511203B3500E63C47 /* 320x460-watermark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86576C11203B3500E63C47 /* 320x460-watermark.png */; };
+		8B86577611203B3500E63C47 /* backspace-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86576D11203B3500E63C47 /* backspace-normal.png */; };
+		8B86577711203B3500E63C47 /* backspace-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86576E11203B3500E63C47 /* backspace-pressed.png */; };
+		8B86577811203B3500E63C47 /* blue-keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86576F11203B3500E63C47 /* blue-keypad.png */; };
+		8B86577911203B3500E63C47 /* call-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86577011203B3500E63C47 /* call-normal.png */; };
+		8B86577A11203B3500E63C47 /* call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86577111203B3500E63C47 /* call-pressed.png */; };
+		8B86577B11203B3500E63C47 /* grey-keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86577211203B3500E63C47 /* grey-keypad.png */; };
+		8B86577C11203B3500E63C47 /* vms-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86577311203B3500E63C47 /* vms-normal.png */; };
+		8B86577D11203B3500E63C47 /* vms-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86577411203B3500E63C47 /* vms-pressed.png */; };
+		8B86577E11203B3500E63C47 /* 320x460-watermark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86576C11203B3500E63C47 /* 320x460-watermark.png */; };
+		8B86577F11203B3500E63C47 /* backspace-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86576D11203B3500E63C47 /* backspace-normal.png */; };
+		8B86578011203B3500E63C47 /* backspace-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86576E11203B3500E63C47 /* backspace-pressed.png */; };
+		8B86578111203B3500E63C47 /* blue-keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86576F11203B3500E63C47 /* blue-keypad.png */; };
+		8B86578211203B3500E63C47 /* call-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86577011203B3500E63C47 /* call-normal.png */; };
+		8B86578311203B3500E63C47 /* call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86577111203B3500E63C47 /* call-pressed.png */; };
+		8B86578411203B3500E63C47 /* grey-keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86577211203B3500E63C47 /* grey-keypad.png */; };
+		8B86578511203B3500E63C47 /* vms-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86577311203B3500E63C47 /* vms-normal.png */; };
+		8B86578611203B3500E63C47 /* vms-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B86577411203B3500E63C47 /* vms-pressed.png */; };
 		8B906B7F1116D739000ED3F7 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B906B7D1116D739000ED3F7 /* bg.png */; };
 		8B906B801116D739000ED3F7 /* thumb_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B906B7E1116D739000ED3F7 /* thumb_blue.png */; };
 		8B906B811116D739000ED3F7 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B906B7D1116D739000ED3F7 /* bg.png */; };
@@ -724,6 +744,16 @@
 		8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		8B81B4B010318ADB00A18DA1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		8B8626BD1084504C00718D16 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteButton.png; sourceTree = "<group>"; };
+		8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B86576C11203B3500E63C47 /* 320x460-watermark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "320x460-watermark.png"; path = "Spokn buttons n icons/320x460-watermark.png"; sourceTree = "<group>"; };
+		8B86576D11203B3500E63C47 /* backspace-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backspace-normal.png"; path = "Spokn buttons n icons/backspace-normal.png"; sourceTree = "<group>"; };
+		8B86576E11203B3500E63C47 /* backspace-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backspace-pressed.png"; path = "Spokn buttons n icons/backspace-pressed.png"; sourceTree = "<group>"; };
+		8B86576F11203B3500E63C47 /* blue-keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue-keypad.png"; path = "Spokn buttons n icons/blue-keypad.png"; sourceTree = "<group>"; };
+		8B86577011203B3500E63C47 /* call-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "call-normal.png"; path = "Spokn buttons n icons/call-normal.png"; sourceTree = "<group>"; };
+		8B86577111203B3500E63C47 /* call-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "call-pressed.png"; path = "Spokn buttons n icons/call-pressed.png"; sourceTree = "<group>"; };
+		8B86577211203B3500E63C47 /* grey-keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "grey-keypad.png"; path = "Spokn buttons n icons/grey-keypad.png"; sourceTree = "<group>"; };
+		8B86577311203B3500E63C47 /* vms-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vms-normal.png"; path = "Spokn buttons n icons/vms-normal.png"; sourceTree = "<group>"; };
+		8B86577411203B3500E63C47 /* vms-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "vms-pressed.png"; path = "Spokn buttons n icons/vms-pressed.png"; sourceTree = "<group>"; };
 		8B906B7D1116D739000ED3F7 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		8B906B7E1116D739000ED3F7 /* thumb_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb_blue.png; sourceTree = "<group>"; };
 		8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDetailsviewcontroller.h; sourceTree = "<group>"; };
@@ -968,6 +998,7 @@
 				8B964B2B10CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
 				8BC51C51110863A200EC6597 /* AVFoundation.framework in Frameworks */,
+				8B865761112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1012,6 +1043,7 @@
 				8B964B2910CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B964B2A10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
 				8BC51C50110863A200EC6597 /* AVFoundation.framework in Frameworks */,
+				8B865760112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1238,6 +1270,7 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
+				8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */,
 				8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */,
 				8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */,
 				8B964B2110CBE78C00CB00DB /* libpjlib-util-i386-apple-darwin9.a */,
@@ -1474,6 +1507,15 @@
 		F2730CAF1070A9B300DF8852 /* rsc */ = {
 			isa = PBXGroup;
 			children = (
+				8B86576C11203B3500E63C47 /* 320x460-watermark.png */,
+				8B86576D11203B3500E63C47 /* backspace-normal.png */,
+				8B86576E11203B3500E63C47 /* backspace-pressed.png */,
+				8B86576F11203B3500E63C47 /* blue-keypad.png */,
+				8B86577011203B3500E63C47 /* call-normal.png */,
+				8B86577111203B3500E63C47 /* call-pressed.png */,
+				8B86577211203B3500E63C47 /* grey-keypad.png */,
+				8B86577311203B3500E63C47 /* vms-normal.png */,
+				8B86577411203B3500E63C47 /* vms-pressed.png */,
 				8BA111C3111C372D00433364 /* _keypad.png */,
 				8BA111C4111C372D00433364 /* _keypad_pressed.png */,
 				8BA11127111C2C5400433364 /* keypad-normal.png */,
@@ -1829,6 +1871,15 @@
 				8BA1112C111C2C5400433364 /* keypad-pressed.png in Resources */,
 				8BA111C7111C372D00433364 /* _keypad.png in Resources */,
 				8BA111C8111C372D00433364 /* _keypad_pressed.png in Resources */,
+				8B86577E11203B3500E63C47 /* 320x460-watermark.png in Resources */,
+				8B86577F11203B3500E63C47 /* backspace-normal.png in Resources */,
+				8B86578011203B3500E63C47 /* backspace-pressed.png in Resources */,
+				8B86578111203B3500E63C47 /* blue-keypad.png in Resources */,
+				8B86578211203B3500E63C47 /* call-normal.png in Resources */,
+				8B86578311203B3500E63C47 /* call-pressed.png in Resources */,
+				8B86578411203B3500E63C47 /* grey-keypad.png in Resources */,
+				8B86578511203B3500E63C47 /* vms-normal.png in Resources */,
+				8B86578611203B3500E63C47 /* vms-pressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2019,6 +2070,15 @@
 				8BA1112A111C2C5400433364 /* keypad-pressed.png in Resources */,
 				8BA111C5111C372D00433364 /* _keypad.png in Resources */,
 				8BA111C6111C372D00433364 /* _keypad_pressed.png in Resources */,
+				8B86577511203B3500E63C47 /* 320x460-watermark.png in Resources */,
+				8B86577611203B3500E63C47 /* backspace-normal.png in Resources */,
+				8B86577711203B3500E63C47 /* backspace-pressed.png in Resources */,
+				8B86577811203B3500E63C47 /* blue-keypad.png in Resources */,
+				8B86577911203B3500E63C47 /* call-normal.png in Resources */,
+				8B86577A11203B3500E63C47 /* call-pressed.png in Resources */,
+				8B86577B11203B3500E63C47 /* grey-keypad.png in Resources */,
+				8B86577C11203B3500E63C47 /* vms-normal.png in Resources */,
+				8B86577D11203B3500E63C47 /* vms-pressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

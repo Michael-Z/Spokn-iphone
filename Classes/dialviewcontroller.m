@@ -344,7 +344,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 -(void)setViewButton:(int)viewButton
 {
 	currentView = viewButton;
-	switch(currentView)
+	/*switch(currentView)
 	{
 		case 0:
 			[hangUpButtonP setTitle:@"VMS" forState:UIControlStateNormal];
@@ -353,7 +353,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			[hangUpButtonP setTitle:@"Hang" forState:UIControlStateNormal];
 			break;
 	}
-	
+	*/
 
 }
 - (void)stopTimer
@@ -462,7 +462,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		if([ownerobject makeCall:numbercharP])
 		{	
 			currentView = 1;
-			[hangUpButtonP setTitle:@"Hang" forState:UIControlStateNormal];
+			
 			numberlebelP.text = @"";
 			statusLabel1P.hidden = NO;
 			statusLabel2P.hidden = NO;

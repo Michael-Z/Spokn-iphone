@@ -217,7 +217,7 @@
 											   target:self 
 											   action:@selector(cancelPressed)] autorelease];
 	
-	[labelStatus setText:@"Connecting..."];
+	[labelStatus setText:_STATUS_CONNECTING_];
 	stopProgressB = false;
 
 }
@@ -490,14 +490,14 @@ titleForHeaderInSection:(NSInteger)section
 			switch(subStatus)
 			{
 				case LOGIN_STATUS_FAILED:
-					[labelStatus setText:@"Offline"];
+					[labelStatus setText:_STATUS_OFFLINE_];
 					//[labelStatus setText:@"Authentication failed"];
 					break;
 				case LOGIN_STATUS_NO_ACCESS:
-					[labelStatus setText:@"No Network"];
+					[labelStatus setText:_STATUS_NO_NETWORK_];
 					break;
 				default:
-					[labelStatus setText:@"Offline"];	
+					[labelStatus setText:_STATUS_OFFLINE_];	
 			}
 			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 													   initWithTitle:SIGN_IN_TEXT 
@@ -514,10 +514,10 @@ titleForHeaderInSection:(NSInteger)section
 			switch(subStatus)
 			{
 				case NO_WIFI_AVAILABLE:
-				[labelStatus setText:@"No wifi available"];
+				[labelStatus setText:_STATUS_NO_WIFI_];
 				break;
 				default:
-				[labelStatus setText:@"Online"];
+				[labelStatus setText:_STATUS_ONLINE_];
 			}
 			//[labelStatus setText:@"Online  "];
 			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
@@ -596,7 +596,7 @@ titleForHeaderInSection:(NSInteger)section
 	NSInteger row = [indexPath row];
 	NSInteger section = [indexPath section];
     
-	NSString *CellIdentifier = @"Cell";
+	NSString *CellIdentifier = nil;
     UILabel *label1;
 	UILabel *label2;
 	CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",section,row];
