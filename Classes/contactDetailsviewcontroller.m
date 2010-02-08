@@ -102,14 +102,16 @@
 					dispP.colorP =[[UIColor lightGrayColor] autorelease]; 
 					objStrP = "Name";
 					dispP.boldB = NO;
+					
 				}
 				else
 				{	
 					dispP.colorP = [[UIColor blackColor] autorelease];
 					dispP.boldB = YES;
-				}	
+				}
+				dispP.noChangeDimentationB = YES;
 				dispP.fntSz = 30;
-				//dispP.height = 60;
+				dispP.height = 100;
 			}
 			
 			

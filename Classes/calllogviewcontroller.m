@@ -490,7 +490,7 @@
 			if(secObjStrP)
 			{	
 				dispP = [ [displayData alloc] init];
-				dispP.left = 15;
+				dispP.left = 10;
 				dispP.top = 3;
 				dispP.width = 27;
 				dispP.textAlignmentType = UITextAlignmentRight;
