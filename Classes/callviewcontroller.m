@@ -261,7 +261,7 @@
 		char s1[20];
 		NSString *stringStrP;
 		//sprintf(s1,"%02d:%02d:%02d",tmLoc.tm_hour,tmLoc.tm_min,tmLoc.tm_sec);
-		sprintf(s1,"%02d:%02d:%02d",hour,min,sec);
+		sprintf(s1,"%02d:%02d",min,sec);
 		stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
 		[callTypeLabelP setText:stringStrP];
 		[stringStrP release];

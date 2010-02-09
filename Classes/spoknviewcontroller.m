@@ -47,7 +47,7 @@
 	self->imageName[1][1].imageNameP = _SPOKN_FORWARD_TO_PNG_;
 	self->imageName[2][0].imageNameP = _SPOKN_LOGO_PNG_;
 	self->imageName[2][1].imageNameP = _SPOKN_LOGO_PNG_;
-	self->imageName[3][0].imageNameP =0;
+	//self->imageName[3][0].imageNameP =0;
 	//self.imageName[1][1].imageNameP = @"";
 	listOfItems = [[NSMutableArray alloc] init] ;
 	for (int i = 0; i < MAXSECTION; i++)
@@ -246,15 +246,15 @@
 	tableView.scrollsToTop = YES;
 	tableView.delegate = self;
 	tableView.dataSource = self;
-	tableView.sectionHeaderHeight = tableView.sectionHeaderHeight-3;
-	tableView.sectionFooterHeight = 2;//tableView.sectionFooterHeight-2;   	
+	tableView.sectionHeaderHeight = tableView.sectionHeaderHeight+4;
+	tableView.sectionFooterHeight = tableView.sectionFooterHeight;   	
 	forwardNoCharP = malloc(100);
 	memset(forwardNoCharP,0,100);
 	if(stopProgressB==false)
 	[self startProgress];
 	
 	//[buttonCtlP setBackgroundColor:[UIColor greenColor]];
-	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn ID""\n"@"3Spokn Number""\n"@"4Buy Credits""\n"@"5About";//Spokn Number
+	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn ID""\n"@"3Spokn Number";//Spokn Number
 	NSArray *wordArray = [wordstring componentsSeparatedByString:@"\n"] ;
 	// [self->tableView initWithStyle :UITableViewStyleGrouped];
 	self->tableView.rowHeight = ROW_HEIGHT;
@@ -273,9 +273,52 @@
 	[aboutbuttonCtlP release];
 	self->tableView.tableFooterView = subview;
 	[subview release];
-			
+	
+//	buybuttonCtlP.enabled = NO;
+//	aboutbuttonCtlP.enabled = NO;
+	
 	switchView.on = NO;
 	switchView.enabled = NO;
+	
+/*	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
+											   initWithTitle:@"Buy Credits" 
+											   style:UIBarButtonItemStylePlain 
+											   target:self 
+											   action:@selector(buyCredit:)] autorelease];*/
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*buyCreditsButton = [[UIButton alloc] init];
+	// The default size for the save button is 49x30 pixels
+	buyCreditsButton.frame = CGRectMake(0, 0, 50, 30.0);
+	
+	// Center the text vertically and horizontally
+	buyCreditsButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+	buyCreditsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+	
+	UIImage *buttonBackground;
+	UIImage *buttonBackgroundPressed;
+	
+	
+	buttonBackground = [UIImage imageNamed:_TAB_DEL_NORMAL_PNG_];
+	buttonBackgroundPressed = [UIImage imageNamed:_TAB_DEL_PRESSED_PNG_];
+	[CustomButton setImages:buyCreditsButton image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
+	buyCreditsButton.backgroundColor =  [UIColor clearColor];	
+	
+	
+	//[buyCreditsButton setTitle:@"BUY" forState:UIControlStateNormal];
+	
+	[buyCreditsButton addTarget:self action:@selector(buyCredit:) forControlEvents:UIControlEventTouchUpInside];
+	
+	UIBarButtonItem *navButton = [[UIBarButtonItem alloc] initWithCustomView:buyCreditsButton];
+	
+	self.navigationItem.leftBarButtonItem = navButton;
+	
+	[navButton release];
+	[buyCreditsButton release];*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	
 	[ownerobject updateSpoknView:self];
 	
 	

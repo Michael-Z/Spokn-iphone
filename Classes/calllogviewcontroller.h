@@ -46,6 +46,7 @@
 	Boolean hideB;
 	long count;
 	int refreshB;
+	int lbold;
 	
 }
 -(int)missCallSetCount;

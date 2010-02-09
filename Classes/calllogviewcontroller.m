@@ -30,7 +30,11 @@
 #import "AddEditcontactViewController.h"
 #import "customcell.h"
 #include "alertmessages.h"
+
+
+
 @implementation CalllogViewController
+#define TEXTCOLOR 42/255.0 green:116/255.0 blue:217/255.0 alpha:1.0
 #pragma mark MISSEDCALL
 -(int)missCallSetCount
 {
@@ -270,6 +274,7 @@
 	char *addressBookTypeP = 0;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	
+	lbold = 0;
 	
 	objP = GetObjectAtIndex(showMisscallInt ,index);
 	if(objP)
@@ -367,7 +372,15 @@
 			switch(difftime)
 			{
 				case 0:
-					sprintf(s1,"%02d:%02d",tmP1.tm_hour,tmP1.tm_min);
+					if(tmP1.tm_hour<12)
+					{	
+						sprintf(s1,"%02d:%02d%s",tmP1.tm_hour,tmP1.tm_min,"AM");
+					}
+					else
+					{
+						sprintf(s1,"%02d:%02d%s",tmP1.tm_hour,tmP1.tm_min,"PM");
+					}	
+					lbold = 1;
 					break;
 				case 1:
 					sprintf(s1,"Yesterday");
@@ -381,6 +394,7 @@
 					else
 					{
 						sprintf(s1,"%3s %02d",month[tmP1.tm_mon],tmP1.tm_mday);
+						lbold = 1;
 					}
 					break;
 					
@@ -493,15 +507,24 @@
 				dispP.left = 10;
 				dispP.top = 3;
 				dispP.width = 27;
+				if(lbold)
+				{	
+					dispP.boldB = YES;
+				}
+				else
+				{
+					dispP.boldB = NO;
+				}	
 				dispP.textAlignmentType = UITextAlignmentRight;
 				dispP.height = 100;
 				stringStrP = [[NSString alloc] initWithUTF8String:secObjStrP ];
 				dispP.dataP = stringStrP;
 				[stringStrP release];
-				dispP.colorP = [[UIColor alloc] initWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0];
+				dispP.colorP = [[UIColor alloc] initWithRed:TEXTCOLOR];
 				dispP.fntSz = 14;
 				[dispP.colorP release];
 				[secLocP->elementP addObject:dispP];
+				lbold = 0;
 				
 				// [cell setNeedsDisplay];
 			}	
@@ -950,7 +973,7 @@ cancelButtonTitle: nil
 	
 	 
 	
-	
+	lbold = 0;
 	refreshB = 0;
 	
 	//self->fontGloP = [UIFont systemFontOfSize:16.0];
