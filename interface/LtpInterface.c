@@ -500,7 +500,15 @@ int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 			resetMissCallCount();
 			setLtpUserName(ltpInterfaceP,"");
 			setLtpPassword(ltpInterfaceP,"");
-		}	
+		}
+		else
+		{
+			if(ltpInterfaceP->ltpObjectP)
+			{	
+				if (ltpInterfaceP->ltpObjectP->ltpUserid[0])
+					profileSave();
+			}	
+		}
 		return 0;
 	}	
 	return 1;
