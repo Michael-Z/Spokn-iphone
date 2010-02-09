@@ -23,7 +23,7 @@
  */
 
 #define MAXVIEW 5
-#define MAXSECTION 5
+#define MAXSECTION 3
 #import <UIKit/UIKit.h>
 /*typedef struct SubViewDetails
 	{
@@ -52,6 +52,7 @@ typedef struct ImageNameType
 	UILabel *labelSpoknNo;
 	UILabel *labelSpoknID;
 	UISwitch *switchView;
+	UIButton *buyCreditsButton;
 	int viewResult;
 	char *forwardNoCharP;
 	int viewCallB;
