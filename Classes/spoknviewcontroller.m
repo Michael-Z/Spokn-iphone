@@ -26,7 +26,7 @@
 #import "spoknviewcontroller.h"
 #import "spoknAppDelegate.h"
 #import "LtpInterface.h"
-#define ALPHANUM @"1234"
+#define ALPHANUM @"12345"
 #define SIGN_IN_TEXT @"Change user" //@"Sign-in"
 #import  "AddeditcellController.h"
 #import "WebViewController.h"
@@ -246,15 +246,15 @@
 	tableView.scrollsToTop = YES;
 	tableView.delegate = self;
 	tableView.dataSource = self;
-//	tableView.sectionHeaderHeight = tableView.sectionHeaderHeight;
-	//tableView.sectionFooterHeight = 0;//tableView.sectionFooterHeight-2;   	
+	tableView.sectionHeaderHeight = tableView.sectionHeaderHeight-3;
+	tableView.sectionFooterHeight = 0;//tableView.sectionFooterHeight-2;   	
 	forwardNoCharP = malloc(100);
 	memset(forwardNoCharP,0,100);
 	if(stopProgressB==false)
 	[self startProgress];
 	
 	//[buttonCtlP setBackgroundColor:[UIColor greenColor]];
-	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn ID""\n"@"3Spokn Number""\n"@"4Buy Credits";//Spokn Number
+	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn ID""\n"@"3Spokn Number""\n"@"4Buy Credits""\n"@"5About";//Spokn Number
 	NSArray *wordArray = [wordstring componentsSeparatedByString:@"\n"] ;
 	// [self->tableView initWithStyle :UITableViewStyleGrouped];
 	self->tableView.rowHeight = ROW_HEIGHT;
@@ -606,7 +606,7 @@ titleForHeaderInSection:(NSInteger)section
 		
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 		
-		if([temp isEqualToString:@"Buy Credits"]==0)
+		if([temp isEqualToString:@"Buy Credits"]==0  && [temp isEqualToString:@"About"]==0)
 		{	
     
 			[uiImageViewP = [UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self->imageName[section][row].imageNameP ofType:@"png" inDirectory:@"/"]]];
@@ -624,26 +624,46 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		else
 		{
-			#ifdef __IPHONE_3_0
-				cell.textLabel.text = @"Buy Credits";
-				cell.textLabel.textAlignment = UITextAlignmentCenter;
-				cell.textLabel.textColor = SPOKNCOLOR;
-			#else
-				cell.text = @"Buy Credits";
-				cell.textAlignment = UITextAlignmentCenter;
-				cell.textColor = SPOKNCOLOR;
-			#endif	
-			cell.accessoryType = UITableViewCellAccessoryNone;
 			
-			if(statusInt)
+			if([temp isEqualToString:@"Buy Credits"])
 			{	
-				[cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+				#ifdef __IPHONE_3_0
+					cell.textLabel.text = @"Buy Credits";
+				#else
+					cell.text = @"Buy Credits";
+				#endif
+				if(statusInt)
+				{	
+					[cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+				}
+				else
+				{
+					[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+					
+				}	
+				cell.accessoryType = UITableViewCellAccessoryNone;
 			}
 			else
 			{
-				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-				
+				#ifdef __IPHONE_3_0
+								cell.textLabel.text = @"About";
+				#else
+								cell.text = @"About";
+				#endif
+				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			}
+			#ifdef __IPHONE_3_0
+				
+				cell.textLabel.textAlignment = UITextAlignmentCenter;
+				cell.textLabel.textColor = SPOKNCOLOR;
+			#else
+				
+				cell.textAlignment = UITextAlignmentCenter;
+				cell.textColor = SPOKNCOLOR;
+			#endif	
+			
+			
+			
 			
 			//[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
@@ -721,7 +741,8 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		else
 		{
-			if([temp isEqualToString:@"Buy Credits"]==0)
+			if([temp isEqualToString:@"Buy Credits"]==0  && [temp isEqualToString:@"About"]==0)
+
 			{
 				label2.textColor = SPOKNCOLOR;
 				[cell.contentView addSubview:label2];
@@ -797,7 +818,7 @@ titleForHeaderInSection:(NSInteger)section
 			}
 			//[switchView release];
 		}
-		if([temp isEqualToString:@"Buy Credits"])
+		if([temp isEqualToString:@"Buy Credits"] )//|| [temp isEqualToString:@"About"])
 		{
 			if(statusInt)
 			{	
@@ -839,8 +860,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	int section = [indexPath section];
 	if(section==0 && row==1 && statusInt)
 	{	
+		
 		WebViewController     *WebViewControllerviewP;	
-		WebViewControllerviewP = [WebViewController alloc];
+		WebViewControllerviewP = [[WebViewController alloc] init];
 		[WebViewControllerviewP setObject:self->ownerobject];
 		[ [self navigationController] pushViewController:WebViewControllerviewP animated: YES ];
 		[WebViewControllerviewP release];	
@@ -857,6 +879,23 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	if(section==3 && row==0 && statusInt)
 	{
 		[self buyCredit:nil];
+	}
+	if(section==4 && row==0 )
+	{
+		//[self buyCredit:nil];
+		NSString *urlAddress = [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"];
+		if(urlAddress)
+		{	
+			WebViewController     *WebViewControllerviewP;	
+			WebViewControllerviewP = [[WebViewController alloc] init];
+		
+			[WebViewControllerviewP setObject:self->ownerobject];
+			//-(void)setData:(NSString*)urlP noweb:(Boolean)lwebB;
+		
+			[WebViewControllerviewP setData:urlAddress web:NO];
+			[ [self navigationController] pushViewController:WebViewControllerviewP animated: YES ];
+			[WebViewControllerviewP release];	
+		}
 	}
 	
 }

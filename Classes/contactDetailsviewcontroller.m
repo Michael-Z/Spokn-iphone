@@ -31,7 +31,7 @@
 #import  "AddeditcellController.h"
 #import "vmailviewcontroller.h"
 #include "alertmessages.h"
-#define MAX_ROW_HIGHT 40
+#define MAX_ROW_HIGHT 42
 //self.navigationItem.leftBarButtonItem.enabled = YES;
 @implementation ContactDetailsViewController
 -(void)hideCallAndVmailButton:(Boolean)showB
@@ -708,6 +708,8 @@
 	if([addeditviewP retainCount]>1)
 		[addeditviewP release];*/
 	struct AddressBook *addressDataTmpP;
+	tableView.sectionHeaderHeight = tableView.sectionHeaderHeight+3;
+	tableView.sectionFooterHeight = 0;//tableView.sectionFooterHeight-2; 
 	
 	self.navigationItem.rightBarButtonItem 	= [ [ [ UIBarButtonItem alloc ] initWithBarButtonSystemItem: UIBarButtonSystemItemDone
 																			target: self
@@ -773,6 +775,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //	animationB = NO;
+	
 	self->addButtonP.exclusiveTouch = YES;
 	self->vmsButtonP.exclusiveTouch = YES;
 	self->callButtonP.exclusiveTouch = YES;
@@ -781,6 +784,8 @@
 	updatecontact = 0;
 	tableView.delegate = self;
 	tableView.dataSource = self;
+	//tableView.sectionHeaderHeight = tableView.sectionHeaderHeight+3;
+	//tableView.sectionFooterHeight = 0;//tableView.sectionFooterHeight-2;   	
 	loadedB = true;
 	
 	UIImage *buttonBackground;

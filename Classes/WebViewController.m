@@ -44,6 +44,14 @@
 
 
 }
+-(void)setData:(NSString*)urlP web:(Boolean)lwebB
+{
+	nowebB = !lwebB;
+	urlToLoadP = [[NSString alloc] initWithString:urlP];
+
+}
+
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,23 +65,39 @@
 	spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 	[spinner setCenter:CGPointMake(160, 250)];
 	[[self navigationController].view addSubview:spinner];
+	if(nowebB==NO)
+	{	
+		if(urlToLoadP==nil)
+		{	
+		
+			char * tempurl;
+			tempurl = getAccountPage();
+			urlToLoadP = [[NSString alloc] initWithUTF8String:tempurl];
+			free(tempurl);
+		}
+		
 	
-	NSString *urlAddress;
-	char * tempurl;
-	tempurl = getAccountPage();
-	urlAddress = [[NSString alloc] initWithUTF8String:tempurl];
-	free(tempurl);
-	//Create a URL object.
-	NSURL *url = [NSURL URLWithString:urlAddress];
+		//Create a URL object.
+		NSURL *url = [NSURL URLWithString:urlToLoadP];
 	
-	//URL Requst Object
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-	[self setTitle:@"Account history"];
+		//URL Requst Object
+		NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+		[self setTitle:@"Account history"];
 
-	//Load the request in the UIWebView.
-	[accountswebView loadRequest:requestObj];
-	[urlAddress release];
-	
+		//Load the request in the UIWebView.
+		[accountswebView loadRequest:requestObj];
+		[urlToLoadP release];
+		urlToLoadP = nil;
+	}
+	else
+	{
+		//NSString *urlAddress = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"pdf"];
+		
+		NSURL *url = [NSURL fileURLWithPath:urlToLoadP];
+		NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+		[accountswebView loadRequest:requestObj];
+		[self setTitle:@"About"];
+	}
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {    
 	[spinner stopAnimating];

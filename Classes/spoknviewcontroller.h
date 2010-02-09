@@ -23,7 +23,7 @@
  */
 
 #define MAXVIEW 5
-#define MAXSECTION 4
+#define MAXSECTION 5
 #import <UIKit/UIKit.h>
 /*typedef struct SubViewDetails
 	{

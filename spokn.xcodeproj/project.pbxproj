@@ -388,6 +388,8 @@
 		8BA9F5E01026E50D0082B6AE /* calllogviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9F5DE1026E50D0082B6AE /* calllogviewcontroller.m */; };
 		8BA9F5E11026E50D0082B6AE /* calllog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA9F5DF1026E50D0082B6AE /* calllog.xib */; };
 		8BAAB29E1042DA1800F3EE73 /* DECODE.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BAAB29D1042DA1800F3EE73 /* DECODE.c */; };
+		8BAD7A741121C07600ABBCC9 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 8BAD7A731121C07600ABBCC9 /* about.html */; };
+		8BAD7A751121C07600ABBCC9 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 8BAD7A731121C07600ABBCC9 /* about.html */; };
 		8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD86B4107F5222008FD911 /* WebViewController.m */; };
 		8BBD86B7107F5222008FD911 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD86B5107F5222008FD911 /* WebViewController.xib */; };
 		8BC51C411108633600EC6597 /* spoknaudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC51C401108633600EC6597 /* spoknaudio.m */; };
@@ -659,6 +661,7 @@
 		8BA9F5DE1026E50D0082B6AE /* calllogviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calllogviewcontroller.m; sourceTree = "<group>"; };
 		8BA9F5DF1026E50D0082B6AE /* calllog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = calllog.xib; sourceTree = "<group>"; };
 		8BAAB29D1042DA1800F3EE73 /* DECODE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DECODE.c; path = ../lib/gsm/DECODE.c; sourceTree = SOURCE_ROOT; };
+		8BAD7A731121C07600ABBCC9 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		8BBD86B3107F5222008FD911 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		8BBD86B4107F5222008FD911 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8BBD86B5107F5222008FD911 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -922,6 +925,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8BAD7A721121C07600ABBCC9 /* docs */,
 				8B1AE7221120625600A957EA /* spoknbuttonicon */,
 				8B1AE6E61120607B00A957EA /* FileToDelete */,
 				322FEC6B10EB22AA0086D15B /* Settings.bundle */,
@@ -1236,6 +1240,15 @@
 			path = rsc/Sounds;
 			sourceTree = "<group>";
 		};
+		8BAD7A721121C07600ABBCC9 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				8BAD7A731121C07600ABBCC9 /* about.html */,
+			);
+			name = docs;
+			path = rsc/docs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1425,6 +1438,7 @@
 				8BD0C55A1121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png in Resources */,
 				8BD0C5ED112165D400D05D74 /* black1.png in Resources */,
 				8BD0C6151121710600D05D74 /* callblue.png in Resources */,
+				8BAD7A751121C07600ABBCC9 /* about.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1541,6 +1555,7 @@
 				8BD0C5581121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png in Resources */,
 				8BD0C5EC112165D400D05D74 /* black1.png in Resources */,
 				8BD0C6141121710600D05D74 /* callblue.png in Resources */,
+				8BAD7A741121C07600ABBCC9 /* about.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

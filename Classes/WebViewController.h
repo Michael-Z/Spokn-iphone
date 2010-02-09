@@ -31,8 +31,12 @@
 	SpoknAppDelegate *ownerobject;
 	//UIActionSheet  *uiActionSheetP;
 	UIActivityIndicatorView *spinner;
+	NSString *urlToLoadP;
+	Boolean nowebB;//if true mean we need to downloaded from web
 	
 }
 @property (nonatomic, retain) UIWebView *accountswebView;
 -(void)setObject:(id) object;
+-(void)setData:(NSString*)urlP web:(Boolean)lwebB;
+
 @end

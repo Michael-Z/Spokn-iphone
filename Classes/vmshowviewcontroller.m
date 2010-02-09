@@ -1526,6 +1526,8 @@ id createImage(float percentage)
 
 	tableView.delegate = self;
 	tableView.dataSource = self;
+	//tableView.sectionHeaderHeight = tableView.sectionHeaderHeight+7;
+	//tableView.sectionFooterHeight = 0;//tableView.sectionFooterHeight-2;   	
 	tableView.scrollEnabled = NO;
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
