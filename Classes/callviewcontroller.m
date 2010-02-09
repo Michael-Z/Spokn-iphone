@@ -46,8 +46,13 @@
 - (void)keyPressedDown:(NSString *)stringkey keycode:(int)keyVal
 {
 	
-	NSString *curText = [dtmfLabelP text];
-	[dtmfLabelP setText: [curText stringByAppendingString: stringkey]];
+	if(delTextB)
+	{	
+		[callnoLabelP setText:@""];
+		delTextB = NO;
+	}
+	NSString *curText = [callnoLabelP text];
+	[callnoLabelP setText: [curText stringByAppendingString: stringkey]];
 	//char numberchar[5]={0};
 	//numberchar[0] = keyVal;
 	char *numbercharP;
@@ -87,15 +92,14 @@
 	self.title = @"Call";
 	self->showContactCallOnDelegate = nil;
 	//[ownerobject setStatusBarStyle:UIStatusBarStyleBlackTranslucent animation:NO];
-	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleBlackTranslucent;
+	
 	SetSpeakerOnOrOff(0,false);
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
 	callnoLabelP.backgroundColor = [UIColor clearColor];
 	[ callnoLabelP setOpaque:YES];
-	/*[self.view setBackgroundColor:[[[UIColor alloc] 
-									initWithPatternImage:[UIImage imageNamed:@"spokncall.png"]]
-								   autorelease]];	*/
+	//prvStyle = [UIApplication sharedApplication] .statusBarStyle;
+	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleBlackOpaque;
 	[self.view setBackgroundColor:[[[UIColor alloc] 
 									 initWithPatternImage:[UIImage imageNamed:_CALL_WATERMARK_PNG_]]
 									autorelease]];
@@ -105,7 +109,12 @@
 	[callnoLabelP setText:labelStrP];
 	[callTypeLabelP setText:labeltypeStrP];
 	callTypeLabelP.backgroundColor = [UIColor clearColor];
-	
+	[self->topViewP setBackgroundColor:[[[UIColor alloc] 
+									initWithPatternImage:[UIImage imageNamed:@"black1.png"]]
+								   autorelease]];	
+	[self->bottomViewP setBackgroundColor:[[[UIColor alloc] 
+									initWithPatternImage:[UIImage imageNamed:@"black1.png"]]
+								   autorelease]];	
 
 	self->viewKeypadP.hidden = YES;
 	self->hideKeypadButtonP.hidden = YES;
@@ -254,7 +263,7 @@
 		//sprintf(s1,"%02d:%02d:%02d",tmLoc.tm_hour,tmLoc.tm_min,tmLoc.tm_sec);
 		sprintf(s1,"%02d:%02d:%02d",hour,min,sec);
 		stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
-		[timeLabelP setText:stringStrP];
+		[callTypeLabelP setText:stringStrP];
 		[stringStrP release];
 		
 	}
@@ -376,6 +385,20 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	
 	
 }
+-(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+{
+	if(delTextB)
+	{
+		self->viewMenuP.hidden = YES;
+	}
+	else
+	{
+		self->viewKeypadP.hidden = YES;
+	}
+
+}
+
+
 -(IBAction)keypadPressed:(id)sender
 {
 	if(self->viewKeypadP.hidden==YES)
@@ -387,28 +410,35 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 							   forView:self->viewKeypadP cache:YES];
 		
 		self->viewKeypadP.hidden = NO;
+		//[UIView setAnimationDelegate:self];
+		//[UIView setAnimationDidStopSelector: @selector(animationDidStop)];
+		 [UIView commitAnimations];
 		self->hideKeypadButtonP.hidden = NO;
 		self->endCallKeypadButtonP.hidden = NO;
 		self->viewMenuP.hidden = YES;
 		self->endCallButtonP.hidden = YES;
-		 [UIView commitAnimations];
+		delTextB = YES;
 				
 	}
 	else
 	{
+		delTextB = NO;
+		[callnoLabelP setText:labelStrP];
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.5];
 		
 		[UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight
 							   forView:self->viewMenuP  cache:YES];
 		
+		[UIView setAnimationDidStopSelector: @selector(animationDidStop:)];
+
+		self->viewMenuP.hidden = NO;
+		
+		 [UIView commitAnimations];
 		self->viewKeypadP.hidden = YES;
 		self->hideKeypadButtonP.hidden = YES;
 		self->endCallKeypadButtonP.hidden = YES;
-		self->viewMenuP.hidden = NO;
 		self->endCallButtonP.hidden = NO;
-		 [UIView commitAnimations];
-
 	}
 }
 -(void)setLabel:(NSString *)strP :(NSString *)strtypeP
@@ -437,6 +467,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 
 - (void)dealloc {
+	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleDefault ;
 	[showContactCallOnDelegate objectDestory];
 	[ownerobject playcallendTone];
 	//SetSpeakerOnOrOff(0,true);

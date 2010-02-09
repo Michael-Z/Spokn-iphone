@@ -37,14 +37,16 @@
 
 @interface CallViewController : UIViewController<KeypadProtocol,UIActionSheetDelegate> {
 	IBOutlet UILabel *callnoLabelP;
-	IBOutlet UILabel *timeLabelP;
-	IBOutlet UILabel *dtmfLabelP;
+	//IBOutlet UILabel *timeLabelP;
+	//IBOutlet UILabel *dtmfLabelP;
 	IBOutlet UIView  *viewMenuP;
 	IBOutlet UILabel *callTypeLabelP;
 	IBOutlet Keypadview  *viewKeypadP;
 	IBOutlet UIButton  *endCallButtonP;
 	IBOutlet UIButton  *hideKeypadButtonP;
 	IBOutlet UIButton  *endCallKeypadButtonP;
+	IBOutlet UIView    *topViewP;
+	IBOutlet UIView    *bottomViewP;
 	SpoknAppDelegate *ownerobject;
 	NSTimer *calltimerP;//this timer for call duration
 	Boolean onLineB;
@@ -55,9 +57,10 @@
 	Boolean navBarShow;
 	Boolean  actualDismissB;
 	Boolean loadedB;
+	Boolean delTextB;
 	id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 	//Boolean needTOStartTimerB;
-	
+	int sendCallRequestB; 
 
 }
 -(void)setObject:(id) object ;
@@ -72,7 +75,7 @@
 -(IBAction)HoldPressed:(id)sender;
 -(IBAction)addContactPressed:(id)sender;
 - (void) handleCallEndTimer: (id) timer;
-
+-(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;
 @property (readwrite,assign) id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 
 @end

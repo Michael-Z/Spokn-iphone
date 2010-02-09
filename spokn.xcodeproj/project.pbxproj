@@ -400,6 +400,14 @@
 		8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */; };
 		8BCEEB2D104AD235001DF4AC /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCEEB2C104AD235001DF4AC /* OverlayView.xib */; };
 		8BCF516510C50E90004BD8C3 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BCF516410C50E90004BD8C3 /* Entitlements.plist */; };
+		8BD0C5571121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C5551121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png */; };
+		8BD0C5581121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C5561121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png */; };
+		8BD0C5591121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C5551121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png */; };
+		8BD0C55A1121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C5561121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png */; };
+		8BD0C5EC112165D400D05D74 /* black1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C5EB112165D400D05D74 /* black1.png */; };
+		8BD0C5ED112165D400D05D74 /* black1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C5EB112165D400D05D74 /* black1.png */; };
+		8BD0C6141121710600D05D74 /* callblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C6131121710600D05D74 /* callblue.png */; };
+		8BD0C6151121710600D05D74 /* callblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C6131121710600D05D74 /* callblue.png */; };
 		8BD982EC10C400E0002793BE /* callviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD982EB10C400E0002793BE /* callviewcontroller.xib */; };
 		8BE3E2F11084D100008CB625 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3E2EF1084D100008CB625 /* Reachability.m */; };
 		8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */; };
@@ -666,6 +674,10 @@
 		8BCEEAED104ACC87001DF4AC /* overlayviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = overlayviewcontroller.h; sourceTree = "<group>"; };
 		8BCEEB2C104AD235001DF4AC /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		8BCF516410C50E90004BD8C3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		8BD0C5551121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_deleteconfirm_302_45_normal.png; sourceTree = "<group>"; };
+		8BD0C5561121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_deleteconfirm_302_45_pressed.png; sourceTree = "<group>"; };
+		8BD0C5EB112165D400D05D74 /* black1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black1.png; sourceTree = "<group>"; };
+		8BD0C6131121710600D05D74 /* callblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = callblue.png; sourceTree = "<group>"; };
 		8BD982EB10C400E0002793BE /* callviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = callviewcontroller.xib; sourceTree = "<group>"; };
 		8BE3E2EF1084D100008CB625 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8BE3E2F01084D100008CB625 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -946,6 +958,10 @@
 		8B1AE7221120625600A957EA /* spoknbuttonicon */ = {
 			isa = PBXGroup;
 			children = (
+				8BD0C6131121710600D05D74 /* callblue.png */,
+				8BD0C5EB112165D400D05D74 /* black1.png */,
+				8BD0C5551121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png */,
+				8BD0C5561121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png */,
 				8B1AEA0B11206A6500A957EA /* vmsicons */,
 				8B1AEA0111206A5100A957EA /* calllog */,
 				8B1AE9FA112069AA00A957EA /* Default.png */,
@@ -1405,6 +1421,10 @@
 				8B1AEA1B11206A6500A957EA /* vm_icons_outgoing_undelivered.png in Resources */,
 				8B1AEA1C11206A6500A957EA /* vmail_out_newHigh.png in Resources */,
 				8B1AEA1D11206A6500A957EA /* vms_out_Active.png in Resources */,
+				8BD0C5591121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png in Resources */,
+				8BD0C55A1121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png in Resources */,
+				8BD0C5ED112165D400D05D74 /* black1.png in Resources */,
+				8BD0C6151121710600D05D74 /* callblue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1517,6 +1537,10 @@
 				8B1AEA1511206A6500A957EA /* vm_icons_outgoing_undelivered.png in Resources */,
 				8B1AEA1611206A6500A957EA /* vmail_out_newHigh.png in Resources */,
 				8B1AEA1711206A6500A957EA /* vms_out_Active.png in Resources */,
+				8BD0C5571121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png in Resources */,
+				8BD0C5581121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png in Resources */,
+				8BD0C5EC112165D400D05D74 /* black1.png in Resources */,
+				8BD0C6141121710600D05D74 /* callblue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

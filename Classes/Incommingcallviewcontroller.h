@@ -29,16 +29,21 @@
 
 //IncommingCallType *ownerobject;
 @interface IncommingCallViewController : UIViewController {
-	IBOutlet UILabel *incomingStatusLabelP;
+	IBOutlet UILabel *nameLabelP;
+	IBOutlet UILabel *statusLabelP;
 	SpoknAppDelegate *ownerobject;
 	IncommingCallType *ltpInDataP;
 	IBOutlet CustomButton *ansP;//ans button
 	IBOutlet CustomButton *declineP;//ans button
+	IBOutlet UIView *topViewP;
+	IBOutlet UIView *bottomViewP;
 	LtpInterfaceType *ltpInterfacesP;
 	//NSString *textProP;
-	NSMutableString *textProP;
+	NSString *statusStrP;
+	NSString *nameStrP;
 	int buttonPressedB;
 	int acceptPressedB;
+	//UIBarStyle prvStyle;
 	
 }
 

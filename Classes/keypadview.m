@@ -44,14 +44,15 @@
 	pressedImageP = [[UIImage imageNamed:pressedImgP] retain];
 	CGRect tmpBound;
 	tmpBound = self.bounds;
-	
+	tmpBound.origin.x += (tmpBound.size.width-keypadImageP.size.width)/2;
+	tmpBound.origin.y += (tmpBound.size.height-keypadImageP.size.height)/2;
 	tmpBound.size.width = keypadImageP.size.width;
 	tmpBound.size.height = keypadImageP.size.height;
 	self.bounds = tmpBound;
 	tmpBound = self.frame;
 	tmpBound.size.width = keypadImageP.size.width;
 	tmpBound.size.height = keypadImageP.size.height;
-
+	
 	self.frame = tmpBound;
 	//self.backgroundColor = [UIColor redColor];
 

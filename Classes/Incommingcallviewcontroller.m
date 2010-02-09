@@ -42,7 +42,8 @@
 -(id)initVariable
 {
 	
-	textProP = [[NSMutableString alloc] init];
+	statusStrP =nil;
+	nameStrP = nil;
 	return self;
 }
 - (void) viewDidDisappear:(BOOL)animated
@@ -56,10 +57,14 @@
 	acceptPressedB = NO;
 	buttonPressedB = NO;
     [super viewDidLoad];
+	
+	[UIApplication sharedApplication] .statusBarStyle = UIBarStyleBlackOpaque;
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"IncommingCall" image:nil tag:2];
-	incomingStatusLabelP.backgroundColor = [UIColor clearColor];
-	[incomingStatusLabelP setText:textProP];
+	nameLabelP.backgroundColor = [UIColor clearColor];
+	statusLabelP.backgroundColor = [UIColor clearColor];
+	[nameLabelP setText:nameStrP];
+	[statusLabelP setText:statusStrP];
 	/*[self.view setBackgroundColor:[[[UIColor alloc] 
 									initWithPatternImage:[UIImage imageNamed:@"spokncall.png"]]
 								   autorelease]];	*/
@@ -83,6 +88,12 @@
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	declineP.backgroundColor =  [UIColor clearColor];
+	[self->topViewP setBackgroundColor:[[[UIColor alloc] 
+										 initWithPatternImage:[UIImage imageNamed:@"black1.png"]]
+										autorelease]];	
+	[self->bottomViewP setBackgroundColor:[[[UIColor alloc] 
+											initWithPatternImage:[UIImage imageNamed:@"black1.png"]]
+										   autorelease]];	
 	
 
 }
@@ -110,7 +121,10 @@
 
 
 - (void)dealloc {
-	[self->textProP release];
+	
+	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleDefault;
+	[self->nameStrP release];
+	[self->statusStrP release];
     [super dealloc];
 }
 -(IBAction)Accept:(id)sender
@@ -120,6 +134,7 @@
 	acceptPressedB = 1;
 	//[ownerobject.tabBarController dismissModalViewControllerAnimated:NO];
 	buttonPressedB =YES;
+//	[UIApplication sharedApplication] .statusBarStyle = prvStyle;
 	[self retain];
 	[self->ownerobject AcceptCall:self->ltpInDataP];
 	[self autorelease];
@@ -130,6 +145,7 @@
 	if(buttonPressedB)
 		return;
 	buttonPressedB =YES;	
+	//[UIApplication sharedApplication] .statusBarStyle = prvStyle;
 	[self retain];
 	[self->ownerobject RejectCall:self->ltpInDataP];
 	[self autorelease];
@@ -144,25 +160,28 @@
 -(void)setIncommingData:(IncommingCallType *)lltpInDataP
 {
 	NSString *nsp;
+	
 	struct AddressBook *addressP;
 	self->ltpInDataP = lltpInDataP;
+	char type [40];
 	if(self->ltpInDataP==0)
 	{
 		return;
 	}
-	addressP = getContactAndTypeCall(self->ltpInDataP->userIdChar,0);
+	addressP = getContactAndTypeCall(self->ltpInDataP->userIdChar,type);
 	if(addressP)
 	{
-		nsp = [[NSString alloc] initWithUTF8String:addressP->title] ;
+		nameStrP = [[ NSString alloc ] initWithUTF8String:addressP->title];
+		statusStrP = [[ NSString alloc ] initWithUTF8String:type];
 		
 	}
 	else
 	{	
-		nsp = [[NSString alloc] initWithUTF8String:self->ltpInDataP->userIdChar ];
+		nameStrP = [[ NSString alloc ] initWithUTF8String:self->ltpInDataP->userIdChar];
+		statusStrP = [[ NSString alloc ] initWithUTF8String:"Unknown"];
+
+		
 	}
-	[self->textProP setString:@"Incoming call\n"];
-	[self->textProP appendString:nsp];
-	[nsp release];
-	
+		
 }
 @end
