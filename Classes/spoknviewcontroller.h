@@ -23,7 +23,7 @@
  */
 
 #define MAXVIEW 5
-#define MAXSECTION 3
+#define MAXSECTION 4
 #import <UIKit/UIKit.h>
 /*typedef struct SubViewDetails
 	{
@@ -36,13 +36,13 @@ typedef struct ImageNameType
 		NSString *imageNameP;
 	}ImageNameType;
 #define MAXIMAGE 6
+
 @class SpoknAppDelegate;
 @interface SpoknViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
 	
 	SpoknAppDelegate *ownerobject;
 	//SubViewDetails subViewDetails[MAXVIEW];
 	IBOutlet UITableView *tableView;
-	IBOutlet UIButton *buttonCtlP;
 	NSMutableArray *listOfItems;
 	UILabel *labelBalance;
 	UILabel *labelStatus;
@@ -54,13 +54,13 @@ typedef struct ImageNameType
 	char *forwardNoCharP;
 	int viewCallB;
 	int stopProgressB;
-	ImageNameType imageName[3][MAXIMAGE];
+	ImageNameType imageName[MAXSECTION][MAXIMAGE];
 	UIActivityIndicatorView *activityIndicator;
 	int statusInt;
 	
 
 }
--(IBAction)buyCredit:(id)sender;
+-(void)buyCredit:(id)sender;
 -(void)setObject:(id) object ;
 -(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward spoknID:(char*)spoknLoginId;
 - (IBAction)switchChange:(UISwitch*)sender;

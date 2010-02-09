@@ -26,14 +26,14 @@
 #import "spoknviewcontroller.h"
 #import "spoknAppDelegate.h"
 #import "LtpInterface.h"
-#define ALPHANUM @"123"
+#define ALPHANUM @"1234"
 #define SIGN_IN_TEXT @"Change user" //@"Sign-in"
 #import  "AddeditcellController.h"
 #import "WebViewController.h"
 #include "ua.h"
 #import "alertmessages.h"
 #define SPOKNCOLOR [UIColor colorWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0]
-#define ROW_HEIGHT 42
+#define ROW_HEIGHT 40
 
 
 @implementation SpoknViewController
@@ -47,9 +47,10 @@
 	self->imageName[1][1].imageNameP = _SPOKN_FORWARD_TO_PNG_;
 	self->imageName[2][0].imageNameP = _SPOKN_LOGO_PNG_;
 	self->imageName[2][1].imageNameP = _SPOKN_LOGO_PNG_;
+	self->imageName[3][0].imageNameP =0;
 	//self.imageName[1][1].imageNameP = @"";
 	listOfItems = [[NSMutableArray alloc] init] ;
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < MAXSECTION; i++)
 	{
 		NSMutableArray *nSMutableArrayP;
 		nSMutableArrayP = [[NSMutableArray alloc] init] ;
@@ -139,7 +140,7 @@
 		CGRect statusFrame1 = CGRectMake(112, 3, 178, ROW_HEIGHT-8);
 
 		CGRect LabelFrame2 = CGRectMake(160, 0, 117, ROW_HEIGHT-5);
-		CGRect LabelFrame3 = CGRectMake(160, 0, 127, ROW_HEIGHT-5);
+		CGRect LabelFrame3 = CGRectMake(160, 0, 130, ROW_HEIGHT-5);
 		[self.tabBarItem initWithTitle:@"My Spokn" image:[UIImage imageNamed:_TAB_MY_SPOKN_PNG_] tag:5];
 		labelBalance = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelBalance.textAlignment = UITextAlignmentRight;
@@ -159,7 +160,7 @@
 		labelSpoknID.textAlignment = UITextAlignmentRight;
 		labelSpoknID.tag = 6;
 		
-		switchView = [[UISwitch alloc] initWithFrame: CGRectMake(200.0f, 10, 30.0f, 28.0f)]; 
+		switchView = [[UISwitch alloc] initWithFrame: CGRectMake(205.0f, 7.0f, 94.0f, 27.0f)]; 
 		[switchView setTag:3]; 
 		[switchView addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
 		activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
@@ -245,31 +246,25 @@
 	tableView.scrollsToTop = YES;
 	tableView.delegate = self;
 	tableView.dataSource = self;
-	   	
+//	tableView.sectionHeaderHeight = tableView.sectionHeaderHeight;
+	//tableView.sectionFooterHeight = 0;//tableView.sectionFooterHeight-2;   	
 	forwardNoCharP = malloc(100);
 	memset(forwardNoCharP,0,100);
 	if(stopProgressB==false)
 	[self startProgress];
 	
 	//[buttonCtlP setBackgroundColor:[UIColor greenColor]];
-	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn ID""\n"@"3Spokn Number";//Spokn Number
+	NSString *wordstring = @"1Status""\n"@"1Account Balance""\n"@"2Call Forwarding""\n"@"2Forwarding to""\n"@"3Spokn ID""\n"@"3Spokn Number""\n"@"4Buy Credits";//Spokn Number
 	NSArray *wordArray = [wordstring componentsSeparatedByString:@"\n"] ;
 	// [self->tableView initWithStyle :UITableViewStyleGrouped];
 	self->tableView.rowHeight = ROW_HEIGHT;
 	//self->tableView.backgroundColor = [UIColor whiteColor];
 	
-	UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 74.0f)];
-	[buttonCtlP setFrame:CGRectMake(7,0,306,40)];
-	[subview addSubview:buttonCtlP];
-	[buttonCtlP release];
-	self->tableView.tableFooterView = subview;
-	[subview release];
-	// Build the sorted section array
+		// Build the sorted section array
 	[self createSectionList:wordArray];
 	//[wordArray release];
 	
-		buttonCtlP.enabled = NO;
-	
+			
 	switchView.on = NO;
 	switchView.enabled = NO;
 	[ownerobject updateSpoknView:self];
@@ -365,7 +360,6 @@
 	[labelSpoknID release];
 	[switchView release];
 	
-	[buttonCtlP release];
 	[listOfItems release];
 	//[label release];
 	if(forwardNoCharP)
@@ -425,6 +419,16 @@ titleForHeaderInSection:(NSInteger)section
 	return ROW_HEIGHT;
 	
 }
+/*
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return 32.0;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+	return 32.0;
+}
+ */
 -(void)setDetails:(char *)titleCharP :(int )lstatusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward spoknID:(char*)spoknLoginId
 {
 	balance = balance/100;
@@ -472,15 +476,8 @@ titleForHeaderInSection:(NSInteger)section
 		[self->tableView reloadData];
 		
 	}
-	if(statusInt)
-	{
-		buttonCtlP.enabled = YES;
-	}
-	else
-	{
-		buttonCtlP.enabled = NO;
-	}
 	
+		
 	
 	switch(lstatusInt)
 	{
@@ -608,21 +605,49 @@ titleForHeaderInSection:(NSInteger)section
 		UIImageView *uiImageViewP;
 		
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-    
-    
-		[uiImageViewP = [UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self->imageName[section][row].imageNameP ofType:@"png" inDirectory:@"/"]]];
 		
-		uiImageViewP.frame = CGRectMake(4, 8, 25, 25);
-		[cell.contentView addSubview:uiImageViewP];
-		//cell.text = [mycell objectAtIndex:0];
-		//cell.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spoknlog" ofType:@"png" inDirectory:@"/"]];
-		CGRect LabelFrame1 = CGRectMake(32, 0, 150, 40);
-		label1 = [[UILabel alloc] initWithFrame:LabelFrame1];
-		label1.text = temp;
-		label1.font = [UIFont boldSystemFontOfSize:15];
-		[cell.contentView addSubview:label1];
-		[label1 release];
+		if([temp isEqualToString:@"Buy Credits"]==0)
+		{	
+    
+			[uiImageViewP = [UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self->imageName[section][row].imageNameP ofType:@"png" inDirectory:@"/"]]];
 		
+			uiImageViewP.frame = CGRectMake(4, 8, 25, 25);
+			[cell.contentView addSubview:uiImageViewP];
+			//cell.text = [mycell objectAtIndex:0];
+			//cell.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spoknlog" ofType:@"png" inDirectory:@"/"]];
+			CGRect LabelFrame1 = CGRectMake(32, 0, 150, ROW_HEIGHT-2);
+			label1 = [[UILabel alloc] initWithFrame:LabelFrame1];
+			label1.text = temp;
+			label1.font = [UIFont boldSystemFontOfSize:15];
+			[cell.contentView addSubview:label1];
+			[label1 release];
+		}
+		else
+		{
+			#ifdef __IPHONE_3_0
+				cell.textLabel.text = @"Buy Credits";
+				cell.textLabel.textAlignment = UITextAlignmentCenter;
+				cell.textLabel.textColor = SPOKNCOLOR;
+			#else
+				cell.text = @"Buy Credits";
+				cell.textAlignment = UITextAlignmentCenter;
+				cell.textColor = SPOKNCOLOR;
+			#endif	
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			
+			if(statusInt)
+			{	
+				[cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+			}
+			else
+			{
+				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+				
+			}
+			
+			//[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
+		}
 		//CGRect LabelFrame2 = CGRectMake(200, 0, 100, 40);
 		//label2 = [[UILabel alloc] initWithFrame:LabelFrame2];
 		//label2.textAlignment = UITextAlignmentRight;
@@ -696,9 +721,12 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		else
 		{
-			label2.textColor = SPOKNCOLOR;
-			[cell.contentView addSubview:label2];
-			//[label2 release];
+			if([temp isEqualToString:@"Buy Credits"]==0)
+			{
+				label2.textColor = SPOKNCOLOR;
+				[cell.contentView addSubview:label2];
+			}
+				//[label2 release];
 		}
 	}	
 	else
@@ -769,6 +797,19 @@ titleForHeaderInSection:(NSInteger)section
 			}
 			//[switchView release];
 		}
+		if([temp isEqualToString:@"Buy Credits"])
+		{
+			if(statusInt)
+			{	
+				[cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+			}
+			else
+			{
+				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+				
+			}
+		
+		}
 		
 		
 	}
@@ -813,11 +854,14 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		}	
 	}
 	[ltableView deselectRowAtIndexPath : indexPath animated:YES];
-	
+	if(section==3 && row==0 && statusInt)
+	{
+		[self buyCredit:nil];
+	}
 	
 }
 
--(IBAction)buyCredit:(id)sender
+-(void)buyCredit:(id)sender
 {
 	char *tmp;
 	NSString *srtrP;
