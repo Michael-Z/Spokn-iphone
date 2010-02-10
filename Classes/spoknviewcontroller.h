@@ -52,7 +52,7 @@ typedef struct ImageNameType
 	UILabel *labelSpoknNo;
 	UILabel *labelSpoknID;
 	UISwitch *switchView;
-	UIButton *buyCreditsButton;
+	//UIButton *buyCreditsButton;
 	int viewResult;
 	char *forwardNoCharP;
 	int viewCallB;

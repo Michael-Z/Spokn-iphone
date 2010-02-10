@@ -296,9 +296,9 @@
 	//char *addressBookNameP = 0;
 	//char *addressBookTypeP = 0;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+	char *ampmCharP=0;
 	
-	
-	
+	lbold = 0;
 	objP = GetObjectAtIndex(showFailInt ,index);
 	if(objP)
 	{
@@ -396,7 +396,28 @@
 			switch(difftime)
 			{
 				case 0:
-					sprintf(s1,"%02d:%02d",tmP1.tm_hour,tmP1.tm_min);
+					if(tmP1.tm_hour<12)
+					{	
+						//sprintf(s1,"%02d:%02d %s",tmP1.tm_hour,tmP1.tm_min,"AM");
+						if(tmP1.tm_hour==0)//mid night
+						{
+							tmP1.tm_hour = 12;
+						}
+						sprintf(s1,"%02d:%02d",tmP1.tm_hour,tmP1.tm_min);
+						ampmCharP = " AM";
+					}
+					else
+					{
+						if(tmP1.tm_hour>12)//mid night
+						{
+							tmP1.tm_hour-= 12;
+						}
+						//sprintf(s1,"%02d:%02d %s",tmP1.tm_hour,tmP1.tm_min,"PM");
+						sprintf(s1,"%02d:%02d",tmP1.tm_hour,tmP1.tm_min);
+						ampmCharP = " PM";
+					}	
+					
+					lbold = 1;
 				break;
 				case 1:
 					sprintf(s1,"Yesterday");
@@ -501,7 +522,7 @@
 			//dispP.top = 0;
 			if(secObjStrP)
 			{	
-				dispP.width = 55;
+				dispP.width = 53;
 			}
 			else
 			{
@@ -589,15 +610,31 @@
 				dispP.left = 0;
 				dispP.top = 5;
 				dispP.width = 25;
-				dispP.boldB = YES;
+				if(ampmCharP==NULL)
+				{	
+					dispP.width = 28;
+					
+				}
+				else {
+					dispP.width = 20;
+				}
+				
+				if(lbold)
+				{	
+					dispP.boldB = YES;
+				}
+				else
+				{
+					dispP.boldB = NO;
+				}
 				dispP.textAlignmentType = UITextAlignmentRight;
 				dispP.height = 90;
-				if(vmailP->status==VMAIL_FAILED)
+				/*if(vmailP->status==VMAIL_FAILED)
 				{
 					dispP.colorP = [UIColor colorWithRed:_REDCOLOR_];
 				}
 				else
-				{
+				*/{
 					dispP.colorP = [UIColor colorWithRed:_TEXTCOLOR_];//[UIColor blackColor];
 					//[dispP.colorP release];
 					
@@ -610,7 +647,27 @@
 				dispP.fntSz = 14;
 				//[dispP.colorP release];
 				[secLocP->elementP addObject:dispP];
-				
+				lbold = 0;
+				if(ampmCharP)
+				{
+					dispP = [ [displayData alloc] init];
+					dispP.left = 0;
+					dispP.top = 3;
+					dispP.width = 8;
+					dispP.boldB = NO;
+					dispP.textAlignmentType = UITextAlignmentRight;
+					dispP.height = 100;
+					stringStrP = [[NSString alloc] initWithUTF8String:ampmCharP ];
+					dispP.dataP = stringStrP;
+					[stringStrP release];
+					dispP.colorP = [[UIColor alloc] initWithRed:_TEXTCOLOR_];
+					dispP.fntSz = 14;
+					[dispP.colorP release];
+					[secLocP->elementP addObject:dispP];
+					
+					
+				}
+
 				// [cell setNeedsDisplay];
 			}	
 			if(typeCallP)

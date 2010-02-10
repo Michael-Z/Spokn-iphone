@@ -270,7 +270,7 @@
 	char *addressBookNameP = 0;
 	char *addressBookTypeP = 0;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-	
+	char *ampmCharP=0;
 	lbold = 0;
 	
 	objP = GetObjectAtIndex(showMisscallInt ,index);
@@ -355,6 +355,7 @@
 			long difftime;
 			struct tm tmP1,tmP2;
 			tmP1 = *tmP;
+			
 			todaytime = time(0);
 			tmP =localtime(&todaytime);
 			tmP2 = *tmP;
@@ -371,11 +372,23 @@
 				case 0:
 					if(tmP1.tm_hour<12)
 					{	
-						sprintf(s1,"%02d:%02d%s",tmP1.tm_hour,tmP1.tm_min,"AM");
+						//sprintf(s1,"%02d:%02d %s",tmP1.tm_hour,tmP1.tm_min,"AM");
+						if(tmP1.tm_hour==0)//mid night
+						{
+							tmP1.tm_hour = 12;
+						}
+						sprintf(s1,"%02d:%02d",tmP1.tm_hour,tmP1.tm_min);
+						ampmCharP = " AM";
 					}
 					else
 					{
-						sprintf(s1,"%02d:%02d%s",tmP1.tm_hour,tmP1.tm_min,"PM");
+						if(tmP1.tm_hour>12)//mid night
+						{
+							tmP1.tm_hour-= 12;
+						}
+						//sprintf(s1,"%02d:%02d %s",tmP1.tm_hour,tmP1.tm_min,"PM");
+						sprintf(s1,"%02d:%02d",tmP1.tm_hour,tmP1.tm_min);
+						ampmCharP = " PM";
 					}	
 					lbold = 1;
 					break;
@@ -391,7 +404,7 @@
 					else
 					{
 						sprintf(s1,"%3s %02d",month[tmP1.tm_mon],tmP1.tm_mday);
-						lbold = 1;
+						
 					}
 					break;
 					
@@ -503,7 +516,15 @@
 				dispP = [ [displayData alloc] init];
 				dispP.left = 10;
 				dispP.top = 3;
-				dispP.width = 27;
+				if(ampmCharP==NULL)
+				{	
+					dispP.width = 27;
+					
+				}
+				else {
+					dispP.width = 18;
+				}
+
 				if(lbold)
 				{	
 					dispP.boldB = YES;
@@ -522,6 +543,25 @@
 				[dispP.colorP release];
 				[secLocP->elementP addObject:dispP];
 				lbold = 0;
+				if(ampmCharP)
+				{
+					dispP = [ [displayData alloc] init];
+					dispP.left = 0;
+					dispP.top = 3;
+					dispP.width = 10;
+					dispP.boldB = NO;
+					dispP.textAlignmentType = UITextAlignmentRight;
+					dispP.height = 100;
+					stringStrP = [[NSString alloc] initWithUTF8String:ampmCharP ];
+					dispP.dataP = stringStrP;
+					[stringStrP release];
+					dispP.colorP = [[UIColor alloc] initWithRed:_TEXTCOLOR_];
+					dispP.fntSz = 14;
+					[dispP.colorP release];
+					[secLocP->elementP addObject:dispP];
+					
+				
+				}
 				
 				// [cell setNeedsDisplay];
 			}	

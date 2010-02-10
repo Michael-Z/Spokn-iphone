@@ -279,7 +279,15 @@
 	
 	switchView.on = NO;
 	switchView.enabled = NO;
+	if(statusInt)
+	{
+		buybuttonCtlP.enabled = YES;
 	
+	}
+	else
+	{	
+		buybuttonCtlP.enabled = NO;
+	}
 /*	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
 											   initWithTitle:@"Buy Credits" 
 											   style:UIBarButtonItemStylePlain 
@@ -555,9 +563,10 @@ titleForHeaderInSection:(NSInteger)section
 													   action:@selector(LoginPressed)] autorelease];
 			
 			
-			
+			buybuttonCtlP.enabled = NO;
 			break;
 		case 1:
+			buybuttonCtlP.enabled = YES;
 			self.navigationItem.titleView = 0;
 			[activityIndicator stopAnimating];
 			switch(subStatus)

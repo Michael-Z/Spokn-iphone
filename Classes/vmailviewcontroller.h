@@ -55,6 +55,7 @@
 	char vmsNoChar[100];
 	int onLine;
 	int refreshB;
+	int lbold;
 
 
 }
