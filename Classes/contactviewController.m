@@ -488,7 +488,7 @@
 	#endif
 	ovController.view.frame = frame;	
 	ovController.view.backgroundColor = [[UIColor grayColor] autorelease];
-	ovController.view.alpha = 0.5;
+	ovController.view.alpha = 0.8;
 	
 	ovController.rvController = self;
 	
@@ -516,6 +516,7 @@
 			{	
 				[tableView scrollToRowAtIndexPath:nsP atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
 			}	
+			self->tableView.scrollEnabled = NO;
 			firstSection = -1;
 		}
 		return;
@@ -747,7 +748,7 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardWillShowNotification object:nil];
+	[nc addObserver:self selector:@selector(keyboardWillShow:) name: UIKeyboardDidShowNotification object:nil];
 	[nc addObserver:self selector:@selector(keyboardWillHide:) name: UIKeyboardWillHideNotification object:nil];
 	//viewDidLodadedB = true;
 	if(hideCallAndVmailButtonB)

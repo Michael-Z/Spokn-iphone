@@ -67,14 +67,7 @@
 	[[self navigationController].view addSubview:spinner];
 	if(nowebB==NO)
 	{	
-		if(urlToLoadP==nil)
-		{	
 		
-			char * tempurl;
-			tempurl = getAccountPage();
-			urlToLoadP = [[NSString alloc] initWithUTF8String:tempurl];
-			free(tempurl);
-		}
 		
 	
 		//Create a URL object.
@@ -106,7 +99,10 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {     
-	[spinner startAnimating];
+	if(nowebB==NO)
+	{	
+		[spinner startAnimating];
+	}	
 	//webView.detectsPhoneNumbers = NO;
 //	[uiActionSheetP showInView:[self navigationController].view]; 
 }

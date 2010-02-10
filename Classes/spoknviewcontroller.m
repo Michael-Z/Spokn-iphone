@@ -862,10 +862,20 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	{	
 		
 		WebViewController     *WebViewControllerviewP;	
+		NSString *urlAddress;
 		WebViewControllerviewP = [[WebViewController alloc] init];
+		
+		
 		[WebViewControllerviewP setObject:self->ownerobject];
+		char * tempurl;
+		tempurl = getAccountPage();
+		urlAddress = [[NSString alloc] initWithUTF8String:tempurl];
+		free(tempurl);
+		[WebViewControllerviewP setData:urlAddress web:YES];
+		
 		[ [self navigationController] pushViewController:WebViewControllerviewP animated: YES ];
 		[WebViewControllerviewP release];	
+		[urlAddress release];
 	
 	}
 	if(section==1 && row==1 && statusInt)
@@ -895,6 +905,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 			[WebViewControllerviewP setData:urlAddress web:NO];
 			[ [self navigationController] pushViewController:WebViewControllerviewP animated: YES ];
 			[WebViewControllerviewP release];	
+			[urlAddress release];
 		}
 	}
 	
