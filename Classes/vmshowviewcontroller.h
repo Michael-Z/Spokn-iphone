@@ -51,10 +51,11 @@ typedef enum  VMSStateType
 	IBOutlet UILabel *secondLabelP;
 	
 	IBOutlet UIButton *sendButtonP;
-	IBOutlet UIButton *PlayButtonP;
+	UIButton *PlayButtonP;
 	IBOutlet UIButton *previewButtonP;
 	IBOutlet UIView  *firstSectionviewP;
 	IBOutlet UIView  *secondSectionviewP;
+	IBOutlet UIView  *progressandplayviewP;
 	char *nameCharP;
 	char *noCharP;
 	char *typeCharP;

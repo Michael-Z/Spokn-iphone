@@ -315,7 +315,7 @@
 					 initWithTitle: @"" 
 					 delegate:self
 					 cancelButtonTitle:_CANCEL_ 
-					 destructiveButtonTitle:@"delete voice mail"
+					 destructiveButtonTitle:_DELETE_VMS_
 					 otherButtonTitles:nil, nil];
 	
 	uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
@@ -694,7 +694,11 @@
 	int section = [indexPath section];
 
 	if(sectionArray[section].dataforSection[row].customViewP)
+	{
+		if(sectionArray[section].dataforSection[row].rowHeight)
+			return sectionArray[section].dataforSection[row].rowHeight;
 		return 30;
+	}	
 	
 	return 50;
 	
@@ -1084,21 +1088,41 @@ id createImage(float percentage)
 }
 #endif
 
-
+#define ROW_PLAY_PAD 2
+#define LEFT_BOUND 11
+#define RIGHT_BOUND 274
+#define ROW_PLAY_HEIGHT 84
+#define ROW_PLAY_WIDTH 300
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
 	#ifdef PROGRESS_VIEW
+		int y = ROW_PLAY_HEIGHT-60;
+		y = y/3;
+		progressandplayviewP = [[UIView alloc] initWithFrame:CGRectMake(ROW_PLAY_PAD, ROW_PLAY_PAD, ROW_PLAY_WIDTH-ROW_PLAY_PAD, ROW_PLAY_HEIGHT-ROW_PLAY_PAD)];
 		uiProgBarP = [[UIProgressView alloc] initWithFrame:
 					  			   
-					   CGRectMake(10.0f, 10.0f, 280.0f, 30.0f)];
+					   CGRectMake(LEFT_BOUND, y, RIGHT_BOUND, 10.0f)];
 		//[uiProgBarP backgroundColor:[UIColor redColor]];
 		//uiProgBarP.progressViewStyle = UIProgressViewStyleBar;
 		//uiProgBarP.backgroundColor = uiActionSheetP.backgroundColor;//[UIColor blueColor];
 		uiProgBarP.progressViewStyle= UIProgressViewStyleDefault;
 		uiProgBarP.tag = 12;
 		[uiProgBarP setProgress:0.0f];
+		[progressandplayviewP addSubview:uiProgBarP];
+		
+		PlayButtonP = [[UIButton alloc] init];
+		// The default size for the save button is 49x30 pixels
+		PlayButtonP.frame = CGRectMake(LEFT_BOUND, 2*y+10, RIGHT_BOUND, 45.0);
+		
+		// Center the text vertically and horizontally
+		PlayButtonP.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+		PlayButtonP.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+		[PlayButtonP addTarget:self action:@selector(playPressed:) forControlEvents:UIControlEventTouchUpInside];
+		
+		[progressandplayviewP insertSubview:PlayButtonP belowSubview:uiProgBarP];
+		
 	#else
 		sliderP = [[UISlider alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 280.0f, 30.0f)];
 		sliderP.backgroundColor = [[UIColor clearColor] autorelease ] ;
@@ -1526,8 +1550,8 @@ id createImage(float percentage)
 
 	tableView.delegate = self;
 	tableView.dataSource = self;
-	//tableView.sectionHeaderHeight = tableView.sectionHeaderHeight+7;
-	//tableView.sectionFooterHeight = 0;//tableView.sectionFooterHeight-2;   	
+	//tableView.sectionHeaderHeight = tableView.sectionHeaderHeight-7;
+	tableView.sectionFooterHeight = tableView.sectionFooterHeight+2;   	
 	tableView.scrollEnabled = NO;
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
@@ -1746,7 +1770,8 @@ id createImage(float percentage)
 	sectionArray[secIndex].count=0;
 	secIndex++;
 	#ifdef PROGRESS_VIEW
-	sectionArray[secIndex].dataforSection[tablesz].customViewP = uiProgBarP;//addressDataP->home;
+	sectionArray[secIndex].dataforSection[tablesz].customViewP = progressandplayviewP;//addressDataP->home;
+	sectionArray[secIndex].dataforSection[tablesz].rowHeight = ROW_PLAY_HEIGHT;
 	#else
 	sectionArray[secIndex].dataforSection[tablesz].customViewP = sliderP;//addressDataP->home;
 
