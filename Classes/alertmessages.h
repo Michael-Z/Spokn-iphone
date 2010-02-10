@@ -39,7 +39,7 @@
 #define _VMS_RECORDING_MSG2_ @"Press done to finish recording."
 #define _VMS_RECORDING_MSG3_ @"You may send, preview or re-record the VMS now"
 #define _EMPTY_NUMBER_ @"Number field should not be empty."
-#define _DELETE_VMS_ @"Are you sure you want to delete this voice mail?"
+//#define _DELETE_VMS_ @"Are you sure you want to delete this voice mail?"
 #define _NO_VMS_PLAY_ @" can not play vms"
 #define _CLEAR_CALL_LOG_ @"Clear all calls"
 #define _DUPLICATE_FORWARD_NUMBER_ @"The number you provided for call forwarding has already been used by someone else.Please provide another number and try again."

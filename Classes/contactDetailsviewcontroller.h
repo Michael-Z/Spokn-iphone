@@ -81,7 +81,7 @@ typedef enum ViewTypeEnum
 	IBOutlet UILabel *userNameP;
 	IBOutlet UITableView *tableView;
 	IBOutlet UIView *viewP;
-	
+	UIView *sectionViewP;
 	IBOutlet CustomButton  *delButtonP;
 	IBOutlet UIButton  *vmsButtonP;
 	IBOutlet UIButton  *callButtonP;

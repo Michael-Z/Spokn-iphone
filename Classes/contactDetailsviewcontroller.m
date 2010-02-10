@@ -55,6 +55,7 @@
 	
 		//int index;
 	NSString *stringStrP;
+	UITextAlignment alignmentType;
 	objStrP = sectionArray[lsection].dataforSection[row].nameofRow;
 	secObjStrP = sectionArray[lsection].dataforSection[row].elementP;
 	if(objStrP==0 || strlen(objStrP)==0)
@@ -79,15 +80,20 @@
 			
 									
 			dispP = [ [displayData alloc] init];
-			dispP.left = 6;
+			dispP.left = 0;
 			dispP.top = 0;
 			dispP.width = 100;
 			if(secObjStrP)
 			{	
-				if(strlen(secObjStrP)>0)
-					dispP.width = 40;
+				//if(strlen(secObjStrP)>0)
+					dispP.width = 20;
+				alignmentType = UITextAlignmentRight;
 			}
-			
+			else
+			{
+				dispP.left = 6;
+				alignmentType = UITextAlignmentLeft;
+			}
 			dispP.height = 50;
 			if(secObjStrP)
 			{	
@@ -123,15 +129,16 @@
 			[stringStrP release];
 			//[dispP.colorP release];
 			dispP.showOnEditB = true;
+			dispP.textAlignmentType = alignmentType;
 			[secLocP->elementP addObject:dispP];
 			
 			if(secObjStrP)
 			{	
 				dispP = [ [displayData alloc] init];
-				dispP.left = 0;
+				dispP.left = 10;
 				dispP.top = 0;
 				dispP.width = 56;
-				dispP.textAlignmentType = UITextAlignmentRight;
+				dispP.textAlignmentType = UITextAlignmentLeft;
 				dispP.height = 70;
 				stringStrP = [[NSString alloc] initWithUTF8String:secObjStrP ];
 				dispP.dataP = stringStrP;
@@ -200,6 +207,16 @@
 		// white button:
 		firstSecCount = 0;
 		secondSecCount = 0;	
+		sectionViewP = [[UIView alloc] initWithFrame:CGRectMake(1, 1, 320, 40)];
+		CGRect LabelFrame2 = CGRectMake(0, 1, 320, 40);
+		
+		userNameP = [[UILabel alloc] initWithFrame:LabelFrame2];
+		userNameP.textAlignment = UITextAlignmentLeft;
+		userNameP.tag = 2;
+		userNameP.numberOfLines = 1;
+		userNameP.backgroundColor = [[UIColor clearColor] autorelease];
+		userNameP.font = [UIFont boldSystemFontOfSize:24];
+		
 		
 	}
     return self;
@@ -301,7 +318,7 @@
 				}
 				if(strlen(addressDataP->business)>0)
 				{	
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","work" ,addressDataP->business] ];
 					stringSelected[i++] = addressDataP->business;
 				}	
 				if(strlen(addressDataP->mobile)>0)
@@ -381,7 +398,7 @@
 				}
 				if(strlen(addressDataP->business)>0)
 				{	
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","business" ,addressDataP->business] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","work" ,addressDataP->business] ];
 					stringSelected[i++] = addressDataP->business;
 				}	
 				if(strlen(addressDataP->mobile)>0)
@@ -601,7 +618,7 @@
 			{
 				
 				
-				if(validName(addressDataP->title) &&(validName(addressDataP->home) || validName(addressDataP->business) || validName(addressDataP->mobile)
+				if(validName(addressDataP->title) && (validName(addressDataP->home) || validName(addressDataP->business) || validName(addressDataP->mobile)
 														|| validName(addressDataP->spoknid)  || validName(addressDataP->email) || validName(addressDataP->other)))
 				{
 					strcpy(addrP->title,addressDataP->title);
@@ -708,8 +725,6 @@
 	if([addeditviewP retainCount]>1)
 		[addeditviewP release];*/
 	struct AddressBook *addressDataTmpP;
-	tableView.sectionHeaderHeight = tableView.sectionHeaderHeight+3;
-	tableView.sectionFooterHeight = 0;//tableView.sectionFooterHeight-2; 
 	
 	self.navigationItem.rightBarButtonItem 	= [ [ [ UIBarButtonItem alloc ] initWithBarButtonSystemItem: UIBarButtonSystemItemDone
 																			target: self
@@ -775,7 +790,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //	animationB = NO;
-	
+	[sectionViewP addSubview:userNameP];
 	self->addButtonP.exclusiveTouch = YES;
 	self->vmsButtonP.exclusiveTouch = YES;
 	self->callButtonP.exclusiveTouch = YES;
@@ -784,8 +799,9 @@
 	updatecontact = 0;
 	tableView.delegate = self;
 	tableView.dataSource = self;
-	//tableView.sectionHeaderHeight = tableView.sectionHeaderHeight+3;
-	//tableView.sectionFooterHeight = 0;//tableView.sectionFooterHeight-2;   	
+	tableView.sectionHeaderHeight = 7;//(tableView.sectionHeaderHeight+4)/2;
+	
+	tableView.sectionFooterHeight = 7;//(tableView.sectionFooterHeight+4)/2;   	
 	loadedB = true;
 	
 	UIImage *buttonBackground;
@@ -795,7 +811,6 @@
 		vmsButtonP.hidden = YES;
 		callButtonP.hidden = YES;
 	
-	
 	}
 	
 	buttonBackground = [UIImage imageNamed:_DEL_NORMAL_PNG_];
@@ -803,7 +818,7 @@
 	[CustomButton setImages:delButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
-	delButtonP.backgroundColor =  [UIColor clearColor];	
+	delButtonP.backgroundColor =  [[UIColor clearColor] autorelease ];	
 	/*
 	UIImage *buttonBackground = [UIImage imageNamed:@"blueButton.png"];
 	UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"green.png"];
@@ -909,16 +924,20 @@
 				
 				//char *month[12]={"January","February","March","April","May","June","July","August","September","October","November","December"};
 				
-			
-				CGRect LabelFrame2 = CGRectMake(0, 5, 320, 40);
+				
+				
+				CGRect LabelFrame2 = CGRectMake(0, 45, 320, 40);
+				CGRect viewFrame;
 				msgLabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
 				msgLabelP.textAlignment = UITextAlignmentLeft;
 				msgLabelP.tag = 1;
 				msgLabelP.numberOfLines = 2;
 				msgLabelP.backgroundColor = [[UIColor clearColor] autorelease];
 				//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-				
-				
+				[sectionViewP insertSubview: msgLabelP belowSubview:userNameP ];
+				viewFrame = sectionViewP.frame;
+				viewFrame.size.height+=LabelFrame2.size.height+10;
+				sectionViewP.frame = viewFrame;
 				//[msgLabelP release];
 				
 				char s1[200];
@@ -1182,7 +1201,8 @@
 			//	cell.editingAccessoryType = UITableViewCellAccessoryDisclosureIndicator;//UITableViewCellAccessoryDetailDisclosureButton; 
 			//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			//cell.hidesAccessoryWhenEditing = NO;
-			cell.accessoryType = UITableViewCellAccessoryNone;
+			//cell.accessoryType = UITableViewCellAccessoryNone;
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
 		else
 		{
@@ -1195,6 +1215,7 @@
 	{
 			cell.accessoryType = UITableViewCellAccessoryNone;
 	}
+	//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	//cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	[CellIdentifier release];
 	//cell.hidesAccessoryWhenEditing = YES;
@@ -1387,7 +1408,7 @@ titleForHeaderInSection:(NSInteger)section
 	return  sectionCount;
 	return 1;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)ltableView heightForHeaderInSection:(NSInteger)section{
 	return sectionArray[section].sectionheight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -1453,8 +1474,13 @@ titleForHeaderInSection:(NSInteger)section
 		 target: self
 		 action: @selector(doneClicked) ] autorelease ];
 	self.navigationItem.rightBarButtonItem.enabled = NO;
+	[msgLabelP removeFromSuperview]; 
 	[msgLabelP release];
 	msgLabelP = nil;
+	CGRect viewFrame;
+	viewFrame = sectionViewP.frame;
+	viewFrame.size.height-=42;
+	sectionViewP.frame = viewFrame;
 	[self setAddressBook:addressDataTmpP editable:true :CONTACTADDVIEWENUM];
 	modelViewB= true;
 	free(addressDataTmpP);
@@ -1525,7 +1551,14 @@ titleForHeaderInSection:(NSInteger)section
 	
 	self->tablesz = 0;
 	addressDataP = 0;
-	
+	if(leditableB)
+	{
+		sectionViewP.hidden = YES;
+	}
+	else
+	{
+		sectionViewP.hidden = NO;
+	}
 	if(firstSecCount==0 && secondSecCount==0)
 	{	
 		
@@ -1552,14 +1585,14 @@ titleForHeaderInSection:(NSInteger)section
 			sectionArray[sectionCount].dataforSection[0].rowHeight = 50;
 			sectionArray[sectionCount].count++;
 			sectionCount++;
-			sectionArray[sectionCount].sectionView = msgLabelP;
-			sectionArray[sectionCount].sectionheight = 10;
+			sectionArray[sectionCount].sectionView = sectionViewP;
+			sectionArray[sectionCount].sectionheight = tableView.sectionHeaderHeight;//+tableView.sectionFooterHeight;
 			
 		}
 		else
 		{
-			sectionArray[sectionCount].sectionView = msgLabelP;
-			sectionArray[sectionCount].sectionheight = 50;
+			sectionArray[sectionCount].sectionView = sectionViewP;
+			sectionArray[sectionCount].sectionheight = sectionViewP.frame.size.height+tableView.sectionHeaderHeight;//+tableView.sectionFooterHeight;
 		}
 		
 		
@@ -1605,7 +1638,7 @@ titleForHeaderInSection:(NSInteger)section
 				}
 			//element[tablesz++] = addressDataP->business;
 			sectionArray[sectionCount].dataforSection[tablesz].section = 0;
-			strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"business");
+			strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"work");
 			strcpy(sectionArray[sectionCount].dataforSection[tablesz].placeholder,"Phone");
 			sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->business;
 			sectionArray[sectionCount].count++;
@@ -1617,7 +1650,7 @@ titleForHeaderInSection:(NSInteger)section
 			if(leditableB)
 			{
 				sectionArray[sectionCount].dataforSection[tablesz].section = 0;
-				strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"business");
+				strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"work");
 				strcpy(sectionArray[sectionCount].dataforSection[tablesz].placeholder,"Phone");
 				sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->business;
 				sectionArray[sectionCount].count++;
@@ -1765,8 +1798,8 @@ titleForHeaderInSection:(NSInteger)section
 	else
 	{
 		sectionCount = 0;
-		sectionArray[sectionCount].sectionView = msgLabelP;
-		sectionArray[sectionCount].sectionheight = 50;
+		sectionArray[sectionCount].sectionView = sectionViewP;
+		sectionArray[sectionCount].sectionheight = sectionViewP.frame.size.height+tableView.sectionHeaderHeight,tableView.sectionFooterHeight;
 		if(laddressDataP)
 		{	
 			addressDataP = malloc(sizeof(struct AddressBook)+4);//extra 4 for padding
@@ -1799,7 +1832,7 @@ titleForHeaderInSection:(NSInteger)section
 	
 	if(loadedB)
 	{
-		nsp = [[NSString alloc] initWithFormat:@" %s",(const char*)addressDataP->title ];
+		nsp = [[NSString alloc] initWithFormat:@"  %s",(const char*)addressDataP->title ];
 		
 		
 		[userNameP setText:nsp];
@@ -1810,13 +1843,15 @@ titleForHeaderInSection:(NSInteger)section
 			
 			if(editableB)
 			{	
+				NSString *userNameStrP;
 				self->tableView.allowsSelectionDuringEditing = YES;
 				self->delButtonP.hidden = NO;
 				self->vmsButtonP.hidden = YES;
 				self->callButtonP.hidden = YES;
 				self->addButtonP.hidden = !showAddButtonB;
 				//changeNameButtonP.hidden = NO;
-				if([[userNameP text] length]<2 )//space added in number
+				userNameStrP = [userNameP.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+				if([userNameStrP length]==0 )//space added in number
 				{
 				//	[userNameP setTextColor:[UIColor grayColor]];
 					[userNameP setText:@"    First Last"];
@@ -1874,7 +1909,7 @@ titleForHeaderInSection:(NSInteger)section
 				}	
 				//changeNameButtonP.hidden = YES;
 				self->addButtonP.hidden = !showAddButtonB;
-				tableView.tableHeaderView = userNameP;
+			//	tableView.tableHeaderView = userNameP;
 			//	[userNameP release];
 				if(CONTACTPHONEDETAIL==viewEnum)
 				{
@@ -1943,7 +1978,7 @@ titleForHeaderInSection:(NSInteger)section
 			}	
 		}
 	}	
-	
+	[sectionViewP release];
 	[titlesP release];
 	//[changeNameButtonP release];
 	[userNameP release];
