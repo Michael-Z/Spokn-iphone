@@ -11,6 +11,8 @@
 #ifndef _ALERT_MESSAGES_H_
 	#define _ALERT_MESSAGES_H_
 
+#define _TEXTCOLOR_ 42/255.0 green:116/255.0 blue:217/255.0 alpha:1.0
+#define _REDCOLOR_ 187/255.0 green:25/255.0 blue:25/255.0 alpha:1.0
 
 #define _EMPTY_CONTACT_DETAILS_ @"This contact does not have any Number or Email address."
 #define _EMPTY_USERNAME_ @"User name cannot be empty"

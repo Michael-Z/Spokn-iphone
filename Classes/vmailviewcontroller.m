@@ -31,6 +31,7 @@
 #import "vmshowviewcontroller.h"
 #include "ua.h"
 #include "alertmessages.h"
+
 @implementation VmailViewController
 @synthesize ltpInterfacesP;
 
@@ -496,7 +497,7 @@
 			secLocP->index = index;
 			dispP = [ [displayData alloc] init];
 			dispP.boldB = YES;
-			dispP.left = 5;
+			dispP.left = 4;
 			//dispP.top = 0;
 			if(secObjStrP)
 			{	
@@ -508,7 +509,7 @@
 			}
 			if(typeCallP)
 			{
-				dispP.height = 60;
+				dispP.height = 30;
 				dispP.top = 0;	
 			}	
 			else
@@ -559,7 +560,7 @@
 			}*/
 			if(vmailP->status==VMAIL_FAILED)
 			{
-				dispP.colorP = [UIColor colorWithRed:187/255.0 green:25/255.0 blue:25/255.0 alpha:1.0];
+				dispP.colorP = [UIColor colorWithRed:_REDCOLOR_];
 			}
 			else
 			{
@@ -576,7 +577,7 @@
 			dispP.dataP = stringStrP;
 			[stringStrP release];
 			
-			dispP.fntSz = 16;
+			dispP.fntSz = 20;
 			dispP.showOnEditB = true;
 			[secLocP->elementP addObject:dispP];
 			
@@ -588,16 +589,17 @@
 				dispP.left = 0;
 				dispP.top = 5;
 				dispP.width = 25;
+				dispP.boldB = YES;
 				dispP.textAlignmentType = UITextAlignmentRight;
 				dispP.height = 90;
 				if(vmailP->status==VMAIL_FAILED)
 				{
-					dispP.colorP = [UIColor colorWithRed:187/255.0 green:25/255.0 blue:25/255.0 alpha:1.0];
+					dispP.colorP = [UIColor colorWithRed:_REDCOLOR_];
 				}
 				else
 				{
-					dispP.colorP = [UIColor blackColor];
-					[dispP.colorP release];
+					dispP.colorP = [UIColor colorWithRed:_TEXTCOLOR_];//[UIColor blackColor];
+					//[dispP.colorP release];
 					
 				}
 				
@@ -618,7 +620,7 @@
 				dispP.top = 2;
 				dispP.width = 70;
 				dispP.row = 1;
-				dispP.height = 40;
+				dispP.height = 45;
 				stringStrP = [[NSString alloc] initWithUTF8String:typeCallP ];
 				dispP.dataP = stringStrP;
 				[stringStrP release];

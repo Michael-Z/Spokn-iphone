@@ -31,10 +31,7 @@
 #import "customcell.h"
 #include "alertmessages.h"
 
-
-
 @implementation CalllogViewController
-#define TEXTCOLOR 42/255.0 green:116/255.0 blue:217/255.0 alpha:1.0
 #pragma mark MISSEDCALL
 -(int)missCallSetCount
 {
@@ -479,7 +476,7 @@
 			}
 			if((cdrP->direction & CALLTYPE_IN) && (cdrP->direction & CALLTYPE_MISSED))
 			{	
-				dispP.colorP = [UIColor colorWithRed:187/255.0 green:25/255.0 blue:25/255.0 alpha:1.0];//[UIColor redColor];
+				dispP.colorP = [UIColor colorWithRed:_REDCOLOR_];//[UIColor redColor];
 				
 			}
 			else
@@ -489,7 +486,7 @@
 			}
 			
 			
-			dispP.fntSz = 16;
+			dispP.fntSz = 20;
 			dispP.boldB = YES;
 			//dispP.fontP =  [self->fontGloP fontWithSize:16];
 			//[dispP.fontP retain];
@@ -520,7 +517,7 @@
 				stringStrP = [[NSString alloc] initWithUTF8String:secObjStrP ];
 				dispP.dataP = stringStrP;
 				[stringStrP release];
-				dispP.colorP = [[UIColor alloc] initWithRed:TEXTCOLOR];
+				dispP.colorP = [[UIColor alloc] initWithRed:_TEXTCOLOR_];
 				dispP.fntSz = 14;
 				[dispP.colorP release];
 				[secLocP->elementP addObject:dispP];
@@ -535,7 +532,7 @@
 				dispP.top = 2;
 				dispP.width = 70;
 				dispP.row = 1;
-				dispP.height = 40;
+				dispP.height = 50;
 				stringStrP = [[NSString alloc] initWithUTF8String:typeCallP ];
 				dispP.dataP = stringStrP;
 				[stringStrP release];
