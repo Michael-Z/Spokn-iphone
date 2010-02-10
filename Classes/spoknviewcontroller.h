@@ -43,6 +43,8 @@ typedef struct ImageNameType
 	SpoknAppDelegate *ownerobject;
 	//SubViewDetails subViewDetails[MAXVIEW];
 	IBOutlet UITableView *tableView;
+	IBOutlet UIButton *buybuttonCtlP;
+	IBOutlet UIButton *aboutbuttonCtlP;
 	NSMutableArray *listOfItems;
 	UILabel *labelBalance;
 	UILabel *labelStatus;
@@ -61,6 +63,7 @@ typedef struct ImageNameType
 
 }
 -(void)buyCredit:(id)sender;
+-(void)aboutPage:(id)sender;
 -(void)setObject:(id) object ;
 -(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward spoknID:(char*)spoknLoginId;
 - (IBAction)switchChange:(UISwitch*)sender;

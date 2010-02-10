@@ -247,7 +247,7 @@
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	tableView.sectionHeaderHeight = tableView.sectionHeaderHeight-3;
-	tableView.sectionFooterHeight = 0;//tableView.sectionFooterHeight-2;   	
+	tableView.sectionFooterHeight = 2;//tableView.sectionFooterHeight-2;   	
 	forwardNoCharP = malloc(100);
 	memset(forwardNoCharP,0,100);
 	if(stopProgressB==false)
@@ -264,6 +264,15 @@
 	[self createSectionList:wordArray];
 	//[wordArray release];
 	
+	UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 100.0f)];
+	[buybuttonCtlP setFrame:CGRectMake(10,0,145,40)];
+	[subview addSubview:buybuttonCtlP];
+	[buybuttonCtlP release];
+	[aboutbuttonCtlP setFrame:CGRectMake(165,0,145,40)];
+	[subview addSubview:aboutbuttonCtlP];
+	[aboutbuttonCtlP release];
+	self->tableView.tableFooterView = subview;
+	[subview release];
 			
 	switchView.on = NO;
 	switchView.enabled = NO;
@@ -924,5 +933,25 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		[ srtrP release];
 	}	
 }
+
+-(void)aboutPage:(id)sender
+{
+	NSString *urlAddress = [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"];
+	if(urlAddress)
+	{	
+		WebViewController     *WebViewControllerviewP;	
+		WebViewControllerviewP = [[WebViewController alloc] init];
+		
+		[WebViewControllerviewP setObject:self->ownerobject];
+		//-(void)setData:(NSString*)urlP noweb:(Boolean)lwebB;
+		
+		[WebViewControllerviewP setData:urlAddress web:NO];
+		[ [self navigationController] pushViewController:WebViewControllerviewP animated: YES ];
+		[WebViewControllerviewP release];	
+		[urlAddress release];
+	}
+	
+}
+
 
 @end
