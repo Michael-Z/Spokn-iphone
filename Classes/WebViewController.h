@@ -33,10 +33,12 @@
 	UIActivityIndicatorView *spinner;
 	NSString *urlToLoadP;
 	Boolean nowebB;//if true mean we need to downloaded from web
+	Boolean modalB;
 	
 }
 @property (nonatomic, retain) UIWebView *accountswebView;
 -(void)setObject:(id) object;
 -(void)setData:(NSString*)urlP web:(Boolean)lwebB;
+-(void)modelViewB:(Boolean)lmodalB;
 
 @end

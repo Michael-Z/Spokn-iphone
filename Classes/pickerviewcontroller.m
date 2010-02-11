@@ -123,9 +123,15 @@
 		[txtDestNo addCellWithString:[NSString stringWithUTF8String:lcontactObjectP->number] type:[NSString stringWithUTF8String:lcontactObjectP->number] ];
 	
 	#endif
+	
 	toLabel.hidden = YES;
 	toLabelStart.hidden = YES;
 	_composerScrollView.hidden = NO;
+	if(keyBoardOnB==false)
+	{
+		[self removeKeyBoard];
+	}
+	
 	//free(nameP);
 }
 -(char*)getContactNumberList
@@ -901,7 +907,7 @@
 			{
 				if(i)
 				{
-					[resultStrP appendString:@","];
+					[resultStrP appendString:@", "];
 				}
 				[resultStrP appendString:tmpStringP];
 				++i;

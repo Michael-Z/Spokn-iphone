@@ -509,7 +509,7 @@ titleForHeaderInSection:(NSInteger)section
 	
 	
 	
-	sprintf(s1,"$%.2f",balance);
+	sprintf(s1,"USD %.2f",balance);
 	stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
 	[labelBalance setText:stringStrP];
 	[stringStrP release];
@@ -998,9 +998,22 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		//-(void)setData:(NSString*)urlP noweb:(Boolean)lwebB;
 		
 		[WebViewControllerviewP setData:urlAddress web:NO];
-		[ [self navigationController] pushViewController:WebViewControllerviewP animated: YES ];
-		[WebViewControllerviewP release];	
+		[WebViewControllerviewP modelViewB:YES];
+		//[ [self navigationController] presentModalViewController:WebViewControllerviewP animated: YES ];
+		
 		[urlAddress release];
+		
+		 UINavigationController *tmpCtl;
+		 tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: WebViewControllerviewP ] autorelease];
+		 if(tmpCtl)
+		 {	
+		
+			 [ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
+		 }	
+		 
+		 [WebViewControllerviewP release];	
+		
+		
 	}
 	
 }

@@ -1163,6 +1163,15 @@ id createImage(float percentage)
 }
 - (void)viewWillAppear:(BOOL)animated
 {
+	if(openForwardNo)
+	{
+		
+		openForwardNo = 0;
+		[self showForwardOrReplyScreen:VMSStatePrevious :&forwardContact];
+		
+		
+		//forwardNoChar[0] = 0;
+	}
 	
 	[super viewWillAppear:animated];
 
@@ -1181,6 +1190,7 @@ id createImage(float percentage)
 		
 		//forwardNoChar[0] = 0;
 	}
+	
 	if(returnValueInt)
 	{
 		

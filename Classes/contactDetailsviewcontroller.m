@@ -491,13 +491,25 @@
 	}
 	else
 	{
-		uiActionSheetP= [[UIActionSheet alloc] 
+		if(typeInt==2)
+		{	
+			uiActionSheetP= [[UIActionSheet alloc] 
 						 initWithTitle: @"" 
 						 delegate:self
 						 cancelButtonTitle:_CANCEL_ 
 						 destructiveButtonTitle:_DELETE_CONTACT_
 						 otherButtonTitles:nil, nil];
-		
+		}
+		else
+		{
+			uiActionSheetP= [[UIActionSheet alloc] 
+							 initWithTitle: @"" 
+							 delegate:self
+							 cancelButtonTitle:_CANCEL_ 
+							 destructiveButtonTitle:_DELETE_CALLLOG_
+							 otherButtonTitles:nil, nil];
+			
+		}
 		uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
 		if(hideCallAndVmailButtonB==NO)
 		{	
@@ -707,7 +719,7 @@
 	[ alert show ];
 	[alert release];
 	*/
-	[self presentSheet:2];
+	[self presentSheet:3];//call log
 	//[ [self navigationController] popToRootViewControllerAnimated:YES ];
 	//contactID = -1;
 	//profileResync();
@@ -949,11 +961,11 @@
 					
 					if(tmP1.tm_hour<12)
 					{	
-						sprintf(s1,"   %02d:%02d AM on  %02d %3s %d",(tmP1.tm_hour)?tmP1.tm_hour:12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
+						sprintf(s1,"   %02d:%02d AM on %02d %3s %d",(tmP1.tm_hour)?tmP1.tm_hour:12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
 					}
 					else
 					{	
-						sprintf(s1,"   %02d:%02d PM on  %02d %3s %d",(tmP1.tm_hour-12)?(tmP1.tm_hour-12):12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
+						sprintf(s1,"   %02d:%02d PM on %02d %3s %d",(tmP1.tm_hour-12)?(tmP1.tm_hour-12):12,tmP1.tm_min,tmP1.tm_mday,month[tmP1.tm_mon],tmP1.tm_year+1900);
 					}
 					if(cdrP->direction&CALLTYPE_IN)
 					{	

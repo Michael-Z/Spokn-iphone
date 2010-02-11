@@ -28,20 +28,32 @@
 
 @implementation WebViewController
 @synthesize accountswebView;
-/*
+-(id) init
+{
+	[super init];
+	modalB = NO;
+	return self;
+
+}
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-    }
+		modalB = NO;
+	}
     return self;
 }
-*/
+
 
 -(void)setObject:(id) object 
 {
 	self->ownerobject = object;
 
+
+}
+-(void)modelViewB:(Boolean)lmodalB
+{
+	modalB = lmodalB;
 
 }
 -(void)setData:(NSString*)urlP web:(Boolean)lwebB
@@ -51,11 +63,26 @@
 
 }
 
+-(IBAction)donePressed
+{
+	
+	//[txtField resignFirstResponder];
+	
+	[self.parentViewController  dismissModalViewControllerAnimated:YES];
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	if(modalB)
+	{
+				self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+												   initWithBarButtonSystemItem: UIBarButtonSystemItemDone
+												   target: self
+												   action: @selector(donePressed) ] autorelease ];
+		
 	
+	}
 	
 	 accountswebView.delegate = self;
 	 //uiActionSheetP = [[UIActionSheet alloc] initWithTitle:@"Loading..." delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
