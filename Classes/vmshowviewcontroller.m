@@ -887,16 +887,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			}
 			if(contactFindB)
 			{	
-				dispP.height = 50;
+				dispP.height = 0;
 			}
 			else
 			{
-				dispP.height = 90;
+				dispP.height = 52;
 			}
 			dispP.colorP = [UIColor colorWithRed:40/255.0 green:108/255.0 blue:214/255.0 alpha:1.0];
 			
 			dispP.boldB = YES;
-			dispP.fntSz = 16;
+			dispP.fntSz = 20;
 			//dispP.fontP =  [self->fontGloP fontWithSize:16];
 			//[dispP.fontP retain];
 			//[dispP.fontP release];

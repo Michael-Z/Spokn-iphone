@@ -79,6 +79,8 @@
 	char *unameP;
 	char *passwordP;
 	
+	loginstatusLabel.textColor = [[UIColor grayColor] autorelease];
+	
 	if(ltpInterfacesP)
 	{	
 		unameP = getLtpUserName(ltpInterfacesP);
