@@ -522,7 +522,7 @@
 					
 				}
 				else {
-					dispP.width = 18;
+					dispP.width = 19;
 				}
 
 				if(lbold)
@@ -548,7 +548,7 @@
 					dispP = [ [displayData alloc] init];
 					dispP.left = 0;
 					dispP.top = 3;
-					dispP.width = 10;
+					dispP.width = 11;
 					dispP.boldB = NO;
 					dispP.textAlignmentType = UITextAlignmentRight;
 					dispP.height = 100;
@@ -572,7 +572,7 @@
 				dispP.top = 2;
 				dispP.width = 70;
 				dispP.row = 1;
-				dispP.height = 50;
+				dispP.height = 45;
 				stringStrP = [[NSString alloc] initWithUTF8String:typeCallP ];
 				dispP.dataP = stringStrP;
 				[stringStrP release];

@@ -1680,7 +1680,7 @@ titleForHeaderInSection:(NSInteger)section
 			if(leditableB)
 			{
 				sectionArray[sectionCount].dataforSection[tablesz].section = 0;
-				strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"mobile ");
+				strcpy(sectionArray[sectionCount].dataforSection[tablesz].nameofRow,"mobile");
 				strcpy(sectionArray[sectionCount].dataforSection[tablesz].placeholder,"Phone");
 				sectionArray[sectionCount].dataforSection[tablesz].elementP = addressDataP->mobile;
 				sectionArray[sectionCount].count++;
