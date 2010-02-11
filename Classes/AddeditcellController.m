@@ -42,7 +42,7 @@
 -(IBAction)cancelPressed
 {
 	
-	[txtField resignFirstResponder];
+	//[txtField resignFirstResponder];
 	
 	[[self navigationController]  popViewControllerAnimated:YES];
 }
@@ -226,8 +226,44 @@
 											 selector:@selector(handleTextFieldChanged:)
 												 name:UITextFieldTextDidChangeNotification
 											   object:txtField];
-	self.title = titleStrP;
 	
+	
+	headLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	footerLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	
+	self.tableView.tableHeaderView = headLabelP;
+	//[headLabelP release];
+	//headLabelP = nil;
+	
+	self.tableView.tableFooterView = footerLabelP;
+	//[footerLabelP release];
+	//footerLabelP = nil;
+	self.title = titleStrP;
+	if(buttonType==0)
+	{	
+		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+													initWithBarButtonSystemItem: UIBarButtonSystemItemSave
+													target: self
+													action: @selector(savePressed) ] autorelease ];
+	}
+	else
+	{
+		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+													initWithBarButtonSystemItem: UIBarButtonSystemItemDone
+													target: self
+													action: @selector(savePressed) ] autorelease ];
+		
+	}
+	self.navigationItem.rightBarButtonItem.enabled = NO;
+	//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	
+	[headLabelP setText:typeP];
+	[footerLabelP setText:exampleStrP];
+	
+	[self.tableView reloadData];
+	//[self updateUI:nil];
+	
+
 
 }
 
@@ -247,36 +283,16 @@
 {
 	if(onlyOneB)
 	{	
-		if(buttonType==0)
-		{	
-			self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
-														initWithBarButtonSystemItem: UIBarButtonSystemItemSave
-														target: self
-														action: @selector(savePressed) ] autorelease ];
-		}
-		else
-		{
-			self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
-														initWithBarButtonSystemItem: UIBarButtonSystemItemDone
-														target: self
-														action: @selector(savePressed) ] autorelease ];
-			
-		}
-		self.navigationItem.rightBarButtonItem.enabled = NO;
-		headLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-		footerLabelP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-		//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-		
-		[headLabelP setText:typeP];
-		[footerLabelP setText:exampleStrP];
+	    [txtField becomeFirstResponder];
 		onlyOneB = false;
 	}
 	
 	
 }
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-	[super viewWillAppear:animated];
+	//onlyOneB = false;
+	[super viewDidAppear:animated];
 	[self updateUI:nil];
 }	
 
@@ -293,16 +309,13 @@
 	headLabelP.textAlignment = UITextAlignmentCenter;
 	headLabelP.tag = 1;
 	headLabelP.numberOfLines = 2;
-	self.tableView.tableHeaderView = headLabelP;
-	[headLabelP release];
-	
+		
 	//CGRect LabelFrame2 = CGRectMake(0, 5, 320, 60);
 	footerLabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
 	footerLabelP.textAlignment = UITextAlignmentCenter;
 	footerLabelP.tag = 2;
 	footerLabelP.numberOfLines = 2;
-	self.tableView.tableFooterView = footerLabelP;
-	[footerLabelP release];
+	
 	
 	
 	self->shiftRootB  = false;
@@ -384,7 +397,7 @@
 						txtField = [[UITextField alloc] initWithFrame:CGRectMake(20.0f, 6, 280.0f, self.tableView.rowHeight-4)];
 						txtField.delegate = self;
 						[cell.contentView addSubview:txtField]; 
-						[txtField becomeFirstResponder];
+						//[txtField becomeFirstResponder];
 						[txtField release];
 						txtField.keyboardType = keyboardtype;
 						txtField.delegate = self;
@@ -461,7 +474,7 @@
 	[exampleStrP release];
 	[titleStrP release];
 	[placeHolderP release];
-	//[headLabelP release];
+	[headLabelP release];
 	//[txtField release];
 	[StringP release];
 	[typeP release];

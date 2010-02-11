@@ -1537,7 +1537,7 @@ id createImage(float percentage)
 	[ownerobject setVmsDelegate:self];
 	if(vmstateType==VMSStateRecord)
 	{
-		[self setTitle:@"Record VMS"];
+		[self setTitle:@"Compose VMS"];
 	}
 	else
 	{	

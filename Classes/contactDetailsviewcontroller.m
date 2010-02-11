@@ -86,7 +86,7 @@
 			if(secObjStrP)
 			{	
 				//if(strlen(secObjStrP)>0)
-					dispP.width = 20;
+					dispP.width = 25;
 				alignmentType = UITextAlignmentRight;
 			}
 			else
@@ -135,7 +135,7 @@
 			if(secObjStrP)
 			{	
 				dispP = [ [displayData alloc] init];
-				dispP.left = 10;
+				dispP.left = 5;
 				dispP.top = 0;
 				dispP.width = 56;
 				dispP.textAlignmentType = UITextAlignmentLeft;
@@ -495,7 +495,7 @@
 						 initWithTitle: @"" 
 						 delegate:self
 						 cancelButtonTitle:_CANCEL_ 
-						 destructiveButtonTitle:_DELETE_
+						 destructiveButtonTitle:_DELETE_CONTACT_
 						 otherButtonTitles:nil, nil];
 		
 		uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;

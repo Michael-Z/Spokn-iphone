@@ -60,6 +60,9 @@
 #define _OK_ @"OK"
 #define _CANCEL_ @"Cancel"
 #define _DELETE_VMS_ @"Delete VMS"
+#define _DELETE_CONTACT_ @"Delete Contact"
+#define _DELETE_CALLLOG_ @"Delete Calllog"
+
 #define _DELETE_ @"Delete"
 #define _MOBILE_ @"mobile"
 #define _HOME_ @"home"
