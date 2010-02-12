@@ -1197,14 +1197,33 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}	
 	
  
-
+	activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
+	[activityIndicator setCenter:CGPointMake(22, 42)];
+	[activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+	activityIndicator.tag = 1;
+	[[self navigationController].view addSubview:activityIndicator];
 
 	
 }
 -(void)refreshView
 {
+	[self startProgress];
 	profileResync();
 	[self->tableView reloadData];
+}
+
+-(void)startProgress
+{
+	self.navigationItem.leftBarButtonItem.enabled = NO;
+	[activityIndicator startAnimating];
+	
+}
+
+-(void)cancelProgress
+{
+	self.navigationItem.leftBarButtonItem.enabled = YES;
+	[activityIndicator stopAnimating];
+	activityIndicator.hidden = YES;
 }
 /*
 // Override to allow orientations other than the default portrait orientation.
@@ -1231,7 +1250,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }
 
 - (void)dealloc {
-	
+	[activityIndicator release];
 	[activeImageP release];
 	[dileverImageP release];
 	[failedImageP release];

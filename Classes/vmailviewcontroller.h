@@ -50,12 +50,14 @@
 	float amt;
 	int showFailInt;
 	UISegmentedControl *segmentedControl;
+	UIActivityIndicatorView *activityIndicator;
 	int viewPlayResult;
 	int openVmsCompose;
 	char vmsNoChar[100];
 	int onLine;
 	int refreshB;
 	int lbold;
+	
 
 
 }
@@ -69,5 +71,7 @@
 -(void)refreshView;
 - (void) reload ;
 - (void) doRefresh ;
+-(void)startProgress;
+-(void)cancelProgress;
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 @end

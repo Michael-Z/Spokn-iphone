@@ -657,7 +657,7 @@
 					break;
 				
 				case REFRESH_VMAIL:
-					
+					[vmsviewP cancelProgress];
 					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:vmsviewP waitUntilDone:YES];
 					[self LoadContactView:vmsviewP];
 					break;
