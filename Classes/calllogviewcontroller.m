@@ -480,7 +480,7 @@
 			}
 			if(typeCallP)
 			{	
-				dispP.height = 60;
+				dispP.height = 32;
 			}	
 			else
 			{
