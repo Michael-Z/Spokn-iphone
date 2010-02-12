@@ -122,7 +122,7 @@ typedef enum ViewTypeEnum
 	int numberFound;
 	int showAlertB;
 	Boolean hideCallAndVmailButtonB;
-		//id<VmailProtocol> VmailProtocolP;
+	int editDataInt;	//id<VmailProtocol> VmailProtocolP;
 	
 }
 -(void)hideCallAndVmailButton:(Boolean)showB;

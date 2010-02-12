@@ -60,7 +60,8 @@
 {
 	nowebB = !lwebB;
 	urlToLoadP = [[NSString alloc] initWithString:urlP];
-
+	//printf("retain count %d",[urlToLoadP retainCount]);
+	//[urlToLoadP retain];
 }
 
 -(IBAction)donePressed
@@ -112,10 +113,13 @@
 	else
 	{
 		//NSString *urlAddress = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"pdf"];
-		
+	
 		NSURL *url = [NSURL fileURLWithPath:urlToLoadP];
 		NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 		[accountswebView loadRequest:requestObj];
+		[urlToLoadP release];
+		//printf("retain count %d",[urlToLoadP retainCount]);
+		urlToLoadP = nil;
 		[self setTitle:@"About"];
 	}
 }

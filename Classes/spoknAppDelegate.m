@@ -943,7 +943,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 #pragma mark STARTING POINT
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
-	[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+	//[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 
     // Override point for customization after application launch
 	//CGRect screenBounds = [ [ UIScreen mainScreen ] bounds ];

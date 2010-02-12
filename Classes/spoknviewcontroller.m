@@ -1001,7 +1001,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		[WebViewControllerviewP modelViewB:YES];
 		//[ [self navigationController] presentModalViewController:WebViewControllerviewP animated: YES ];
 		
-		[urlAddress release];
+		//[urlAddress release];
 		
 		 UINavigationController *tmpCtl;
 		 tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: WebViewControllerviewP ] autorelease];
@@ -1011,7 +1011,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 			 [ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
 		 }	
 		 
-		 [WebViewControllerviewP release];	
+         [WebViewControllerviewP release];	
 		
 		
 	}

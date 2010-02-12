@@ -246,6 +246,7 @@
 	 {
 			 
 		 case 2:
+		 case  3:	 
 			 if(buttonIndex==0)
 			 {	 
 				 if(retValP)
@@ -728,14 +729,37 @@
 }
 -(IBAction)editClicked
 {
-	/*AddEditcontactViewController     *addeditviewP;	
-	addeditviewP = [[AddEditcontactViewController alloc] initWithNibName:@"addeditcontact" bundle:[NSBundle mainBundle]];
+		
+	ContactDetailsViewController     *ContactControllerDetailsviewP;	
+	ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 	
-	[ [self navigationController] pushViewController:addeditviewP animated: YES ];
-	[addeditviewP  setContactDetail:self->addressDataP];
-	[addeditviewP setObject:self->ownerobject];
-	if([addeditviewP retainCount]>1)
-		[addeditviewP release];*/
+	ContactControllerDetailsviewP->ownerobject = self->ownerobject;
+	if(retValP)
+	{	
+		editDataInt = 1;
+		[ContactControllerDetailsviewP setReturnValue:retValP selectedContactNumber:0  rootObject:0 selectedContact:0] ;
+	}
+	else
+	{
+		editDataInt = 0;
+		[ContactControllerDetailsviewP setReturnValue:&editDataInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
+		
+	}
+	
+	[ContactControllerDetailsviewP setAddressBook:addressDataP editable:true :viewEnum];
+	
+	[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+	
+	if([ContactControllerDetailsviewP retainCount]>1)
+		[ContactControllerDetailsviewP release];
+	
+	
+	
+	
+	
+	
+	
+	/*
 	struct AddressBook *addressDataTmpP;
 	
 	self.navigationItem.rightBarButtonItem 	= [ [ [ UIBarButtonItem alloc ] initWithBarButtonSystemItem: UIBarButtonSystemItemDone
@@ -749,7 +773,7 @@
 	free(addressDataTmpP);
 	
 //	animationB = NO;
-	
+	*/
 	
 }
 #define TABLE_VIEW_TAG			2000
@@ -757,20 +781,45 @@
 - (void)updateUI:(id) objectP
 {
 
-	if(viewResult)
+	if(viewResult || editDataInt)
 	{
+		if(editDataInt)
+		{
+			if(retValP)
+			{
+				if(*retValP==0)
+				{
+					return;
+				}
+				//*retValP = 0;
+			}
+		}
+		
 		updatecontact = 1;
 		viewResult = 0;
 		self.navigationItem.rightBarButtonItem.enabled = YES;
 		
 		struct AddressBook *addressDataTmpP;
+		if(editDataInt)
+		{
+			editDataInt = 0;
+			if(addressDataP)
+			{	
+				addressDataTmpP = getContact(addressDataP->id);
+				if(addressDataTmpP)
+				{
+					[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
+				}
+			}
+		}
+		else
+		{	
 		
-		
-		addressDataTmpP = addressDataP;
-		addressDataP = 0;
-		[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
-		free(addressDataTmpP);
-		
+			addressDataTmpP = addressDataP;
+			addressDataP = 0;
+			[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
+			free(addressDataTmpP);
+		}
 		[ self->tableView reloadData ];
 	}
 	NSIndexPath *nsP;
@@ -811,9 +860,10 @@
 	updatecontact = 0;
 	tableView.delegate = self;
 	tableView.dataSource = self;
-	tableView.sectionHeaderHeight = 7;//(tableView.sectionHeaderHeight+4)/2;
+	sectionViewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	tableView.sectionHeaderHeight = 14;//(tableView.sectionHeaderHeight+4)/2;
 	
-	tableView.sectionFooterHeight = 7;//(tableView.sectionFooterHeight+4)/2;   	
+	tableView.sectionFooterHeight = 0;//(tableView.sectionFooterHeight+4)/2;   	
 	loadedB = true;
 	
 	UIImage *buttonBackground;
@@ -824,7 +874,12 @@
 		callButtonP.hidden = YES;
 	
 	}
-	
+	if(showAddButtonB==FALSE)
+	{
+		CGRect recframe;
+		recframe = viewP.frame;
+		recframe.size.height-=59;
+	}
 	buttonBackground = [UIImage imageNamed:_DEL_NORMAL_PNG_];
 	buttonBackgroundPressed = [UIImage imageNamed:_DEL_PRESSED_PNG_];
 	[CustomButton setImages:delButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
@@ -1503,6 +1558,7 @@ titleForHeaderInSection:(NSInteger)section
 	strcpy(self->selectNoCharP,noCharP);
 	showAddButtonB = lshowB;
 	
+	
 }
 -(void) addContactDetails:(SelectedContctType *)lcontactdataP
 {
@@ -1604,7 +1660,7 @@ titleForHeaderInSection:(NSInteger)section
 		else
 		{
 			sectionArray[sectionCount].sectionView = sectionViewP;
-			sectionArray[sectionCount].sectionheight = sectionViewP.frame.size.height+tableView.sectionHeaderHeight;//+tableView.sectionFooterHeight;
+			sectionArray[sectionCount].sectionheight = sectionViewP.frame.size.height+7;//+tableView.sectionHeaderHeight;//+tableView.sectionFooterHeight;
 		}
 		
 		
@@ -1851,7 +1907,7 @@ titleForHeaderInSection:(NSInteger)section
 		[nsp release];
 		if(tablesz)
 		{
-				
+			
 			
 			if(editableB)
 			{	
