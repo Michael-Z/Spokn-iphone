@@ -1724,7 +1724,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[contactP release];
 	return 0;
 }
--(int) vmsShowRecordScreen : (char*)noCharP
+-(int) vmsShowRecordOrForwardScreen : (char*)noCharP VMSState:(VMSStateType)state filename:(char*)fileNameCharP duration:(int) maxtime vmail:(struct VMail*) lvmailP;
 {
 	//struct AddressBook * addressP;
 	char type[30];
@@ -1732,23 +1732,34 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	char *nameP;
 	Boolean findB= false;
 	[VmsProtocolP	VmsStopRequest];
-	
-	nameP = [self getNameAndTypeFromNumber:noCharP :type :&findB];
-	
-	VmShowViewController     *vmShowViewControllerP;	
-		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
-	[vmShowViewControllerP setFileName: "temp" :0];
-	if(findB==true)
+	if(maxtime)
+	{
+		max = maxtime;
+	}
+	if(noCharP)
 	{	
-		[vmShowViewControllerP setvmsDetail: noCharP : nameP :type :VMSStateRecord :max :0];
+		nameP = [self getNameAndTypeFromNumber:noCharP :type :&findB];
 	}
 	else
 	{
-		[vmShowViewControllerP setvmsDetail: noCharP : noCharP :"" :VMSStateRecord :max : 0];
+		nameP = 0;
+		noCharP = "";
+		
+	}
+	VmShowViewController     *vmShowViewControllerP;	
+		vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];
+	[vmShowViewControllerP setFileName: fileNameCharP :0];
+	if(findB==true)
+	{	
+		[vmShowViewControllerP setvmsDetail: noCharP : nameP :type :state :max :lvmailP];
+	}
+	else
+	{
+		[vmShowViewControllerP setvmsDetail: noCharP : noCharP :"" :state :max : lvmailP];
 		
 	}
 	[vmShowViewControllerP setObject:self];
-	[vmsNavigationController popToRootViewControllerAnimated:NO];
+	//[vmsNavigationController popToRootViewControllerAnimated:NO];
 	UINavigationController *tmpCtl;
 	tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: vmShowViewControllerP ] autorelease];
 	[tabBarController presentModalViewController:tmpCtl animated:YES];

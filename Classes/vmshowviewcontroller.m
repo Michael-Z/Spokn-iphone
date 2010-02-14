@@ -174,9 +174,37 @@
 //	[ [self navigationController] pushViewController:pickerviewcontrollerviewP animated: YES ];
 	
 	//[pickerviewcontrollerviewP release];
+	if(lvmsState!=VMSStatePrevious)
+	{	
+		if(lvmsState==VMSStateForward)
+		{	
+			[ownerobject vmsShowRecordOrForwardScreen:0 VMSState : lvmsState filename:fileNameCharP duration:maxTime vmail:self->vmailP];
+		}
+		else
+		{
+			if(selectedContactP)
+			{	
+				[ownerobject vmsShowRecordOrForwardScreen:selectedContactP->number VMSState : lvmsState filename:"temp" duration:0 vmail:0];
+			}
+			else
+			{
+				[ownerobject vmsShowRecordOrForwardScreen:0 VMSState : lvmsState filename:"temp" duration:0 vmail:0];
+				
+			}
+		}
+	}
+	else
+	{	
+		[pickerviewcontrollerviewP addSelectedContact:selectedContactP  ];
+	
+		if(selectedContactP)
+		{
 		
-	
-	
+			if(self.title == @"VMS")
+				[self setTitle:@"Send VMS"];
+		}
+	}	
+	/*
 	if(lvmsState!=VMSStatePrevious)
 	{	
 		vmstateType = lvmsState;
@@ -200,7 +228,7 @@
 			[self setTitle:@"Send VMS"];
 	}	
 	
-	
+	*/
 	
 	
 }
@@ -672,8 +700,8 @@
 		strcpy(lselectP->nameChar,nameCharP);
 		strcpy(lselectP->type,typeCharP);
 		[self showForwardOrReplyScreen:VMSStateRecord :lselectP];
-		modalB = true;
-		self.navigationItem.hidesBackButton = YES;
+		//modalB = true;
+		//self.navigationItem.hidesBackButton = YES;
 		free(lselectP);
 		//[self showForwardOrReplyScreen:noCharP name:nameCharP];
 	}
@@ -1603,7 +1631,7 @@ id createImage(float percentage)
 {
 	
 	//[self stopButtonPressed:nil];
-	if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward || modalB==true)
+	if(vmstateType==VMSStatePlay)// || vmstateType==VMSStateForward || modalB==true)
 	{	
 		[ [self navigationController] popViewControllerAnimated:YES ];
 	}
@@ -1611,7 +1639,7 @@ id createImage(float percentage)
 	{	
 		
 		[self stopButtonPressed:nil];
-		[ ownerobject.vmsNavigationController popViewControllerAnimated:NO ];
+		//[ ownerobject.vmsNavigationController popViewControllerAnimated:NO ];
 		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 		
 	}	

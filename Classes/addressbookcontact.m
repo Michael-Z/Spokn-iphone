@@ -265,8 +265,11 @@ titleForHeaderInSection:(NSInteger)section
 				[self->ownerobject changeView];
 			}	
 			else
+				
 			{
-				[ownerobject vmsShowRecordScreen:numbercharP];
+				//-(int) vmsShowRecordOrForwardScreen : (char*)noCharP VMSState:(VMSStateType)state filename:(char*)fileNameCharP duration:(int) maxtime;
+
+				[ownerobject vmsShowRecordOrForwardScreen:numbercharP VMSState : VMSStateRecord filename:"temp" duration:0 vmail:0];
 			}
 			[numberStringP release];
 			

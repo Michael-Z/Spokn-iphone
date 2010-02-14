@@ -77,7 +77,14 @@ typedef enum ViewTypeEnum
 		
 		
 	}ViewTypeEnum; 
-@interface ContactDetailsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate> {
+//this protocol is added sending message to parent 
+@protocol ContactDeailsProtocol
+@optional
+-(void) setResult:(int) resultValue;
+
+@end
+
+@interface ContactDetailsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,ContactDeailsProtocol> {
 	IBOutlet UILabel *userNameP;
 	IBOutlet UITableView *tableView;
 	IBOutlet UIView *viewP;
@@ -121,10 +128,13 @@ typedef enum ViewTypeEnum
 	int recordID;
 	int numberFound;
 	int showAlertB;
+	id<ContactDeailsProtocol>contactDetailsProtocolP; 
 	Boolean hideCallAndVmailButtonB;
 	int editDataInt;	//id<VmailProtocol> VmailProtocolP;
+	int addDataInt;
 	
 }
+@property (nonatomic, assign) id<ContactDeailsProtocol>contactDetailsProtocolP;
 -(void)hideCallAndVmailButton:(Boolean)showB;
 - (void)addRow: (int)lsection:(int )row sectionObject:(sectionType **)sectionPP;
 -(void)setObject:(id) object ;

@@ -491,7 +491,7 @@
 	ovController.view.alpha = 0.8;
 	
 	ovController.rvController = self;
-	
+	[self->tableView reloadData];
 	[self->tableView insertSubview:ovController.view aboveSubview:self.parentViewController.view];
 	
 	
@@ -673,10 +673,10 @@ titleForHeaderInSection:(NSInteger)section
 	//searchbar.alpha = 0.6;
 	//searchbar.tintColor = [UIColor colorWithRed:0/255.0 green:0/255.0 blue:20/255.0 alpha:1.0];
 	gframe = searchbar.frame;
-		
+	/*	
 	UITextField *searchField = [[searchbar subviews] lastObject];
 	[searchField setReturnKeyType:UIReturnKeyDone];
-
+*/
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Contact" image:nil tag:3];
 
@@ -917,7 +917,8 @@ titleForHeaderInSection:(NSInteger)section
 	
 	if(refreshB)
 	{
-		[self->tableView reloadData];
+		[self reload];
+		//[self->tableView reloadData];
 		refreshB = 0;
 	}
 	

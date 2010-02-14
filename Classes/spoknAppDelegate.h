@@ -181,7 +181,7 @@ changed:(BOOL)changed;
 -(int)VmsStreamStart:(Boolean)recordB;
 -(void)setVmsDelegate :(id)deligateP;
 -(int)getFileSize:(char*)fileNameP :(unsigned long *)noSecP;
--(int) vmsShowRecordScreen : (char*)noCharP;
+
 -(int)showContactScreen:(id) navObject returnnumber:(SelectedContctType *)lselectedContactP  result:(int *) resultP;
 
 -(int) vmsForward:(char*)numberP :(char*)fileNameCharP;
@@ -205,7 +205,7 @@ changed:(BOOL)changed;
 
 -(char*) getNameAndTypeFromNumber:(char*)pnumberP :(char*)typeP :(Boolean*)pfindBP ;
 -(int)playUrlPath:(NSString*)pathP;
-
+-(int) vmsShowRecordOrForwardScreen : (char*)noCharP VMSState:(VMSStateType)state filename:(char*)fileNameCharP duration:(int) maxtime vmail:(struct VMail*) lvmailP;
 @end
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
 void MyAudioSessionPropertyListener(

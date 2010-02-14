@@ -34,6 +34,15 @@
 #define MAX_ROW_HIGHT 42
 //self.navigationItem.leftBarButtonItem.enabled = YES;
 @implementation ContactDetailsViewController
+@synthesize contactDetailsProtocolP;
+-(void) setResult:(int)resultValue
+{
+	if(retValP)
+	{	
+		*retValP = resultValue;
+	}	
+	viewResult= resultValue;
+}
 -(void)hideCallAndVmailButton:(Boolean)showB
 {
 	hideCallAndVmailButtonB = showB;
@@ -252,9 +261,11 @@
 				 if(retValP)
 				 {	
 					 *retValP = 2;//mean delete
-					 [ownerobject refreshallViews];
+					
+					
 				 }
-			 
+				  [ownerobject refreshallViews];
+				  [contactDetailsProtocolP setResult:2];//change in data
 				 [ [self navigationController] popToRootViewControllerAnimated:YES ];
 			 }
 			 break;
@@ -275,8 +286,9 @@
 				 }
 				 else
 				 {
+					 [ownerobject vmsShowRecordOrForwardScreen:stringSelected[buttonIndex] VMSState : VMSStateRecord filename:"temp" duration:0 vmail:0];
 					 
-					 [ownerobject vmsShowRecordScreen:stringSelected[buttonIndex]];
+					//  [ownerobject vmsShowRecordScreen:stringSelected[buttonIndex]];
 				 }
 				 
 			 } 
@@ -477,8 +489,10 @@
 				}
 				else
 				{
+					[ownerobject vmsShowRecordOrForwardScreen:stringSelected[0] VMSState : VMSStateRecord filename:"temp" duration:0 vmail:0];
 					
-					[ownerobject vmsShowRecordScreen:stringSelected[0]];
+					
+					//[ownerobject vmsShowRecordScreen:stringSelected[0]];
 				}
 				[uiActionSheetP release];
 				break;
@@ -692,7 +706,8 @@
 		{
 			
 			*retValP = 1;
-		}		
+		}
+		[contactDetailsProtocolP setResult:1];//change in data
 	}	//contactID = -1;
 }
 
@@ -734,17 +749,11 @@
 	ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 	
 	ContactControllerDetailsviewP->ownerobject = self->ownerobject;
-	if(retValP)
-	{	
-		editDataInt = 1;
-		[ContactControllerDetailsviewP setReturnValue:retValP selectedContactNumber:0  rootObject:0 selectedContact:0] ;
-	}
-	else
-	{
-		editDataInt = 0;
-		[ContactControllerDetailsviewP setReturnValue:&editDataInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
+	ContactControllerDetailsviewP->contactDetailsProtocolP = self;
+	[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];
+	[ContactControllerDetailsviewP setReturnValue:0 selectedContactNumber:0  rootObject:0 selectedContact:0] ;
 		
-	}
+	editDataInt = 1;
 	
 	[ContactControllerDetailsviewP setAddressBook:addressDataP editable:true :viewEnum];
 	
@@ -781,25 +790,14 @@
 - (void)updateUI:(id) objectP
 {
 
-	if(viewResult || editDataInt)
+	if(viewResult )
 	{
-		if(editDataInt)
-		{
-			if(retValP)
-			{
-				if(*retValP==0)
-				{
-					return;
-				}
-				//*retValP = 0;
-			}
-		}
-		
+				
 		updatecontact = 1;
 		viewResult = 0;
 		self.navigationItem.rightBarButtonItem.enabled = YES;
 		
-		struct AddressBook *addressDataTmpP;
+		struct AddressBook *addressDataTmpP=0;
 		if(editDataInt)
 		{
 			editDataInt = 0;
@@ -815,10 +813,30 @@
 		else
 		{	
 		
-			addressDataTmpP = addressDataP;
-			addressDataP = 0;
-			[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
-			free(addressDataTmpP);
+			
+			if(addDataInt)
+			{
+				showAddButtonB = NO;
+				viewP.hidden = NO;
+
+				addDataInt =0;
+				addressDataTmpP = getContactOf(cdrP->userid);
+				if(addressDataTmpP)
+				{
+					[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
+				}
+				
+			}
+			else
+			{
+				addressDataTmpP = addressDataP;
+				addressDataP = 0;
+				[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
+				free(addressDataTmpP);
+
+			
+			}
+			
 		}
 		[ self->tableView reloadData ];
 	}
@@ -1397,7 +1415,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		}	
 		else
 		{
-			[ownerobject vmsShowRecordScreen:sectionArray[section].dataforSection[row].elementP];
+			[ownerobject vmsShowRecordOrForwardScreen:sectionArray[section].dataforSection[row].elementP VMSState : VMSStateRecord filename:"temp" duration:0 vmail:0];
+			
+			//[ownerobject vmsShowRecordScreen:sectionArray[section].dataforSection[row].elementP];
 		}
 	}	
 	else
@@ -1527,6 +1547,32 @@ titleForHeaderInSection:(NSInteger)section
 -(IBAction)addContactPressed:(id)sender
 {
 
+	
+	
+	ContactDetailsViewController     *ContactControllerDetailsviewP;	
+	ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+	[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];
+	[ContactControllerDetailsviewP setObject:self->ownerobject];
+	char x = addressDataP->title[0];
+	addressDataP->title[0] = 0;
+	[ContactControllerDetailsviewP setReturnValue:0 selectedContactNumber:0  rootObject:0 selectedContact:0] ;
+	[ContactControllerDetailsviewP setSelectedNumber:self->selectNoCharP showAddButton:NO];
+	[ContactControllerDetailsviewP setCdr:self->cdrP];
+	[ContactControllerDetailsviewP setAddressBook:addressDataP editable:true :CONTACTADDVIEWENUM];
+	
+	[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];
+	ContactControllerDetailsviewP->contactDetailsProtocolP = self;
+	
+	addressDataP->title[0] = x;
+	UINavigationController *tmpCtl;
+	tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: ContactControllerDetailsviewP ] autorelease];
+		//[tmpCtl release];
+		
+		//[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+	addDataInt = 1;	
+	[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
+	return;
+	
 	struct AddressBook *addressDataTmpP;
 	
 	

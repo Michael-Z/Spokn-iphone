@@ -1100,7 +1100,8 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	{
 			
 		openVmsCompose = 0;
-		[ownerobject vmsShowRecordScreen:vmsNoChar];
+		[ownerobject vmsShowRecordOrForwardScreen:vmsNoChar VMSState : VMSStateRecord filename:"temp" duration:0 vmail:0];
+		//[ownerobject vmsShowRecordScreen:vmsNoChar];
 		vmsNoChar[0] = 0;
 	
 	}
