@@ -246,8 +246,8 @@
 	[searchbar resignFirstResponder];
 	CGFloat searchBarHeight = [searchbar frame].size.height;
 	[searchbar setFrame:CGRectMake(0,0,294,searchBarHeight)];
-	searchbar.backgroundColor = [[UIColor clearColor] autorelease];
-	searchbar.tintColor = [UIColor colorWithRed:191/255.0 green:200/255.0 blue:206/255.0 alpha:1.0];
+	//searchbar.backgroundColor = [[UIColor clearColor] autorelease];
+	//searchbar.tintColor = [UIColor colorWithRed:191/255.0 green:200/255.0 blue:206/255.0 alpha:1.0];
 	tempview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320,searchBarHeight )];
 	[tempview addSubview:searchbar];
 	tempview.backgroundColor = [[UIColor clearColor] autorelease];	
@@ -387,6 +387,7 @@
 	[searchbar setFrame:CGRectMake(0,0,320,searchBarHeight)];
 	#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
 		[searchBar setShowsCancelButton:YES animated:YES];
+	
 
 	#else
 		searchbar.showsCancelButton = YES;
@@ -642,8 +643,8 @@ titleForHeaderInSection:(NSInteger)section
 	
 	CGFloat searchBarHeight = [searchbar frame].size.height;
 	[searchbar setFrame:CGRectMake(0,0,294,searchBarHeight)];
-	searchbar.backgroundColor = [[UIColor clearColor] autorelease];
-	searchbar.tintColor = [UIColor colorWithRed:191/255.0 green:200/255.0 blue:206/255.0 alpha:1.0];
+	//searchbar.backgroundColor = [[UIColor clearColor] autorelease];
+	//searchbar.tintColor = [UIColor colorWithRed:191/255.0 green:200/255.0 blue:206/255.0 alpha:1.0];
 	tempview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320,searchBarHeight )];
 	[tempview addSubview:searchbar];
 	tempview.backgroundColor = [[UIColor clearColor] autorelease];

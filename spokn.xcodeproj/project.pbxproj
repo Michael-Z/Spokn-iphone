@@ -14,6 +14,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		322FEC6C10EB22AA0086D15B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 322FEC6B10EB22AA0086D15B /* Settings.bundle */; };
+		328795B311299DB60026B3D0 /* pic3.png in Resources */ = {isa = PBXBuildFile; fileRef = 328795B211299DB60026B3D0 /* pic3.png */; };
 		32A01F1B11258FA700DC9D85 /* 3_delete_50_30_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F1211258FA700DC9D85 /* 3_delete_50_30_normal.png */; };
 		32A01F1C11258FA700DC9D85 /* 3_delete_50_30_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F1311258FA700DC9D85 /* 3_delete_50_30_pressed.png */; };
 		32A01F1D11258FA700DC9D85 /* add-cal-wit-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F1411258FA700DC9D85 /* add-cal-wit-text.png */; };
@@ -364,8 +365,6 @@
 		8B964B2A10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */; };
 		8B964B2B10CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */; };
 		8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */; };
-		8B9909FF112926DA00063E1C /* resourcerules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9909FE112926DA00063E1C /* resourcerules.plist */; };
-		8B990A00112926DA00063E1C /* resourcerules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9909FE112926DA00063E1C /* resourcerules.plist */; };
 		8BA11021111C117800433364 /* spokncalladd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1101F111C117800433364 /* spokncalladd.m */; };
 		8BA11022111C117800433364 /* spokncalladd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11020111C117800433364 /* spokncalladd.xib */; };
 		8BA11023111C117800433364 /* spokncalladd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1101F111C117800433364 /* spokncalladd.m */; };
@@ -432,6 +431,7 @@
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		322FEC6B10EB22AA0086D15B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		328795B211299DB60026B3D0 /* pic3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pic3.png; path = rsc/pic3.png; sourceTree = SOURCE_ROOT; };
 		32A01F1211258FA700DC9D85 /* 3_delete_50_30_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3_delete_50_30_normal.png; path = rsc/3_delete_50_30_normal.png; sourceTree = SOURCE_ROOT; };
 		32A01F1311258FA700DC9D85 /* 3_delete_50_30_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3_delete_50_30_pressed.png; path = rsc/3_delete_50_30_pressed.png; sourceTree = SOURCE_ROOT; };
 		32A01F1411258FA700DC9D85 /* add-cal-wit-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-cal-wit-text.png"; path = "rsc/add-cal-wit-text.png"; sourceTree = SOURCE_ROOT; };
@@ -637,7 +637,6 @@
 		8B964B2210CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-arm-apple-darwin9.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B9909FE112926DA00063E1C /* resourcerules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = resourcerules.plist; sourceTree = "<group>"; };
 		8BA1101E111C117800433364 /* spokncalladd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spokncalladd.h; sourceTree = "<group>"; };
 		8BA1101F111C117800433364 /* spokncalladd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spokncalladd.m; sourceTree = "<group>"; };
 		8BA11020111C117800433364 /* spokncalladd.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spokncalladd.xib; sourceTree = "<group>"; };
@@ -922,7 +921,6 @@
 				8B6739E2101209E900849952 /* spokn-Info.plist */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8B964A9B10CBE3BC00CB00DB /* spokn-Infotesting.plist */,
-				8B9909FE112926DA00063E1C /* resourcerules.plist */,
 				8BA1DD9E112956C9007CCB70 /* Entitlements.plist */,
 			);
 			name = Resources;
@@ -970,6 +968,7 @@
 		8B1AE7221120625600A957EA /* spoknbuttonicon */ = {
 			isa = PBXGroup;
 			children = (
+				328795B211299DB60026B3D0 /* pic3.png */,
 				32A01E9411258EDA00DC9D85 /* Lattest */,
 				8BD0C6131121710600D05D74 /* callblue.png */,
 				8BD0C5EB112165D400D05D74 /* black1.png */,
@@ -1435,8 +1434,8 @@
 				32A01F2311258FA700DC9D85 /* speaker-wit-text.png in Resources */,
 				32A01F601125902400DC9D85 /* blue-keypad.png in Resources */,
 				32A01F611125902400DC9D85 /* grey-keypad.png in Resources */,
-				8B990A00112926DA00063E1C /* resourcerules.plist in Resources */,
 				8BA1DDA0112956C9007CCB70 /* Entitlements.plist in Resources */,
+				328795B311299DB60026B3D0 /* pic3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1542,7 +1541,6 @@
 				8BD0C5EC112165D400D05D74 /* black1.png in Resources */,
 				8BD0C6141121710600D05D74 /* callblue.png in Resources */,
 				8BAD7A741121C07600ABBCC9 /* about.html in Resources */,
-				8B9909FF112926DA00063E1C /* resourcerules.plist in Resources */,
 				8BA1DD9F112956C9007CCB70 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2101,7 +2099,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
@@ -2126,7 +2124,7 @@
 				);
 				PRODUCT_NAME = spokn;
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE3C61A9-BC01-4CF4-8E50-43611DC95C7A";
 			};
 			name = Distribution;
 		};
