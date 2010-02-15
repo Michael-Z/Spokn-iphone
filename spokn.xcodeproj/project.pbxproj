@@ -364,14 +364,14 @@
 		8B964B2A10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */; };
 		8B964B2B10CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */; };
 		8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */; };
-		8B9909F61129266800063E1C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9909F51129266800063E1C /* Entitlements.plist */; };
-		8B9909F71129266800063E1C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9909F51129266800063E1C /* Entitlements.plist */; };
 		8B9909FF112926DA00063E1C /* resourcerules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9909FE112926DA00063E1C /* resourcerules.plist */; };
 		8B990A00112926DA00063E1C /* resourcerules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9909FE112926DA00063E1C /* resourcerules.plist */; };
 		8BA11021111C117800433364 /* spokncalladd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1101F111C117800433364 /* spokncalladd.m */; };
 		8BA11022111C117800433364 /* spokncalladd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11020111C117800433364 /* spokncalladd.xib */; };
 		8BA11023111C117800433364 /* spokncalladd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1101F111C117800433364 /* spokncalladd.m */; };
 		8BA11024111C117800433364 /* spokncalladd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11020111C117800433364 /* spokncalladd.xib */; };
+		8BA1DD9F112956C9007CCB70 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BA1DD9E112956C9007CCB70 /* Entitlements.plist */; };
+		8BA1DDA0112956C9007CCB70 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BA1DD9E112956C9007CCB70 /* Entitlements.plist */; };
 		8BA8E3A11027EF800022801E /* addeditcontactviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */; };
 		8BA8E3A21027EF800022801E /* addeditcontact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E3A01027EF800022801E /* addeditcontact.xib */; };
 		8BA8E558102835BC0022801E /* vmailview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E555102835BC0022801E /* vmailview.xib */; };
@@ -637,11 +637,11 @@
 		8B964B2210CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-arm-apple-darwin9.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B9909F51129266800063E1C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8B9909FE112926DA00063E1C /* resourcerules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = resourcerules.plist; sourceTree = "<group>"; };
 		8BA1101E111C117800433364 /* spokncalladd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spokncalladd.h; sourceTree = "<group>"; };
 		8BA1101F111C117800433364 /* spokncalladd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spokncalladd.m; sourceTree = "<group>"; };
 		8BA11020111C117800433364 /* spokncalladd.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spokncalladd.xib; sourceTree = "<group>"; };
+		8BA1DD9E112956C9007CCB70 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8BA8E39E1027EF800022801E /* addeditcontactviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addeditcontactviewcontroller.h; sourceTree = "<group>"; };
 		8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addeditcontactviewcontroller.m; sourceTree = "<group>"; };
 		8BA8E3A01027EF800022801E /* addeditcontact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addeditcontact.xib; sourceTree = "<group>"; };
@@ -922,8 +922,8 @@
 				8B6739E2101209E900849952 /* spokn-Info.plist */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8B964A9B10CBE3BC00CB00DB /* spokn-Infotesting.plist */,
-				8B9909F51129266800063E1C /* Entitlements.plist */,
 				8B9909FE112926DA00063E1C /* resourcerules.plist */,
+				8BA1DD9E112956C9007CCB70 /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1435,8 +1435,8 @@
 				32A01F2311258FA700DC9D85 /* speaker-wit-text.png in Resources */,
 				32A01F601125902400DC9D85 /* blue-keypad.png in Resources */,
 				32A01F611125902400DC9D85 /* grey-keypad.png in Resources */,
-				8B9909F71129266800063E1C /* Entitlements.plist in Resources */,
 				8B990A00112926DA00063E1C /* resourcerules.plist in Resources */,
+				8BA1DDA0112956C9007CCB70 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1542,8 +1542,8 @@
 				8BD0C5EC112165D400D05D74 /* black1.png in Resources */,
 				8BD0C6141121710600D05D74 /* callblue.png in Resources */,
 				8BAD7A741121C07600ABBCC9 /* about.html in Resources */,
-				8B9909F61129266800063E1C /* Entitlements.plist in Resources */,
 				8B9909FF112926DA00063E1C /* resourcerules.plist in Resources */,
+				8BA1DD9F112956C9007CCB70 /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2068,9 +2068,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = 4.2;
@@ -2089,8 +2089,8 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Distribution;
@@ -2100,7 +2100,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2125,7 +2125,7 @@
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
 			};
 			name = Distribution;
@@ -2231,7 +2231,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				GCC_C_LANGUAGE_STANDARD = c99;

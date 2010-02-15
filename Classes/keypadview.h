@@ -34,6 +34,8 @@
 
 @interface Keypadview : UIView {
 	int objectId;
+	int ydiff;
+	int xdiff;
 	NSString *dataStringP;
 	UIImage *keypadImageP;
 	UIImage *pressedImageP;

@@ -31,10 +31,26 @@
 @synthesize keypadProtocolP;
 -(void)setElement:(int)lelementx :(int)lelementy
 {
+	int rem;
 	elementx = lelementx;
 	elementy = lelementy;
-	elementWidth = self.bounds.size.width/elementx;
-	elementHeight = self.bounds.size.height/elementy;
+	xdiff = 0;
+	ydiff = 0;
+	elementWidth = (self.bounds.size.width/elementx);
+	elementHeight = (self.bounds.size.height/elementy);
+	rem= (int)(self.bounds.size.width)%elementx;
+	if(rem)
+	{
+		xdiff=2;
+	}
+	
+	/*
+	rem= (int)(self.bounds.size.height)%elementy;
+	if(rem)
+	{
+		//ydiff=1;
+	}
+	*/
 		
 }	
 
@@ -95,10 +111,17 @@
 		row =  point.y/self->elementHeight;
 		col = point.x/self->elementWidth;
 
-		rectchange.origin.x = col*elementWidth;
+		rectchange.origin.x = col*elementWidth ;
 		rectchange.origin.y = row*elementHeight;
-		rectchange.size.width = elementWidth;
-		rectchange.size.height = elementHeight;
+		if(col==1)
+		{	
+			rectchange.size.width = elementWidth - xdiff;
+		}
+		else
+		{
+			rectchange.size.width = elementWidth;
+		}
+		rectchange.size.height = elementHeight-ydiff;
 		arrayPos = row*elementx+col;
 		
 		if(arrayPos<12)
