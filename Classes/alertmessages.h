@@ -144,7 +144,7 @@
 #define _DIALAD_PRESSED_PNG_ @"keypad-pressed.png"
 #define _KEYPAD_NORMAL_PNG_ @"grey-keypad.png"  
 #define _KEYPAD_PRESSED_PNG_ @"blue-keypad.png"
-#define _SEARCHBAR_PNG_ @"searchbarbackgroung.png"
+#define _SEARCHBAR_PNG_ @"pic3.png"
 #define _DEL_NORMAL_PNG_ @"6_deleteconfirm_302_45_normal.png"
 #define _DEL_PRESSED_PNG_ @"6_deleteconfirm_302_45_pressed.png"
 
