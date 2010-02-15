@@ -615,6 +615,11 @@
 			}
 			break;
 		case CALL_ALERT:
+			if(self->subID==1)
+			{
+				self->callNumber.direction = 0;
+				break;
+			}
 			switch(self->callNumber.direction)
 			{
 				case 1:
@@ -622,6 +627,9 @@
 					self->callNumber.direction = 0;
 					break;
 				case 2:
+					AcceptInterface(ltpInterfacesP, self->callNumber.lineId);
+					self->callNumber.direction = 0;
+					
 					break;
 			}		
 			//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
@@ -1350,7 +1358,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	#else
 		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 	#endif
-	AcceptInterface(ltpInterfacesP, inComP->lineid);
+	self->callNumber.direction = 2;
+	self->callNumber.lineId = inComP->lineid;
+	//AcceptInterface(ltpInterfacesP, inComP->lineid);
 	free(inComP);
 	//[self changeView];
 	
@@ -1604,7 +1614,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 	callOnB =false;
 	
-	hangLtpInterface(self->ltpInterfacesP);
+	//hangLtpInterface(self->ltpInterfacesP);
 	[dialviewP setStatusText: @"call end" :nil :ALERT_DISCONNECTED :0];
 	//SetSpeakerOnOrOff(0,true);
 	#ifdef __IPHONE_3_0

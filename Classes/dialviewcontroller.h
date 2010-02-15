@@ -79,7 +79,7 @@
 
 -(void)setObject:(id) object ;
 -(IBAction)callLtp:(id)sender;
--(IBAction)hangLtp:(id)sender;
+-(IBAction)vmsShow:(id)sender;
 -(IBAction)backkeyPressed:(id)sender;
 -(IBAction)backkeyReleased:(id)sender;
 - (IBAction)dismissKeyboard: (id)sender;

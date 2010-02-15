@@ -242,7 +242,6 @@
 		8B964A2610CBE3BC00CB00DB /* contact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE820310A5B71A00B0BAAD /* contact.xib */; };
 		8B964A2D10CBE3BC00CB00DB /* dialview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BC568FB10BE9A590083F77D /* dialview.xib */; };
 		8B964A3110CBE3BC00CB00DB /* callviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD982EB10C400E0002793BE /* callviewcontroller.xib */; };
-		8B964A3310CBE3BC00CB00DB /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BCF516410C50E90004BD8C3 /* Entitlements.plist */; };
 		8B964A3510CBE3BC00CB00DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		8B964A3610CBE3BC00CB00DB /* spoknAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* spoknAppDelegate.m */; };
 		8B964A3710CBE3BC00CB00DB /* contactDetailsviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */; };
@@ -365,6 +364,10 @@
 		8B964B2A10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */; };
 		8B964B2B10CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */; };
 		8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */; };
+		8B9909F61129266800063E1C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9909F51129266800063E1C /* Entitlements.plist */; };
+		8B9909F71129266800063E1C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9909F51129266800063E1C /* Entitlements.plist */; };
+		8B9909FF112926DA00063E1C /* resourcerules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9909FE112926DA00063E1C /* resourcerules.plist */; };
+		8B990A00112926DA00063E1C /* resourcerules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9909FE112926DA00063E1C /* resourcerules.plist */; };
 		8BA11021111C117800433364 /* spokncalladd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1101F111C117800433364 /* spokncalladd.m */; };
 		8BA11022111C117800433364 /* spokncalladd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11020111C117800433364 /* spokncalladd.xib */; };
 		8BA11023111C117800433364 /* spokncalladd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1101F111C117800433364 /* spokncalladd.m */; };
@@ -389,7 +392,6 @@
 		8BCB06B21083020A00468EC7 /* custombutton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB06B11083020A00468EC7 /* custombutton.m */; };
 		8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */; };
 		8BCEEB2D104AD235001DF4AC /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCEEB2C104AD235001DF4AC /* OverlayView.xib */; };
-		8BCF516510C50E90004BD8C3 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BCF516410C50E90004BD8C3 /* Entitlements.plist */; };
 		8BD0C5571121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C5551121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png */; };
 		8BD0C5581121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C5561121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png */; };
 		8BD0C5591121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C5551121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png */; };
@@ -635,6 +637,8 @@
 		8B964B2210CBE78C00CB00DB /* libpjlib-util-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-arm-apple-darwin9.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B9909F51129266800063E1C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		8B9909FE112926DA00063E1C /* resourcerules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = resourcerules.plist; sourceTree = "<group>"; };
 		8BA1101E111C117800433364 /* spokncalladd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spokncalladd.h; sourceTree = "<group>"; };
 		8BA1101F111C117800433364 /* spokncalladd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spokncalladd.m; sourceTree = "<group>"; };
 		8BA11020111C117800433364 /* spokncalladd.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spokncalladd.xib; sourceTree = "<group>"; };
@@ -663,7 +667,6 @@
 		8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = overlayviewcontroller.m; sourceTree = "<group>"; };
 		8BCEEAED104ACC87001DF4AC /* overlayviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = overlayviewcontroller.h; sourceTree = "<group>"; };
 		8BCEEB2C104AD235001DF4AC /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
-		8BCF516410C50E90004BD8C3 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8BD0C5551121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_deleteconfirm_302_45_normal.png; sourceTree = "<group>"; };
 		8BD0C5561121459B00D05D74 /* 6_deleteconfirm_302_45_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_deleteconfirm_302_45_pressed.png; sourceTree = "<group>"; };
 		8BD0C5EB112165D400D05D74 /* black1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black1.png; sourceTree = "<group>"; };
@@ -892,7 +895,6 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */,
 				8B1678BA108F3093004D18C0 /* testmemory-Info.plist */,
-				8BCF516410C50E90004BD8C3 /* Entitlements.plist */,
 				8B964AA610CBE3FA00CB00DB /* spoknTest-Info.plist */,
 			);
 			name = CustomTemplate;
@@ -920,6 +922,8 @@
 				8B6739E2101209E900849952 /* spokn-Info.plist */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8B964A9B10CBE3BC00CB00DB /* spokn-Infotesting.plist */,
+				8B9909F51129266800063E1C /* Entitlements.plist */,
+				8B9909FE112926DA00063E1C /* resourcerules.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1341,7 +1345,6 @@
 				32EE820410A5B71A00B0BAAD /* contact.xib in Resources */,
 				8BC568FC10BE9A590083F77D /* dialview.xib in Resources */,
 				8BD982EC10C400E0002793BE /* callviewcontroller.xib in Resources */,
-				8BCF516510C50E90004BD8C3 /* Entitlements.plist in Resources */,
 				322FEC6C10EB22AA0086D15B /* Settings.bundle in Resources */,
 				8BA11024111C117800433364 /* spokncalladd.xib in Resources */,
 				8B1AE6CB11205F3400A957EA /* phone.caf in Resources */,
@@ -1432,6 +1435,8 @@
 				32A01F2311258FA700DC9D85 /* speaker-wit-text.png in Resources */,
 				32A01F601125902400DC9D85 /* blue-keypad.png in Resources */,
 				32A01F611125902400DC9D85 /* grey-keypad.png in Resources */,
+				8B9909F71129266800063E1C /* Entitlements.plist in Resources */,
+				8B990A00112926DA00063E1C /* resourcerules.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1458,7 +1463,6 @@
 				8B964A2610CBE3BC00CB00DB /* contact.xib in Resources */,
 				8B964A2D10CBE3BC00CB00DB /* dialview.xib in Resources */,
 				8B964A3110CBE3BC00CB00DB /* callviewcontroller.xib in Resources */,
-				8B964A3310CBE3BC00CB00DB /* Entitlements.plist in Resources */,
 				8BA11022111C117800433364 /* spokncalladd.xib in Resources */,
 				8B1AE6CA11205F3400A957EA /* phone.caf in Resources */,
 				8B1AE7621120625600A957EA /* 10_bgblue_103_111_bottom.png in Resources */,
@@ -1538,6 +1542,8 @@
 				8BD0C5EC112165D400D05D74 /* black1.png in Resources */,
 				8BD0C6141121710600D05D74 /* callblue.png in Resources */,
 				8BAD7A741121C07600ABBCC9 /* about.html in Resources */,
+				8B9909F61129266800063E1C /* Entitlements.plist in Resources */,
+				8B9909FF112926DA00063E1C /* resourcerules.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2065,6 +2071,7 @@
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2084,7 +2091,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Distribution;
 		};
@@ -2224,6 +2231,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2245,7 +2253,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "EE3C61A9-BC01-4CF4-8E50-43611DC95C7A";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE3C61A9-BC01-4CF4-8E50-43611DC95C7A";
-				SDKROOT = iphoneos2.2;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};

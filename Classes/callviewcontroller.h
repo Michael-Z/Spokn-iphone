@@ -61,6 +61,8 @@
 	id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 	//Boolean needTOStartTimerB;
 	int sendCallRequestB; 
+	int failedCallB;
+	int endCalledPressed;
 
 }
 -(void)setObject:(id) object ;

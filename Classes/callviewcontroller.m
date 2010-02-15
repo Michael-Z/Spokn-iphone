@@ -73,22 +73,46 @@
 	}
 	[super viewWillAppear:animated];
 }
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[super viewDidDisappear:animated];
+	if(endCalledPressed)
+	{
+		hangLtpInterface(self->ownerobject.ltpInterfacesP);
+	}
+}
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
 	
 	loadedB = true;
+	printf("\nloaded");
+	alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
+	
 	if(actualDismissB)
 	{
 		
 		//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 		actualDismissB = NO;
 	}
+	
+	if(failedCallB)
+	{
+		/*[self retain];
+		[ownerobject.tabBarController dismissModalViewControllerAnimated:NO];
+		[self autorelease];*/
+		 [NSTimer scheduledTimerWithTimeInterval: 2
+														 target: self
+													   selector: @selector(handleCallEndTimer:)
+													   userInfo: nil
+														repeats: NO];
+	}
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	failedCallB  = 0;
 	self.title = @"Call";
 	self->showContactCallOnDelegate = nil;
 	//[ownerobject setStatusBarStyle:UIStatusBarStyleBlackTranslucent animation:NO];
@@ -143,10 +167,10 @@
 	endCallKeypadButtonP.backgroundColor =  [UIColor clearColor];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
-	alertNotiFication(CALL_ALERT,0,0,  (unsigned long)ownerobject,0);
+	
 	
 	[[self navigationController] setNavigationBarHidden:YES animated:NO];
-
+	endCalledPressed = NO;
 	
 }
 
@@ -201,17 +225,21 @@
 }
 -(int)  stopTimer
 {
+	
 	actualDismissB = true;
 	[calltimerP invalidate];
 	calltimerP = nil;
 	if(loadedB==false)
 	{	
-		NSTimer *callEndtimerP;
-		callEndtimerP = [NSTimer scheduledTimerWithTimeInterval: 3
+		failedCallB = true;
+		//NSTimer *callEndtimerP;
+		printf("\nstopTimer");
+		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+		/*callEndtimerP = [NSTimer scheduledTimerWithTimeInterval: 3
 												  target: self
 												selector: @selector(handleCallEndTimer:)
 												userInfo: nil
-												 repeats: NO];
+												 repeats: NO];*/
 	//[callEndtimerP autorelease];
 	}
 	else
@@ -225,6 +253,7 @@
 - (void) handleCallEndTimer: (id) timer
 {
 	[timer invalidate];
+	printf("\n end timer");
 	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 	actualDismissB = NO;
 
@@ -278,11 +307,18 @@
 }
 -(IBAction)endCallPressedKey:(id)sender
 {
+	endCalledPressed = YES;
 	[self->ownerobject endCall:0];
+	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+	endCalledPressed = YES;
 }
 -(IBAction)endCallPressed:(id)sender
 {
+	endCalledPressed = YES;
 	[self->ownerobject endCall:0];
+	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+	
+	
 }
 -(IBAction)mutePressed:(id)sender
 {

@@ -524,7 +524,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		
 	}
 }
--(IBAction)hangLtp:(id)sender
+-(IBAction)vmsShow:(id)sender
 {
 	
 	if(buttonPressedB)
@@ -574,9 +574,10 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				strcpy(lastTypeNo,numbercharP);
 				
 				
+				[ownerobject vmsShowRecordOrForwardScreen:numbercharP VMSState : VMSStateRecord filename:"temp" duration:0 vmail:0];
 				
 				
-				[ownerobject vmsShowRecordScreen:numbercharP];
+				
 				numberlebelP.text = @"";
 				statusLabel1P.hidden = NO;
 				statusLabel2P.hidden = NO;
