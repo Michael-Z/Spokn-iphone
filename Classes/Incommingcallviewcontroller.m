@@ -152,6 +152,7 @@
 	
 
 }
+
 -(void)setObject:(id) object 
 {
 	
@@ -159,7 +160,7 @@
 }
 -(void)setIncommingData:(IncommingCallType *)lltpInDataP
 {
-	NSString *nsp;
+//	NSString *nsp;
 	
 	struct AddressBook *addressP;
 	self->ltpInDataP = lltpInDataP;

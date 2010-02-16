@@ -87,7 +87,7 @@
 	[super viewDidAppear:animated];
 	
 	loadedB = true;
-	printf("\nloaded");
+	
 	alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
 	
 	if(actualDismissB)
@@ -234,7 +234,7 @@
 	{	
 		failedCallB = true;
 		//NSTimer *callEndtimerP;
-		printf("\nstopTimer");
+	
 		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 		/*callEndtimerP = [NSTimer scheduledTimerWithTimeInterval: 3
 												  target: self
@@ -254,7 +254,7 @@
 - (void) handleCallEndTimer: (id) timer
 {
 	[timer invalidate];
-	printf("\n end timer");
+	
 	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 	actualDismissB = NO;
 

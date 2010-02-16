@@ -781,8 +781,13 @@
 		{	
 			if(sectionArray[section].dataforSection[row].customViewP)
 			{
-				cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+				#ifdef __IPHONE_3_0
 				
+					cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+				#else
+					cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+				
+				#endif
 				//cell.backgroundColor =[UIColor viewFlipsideBackgroundColor];
 				[cell.contentView addSubview:sectionArray[section].dataforSection[row].customViewP];
 				[sectionArray[section].dataforSection[row].customViewP release];
@@ -792,7 +797,7 @@
 			{
 				CGRect cellRect = CGRectMake(0, 0, 320, 50);
 				
-				cell = [ [ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
+				cell = [ [ [ SpoknUITableViewCell alloc ] initWithCustomFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
 				//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
 				[cell setAutoResize:YES];
 				[self addRow:section :row sectionObject:&secLocP];

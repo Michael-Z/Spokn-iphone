@@ -94,8 +94,14 @@
 		[spoknSubCellP setNeedsDisplay];
 	}	
 }
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+- (id)initWithCustomFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
+   
+	
+	#ifdef __IPHONE_3_0
+		if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
+	#else
+		if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {	
+	#endif		
         // Initialization code
 		
 		CGRect cellFrame = CGRectMake(5.0, 5.0, self.contentView.bounds.size.width-8.0, self.contentView.bounds.size.height-8.0);

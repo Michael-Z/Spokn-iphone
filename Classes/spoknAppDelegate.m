@@ -89,11 +89,11 @@
 	
 	//username, domainname and subdomain name should not contain the following charters below
 	//filter for user name
-	NSString *unWantedInUName = @" ~!@#$^&*()={}[]|;’:\”<>,?/`";
+	NSString *unWantedInUName = @" ~!@#$^&*()={}[]|;’:\"<>,?/`";
 	//filter for domain
-	NSString *unWantedInDomain = @" ~!@#$%^&*()={}[]|;’:\”<>,+?/`";
+	NSString *unWantedInDomain = @" ~!@#$%^&*()={}[]|;’:\"<>,+?/`";
 	//filter for subdomain 
-	NSString *unWantedInSub = @" `~!@#$%^&*()={}[]:\”;’<>,?/1234567890";
+	NSString *unWantedInSub = @" `~!@#$%^&*()={}[]:\";’<>,?/1234567890";
 	
 	//subdomain should not be less that 2 and not greater 6
 	if(!(subDomain.length>=2 && subDomain.length<=6)) return NO;
@@ -533,7 +533,7 @@
 			if(lineID != 0)
 			{	
 				
-				printf("\n line id");
+				
 				RejectInterface(self->ltpInterfacesP, lineID);
 				self->incommingCallList[lineID] = 0;
 			}

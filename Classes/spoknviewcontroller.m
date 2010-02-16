@@ -664,8 +664,13 @@ titleForHeaderInSection:(NSInteger)section
     UITableViewCell *cell = [ltableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		UIImageView *uiImageViewP;
-		
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+		#ifdef __IPHONE_3_0
+				
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		#else
+				cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+		#endif
+        
 		
 		if([temp isEqualToString:@"Buy Credits"]==0  && [temp isEqualToString:@"About"]==0)
 		{	

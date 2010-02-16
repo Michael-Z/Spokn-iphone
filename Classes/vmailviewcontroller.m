@@ -761,7 +761,7 @@
 		{	
 			CGRect cellRect = CGRectMake(0, 0, 320, 50);
 			
-			cell =  [[ [ SpoknUITableViewCell alloc ] initWithFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
+			cell =  [[ [ SpoknUITableViewCell alloc ] initWithCustomFrame: cellRect reuseIdentifier: CellIdentifier ] autorelease] ;
 			//cell->resusableCount = [ indexPath indexAtPosition: 1 ];
 			[cell resizeFrame];
 			[self addRow:[ indexPath indexAtPosition: 1 ] sectionObject:&secLocP];

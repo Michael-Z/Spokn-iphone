@@ -385,7 +385,15 @@
     UITableViewCell *cell = [ tableView dequeueReusableCellWithIdentifier: CellIdentifier ];
     if (cell == nil)
 	{
-        cell = [ [ [ UITableViewCell alloc ] initWithFrame: CGRectZero reuseIdentifier: CellIdentifier ] autorelease ];
+		#ifdef __IPHONE_3_0
+				
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		#else
+				cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+				
+		#endif
+				
+		// cell = [ [ [ UITableViewCell alloc ] initWithFrame: CGRectZero reuseIdentifier: CellIdentifier ] autorelease ];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		switch (section) 
 		{

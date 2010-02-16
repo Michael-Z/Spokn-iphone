@@ -17,5 +17,5 @@
 
 - (void)setCellInfo:(Contact*)obj;
 - (Contact*)getCellInfo;
-
+- (id)initWithCustomFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier;
 @end

@@ -60,7 +60,7 @@
 {
 	nowebB = !lwebB;
 	urlToLoadP = [[NSString alloc] initWithString:urlP];
-	//printf("retain count %d",[urlToLoadP retainCount]);
+
 	//[urlToLoadP retain];
 }
 
@@ -118,7 +118,7 @@
 		NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 		[accountswebView loadRequest:requestObj];
 		[urlToLoadP release];
-		//printf("retain count %d",[urlToLoadP retainCount]);
+	
 		urlToLoadP = nil;
 		[self setTitle:@"About"];
 	}

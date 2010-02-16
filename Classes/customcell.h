@@ -109,7 +109,7 @@
 -(void) setAutoResize:(BOOL)onB;
 -(void) tablecellsetEdit:(int)leditB :(int)needsdisplayB;
 @property (readwrite,assign) SpoknSubCell *spoknSubCellP;
-
+- (id)initWithCustomFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier;
 @end
 
 #define _NEW_TABEL_

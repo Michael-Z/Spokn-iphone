@@ -194,7 +194,14 @@ titleForHeaderInSection:(NSInteger)section
 	UITableViewCell *cell =(UITableViewCell *) [self->tableView dequeueReusableCellWithIdentifier:@"any-cell"];
 	if (cell == nil) 
 	{
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"any-cell"] autorelease];
+		#ifdef __IPHONE_3_0
+				
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"any-cell"] autorelease];
+		#else
+				cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:@"any-cell"] autorelease];
+		#endif
+		
+		
 		
 		
 	}

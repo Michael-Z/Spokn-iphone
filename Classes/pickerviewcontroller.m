@@ -1091,7 +1091,7 @@
     
     ContactCell *cell = (ContactCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[ContactCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[ContactCell alloc] initWithCustomFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
 	
 	if( [searchedContacts count] > indexPath.row)
