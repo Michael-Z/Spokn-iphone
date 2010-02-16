@@ -561,32 +561,41 @@
 							
 				char* token, href[MAX_PATH], seps[2],msg[MAX_PATH];
 							sprintf(seps,"%c\0",SEPARATOR);
-				token = strtok(srvMsgCharP, seps);
+				token = strstr(srvMsgCharP, seps);
 				//if there's href and msg then show messagebox with OK & Cancel buttons
 				if (srvMsgCharP[0]!=SEPARATOR && token)
 				{
 					UIAlertView *alert;
 					NSString *msgStrP;
-					strcpy(href, token);
-					token = strtok(NULL, seps);
-					strcpy(msg, token);
-					msgStrP = [[NSString alloc] initWithUTF8String:msg];
-					if(urlSendP)
-					{
-						[urlSendP release];
-					}
-					urlSendP = [[NSString alloc] initWithUTF8String:href];
-					alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
-														  message: [ NSString stringWithString:msgStrP ]
-														 delegate: self
-												cancelButtonTitle: nil
-												otherButtonTitles: _OK_, nil
-							 ];
-					[alert addButtonWithTitle:_CANCEL_];
 					
-					[ alert show ];
-					[alert release];
-					[msgStrP release];
+					*token = 0;
+					strcpy(href, srvMsgCharP);
+					*token = SEPARATOR;
+					token++;
+					
+					if(token)
+					{	
+						
+						strcpy(msg, token);
+						
+						msgStrP = [[NSString alloc] initWithUTF8String:msg];
+						if(urlSendP)
+						{
+							[urlSendP release];
+						}
+						urlSendP = [[NSString alloc] initWithUTF8String:href];
+						alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
+															  message: [ NSString stringWithString:msgStrP ]
+															 delegate: self
+													cancelButtonTitle: nil
+													otherButtonTitles: _OK_, nil
+								 ];
+						[alert addButtonWithTitle:_CANCEL_];
+						
+						[ alert show ];
+						[alert release];
+						[msgStrP release];
+					}	
 				}  
 				upgradeAlerted = 1;
 			}
@@ -687,11 +696,15 @@
 			{
 				case LOAD_LOGIN_VIEW:
 				{
-					LoginViewController     *loginViewP;	
+					LoginViewController     *loginViewP;
+					
 					if(loginProtocolP)
 					{
 						break;//already in login view
 					}
+					[nsTimerP invalidate];
+					nsTimerP = nil;
+					
 					loginViewP = [[LoginViewController alloc] initWithNibName:@"loginview" bundle:[NSBundle mainBundle]];
 					loginViewP.ltpInterfacesP  = ltpInterfacesP;
 					[loginViewP setObject:self];
@@ -1096,9 +1109,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	osVerP = (char*)[versionP cStringUsingEncoding:NSUTF8StringEncoding];
 	osModelP = (char*)[model cStringUsingEncoding:NSUTF8StringEncoding];
 	uniqueIDCharP = (char*)[uniqueIdentifier cStringUsingEncoding:NSUTF8StringEncoding];
-		//SetDeviceDetail("spokn","1.0.12","windows desktop",osVerP,osModelP,uniqueIDCharP);
-//	SetDeviceDetail("spokn","1.0.3","Windows mobile",osVerP,osModelP,uniqueIDCharP);
-	SetDeviceDetail("Spokn","0.0.1","iphone",osVerP,osModelP,uniqueIDCharP);
+	//	SetDeviceDetail("spokn","1.0.12","windows desktop",osVerP,osModelP,uniqueIDCharP);
+	//SetDeviceDetail("spokn","1.0.3","Windows mobile",osVerP,osModelP,uniqueIDCharP);
+	SetDeviceDetail("Spokn","0.1.7","iphone",osVerP,osModelP,uniqueIDCharP);
 	
 //	[versionP release];
 	//[model release];

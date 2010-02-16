@@ -27,13 +27,13 @@
 #import "spoknAppDelegate.h"
 #import "LtpInterface.h"
 #define ALPHANUM @"12345"
-#define SIGN_IN_TEXT @"Change user" //@"Sign-in"
+#define SECTION_HEIGHT 14
 #import  "AddeditcellController.h"
 #import "WebViewController.h"
 #include "ua.h"
 #import "alertmessages.h"
 #define SPOKNCOLOR [UIColor colorWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0]
-#define ROW_HEIGHT 40
+#define ROW_HEIGHT 42
 
 
 @implementation SpoknViewController
@@ -246,8 +246,10 @@
 	tableView.scrollsToTop = YES;
 	tableView.delegate = self;
 	tableView.dataSource = self;
-	tableView.sectionHeaderHeight = tableView.sectionHeaderHeight+4;
-	tableView.sectionFooterHeight = tableView.sectionFooterHeight;   	
+	tableView.sectionHeaderHeight = SECTION_HEIGHT;//(tableView.sectionHeaderHeight+4)/2;
+	
+	tableView.sectionFooterHeight = 0;//(tableView.sectionFooterHeight+4)/2;   	
+	
 	forwardNoCharP = malloc(100);
 	memset(forwardNoCharP,0,100);
 	if(stopProgressB==false)
@@ -264,11 +266,11 @@
 	[self createSectionList:wordArray];
 	//[wordArray release];
 	
-	UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 100.0f)];
-	[buybuttonCtlP setFrame:CGRectMake(10,0,145,40)];
+	UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, ROW_HEIGHT + 2*SECTION_HEIGHT)];
+	[buybuttonCtlP setFrame:CGRectMake(10,SECTION_HEIGHT,145,ROW_HEIGHT)];
 	[subview addSubview:buybuttonCtlP];
 	[buybuttonCtlP release];
-	[aboutbuttonCtlP setFrame:CGRectMake(165,0,145,40)];
+	[aboutbuttonCtlP setFrame:CGRectMake(165,SECTION_HEIGHT,145,ROW_HEIGHT)];
 	[subview addSubview:aboutbuttonCtlP];
 	[aboutbuttonCtlP release];
 	self->tableView.tableFooterView = subview;
