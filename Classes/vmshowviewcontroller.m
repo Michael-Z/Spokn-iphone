@@ -297,6 +297,7 @@
 				}
 				free(contactNumberP);
 				[self cancelClicked];//remove dialog
+				[ownerobject.vmsNavigationController popToRootViewControllerAnimated:YES];//remove upto root controller
 				shiftVmailB = YES;
 				return;
 			}
@@ -399,6 +400,11 @@
 }
 - (void)VmsStop
 {
+	if(vmstateType==VMSStatePlay)
+	{
+		deleteButton.enabled = YES;
+	}
+
 	if(doNothing)
 	{
 		//if(recordingStartB != 1)
@@ -529,7 +535,10 @@
 -(IBAction)stopButtonPressed:(id)sender
 {
 	Boolean playB;
-	
+	if(vmstateType==VMSStatePlay)
+	{
+		deleteButton.enabled = YES;
+	}
 	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateRecord )
 	{
 		playB = true;
@@ -553,6 +562,7 @@
 	recordingStartB = 1;
 	audioStartB = true;
 	[ownerobject setVmsDelegate:self];
+	
 	if(vmstateType==VMSStatePlay || vmstateType==VMSStateForward)
 	{
 		if([ownerobject vmsPlayStart:fileNameCharP :&sz])
@@ -623,7 +633,10 @@
 	[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ] forState:UIControlStateHighlighted];
 	//[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 	[sendButtonP setTitleColor:[[UIColor grayColor] autorelease]  forState:UIControlStateDisabled];
-	
+	if(vmstateType==VMSStatePlay)
+	{
+		deleteButton.enabled = NO;
+	}
 	
 
 }
@@ -977,10 +990,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			
 				dispP.fntSz = 14;
 				[dispP.colorP release];
+				[secLocP->elementP addObject:dispP];
 			}	
 			
 			
-			[secLocP->elementP addObject:dispP];
+			
 			
 			
 			
@@ -1487,7 +1501,16 @@ id createImage(float percentage)
 	
 	if(viewController !=self)
 	{
+	//	[self->ownerobject setVmsDelegate:nil];
+		[self->ownerobject setVmsDelegate:nil];
 		[self stopButtonPressed:nil];
+		[self VmsStop];
+		
+		
+	}
+	else
+	{
+		[self->ownerobject setVmsDelegate:self];
 	}
 }
 - (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
@@ -1600,7 +1623,8 @@ id createImage(float percentage)
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	PlayButtonP.backgroundColor =  [UIColor clearColor];
-	
+	[PlayButtonP addTarget:self action:@selector(playPressed:) forControlEvents: UIControlEventTouchUpInside];
+
 	loadedB = true;
 	[self loadOtherView];	
 	[self makeView];
@@ -1857,6 +1881,7 @@ id createImage(float percentage)
 
 - (void)dealloc {
 	//[self navigationController].delegate = nil;
+	[ownerobject setVmsDelegate:nil];
 	ownerobject.vmsNavigationController.delegate = nil;
 	if(shiftVmailB)
 	{	
@@ -1864,7 +1889,7 @@ id createImage(float percentage)
 	}
 		
 	
-	[ownerobject setVmsDelegate:nil];
+	
 	if(nsTimerP)
 	{	
 		[nsTimerP invalidate];

@@ -532,11 +532,14 @@
 			[VmsProtocolP	VmsStopRequest];
 			if(lineID != 0)
 			{	
+				
+				printf("\n line id");
 				RejectInterface(self->ltpInterfacesP, lineID);
 				self->incommingCallList[lineID] = 0;
 			}
 			else
 			{
+				SetAudioTypeLocal(self,1);
 				[self LoadInCommingView:0];	
 				
 			}	

@@ -111,5 +111,6 @@ void AudioSessionInterruptionListenerClient(
 void SetAudioTypeLocal(void *uData,int type);
 int SetSpeakerOnOrOff(void *uData,Boolean onB);
 void SetAudioSessionPropertyListener( void *uDataP,AudioSessionPropertyListener        inProc);
+int SetSpeakerOnOrOffNew(void *uData,Boolean onB);
 #endif
 

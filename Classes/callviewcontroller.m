@@ -1,7 +1,7 @@
 
 //  Created by Mukesh Sharma on 29/09/09.
 
-/**
+/** 
  Copyright 2009,2010 Geodesic, <http://www.geodesic.com/>
  
  Spokn SIP-VoIP for iPhone and iPod Touch.
@@ -50,6 +50,7 @@
 	{	
 		[callnoLabelP setText:@""];
 		delTextB = NO;
+		callnoLabelP.lineBreakMode = UILineBreakModeHeadTruncation;
 	}
 	NSString *curText = [callnoLabelP text];
 	[callnoLabelP setText: [curText stringByAppendingString: stringkey]];
@@ -117,7 +118,7 @@
 	self->showContactCallOnDelegate = nil;
 	//[ownerobject setStatusBarStyle:UIStatusBarStyleBlackTranslucent animation:NO];
 	
-	SetSpeakerOnOrOff(0,false);
+	SetSpeakerOnOrOffNew(0,false);
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
 	callnoLabelP.backgroundColor = [UIColor clearColor];
@@ -416,7 +417,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	butP = (UIButton*)sender;
 	
 	enable = !butP.selected;
-	SetSpeakerOnOrOff(0,enable);
+	SetSpeakerOnOrOffNew(0,enable);
 	[butP setSelected:enable];
 	
 	
@@ -460,6 +461,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	{
 		delTextB = NO;
 		[callnoLabelP setText:labelStrP];
+		callnoLabelP.lineBreakMode = UILineBreakModeTailTruncation;
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.5];
 		
@@ -503,6 +505,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 
 - (void)dealloc {
+	
 	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleDefault ;
 	[showContactCallOnDelegate objectDestory];
 	[ownerobject playcallendTone];

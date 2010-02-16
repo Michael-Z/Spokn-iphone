@@ -156,13 +156,21 @@
 				{	
 					if(rootObjectP == 0)
 					{	
-						if((cdrP->direction & CALLTYPE_IN) && (cdrP->direction & CALLTYPE_MISSED))
-						{
-							dispP.colorP =[UIColor colorWithRed:140.0/255.0 green:16.0/255.0 blue:5.0/255.0 alpha:1.0];
+						if(cdrP)
+						{	
+							if((cdrP->direction & CALLTYPE_IN) && (cdrP->direction & CALLTYPE_MISSED))
+							{
+								dispP.colorP =[UIColor colorWithRed:140.0/255.0 green:16.0/255.0 blue:5.0/255.0 alpha:1.0];
+							}
+							else
+							{	
+								dispP.colorP = [UIColor colorWithRed:40.0/255.0 green:108.0/255.0 blue:214/255.0 alpha:1.0];
+							}
 						}
 						else
-						{	
+						{
 							dispP.colorP = [UIColor colorWithRed:40.0/255.0 green:108.0/255.0 blue:214/255.0 alpha:1.0];
+							
 						}
 					}
 					else
@@ -820,7 +828,12 @@
 				viewP.hidden = NO;
 
 				addDataInt =0;
-				addressDataTmpP = getContactOf(cdrP->userid);
+				if(cdrP)
+					addressDataTmpP = getContactOf(cdrP->userid);
+				else
+				{
+					addressDataTmpP = getContactOf(self->selectNoCharP);
+				}
 				if(addressDataTmpP)
 				{
 					[self setAddressBook:addressDataTmpP editable:self->editableB :viewEnum];
@@ -1235,8 +1248,9 @@
 			
 			if(sectionArray[section].dataforSection[row].customViewP)
 			{
+			//#ifdef __IPHONE_3_0
 				cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-				
+		//	#else	
 				
 				[cell.contentView addSubview:sectionArray[section].dataforSection[row].customViewP];
 				[sectionArray[section].dataforSection[row].customViewP release];
@@ -1323,6 +1337,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		{
 			strcpy(sectionArray[section].dataforSection[row].elementP,"\0");//mean row is deleted
 			updatecontact = 1;
+			if(row==0 && section==0)
+			{
+				noNameB = true;
+			}
 		}
 		self.navigationItem.rightBarButtonItem.enabled = YES;
 		// [dataController removeDataAtIndex:indexPath.row-1];
