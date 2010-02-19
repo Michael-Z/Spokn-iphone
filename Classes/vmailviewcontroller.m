@@ -1086,6 +1086,16 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[ self->tableView reloadData ];
 }
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	NSUInteger indexArr[] = {0,0};
+	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+
+
 #define TABLE_VIEW_TAG			2000
 - (void)viewDidAppear:(BOOL)animated
 {
