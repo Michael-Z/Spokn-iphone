@@ -55,7 +55,7 @@
 	{	
 		if([ownerobject vmsForward:lallForwardContactP :fileNameCharP]!=0)
 		{
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Spokn" message:_VMS_SENDING_FAILED_ delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_TITLE_ message:_VMS_SENDING_FAILED_ delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 		
 			[alert show];
 		}
@@ -305,7 +305,7 @@
 			
 		}	
 		
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_TITLE_ message:_EMPTY_NUMBER_ delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_NO_NUMBER_ message:_NO_NUMBER_VMS_MESSAGE_ delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 			
 		[alert show];
 		
@@ -422,8 +422,8 @@
 	
 	if(vmstateType == VMSStatePlay ||vmstateType == VMSStateForward )
 	{	
-		[self setButtonTitle:@"Play" forState:UIControlStateNormal];
-		[self setButtonTitle:@"Play" forState:UIControlStateHighlighted];
+		[self setButtonTitle:_PLAY_ forState:UIControlStateNormal];
+		[self setButtonTitle:_PLAY_ forState:UIControlStateHighlighted];
 	}
 	
 	if(vmstateType == VMSStateRecord)
@@ -438,8 +438,8 @@
 				if(self->maxtimeDouble==maxTime)
 				{
 					recordingStartB = 0;
-					[self setButtonTitle:@"Record" forState:UIControlStateNormal];
-					[self setButtonTitle:@"Record" forState:UIControlStateHighlighted];
+					[self setButtonTitle:_RECORD_  forState:UIControlStateNormal];
+					[self setButtonTitle:_RECORD_  forState:UIControlStateHighlighted];
 
 					[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTime ]];
 					return;
@@ -451,8 +451,8 @@
 			{
 				[secondLabelP setText:[NSString stringWithFormat:@"%d", maxTimeLoc]];
 			}
-			[self setButtonTitle:@"Rerecord" forState:UIControlStateNormal];
-			[self setButtonTitle:@"Rerecord" forState:UIControlStateHighlighted];
+			[self setButtonTitle:_RERECORD_ forState:UIControlStateNormal];
+			[self setButtonTitle:_RERECORD_ forState:UIControlStateHighlighted];
 			
 			
 			previewPressedB = false;
@@ -613,8 +613,8 @@
 				
 											   repeats: YES];
 	[PlayButtonP addTarget:self action:@selector(stopButtonPressed:) forControlEvents: UIControlEventTouchUpInside];
-	[self setButtonTitle:@"Stop" forState:UIControlStateNormal];
-	[self setButtonTitle:@"Stop" forState:UIControlStateHighlighted];
+	[self setButtonTitle:_STOP_ forState:UIControlStateNormal];
+	[self setButtonTitle:_STOP_ forState:UIControlStateHighlighted];
 	previewButtonP.enabled  = NO;
 	sendButtonP.enabled  = NO;
 	previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
@@ -678,8 +678,8 @@
 				
 											   repeats: YES];
 		[PlayButtonP addTarget:self action:@selector(stopButtonPressed:) forControlEvents: UIControlEventTouchUpInside];
-		[self setButtonTitle:@"Stop" forState:UIControlStateNormal];
-		[self setButtonTitle:@"Stop" forState:UIControlStateHighlighted];
+		[self setButtonTitle:_STOP_ forState:UIControlStateNormal];
+		[self setButtonTitle:_STOP_ forState:UIControlStateHighlighted];
 		previewButtonP.enabled  = NO;
 		sendButtonP.enabled  = NO;
 		previewButtonP.imageEdgeInsets = UIEdgeInsetsMake (0., 0., 0., 5.);
@@ -1307,12 +1307,12 @@ id createImage(float percentage)
 		char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 		
 		//char *month[12]={"January","February","March","April","May","June","July","August","September","October","November","December"};
-		[self setButtonTitle:@"Play" forState:UIControlStateNormal];
-		[self setButtonTitle:@"Play" forState:UIControlStateHighlighted];
-		[sendButtonP setTitle:@"Forward" forState:UIControlStateNormal];
-		[sendButtonP setTitle:@"Forward" forState:UIControlStateHighlighted];
-		[previewButtonP setTitle:@"Reply" forState:UIControlStateNormal];
-		[previewButtonP setTitle:@"Reply" forState:UIControlStateHighlighted];
+		[self setButtonTitle:_PLAY_ forState:UIControlStateNormal];
+		[self setButtonTitle:_PLAY_ forState:UIControlStateHighlighted];
+		[sendButtonP setTitle:_FORWARD_ forState:UIControlStateNormal];
+		[sendButtonP setTitle:_FORWARD_ forState:UIControlStateHighlighted];
+		[previewButtonP setTitle:_REPLY_  forState:UIControlStateNormal];
+		[previewButtonP setTitle:_REPLY_  forState:UIControlStateHighlighted];
 			
 		struct tm tmP1,*tmP=0;
 		time_t timeP;
@@ -1385,8 +1385,8 @@ id createImage(float percentage)
 		{
 			pickerviewcontrollerviewP.upDateProtocolP = self;
 			tableView.tableHeaderView =  pickerviewcontrollerviewP.view;
-			[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
-			[sendButtonP setTitle:@"Send" forState:UIControlStateHighlighted];
+			[sendButtonP setTitle:_SEND_  forState:UIControlStateNormal];
+			[sendButtonP setTitle:_SEND_  forState:UIControlStateHighlighted];
 			
 			self.navigationItem.hidesBackButton = YES;
 			//self.navigationItem.rightBarButtonItem  = nil;
@@ -1441,12 +1441,12 @@ id createImage(float percentage)
 			
 			//[previewButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 			
-			[self setButtonTitle:@"Record" forState:UIControlStateNormal];
-			[self setButtonTitle:@"Record" forState:UIControlStateHighlighted];
-			[sendButtonP setTitle:@"Send" forState:UIControlStateNormal];
-			[sendButtonP setTitle:@"Send" forState:UIControlStateHighlighted];
-			[previewButtonP setTitle:@"Preview" forState:UIControlStateNormal];
-			[previewButtonP setTitle:@"Preview" forState:UIControlStateHighlighted];
+			[self setButtonTitle:_RECORD_  forState:UIControlStateNormal];
+			[self setButtonTitle:_RECORD_  forState:UIControlStateHighlighted];
+			[sendButtonP setTitle:_SEND_  forState:UIControlStateNormal];
+			[sendButtonP setTitle:_SEND_  forState:UIControlStateHighlighted];
+			[previewButtonP setTitle:_PREVIEW_ forState:UIControlStateNormal];
+			[previewButtonP setTitle:_PREVIEW_ forState:UIControlStateHighlighted];
 		}
 		self.navigationItem.leftBarButtonItem = nil;
 		self.navigationItem.rightBarButtonItem = [ [ [ UIBarButtonItem alloc ]
@@ -1622,8 +1622,8 @@ id createImage(float percentage)
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
 	
-	buttonBackground = [UIImage imageNamed:@"5_play_270_45_normal.png"];
-	buttonBackgroundPressed = [UIImage imageNamed:@"5_play_270_45_pressed.png"];
+	buttonBackground = [UIImage imageNamed:_PLAY_NORMAL_PNG_];
+	buttonBackgroundPressed = [UIImage imageNamed:_PLAY_PRESSED_PNG_];
 	[CustomButton setImages:PlayButtonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
 	[buttonBackground release];
 	[buttonBackgroundPressed release];

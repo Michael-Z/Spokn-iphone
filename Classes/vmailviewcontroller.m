@@ -225,7 +225,7 @@
 		//self.title = @"Voicemail";
 		//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 		[self setTitle:@"VMS"];
-		[self.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"TB-VMS.png"] tag:4];
+		[self.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:_TAB_VMS_PNG_] tag:4];
     }
     return self;
 }
@@ -860,7 +860,7 @@
 				break;
 			case 2:
 				alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
-													  message: [ NSString stringWithString:@"vms is already playing" ]
+													  message: [ NSString stringWithString:_VMS_ALREADY_PLAYING_]
 																  delegate: nil
 														 cancelButtonTitle: nil
 														 otherButtonTitles: _OK_, nil
@@ -871,8 +871,8 @@
 				break;
 			case 1:
 								
-				alert = [ [ UIAlertView alloc ] initWithTitle: @"The voice mail is still not downloaded." 
-																   message: [ NSString stringWithString:_VMS_NOT_FULLY_DOWNLOADED ]
+				alert = [ [ UIAlertView alloc ] initWithTitle: _INCOMPLETE_VMS_ 
+																   message: [ NSString stringWithString:_VMS_NOT_FULLY_DOWNLOADED_ ]
 																  delegate: self
 														 cancelButtonTitle:_CANCEL_
 														 otherButtonTitles: _OK_, nil

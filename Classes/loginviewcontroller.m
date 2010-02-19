@@ -57,7 +57,8 @@
 	{	
 		NSString *passwordString = [passwordFieldP.text stringByReplacingCharactersInRange:range withString:string];
 		return !([passwordString length] > PASSWORD_RANGE );
-	}	
+	}
+	
 }
 
 /*
@@ -78,7 +79,7 @@
 	NSString *passwordStringP;
 	char *unameP;
 	char *passwordP;
-	
+
 	loginstatusLabel.textColor = [[UIColor grayColor] autorelease];
 	
 	if(ltpInterfacesP)
@@ -180,8 +181,8 @@
 	NSString *passwordStrP;
 	if([usernameFieldP.text length]==0)
 	{
-		alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
-											  message: [ NSString stringWithString:_EMPTY_USERNAME_ ]
+		alert = [ [ UIAlertView alloc ] initWithTitle: _EMPTY_USERNAME_ 
+											  message: [ NSString stringWithString:_EMPTY_USERNAME_MESSAGE_ ]
 											 delegate: self
 									cancelButtonTitle: nil
 									otherButtonTitles: _OK_, nil
@@ -195,8 +196,8 @@
 	{
 		if([passwordFieldP.text length]==0)
 		{
-			alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
-												  message: [ NSString stringWithString:_EMPTY_PASSWORD_ ]
+			alert = [ [ UIAlertView alloc ] initWithTitle: _EMPTY_PASSWORD_ 
+												  message: [ NSString stringWithString:_EMPTY_PASSWORD_MESSAGE_ ]
 												 delegate: self
 										cancelButtonTitle: nil
 										otherButtonTitles: _OK_, nil
@@ -211,7 +212,7 @@
 	userNameStrP = [usernameFieldP.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if([userNameStrP length]==0)
 	{
-		alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
+		alert = [ [ UIAlertView alloc ] initWithTitle: _SIGN_IN_FAILED_ 
 											  message: [ NSString stringWithString:_USERNAME_NO_WHITESPACE_ ]
 											 delegate: self
 									cancelButtonTitle: nil
@@ -226,7 +227,7 @@
 	passwordStrP = [passwordFieldP.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	if([passwordStrP length]==0)
 	{
-		alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
+		alert = [ [ UIAlertView alloc ] initWithTitle: _SIGN_IN_FAILED_ 
 											  message: [ NSString stringWithString:_PASSWORD_NO_WHITESPACE_ ]
 											 delegate: self
 									cancelButtonTitle: nil

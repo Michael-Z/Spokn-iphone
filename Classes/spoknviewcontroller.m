@@ -581,7 +581,7 @@ titleForHeaderInSection:(NSInteger)section
 			}
 			//[labelStatus setText:@"Online  "];
 			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-													   initWithTitle:@"Sign-out" 
+													   initWithTitle:SIGN_OUT_TEXT 
 													   style:UIBarButtonItemStylePlain 
 													   target:self 
 													   action:@selector(LogoutPressed)] autorelease];

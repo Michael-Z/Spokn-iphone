@@ -158,7 +158,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-		[self.tabBarItem initWithTitle:@"Keypad" image:[UIImage imageNamed:@"Dial.png"] tag:3];
+		[self.tabBarItem initWithTitle:@"Keypad" image:[UIImage imageNamed:_TAB_KEYPAD_PNG_] tag:3];
 		callingstringP = nil;
 		callingstringtypeP = nil;
     }
@@ -440,8 +440,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			
 			if(strlen(lastTypeNo)==0)
 			{
-				alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
-																   message: [ NSString stringWithString:_INVALID_NUMBER_ ]
+				alert = [ [ UIAlertView alloc ] initWithTitle: _NO_NUMBER_ 
+																   message: [ NSString stringWithString:_NO_NUMBER_CALL_MESSAGE_ ]
 																  delegate: nil
 														 cancelButtonTitle: nil
 														 otherButtonTitles: _OK_, nil
@@ -478,8 +478,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			
 			if(strlen(lastTypeNo)==0)
 			{
-				alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
-																   message: [ NSString stringWithString:_INVALID_NUMBER_ ]
+				alert = [ [ UIAlertView alloc ] initWithTitle:_INVALID_NUMBER_ 
+																   message: [ NSString stringWithString:_INVALID_NUMBER_MESSAGE_ ]
 																  delegate: nil
 														 cancelButtonTitle: nil
 														 otherButtonTitles: _OK_, nil
@@ -499,7 +499,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		
 		if(self->ownerobject.loginProgressStart)
 		{	
-			alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
+			alert = [ [ UIAlertView alloc ] initWithTitle: _USER_OFFLINE_ 
 														   message: [ NSString stringWithString:_USER_OFFLINE_ ]
 														  delegate: nil
 												 cancelButtonTitle: nil
@@ -510,8 +510,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		}
 		else
 		{
-			UIAlertView *lalert = [ [ UIAlertView alloc ] initWithTitle: @"" 
-															   message: [ NSString stringWithString:_NO_NETWORK_ ]
+			UIAlertView *lalert = [ [ UIAlertView alloc ] initWithTitle: _STATUS_NO_NETWORK_ 
+															   message: [ NSString stringWithString:_CHECK_NETWORK_SETTINGS_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: _OK_, nil
@@ -553,8 +553,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 					
 					if(strlen(lastTypeNo)==0)
 					{
-						alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
-																		   message: [ NSString stringWithString:_ENTER_NUMEBR_ ]
+						alert = [ [ UIAlertView alloc ] initWithTitle: _NO_NUMBER_ 
+																		   message: [ NSString stringWithString:_NO_NUMBER_VMS_MESSAGE_ ]
 																		  delegate: nil
 																 cancelButtonTitle: nil
 																 otherButtonTitles: _OK_, nil
@@ -783,7 +783,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 					{	
 						if(alert==nil)
 						{	
-							alert = [ [ UIAlertView alloc ] initWithTitle: @"Sign-in Failed" 
+							alert = [ [ UIAlertView alloc ] initWithTitle: _SIGN_IN_FAILED_ 
 									   message: [ NSString stringWithString:_AUTHENTICATION_FAILED_ ]
 									  delegate: self
 				 					 cancelButtonTitle: nil
@@ -806,8 +806,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 						
 					if(alert==nil)
 					{	
-						alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
-															  message: [ NSString stringWithString:_NO_AVAILABLE_NETWORK_ ]
+						alert = [ [ UIAlertView alloc ] initWithTitle: _STATUS_NO_NETWORK_ 
+															  message: [ NSString stringWithString:_CHECK_NETWORK_SETTINGS_ ]
 															 delegate: self
 													cancelButtonTitle: nil
 													otherButtonTitles: _OK_, nil

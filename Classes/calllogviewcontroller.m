@@ -1041,7 +1041,7 @@ cancelButtonTitle: nil
 	{	
 		self.navigationItem.leftBarButtonItem 
 		= [ [ [ UIBarButtonItem alloc ]
-			 initWithTitle: @"Clear" style:UIBarButtonItemStylePlain
+			 initWithTitle: _CLEAR_ style:UIBarButtonItemStylePlain
 			 target: self
 			 action: @selector(clearPressed) ] autorelease ];
 		if(count)

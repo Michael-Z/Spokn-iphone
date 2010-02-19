@@ -135,10 +135,10 @@
 	[callTypeLabelP setText:labeltypeStrP];
 	callTypeLabelP.backgroundColor = [UIColor clearColor];
 	[self->topViewP setBackgroundColor:[[[UIColor alloc] 
-									initWithPatternImage:[UIImage imageNamed:@"black1.png"]]
+									initWithPatternImage:[UIImage imageNamed:_SCREEN_BORDERS_PNG_]]
 								   autorelease]];	
 	[self->bottomViewP setBackgroundColor:[[[UIColor alloc] 
-									initWithPatternImage:[UIImage imageNamed:@"black1.png"]]
+									initWithPatternImage:[UIImage imageNamed:_SCREEN_BORDERS_PNG_]]
 								   autorelease]];	
 
 	self->viewKeypadP.hidden = YES;

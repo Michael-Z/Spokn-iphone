@@ -300,8 +300,8 @@
 				case ERR_CODE_CALL_FWD_DUPLICATE:
 				{
 					char *callFdP;
-					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_TITLE_ 
-															message:_DUPLICATE_FORWARD_NUMBER_
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_DUPLICATE_FORWARD_NUMBER_ 
+															message:_DUPLICATE_FORWARD_NUMBER_MESSAGE_
 															delegate:self 
 														  cancelButtonTitle:nil 
 														  otherButtonTitles:_OK_, nil];
@@ -327,8 +327,8 @@
 					
 				case ERR_CODE_VMS_NO_CREDITS:
 				{
-					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" 
-																	message:_NO_CREDITS_
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_CREDITS_ 
+																	message:_NO_CREDITS_MESSAGE_
 																   delegate:self 
 														  cancelButtonTitle:nil 
 														  otherButtonTitles:_OK_, nil];
@@ -584,7 +584,7 @@
 							[urlSendP release];
 						}
 						urlSendP = [[NSString alloc] initWithUTF8String:href];
-						alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
+						alert = [ [ UIAlertView alloc ] initWithTitle: _UPGRADE_AVAILABLE_ 
 															  message: [ NSString stringWithString:msgStrP ]
 															 delegate: self
 													cancelButtonTitle: nil
@@ -1109,7 +1109,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	osVerP = (char*)[versionP cStringUsingEncoding:NSUTF8StringEncoding];
 	osModelP = (char*)[model cStringUsingEncoding:NSUTF8StringEncoding];
 	uniqueIDCharP = (char*)[uniqueIdentifier cStringUsingEncoding:NSUTF8StringEncoding];
-	//	SetDeviceDetail("spokn","1.0.12","windows desktop",osVerP,osModelP,uniqueIDCharP);
+	//SetDeviceDetail("spokn","1.0.12","windows desktop",osVerP,osModelP,uniqueIDCharP);
 	//SetDeviceDetail("spokn","1.0.3","Windows mobile",osVerP,osModelP,uniqueIDCharP);
 	SetDeviceDetail("Spokn","0.1.7","iphone",osVerP,osModelP,uniqueIDCharP);
 	
@@ -1177,7 +1177,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 		
 	tabBarController.selectedViewController = spoknViewNavigationController;//dialviewP;
-	[vmsNavigationController.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:@"TB-VMS.png"] tag:4];
+	[vmsNavigationController.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:_TAB_VMS_PNG_] tag:4];
 	[self createRing];
 	SetSpeakerOnOrOff(0,true);
 	[vmsviewP setcomposeStatus:1 ];
@@ -1508,8 +1508,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	if(validateNo(resultCharP))//mean invalid number
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_TITLE_ 
-														message:_INVALID_NUMBER_
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_INVALID_NUMBER_ 
+														message:_INVALID_NUMBER_MESSAGE_
 													   delegate:self 
 											  cancelButtonTitle:nil 
 											  otherButtonTitles:_OK_, nil];
@@ -1522,8 +1522,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	if(!wifiavailable)
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Status" 
-														message:_NO_WIFI_
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_WIFI_ 
+														message:_CHECK_NETWORK_SETTINGS_
 													   delegate:self 
 											  cancelButtonTitle:nil 
 											  otherButtonTitles:_OK_, nil];
@@ -1542,8 +1542,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 								&size, &mic);
 		if (!mic)
 		{
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_TITLE_
-															message:_NO_MICROPHONE_
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_MICROPHONE_
+															message:_NO_MICROPHONE_MESSAGE_
 														   delegate:nil 
 												  cancelButtonTitle:_OK_
 												  otherButtonTitles:nil];
@@ -1593,8 +1593,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 		if(self->loginProgressStart)
 		{	
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
-															   message: [ NSString stringWithString:_USER_OFFLINE_ ]
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _USER_OFFLINE_ 
+															   message: [ NSString stringWithString:_USER_OFFLINE_MESSAGE_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: _OK_, nil
@@ -1604,8 +1604,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 		else
 		{
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"" 
-															   message: [ NSString stringWithString:_NO_NETWORK_ ]
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _STATUS_NO_NETWORK_
+															   message: [ NSString stringWithString:_CHECK_NETWORK_SETTINGS_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: _OK_, nil
@@ -1999,7 +1999,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			{
 				
 				//this is for invoking internet library
-				NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.spokn.com"] cachePolicy:NO timeoutInterval:15.0] ;
+				NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:_URL_SPOKN_] cachePolicy:NO timeoutInterval:15.0] ;
 				
 				NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 				if (theConnection) {

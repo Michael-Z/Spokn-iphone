@@ -320,7 +320,7 @@
 	UIActionSheet *uiActionSheetP;
 	actionSheetType = typeInt;
 	int i=0;
-	if(typeInt==1 || typeInt ==0)
+	if(typeInt==1 || typeInt ==0)// "1" For call & "0"  for VMS
 	{	
 		if(typeInt)
 		{	
@@ -405,7 +405,7 @@
 		else
 		{
 			uiActionSheetP= [[UIActionSheet alloc] 
-							 initWithTitle: @"Select a number to vms" 
+							 initWithTitle: _SELECT_NUM_TO_VMS_
 							 delegate:self
 							 cancelButtonTitle:nil 
 							 destructiveButtonTitle:nil
@@ -475,7 +475,7 @@
 		{
 			case 0://no element found
 				[uiActionSheetP release];
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_TITLE_ 
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_NUMBER_ 
 																message:_NO_NUMBER_IN_CONTACT_
 															   delegate:self 
 													  cancelButtonTitle:nil 
@@ -549,11 +549,11 @@
 
 -(IBAction)callPressed:(id)sender
 {
-	[self presentSheet:true];
+	[self presentSheet:1];
 }
 -(IBAction)vmsPressed:(id)sender
 {
-	[self presentSheet:false];
+	[self presentSheet:0];
 }
 -(IBAction)deletePressed:(id)sender
 {
@@ -635,8 +635,8 @@
 			else
 			{	
 						
-				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Invalid Contact" 
-															 message: [ NSString stringWithString:_INVALID_CONTACT_ ]
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle:_INVALID_CONTACT_ 
+															 message: [ NSString stringWithString:_INVALID_CONTACT_MESSAGE_ ]
 															 delegate: self
 															 cancelButtonTitle: nil
 														 otherButtonTitles: _OK_, nil];
@@ -667,8 +667,8 @@
 				}
 				else
 				{
-					UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Invalid Contact" 
-																	   message: [ NSString stringWithString:_INVALID_CONTACT_ ]
+					UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _INVALID_CONTACT_ 
+																	   message: [ NSString stringWithString:_INVALID_CONTACT_MESSAGE_ ]
 																	  delegate: self
 															 cancelButtonTitle: nil
 															 otherButtonTitles: _OK_, nil];

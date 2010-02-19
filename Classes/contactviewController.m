@@ -697,10 +697,10 @@ titleForHeaderInSection:(NSInteger)section
 	 segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	 segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 
-	  [ segmentedControl insertSegmentWithTitle: @"Spokn" atIndex: 0 animated: NO ];
+	  [ segmentedControl insertSegmentWithTitle: _SPOKN_ atIndex: 0 animated: NO ];
 	
 	 [ segmentedControl insertSegmentWithTitle: @"" atIndex: 1 animated: NO ];
-	 [ segmentedControl insertSegmentWithTitle: @"Phone" atIndex: 2 animated: NO ];
+	 [ segmentedControl insertSegmentWithTitle: _PHONE_ atIndex: 2 animated: NO ];
 	
 	[segmentedControl setWidth:0.1 forSegmentAtIndex:1];  
 	[segmentedControl setEnabled:NO forSegmentAtIndex:1];
@@ -1290,7 +1290,7 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		else
 		{
-		UIAlertView*	alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
+		UIAlertView*	alert = [ [ UIAlertView alloc ] initWithTitle: _NO_CONTACT_DETAILS_MESSAGE_ 
 												  message: [ NSString stringWithString:_EMPTY_CONTACT_DETAILS_ ]
 												 delegate: nil
 										cancelButtonTitle: nil
