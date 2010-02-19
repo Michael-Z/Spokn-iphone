@@ -391,10 +391,12 @@
 				{
 					uiActionSheetP.title = _SELECT_NUM_TO_CALL_;
 					numberFound = 0; 
+					callButtonP.enabled = YES;
 				}
 				else
 				{
 					uiActionSheetP.title = _NO_NUMBER_TO_CALL_;
+					callButtonP.enabled = NO;
 				}	
 			
 			
@@ -475,15 +477,15 @@
 		{
 			case 0://no element found
 				[uiActionSheetP release];
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_NUMBER_ 
+			/*	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_NUMBER_ 
 																message:_NO_NUMBER_IN_CONTACT_
 															   delegate:self 
 													  cancelButtonTitle:nil 
 													  otherButtonTitles:_OK_, nil];
 				[alert show];
 				[alert release];
-				showAlertB = YES;
-				
+				showAlertB = YES;*/
+			
 				break;
 			case 1:
 				if(actionSheetType)
@@ -492,6 +494,7 @@
 					{	
 						//[[self navigationController]  popViewControllerAnimated:YES];
 					//	[self->ownerobject changeView];
+						
 					}	
 					
 				}
@@ -1887,7 +1890,7 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		if(tablesz==0)
 		{
-			sectionCount = 0;
+			sectionCount = 1;
 			
 		}
 		else

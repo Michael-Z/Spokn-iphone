@@ -357,8 +357,6 @@
 		8BA11022111C117800433364 /* spokncalladd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11020111C117800433364 /* spokncalladd.xib */; };
 		8BA11023111C117800433364 /* spokncalladd.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1101F111C117800433364 /* spokncalladd.m */; };
 		8BA11024111C117800433364 /* spokncalladd.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA11020111C117800433364 /* spokncalladd.xib */; };
-		8BA1DF3811299316007CCB70 /* contactlookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1DF3711299316007CCB70 /* contactlookup.m */; };
-		8BA1DF3911299316007CCB70 /* contactlookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1DF3711299316007CCB70 /* contactlookup.m */; };
 		8BA8E3A11027EF800022801E /* addeditcontactviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */; };
 		8BA8E3A21027EF800022801E /* addeditcontact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E3A01027EF800022801E /* addeditcontact.xib */; };
 		8BA8E558102835BC0022801E /* vmailview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E555102835BC0022801E /* vmailview.xib */; };
@@ -626,8 +624,6 @@
 		8BA1101E111C117800433364 /* spokncalladd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spokncalladd.h; sourceTree = "<group>"; };
 		8BA1101F111C117800433364 /* spokncalladd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spokncalladd.m; sourceTree = "<group>"; };
 		8BA11020111C117800433364 /* spokncalladd.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spokncalladd.xib; sourceTree = "<group>"; };
-		8BA1DF3611299316007CCB70 /* contactlookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactlookup.h; sourceTree = "<group>"; };
-		8BA1DF3711299316007CCB70 /* contactlookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactlookup.m; sourceTree = "<group>"; };
 		8BA8E39E1027EF800022801E /* addeditcontactviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addeditcontactviewcontroller.h; sourceTree = "<group>"; };
 		8BA8E39F1027EF800022801E /* addeditcontactviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addeditcontactviewcontroller.m; sourceTree = "<group>"; };
 		8BA8E3A01027EF800022801E /* addeditcontact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addeditcontact.xib; sourceTree = "<group>"; };
@@ -857,8 +853,6 @@
 				8BA1101E111C117800433364 /* spokncalladd.h */,
 				8BA1101F111C117800433364 /* spokncalladd.m */,
 				8BA11020111C117800433364 /* spokncalladd.xib */,
-				8BA1DF3611299316007CCB70 /* contactlookup.h */,
-				8BA1DF3711299316007CCB70 /* contactlookup.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1601,7 +1595,6 @@
 				8BC51C421108633600EC6597 /* spoknaudio.m in Sources */,
 				8BA11023111C117800433364 /* spokncalladd.m in Sources */,
 				8B957295111C52BF00761EDB /* TTSearchlightLabel.m in Sources */,
-				8BA1DF3811299316007CCB70 /* contactlookup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1667,7 +1660,6 @@
 				8BC51C411108633600EC6597 /* spoknaudio.m in Sources */,
 				8BA11021111C117800433364 /* spokncalladd.m in Sources */,
 				8B957294111C52BF00761EDB /* TTSearchlightLabel.m in Sources */,
-				8BA1DF3911299316007CCB70 /* contactlookup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

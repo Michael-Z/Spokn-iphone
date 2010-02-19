@@ -1283,7 +1283,11 @@ titleForHeaderInSection:(NSInteger)section
 			viewEnum = CONTACTFORWARDVMS;
 		}
 		
-		if([ContactViewController addDetailsFromAddressBook :ContactControllerDetailsviewP :viewEnum contactBook:person]==0)
+		[ContactViewController addDetailsFromAddressBook :ContactControllerDetailsviewP :viewEnum contactBook:person];
+		[ContactControllerDetailsviewP setObject:self->ownerobject];
+		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+			
+/*		if([ContactViewController addDetailsFromAddressBook :ContactControllerDetailsviewP :viewEnum contactBook:person]==0)
 		{	
 			[ContactControllerDetailsviewP setObject:self->ownerobject];
 			[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
@@ -1301,7 +1305,7 @@ titleForHeaderInSection:(NSInteger)section
 			[alert release];
 			
 		
-		}
+		}*/
 		//if([ContactControllerDetailsviewP retainCount]>1)
 			[ContactControllerDetailsviewP release];
 		free(addressP);
