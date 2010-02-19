@@ -25,6 +25,14 @@
 		32A01F2311258FA700DC9D85 /* speaker-wit-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F1A11258FA700DC9D85 /* speaker-wit-text.png */; };
 		32A01F601125902400DC9D85 /* blue-keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F5E1125902400DC9D85 /* blue-keypad.png */; };
 		32A01F611125902400DC9D85 /* grey-keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F5F1125902400DC9D85 /* grey-keypad.png */; };
+		32DF1FCD112EC4D00052C56D /* 132x52-answer-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FC5112EC4D00052C56D /* 132x52-answer-normal.png */; };
+		32DF1FCE112EC4D00052C56D /* 132x52-answer-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FC6112EC4D00052C56D /* 132x52-answer-pressed.png */; };
+		32DF1FCF112EC4D00052C56D /* 132x52-decline-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FC7112EC4D00052C56D /* 132x52-decline-normal.png */; };
+		32DF1FD0112EC4D00052C56D /* 132x52-decline-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FC8112EC4D00052C56D /* 132x52-decline-pressed.png */; };
+		32DF1FD1112EC4D00052C56D /* 132x52-end-call-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FC9112EC4D00052C56D /* 132x52-end-call-normal.png */; };
+		32DF1FD2112EC4D00052C56D /* 132x52-end-call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FCA112EC4D00052C56D /* 132x52-end-call-pressed.png */; };
+		32DF1FD3112EC4D00052C56D /* 132x52-hide-keypad-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */; };
+		32DF1FD4112EC4D00052C56D /* 132x52-hide-keypad-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */; };
 		32EE820410A5B71A00B0BAAD /* contact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE820310A5B71A00B0BAAD /* contact.xib */; };
 		8B0B3EAC103AD39900150C5B /* spokn_1.xcclassmodel in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */; };
 		8B16790D108F36A3004D18C0 /* testingview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B16790A108F36A3004D18C0 /* testingview.xib */; };
@@ -45,14 +53,6 @@
 		8B1AE76D1120625600A957EA /* 10_bggrey_94_113_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE72E1120625600A957EA /* 10_bggrey_94_113_right.png */; };
 		8B1AE76F1120625600A957EA /* 11_answercall_28_30.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7301120625600A957EA /* 11_answercall_28_30.png */; };
 		8B1AE7701120625600A957EA /* 11_declinecall_36_18.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7311120625600A957EA /* 11_declinecall_36_18.png */; };
-		8B1AE7751120625600A957EA /* 1_answer_125_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7361120625600A957EA /* 1_answer_125_45_normal.png */; };
-		8B1AE7761120625600A957EA /* 1_answer_125_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7371120625600A957EA /* 1_answer_125_45_pressed.png */; };
-		8B1AE7771120625600A957EA /* 1_decline_125_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7381120625600A957EA /* 1_decline_125_45_normal.png */; };
-		8B1AE7781120625600A957EA /* 1_decline_125_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7391120625600A957EA /* 1_decline_125_45_pressed.png */; };
-		8B1AE7791120625600A957EA /* 2_endcall_125_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE73A1120625600A957EA /* 2_endcall_125_45_normal.png */; };
-		8B1AE77A1120625600A957EA /* 2_endcall_125_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE73B1120625600A957EA /* 2_endcall_125_45_pressed.png */; };
-		8B1AE77D1120625600A957EA /* 2_hidekeypad_125_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE73E1120625600A957EA /* 2_hidekeypad_125_45_normal.png */; };
-		8B1AE77E1120625600A957EA /* 2_hidekeypad_125_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE73F1120625600A957EA /* 2_hidekeypad_125_45_pressed.png */; };
 		8B1AE77F1120625600A957EA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7401120625600A957EA /* Default.png */; };
 		8B1AE7821120625600A957EA /* 5_done_270_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7431120625600A957EA /* 5_done_270_45_normal.png */; };
 		8B1AE7831120625600A957EA /* 5_done_270_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7441120625600A957EA /* 5_done_270_45_pressed.png */; };
@@ -96,14 +96,6 @@
 		8B1AE7AC1120625600A957EA /* 10_bggrey_94_113_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE72E1120625600A957EA /* 10_bggrey_94_113_right.png */; };
 		8B1AE7AE1120625600A957EA /* 11_answercall_28_30.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7301120625600A957EA /* 11_answercall_28_30.png */; };
 		8B1AE7AF1120625600A957EA /* 11_declinecall_36_18.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7311120625600A957EA /* 11_declinecall_36_18.png */; };
-		8B1AE7B41120625600A957EA /* 1_answer_125_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7361120625600A957EA /* 1_answer_125_45_normal.png */; };
-		8B1AE7B51120625600A957EA /* 1_answer_125_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7371120625600A957EA /* 1_answer_125_45_pressed.png */; };
-		8B1AE7B61120625600A957EA /* 1_decline_125_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7381120625600A957EA /* 1_decline_125_45_normal.png */; };
-		8B1AE7B71120625600A957EA /* 1_decline_125_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7391120625600A957EA /* 1_decline_125_45_pressed.png */; };
-		8B1AE7B81120625600A957EA /* 2_endcall_125_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE73A1120625600A957EA /* 2_endcall_125_45_normal.png */; };
-		8B1AE7B91120625600A957EA /* 2_endcall_125_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE73B1120625600A957EA /* 2_endcall_125_45_pressed.png */; };
-		8B1AE7BC1120625600A957EA /* 2_hidekeypad_125_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE73E1120625600A957EA /* 2_hidekeypad_125_45_normal.png */; };
-		8B1AE7BD1120625600A957EA /* 2_hidekeypad_125_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE73F1120625600A957EA /* 2_hidekeypad_125_45_pressed.png */; };
 		8B1AE7BE1120625600A957EA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7401120625600A957EA /* Default.png */; };
 		8B1AE7C11120625600A957EA /* 5_done_270_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7431120625600A957EA /* 5_done_270_45_normal.png */; };
 		8B1AE7C21120625600A957EA /* 5_done_270_45_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7441120625600A957EA /* 5_done_270_45_pressed.png */; };
@@ -434,6 +426,14 @@
 		32A01F5F1125902400DC9D85 /* grey-keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "grey-keypad.png"; path = "rsc/keypad/grey-keypad.png"; sourceTree = SOURCE_ROOT; };
 		32C02D441104406600766AB6 /* alertmessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alertmessages.h; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* spokn_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spokn_Prefix.pch; sourceTree = "<group>"; };
+		32DF1FC5112EC4D00052C56D /* 132x52-answer-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-answer-normal.png"; path = "rsc/keypad/132x52-answer-normal.png"; sourceTree = SOURCE_ROOT; };
+		32DF1FC6112EC4D00052C56D /* 132x52-answer-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-answer-pressed.png"; path = "rsc/keypad/132x52-answer-pressed.png"; sourceTree = SOURCE_ROOT; };
+		32DF1FC7112EC4D00052C56D /* 132x52-decline-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-decline-normal.png"; path = "rsc/keypad/132x52-decline-normal.png"; sourceTree = SOURCE_ROOT; };
+		32DF1FC8112EC4D00052C56D /* 132x52-decline-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-decline-pressed.png"; path = "rsc/keypad/132x52-decline-pressed.png"; sourceTree = SOURCE_ROOT; };
+		32DF1FC9112EC4D00052C56D /* 132x52-end-call-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-end-call-normal.png"; path = "rsc/keypad/132x52-end-call-normal.png"; sourceTree = SOURCE_ROOT; };
+		32DF1FCA112EC4D00052C56D /* 132x52-end-call-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-end-call-pressed.png"; path = "rsc/keypad/132x52-end-call-pressed.png"; sourceTree = SOURCE_ROOT; };
+		32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-normal.png"; path = "rsc/keypad/132x52-hide-keypad-normal.png"; sourceTree = SOURCE_ROOT; };
+		32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-pressed.png"; path = "rsc/keypad/132x52-hide-keypad-pressed.png"; sourceTree = SOURCE_ROOT; };
 		32EE820310A5B71A00B0BAAD /* contact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contact.xib; sourceTree = "<group>"; };
 		8B0B3EAB103AD39900150C5B /* spokn_1.xcclassmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcclassmodel; path = spokn_1.xcclassmodel; sourceTree = "<group>"; };
 		8B1678BA108F3093004D18C0 /* testmemory-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "testmemory-Info.plist"; sourceTree = "<group>"; };
@@ -455,14 +455,6 @@
 		8B1AE72E1120625600A957EA /* 10_bggrey_94_113_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10_bggrey_94_113_right.png; sourceTree = "<group>"; };
 		8B1AE7301120625600A957EA /* 11_answercall_28_30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11_answercall_28_30.png; sourceTree = "<group>"; };
 		8B1AE7311120625600A957EA /* 11_declinecall_36_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11_declinecall_36_18.png; sourceTree = "<group>"; };
-		8B1AE7361120625600A957EA /* 1_answer_125_45_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_answer_125_45_normal.png; sourceTree = "<group>"; };
-		8B1AE7371120625600A957EA /* 1_answer_125_45_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_answer_125_45_pressed.png; sourceTree = "<group>"; };
-		8B1AE7381120625600A957EA /* 1_decline_125_45_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_decline_125_45_normal.png; sourceTree = "<group>"; };
-		8B1AE7391120625600A957EA /* 1_decline_125_45_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_decline_125_45_pressed.png; sourceTree = "<group>"; };
-		8B1AE73A1120625600A957EA /* 2_endcall_125_45_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_endcall_125_45_normal.png; sourceTree = "<group>"; };
-		8B1AE73B1120625600A957EA /* 2_endcall_125_45_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_endcall_125_45_pressed.png; sourceTree = "<group>"; };
-		8B1AE73E1120625600A957EA /* 2_hidekeypad_125_45_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_hidekeypad_125_45_normal.png; sourceTree = "<group>"; };
-		8B1AE73F1120625600A957EA /* 2_hidekeypad_125_45_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_hidekeypad_125_45_pressed.png; sourceTree = "<group>"; };
 		8B1AE7401120625600A957EA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8B1AE7431120625600A957EA /* 5_done_270_45_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_done_270_45_normal.png; sourceTree = "<group>"; };
 		8B1AE7441120625600A957EA /* 5_done_270_45_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_done_270_45_pressed.png; sourceTree = "<group>"; };
@@ -929,6 +921,14 @@
 		32A01E9411258EDA00DC9D85 /* Lattest */ = {
 			isa = PBXGroup;
 			children = (
+				32DF1FC5112EC4D00052C56D /* 132x52-answer-normal.png */,
+				32DF1FC6112EC4D00052C56D /* 132x52-answer-pressed.png */,
+				32DF1FC7112EC4D00052C56D /* 132x52-decline-normal.png */,
+				32DF1FC8112EC4D00052C56D /* 132x52-decline-pressed.png */,
+				32DF1FC9112EC4D00052C56D /* 132x52-end-call-normal.png */,
+				32DF1FCA112EC4D00052C56D /* 132x52-end-call-pressed.png */,
+				32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */,
+				32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */,
 				8BE47B06112BB54D00421DFE /* 280x52-end-call-normal.png */,
 				8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */,
 				32A01F5E1125902400DC9D85 /* blue-keypad.png */,
@@ -978,14 +978,6 @@
 				8B1AE72E1120625600A957EA /* 10_bggrey_94_113_right.png */,
 				8B1AE7301120625600A957EA /* 11_answercall_28_30.png */,
 				8B1AE7311120625600A957EA /* 11_declinecall_36_18.png */,
-				8B1AE7361120625600A957EA /* 1_answer_125_45_normal.png */,
-				8B1AE7371120625600A957EA /* 1_answer_125_45_pressed.png */,
-				8B1AE7381120625600A957EA /* 1_decline_125_45_normal.png */,
-				8B1AE7391120625600A957EA /* 1_decline_125_45_pressed.png */,
-				8B1AE73A1120625600A957EA /* 2_endcall_125_45_normal.png */,
-				8B1AE73B1120625600A957EA /* 2_endcall_125_45_pressed.png */,
-				8B1AE73E1120625600A957EA /* 2_hidekeypad_125_45_normal.png */,
-				8B1AE73F1120625600A957EA /* 2_hidekeypad_125_45_pressed.png */,
 				8B1AE7401120625600A957EA /* Default.png */,
 				8B1AE7431120625600A957EA /* 5_done_270_45_normal.png */,
 				8B1AE7441120625600A957EA /* 5_done_270_45_pressed.png */,
@@ -1333,14 +1325,6 @@
 				8B1AE7AC1120625600A957EA /* 10_bggrey_94_113_right.png in Resources */,
 				8B1AE7AE1120625600A957EA /* 11_answercall_28_30.png in Resources */,
 				8B1AE7AF1120625600A957EA /* 11_declinecall_36_18.png in Resources */,
-				8B1AE7B41120625600A957EA /* 1_answer_125_45_normal.png in Resources */,
-				8B1AE7B51120625600A957EA /* 1_answer_125_45_pressed.png in Resources */,
-				8B1AE7B61120625600A957EA /* 1_decline_125_45_normal.png in Resources */,
-				8B1AE7B71120625600A957EA /* 1_decline_125_45_pressed.png in Resources */,
-				8B1AE7B81120625600A957EA /* 2_endcall_125_45_normal.png in Resources */,
-				8B1AE7B91120625600A957EA /* 2_endcall_125_45_pressed.png in Resources */,
-				8B1AE7BC1120625600A957EA /* 2_hidekeypad_125_45_normal.png in Resources */,
-				8B1AE7BD1120625600A957EA /* 2_hidekeypad_125_45_pressed.png in Resources */,
 				8B1AE7BE1120625600A957EA /* Default.png in Resources */,
 				8B1AE7C11120625600A957EA /* 5_done_270_45_normal.png in Resources */,
 				8B1AE7C21120625600A957EA /* 5_done_270_45_pressed.png in Resources */,
@@ -1403,6 +1387,14 @@
 				8B290898112A62F6003B5A05 /* Entitlements.plist in Resources */,
 				8BE47B08112BB54D00421DFE /* 280x52-end-call-normal.png in Resources */,
 				8BE47B09112BB54D00421DFE /* 280x52-end-call-pressed.png in Resources */,
+				32DF1FCD112EC4D00052C56D /* 132x52-answer-normal.png in Resources */,
+				32DF1FCE112EC4D00052C56D /* 132x52-answer-pressed.png in Resources */,
+				32DF1FCF112EC4D00052C56D /* 132x52-decline-normal.png in Resources */,
+				32DF1FD0112EC4D00052C56D /* 132x52-decline-pressed.png in Resources */,
+				32DF1FD1112EC4D00052C56D /* 132x52-end-call-normal.png in Resources */,
+				32DF1FD2112EC4D00052C56D /* 132x52-end-call-pressed.png in Resources */,
+				32DF1FD3112EC4D00052C56D /* 132x52-hide-keypad-normal.png in Resources */,
+				32DF1FD4112EC4D00052C56D /* 132x52-hide-keypad-pressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1445,14 +1437,6 @@
 				8B1AE76D1120625600A957EA /* 10_bggrey_94_113_right.png in Resources */,
 				8B1AE76F1120625600A957EA /* 11_answercall_28_30.png in Resources */,
 				8B1AE7701120625600A957EA /* 11_declinecall_36_18.png in Resources */,
-				8B1AE7751120625600A957EA /* 1_answer_125_45_normal.png in Resources */,
-				8B1AE7761120625600A957EA /* 1_answer_125_45_pressed.png in Resources */,
-				8B1AE7771120625600A957EA /* 1_decline_125_45_normal.png in Resources */,
-				8B1AE7781120625600A957EA /* 1_decline_125_45_pressed.png in Resources */,
-				8B1AE7791120625600A957EA /* 2_endcall_125_45_normal.png in Resources */,
-				8B1AE77A1120625600A957EA /* 2_endcall_125_45_pressed.png in Resources */,
-				8B1AE77D1120625600A957EA /* 2_hidekeypad_125_45_normal.png in Resources */,
-				8B1AE77E1120625600A957EA /* 2_hidekeypad_125_45_pressed.png in Resources */,
 				8B1AE77F1120625600A957EA /* Default.png in Resources */,
 				8B1AE7821120625600A957EA /* 5_done_270_45_normal.png in Resources */,
 				8B1AE7831120625600A957EA /* 5_done_270_45_pressed.png in Resources */,
