@@ -997,6 +997,12 @@ cancelButtonTitle: nil
 		refreshB = 0;
 	}
 }	
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	NSUInteger index[] = {0,0};
+	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:index length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {

@@ -1090,8 +1090,8 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	NSUInteger indexArr[] = {0,0};
-	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:indexArr length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+	NSUInteger index[] = {0,0};
+	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:index length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 
