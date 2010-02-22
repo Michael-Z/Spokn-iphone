@@ -168,6 +168,8 @@
 		8B59A63010998423003BF3EA /* GTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62710998423003BF3EA /* GTokenFieldCell.m */; };
 		8B59A68E109987FB003BF3EA /* pickerviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */; };
 		8B59A68F109987FB003BF3EA /* pickerviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */; };
+		8B61B2171132A8A7003D6164 /* contactlookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B61B2161132A8A7003D6164 /* contactlookup.m */; };
+		8B61B2181132A8A7003D6164 /* contactlookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B61B2161132A8A7003D6164 /* contactlookup.m */; };
 		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
 		8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */; };
 		8B81B3F910317A2900A18DA1 /* addressbookcontact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B81B3F810317A2900A18DA1 /* addressbookcontact.m */; };
@@ -523,6 +525,8 @@
 		8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = pickerviewcontroller.xib; sourceTree = "<group>"; };
 		8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pickerviewcontroller.m; sourceTree = "<group>"; };
 		8B59A68D109987FB003BF3EA /* pickerviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pickerviewcontroller.h; sourceTree = "<group>"; };
+		8B61B2151132A8A7003D6164 /* contactlookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactlookup.h; sourceTree = "<group>"; };
+		8B61B2161132A8A7003D6164 /* contactlookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactlookup.m; sourceTree = "<group>"; };
 		8B6739E2101209E900849952 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddeditcellController.m; sourceTree = "<group>"; };
 		8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddeditcellController.h; sourceTree = "<group>"; };
@@ -772,6 +776,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8B61B2151132A8A7003D6164 /* contactlookup.h */,
+				8B61B2161132A8A7003D6164 /* contactlookup.m */,
 				8B957292111C52BF00761EDB /* TTSearchlightLabel.h */,
 				8B957293111C52BF00761EDB /* TTSearchlightLabel.m */,
 				8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */,
@@ -1579,6 +1585,7 @@
 				8BC51C421108633600EC6597 /* spoknaudio.m in Sources */,
 				8BA11023111C117800433364 /* spokncalladd.m in Sources */,
 				8B957295111C52BF00761EDB /* TTSearchlightLabel.m in Sources */,
+				8B61B2171132A8A7003D6164 /* contactlookup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1644,6 +1651,7 @@
 				8BC51C411108633600EC6597 /* spoknaudio.m in Sources */,
 				8BA11021111C117800433364 /* spokncalladd.m in Sources */,
 				8B957294111C52BF00761EDB /* TTSearchlightLabel.m in Sources */,
+				8B61B2181132A8A7003D6164 /* contactlookup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
