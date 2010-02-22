@@ -1748,7 +1748,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[ array addObject: indexPath ];
 	[ self->tableView deleteRowsAtIndexPaths: array withRowAnimation: UITableViewRowAnimationTop ];
 	
-	
+	[array release];
 	
 
 }

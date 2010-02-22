@@ -514,6 +514,11 @@
 		
 		if(makeB)
 		{
+		//	secLocP->freeUDataB = true;
+			//struct VMail *lvmailP;
+			//lvmailP = malloc(sizeof(struct VMail)+4);
+			//*lvmailP = *vmailP;
+			//secLocP->userData = lvmailP;
 			secLocP->userData = objP;
 			secLocP->index = index;
 			dispP = [ [displayData alloc] init];
@@ -773,7 +778,7 @@
 		secLocP = cell.spoknSubCellP.userData;
 		cell.spoknSubCellP.userData = nil;
 		[secLocP release];
-		
+		secLocP = nil;
 		[self addRow:[ indexPath indexAtPosition: 1 ] sectionObject:&secLocP];
 		//secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
 	}
@@ -962,6 +967,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	    [ array addObject: indexPath ];
         [ self->tableView deleteRowsAtIndexPaths: array withRowAnimation: UITableViewRowAnimationTop ];
 		[self->cellofvmsP removeObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
+		[array release];
 		
 	} 
 }
