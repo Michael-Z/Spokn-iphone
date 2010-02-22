@@ -222,7 +222,9 @@
 	else
 	{	
 		secLocP = cell.spoknSubCellP.userData;
+		cell.spoknSubCellP.userData = nil;
 		[secLocP release];
+		secLocP = nil;
 		
 		[self addRow:[ indexPath indexAtPosition: 1 ] sectionObject:&secLocP];
 		//secLocP = [self->cellofvmsP getObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
@@ -430,7 +432,16 @@
 		
 		if(makeB)
 		{
+			
+			//struct CDR *lcdrP;
+			//secLocP->freeUDataB = true;
+			
+			//lcdrP = malloc(sizeof(struct CDR)+4);
+			//*lcdrP = *cdrP;
+			//secLocP->userData = lcdrP;
 			secLocP->userData = objP;
+			
+			
 			secLocP->index = index;
 			dispP = [ [displayData alloc] init];
 			//dispP.boldB = YES;
@@ -845,7 +856,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	    [ array addObject: indexPath ];
         [ self->tableView deleteRowsAtIndexPaths: array withRowAnimation: UITableViewRowAnimationTop ];
 		[self->cellofcalllogP removeObjectAtIndex: [ indexPath indexAtPosition: 1 ]];
-		
+		[array release];
 	} 
 }
 - (void) doRefresh

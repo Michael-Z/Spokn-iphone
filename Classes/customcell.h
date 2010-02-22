@@ -123,6 +123,7 @@
 @interface sectionType:NSObject
 {
 @public
+	int freeUDataB;
 	int index;
 	void *userData;
 	NSMutableArray *elementP;

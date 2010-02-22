@@ -96,7 +96,7 @@
 										repeats: NO];*/
 		
 		SetAudioTypeLocal(0,0);
-		AudioSessionSetActive(true);
+	//	AudioSessionSetActive(true);
 		alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
 		firstTimeB = 0;
 	}

@@ -374,6 +374,7 @@
 			{	
 				[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 ];
 				//closeSoundInterface(ltpInterfacesP);
+				SetAudioTypeLocal(0,1);
 				SetSpeakerOnOrOff(0,true);
 				#ifdef __IPHONE_3_0
 								[UIDevice currentDevice].proximityMonitoringEnabled = NO;

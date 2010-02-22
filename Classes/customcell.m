@@ -349,12 +349,21 @@
 -(id)init
 {
 	self = [super init];
+	freeUDataB = false;
 	index = 0;
 	elementP = [[NSMutableArray alloc] init];
 	return self;
 }
 -(void)dealloc
 {
+	if(freeUDataB)
+	{
+		if(userData)
+		{	
+			free(userData);
+		}	
+		userData = 0;
+	}
 	while(elementP.count)
 	{
 		
