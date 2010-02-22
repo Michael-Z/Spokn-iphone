@@ -183,9 +183,9 @@
 	allforwardNoCharP = [self getContactNumberList];
 	if(allforwardNoCharP==0)
 	{
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_TITLE_ message:_EMPTY_FORWARD_NUMBER_ delegate:self cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+	//	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_TITLE_ message:_EMPTY_FORWARD_NUMBER_ delegate:self cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 		
-		[alert show];
+	//	[alert show];
 	//	[alert release];
 	}
 	else

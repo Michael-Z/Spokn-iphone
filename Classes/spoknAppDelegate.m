@@ -556,7 +556,7 @@
 			[self playonlineTone];
 			break;
 		
-		case ALERT_SERVERMSG:
+	/*	case ALERT_SERVERMSG:
 			if(!upgradeAlerted)
 			{
 				
@@ -602,7 +602,7 @@
 				upgradeAlerted = 1;
 			}
 			//just show a message}
-			break;
+			break;*/
 		case INTERRUPT_ALERT:
 			switch(self->subID)
 			{
@@ -1131,7 +1131,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	uniqueIDCharP = (char*)[uniqueIdentifier cStringUsingEncoding:NSUTF8StringEncoding];
 	//SetDeviceDetail("spokn","1.0.12","windows desktop",osVerP,osModelP,uniqueIDCharP);
 	//SetDeviceDetail("spokn","1.0.3","Windows mobile",osVerP,osModelP,uniqueIDCharP);
-	SetDeviceDetail("Spokn","0.1.7","iphone",osVerP,osModelP,uniqueIDCharP);
+	//SetDeviceDetail("Spokn","0.1.7","iphone",osVerP,osModelP,uniqueIDCharP);
 	
 //	[versionP release];
 	//[model release];
@@ -1624,7 +1624,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 		else
 		{
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _STATUS_NO_NETWORK_
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _NO_NETWORK_
 															   message: [ NSString stringWithString:_CHECK_NETWORK_SETTINGS_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil

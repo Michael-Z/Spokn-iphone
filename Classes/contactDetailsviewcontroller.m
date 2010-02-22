@@ -366,10 +366,10 @@
 				{	
 					uiActionSheetP.title = _SELECT_NUM_TO_CALL_;
 				}
-				else
-				{
-					uiActionSheetP.title = _NO_NUMBER_TO_CALL_;
-				}	
+				//else
+				//{
+				//	uiActionSheetP.title = _NO_NUMBER_TO_CALL_;
+				//}	
 			}
 			else
 			{
@@ -395,7 +395,7 @@
 				}
 				else
 				{
-					uiActionSheetP.title = _NO_NUMBER_TO_CALL_;
+					//uiActionSheetP.title = _NO_NUMBER_TO_CALL_;
 					callButtonP.enabled = NO;
 				}	
 			

@@ -93,7 +93,7 @@
 					
 					}
 					
-					UIAlertView *alert;
+			/*		UIAlertView *alert;
 					alert = [ [ UIAlertView alloc ] initWithTitle: _INVALID_EMAIL_ 
 													  message: [ NSString stringWithString:_INVALID_EMAIL_MESSGAE_ ]
 													 delegate: self
@@ -101,7 +101,7 @@
 											otherButtonTitles: _OK_, nil
 						 ];
 					[ alert show ];
-					[alert release];
+					[alert release];*/
 					return;
 				}	
 				break;
@@ -271,7 +271,16 @@
 {
 	if([txtField.text length])
 	{
-		self.navigationItem.rightBarButtonItem.enabled = YES;
+		if([SpoknAppDelegate emailValidate:[txtField text]]==NO)
+		{	
+			self.navigationItem.rightBarButtonItem.enabled = NO;
+			
+		}
+		else
+		{
+			self.navigationItem.rightBarButtonItem.enabled = YES;
+		}	
+		
 	}
 	else
 	{
