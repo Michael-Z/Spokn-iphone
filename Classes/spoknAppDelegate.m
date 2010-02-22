@@ -40,6 +40,7 @@
 //#import "testingview.h"
 //#import "NSFileManager.h"
 #include "alertmessages.h"
+#import "contactlookup.h"
 @implementation SpoknAppDelegate
 /*
 @synthesize window;
@@ -920,17 +921,25 @@ void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned lon
 		[autoreleasePool release];
 		return;
 	}
-	//[self postNotificationOnMainThreadWithName:name object:object userInfo:userInfo waitUntilDone:NO];
-	
-	if(type==ALERT_CONNECTED|| type==ALERT_ONLINE || type==ALERT_OFFLINE || type==ALERT_INCOMING_CALL || type==ALERT_DISCONNECTED)
-	{	
-		[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:YES];
+	if(type==UA_ALERT && valSubLong==LOAD_ADDRESS_BOOK)
+	{
+		[spoknDelP makeIndexingFromAddressBook];
 	}
 	else
-	{
-		[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:NO];
+	{	
+	
+		//[self postNotificationOnMainThreadWithName:name object:object userInfo:userInfo waitUntilDone:NO];
+		
+			if(type==ALERT_CONNECTED|| type==ALERT_ONLINE || type==ALERT_OFFLINE || type==ALERT_INCOMING_CALL || type==ALERT_DISCONNECTED)
+		{	
+			[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:YES];
+		}
+		else
+		{
+			[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:NO];
 
-	}
+		}
+	}	
 	[autoreleasePool release];
 	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)spoknDelP userInfo:nil];
@@ -1206,7 +1215,17 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[self newBadgeArrived:vmsNavigationController];	
 	loadMissCall();
 	[callviewP setMissCallCount];
+	
+	
 		
+}
+-(void)makeIndexingFromAddressBook
+{
+	if(contactlookupP==0)
+	{	
+		contactlookupP = [[Contactlookup alloc] init];
+		[contactlookupP makeIndex];
+	}	
 }
 /*
 #pragma mark PUSH NOTIFICATIONS
@@ -1275,6 +1294,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	[urlSendP release];
 	SetSpeakerOnOrOff(0,true);
+	[contactlookupP release];
+	contactlookupP = 0;
 	//[contactNavigationController release];
 	//[vmsNavigationController release];
 	//[calllogNavigationController release];
@@ -1494,6 +1515,14 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 		else
 		{
+			
+			NSString *myNameP;
+			myNameP = [contactlookupP getNameByNumber:[NSString stringWithUTF8String:pnumberP]];
+			if(myNameP)
+			{
+				NSLog(@"find name %@",myNameP);
+			
+			}
 			returnCharP = malloc(strlen(pnumberP)+10);
 			strcpy(returnCharP,pnumberP);
 

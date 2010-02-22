@@ -38,6 +38,7 @@
 
 @class CalllogViewController;
 @class AddEditcontactViewController;
+@class Contactlookup;
 #include "vmsplayrecord.h"
 #import "vmshowviewcontroller.h"
 #import "loginviewcontroller.h"
@@ -129,6 +130,7 @@ typedef struct CallNumberType
 	SpoknAudio *endSoundP;
 	SpoknAudio *allSoundP;
 	NSTimer *ringTimer;
+	Contactlookup *contactlookupP;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -202,7 +204,7 @@ changed:(BOOL)changed;
 -(void)logOut:(Boolean) clearAllB;
 -(void)setLoginDelegate :(id)deligateP;
 -(void)refreshallViews;
-
+-(void)makeIndexingFromAddressBook;
 -(char*) getNameAndTypeFromNumber:(char*)pnumberP :(char*)typeP :(Boolean*)pfindBP ;
 -(int)playUrlPath:(NSString*)pathP;
 -(int) vmsShowRecordOrForwardScreen : (char*)noCharP VMSState:(VMSStateType)state filename:(char*)fileNameCharP duration:(int) maxtime vmail:(struct VMail*) lvmailP;
