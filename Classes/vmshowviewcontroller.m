@@ -299,6 +299,7 @@
 				[self cancelClicked];//remove dialog
 				[ownerobject.vmsNavigationController popToRootViewControllerAnimated:YES];//remove upto root controller
 				shiftVmailB = YES;
+				 [ownerobject refreshallViews];
 				return;
 			}
 			free(contactNumberP);

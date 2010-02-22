@@ -439,9 +439,13 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 		ltpInterfaceP->pthObj = 0;
 		#endif
 	#endif
-	free(ltpInterfaceP->ltpObjectP);
-	ltpInterfaceP->ltpObjectP  = 0;
-	/* destroys the mutex */
+	if(terminateThread()==0)
+	{	
+		free(ltpInterfaceP->ltpObjectP);
+	}	
+		ltpInterfaceP->ltpObjectP  = 0;
+	
+		/* destroys the mutex */
 	ltpInterfaceP->pthreadstopB = true;
 		pthread_mutex_destroy(&mutex);
 		return 0;

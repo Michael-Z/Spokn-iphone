@@ -383,6 +383,7 @@
 				
 				//reload log
 				[self LoadContactView:callviewP];
+				[callviewP doRefresh];
 				if([self stopRing]==0)//for incomming called not ans
 				{
 					
@@ -539,7 +540,7 @@
 			}
 			else
 			{
-				SetAudioTypeLocal(self,1);
+				SetAudioTypeLocal(0,1);
 				[self LoadInCommingView:0];	
 				
 			}	
@@ -550,6 +551,7 @@
 	//put badge on vmail
 		
 		//	[self performSelectorOnMainThread : @ selector(newBadgeArrived: ) withObject:vmsNavigationController waitUntilDone:YES];
+			
 			[self newBadgeArrived:vmsNavigationController];	
 			[self playonlineTone];
 			break;
@@ -663,6 +665,15 @@
 			}
 			switch(self->subID)
 		{
+			case REFRESH_ALL:
+				[self LoadContactView:contactviewP];
+				[vmsviewP cancelProgress];
+				[self LoadContactView:vmsviewP];
+				[self newBadgeArrived:vmsNavigationController];	
+
+				
+				
+				break;
 				case REFRESH_CONTACT:
 					[self LoadContactView:contactviewP];
 					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:contactviewP waitUntilDone:YES];
@@ -762,6 +773,7 @@
 		controllerP.tabBarItem.badgeValue= stringStrP;
 
 		[stringStrP release];
+		[vmsviewP doRefresh];
 		
 	}	
 	
@@ -909,7 +921,15 @@ void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned lon
 	}
 	//[self postNotificationOnMainThreadWithName:name object:object userInfo:userInfo waitUntilDone:NO];
 	
-	[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:NO];
+	if(type==ALERT_CONNECTED|| type==ALERT_ONLINE || type==ALERT_OFFLINE || type==ALERT_INCOMING_CALL || type==ALERT_DISCONNECTED)
+	{	
+		[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:YES];
+	}
+	else
+	{
+		[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:NO];
+
+	}
 	[autoreleasePool release];
 	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)spoknDelP userInfo:nil];

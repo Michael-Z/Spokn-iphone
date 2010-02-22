@@ -897,8 +897,9 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			if(callViewControllerP==0)
 			{	
 				
-				AudioSessionSetActive(true);
-				SetAudioTypeLocal(self,0);
+			//	AudioSessionSetActive(true);
+				//SetAudioTypeLocal(self,0);
+
 				//setHoldInterface(ownerobject.ltpInterfacesP, 0);
 				callViewControllerP = [[CallViewController alloc] initWithNibName:@"callviewcontroller" bundle:[NSBundle mainBundle]];
 				[callViewControllerP setObject:self->ownerobject];

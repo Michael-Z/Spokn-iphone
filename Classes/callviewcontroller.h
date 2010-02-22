@@ -63,6 +63,7 @@
 	int sendCallRequestB; 
 	int failedCallB;
 	int endCalledPressed;
+	int firstTimeB;
 
 }
 -(void)setObject:(id) object ;

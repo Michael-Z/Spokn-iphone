@@ -1087,16 +1087,15 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-	NSUInteger index[] = {0,0};
-	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:index length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-}
-
 
 
 #define TABLE_VIEW_TAG			2000
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[super viewDidDisappear:animated];
+	[self cancelProgress];
+	refreshB = 0;
+}
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
@@ -1133,6 +1132,11 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	{
 		[self->tableView reloadData];
 		refreshB = 0;
+		if([tableView numberOfRowsInSection:0])
+		{
+			NSUInteger index[] = {0,0};
+			[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:index length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		}	
 	}
 }	
 
@@ -1258,6 +1262,11 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 - (void) doRefresh
 {
 	refreshB = 1;
+	if([tableView numberOfRowsInSection:0])
+	{
+		NSUInteger index[] = {0,0};
+		[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:index length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+	}	
 }
 
 - (void)dealloc {

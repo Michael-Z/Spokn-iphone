@@ -851,6 +851,12 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 - (void) doRefresh
 {
 	refreshB = 1;
+	if([tableView numberOfRowsInSection:0])
+	{
+		NSUInteger index[] = {0,0};
+		[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:index length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+	}	
+	
 }
 - (void) reload {
 	//sectionType *secP;
@@ -967,6 +973,11 @@ cancelButtonTitle: nil
 	
 	
 }
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[super viewDidDisappear:animated];
+	refreshB = 0;
+}
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
@@ -995,14 +1006,14 @@ cancelButtonTitle: nil
 	{
 		[self->tableView reloadData];
 		refreshB = 0;
+		if([tableView numberOfRowsInSection:0])
+		{
+			NSUInteger index[] = {0,0};
+			[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:index length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		}	
 	}
 }	
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-	NSUInteger index[] = {0,0};
-	[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:index length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-}
+
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {

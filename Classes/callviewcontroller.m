@@ -87,9 +87,19 @@
 	[super viewDidAppear:animated];
 	
 	loadedB = true;
-	
-	alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
-	
+	if(firstTimeB)
+	{	
+	/*	[NSTimer scheduledTimerWithTimeInterval: 4
+										 target: self
+									   selector: @selector(makeCallTimer:)
+									   userInfo: nil
+										repeats: NO];*/
+		
+		SetAudioTypeLocal(0,0);
+		AudioSessionSetActive(true);
+		alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
+		firstTimeB = 0;
+	}
 	if(actualDismissB)
 	{
 		
@@ -114,6 +124,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	failedCallB  = 0;
+	firstTimeB = true;
 	self.title = @"Call";
 	self->showContactCallOnDelegate = nil;
 	//[ownerobject setStatusBarStyle:UIStatusBarStyleBlackTranslucent animation:NO];
@@ -251,6 +262,14 @@
 	}
 	return timecallduration;
 }
+- (void) makeCallTimer: (id) timer
+{
+	[timer invalidate];
+	
+	SetAudioTypeLocal(self,0);
+	//AudioSessionSetActive(true);
+	alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
+}	
 - (void) handleCallEndTimer: (id) timer
 {
 	[timer invalidate];
@@ -417,6 +436,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	butP = (UIButton*)sender;
 	
 	enable = !butP.selected;
+	//AudioSessionSetActive(enable);
 	SetSpeakerOnOrOffNew(0,enable);
 	[butP setSelected:enable];
 	
