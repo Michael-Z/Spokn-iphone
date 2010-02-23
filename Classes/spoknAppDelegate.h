@@ -209,6 +209,8 @@ changed:(BOOL)changed;
 -(int)playUrlPath:(NSString*)pathP;
 -(int) vmsShowRecordOrForwardScreen : (char*)noCharP VMSState:(VMSStateType)state filename:(char*)fileNameCharP duration:(int) maxtime vmail:(struct VMail*) lvmailP;
 @end
+
+void * ThreadForContactLookup(void *udata);
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
 void MyAudioSessionPropertyListener(
 									void *                  inClientData,

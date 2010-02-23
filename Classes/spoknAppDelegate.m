@@ -910,6 +910,15 @@ void MyAudioSessionPropertyListener(
 	}
 	
 }
+
+
+void * ThreadForContactLookup(void *udata)
+{
+
+	alertNotiFication(UA_ALERT,0,LOAD_ADDRESS_BOOK,(unsigned long)udata,0);
+	return 0;
+}
+
 void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned long userData,void *otherinfoP)
 {
 	SpoknAppDelegate *spoknDelP;
@@ -1215,6 +1224,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[self newBadgeArrived:vmsNavigationController];	
 	loadMissCall();
 	[callviewP setMissCallCount];
+	pthread_t pt;
+	pthread_create(&pt, 0,ThreadForContactLookup,self);	
+	
 	
 	
 		
