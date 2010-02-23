@@ -499,7 +499,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		}
 		else
 		{
-			UIAlertView *lalert = [ [ UIAlertView alloc ] initWithTitle: _STATUS_NO_NETWORK_ 
+			UIAlertView *lalert = [ [ UIAlertView alloc ] initWithTitle: _NO_NETWORK_ 
 															   message: [ NSString stringWithString:_CHECK_NETWORK_SETTINGS_ ]
 															  delegate: nil
 													 cancelButtonTitle: nil
@@ -783,7 +783,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 						
 					if(alert==nil)
 					{	
-						alert = [ [ UIAlertView alloc ] initWithTitle: _STATUS_NO_NETWORK_ 
+						alert = [ [ UIAlertView alloc ] initWithTitle: _NO_NETWORK_ 
 															  message: [ NSString stringWithString:_CHECK_NETWORK_SETTINGS_ ]
 															 delegate: self
 													cancelButtonTitle: nil

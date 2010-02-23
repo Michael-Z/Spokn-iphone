@@ -210,7 +210,7 @@
 		
 	}
 	userNameStrP = [usernameFieldP.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	if([userNameStrP length]==0)
+/*	if([userNameStrP length]==0)
 	{
 		alert = [ [ UIAlertView alloc ] initWithTitle: _SIGN_IN_FAILED_ 
 											  message: [ NSString stringWithString:_USERNAME_NO_WHITESPACE_ ]
@@ -223,9 +223,9 @@
 		[alert release];
 		return;
 		
-	}
+	}*/
 	passwordStrP = [passwordFieldP.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	if([passwordStrP length]==0)
+/*	if([passwordStrP length]==0)
 	{
 		alert = [ [ UIAlertView alloc ] initWithTitle: _SIGN_IN_FAILED_ 
 											  message: [ NSString stringWithString:_PASSWORD_NO_WHITESPACE_ ]
@@ -238,7 +238,7 @@
 		[alert release];
 		return;
 		
-	}
+	}*/
 	//dataP = [pathP cStringUsingEncoding:1];
 	userNamecharP = (char*)[userNameStrP cStringUsingEncoding:NSUTF8StringEncoding];
 	passwordcharP = (char*)[passwordStrP cStringUsingEncoding:NSUTF8StringEncoding];
