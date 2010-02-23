@@ -448,6 +448,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			return;
 		}
 		strcpy(lastTypeNo,numbercharP);
+		SetAddressBookDetails(ownerobject.ltpInterfacesP,0,0);
 		if([ownerobject makeCall:numbercharP])
 		{	
 			currentView = 1;
@@ -550,7 +551,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				}
 				strcpy(lastTypeNo,numbercharP);
 				
-				
+				SetAddressBookDetails(ownerobject.ltpInterfacesP,0,0);
 				[ownerobject vmsShowRecordOrForwardScreen:numbercharP VMSState : VMSStateRecord filename:"temp" duration:0 vmail:0];
 				
 				

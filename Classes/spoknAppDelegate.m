@@ -1530,13 +1530,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		else
 		{
 			
-			/*NSString *myNameP;searchNameAndTypeBynumber
-			myNameP = [contactlookupP getNameByNumber:[NSString stringWithUTF8String:pnumberP]];
-			if(myNameP)
-			{
-				NSLog(@"find name %@",myNameP);
 			
-			}*/
 			ABRecordID recIDP =-1;
 			[contactlookupP	searchNameAndTypeBynumber:pnumberP :&addressBookNameP :&addressBookTypeP :&recIDP] ;
 			if(recIDP>=0)

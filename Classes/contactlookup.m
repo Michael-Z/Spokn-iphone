@@ -42,6 +42,7 @@
 }
 -(void) dealloc
 {
+	
 	[super dealloc];
 	
 }
@@ -137,10 +138,10 @@
 				
 				recordP = [[AddressBookRecord alloc] init];
 				recordP.recordID = recordID;
-				NSLog(@"%@ %@",numberStringP, tmpNumber);	
+				
 				
 				[contactDictionaryP setObject: recordP forKey: tmpNumber];
-				
+				[recordP release];
 				//[tmpNumber release];
 				[numberStringP release];
 				//[labelStringP release];
@@ -183,7 +184,6 @@
 		
 		
 	}	
-	NSLog(@"size dicttionry %d",contactDictionaryP.count);
 
 }
 -(NSString*) getNameByNumber:(NSString*)numberP
@@ -219,9 +219,6 @@
 	{
 		*recIDP = -1;
 	}
-	numberP = [NSString stringWithUTF8String:"++$ muk - $ !<> raj$ !<>"];
-	newNumberP = [numberP stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"+ -_$!<>"]];
-	NSLog(@"result %@",newNumberP);
 	numberP = [NSString stringWithUTF8String:lnumberCharP];
 	newNumberP = [numberP stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"+- _$!<>"]];
 	
