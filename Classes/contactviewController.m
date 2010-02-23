@@ -36,6 +36,7 @@
 //#import <UITableViewIndex.h>
 #import "customcell.h"
 #import "alertmessages.h"
+#import "contactlookup.h"
 /*
 @interface MyNavControler : UINavigationBar 
 
@@ -72,7 +73,8 @@
 	char *numbercharP;
 	char *tmpcharP;
 	NSString *text1;
-	char *normalizeNoCharP;
+	NSString *numberStrP;
+	char *normalizeNoCharP=0;
 	ABMultiValueRef name1 ;
 	if(nameStringP==0 || typeP==0 || recordID==0)
 	{
@@ -107,6 +109,7 @@
 	{	
 	
 		int res;
+		normalizeNoCharP = NormalizeNumber(lnumberCharP,1);
 		for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
 		{
 			numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
@@ -117,13 +120,16 @@
 			}
 			 
 				 
-			text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>"]];
-			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-			normalizeNoCharP = NormalizeNumber(numbercharP,0);
-			res=  strcmp(normalizeNoCharP,lnumberCharP);
+			text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"+- _$!<>"]];
+			numberStrP = [numberStringP stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"+- _$!<>"]];
 			
 			
-			free(normalizeNoCharP);
+			numbercharP = (char*)[numberStrP  cStringUsingEncoding:NSUTF8StringEncoding];
+			//normalizeNoCharP = NormalizeNumber(numbercharP,0);
+			res=  strcmp(numbercharP,normalizeNoCharP);
+			
+			
+			//free(normalizeNoCharP);
 			if(res==0)
 			{
 				tmpcharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
@@ -137,13 +143,102 @@
 				[labelStringP release];
 				[numberStringP release];
 				[(NSString*)name1 release];
+				if(normalizeNoCharP)
+				{	
+					free(normalizeNoCharP);
+					normalizeNoCharP = 0;
+				}	
 				//[addressBook release];
 				return 0;
 			}
 			[numberStringP release];
 			[labelStringP release];
 		}
+		if(normalizeNoCharP)
+		{	
+			free(normalizeNoCharP);
+			normalizeNoCharP = 0;
+		}	
 		[(NSString*)name1 release];
+	}	
+	if(strstr(lnumberCharP,"@"))//if email
+	{	
+		normalizeNoCharP = NormalizeNumber(lnumberCharP,2);
+		
+		name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
+		if(name1)
+		{	
+			for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
+			{
+				numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
+				
+				if(numberStringP==0)
+				{
+					continue;
+				}
+				text1 = [numberStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>"]];
+				
+				
+				numbercharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
+				//typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
+				
+				
+				if(strstr(numbercharP,"@"))//only email allowed
+				{	
+					char *lnormalizeNoCharP = NormalizeNumber(numbercharP,2);
+					if(strcmp(lnormalizeNoCharP,normalizeNoCharP)==0)
+					{
+						labelStringP=(NSString*)ABMultiValueCopyLabelAtIndex(name1,i);
+						free(lnormalizeNoCharP);
+						if(labelStringP)
+						{
+							text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"+- _$!<>"]];
+						
+							tmpcharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
+							if(tmpcharP)
+							{
+								*typeP = malloc(strlen(tmpcharP)+4); 
+								strcpy(*typeP,tmpcharP);
+							
+							}
+							[labelStringP release];
+						}	
+						else
+						{
+							*typeP = malloc(14); 
+							strcpy(*typeP,"email");
+
+						
+						}
+						
+						[numberStringP release];
+						[(NSString*)name1 release];
+						if(normalizeNoCharP)
+						{	
+							free(normalizeNoCharP);
+							normalizeNoCharP = 0;
+						}	
+						return 0;
+					
+					}
+					free(lnormalizeNoCharP);
+					lnormalizeNoCharP = 0;
+					
+				}
+				[numberStringP release];
+				
+			}
+			if(normalizeNoCharP)
+			{	
+				free(normalizeNoCharP);
+				normalizeNoCharP = 0;
+			}	
+			[(id)name1 release];
+			*typeP = malloc(14); 
+			strcpy(*typeP,"email");
+			return 0;
+
+		}	
 	}	
 	
 	//[addressBook release];

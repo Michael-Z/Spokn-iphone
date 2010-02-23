@@ -12,6 +12,10 @@
 #import <AddressBook/ABPerson.h>
 #import <AddressBook/ABRecord.h>
 #import <AddressBookUI/AddressBookUI.h>
+@interface NSString (RemoveAllCharInSet)
+- (NSString *)stringByRemovingCharactersInSet:(NSCharacterSet *)set;
+@end
+
 @interface AddressBookRecord:NSObject
 {
 
@@ -30,6 +34,6 @@
 }
 -(void) makeIndex;
 -(NSString*) getNameByNumber:(NSString*)numberP;
-
+-(int) searchNameAndTypeBynumber :(char*)lnumberCharP :(char **) nameStringP :(char**)typeP :(ABRecordID *)recIDP;
 
 @end

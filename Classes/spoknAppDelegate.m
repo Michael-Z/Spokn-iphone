@@ -1223,8 +1223,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 	if(contactlookupP==0)
 	{	
-		contactlookupP = [[Contactlookup alloc] init];
-		[contactlookupP makeIndex];
+		Contactlookup *lcontactLookup;
+		lcontactLookup = [[Contactlookup alloc] init];
+		[lcontactLookup makeIndex];
+		contactlookupP = lcontactLookup;
 	}	
 }
 /*
@@ -1516,18 +1518,71 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		else
 		{
 			
-			NSString *myNameP;
+			/*NSString *myNameP;searchNameAndTypeBynumber
 			myNameP = [contactlookupP getNameByNumber:[NSString stringWithUTF8String:pnumberP]];
 			if(myNameP)
 			{
 				NSLog(@"find name %@",myNameP);
 			
+			}*/
+			ABRecordID recIDP =-1;
+			[contactlookupP	searchNameAndTypeBynumber:pnumberP :&addressBookNameP :&addressBookTypeP :&recIDP] ;
+			if(recIDP>=0)
+			{
+				SetAddressBookDetails(ltpInterfacesP,recIDP,recIDP);
 			}
-			returnCharP = malloc(strlen(pnumberP)+10);
-			strcpy(returnCharP,pnumberP);
-
-			strcpy(typeP,"Unknown");
-		
+			else
+			{
+				SetAddressBookDetails(ltpInterfacesP,0,0);
+			}
+			if(addressBookNameP)
+			{	
+				nameP = addressBookNameP;
+				if(nameP)
+				{	
+					while(*nameP==' '){
+						nameP++;
+					}
+					if(*nameP!='\0')
+					{
+						nameP = addressBookNameP;
+						findB = true;
+					}
+					else
+					{
+						nameP = pnumberP;
+					}
+					
+				}	
+				returnCharP = malloc(strlen(nameP)+10);
+				strcpy(returnCharP,nameP);
+				
+				if(addressBookTypeP)
+				{	
+					strcpy(typeP,addressBookTypeP);
+				}
+				else
+				{
+					strcpy(typeP,"Unknown");
+				}
+				free(addressBookNameP);
+				if(addressBookTypeP)
+				{	
+					free(addressBookTypeP);
+				}	
+				
+			}
+			else
+			{
+				returnCharP = malloc(strlen(pnumberP)+10);
+				strcpy(returnCharP,pnumberP);
+				
+				strcpy(typeP,"Unknown");
+				
+			}
+			
+			
+					
 		}
 		
 	
