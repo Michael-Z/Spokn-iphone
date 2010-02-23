@@ -291,8 +291,11 @@
 	time_t timeP;
 	char disp[200];
 	char s1[30];
+	char type[100];
+	Boolean findResult;
 	//int index;
 	NSString *stringStrP;
+	char *contactNameP=0;
 	//char *addressBookNameP = 0;
 	//char *addressBookTypeP = 0;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
@@ -306,7 +309,14 @@
 		struct VMail *vmailP;
 		vmailP =(struct VMail*) objP;
 		objStrP = vmailP->userid;
-		
+		//-(char*) getNameAndTypeFromNumber:(char*)pnumberP :(char*)typeP :(Boolean*)pfindBP 
+		contactNameP = [ownerobject getNameAndTypeFromNumber:objStrP :type :&findResult];
+		if(findResult)
+		{
+			typeCallP = type;
+			objStrP = contactNameP;
+		}
+		/*
 		addressP = getContactOf(objStrP);
 		if(addressP)
 		{
@@ -340,7 +350,7 @@
 			}
 			objStrP = addressP->title;
 			
-		}
+		}*/
 /*		else
 		{
 			if(vmailP->addressUId)
@@ -716,7 +726,10 @@
 		*sectionPP = 0;
 		
 	}
-	
+	if(contactNameP)
+	{
+		free(contactNameP);
+	}
 	//return nil;
 }
 /*
