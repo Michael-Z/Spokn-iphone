@@ -292,7 +292,7 @@
 	char disp[200];
 	char s1[30];
 	char type[100];
-	Boolean findResult;
+	unsigned char findResult = NO;
 	//int index;
 	NSString *stringStrP;
 	char *contactNameP=0;

@@ -1486,7 +1486,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	else
 	{
-		int uID;
+		int uID=0;
 		char *addressBookNameP = 0;
 		char *addressBookTypeP = 0;
 		uID = getAddressUid(self->ltpInterfacesP);

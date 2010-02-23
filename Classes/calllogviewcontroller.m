@@ -273,6 +273,11 @@
 	char *addressBookTypeP = 0;
 	char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	char *ampmCharP=0;
+	char type[100];
+	unsigned char findResult = NO;
+	//int index;
+	
+	char *contactNameP=0;
 	lbold = 0;
 	
 	objP = GetObjectAtIndex(showMisscallInt ,index);
@@ -283,7 +288,15 @@
 		//char tmpidentifier[50];
 		cdrP =(struct CDR*) objP;
 		objStrP = cdrP->userid;
-		
+		SetAddressBookDetails(ownerobject.ltpInterfacesP, cdrP->addressUId, cdrP->addressUId);
+		contactNameP = [ownerobject getNameAndTypeFromNumber:objStrP :type :&findResult];
+		if(findResult)
+		{
+			typeCallP = type;
+			objStrP = contactNameP;
+		}
+		SetAddressBookDetails(ownerobject.ltpInterfacesP, 0, 0);
+		/*
 		addressP = getContactOf(objStrP);
 		//
 		if(addressP)
@@ -344,6 +357,7 @@
 				}
 			}		
 		}
+		 */
 		timeP = cdrP->date;
 				
 		tmP = localtime(&timeP);
@@ -618,6 +632,10 @@
 		if(sectionPP)
 			*sectionPP = 0;
 		
+	}
+	if(contactNameP)
+	{
+		free(contactNameP);
 	}
 	
 		
