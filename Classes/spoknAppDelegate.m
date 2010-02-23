@@ -53,6 +53,7 @@
 @synthesize vmsRPViewP;
 */
 //@synthesize dialNavigationController;
+@synthesize addressRef;
 @synthesize vmsNavigationController;
 @synthesize calllogNavigationController;
 @synthesize contactNavigationController;
@@ -1224,6 +1225,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[self newBadgeArrived:vmsNavigationController];	
 	loadMissCall();
 	[callviewP setMissCallCount];
+	
+	 addressRef = ABAddressBookCreate();
+
 	pthread_t pt;
 	pthread_create(&pt, 0,ThreadForContactLookup,self);	
 	
@@ -1238,6 +1242,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		Contactlookup *lcontactLookup;
 		lcontactLookup = [[Contactlookup alloc] init];
 		[lcontactLookup makeIndex];
+		lcontactLookup.addressRef = self.addressRef;
 		contactlookupP = lcontactLookup;
 	}	
 }
@@ -1487,7 +1492,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		uID = getAddressUid(self->ltpInterfacesP);
 		if(uID)
 		{
-			[ContactViewController	getNameAndType:uID :pnumberP :&addressBookNameP :&addressBookTypeP];
+			[ContactViewController	getNameAndType:self.addressRef :uID :pnumberP :&addressBookNameP :&addressBookTypeP];
 			if(addressBookNameP)
 			{	
 				nameP = addressBookNameP;

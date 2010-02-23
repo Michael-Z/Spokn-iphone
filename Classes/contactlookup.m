@@ -50,11 +50,13 @@
 @end
 
 @implementation Contactlookup
+@synthesize addressRef;
 -(Contactlookup*)init
 {
 	[super init];
-	addressRef = ABAddressBookCreate();
-	peopleArray = (NSMutableArray *)ABAddressBookCopyArrayOfAllPeople(addressRef);
+	ABAddressBookRef laddressRef;
+	laddressRef = ABAddressBookCreate();
+	peopleArray = (NSMutableArray *)ABAddressBookCopyArrayOfAllPeople(laddressRef);
 //	ABAddressBookGetPersonCount(addressRef);
 	contactDictionaryP = [[NSMutableDictionary alloc]init];
 
@@ -77,7 +79,7 @@
 	
 	//NSString *nameP;
 	char *numbercharP;
-	NSString *text1;
+	//NSString *text1;
 	ABMultiValueRef name1 ;
 	NSString *tmpNumber;
 	AddressBookRecord *recordP;
@@ -196,7 +198,7 @@
 	recordP = [contactDictionaryP objectForKey:newNumberP];
 	if(recordP==nil)
 		return nil;
-	ABAddressBookRef addressBook = ABAddressBookCreate();
+	ABAddressBookRef addressBook = addressRef;
     ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,
                                                             recordP.recordID);
 	if(person==0)
@@ -231,7 +233,7 @@
 	{
 		*recIDP = recID;
 	}
-	return [ContactViewController getNameAndType:recID :(char*)nameCharP :nameStringP :typeP];
+	return [ContactViewController getNameAndType:addressRef :recID :(char*)nameCharP :nameStringP :typeP];
 	
 	
 }

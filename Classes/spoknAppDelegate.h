@@ -131,6 +131,7 @@ typedef struct CallNumberType
 	SpoknAudio *allSoundP;
 	NSTimer *ringTimer;
 	Contactlookup *contactlookupP;
+	ABAddressBookRef addressRef;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -159,6 +160,7 @@ typedef struct CallNumberType
 
 */
 
+@property (nonatomic, assign) ABAddressBookRef addressRef;
 @property (nonatomic, assign) int callOnB;
 @property (nonatomic, assign) int handSetB;
 @property (nonatomic,assign)  int loginProgressStart; 

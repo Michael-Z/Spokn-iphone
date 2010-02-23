@@ -323,7 +323,7 @@
 			if(cdrP->addressUId)
 			{	
 				
-				[ContactViewController	getNameAndType:cdrP->addressUId :cdrP->userid :&addressBookNameP :&addressBookTypeP];
+				[ContactViewController	getNameAndType:ownerobject.addressRef :cdrP->addressUId :cdrP->userid :&addressBookNameP :&addressBookTypeP];
 				if(addressBookNameP)
 				{	
 					if(addressBookTypeP)

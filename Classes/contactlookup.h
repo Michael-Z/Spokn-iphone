@@ -32,6 +32,7 @@
 
 	long count;
 }
+@property (readwrite,assign) ABAddressBookRef addressRef;
 -(void) makeIndex;
 -(NSString*) getNameByNumber:(NSString*)numberP;
 -(int) searchNameAndTypeBynumber :(char*)lnumberCharP :(char **) nameStringP :(char**)typeP :(ABRecordID *)recIDP;

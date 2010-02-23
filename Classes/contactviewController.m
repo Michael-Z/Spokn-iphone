@@ -65,7 +65,7 @@
 	hideCallAndVmailButtonB = showB;
 }
 #pragma mark _ADDRESSBOOKDELEGATE_START
-+(int) getNameAndType :(ABRecordID) recordID :(char*)lnumberCharP :(char **) nameStringP :(char**)typeP
++(int) getNameAndType:(ABAddressBookRef) laddressRef :(ABRecordID) recordID :(char*)lnumberCharP :(char **) nameStringP :(char**)typeP
 {
 	NSString *numberStringP;
 	NSString *labelStringP;
@@ -80,7 +80,7 @@
 	{
 		return 1;
 	}
-	ABAddressBookRef addressBook = ABAddressBookCreate();
+	ABAddressBookRef addressBook = laddressRef;
     ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,
                                                             recordID);
 	if(person==0)
