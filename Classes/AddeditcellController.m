@@ -415,7 +415,7 @@
 				{
 					case(0):
 						
-						txtField = [[UITextField alloc] initWithFrame:CGRectMake(20.0f, 6, 280.0f, self.tableView.rowHeight-4)];
+						txtField = [[UITextField alloc] initWithFrame:CGRectMake(10.0f, 7, 280.0f, self.tableView.rowHeight-4)];
 						txtField.delegate = self;
 						[cell.contentView addSubview:txtField]; 
 						//[txtField becomeFirstResponder];

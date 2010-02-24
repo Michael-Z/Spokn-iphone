@@ -195,7 +195,7 @@ changed:(BOOL)changed;
 -(void)vmsDeinitRecordPlay:(id)object;
 -(void)newBadgeArrived:(id)object;
 -(void) sendMessage:(id)object;
-+(BOOL) emailValidate : (NSString *)email;
++(BOOL) emailValidate : (NSString *)emailid;
 -(void) createRing;
 -(void) destroyRing;
 -(int) stopRing;

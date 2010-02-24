@@ -1487,42 +1487,6 @@ id createImage(float percentage)
 													initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 													target: self
 													action: @selector(cancelClicked) ] autorelease ];	
-		/*
-		deleteButton = [[UIButton alloc] init];
-		// The default size for the save button is 49x30 pixels
-		deleteButton.frame = CGRectMake(0, 0, 60, 30.0);
-		
-		// Center the text vertically and horizontally
-		deleteButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-		deleteButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-		
-		UIImage *image = [UIImage imageNamed:@"bottombarred_pressed.png"];
-		
-		// Make a stretchable image from the original image
-		UIImage *stretchImage = [image stretchableImageWithLeftCapWidth:15.0 topCapHeight:0.0];
-		
-		// Set the background to the stretchable image
-		[deleteButton setBackgroundImage:stretchImage forState:UIControlStateNormal];
-		
-		// Make the background color clear
-		deleteButton.backgroundColor = [UIColor clearColor];
-		
-		// Set the font properties
-		[deleteButton setTitleShadowColor:[UIColor blackColor] forState:UIControlStateNormal];
-		deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
-		
-		
-		[deleteButton setTitle:@"Cancel" forState:UIControlStateNormal];
-		
-		[deleteButton addTarget:self action:@selector(cancelClicked) forControlEvents:UIControlEventTouchUpInside];
-		
-		UIBarButtonItem *navButton = [[UIBarButtonItem alloc] initWithCustomView:deleteButton];
-		
-		self.navigationItem.rightBarButtonItem = navButton;
-		
-		[navButton release];
-		[deleteButton release];
-		*/
 	}
 	
 	amt = 0.0;

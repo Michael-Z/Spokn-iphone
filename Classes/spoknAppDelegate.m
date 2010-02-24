@@ -71,36 +71,32 @@
 	
 }
 
-+(BOOL) emailValidate : (NSString *)email
++(BOOL) emailValidate : (NSString *)emailid
 {
+	NSString *localPart;
+	NSString *domainPart;
+	NSString *secondlevelDomain;
+	NSString *toplevelDomain;
+
+	if([emailid rangeOfString:@"@"].location==NSNotFound || [emailid rangeOfString:@"."].location==NSNotFound)
+		return NO;
+
+	localPart=[emailid substringToIndex: [emailid rangeOfString:@"@"].location];
+	domainPart=[emailid substringFromIndex:[emailid rangeOfString:@"@"].location+1];
 	
-	
-	//Quick return if @ Or . not in the string
-	if([email rangeOfString:@"@"].location==NSNotFound || [email rangeOfString:@"."].location==NSNotFound)
+	if(!(localPart.length>=1 && localPart.length<=64)) 
 		return NO;
 	
-	//Break email address into its components
-	NSString *accountName=[email substringToIndex: [email rangeOfString:@"@"].location];
-	email=[email substringFromIndex:[email rangeOfString:@"@"].location+1];
+	secondlevelDomain=[domainPart substringToIndex:[domainPart rangeOfString:@"."].location];
+	toplevelDomain=[domainPart substringFromIndex:[domainPart rangeOfString:@"."].location+1];
 	
-	//’.’ not present in substring
-	if([email rangeOfString:@"."].location==NSNotFound)
+	if(!(toplevelDomain.length>=2 && toplevelDomain.length<=6)) 
 		return NO;
-	NSString *domainName=[email substringToIndex:[email rangeOfString:@"."].location];
-	NSString *subDomain=[email substringFromIndex:[email rangeOfString:@"."].location+1];
 	
-	//username, domainname and subdomain name should not contain the following charters below
-	//filter for user name
-	NSString *unWantedInUName = @" ~!@#$^&*()={}[]|;’:\"<>,?/`";
-	//filter for domain
-	NSString *unWantedInDomain = @" ~!@#$%^&*()={}[]|;’:\"<>,+?/`";
-	//filter for subdomain 
-	NSString *unWantedInSub = @" `~!@#$%^&*()={}[]:\";’<>,?/1234567890";
-	
-	//subdomain should not be less that 2 and not greater 6
-	if(!(subDomain.length>=2 && subDomain.length<=6)) return NO;
-	
-	if([accountName isEqualToString:@""] || [accountName rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:unWantedInUName]].location!=NSNotFound || [domainName isEqualToString:@""] || [domainName rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:unWantedInDomain]].location!=NSNotFound || [subDomain isEqualToString:@""] || [subDomain rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:unWantedInSub]].location!=NSNotFound)
+	if([localPart isEqualToString:@""] || [localPart rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@" ~!@#$^&*()={}[]|;’:\"<>,?/`"]].location!=NSNotFound 
+	 || [secondlevelDomain isEqualToString:@""] || [secondlevelDomain rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@" ~!@#$%^&*()={}[]|;’:\"<>,+?/`"]].location!=NSNotFound
+	 || [toplevelDomain isEqualToString:@""]  || [toplevelDomain rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"1234567890 `~!@*$#^&%()={}[]:\";’<>,?/"]].location!=NSNotFound)
+		
 		return NO;
 	
 	return YES;
