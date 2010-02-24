@@ -429,8 +429,9 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 }
 -(IBAction)callLtp:(id)sender
 {
-	if(buttonPressedB)
-		return;
+	//if(buttonPressedB)
+	//	return;
+	printf("\n ltp msg");
 	if(onLineB)
 	{	
 		char *numbercharP;
@@ -506,8 +507,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 -(IBAction)vmsShow:(id)sender
 {
 	
-	if(buttonPressedB)
-		return;
+	//if(buttonPressedB)
+		//return;
 	//if(onLineB)
 	//{
 		
