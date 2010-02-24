@@ -1074,27 +1074,14 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
  return self;
  }
  */
-/*
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	if(buttonIndex==0)
-	{
-		vmailDeleteAll();
-		profileResync();
-		[self->tableView reloadData];
-		
-	}
-	
-	
-}*/
 -(void) clearPressed {
 	
 	UIAlertView	*alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 													   message: [ NSString stringWithString:_CLEAR_VMS_LOG_ ]
 													  delegate: self
-											 cancelButtonTitle: nil
+											 cancelButtonTitle: _CANCEL_
 											 otherButtonTitles: _OK_, nil];
-	[alert addButtonWithTitle:_CANCEL_];
+	//[alert addButtonWithTitle:_CANCEL_];
 	[ alert show ];
 	[alert release];
 	
