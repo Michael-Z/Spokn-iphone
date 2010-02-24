@@ -56,6 +56,7 @@
 -(void)addContact:(UIViewController*)rootP;
 -(int)getForwardNumber:(SelectedContctType*)  lcontactObjectP;
 -(int)keyBoardOnOrOff:(BOOL)onB :(CGRect*) frameP viewHeight:(float)height;
+-(void)showOrHideSendButton:(BOOL)showB;
 
 @end
 @class pickerviewcontroller;

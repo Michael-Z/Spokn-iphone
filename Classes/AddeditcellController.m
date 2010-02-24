@@ -157,7 +157,7 @@
 	if(strcasestr(titleP,"email"))
 	{
 		typeP = [[NSString alloc] initWithUTF8String:"Type valid email address"];
-		exampleStrP = [[NSString alloc] initWithUTF8String:"Example : mukesh.s@geodesic.com"];
+		exampleStrP = [[NSString alloc] initWithUTF8String:"Example : example@example.org"];
 	}
 	else
 	{
@@ -169,8 +169,8 @@
 		}
 		else
 		{	
-			typeP = [[NSString alloc] initWithUTF8String:"Type a 7-digit Spokn ID or phone number with the country code "];
-			exampleStrP = [[NSString alloc] initWithUTF8String:"Example : 1 847 425 5380"];
+			typeP = [[NSString alloc] initWithUTF8String:"7-digit Spokn ID or phone number with country code "];
+			exampleStrP = [[NSString alloc] initWithUTF8String:"Example : +1 847 425 5380"];
 		}	
 	}
 /*	if(strcasestr(lplaceHolderP,"email"))
@@ -269,6 +269,10 @@
 
 - (void) handleTextFieldChanged:(id)sender
 {
+	if(keyboardtype !=UIKeyboardTypeEmailAddress)
+	{
+		return;
+	}
 	if([txtField.text length])
 	{
 		if([SpoknAppDelegate emailValidate:[txtField text]]==NO)

@@ -30,6 +30,27 @@
 #import "contactviewcontroller.h"
 
 @implementation VmShowViewController
+-(void)showOrHideSendButton:(BOOL)showB
+{
+
+	contactPickB = showB;
+	
+	if(contactPickB==false)
+	{
+		sendButtonP.enabled = NO;
+	}
+	else
+	{
+		if(recordVmsB)
+		{	
+			sendButtonP.enabled = YES;
+		}
+		
+		
+	}
+
+
+}
 - (void) doneSearching_Clicked:(id)sender {
 	
 	
@@ -462,6 +483,7 @@
 			recordVmsB = true;
 			self->maxtimeDouble=maxTime;
 			previewButtonP.enabled  = YES;
+			if(self->contactPickB)
 			sendButtonP.enabled  = YES;
 		}	
 	}
@@ -472,12 +494,16 @@
 		if(vmstateType == VMSStateForward)
 		{
 			previewButtonP.enabled  = NO;
+			if(self->contactPickB)
+				sendButtonP.enabled  = YES;
+
 		}
 		else
 		{
 			previewButtonP.enabled  = YES;
+			sendButtonP.enabled  = YES;
 		}	
-		sendButtonP.enabled  = YES;
+		
 
 	}
 	
@@ -571,14 +597,14 @@
 			return;
 		if([ownerobject VmsStreamStart:false])
 		{
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
+			/*UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
 															   message: [ NSString  stringWithString:_NO_VMS_PLAY_]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: _OK_, nil
 								  ];
 			[ alert show ];
-			[alert release];
+			[alert release];*/
 			return;
 			
 		}
@@ -591,14 +617,14 @@
 		}
 		if([ownerobject VmsStreamStart:true])
 		{
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_
+			/*UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_
 															   message: [ NSString  stringWithString:_NO_VMS_PLAY_]
 															  delegate: nil
 													 cancelButtonTitle: nil
 													 otherButtonTitles: _OK_, nil
 								  ];
 			[ alert show ];
-			[alert release];
+			[alert release];*/
 			return;
 		}
 		[msgLabelP setText:_VMS_RECORDING_MSG2_];
@@ -1304,6 +1330,12 @@ id createImage(float percentage)
 		if(vmstateType==VMSStateForward)
 		{	
 			[self setTitle:@"Forward VMS"];
+			recordVmsB = true;
+			sendButtonP.enabled  = NO;
+			[sendButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ] forState:UIControlStateNormal];
+			[sendButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
+			[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
+			[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateDisabled];
 		}
 		char s1[50];
 		char *month[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};

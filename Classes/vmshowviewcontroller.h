@@ -95,6 +95,8 @@ typedef enum  VMSStateType
 	int shiftVmailB;
 	int previousPickerSz;
 	Boolean contactFindB;
+	Boolean contactPickB;
+	
 	//(SelectedContctType *)lselectedContactP
 	
 	
@@ -118,4 +120,5 @@ typedef enum  VMSStateType
 -(IBAction)cancelClicked;
 -(void)VmsStopRequest;
 - (void)setButtonTitle:(NSString *)title forState:(UIControlState)state;
+-(void)showOrHideSendButton:(BOOL)showB;
 @end

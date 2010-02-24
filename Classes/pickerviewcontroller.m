@@ -900,6 +900,14 @@
 		toLabel.userInteractionEnabled = YES;
 		int i=0;
 		int countObj = [txtDestNo totalObject];
+		if(countObj)
+		{
+			[upDateProtocolP showOrHideSendButton:YES];
+		}
+		else
+		{	
+			[upDateProtocolP showOrHideSendButton:NO];	
+		}	
 		while(1)
 		{	
 			tmpStringP = [txtDestNo GetNameAtIndex:i];

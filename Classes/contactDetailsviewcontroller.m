@@ -1601,31 +1601,7 @@ titleForHeaderInSection:(NSInteger)section
 	[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
 	return;
 	
-	struct AddressBook *addressDataTmpP;
-	
-	
-	addressDataTmpP = addressDataP;
-	addressDataP = 0;
-	addressDataTmpP->title[0] = 0;
-	showAddButtonB = NO;
-	viewP.hidden = !showAddButtonB;
-	self.navigationItem.rightBarButtonItem 
-	= [ [ [ UIBarButtonItem alloc ]
-		 initWithBarButtonSystemItem: UIBarButtonSystemItemDone
-		 target: self
-		 action: @selector(doneClicked) ] autorelease ];
-	self.navigationItem.rightBarButtonItem.enabled = NO;
-	[msgLabelP removeFromSuperview]; 
-	[msgLabelP release];
-	msgLabelP = nil;
-	CGRect viewFrame;
-	viewFrame = sectionViewP.frame;
-	viewFrame.size.height-=42;
-	sectionViewP.frame = viewFrame;
-	[self setAddressBook:addressDataTmpP editable:true :CONTACTADDVIEWENUM];
-	modelViewB= true;
-	free(addressDataTmpP);
-	
+		
 }
 -(void)setSelectedNumber:(char*)noCharP showAddButton:(BOOL)lshowB;
 {
@@ -1707,6 +1683,7 @@ titleForHeaderInSection:(NSInteger)section
 		for(int i=0;i<MAX_SECTION;++i)
 		{
 			memset(&sectionArray[i],0,sizeof(SectionContactType));
+			
 		}
 		
 		sectionCount = 0;
@@ -1891,7 +1868,7 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		if(tablesz==0)
 		{
-			sectionCount = 1;
+			sectionCount = 0;
 			
 		}
 		else
@@ -1915,6 +1892,10 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		else
 		{
+			if(sectionCount==0)
+			{
+				sectionCount = 1;
+			}
 			if(leditableB)
 			{
 				
@@ -1974,6 +1955,8 @@ titleForHeaderInSection:(NSInteger)section
 	
 	if(loadedB)
 	{
+		
+		[self hideOrShowVmsCallButton];
 		nsp = [[NSString alloc] initWithFormat:@"  %s",(const char*)addressDataP->title ];
 		
 		
@@ -2145,6 +2128,60 @@ titleForHeaderInSection:(NSInteger)section
 	numberCharP = lnumberCharP;
 	rootObjectP = lrootObjectP;
 	selectContactP = lselectContactP;
+	
+}
+-(void)hideOrShowVmsCallButton
+{
+	BOOL vmsShowB = FALSE;
+	BOOL callShowB = FALSE;
+	if(editableB==TRUE)
+		return;
+		
+	for(int i=0;i<MAX_SECTION;++i)
+	{
+		for(int j=0;j<sectionArray[i].count && j<MAX_COUNT;++j)
+		{
+			if(sectionArray[i].dataforSection[j].elementP)
+			{
+				vmsShowB = true;
+				if(strstr(sectionArray[i].dataforSection[j].elementP,"@")==0)
+				{
+					callShowB = true;
+					i=MAX_SECTION;
+					break;
+				}
+			}
+		}
+	
+	}
+	if(vmsShowB)
+	{
+			vmsButtonP.enabled  = YES;	
+	
+	}
+	else
+	{
+		vmsButtonP.enabled  = NO;
+		[vmsButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ] forState:UIControlStateNormal];
+		[vmsButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
+		[vmsButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
+		[vmsButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateDisabled];
+		
+	}
+	if(callShowB)
+	{
+		callButtonP.enabled  = YES;
+	}
+	else
+	{
+		 callButtonP.enabled  = NO;
+		[callButtonP setTitleShadowColor:[[UIColor darkGrayColor] autorelease ] forState:UIControlStateNormal];
+		[callButtonP setTitleShadowColor:[UIColor colorWithWhite:0. alpha:0.2]  forState:UIControlStateDisabled];
+		[callButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
+		[callButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateDisabled];
+		
+	}
+	
 	
 }
 -(void) setRecordID:(int)laddressID :(int)lrecordId
