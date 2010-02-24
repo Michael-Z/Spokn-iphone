@@ -27,6 +27,7 @@
 #import "pickerviewcontroller.h"
 #import "overlayviewcontroller.h"
 #include "alertmessages.h"
+#import "contactviewcontroller.h"
 
 @implementation VmShowViewController
 - (void) doneSearching_Clicked:(id)sender {
@@ -1709,41 +1710,83 @@ id createImage(float percentage)
 	}
 	else
 	{
-		addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));
-		memset(addressP,0,sizeof(struct AddressBook));
-		addressP->id = -1;
-		strcpy(addressP->title,numberCharP);
-		if(strstr(numberCharP,"@")==0)
+		
+		
+		Boolean noFoundB = true;
+		if(self->vmailP)
 		{	
-			if(strlen(numberCharP)==SPOKN_ID_RANGE)
+			if(self->vmailP->recordUId)
 			{
-				strcpy(addressP->spoknid,numberCharP);
+				
+				ABRecordRef person = ABAddressBookGetPersonWithRecordID(ownerobject.addressRef,
+																		vmailP->recordUId);
+				if(person)
+				{	
+					noFoundB = false;
+					ContactDetailsViewController     *ContactControllerDetailsviewP;	
+					ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+					[ContactControllerDetailsviewP setObject:self->ownerobject];
+					returnValueInt = 0;
+					[ContactControllerDetailsviewP setRecordID:vmailP->recordUId :vmailP->recordUId];
+					//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
+					[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
+					
+					
+					
+					[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:NO ];
+					[ContactViewController addDetailsFromAddressBook :ContactControllerDetailsviewP :CONTACTDETAILFROMVMS contactBook:person];
+					
+					[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+					
+					
+					
+					if([ContactControllerDetailsviewP retainCount]>1)
+						[ContactControllerDetailsviewP release];
+					
+				}	
+				
+			}
+		}	
+		if(noFoundB)
+		{	
+		
+		
+			addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook ));
+			memset(addressP,0,sizeof(struct AddressBook));
+			addressP->id = -1;
+			strcpy(addressP->title,numberCharP);
+			if(strstr(numberCharP,"@")==0)
+			{	
+				if(strlen(numberCharP)==SPOKN_ID_RANGE)
+				{
+					strcpy(addressP->spoknid,numberCharP);
+				}
+				else
+				{	
+					strcpy(addressP->mobile,numberCharP);
+				}
 			}
 			else
-			{	
-				strcpy(addressP->mobile,numberCharP);
+			{
+					strcpy(addressP->email,numberCharP);//it is email address
 			}
-		}
-		else
-		{
-				strcpy(addressP->email,numberCharP);//it is email address
-		}
-		ContactDetailsViewController     *ContactControllerDetailsviewP;	
-		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
-		returnValueInt = 0;
-		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:self selectedContact:0]  ;
-		
-		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILFROMVMS];
-		[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
-		[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:YES ];
-		[ContactControllerDetailsviewP setObject:self->ownerobject];
-		
-		[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
-		
-		if([ContactControllerDetailsviewP retainCount]>1)
-			[ContactControllerDetailsviewP release];
-		free(addressP);
-		addressP = 0;
+			ContactDetailsViewController     *ContactControllerDetailsviewP;	
+			ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+			returnValueInt = 0;
+			[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:self selectedContact:0]  ;
+			
+			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILFROMVMS];
+			[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
+			[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:YES ];
+			[ContactControllerDetailsviewP setObject:self->ownerobject];
+			
+			[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
+			
+			if([ContactControllerDetailsviewP retainCount]>1)
+				[ContactControllerDetailsviewP release];
+			free(addressP);
+			addressP = 0;
+		}	
 		
 	
 	
@@ -1770,8 +1813,16 @@ id createImage(float percentage)
 	strcpy(noCharP,lnoCharP);
 	nameCharP = malloc(strlen(lnameCharP)+4);
 	strcpy(nameCharP,lnameCharP);
-	typeCharP = malloc(strlen(ltypeCharP)+4);
-	strcpy(typeCharP,ltypeCharP);
+	if(ltypeCharP)
+	{	
+		typeCharP = malloc(strlen(ltypeCharP)+4);
+		strcpy(typeCharP,ltypeCharP);
+	}
+	else
+	{
+		typeCharP = malloc(20);
+		strcpy(typeCharP,"mobile");
+	}
 	vmailP = 0;
 	contactFindB = 1;
 	if(strcmp(lnoCharP, lnameCharP)==0)

@@ -288,12 +288,19 @@
 		//char tmpidentifier[50];
 		cdrP =(struct CDR*) objP;
 		objStrP = cdrP->userid;
-		SetAddressBookDetails(ownerobject.ltpInterfacesP, cdrP->addressUId, cdrP->addressUId);
+		SetAddressBookDetails(ownerobject.ltpInterfacesP, cdrP->recordUId, cdrP->recordUId);
 		contactNameP = [ownerobject getNameAndTypeFromNumber:objStrP :type :&findResult];
 		if(findResult)
 		{
+			int uID;
 			typeCallP = type;
 			objStrP = contactNameP;
+			uID = getAddressUid(ownerobject.ltpInterfacesP);
+			if(uID)
+			{
+				cdrP->recordUId = uID;
+				cdrP->isexistRecordID = 1;
+			}
 		}
 		SetAddressBookDetails(ownerobject.ltpInterfacesP, 0, 0);
 		/*
@@ -333,10 +340,10 @@
 		}
 		else
 		{
-			if(cdrP->addressUId)
+			if(cdrP->recordUId)
 			{	
 				
-				[ContactViewController	getNameAndType:ownerobject.addressRef :cdrP->addressUId :cdrP->userid :&addressBookNameP :&addressBookTypeP];
+				[ContactViewController	getNameAndType:ownerobject.addressRef :cdrP->recordUId :cdrP->userid :&addressBookNameP :&addressBookTypeP];
 				if(addressBookNameP)
 				{	
 					if(addressBookTypeP)
@@ -682,7 +689,7 @@
 			[ContactControllerDetailsviewP setCdr:cdrP];
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
 			[ContactControllerDetailsviewP setSelectedNumber:cdrP->userid showAddButton:NO];
-			[ContactControllerDetailsviewP setRecordID:cdrP->addressUId :cdrP->recordID];
+			[ContactControllerDetailsviewP setRecordID:cdrP->recordUId :cdrP->recordUId];
 			[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
 			
 			
@@ -699,11 +706,11 @@
 		{
 			
 			Boolean noFoundB = true;
-			if(cdrP->addressUId)
+			if(cdrP->recordUId)
 			{	
-				ABAddressBookRef addressBook = ABAddressBookCreate();
-				ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,
-																		cdrP->addressUId);
+				
+				ABRecordRef person = ABAddressBookGetPersonWithRecordID(ownerobject.addressRef,
+																		cdrP->recordUId);
 				if(person)
 				{	
 					noFoundB = false;
@@ -711,7 +718,7 @@
 					ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 					[ContactControllerDetailsviewP setObject:self->ownerobject];
 					resultInt = 0;
-					[ContactControllerDetailsviewP setRecordID:cdrP->addressUId :cdrP->recordID];
+					[ContactControllerDetailsviewP setRecordID:cdrP->recordUId :cdrP->recordUId];
 					//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
 					[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
 					[ContactControllerDetailsviewP setCdr:cdrP];
@@ -755,7 +762,7 @@
 				ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
 				[ContactControllerDetailsviewP setObject:self->ownerobject];
 				resultInt = 0;
-				[ContactControllerDetailsviewP setRecordID:cdrP->addressUId :cdrP->recordID];
+				[ContactControllerDetailsviewP setRecordID:cdrP->recordUId :cdrP->recordUId];
 				//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
 				[ContactControllerDetailsviewP setReturnValue:&resultInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
 				[ContactControllerDetailsviewP setCdr:cdrP];
@@ -798,7 +805,7 @@
 	if(self->tableView.editing==NO)
 	{	
 		
-		SetAddressBookDetails(ownerobject.ltpInterfacesP,cdrP->addressUId,cdrP->recordID);
+		SetAddressBookDetails(ownerobject.ltpInterfacesP,cdrP->recordUId,cdrP->recordUId);
 		[self->ownerobject makeCall:cdrP->userid];
 		[self->ownerobject changeView];
 	}

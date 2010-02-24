@@ -915,8 +915,13 @@ void MyAudioSessionPropertyListener(
 
 void * ThreadForContactLookup(void *udata)
 {
-
-	alertNotiFication(UA_ALERT,0,LOAD_ADDRESS_BOOK,(unsigned long)udata,0);
+	SpoknAppDelegate *spoknDelP;
+	NSAutoreleasePool *autoreleasePool = [[ NSAutoreleasePool alloc ] init];
+	spoknDelP = (SpoknAppDelegate *)udata;
+	
+	[spoknDelP makeIndexingFromAddressBook];
+	
+	[autoreleasePool release];
 	return 0;
 }
 
@@ -1530,9 +1535,13 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				}	
 				
 			}
+			else
+			{
+				uID = 0;
+			}
 			
 		}
-		else
+		if(uID==0)
 		{
 			
 			
@@ -1947,8 +1956,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 -(int) vmsForward:(char*)numberP :(char*)fileNameCharP
 {
-	return sendVms(numberP,fileNameCharP);
-	//return sendVms(numberP,fileNameCharP,0,0);
+	//return sendVms(numberP,fileNameCharP);
+	return sendVms(numberP,fileNameCharP,0,0);
 }
 -(int) vmsSend:(char*)numberP :(char*)fileNameCharP
 {
@@ -1959,8 +1968,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		fileNameCharP="temp";
 	}
 	makeVmsFileName(fileNameCharP,&nameP);
-	er =  sendVms(numberP,nameP);
-//	er =  sendVms(numberP,nameP,self->ltpInterfacesP->addressUId,self->ltpInterfacesP->recordID);
+	//er =  sendVms(numberP,nameP);
+	er =  sendVms(numberP,nameP,self->ltpInterfacesP->recordUId,self->ltpInterfacesP->recordID);
 	if(nameP)
 		free(nameP);
 	return er;

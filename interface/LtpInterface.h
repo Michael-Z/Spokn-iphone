@@ -71,7 +71,7 @@ typedef struct IncommingCallType
 			int connectionActiveByte;
 			pthread_t pthObj;
 			Boolean pjsipStartB;
-			int addressUId;
+			int recordUId;
 			int recordID;	
 			
 			

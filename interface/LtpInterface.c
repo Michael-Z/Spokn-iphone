@@ -108,11 +108,11 @@ void alertInterface(void *udata,int lineid, int alertcode, void *data)
 		case ALERT_DISCONNECTED:
 			if (ltpInterfaceP->ltpObjectP->call[lineid].timeStop)
 				cdrAdd(ltpInterfaceP->ltpObjectP->call[lineid].remoteUserid, (time_t) ltpInterfaceP->ltpObjectP->call[lineid].timeStart, 
-					  ltpInterfaceP->ltpObjectP->call[lineid].timeStop - ltpInterfaceP->ltpObjectP->call[lineid].timeStart, ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall,ltpInterfaceP->addressUId ,ltpInterfaceP->recordID );
+					  ltpInterfaceP->ltpObjectP->call[lineid].timeStop - ltpInterfaceP->ltpObjectP->call[lineid].timeStart, ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall,ltpInterfaceP->recordUId ,ltpInterfaceP->recordID );
 			else
 				cdrAdd(ltpInterfaceP->ltpObjectP->call[lineid].remoteUserid, (time_t) ltpInterfaceP->ltpObjectP->call[lineid].timeStart, 
-					   0, ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall,ltpInterfaceP->addressUId ,ltpInterfaceP->recordID);
-			ltpInterfaceP->addressUId  = 0;
+					   0, ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall,ltpInterfaceP->recordUId ,ltpInterfaceP->recordID);
+			ltpInterfaceP->recordUId  = 0;
 			ltpInterfaceP->recordID = 0;
 			subid = 0;					
 			if((ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall&CALLTYPE_IN) && (ltpInterfaceP->ltpObjectP->call[lineid].kindOfCall&CALLTYPE_MISSED))
@@ -593,7 +593,7 @@ int  SetAddressBookDetails(LtpInterfaceType *ltpInterfaceP,int addressUId,int re
 {
 	if(ltpInterfaceP)
 	{
-		ltpInterfaceP->addressUId = addressUId;
+		ltpInterfaceP->recordUId = addressUId;
 		ltpInterfaceP->recordID = recordID;
 		return 0;
 		
@@ -603,7 +603,7 @@ int  SetAddressBookDetails(LtpInterfaceType *ltpInterfaceP,int addressUId,int re
 int getAddressUid(LtpInterfaceType *ltpInterfaceP)
 {
 	if(ltpInterfaceP==0) return 0;
-	return ltpInterfaceP->addressUId;
+	return ltpInterfaceP->recordUId;
 }
 int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB)
 {

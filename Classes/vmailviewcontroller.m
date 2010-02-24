@@ -101,13 +101,13 @@
 			[vmShowViewControllerP release];
 		
 	}
-/*	else if(vmailP->addressUId)
+	else if(vmailP->recordUId)
 	{
 		//ABAddressBookRef addressBook = ABAddressBookCreate();
-		//ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,vmailP->addressUId);
+		//ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,vmailP->recordUId);
 		char *addressBookNameP = 0;
 		char *addressBookTypeP = 0;
-		[ContactViewController	getNameAndType:vmailP->addressUId :vmailP->userid :&addressBookNameP :&addressBookTypeP];
+		[ContactViewController	getNameAndType:ownerobject.addressRef : vmailP->recordUId :vmailP->userid :&addressBookNameP :&addressBookTypeP];
 		if(addressBookNameP)
 		{
 			
@@ -126,9 +126,13 @@
 			
 			if([vmShowViewControllerP retainCount]>1)
 				[vmShowViewControllerP release];
-
+			free(addressBookNameP);
+			if(addressBookTypeP)
+			{	
+				free(addressBookTypeP);
+			}	
 		}
-	}*/
+	}
 	else
 	{
 		VmShowViewController     *vmShowViewControllerP;	
@@ -309,13 +313,23 @@
 		struct VMail *vmailP;
 		vmailP =(struct VMail*) objP;
 		objStrP = vmailP->userid;
-		//-(char*) getNameAndTypeFromNumber:(char*)pnumberP :(char*)typeP :(Boolean*)pfindBP 
+		SetAddressBookDetails(ownerobject.ltpInterfacesP, vmailP->recordUId, vmailP->recordUId);
 		contactNameP = [ownerobject getNameAndTypeFromNumber:objStrP :type :&findResult];
 		if(findResult)
 		{
+			int uID;
 			typeCallP = type;
 			objStrP = contactNameP;
+			uID = getAddressUid(ownerobject.ltpInterfacesP);
+			if(uID)
+			{
+				vmailP->recordUId = uID;
+				vmailP->isexistRecordID = 1;
+			}
 		}
+		SetAddressBookDetails(ownerobject.ltpInterfacesP, 0, 0);
+		
+		
 		/*
 		addressP = getContactOf(objStrP);
 		if(addressP)
@@ -353,10 +367,10 @@
 		}*/
 /*		else
 		{
-			if(vmailP->addressUId)
+			if(vmailP->recordUId)
 			{	
 				
-				[ContactViewController	getNameAndType:vmailP->addressUId :vmailP->userid :&addressBookNameP :&addressBookTypeP];
+				[ContactViewController	getNameAndType:vmailP->recordUId :vmailP->userid :&addressBookNameP :&addressBookTypeP];
 				if(addressBookNameP)
 				{	
 					if(addressBookTypeP)
