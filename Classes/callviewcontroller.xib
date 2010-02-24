@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="34"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -67,10 +67,12 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalImage">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="815458251">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">mute-wit-text.png</string>
 								</object>
+								<reference key="IBUISelectedImage" ref="815458251"/>
+								<reference key="IBUINormalImage" ref="815458251"/>
 								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="413887805">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">10_bgblue_94_113_left.png</string>
@@ -97,10 +99,12 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="600185226">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">keypad-wit-text.png</string>
 								</object>
+								<reference key="IBUISelectedImage" ref="600185226"/>
+								<reference key="IBUINormalImage" ref="600185226"/>
 								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="150390261">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">10_bgblue_103_113_top.png</string>
@@ -127,10 +131,12 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="634076693">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">speaker-wit-text.png</string>
 								</object>
+								<reference key="IBUISelectedImage" ref="634076693"/>
+								<reference key="IBUINormalImage" ref="634076693"/>
 								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="998079124">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">10_bgblue_94_113_right.png</string>
@@ -183,10 +189,12 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="432458137">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">hold-wit-text.png</string>
 								</object>
+								<reference key="IBUISelectedImage" ref="432458137"/>
+								<reference key="IBUINormalImage" ref="432458137"/>
 								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="120664924">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">10_bgblue_103_111_bottom.png</string>
@@ -213,10 +221,12 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
-								<object class="NSCustomResource" key="IBUINormalImage">
+								<object class="NSCustomResource" key="IBUIHighlightedImage" id="878706987">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">contacts-wit-text.png</string>
 								</object>
+								<reference key="IBUISelectedImage" ref="878706987"/>
+								<reference key="IBUINormalImage" ref="878706987"/>
 								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="388490958">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">10_bgblue_94_111_right.png</string>
@@ -758,7 +768,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CallViewController</string>
 					<string>UIResponder</string>
-					<string>{{494, 234}, {320, 480}}</string>
+					<string>{{726, 243}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
