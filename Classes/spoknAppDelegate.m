@@ -1631,7 +1631,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//struct AddressBook *addressP;
 	resultCharP = NormalizeNumber(noCharP,0);
 	
-	if(validateNo(resultCharP))//mean invalid number
+/*	if(validateNo(resultCharP))//mean invalid number
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_INVALID_NUMBER_ 
 														message:_INVALID_NUMBER_MESSAGE_
@@ -1644,7 +1644,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		free(resultCharP);
 		return retB;
 		
-	}
+	}*/
 	if(!wifiavailable)
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_WIFI_ 

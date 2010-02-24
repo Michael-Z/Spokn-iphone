@@ -307,9 +307,9 @@
 			
 		}	
 		
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_NO_NUMBER_ message:_NO_NUMBER_VMS_MESSAGE_ delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+	//	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_NO_NUMBER_ message:_NO_NUMBER_VMS_MESSAGE_ delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 			
-		[alert show];
+	//	[alert show];
 		
 		
 		

@@ -90,7 +90,7 @@
 									
 			dispP = [ [displayData alloc] init];
 			dispP.left = 0;
-			dispP.top = 0;
+			dispP.top = 1;
 			dispP.width = 100;
 			if(secObjStrP)
 			{	
