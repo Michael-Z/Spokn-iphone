@@ -244,7 +244,12 @@
 		{	
 			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlSendP]];
 		}
+		
 	}
+	if(buttonIndex=1)
+	{
+		[spoknViewControllerP buyCredit:nil];
+	}	
 	if(urlSendP)
 	{
 		[urlSendP release];
@@ -332,7 +337,7 @@
 					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_CREDITS_ 
 																	message:_NO_CREDITS_MESSAGE_
 																   delegate:self 
-														  cancelButtonTitle:nil 
+														  cancelButtonTitle:_CANCEL_ 
 														  otherButtonTitles:_OK_, nil];
 					[alert show];
 					[alert release];
