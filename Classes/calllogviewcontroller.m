@@ -460,8 +460,8 @@
 			//lcdrP = malloc(sizeof(struct CDR)+4);
 			//*lcdrP = *cdrP;
 			//secLocP->userData = lcdrP;
-			secLocP->userData = objP;
-			
+			secLocP->userData = 0;
+			secLocP->uniqueID = cdrP->uniqueID;
 			
 			secLocP->index = index;
 			dispP = [ [displayData alloc] init];
@@ -663,10 +663,13 @@
 	sectionType *secLocP;
 
 	secLocP = cell.spoknSubCellP.userData;
-	cdrP =(struct CDR*)  secLocP->userData;
-	gcdrP = cdrP;
+	if(secLocP==0) return ;
+	cdrP = GetObjectByUniqueID(GETCALLLOGLIST, secLocP->uniqueID);
+	//cdrP =(struct CDR*)  secLocP->userData;
+	//gcdrP = cdrP;
 	if(cdrP)
 	{
+		gUniqueID = cdrP->uniqueID;
 		struct AddressBook *addressP;
 		
 		addressP = getContactOf(cdrP->userid);
@@ -800,11 +803,14 @@
 	struct CDR *cdrP;
 	sectionType *secLocP;
 	secLocP = cell.spoknSubCellP.userData;
-	cdrP =(struct CDR*)  secLocP->userData;
+	if(secLocP==0) return;
+	cdrP = GetObjectByUniqueID(GETCALLLOGLIST, secLocP->uniqueID);
+	//cdrP =(struct CDR*)  secLocP->userData;
 	if(cdrP==0) return;
 	if(self->tableView.editing==NO)
 	{	
 		
+		printf("\n call srart");
 		SetAddressBookDetails(ownerobject.ltpInterfacesP,cdrP->recordUId,cdrP->recordUId);
 		[self->ownerobject makeCall:cdrP->userid];
 		[self->ownerobject changeView];
@@ -861,7 +867,8 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		sectionType *secLocP;
 		[cell tablecellsetEdit:NO :0];
 		secLocP = cell.spoknSubCellP.userData;
-		cdrP =(struct CDR*)  secLocP->userData;
+		//cdrP =(struct CDR*)  secLocP->userData;
+		cdrP = GetObjectByUniqueID(GETCALLLOGLIST, secLocP->uniqueID);
 		if(cdrP)
 		{	
 			cdrRemove(cdrP);
@@ -1023,10 +1030,16 @@ cancelButtonTitle: nil
 		
 		if(resultInt==2)//delete
 		{
-			if(gcdrP)
+			if(gUniqueID)
 			{	
-				cdrRemove(gcdrP);
+				struct CDR  *cdrP;
+				cdrP = GetObjectByUniqueID(GETCALLLOGLIST, gUniqueID);
+				if(cdrP)
+				{	
+					cdrRemove(cdrP);
+				}	
 			}
+			gUniqueID = 0;
 		}	
 		[tableView reloadData];
 		resultInt = 0;		

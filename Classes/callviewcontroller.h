@@ -31,6 +31,7 @@
 @optional
 - (void)upDateUI;
 -(void)objectDestory; 
+-(void)setParentObject:(id)parentP;
 
 
 @end
@@ -60,6 +61,7 @@
 	Boolean delTextB;
 	id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 	//Boolean needTOStartTimerB;
+	id<ShowContactCallOnDelegate> parentObjectDelegate;
 	int sendCallRequestB; 
 	int failedCallB;
 	int endCalledPressed;
@@ -67,6 +69,7 @@
 
 }
 -(void)setObject:(id) object ;
+-(void)setParentObject:(id) object ;
 -(void)setLabel:(NSString *)strP :(NSString *)strtypeP;
 -(IBAction)mutePressed:(id)sender;
 -(IBAction)speakerPressed:(id)sender;

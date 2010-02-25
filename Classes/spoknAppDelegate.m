@@ -86,11 +86,16 @@
 	
 	if(!(localPart.length>=1 && localPart.length<=64)) 
 		return NO;
-	
+	if([domainPart rangeOfString:@"."].location==NSNotFound)
+	{
+		return NO;
+	}
 	secondlevelDomain=[domainPart substringToIndex:[domainPart rangeOfString:@"."].location];
+	if(secondlevelDomain.length==0)
+		return NO;
 	toplevelDomain=[domainPart substringFromIndex:[domainPart rangeOfString:@"."].location+1];
 	
-	if(!(toplevelDomain.length>=2 && toplevelDomain.length<=6)) 
+	if(!(toplevelDomain.length>=2 )) 
 		return NO;
 	
 	if([localPart isEqualToString:@""] || [localPart rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@" ~!@#$^&*()={}[]|;’:\"<>,?/`"]].location!=NSNotFound 
@@ -234,6 +239,7 @@
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+	
 	if(buttonIndex==0)
 	{
 		if(urlSendP)
@@ -242,7 +248,7 @@
 		}
 		
 	}
-	if(buttonIndex=1)
+	if(buttonIndex==1)
 	{
 		[spoknViewControllerP buyCredit:nil];
 	}	
@@ -356,7 +362,7 @@
 		case ALERT_CONNECTED:
 			[dialviewP setStatusText: @"ringing" :nil :ALERT_CONNECTED :0];
 			callOnB = true;
-		
+			printf("\n line id %d",self->lineID);
 			//openSoundInterface(ltpInterfacesP,1);
 		#ifdef __IPHONE_3_0
 					[UIDevice currentDevice].proximityMonitoringEnabled = YES;
@@ -669,11 +675,17 @@
 			}
 			switch(self->subID)
 		{
+			case STOP_ANIMATION:
+				[vmsviewP cancelProgress];
+				[self updateSpoknView:0];
+				//[spoknViewControllerP cancelProgress];
+				break;
 			case REFRESH_ALL:
 				[self LoadContactView:contactviewP];
 				[vmsviewP cancelProgress];
 				[self LoadContactView:vmsviewP];
 				[self newBadgeArrived:vmsNavigationController];	
+				[self updateSpoknView:0];
 
 				
 				

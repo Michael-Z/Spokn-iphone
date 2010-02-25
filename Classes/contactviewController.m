@@ -1619,10 +1619,16 @@ titleForHeaderInSection:(NSInteger)section
 					if([searchStrP length]>0)
 					{	
 						NSRange range1 = [[CellIdentifier uppercaseString] rangeOfString:searchStrP];//[[[self getName:person] uppercaseString] rangeOfString:upString];
+						
 						if (range1.location != NSNotFound) 
 						{	
-							[ setTypeP->elementP addObject:secP];
-							noShowB = true;
+							
+							if(range1.location==0 ||(range1.location > 0 && [CellIdentifier characterAtIndex:(range1.location-1)]==32 ))
+							{	
+								printf("\n %d",range1.location);
+								[ setTypeP->elementP addObject:secP];
+								noShowB = true;
+							}	
 						}	
 					}
 					else
@@ -1861,19 +1867,21 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	//secP = (sectionData*)[dataP objectAtIndex:0];
 	secP = (sectionData*)[setTypeP->elementP objectAtIndex:row]; 
 	addressP = (struct AddressBook *)getContact( secP->recordid);
-	#ifdef TEST_CALL_ID
-		if(addressP->id==TEST_CALL_ID)
-		{
-			[self showContactDetailScreen :addressP :CONTACTPHONEADDRESSBOOKDETAIL contactBook:nil];//dont allowed edit
-		}
-		else
-		{
+	if(addressP)
+	{	
+		#ifdef TEST_CALL_ID
+			if(addressP->id==TEST_CALL_ID)
+			{
+				[self showContactDetailScreen :addressP :CONTACTPHONEADDRESSBOOKDETAIL contactBook:nil];//dont allowed edit
+			}
+			else
+			{
+				[self showContactDetailScreen :addressP :CONTACTDETAILVIEWENUM contactBook:nil];
+			}
+		#else
 			[self showContactDetailScreen :addressP :CONTACTDETAILVIEWENUM contactBook:nil];
-		}
-	#else
-		[self showContactDetailScreen :addressP :CONTACTDETAILVIEWENUM contactBook:nil];
-	#endif	
-
+		#endif	
+	}	
 
 }
 

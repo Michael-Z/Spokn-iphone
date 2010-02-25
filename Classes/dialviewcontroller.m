@@ -640,7 +640,15 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	
 	//[alertView release];
 }
-
+#pragma mark PROTOCAL_METHOD
+-(void)objectDestory
+{
+	callViewControllerP = nil;
+}
+-(void)setParentObject:(id)parentP
+{
+	callViewControllerP = parentP;
+}
 -(void) setButton:(id) sender
 {
 	switch(self->status)
@@ -840,7 +848,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				if(callViewControllerP==0)
 				{
 					
-					
+					printf("\n timer end");
 					//hangLtpInterface(ownerobject.ltpInterfacesP);
 					calltimerP = [NSTimer scheduledTimerWithTimeInterval: 0.5
 																  target: self
@@ -854,10 +862,10 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 					break;
 				
 				}
-				
+				printf("\n timer start");
 				[callViewControllerP startTimer];
 			}	
-			
+			break;
 		case TRYING_CALL:
 			
 			//[self setViewButton:1];
@@ -871,6 +879,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				//setHoldInterface(ownerobject.ltpInterfacesP, 0);
 				callViewControllerP = [[CallViewController alloc] initWithNibName:@"callviewcontroller" bundle:[NSBundle mainBundle]];
 				[callViewControllerP setObject:self->ownerobject];
+				[callViewControllerP setParentObject:self];
 				
 				//callViewControllerP.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 
@@ -890,6 +899,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 					buttonPressedB = NO;
 					if([callViewControllerP retainCount]>1)
 						[callViewControllerP release];
+					
 				}
 				else
 				{
@@ -898,7 +908,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 					callViewControllerP = nil;
 					
 				}
-				
+				callViewControllerP = nil;
 			}	
 			[numberlebelP setText:@""];
 			statusLabel1P.hidden = NO;

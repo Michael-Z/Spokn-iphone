@@ -42,7 +42,8 @@
 	int showMisscallInt;
 	UISegmentedControl *segmentedControl;
 	int resultInt;
-	struct CDR *gcdrP;
+	//struct CDR *gcdrP;
+	int gUniqueID;
 	Boolean hideB;
 	long count;
 	int refreshB;

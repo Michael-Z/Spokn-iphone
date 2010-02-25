@@ -286,7 +286,7 @@
 }
 - (void)addRow: (int )index sectionObject:(sectionType **)sectionPP
 {
-	struct AddressBook *addressP;
+	//struct AddressBook *addressP;
 	void *objP;
 	char *typeCallP = 0;
 	char *objStrP=0;
@@ -306,6 +306,7 @@
 	char *ampmCharP=0;
 	
 	lbold = 0;
+	
 	objP = GetObjectAtIndex(showFailInt ,index);
 	if(objP)
 	{
@@ -543,7 +544,9 @@
 			//lvmailP = malloc(sizeof(struct VMail)+4);
 			//*lvmailP = *vmailP;
 			//secLocP->userData = lvmailP;
-			secLocP->userData = objP;
+			
+			secLocP->uniqueID = vmailP->uniqueID;
+			secLocP->userData = 0;
 			secLocP->index = index;
 			dispP = [ [displayData alloc] init];
 			dispP.boldB = YES;
@@ -850,7 +853,9 @@
 	char *fNameP=0;
 	unsigned long timeTotal=0;
 	secLocP = cell.spoknSubCellP.userData;
-	vmailP =(struct VMail*) secLocP->userData;
+	
+	vmailP = GetObjectByUniqueID(GETVMAILLIST, secLocP->uniqueID);
+	//vmailP =(struct VMail*) secLocP->userData;
 	if(GetVmsFileName(vmailP,&fNameP)==0)
 	{
 		int er;
@@ -952,13 +957,18 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		struct VMail *vmailP;
 		[cell tablecellsetEdit:NO :0];
 		secLocP = cell.spoknSubCellP.userData;
-		vmailP =(struct VMail*) secLocP->userData;
-		if(vmailP->direction==VMAIL_IN && vmailP->status==VMAIL_ACTIVE)		
+		vmailP = GetObjectByUniqueID(GETVMAILLIST, secLocP->uniqueID);
+		if(vmailP)
 		{
-			vmailP->status=VMAIL_DELIVERED;
-			vmailP->dirty=1;
-			newVMailCountdecrease();
-		}
+		
+		//vmailP =(struct VMail*) secLocP->userData;
+			if(vmailP->direction==VMAIL_IN && vmailP->status==VMAIL_ACTIVE)		
+			{
+				vmailP->status=VMAIL_DELIVERED;
+				vmailP->dirty=1;
+				newVMailCountdecrease();
+			}
+		}	
 		NSString *stringStrP;
 		char s1[30];
 		int count;
@@ -1176,13 +1186,21 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[self retain];
+	//[self retain];
+	
 	activeImageP=[UIImage imageNamed:_VMS_OUT_ACTIVE_PNG_];
+	//[activeImageP retain];
 	dileverImageP=[UIImage imageNamed:_VMS_OUT_DELIVERED_PNG_];
+	//[dileverImageP retain];
 	failedImageP=[UIImage imageNamed:_VMS_OUT_UNDELIVERED_PNG_];
+	//[failedImageP retain];
 	vnewImageP=[UIImage imageNamed:_VMS_IN_NEW_PNG_];
+	//[vnewImageP retain];
 	readImageP=[UIImage imageNamed:_VMS_IN_READ_PNG_];
+	//[readImageP retain];
 	vnewoutImageP=[UIImage imageNamed:_VMS_OUT_NEWHIGH_PNG_];
+	//[vnewoutImageP retain];
+	
 	//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 	refreshB = 0;
 	//self.tabBarItem = [UITabBarItem alloc];
@@ -1232,9 +1250,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}	
 	
  
-	activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
+	activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 20.0f, 20.0f)];
 	[activityIndicator setCenter:CGPointMake(22, 42)];
-	[activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+	[activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhite];
 	activityIndicator.tag = 1;
 	[[self navigationController].view addSubview:activityIndicator];
 

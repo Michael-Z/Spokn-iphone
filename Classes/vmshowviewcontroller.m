@@ -1054,6 +1054,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	if(sectionArray[section].dataforSection[row].customViewP==0)
 	{
 		[self->tableView deselectRowAtIndexPath : newIndexPath animated:NO];
+		[self stopButtonPressed:nil];
 		[self loadContactDetails:noCharP];
 	}
 	//selection = [[[UIFont familyNames] objectAtIndex:[newIndexPath row]] retain];

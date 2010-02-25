@@ -351,6 +351,7 @@
 	self = [super init];
 	freeUDataB = false;
 	index = 0;
+	uniqueID = 0;
 	elementP = [[NSMutableArray alloc] init];
 	return self;
 }

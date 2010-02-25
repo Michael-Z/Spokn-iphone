@@ -125,6 +125,7 @@
 @public
 	int freeUDataB;
 	int index;
+	int uniqueID;
 	void *userData;
 	NSMutableArray *elementP;
 }

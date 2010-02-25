@@ -79,8 +79,15 @@
 	[super viewDidDisappear:animated];
 	if(endCalledPressed)
 	{
+		[self->parentObjectDelegate objectDestory];
+		self->parentObjectDelegate = nil;
 		hangLtpInterface(self->ownerobject.ltpInterfacesP);
+		
 	}
+}
+-(void)setParentObject:(id) object 
+{
+	self->parentObjectDelegate = object;
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -95,8 +102,10 @@
 									   userInfo: nil
 										repeats: NO];*/
 		
+		printf("\n loaded");
 		SetAudioTypeLocal(0,0);
-	//	AudioSessionSetActive(true);
+		AudioSessionSetActive(true);
+		[self->parentObjectDelegate setParentObject:self];
 		alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
 		firstTimeB = 0;
 	}
@@ -526,6 +535,9 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 - (void)dealloc {
 	
+	[self->parentObjectDelegate objectDestory];
+	self->parentObjectDelegate = nil;
+
 	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleDefault ;
 	[showContactCallOnDelegate objectDestory];
 	[ownerobject playcallendTone];

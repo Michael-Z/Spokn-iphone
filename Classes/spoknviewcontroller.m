@@ -243,6 +243,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	statusInt = 0;
+	tableView.scrollEnabled = NO;
 	tableView.scrollsToTop = YES;
 	tableView.delegate = self;
 	tableView.dataSource = self;
@@ -278,8 +279,11 @@
 	
 //	buybuttonCtlP.enabled = NO;
 //	aboutbuttonCtlP.enabled = NO;
-	
-	switchView.on = NO;
+	if(switchView.on==YES)
+	{	
+		//switchView.on = NO;
+		[switchView setOn:NO animated:NO];
+	}	
 	switchView.enabled = NO;
 	if(statusInt)
 	{
@@ -370,7 +374,12 @@
 				profileResync();
 			}
 			switchView.enabled = NO;
-			switchView.on = NO;
+			if(switchView.on==YES)
+			{	
+				//switchView.on = NO;
+				[switchView setOn:NO animated:NO];
+			}	
+			
 			memset(forwardNoCharP,0,100);
 			
 		}
@@ -383,7 +392,11 @@
 			switchView.enabled = YES;
 			if([labelForword.text length]==0)//mean off
 			{
-				switchView.on = NO;
+				if(switchView.on==YES)
+				{	
+					//switchView.on = NO;
+					[switchView setOn:NO animated:NO];
+				}	
 			}
 			viewCallB = false;
 			//[switchView setOn:NO animated:NO]; 
@@ -598,12 +611,21 @@ titleForHeaderInSection:(NSInteger)section
 		//if(strlen(lforwardNoCharP)>0)
 		if(forward && strlen(lforwardNoCharP)>0)
 		{
-			switchView.on = YES;
+			if(switchView.on==NO)
+			{	
+				//switchView.on = YES;
+				[switchView setOn:YES animated:NO];
+			}	
+			//switchView.on = YES;
 			[labelForword setTextColor:SPOKNCOLOR]; 
 		}
 		else
 		{
-			switchView.on = NO;
+			if(switchView.on==YES)
+			{	
+				//switchView.on = NO;
+				[switchView setOn:NO animated:NO];
+			}	
 			[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
 		}
 //		switchView.enabled = YES;

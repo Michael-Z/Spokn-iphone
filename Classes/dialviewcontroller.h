@@ -32,7 +32,11 @@
 @class CallViewController;
 #import "spoknaudio.h"
 #define MAX_TONE 13 
-@interface DialviewController : UIViewController<UITextFieldDelegate, KeypadProtocol> {
+@protocol ShowContactCallOnDelegate;
+
+
+
+@interface DialviewController : UIViewController<UITextFieldDelegate, KeypadProtocol,ShowContactCallOnDelegate> {
 //	@public
 	//IBOutlet UITextField*statusFieldP;
 	IBOutlet UILabel *statusLabel1P;
