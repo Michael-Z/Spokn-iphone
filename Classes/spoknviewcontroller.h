@@ -59,6 +59,7 @@ typedef struct ImageNameType
 	int stopProgressB;
 	ImageNameType imageName[MAXSECTION][MAXIMAGE];
 	UIActivityIndicatorView *activityIndicator;
+	UIActivityIndicatorView *forwardactivityIndicator;
 	int statusInt;
 	
 
@@ -74,4 +75,7 @@ typedef struct ImageNameType
 -(void) cancelPressed ;
 -(void) LoginPressed ;
 -(void) LogoutPressed;
+-(void)startforwardactivityIndicator;
+-(void)stopforwardactivityIndicator;
+-(void)startProgress;
 @end

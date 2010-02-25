@@ -116,14 +116,15 @@
 		[labelForword setTextColor:SPOKNCOLOR]; 
 		SetOrReSetForwardNo(true,forwordCharP);
 		profileResync();
-
+		[self startforwardactivityIndicator];
+ 
 	}
 	else
 	{
 		SetOrReSetForwardNo(false,forwardNoCharP);
 		profileResync();
 		[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
-
+		[self startforwardactivityIndicator];
 	}
 
 
@@ -163,10 +164,16 @@
 		switchView = [[UISwitch alloc] initWithFrame: CGRectMake(205.0f, 7.0f, 94.0f, 27.0f)]; 
 		[switchView setTag:3]; 
 		[switchView addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
+		
 		activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)];
 		[activityIndicator setCenter:CGPointMake(160.0f, 208.0f)];
 		[activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
 		activityIndicator.tag = 7;
+
+		forwardactivityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 20.0f, 20.0f)];
+		[forwardactivityIndicator setCenter:CGPointMake(250.0f, 21.0f)];
+		[forwardactivityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+		forwardactivityIndicator.tag = 8;
 		
 		//[switchView addTarget:self action:@selector(switchChange) forControlEvents:UIControlEventValueChanged];
 		//cell.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spoknlog" ofType:@"png" inDirectory:@"/"]];
@@ -207,7 +214,19 @@
 	//[activityIndicator startAnimating];
 	
 	
-}	
+}
+-(void)startforwardactivityIndicator
+{
+	forwardactivityIndicator.hidden = NO;
+	[forwardactivityIndicator startAnimating];
+}
+-(void)stopforwardactivityIndicator
+{
+	forwardactivityIndicator.hidden = YES;
+	[forwardactivityIndicator stopAnimating];
+
+}
+
 -(void)startProgress
 {
 	self.navigationItem.titleView = activityIndicator;
@@ -220,6 +239,7 @@
 	
 	[labelStatus setText:_STATUS_CONNECTING_];
 	stopProgressB = false;
+
 
 }
 
@@ -243,7 +263,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	statusInt = 0;
-	tableView.scrollEnabled = NO;
+//	tableView.scrollEnabled = NO;
 	tableView.scrollsToTop = YES;
 	tableView.delegate = self;
 	tableView.dataSource = self;
@@ -285,6 +305,7 @@
 		[switchView setOn:NO animated:NO];
 	}	
 	switchView.enabled = NO;
+	[self startforwardactivityIndicator];
 	if(statusInt)
 	{
 		buybuttonCtlP.enabled = YES;
@@ -357,6 +378,7 @@
 				SetOrReSetForwardNo(true,forwardNoCharP);
 				profileResync();
 				switchView.enabled = NO;
+				[self startforwardactivityIndicator];
 			}
 			memset(forwardNoCharP,0,100);
 		}
@@ -374,6 +396,7 @@
 				profileResync();
 			}
 			switchView.enabled = NO;
+			[self startforwardactivityIndicator];
 			if(switchView.on==YES)
 			{	
 				//switchView.on = NO;
@@ -390,6 +413,7 @@
 		if(viewCallB)
 		{
 			switchView.enabled = YES;
+			[self stopforwardactivityIndicator];
 			if([labelForword.text length]==0)//mean off
 			{
 				if(switchView.on==YES)
@@ -442,6 +466,7 @@
 		free(forwardNoCharP);
 	}
 	[activityIndicator release];
+	[forwardactivityIndicator release];
     [super dealloc];
 }
 // Add a title for each section 
@@ -632,11 +657,13 @@ titleForHeaderInSection:(NSInteger)section
 		if(statusInt)
 		{
 			switchView.enabled = YES;
+			[self stopforwardactivityIndicator];
 			
 		}
 		else
 		{
 			switchView.enabled = NO;
+			[self startforwardactivityIndicator];
 		}
 	}
 	
@@ -818,14 +845,17 @@ titleForHeaderInSection:(NSInteger)section
 		if([temp isEqualToString:@"Call Forwarding"])
 		{
 			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-			[cell addSubview:switchView]; 
+			[cell addSubview:switchView];
+			[cell addSubview:forwardactivityIndicator];
 			if(statusInt)
 			{	
 				switchView.enabled = YES;
+				[self stopforwardactivityIndicator];
 			}
 			else
 			{
 				switchView.enabled = NO;
+				[self startforwardactivityIndicator];
 			}
 			//[switchView release];
 		}
@@ -901,10 +931,12 @@ titleForHeaderInSection:(NSInteger)section
 			if(statusInt)
 			{	
 				switchView.enabled = YES;
+				[self stopforwardactivityIndicator];
 			}
 			else
 			{
 				switchView.enabled = NO;
+				[self startforwardactivityIndicator];
 			}
 			//[switchView release];
 		}
