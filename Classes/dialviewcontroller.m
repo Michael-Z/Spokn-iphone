@@ -727,8 +727,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			{
 				
 				case HOST_NAME_NOT_FOUND_ERROR:
-					alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
-														  message: [ NSString stringWithString:_SERVER_UNREACHABLE_ ]
+					alert = [ [ UIAlertView alloc ] initWithTitle: _SERVER_UNREACHABLE_ 
+														  message: [ NSString stringWithString:_SERVER_UNREACHABLE_MESSAGE_ ]
 														 delegate: self
 												cancelButtonTitle: nil
 												otherButtonTitles: _OK_, nil
@@ -742,8 +742,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				case LOGIN_STATUS_OFFLINE:
 					if(alert==nil)
 					{	
-						alert = [ [ UIAlertView alloc ] initWithTitle: _TITLE_ 
-															  message: [ NSString stringWithString:_SERVER_UNREACHABLE_ ]
+						alert = [ [ UIAlertView alloc ] initWithTitle: _SERVER_UNREACHABLE_ 
+															  message: [ NSString stringWithString:_SERVER_UNREACHABLE_MESSAGE_ ]
 															 delegate: self
 													cancelButtonTitle: nil
 													otherButtonTitles: _OK_, nil

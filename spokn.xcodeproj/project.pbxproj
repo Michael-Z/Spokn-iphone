@@ -157,6 +157,8 @@
 		8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4B010318ADB00A18DA1 /* AddressBook.framework */; };
 		8B865760112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */; };
 		8B865761112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */; };
+		8B8C9CBB1137A11C00120CF5 /* spoknlogo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8C9CBA1137A11C00120CF5 /* spoknlogo57.png */; };
+		8B8C9CBC1137A11C00120CF5 /* spoknlogo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8C9CBA1137A11C00120CF5 /* spoknlogo57.png */; };
 		8B9302811011EDFA004BDA41 /* contactDetailsviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */; };
 		8B9302821011EDFA004BDA41 /* contactDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302661011EDFA004BDA41 /* contactDetails.xib */; };
 		8B9302831011EDFA004BDA41 /* contactviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302681011EDFA004BDA41 /* contactviewController.m */; };
@@ -514,6 +516,7 @@
 		8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		8B81B4B010318ADB00A18DA1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B8C9CBA1137A11C00120CF5 /* spoknlogo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spoknlogo57.png; path = rsc/spoknlogo57.png; sourceTree = "<group>"; };
 		8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDetailsviewcontroller.h; sourceTree = "<group>"; };
 		8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDetailsviewcontroller.m; sourceTree = "<group>"; };
 		8B9302661011EDFA004BDA41 /* contactDetails.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contactDetails.xib; sourceTree = "<group>"; };
@@ -876,6 +879,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8B8C9CBA1137A11C00120CF5 /* spoknlogo57.png */,
 				8BAA8FDA11367CBF00ECEA5D /* Default.png */,
 				8BAD7A721121C07600ABBCC9 /* docs */,
 				8B1AE7221120625600A957EA /* spoknbuttonicon */,
@@ -1377,6 +1381,7 @@
 				3286A5451133DA8D000221A1 /* 270x45-play-normal.png in Resources */,
 				3286A5461133DA8D000221A1 /* 270x45-play-pressed.png in Resources */,
 				8BAA8FDB11367CBF00ECEA5D /* Default.png in Resources */,
+				8B8C9CBB1137A11C00120CF5 /* spoknlogo57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1454,6 +1459,7 @@
 				8BE47B0A112BB54D00421DFE /* 280x52-end-call-normal.png in Resources */,
 				8BE47B0B112BB54D00421DFE /* 280x52-end-call-pressed.png in Resources */,
 				8BAA8FDC11367CBF00ECEA5D /* Default.png in Resources */,
+				8B8C9CBC1137A11C00120CF5 /* spoknlogo57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
