@@ -171,7 +171,7 @@
 		activityIndicator.tag = 7;
 
 		forwardactivityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 20.0f, 20.0f)];
-		[forwardactivityIndicator setCenter:CGPointMake(250.0f, 21.0f)];
+		[forwardactivityIndicator setCenter:CGPointMake(270.0f, 21.0f)];
 		[forwardactivityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
 		forwardactivityIndicator.tag = 8;
 		
@@ -218,11 +218,13 @@
 -(void)startforwardactivityIndicator
 {
 	forwardactivityIndicator.hidden = NO;
+	switchView.hidden = YES;
 	[forwardactivityIndicator startAnimating];
 }
 -(void)stopforwardactivityIndicator
 {
 	forwardactivityIndicator.hidden = YES;
+	switchView.hidden = NO;
 	[forwardactivityIndicator stopAnimating];
 
 }
@@ -596,6 +598,7 @@ titleForHeaderInSection:(NSInteger)section
 				default:
 					[labelStatus setText:_STATUS_OFFLINE_];	
 			}
+			//[self stopforwardactivityIndicator];
 			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 													   initWithTitle:SIGN_IN_TEXT 
 													   style:UIBarButtonItemStylePlain 
@@ -663,7 +666,7 @@ titleForHeaderInSection:(NSInteger)section
 		else
 		{
 			switchView.enabled = NO;
-			[self startforwardactivityIndicator];
+			[self stopforwardactivityIndicator];
 		}
 	}
 	
