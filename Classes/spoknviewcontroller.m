@@ -266,6 +266,8 @@
     [super viewDidLoad];
 	statusInt = 0;
 //	tableView.scrollEnabled = NO;
+	buybuttonCtlP.exclusiveTouch = YES;
+	aboutbuttonCtlP.exclusiveTouch = YES;
 	tableView.scrollsToTop = YES;
 	tableView.delegate = self;
 	tableView.dataSource = self;
@@ -307,7 +309,7 @@
 		[switchView setOn:NO animated:NO];
 	}	
 	switchView.enabled = NO;
-	[self startforwardactivityIndicator];
+	//[self startforwardactivityIndicator];
 	if(statusInt)
 	{
 		buybuttonCtlP.enabled = YES;
@@ -858,7 +860,7 @@ titleForHeaderInSection:(NSInteger)section
 			else
 			{
 				switchView.enabled = NO;
-				[self startforwardactivityIndicator];
+				//[self startforwardactivityIndicator];
 			}
 			//[switchView release];
 		}
@@ -939,7 +941,7 @@ titleForHeaderInSection:(NSInteger)section
 			else
 			{
 				switchView.enabled = NO;
-				[self startforwardactivityIndicator];
+				//[self startforwardactivityIndicator];
 			}
 			//[switchView release];
 		}

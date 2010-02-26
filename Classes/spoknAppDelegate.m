@@ -1464,6 +1464,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 -(void)RejectCall:(IncommingCallType *)inComP
 {
 	[self stopRing];
+	 //pjsua_call_answer(call_id, 180, NULL, NULL);
 	RejectInterface(ltpInterfacesP, inComP->lineid);
 	self->incommingCallList[inComP->lineid] = 0;
 	free(inComP);
@@ -2111,7 +2112,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			if(connectionRequired==NO)
 			{	 
 				
-				#define _TEST_QUALITY_ON_GPRS_ 
+				//#define _TEST_QUALITY_ON_GPRS_ 
 				#ifdef _TEST_QUALITY_ON_GPRS_
 				wifiavailable = YES;
 				if(SetConnection( ltpInterfacesP,2)==0)

@@ -1590,7 +1590,8 @@ id createImage(float percentage)
 - (void)viewDidLoad {
     [super viewDidLoad];
 	doNothing = 0;
-	
+	sendButtonP.exclusiveTouch = YES;
+	previewButtonP.exclusiveTouch = YES;
 #ifdef PROGRESS_VIEW
 	uiProgBarP.userInteractionEnabled = NO;
 	
