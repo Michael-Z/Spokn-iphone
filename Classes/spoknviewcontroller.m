@@ -136,7 +136,8 @@
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
+      
+		// Custom initialization
 		//CGRect statusFrame = CGRectMake(120, 0, 170, ROW_HEIGHT-5);
 		CGRect statusFrame1 = CGRectMake(112, 3, 178, ROW_HEIGHT-8);
 
@@ -265,6 +266,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	statusInt = 0;
+	//[buybuttonCtlP retain];
+	//[aboutbuttonCtlP retain];
 //	tableView.scrollEnabled = NO;
 	buybuttonCtlP.exclusiveTouch = YES;
 	aboutbuttonCtlP.exclusiveTouch = YES;
@@ -291,15 +294,15 @@
 	[self createSectionList:wordArray];
 	//[wordArray release];
 	
-	UIView *subview = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, ROW_HEIGHT + 2*SECTION_HEIGHT)];
+	subviewAboutP = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, ROW_HEIGHT + 2*SECTION_HEIGHT)];
 	[buybuttonCtlP setFrame:CGRectMake(10,SECTION_HEIGHT,145,ROW_HEIGHT)];
-	[subview addSubview:buybuttonCtlP];
-	[buybuttonCtlP release];
+	[subviewAboutP addSubview:buybuttonCtlP];
+	
 	[aboutbuttonCtlP setFrame:CGRectMake(165,SECTION_HEIGHT,145,ROW_HEIGHT)];
-	[subview addSubview:aboutbuttonCtlP];
-	[aboutbuttonCtlP release];
-	self->tableView.tableFooterView = subview;
-	[subview release];
+	[subviewAboutP addSubview:aboutbuttonCtlP];
+	
+	self->tableView.tableFooterView = subviewAboutP;
+	
 	
 //	buybuttonCtlP.enabled = NO;
 //	aboutbuttonCtlP.enabled = NO;
@@ -362,10 +365,16 @@
 	
 	
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+
+	[super viewWillAppear:animated];
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
-	[super viewDidAppear:animated];
+		[super viewDidAppear:animated];
+	//[switchView setNeedsDisplay];
 	if(viewResult)
 	{
 		//updatecontact = 1;
@@ -430,6 +439,11 @@
 			//[switchView setOn:NO animated:NO]; 
 		}
 	}
+	BOOL switchB;
+	switchB = switchView.on;
+	[switchView setOn:!switchB animated:NO];
+	[switchView setOn:switchB animated:NO];
+	//[tableView reloadData];
 	
 }	
 
@@ -455,7 +469,6 @@
 
 
 - (void)dealloc {
-	
 	[labelBalance release];
 	[labelStatus release];
 	[labelForword release];
@@ -471,6 +484,12 @@
 	}
 	[activityIndicator release];
 	[forwardactivityIndicator release];
+	[subviewAboutP release];
+	subviewAboutP = 0;
+	[buybuttonCtlP release];
+	buybuttonCtlP = 0;
+	[aboutbuttonCtlP release];
+	aboutbuttonCtlP = 0;
     [super dealloc];
 }
 // Add a title for each section 

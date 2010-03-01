@@ -186,7 +186,7 @@
 	
 		
 	}	
-		printf("\n key count %d",[contactDictionaryP count]);
+		
 }
 -(NSString*) getNameByNumber:(NSString*)numberP
 {

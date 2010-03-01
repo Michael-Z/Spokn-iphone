@@ -102,9 +102,8 @@
 									   userInfo: nil
 										repeats: NO];*/
 		
-		printf("\n loaded");
-		SetAudioTypeLocal(0,0);
-		AudioSessionSetActive(true);
+				SetAudioTypeLocal(0,0);
+		//AudioSessionSetActive(true);
 		[self->parentObjectDelegate setParentObject:self];
 		alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
 		firstTimeB = 0;
@@ -275,7 +274,7 @@
 {
 	[timer invalidate];
 	
-	SetAudioTypeLocal(self,0);
+	SetAudioTypeLocal(0,0);
 	//AudioSessionSetActive(true);
 	alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
 }	

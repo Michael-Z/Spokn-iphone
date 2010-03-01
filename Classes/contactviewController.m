@@ -693,11 +693,11 @@ titleForHeaderInSection:(NSInteger)section
 -(void) keyboardWillShow:(NSNotification *) note
 {
     UITabBar *tabP;
-	if(viewDidLodadedB==false)
+	if(viewDidLodadedB==false || viewOnB==false)
 	{
 		return;
 	}
-	tableframe = self->tableView.frame;
+	//tableframe = self->tableView.frame;
 	CGRect r  = tableframe, t;
     [[note.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue: &t];
 	r.size.height -=  t.size.height;
@@ -715,7 +715,7 @@ titleForHeaderInSection:(NSInteger)section
 
 -(void) keyboardWillHide:(NSNotification *) note
 {
-	if(viewDidLodadedB==false)
+	if(viewDidLodadedB==false || viewOnB==false)
 	{
 		return;
 	}
@@ -861,7 +861,7 @@ titleForHeaderInSection:(NSInteger)section
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
-	
+	viewOnB = false;
 	[super viewWillDisappear:animated];
 	/*if(hideCallAndVmailButtonB)
 	{
@@ -1024,7 +1024,7 @@ titleForHeaderInSection:(NSInteger)section
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
+	viewOnB = true;
 	[self updateUI:nil]; 
 	
 }	
@@ -1124,7 +1124,9 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
-	#ifdef _NEW_ADDRESS_BOOK_
+	
+[[NSNotificationCenter defaultCenter] removeObserver:self];
+#ifdef _NEW_ADDRESS_BOOK_
 		[addressBookP release];
 	#endif
 	
@@ -1625,7 +1627,7 @@ titleForHeaderInSection:(NSInteger)section
 							
 							if(range1.location==0 ||(range1.location > 0 && [CellIdentifier characterAtIndex:(range1.location-1)]==32 ))
 							{	
-								printf("\n %d",range1.location);
+							
 								[ setTypeP->elementP addObject:secP];
 								noShowB = true;
 							}	

@@ -264,7 +264,7 @@
 {
 	OSStatus x;
 	
-	SetAudioTypeLocal(self,0);
+	SetAudioTypeLocal(0,0);
 	x = AudioSessionSetActive(true);
 	if(x==0)
 	{	
@@ -362,7 +362,7 @@
 		case ALERT_CONNECTED:
 			[dialviewP setStatusText: @"ringing" :nil :ALERT_CONNECTED :0];
 			callOnB = true;
-			printf("\n line id %d",self->lineID);
+			
 			//openSoundInterface(ltpInterfacesP,1);
 		#ifdef __IPHONE_3_0
 					[UIDevice currentDevice].proximityMonitoringEnabled = YES;
@@ -617,7 +617,7 @@
 			switch(self->subID)
 			{
 				case 0:
-					SetAudioTypeLocal(self,0);
+					SetAudioTypeLocal(0,0);
 					AudioSessionSetActive(true);
 					setHoldInterface(self->ltpInterfacesP, 0);
 					
@@ -2112,7 +2112,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			if(connectionRequired==NO)
 			{	 
 				
-				//#define _TEST_QUALITY_ON_GPRS_ 
+				#define _TEST_QUALITY_ON_GPRS_ 
 				#ifdef _TEST_QUALITY_ON_GPRS_
 				wifiavailable = YES;
 				if(SetConnection( ltpInterfacesP,2)==0)

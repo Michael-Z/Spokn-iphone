@@ -640,6 +640,7 @@ titleForHeaderInSection:(NSInteger)section
 
 - (NSString *) getName: (ABRecordRef) person
 {
+	NSString *resultP;
 	NSString *firstName = [(NSString *)ABRecordCopyValue(person, kABPersonFirstNameProperty) autorelease];
 	NSString *lastName = [(NSString *)ABRecordCopyValue(person, kABPersonLastNameProperty) autorelease];
 	NSString *biz = [(NSString *)ABRecordCopyValue(person, kABPersonOrganizationProperty) autorelease];
@@ -653,7 +654,9 @@ titleForHeaderInSection:(NSInteger)section
 	if (!lastName) lastName = @"";
 	if (!firstName) firstName = @"";
 	
-	return [[NSString stringWithFormat:@"%@ %@", firstName, lastName] autorelease];
+	resultP =  [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+	[resultP retain];
+	return resultP; 
 }
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person

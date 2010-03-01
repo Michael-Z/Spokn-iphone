@@ -818,7 +818,7 @@
 				#endif
 				//cell.backgroundColor =[UIColor viewFlipsideBackgroundColor];
 				[cell.contentView addSubview:sectionArray[section].dataforSection[row].customViewP];
-				[sectionArray[section].dataforSection[row].customViewP release];
+				//[sectionArray[section].dataforSection[row].customViewP release];
 				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 			}
 			else

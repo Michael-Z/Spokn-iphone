@@ -204,9 +204,18 @@ void SetAudioTypeLocal(void *uData,int type)
 	//this is added for iphone 3.0
 	if(uData)
 	{	
-		
+		OSStatus propertySetError = 0;
+		UInt32 allowMixing = false;
+
 		
 		AudioSessionInitialize(0,0,AudioSessionInterruptionListenerClient,uData);
+				
+		propertySetError = AudioSessionSetProperty (
+													kAudioSessionProperty_OverrideCategoryMixWithOthers,  // 1
+													sizeof (allowMixing),                                 // 2
+													&allowMixing                                          // 3
+													);
+		//kAudioSessionProperty_OverrideCategoryMixWithOthers
 	}
 	AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);		//AudioQueueAddPropertyListener(aqcP->queue,kAudioQueueProperty_IsRunning,AudioQueuePropertyListenerFunction,aqcP);
 //SetAudioSessionPropertyListener(0,0)
@@ -217,7 +226,7 @@ void* InitAudio( void *udata,CallBackUIP callBackP,CallBackSoundP callBackSoundP
 	//UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;//kAudioSessionCategory_MediaPlayback
 	
 	//UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;//kAudioSessionCategory_MediaPlayback
-	AudioSessionSetActive(true);
+	//AudioSessionSetActive(true);
 	aqcP = (AQCallbackStruct*)malloc(sizeof(AQCallbackStruct));
 	memset(aqcP,0,sizeof(AQCallbackStruct));
 	aqcP->uData = udata;

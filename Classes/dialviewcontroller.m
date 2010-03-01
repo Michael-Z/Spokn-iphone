@@ -431,7 +431,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 {
 	//if(buttonPressedB)
 	//	return;
-	printf("\n ltp msg");
+	
 	if(onLineB)
 	{	
 		char *numbercharP;
@@ -848,8 +848,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				if(callViewControllerP==0)
 				{
 					
-					printf("\n timer end");
-					//hangLtpInterface(ownerobject.ltpInterfacesP);
+										//hangLtpInterface(ownerobject.ltpInterfacesP);
 					calltimerP = [NSTimer scheduledTimerWithTimeInterval: 0.5
 																  target: self
 																selector: @selector(handleCallTimerHang:)
@@ -862,7 +861,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 					break;
 				
 				}
-				printf("\n timer start");
+			
 				[callViewControllerP startTimer];
 			}	
 			break;

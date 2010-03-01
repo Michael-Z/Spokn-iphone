@@ -78,6 +78,7 @@
 	int viewDidLodadedB;
 	int noserchResultShowB;
 	Boolean hideCallAndVmailButtonB;
+	Boolean viewOnB;
 	
 	//NSArray *sectionNSArrayP;
 	#ifdef _NEW_ADDRESS_BOOK_

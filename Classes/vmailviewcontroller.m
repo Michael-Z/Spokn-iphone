@@ -969,6 +969,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 				newVMailCountdecrease();
 			}
 		}	
+		cell.spoknSubCellP.userData = nil;
+		[secLocP release];
+		secLocP = 0;
 		NSString *stringStrP;
 		char s1[30];
 		int count;
@@ -1187,19 +1190,21 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 - (void)viewDidLoad {
     [super viewDidLoad];
 	//[self retain];
+	//activeImageP =[ [UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:_VMS_OUT_ACTIVE_PNG_ ofType:@"png" inDirectory:@"/"]]];
 	
 	activeImageP=[UIImage imageNamed:_VMS_OUT_ACTIVE_PNG_];
-	//[activeImageP retain];
+	[activeImageP retain];
+	
 	dileverImageP=[UIImage imageNamed:_VMS_OUT_DELIVERED_PNG_];
-	//[dileverImageP retain];
+	[dileverImageP retain];
 	failedImageP=[UIImage imageNamed:_VMS_OUT_UNDELIVERED_PNG_];
-	//[failedImageP retain];
+	[failedImageP retain];
 	vnewImageP=[UIImage imageNamed:_VMS_IN_NEW_PNG_];
-	//[vnewImageP retain];
+	[vnewImageP retain];
 	readImageP=[UIImage imageNamed:_VMS_IN_READ_PNG_];
-	//[readImageP retain];
+	[readImageP retain];
 	vnewoutImageP=[UIImage imageNamed:_VMS_OUT_NEWHIGH_PNG_];
-	//[vnewoutImageP retain];
+	[vnewoutImageP retain];
 	
 	//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 	refreshB = 0;

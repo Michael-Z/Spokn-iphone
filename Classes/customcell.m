@@ -67,16 +67,20 @@
 	
 	
 	[fntNameP release];
+	fntNameP = nil;
 	[dataP release];
-	
-	[colorP release];
 	dataP = nil;
+	[colorP release];
+
 	
 	colorP = nil;
 	if(uiImageP)
 	{
-	
 		[uiImageP release];
+		
+		
+		uiImageP = nil;
+		
 	}
 	[super dealloc];
 	
@@ -192,8 +196,7 @@
 }
 -(void)dealloc
 {
-	
-	//	self.contentView.remove
+		//	self.contentView.remove
 		[super dealloc];
 }
 -(void)subcellsetEdit:(int)leditB

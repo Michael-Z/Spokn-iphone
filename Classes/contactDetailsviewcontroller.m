@@ -1111,7 +1111,7 @@
 		viewP.hidden = !showAddButtonB;
 		
 		tableView.tableFooterView = viewP;
-		[viewP release];
+		//[viewP release];
 		if(viewEnum == CONTACTFORWARDVMS)
 		{
 			[self setTitle:titlesP ];
@@ -1121,7 +1121,7 @@
 	else
 	{
 		tableView.tableFooterView = viewP;
-		[viewP release];
+		//[viewP release];
 		if(viewEnum == CONTACTDETAILFROMVMS)
 		{
 			[self setTitle:titlesP ];
@@ -1263,7 +1263,7 @@
 				
 								
 				[cell.contentView addSubview:sectionArray[section].dataforSection[row].customViewP];
-				[sectionArray[section].dataforSection[row].customViewP release];
+				//[sectionArray[section].dataforSection[row].customViewP release];
 				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 			}
 			else
@@ -2092,6 +2092,7 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
+	
 	for(int k=0;k<MAX_SECTION;++k)
 	{	
 		for(int j=0;j<sectionArray[k].count;++j)
@@ -2117,7 +2118,8 @@ titleForHeaderInSection:(NSInteger)section
 	if(addressDataP)
 		free(addressDataP);
 	addressDataP = 0;
-	
+	[viewP release];
+	viewP = 0;
 	 [super dealloc];
 }
 

@@ -492,10 +492,13 @@
 }
 
 - (void)dealloc {
+	
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[exampleStrP release];
 	[titleStrP release];
 	[placeHolderP release];
 	[headLabelP release];
+	[footerLabelP release];
 	//[txtField release];
 	[StringP release];
 	[typeP release];

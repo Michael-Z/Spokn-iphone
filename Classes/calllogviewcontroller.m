@@ -497,7 +497,6 @@
 			}
 			
 			
-			//[secLocP->elementP addObject:dispP];
 			
 			//dispP = [ [displayData alloc] init];
 			dispP.left = 0;
@@ -810,7 +809,6 @@
 	if(self->tableView.editing==NO)
 	{	
 		
-		printf("\n call srart");
 		SetAddressBookDetails(ownerobject.ltpInterfacesP,cdrP->recordUId,cdrP->recordUId);
 		[self->ownerobject makeCall:cdrP->userid];
 		[self->ownerobject changeView];
@@ -873,6 +871,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		{	
 			cdrRemove(cdrP);
 		}
+		cell.spoknSubCellP.userData = nil;
+		[secLocP release];
+		secLocP = nil;
 		/* Delete cell from data source */
 		/*
 		 UITableViewCell *cell = [ self.tableView cellForRowAtIndexPath: indexPath ];
@@ -1071,8 +1072,11 @@ cancelButtonTitle: nil
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Calllog" image:nil tag:2];
 	missImageP = [UIImage imageNamed:_CALL_MISS_PNG_];
+	[missImageP retain];
 	inImageP = [UIImage imageNamed:_CALL_IN_PNG_];
+	[inImageP retain];
 	outImageP = [UIImage imageNamed:_CALL_OUT_PNG_];
+	[outImageP retain];
 	
 	 
 	
