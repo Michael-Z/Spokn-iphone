@@ -254,8 +254,15 @@
 													action: @selector(savePressed) ] autorelease ];
 		
 	}
-	self.navigationItem.rightBarButtonItem.enabled = NO;
-	//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	if([StringP length])
+	{
+		self.navigationItem.rightBarButtonItem.enabled = YES;
+	}
+	else
+	{	
+		self.navigationItem.rightBarButtonItem.enabled = NO;
+	}
+		//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	
 	[headLabelP setText:typeP];
 	[footerLabelP setText:exampleStrP];
@@ -271,26 +278,33 @@
 {
 	if(keyboardtype !=UIKeyboardTypeEmailAddress)
 	{
+		if([txtField.text length])
+		{
+			self.navigationItem.rightBarButtonItem.enabled = YES;
+		}
 		return;
 	}
-	if([txtField.text length])
-	{
-		if([SpoknAppDelegate emailValidate:[txtField text]]==NO)
-		{	
-			self.navigationItem.rightBarButtonItem.enabled = NO;
+	if(keyboardtype == UIKeyboardTypeEmailAddress)
+	{	
+		if([txtField.text length])
+		{
+			if([SpoknAppDelegate emailValidate:[txtField text]]==NO)
+			{	
+				self.navigationItem.rightBarButtonItem.enabled = NO;
+				
+			}
+			else
+			{
+				self.navigationItem.rightBarButtonItem.enabled = YES;
+			}	
 			
 		}
 		else
 		{
-			self.navigationItem.rightBarButtonItem.enabled = YES;
-		}	
-		
+			if(activeAditButtonB==NO)
+			self.navigationItem.rightBarButtonItem.enabled = NO;
+		}
 	}
-	else
-	{
-		if(activeAditButtonB==NO)
-		self.navigationItem.rightBarButtonItem.enabled = NO;
-	}	
 }
 - (void)updateUI:(id) objectP
 {
@@ -370,7 +384,7 @@
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-	if([textField.text length]<=1 && [string length]==0 && activeAditButtonB ==NO)
+	if([textField.text length]<1 && [string length]==0 && activeAditButtonB ==NO)
 	{
 		self.navigationItem.rightBarButtonItem.enabled = NO;	
 	}
