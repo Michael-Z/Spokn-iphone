@@ -132,6 +132,9 @@ typedef enum ViewTypeEnum
 	Boolean hideCallAndVmailButtonB;
 	int editDataInt;	//id<VmailProtocol> VmailProtocolP;
 	int addDataInt;
+	//this two variable for solving crash
+	UIAlertView *alertgP;
+	UIActionSheet *uiActionSheetgP;
 	
 }
 @property (nonatomic, assign) id<ContactDeailsProtocol>contactDetailsProtocolP;

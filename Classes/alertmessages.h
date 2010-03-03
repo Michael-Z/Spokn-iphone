@@ -57,7 +57,7 @@
 #define _USER_OFFLINE_ @"Still connecting to Spokn"
 #define _USER_OFFLINE_MESSAGE_ @"Please try again after sometime."
 //#define _NO_NUMBER_IN_CONTACT_ @"No number in contact to call."
-#define _CHECK_NETWORK_SETTINGS_ @"Unable to connect to Spokn. Please check your Internet connection and retry."
+#define _CHECK_NETWORK_SETTINGS_ @"Please check your Internet connection and retry."
 #define _SIGN_IN_FAILED_ @"Sign-in failed"
 //#define _UPGRADE_AVAILABLE_ @"Upgrade Available"
 #define _NO_NETWORK_ @"Unable to connect to Spokn"

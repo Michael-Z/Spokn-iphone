@@ -96,6 +96,8 @@ typedef enum  VMSStateType
 	int previousPickerSz;
 	Boolean contactFindB;
 	Boolean contactPickB;
+	UIAlertView *alertgP;
+	UIActionSheet *uiActionSheetgP;
 	
 	//(SelectedContctType *)lselectedContactP
 	

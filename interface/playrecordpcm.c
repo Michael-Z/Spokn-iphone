@@ -180,15 +180,29 @@ void SetAudioSessionPropertyListener( void *uDataP,AudioSessionPropertyListener 
 	
 	
 }
-
-
+void MyAudioSessionPropertyListener(
+									void *                  inClientData,
+									AudioSessionPropertyID	inID,
+									UInt32                  inDataSize,
+									const void *            inData);
+int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
+int HeadSetIsOn();
 void SetAudioTypeLocal(void *uData,int type)
 {
 	UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;//kAudioSessionCategory_MediaPlayback
 	switch(type)
 	{
 		case 1://play back
-			sessionCategory = kAudioSessionCategory_MediaPlayback;
+			//sessionCategory = kAudioSessionCategory_MediaPlayback;
+			sessionCategory = kAudioSessionCategory_PlayAndRecord;
+			if(HeadSetIsOn()==0)
+			{
+				SetSpeakerOnOrOffNew(0,1);
+			}
+			else
+			{
+				SetSpeakerOnOrOffNew(0,0);
+			}
 			break;
 		case 2:// record
 			sessionCategory = kAudioSessionCategory_RecordAudio;
@@ -204,21 +218,48 @@ void SetAudioTypeLocal(void *uData,int type)
 	//this is added for iphone 3.0
 	if(uData)
 	{	
-		OSStatus propertySetError = 0;
-		UInt32 allowMixing = false;
+		//OSStatus propertySetError = 0;
+		//UInt32 allowMixing = false;
 
 		
 		AudioSessionInitialize(0,0,AudioSessionInterruptionListenerClient,uData);
 				
-		propertySetError = AudioSessionSetProperty (
+		/*propertySetError = AudioSessionSetProperty (
 													kAudioSessionProperty_OverrideCategoryMixWithOthers,  // 1
 													sizeof (allowMixing),                                 // 2
 													&allowMixing                                          // 3
-													);
+													);*/
 		//kAudioSessionProperty_OverrideCategoryMixWithOthers
 	}
+/*	- (NSInteger) getMajorOSVersion {
+		NSString *versionString = [[UIDevice currentDevice] systemVersion];
+		return [[[versionString componentsSeparateByString:@"."] objectAtIndex:0] intValue];
+	}
+	*/
+	
 	AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);		//AudioQueueAddPropertyListener(aqcP->queue,kAudioQueueProperty_IsRunning,AudioQueuePropertyListenerFunction,aqcP);
-//SetAudioSessionPropertyListener(0,0)
+	//if(sessionCategory == kAudioSessionCategory_PlayAndRecord )
+	{
+		AudioSessionPropertyID blueTooth;
+		UInt32 allowBluetoothInput = 1;
+		/*#if kAudioSessionProperty_OverrideCategoryEnableBluetoothInput
+			blueTooth = kAudioSessionProperty_OverrideCategoryEnableBluetoothInput;
+		
+		#else
+		*/
+			blueTooth = 'cblu';
+			
+		//#endif
+		int majorver =0,minor1ver=0,minor2ver=0;
+		GetOsVersion(&majorver,&minor1ver,&minor2ver);
+		printf("\nversion %d.%d.%d",majorver,minor1ver,minor2ver);
+		if(majorver>=3 && minor1ver>0 )
+		{	
+			AudioSessionSetProperty(blueTooth, sizeof(allowBluetoothInput), &allowBluetoothInput);
+		}
+	}
+	
+	//SetAudioSessionPropertyListener(0,0)
 }
 void* InitAudio( void *udata,CallBackUIP callBackP,CallBackSoundP callBackSoundP)
 {

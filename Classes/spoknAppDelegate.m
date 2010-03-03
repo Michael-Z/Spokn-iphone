@@ -875,6 +875,37 @@
 	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)object userInfo:nil];
 	[object alertAction:nil];
 }
+int HeadSetIsOn()
+{
+	UInt32                              lioDataSize=0;
+	//char *dataP;
+	NSString *dataP=0;
+	
+	
+	
+	AudioSessionGetPropertySize(kAudioSessionProperty_AudioRoute,&lioDataSize);
+	AudioSessionGetProperty(          kAudioSessionProperty_AudioRoute,
+							&lioDataSize,
+							&dataP);    
+	if(dataP)
+	{
+		SpoknAppDelegate *spoknDelP;
+				
+		NSRange range = [dataP rangeOfString:@"Headset"];
+		if (range.location == NSNotFound ) 
+		{	
+			return 0;
+						
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	return 0;
+	
+
+}
 void MyAudioSessionPropertyListener(
 									void *                  inClientData,
 									AudioSessionPropertyID	inID,
@@ -902,24 +933,34 @@ void MyAudioSessionPropertyListener(
 		if (range.location == NSNotFound ) 
 		{	
 						
-			if(spoknDelP.handSetB)
+			if(spoknDelP)
 			{	
-				
-				if(spoknDelP)
+				if(spoknDelP.handSetB)
 				{	
-					if(spoknDelP.callOnB==0)
+					
+					if(spoknDelP)
 					{	
-						SetSpeakerOnOrOff(0,1);
+						if(spoknDelP.callOnB==0)
+						{	
+							SetSpeakerOnOrOffNew(0,1);
+						}
 					}
-				}
-				spoknDelP.handSetB = false;
+					spoknDelP.handSetB = false;
 
-			}	
+				}	
+			}
+			else
+			{
+				SetSpeakerOnOrOffNew(0,1);
+			}
 			
 		}
 		else
 		{
-			spoknDelP.handSetB = true;
+			if(spoknDelP)
+			{	
+				spoknDelP.handSetB = true;
+			}	
 		}
 	}
 	
@@ -937,7 +978,44 @@ void * ThreadForContactLookup(void *udata)
 	[autoreleasePool release];
 	return 0;
 }
+int GetOsVersion(int *majorP,int *minor1P,int *minor2P)
+{
+	
+	NSString *versionP;
+	NSArray *nsP;
+	NSString *verP;
+	
+	versionP = [[UIDevice currentDevice] systemVersion] ;
+	if(versionP==nil) 
+		return 1;
+	
+	nsP = [versionP componentsSeparatedByString :@"."] ;
+	if(nsP)
+	{
+		for(int i=0;i<nsP.count;++i)
+		{
+			verP = [nsP objectAtIndex:i];
+			if(verP)
+			{
+				if(i==0 && majorP)
+				{
+					*majorP = [verP intValue];
+				}
+				if(i==1 && minor1P)
+				{
+					*minor1P = [verP intValue];
+				}
+				if(i==2 && minor2P)
+				{
+					*minor2P = [verP intValue];
+				}
+			}
+		}
+	
+	}
+	return 0;
 
+}
 void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned long userData,void *otherinfoP)
 {
 	SpoknAppDelegate *spoknDelP;
@@ -958,11 +1036,11 @@ void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned lon
 	
 		//[self postNotificationOnMainThreadWithName:name object:object userInfo:userInfo waitUntilDone:NO];
 		
-			if(type==ALERT_CONNECTED|| type==ALERT_ONLINE || type==ALERT_OFFLINE || type==ALERT_INCOMING_CALL || type==ALERT_DISCONNECTED)
+		/*	if(type==ALERT_CONNECTED|| type==ALERT_ONLINE || type==ALERT_OFFLINE || type==ALERT_INCOMING_CALL || type==ALERT_DISCONNECTED)
 		{	
 			[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:YES];
 		}
-		else
+		else*/
 		{
 			[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:NO];
 

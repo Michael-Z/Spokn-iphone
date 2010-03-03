@@ -78,7 +78,7 @@
 		if([ownerobject vmsForward:lallForwardContactP :fileNameCharP]!=0)
 		{
 			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_TITLE_ message:_VMS_SENDING_FAILED_ delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-		
+			alertgP = nil;
 			[alert show];
 		}
 		
@@ -298,7 +298,7 @@
 					if([ownerobject vmsSend:contactNumberP :fileNameCharP]!=0)
 					{
 						UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_TITLE_ message:_VMS_SENDING_FAILED_ delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-						
+						alertgP = nil;
 						[alert show];
 						
 						
@@ -372,11 +372,38 @@
 	
 	uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
 	[uiActionSheetP showInView:[ownerobject tabBarController].view];
-	
+	uiActionSheetgP = uiActionSheetP;
 	
 }
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
+{
+	
+	alertgP = nil;
+	if(buttonIndex==0)
+	{	
+		if(returnValLongP)
+		{	
+			*returnValLongP = 1;
+		}
+		vmsDeleteByID(vmailP->vmsid);
+		[ [self navigationController] popViewControllerAnimated:YES ];
+		profileResync();
+	}
+}
+- (void)didPresentAlertView:(UIAlertView *)alertView;  // after animation
+{
+	alertgP = alertView;
+}
+#pragma mark ACTIONSHEET
+- (void)didPresentActionSheet:(UIActionSheet *)actionSheet;  // after animation
+{
+	uiActionSheetgP = actionSheet;
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+	uiActionSheetgP = nil;
 	if(buttonIndex==0)//mean delete button
 	{
 		if(returnValLongP)
@@ -394,27 +421,11 @@
 	
 }
 
+
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-	
+	uiActionSheetgP = nil;
 	[actionSheet release];
-}
-
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
-{
-	
-	
-	if(buttonIndex==0)
-	{	
-		if(returnValLongP)
-		{	
-			*returnValLongP = 1;
-		}
-		vmsDeleteByID(vmailP->vmsid);
-		[ [self navigationController] popViewControllerAnimated:YES ];
-		profileResync();
-	}
 }
 
 - (void)VmsStart
@@ -1209,9 +1220,9 @@ id createImage(float percentage)
 		//[sliderP setMaximumTrackImage:[UIImage imageNamed:@"bg.png"] forState:UIControlStateNormal];
 		
 		sliderP.minimumValueImage = [UIImage imageNamed:_VMS_PROGRESS_LEFT_PNG_];
-		[sliderP.minimumValueImage release];
+		//[sliderP.minimumValueImage release];
 		sliderP.maximumValueImage = [UIImage imageNamed:_VMS_PROGRESS_LEFT_PNG_];
-		[sliderP.maximumValueImage release];
+		//[sliderP.maximumValueImage release];
 		sliderP.minimumValue = 0.0f;
 		sliderP.maximumValue = 1.0f;
 		sliderP.continuous = NO;
@@ -1653,7 +1664,7 @@ id createImage(float percentage)
 {
 	[super viewWillDisappear:animated];
 	
-	
+		
 		
 }	
 -(IBAction)cancelClicked
@@ -1935,6 +1946,16 @@ id createImage(float percentage)
 
 
 - (void)dealloc {
+	if(alertgP)
+	{	
+		[alertgP dismissWithClickedButtonIndex:0 animated:NO]	;
+		alertgP = 0;
+	}
+	if(uiActionSheetgP)
+	{	
+		[uiActionSheetgP dismissWithClickedButtonIndex:[uiActionSheetgP cancelButtonIndex] animated:NO];
+		uiActionSheetgP = 0;
+	}
 	//[self navigationController].delegate = nil;
 	[ownerobject setVmsDelegate:nil];
 	ownerobject.vmsNavigationController.delegate = nil;

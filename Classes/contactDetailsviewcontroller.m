@@ -239,9 +239,10 @@
     return self;
 }
 
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 {
-	
+	alertgP = nil;
 	if(buttonIndex==0 && showAlertB==NO)
 	{	
 		if(retValP)
@@ -252,13 +253,21 @@
 	
 		[ [self navigationController] popToRootViewControllerAnimated:YES ];
 	}
-	showAlertB = NO;
+	showAlertB = YES;
 	//[alertView release];
 }
-
+- (void)didPresentAlertView:(UIAlertView *)alertView;  // after animation
+{
+	alertgP = alertView;
+}
 #pragma mark ACTIONSHEET
+- (void)didPresentActionSheet:(UIActionSheet *)actionSheet;  // after animation
+{
+	uiActionSheetgP = actionSheet;
+}
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
  {
+	 uiActionSheetgP = 0;
 	 switch(actionSheetType)
 	 {
 			 
@@ -313,6 +322,7 @@
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
 	[actionSheet release];
+	uiActionSheetgP = nil;
 }
 
 - (void) presentSheet:(int)typeInt
@@ -547,6 +557,7 @@
 		}
 	
 	}
+	uiActionSheetgP = uiActionSheetP;
 	
 }
 
@@ -645,6 +656,7 @@
 															 cancelButtonTitle: nil
 														 otherButtonTitles: _OK_, nil];
 					[ alert show ];
+					alertgP = alert;
 					[alert release];
 					popupB = false;
 					showAlertB = YES;
@@ -677,6 +689,7 @@
 															 cancelButtonTitle: nil
 															 otherButtonTitles: _OK_, nil];
 					[ alert show ];
+					alertgP = alert;
 					[alert release];
 					popupB = false;
 					showAlertB = YES;
@@ -886,6 +899,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //	animationB = NO;
+	alertgP = 0;
 	[sectionViewP addSubview:userNameP];
 	self->addButtonP.exclusiveTouch = YES;
 	self->vmsButtonP.exclusiveTouch = YES;
@@ -2092,7 +2106,16 @@ titleForHeaderInSection:(NSInteger)section
 
 
 - (void)dealloc {
-	
+	if(alertgP)
+	{	
+		[alertgP dismissWithClickedButtonIndex:0 animated:NO]	;
+		alertgP = 0;
+	}
+	if(uiActionSheetgP)
+	{	
+		[uiActionSheetgP dismissWithClickedButtonIndex:[uiActionSheetgP cancelButtonIndex] animated:NO];
+		uiActionSheetgP = 0;
+	}
 	for(int k=0;k<MAX_SECTION;++k)
 	{	
 		for(int j=0;j<sectionArray[k].count;++j)

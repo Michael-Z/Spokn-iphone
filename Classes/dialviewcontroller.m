@@ -21,7 +21,7 @@
  You should have received a copy of the GNU General Public License
  along with Spokn iphone.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+#import "callviewcontroller.h"
 #import "dialviewcontroller.h"
 #import "Ltptimer.h"
 #import "LtpInterface.h"
@@ -625,11 +625,16 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	[(NSTimer*)timer invalidate];
 	profileResync();//to get balance
 }
+- (void)didPresentAlertView:(UIAlertView *)alertView;  // after animation
+{
+	alert = alertView;
+}
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 {
 	
 	
-	
+	printf("\n dismiss called");
 	if(buttonIndex==0 && invalidUserB)
 	{	
 		alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);
@@ -673,7 +678,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				NSString *stringStrP;
 				char *unameP;
 				[alert dismissWithClickedButtonIndex:0 animated:NO]	;
-				[alert release];
+				//[alert release];
 				alert = nil;
 				#ifdef _SHOW_ANIMATION_
 					statusLabel1P.hidden = NO;
@@ -717,7 +722,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				if(alert.tag!=self->subStatus && alert.tag!=LOGIN_STATUS_FAILED)
 				{	
 					[alert dismissWithClickedButtonIndex:0 animated:NO]	;
-					[alert release];
+					//[alert release];
 					alert = nil;
 				}
 				
