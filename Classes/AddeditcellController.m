@@ -254,14 +254,8 @@
 													action: @selector(savePressed) ] autorelease ];
 		
 	}
-	if([StringP length])
-	{
-		self.navigationItem.rightBarButtonItem.enabled = YES;
-	}
-	else
-	{	
-		self.navigationItem.rightBarButtonItem.enabled = NO;
-	}
+	self.navigationItem.rightBarButtonItem.enabled = NO;
+	
 		//viewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	
 	[headLabelP setText:typeP];
@@ -279,8 +273,14 @@
 	if(keyboardtype !=UIKeyboardTypeEmailAddress)
 	{
 		if([txtField.text length])
+		{	
+			
+				self.navigationItem.rightBarButtonItem.enabled = YES;
+		}	
+		else
 		{
-			self.navigationItem.rightBarButtonItem.enabled = YES;
+			if(activeAditButtonB==NO)
+				self.navigationItem.rightBarButtonItem.enabled = NO;
 		}
 		return;
 	}
@@ -384,7 +384,7 @@
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-	if([textField.text length]<1 && [string length]==0 && activeAditButtonB ==NO)
+	if([textField.text length]<=1 && [string length]==0 && activeAditButtonB ==NO)
 	{
 		self.navigationItem.rightBarButtonItem.enabled = NO;	
 	}

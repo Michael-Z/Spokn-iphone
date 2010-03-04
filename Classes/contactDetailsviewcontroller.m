@@ -213,6 +213,7 @@
         // Custom initialization
 		loadedB = false;
 		sectionCount = 1;
+		
 		[self setTitle:@"Info"];
 		[self setTitlesString:@"Select number for vms"];
 		[self setSelectedNumber:"\0" showAddButton:NO];
@@ -224,6 +225,8 @@
 		// white button:
 		firstSecCount = 0;
 		secondSecCount = 0;	
+		 uiActionSheetgP = 0;
+		alertgP = 0;
 		sectionViewP = [[UIView alloc] initWithFrame:CGRectMake(1, 1, 320, 40)];
 		CGRect LabelFrame2 = CGRectMake(0, 1, 320, 40);
 		
@@ -557,7 +560,7 @@
 		}
 	
 	}
-	uiActionSheetgP = uiActionSheetP;
+	
 	
 }
 
@@ -656,7 +659,7 @@
 															 cancelButtonTitle: nil
 														 otherButtonTitles: _OK_, nil];
 					[ alert show ];
-					alertgP = alert;
+					
 					[alert release];
 					popupB = false;
 					showAlertB = YES;
@@ -689,7 +692,7 @@
 															 cancelButtonTitle: nil
 															 otherButtonTitles: _OK_, nil];
 					[ alert show ];
-					alertgP = alert;
+					
 					[alert release];
 					popupB = false;
 					showAlertB = YES;

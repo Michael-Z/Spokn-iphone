@@ -419,7 +419,9 @@ static void on_incoming_call(pjsua_acc_id acc_id, pjsua_call_id call_id,
 	pc->remoteUserid[i] = 0; //close the string
 	pc->ltpState = CALL_RING_RECEIVED;
 	pc->ltpSession = call_id; //bug#26252 - Set the call_id.
+	pjsua_call_answer(call_id, PJSIP_SC_RINGING /*180*/, NULL, NULL);
 	alert(pc->lineId, ALERT_INCOMING_CALL, "");
+	
 }
 
 /* Callback called by the library when call's state has changed */
@@ -436,6 +438,7 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
 				pstack->call[i].ltpState = CALL_RING_SENT;
 				break;
 			case PJSIP_INV_STATE_INCOMING:	    /**< After INVITE is received.	    */
+				pjsua_call_answer(call_id, PJSIP_SC_RINGING /*180*/, NULL, NULL);	
 				alert(pstack->call[i].lineId, ALERT_INCOMING_CALL, "");
 				pstack->call[i].ltpState = CALL_RING_RECEIVED;
 				break;
