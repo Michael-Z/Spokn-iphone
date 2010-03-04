@@ -1,10 +1,6 @@
-//
-//  ContactCell.m
-//  munduSMS
-//
-//  Created by Vinay Chavan on 14/06/09.
-//  Copyright 2009 Geodesic Ltd.. All rights reserved.
-//
+
+//  Created on 14/06/09.
+
 
 #import "ContactCell.h"
 #import "ContactCellView.h"

@@ -1,5 +1,5 @@
 
-//  Created by Mukesh Sharma on 23/06/09.
+//  Created   on 23/06/09.
 
 /**
  Copyright 2009,2010 Geodesic, <http://www.geodesic.com/>

@@ -2,7 +2,7 @@
 //  spoknapptest.m
 //  spokn
 //
-//  Created by Mukesh Sharma on 06/12/09.
+//  Created   on 06/12/09.
 //  Copyright 2009 Geodesic Ltd.. All rights reserved.
 //
 #define _MACOS_	
