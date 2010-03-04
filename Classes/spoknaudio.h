@@ -25,12 +25,12 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-
+#include <AudioToolbox/AudioToolbox.h>
 #define DEFAULT_VOLUME 0.5
 #define NOT_PLAY_AUDIO_FILE
 @interface SpoknAudio : NSObject<AVAudioPlayerDelegate> {
 	AVAudioPlayer *playP;
-
+	SystemSoundID soundFileObject;
 }
 //alert sound inter face
 

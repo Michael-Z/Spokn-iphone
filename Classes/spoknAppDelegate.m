@@ -146,6 +146,7 @@
 {
 	
 	[incommingSoundP playSoundUrl];
+	AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
 }
 -(void) startRing
 {
@@ -156,7 +157,7 @@
 			
 			
 						
-			ringTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+			ringTimer = [NSTimer scheduledTimerWithTimeInterval: 2.0
 						
 														target: self
 						

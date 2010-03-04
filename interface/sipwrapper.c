@@ -419,6 +419,7 @@ static void on_incoming_call(pjsua_acc_id acc_id, pjsua_call_id call_id,
 	pc->remoteUserid[i] = 0; //close the string
 	pc->ltpState = CALL_RING_RECEIVED;
 	pc->ltpSession = call_id; //bug#26252 - Set the call_id.
+	printf("\n send ring");
 	pjsua_call_answer(call_id, PJSIP_SC_RINGING /*180*/, NULL, NULL);
 	alert(pc->lineId, ALERT_INCOMING_CALL, "");
 	

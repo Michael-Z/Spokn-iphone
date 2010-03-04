@@ -22,7 +22,7 @@
  You should have received a copy of the GNU General Public License
  along with Spokn for iPhone.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+#define _PLAY_SYSTEM_SOUND_
 #import "spoknaudio.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -33,6 +33,13 @@
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
 
+}
+-(SpoknAudio*)init
+{
+	self = [super init];
+	self->soundFileObject = 0;
+	self->playP = nil;
+	return self;
 }
 + (SpoknAudio*) createSoundPlaybackUrl:(NSString*)pathP play:(int)playB
 {
@@ -45,16 +52,25 @@
 		return 0;
 	}
 	SpoknAudio *spoknAudioP = [[SpoknAudio alloc] init];
-	spoknAudioP->playP = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
-	spoknAudioP->playP.delegate = self;
-	spoknAudioP->playP.volume = DEFAULT_VOLUME;
-
-	if(playB)
-	{
-		[spoknAudioP->playP play];
-		
-	}
-		[fileURL release];
+	#ifdef _PLAY_SYSTEM_SOUND_
+	AudioServicesCreateSystemSoundID (
+									  fileURL,
+									  &soundFileObject
+									  );
+	
+	#else
+		spoknAudioP->playP = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+		spoknAudioP->playP.delegate = self;
+		spoknAudioP->playP.volume = DEFAULT_VOLUME;
+	
+		if(playB)
+		{
+			[spoknAudioP->playP play];
+			
+		}
+	
+	#endif
+	[fileURL release];
 	return spoknAudioP;
 }
 -(int) setUrlToPlay:(NSString*)pathP
@@ -65,10 +81,18 @@
 	{
 		return 1;
 	}
-	self->playP = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
-	if(self->playP==nil)
-		return 1;
-	self->playP.volume = DEFAULT_VOLUME;
+	#ifdef _PLAY_SYSTEM_SOUND_
+		AudioServicesCreateSystemSoundID (
+										  fileURL,
+										  &soundFileObject
+										  );
+		
+	#else
+		self->playP = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+		if(self->playP==nil)
+			return 1;
+		self->playP.volume = DEFAULT_VOLUME;
+	#endif	
 	[fileURL release];
 	return 0;
 }
@@ -82,8 +106,15 @@
 -(int) playSoundUrl
 {
 	
+#ifdef _PLAY_SYSTEM_SOUND_
+	if(soundFileObject)
+	{
+		AudioServicesPlaySystemSound (self->soundFileObject);
+	}
+#else
 	if(playP==0) return 1;
 	[playP play];
+#endif	
 	return 0;
 }
 +(int) destorySoundUrl:(SpoknAudio**)spoknAudioPP
@@ -107,6 +138,11 @@
 	return 1;
 }
 - (void)dealloc {
+	if(self->soundFileObject)
+	{	
+		AudioServicesDisposeSystemSoundID (self->soundFileObject);
+		self->soundFileObject = 0;
+	}	
 	[self stopSoundUrl];
 	[self->playP release];
 	self->playP = nil;
@@ -115,12 +151,12 @@
 }
 -(void)setvolume:(float)valFloat
 {
-
+	if(self->playP)
 	self->playP.volume = valFloat;
 }
 -(void) repeatPlay:(int)valInt
 {
-
+	if(self->playP)
 	self->playP.numberOfLoops = valInt;
 }
 
