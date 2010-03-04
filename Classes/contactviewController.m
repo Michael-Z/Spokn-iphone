@@ -2,24 +2,24 @@
 //  Created on 05/07/09.
 
 /**
- Copyright 2009,2010 Geodesic, <http://www.geodesic.com/>
+  Copyright 2009, 2010 Geodesic Limited. <http://www.geodesic.com/>
  
- Spokn SIP-VoIP for iPhone and iPod Touch.
+ Spokn for iPhone and iPod Touch.
  
- This file is part of Spokn iphone.
+ This file is part of Spokn for iPhone.
  
- Spokn iphone is free software: you can redistribute it and/or modify
+ Spokn for iPhone is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
  (at your option) any later version.
  
- Spokn iphone is distributed in the hope that it will be useful,
+ Spokn for iPhone is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
  
  You should have received a copy of the GNU General Public License
- along with Spokn iphone.  If not, see <http://www.gnu.org/licenses/>.
+ along with Spokn for iPhone.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 //#define ORANGE [UIColor colorWithRed:1.0f green:0.522f blue:0.03f alpha:1.0f]
@@ -1336,7 +1336,6 @@ titleForHeaderInSection:(NSInteger)section
 		char *numbercharP;
 		
 		struct AddressBook *addressP;
-		SelectedContctType *secContactP;
 		
 		nameP = [AddressBookContact getName:person];
 				numbercharP = (char*)[nameP  cStringUsingEncoding:NSUTF8StringEncoding];
@@ -1344,8 +1343,7 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			return 1;
 		}
-		secContactP = (SelectedContctType *)malloc(sizeof(SelectedContctType));
-		memset(secContactP,0,sizeof(SelectedContctType));
+
 		addressP = (struct AddressBook *)malloc(sizeof(struct AddressBook)+10);
 		memset(addressP,0,sizeof(struct AddressBook));
 		strncpy(addressP->title,numbercharP,98);
