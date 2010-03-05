@@ -275,7 +275,50 @@
 	}
 	[(NSTimer*)timer invalidate];
 }
+/*
+void setProp()
+{
+	UInt32 flag = 0;
+	int er = 0;
+	//UInt32 sndSz= sizeof(UInt32);
+	UInt32 aSoundID=1;
+	
+	er =  AudioServicesSetProperty(kAudioServicesPropertyIsUISound,
+	 sizeof(UInt32),
+	 &aSoundID,
+	 sizeof(UInt32),
+	 &flag);
+	
+er = 	AudioServicesSetProperty(kAudioServicesPropertyCompletePlaybackIfAppDies,
+							 sizeof(UInt32),
+							 &aSoundID,
+							 sizeof(UInt32),
+							 &flag);
+	
 
+}
+void getProp()
+{
+	UInt32 flag = 0;
+	UInt32 sndSz= sizeof(UInt32);
+	UInt32 aSoundID=0;
+		AudioServicesGetProperty(  kAudioServicesPropertyIsUISound,
+							 sizeof(UInt32),
+							 &aSoundID,
+							 &sndSz,
+							 &flag); 
+	printf("\n %ld %ld %ld",aSoundID,sndSz,flag);
+	AudioServicesGetProperty(  kAudioServicesPropertyCompletePlaybackIfAppDies,
+							 sizeof(UInt32),
+							 &aSoundID,
+							 &sndSz,
+							 &flag); 
+	printf("\n %ld %ld %ld",aSoundID,sndSz,flag);
+	
+	
+}
+
+*/
 //@synthesize viewNavigationController;
 -(void)alertAction:(NSNotification*)note
 {
@@ -363,7 +406,7 @@
 		case ALERT_CONNECTED:
 			[dialviewP setStatusText: @"ringing" :nil :ALERT_CONNECTED :0];
 			callOnB = true;
-			
+			//getProp();
 			//openSoundInterface(ltpInterfacesP,1);
 		#ifdef __IPHONE_3_0
 					[UIDevice currentDevice].proximityMonitoringEnabled = YES;
@@ -384,7 +427,7 @@
 			{	
 				[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 ];
 				//closeSoundInterface(ltpInterfacesP);
-				SetAudioTypeLocal(0,1);
+				SetAudioTypeLocal(0,3);
 				SetSpeakerOnOrOff(0,true);
 				#ifdef __IPHONE_3_0
 								[UIDevice currentDevice].proximityMonitoringEnabled = NO;
@@ -1327,9 +1370,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 	pthread_t pt;
 	pthread_create(&pt, 0,ThreadForContactLookup,self);	
-	
-	
-	
+	//setProp();
+	//getProp();	
 		
 }
 -(void)makeIndexingFromAddressBook

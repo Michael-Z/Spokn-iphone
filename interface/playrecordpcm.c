@@ -208,6 +208,9 @@ void SetAudioTypeLocal(void *uData,int type)
 			sessionCategory = kAudioSessionCategory_RecordAudio;
 			
 			break;
+		case 3:
+			sessionCategory = kAudioSessionCategory_MediaPlayback;
+			break;
 		case 0: //play and record
 			sessionCategory = kAudioSessionCategory_PlayAndRecord;
 			break;
