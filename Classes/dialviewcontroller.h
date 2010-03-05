@@ -29,10 +29,10 @@
 #include "ua.h"
 #import "keypadview.h"
 @class SpoknAppDelegate;
-@class CallViewController;
+#import "callviewcontroller.h"
 #import "spoknaudio.h"
 #define MAX_TONE 13 
-@protocol ShowContactCallOnDelegate;
+
 
 
 

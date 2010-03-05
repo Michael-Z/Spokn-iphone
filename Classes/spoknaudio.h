@@ -26,8 +26,14 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 #include <AudioToolbox/AudioToolbox.h>
+#ifndef __CFURL__
+#include <CoreFoundation/CFURL.h>
+#endif
+
 #define DEFAULT_VOLUME 0.5
 #define NOT_PLAY_AUDIO_FILE
+#define _PLAY_SYSTEM_SOUND_
+
 @interface SpoknAudio : NSObject<AVAudioPlayerDelegate> {
 	AVAudioPlayer *playP;
 	SystemSoundID soundFileObject;
@@ -42,4 +48,5 @@
 -(int) setUrlToPlay:(NSString*)pathP;
 -(void) repeatPlay:(int)valInt;
 -(void) setvolume:(float)valFloat;
+-(int)setUrlToPlayFromSystemSound:(CFURLRef )soundFileURLRef;
 @end

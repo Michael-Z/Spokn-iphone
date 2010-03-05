@@ -22,7 +22,6 @@
  You should have received a copy of the GNU General Public License
  along with Spokn for iPhone.  If not, see <http://www.gnu.org/licenses/>.
  */
-#define _PLAY_SYSTEM_SOUND_
 #import "spoknaudio.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -53,11 +52,7 @@
 	}
 	SpoknAudio *spoknAudioP = [[SpoknAudio alloc] init];
 	#ifdef _PLAY_SYSTEM_SOUND_
-	AudioServicesCreateSystemSoundID (
-									  fileURL,
-									  &soundFileObject
-									  );
-	
+		
 	#else
 		spoknAudioP->playP = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
 		spoknAudioP->playP.delegate = self;
@@ -73,6 +68,21 @@
 	[fileURL release];
 	return spoknAudioP;
 }
+-(int)setUrlToPlayFromSystemSound:(CFURLRef )soundFileURLRef
+{
+	
+	#ifdef _PLAY_SYSTEM_SOUND_
+	if(soundFileURLRef)
+	{	
+		return 	AudioServicesCreateSystemSoundID (
+										  soundFileURLRef,
+										  &soundFileObject
+										  );
+	}
+	#endif	
+	return 1;
+	
+}
 -(int) setUrlToPlay:(NSString*)pathP
 {
 
@@ -82,11 +92,7 @@
 		return 1;
 	}
 	#ifdef _PLAY_SYSTEM_SOUND_
-		AudioServicesCreateSystemSoundID (
-										  fileURL,
-										  &soundFileObject
-										  );
-		
+			
 	#else
 		self->playP = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
 		if(self->playP==nil)

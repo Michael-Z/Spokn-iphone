@@ -197,9 +197,10 @@
 #define _SCREEN_BORDERS_PNG_ @"black1.png"
 
 //Sound Files
-#define _TONE_FILE_TYPE_ @"caf"
-#define _TONE_ONLINE_ @"gling"
-#define _TONE_CALL_END_ @"doorbell"
-#define _TONE_PHONE_ @"phone"
-
+#define _TONE_FILE_TYPE_ @"wav"
+#define _TONE_ONLINE_ @""
+#define _TONE_CALL_END_ @""
+#define _TONE_PHONE_ @"ringtone"
+#define _TONE_FILE_TYPE_C_ "wav"
+#define _TONE_PHONE_C_ "ringtone"
 #endif

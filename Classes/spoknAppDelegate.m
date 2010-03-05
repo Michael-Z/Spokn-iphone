@@ -149,7 +149,21 @@
 	if (path)
 	{
 		incommingSoundP = [[SpoknAudio alloc] init];
-		[incommingSoundP setUrlToPlay:path];
+		#ifdef _PLAY_SYSTEM_SOUND_
+		{
+			CFURLRef soundFileURLRef;
+			CFBundleRef mainBundleRef = CFBundleGetMainBundle ();
+			soundFileURLRef  =	CFBundleCopyResourceURL (mainBundleRef,CFSTR( _TONE_PHONE_C_),
+													 CFSTR(_TONE_FILE_TYPE_C_), NULL);
+			if(soundFileURLRef)
+			{	
+				[incommingSoundP setUrlToPlayFromSystemSound:soundFileURLRef];
+				CFRelease(soundFileURLRef);
+			}	
+		}	
+		#else
+			[incommingSoundP setUrlToPlay:path];
+		#endif
 		//incommingSoundP = [SpoknAudio createSoundPlaybackUrl:path play:false];
 		[incommingSoundP setvolume:1.0];
 	}
