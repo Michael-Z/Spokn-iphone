@@ -98,22 +98,6 @@
 	usernameFieldP.delegate = self;
 	passwordFieldP.delegate = self;
 	[usernameFieldP becomeFirstResponder];
-	/*[passwordFieldP becomeFirstResponder];
-	passwordFieldP.delegate = self;
-
-	[usernameFieldP becomeFirstResponder];
-	usernameFieldP.delegate = self;
-	[usernameFieldP resignFirstResponder];
-	[passwordFieldP resignFirstResponder];*/
-	
-	//usernameFieldP.text = @"dhpatil1";
-	//passwordFieldP.text = @"deepak123";
-
-	//self.tabBarItem = [UITabBarItem alloc];
-	//[self.tabBarItem initWithTitle:@"Login" image:nil tag:1];
-	//ltpTimerP = [[LtpTimer alloc] init];
-	//ltpTimerP.ltpInterfacesP =  startLtp();
-	//setLtpServer("64.49.236.88");
 	[ownerobject setLoginDelegate:self];
 	loginactivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 	[loginactivityIndicator setCenter:CGPointMake(80.0f, 140.0f)];

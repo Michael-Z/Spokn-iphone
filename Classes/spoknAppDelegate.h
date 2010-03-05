@@ -132,7 +132,7 @@ typedef struct CallNumberType
 	NSTimer *ringTimer;
 	Contactlookup *contactlookupP;
 	ABAddressBookRef addressRef;
-	NSString *toogleValue;
+	int edgevalue;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -187,7 +187,7 @@ changed:(BOOL)changed;
 -(int)getFileSize:(char*)fileNameP :(unsigned long *)noSecP;
 
 -(int)showContactScreen:(id) navObject returnnumber:(SelectedContctType *)lselectedContactP  result:(int *) resultP;
--(BOOL) enableEdge ;
+-(void) enableEdge ;
 -(int) vmsForward:(char*)numberP :(char*)fileNameCharP;
 - (void) updateReachabilityStatus: (Reachability*) curReach;
 -(void) startCheckNetwork;
@@ -210,6 +210,7 @@ changed:(BOOL)changed;
 -(char*) getNameAndTypeFromNumber:(char*)pnumberP :(char*)typeP :(Boolean*)pfindBP ;
 -(int)playUrlPath:(NSString*)pathP;
 -(int) vmsShowRecordOrForwardScreen : (char*)noCharP VMSState:(VMSStateType)state filename:(char*)fileNameCharP duration:(int) maxtime vmail:(struct VMail*) lvmailP;
+-(int) profileResynFromApp;
 @end
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
 void * ThreadForContactLookup(void *udata);

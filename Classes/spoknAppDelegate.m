@@ -66,16 +66,33 @@
 - (void) handleTimer: (id) timer
 {
 	
-
-	profileResync();
+	if(self.onLineB)
+	{	
+		profileResync();
+	}	
 	
 }
--(BOOL) enableEdge
+-(int) profileResynFromApp
 {
-	
+	if(self.onLineB)
+	{	
+		profileResync();
+		return 0;
+	}	
+	return 1;
+}
+-(void) enableEdge
+{
+	NSString *toogleValue;
 	toogleValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"key_prefrence"];
-	
-	NSLog([NSString stringWithFormat:@"Toggle Control Value: %@", toogleValue]);
+	if(toogleValue)
+	{	
+		self->edgevalue = ![toogleValue intValue];//this value are reverse
+	}
+	else
+	{
+		self->edgevalue = 1;
+	}
 }
 +(BOOL) emailValidate : (NSString *)emailid
 {
@@ -491,7 +508,7 @@ void getProp()
 			loginProgressStart = 0;
 			[vmsviewP setcomposeStatus:1 ];
 			[loginProtocolP stoploginIndicator];
-			[ spoknViewControllerP cancelProgress];
+			
 			
 			#ifndef _LTP_
 			[nsTimerP invalidate];
@@ -515,7 +532,11 @@ void getProp()
 				[self popLoginView];
 				[self newBadgeArrived:vmsNavigationController];	
 				//tabBarController.selectedViewController = dialviewP;
-			}	
+			}
+			else
+			{
+				[ spoknViewControllerP cancelProgress];
+			}
 			self->onLineB = true;
 			[dialviewP setStatusText:_STATUS_ONLINE_ :nil :ALERT_ONLINE :0 ];
 			
@@ -733,6 +754,7 @@ void getProp()
 				//[spoknViewControllerP cancelProgress];
 				break;
 			case REFRESH_ALL:
+				[ spoknViewControllerP cancelProgress];
 				[self LoadContactView:contactviewP];
 				[vmsviewP cancelProgress];
 				[self LoadContactView:vmsviewP];
@@ -941,7 +963,7 @@ int HeadSetIsOn()
 							&dataP);    
 	if(dataP)
 	{
-		SpoknAppDelegate *spoknDelP;
+		
 				
 		NSRange range = [dataP rangeOfString:@"Headset"];
 		if (range.location == NSNotFound ) 
@@ -2249,19 +2271,22 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
         case ReachableViaWWAN:
         {
           	//connectionRequired = NO;
+			
 			if(connectionRequired==NO)
 			{	 
-				
-				#define _TEST_QUALITY_ON_GPRS_ 
-				#ifdef _TEST_QUALITY_ON_GPRS_
-				wifiavailable = YES;
-				if(SetConnection( ltpInterfacesP,2)==0)
-				{	 
-					[spoknViewControllerP startProgress];
-					//	 [vmsviewP setcomposeStatus:1 ];
-				}	 
-				#else
-				
+				if(self->edgevalue)//if edge is specified
+				{	
+					//#define _TEST_QUALITY_ON_GPRS_ 
+					//#ifdef _TEST_QUALITY_ON_GPRS_
+					wifiavailable = YES;
+					if(SetConnection( ltpInterfacesP,2)==0)
+					{	 
+						[spoknViewControllerP startProgress];
+						//	 [vmsviewP setcomposeStatus:1 ];
+					}	
+				}
+				else
+				{
 
 					wifiavailable = NO;
 					[self logOut:NO];
@@ -2272,7 +2297,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				//[vmsviewP setcomposeStatus:1 ];
 				//wifiavailable = YES;
 				//SetConnection( ltpInterfacesP,2);
-				#endif
+				}
 			}
 			else
 			{
@@ -2290,6 +2315,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				[theConnection autorelease];
 				
 			}
+		
+			
 			
 			break;
         }

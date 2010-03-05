@@ -115,14 +115,14 @@
 		}
 		[labelForword setTextColor:SPOKNCOLOR]; 
 		SetOrReSetForwardNo(true,forwordCharP);
-		profileResync();
+		[ownerobject profileResynFromApp];
 		[self startforwardactivityIndicator];
  
 	}
 	else
 	{
 		SetOrReSetForwardNo(false,forwardNoCharP);
-		profileResync();
+		[ownerobject profileResynFromApp];
 		[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
 		[self startforwardactivityIndicator];
 	}
@@ -249,7 +249,7 @@
 -(void)cancelProgress
 {
 	stopProgressB = true;
-	
+	printf("\n caqcle");
 	self.navigationItem.titleView = 0;
 	[activityIndicator stopAnimating];
 	/*self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
@@ -389,7 +389,7 @@
 			if(switchView.on)
 			{	
 				SetOrReSetForwardNo(true,forwardNoCharP);
-				profileResync();
+				[ownerobject profileResynFromApp];
 				switchView.enabled = NO;
 				[self startforwardactivityIndicator];
 			}
@@ -406,7 +406,7 @@
 			//if(switchView.on)
 			{	
 				SetOrReSetForwardNo(false,forwardNoCharP);
-				profileResync();
+				[ownerobject profileResynFromApp];
 			}
 			switchView.enabled = NO;
 			[self startforwardactivityIndicator];
@@ -631,8 +631,8 @@ titleForHeaderInSection:(NSInteger)section
 			break;
 		case 1:
 			buybuttonCtlP.enabled = YES;
-			self.navigationItem.titleView = 0;
-			[activityIndicator stopAnimating];
+			//self.navigationItem.titleView = 0;
+			//[activityIndicator stopAnimating];
 			switch(subStatus)
 			{
 				case NO_WIFI_AVAILABLE:

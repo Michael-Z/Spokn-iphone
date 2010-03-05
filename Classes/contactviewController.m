@@ -945,7 +945,7 @@ titleForHeaderInSection:(NSInteger)section
 			}
 			if(hideCallAndVmailButtonB==NO)//if call is on dont sync
 			{
-				profileResync();
+				[ownerobject profileResynFromApp];
 			}
 			else
 			{
@@ -1843,7 +1843,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	//secP = (sectionData*)[dataP objectAtIndex:0];
 	secP = (sectionData*)[setTypeP->elementP objectAtIndex:row]; 
 	deleteContactLocal(secP->recordid);
-	profileResync();
+	[ownerobject profileResynFromApp];
 	[setTypeP->elementP removeObjectAtIndex:row];
 	NSMutableArray *array = [ [ NSMutableArray alloc ] init ];
 	[ array addObject: indexPath ];

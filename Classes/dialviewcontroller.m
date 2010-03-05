@@ -623,7 +623,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	hangLtpInterface(ownerobject.ltpInterfacesP);
 	timecallduration = 0;
 	[(NSTimer*)timer invalidate];
-	profileResync();//to get balance
+	[ownerobject profileResynFromApp];
 }
 - (void)didPresentAlertView:(UIAlertView *)alertView;  // after animation
 {

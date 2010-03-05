@@ -871,7 +871,7 @@
 					vmailP->dirty=1;
 					newVMailCountdecrease();
 					
-					profileResync();
+					[ownerobject profileResynFromApp];	
 				}
 				NSString *stringStrP;
 				char s1[30];
@@ -940,7 +940,7 @@
 	switch(buttonIndex)
 	{
 		case 1:
-			profileResync();
+			[ownerobject profileResynFromApp];
 			break;
 	}
 	
@@ -991,7 +991,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 			[self navigationController].tabBarItem.badgeValue= nil;
 		}
 		vmsDelete(vmailP);
-		profileResync();
+		[ownerobject profileResynFromApp];
 		/* Delete cell from data source */
 		/*
 		 UITableViewCell *cell = [ self.tableView cellForRowAtIndexPath: indexPath ];
@@ -1266,8 +1266,14 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 -(void)refreshView
 {
 	[self startProgress];
-	profileResync();
-	[self->tableView reloadData];
+	if([ownerobject profileResynFromApp])
+	{
+		[self cancelProgress];
+	}
+	else
+	{	
+		[self->tableView reloadData];
+	}	
 }
 
 -(void)startProgress

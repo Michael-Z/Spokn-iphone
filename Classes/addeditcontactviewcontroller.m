@@ -146,7 +146,7 @@
 		}
 		[ [self navigationController] popToRootViewControllerAnimated:YES ];
 		contactID = -1;
-		profileResync();
+		[ownerobject profileResynFromApp];
 		
 	}
 	

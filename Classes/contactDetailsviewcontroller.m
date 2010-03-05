@@ -716,7 +716,7 @@
 		}
 		
 		if(popupB  && hideCallAndVmailButtonB==false)
-			profileResync();
+			[ownerobject profileResynFromApp];
 	}
 	if(popupB)
 	{	

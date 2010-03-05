@@ -59,7 +59,7 @@
 //#define _INVALID_EMAIL_ @"Invalid email"
 //#define _INVALID_EMAIL_MESSGAE_ @"Please provide a valid email id."
 #define _INVALID_CONTACT_ @"Insufficient details" 
-#define _INVALID_CONTACT_MESSAGE_ @"Please provide the name and atleast a number."
+#define _INVALID_CONTACT_MESSAGE_ @"Please provide the name and atleast a number/email."
 #define _VMS_SENDING_FAILED_ @"Failed to send VMS"
 #define _NO_VMS_PLAY_ @"VMS could not be played"
 #define _CLEAR_CALL_LOG_ @"Clear all calls"

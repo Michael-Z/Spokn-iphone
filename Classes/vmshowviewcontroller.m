@@ -388,7 +388,8 @@
 		}
 		vmsDeleteByID(vmailP->vmsid);
 		[ [self navigationController] popViewControllerAnimated:YES ];
-		profileResync();
+		[ownerobject profileResynFromApp];
+		
 	}
 }
 - (void)didPresentAlertView:(UIAlertView *)alertView;  // after animation
@@ -412,7 +413,7 @@
 		}
 		vmsDeleteByID(vmailP->vmsid);
 		[ [self navigationController] popViewControllerAnimated:YES ];
-		profileResync();
+		[ownerobject profileResynFromApp];
 		
 		
 	}
