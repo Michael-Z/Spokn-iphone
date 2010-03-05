@@ -14,15 +14,21 @@
 			<key>Key</key>
 			<string>ver_prefrence</string>
 			<key>DefaultValue</key>
-			<string>0.1.10</string>
+			<string>1.0.0</string>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Please note that your carrier may charge based on data usage if you enable this.</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Enable EDGE</string>
+			<string>Allow calls over 3G</string>
 			<key>Key</key>
 			<string>key_prefrence</string>
 			<key>DefaultValue</key>
@@ -31,6 +37,30 @@
 			<false/>
 			<key>FalseValue</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Spokn for iPhone is free software licensed under the GNU GPL and uses the following libraries -</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>PJSIP, Speex, GSM, MD5, EZXML </string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>The full license is available at - </string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>www.spokn.com/help/licenses/gplv2</string>
 		</dict>
 	</array>
 </dict>
