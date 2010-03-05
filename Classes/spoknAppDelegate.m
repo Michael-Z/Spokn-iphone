@@ -70,7 +70,13 @@
 	profileResync();
 	
 }
-
+-(BOOL) enableEdge
+{
+	
+	toogleValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"key_prefrence"];
+	
+	NSLog([NSString stringWithFormat:@"Toggle Control Value: %@", toogleValue]);
+}
 +(BOOL) emailValidate : (NSString *)emailid
 {
 	NSString *localPart;
@@ -170,6 +176,7 @@
 			
 		//	[incommingP playSoundUrl];
 			ringStartB = 1;
+			SetAudioTypeLocal(0,1);
 		//	[path release];
 		}	
 		
@@ -181,7 +188,8 @@
 		ringStartB = 0;
 		[ringTimer invalidate];
 		ringTimer = nil;
-		[incommingSoundP stopSoundUrl];		
+		[incommingSoundP stopSoundUrl];
+		SetAudioTypeLocal(0,3);
 		return 0;
 	}	
 	return 1;
@@ -1148,7 +1156,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 #pragma mark STARTING POINT
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
 	//[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-
+	[self enableEdge];
     // Override point for customization after application launch
 	//CGRect screenBounds = [ [ UIScreen mainScreen ] bounds ];
 	
@@ -1315,6 +1323,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	//[nc postNotificationName:@"DEQUEUEAUDIO" object:idP userInfo:nil];
 	cdrLoad();
+
+	
+	
 	/*
 	NSString *idValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"id_prefrence"];
 	NSString *passValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"pass_prefrence"];
@@ -1373,7 +1384,15 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//setProp();
 	//getProp();	
 		
-}
+}/*
+-(BOOL) transformedValue: (id) value 
+{ 
+	if (value isKindOfClass: [BOOL class]) 
+	{ 
+		if (value==YES) return @"Yes" ; 
+		return @"No" ; 
+	}
+}*/
 -(void)makeIndexingFromAddressBook
 {
 	if(contactlookupP==0)

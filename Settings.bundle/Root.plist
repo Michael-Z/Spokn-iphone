@@ -9,26 +9,6 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>About</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Toggle Switch </string>
-			<key>Key</key>
-			<string>keyToggle</string>
-			<key>DefaultValue</key>
-			<true/>
-			<key>TrueValue</key>
-			<true/>
-			<key>FalseValue</key>
-			<false/>
-		</dict>
-		<dict>
 			<key>Title</key>
 			<string>Version</string>
 			<key>Key</key>
@@ -37,6 +17,20 @@
 			<string>0.1.10</string>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Enable EDGE</string>
+			<key>Key</key>
+			<string>key_prefrence</string>
+			<key>DefaultValue</key>
+			<false/>
+			<key>TrueValue</key>
+			<false/>
+			<key>FalseValue</key>
+			<true/>
 		</dict>
 	</array>
 </dict>

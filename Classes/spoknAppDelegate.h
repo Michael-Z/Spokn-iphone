@@ -132,6 +132,7 @@ typedef struct CallNumberType
 	NSTimer *ringTimer;
 	Contactlookup *contactlookupP;
 	ABAddressBookRef addressRef;
+	NSString *toogleValue;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -148,7 +149,6 @@ typedef struct CallNumberType
 -(void)RejectCall:(IncommingCallType *)inComP;
 -(void)LoadContactView:(id)object;
 -(void)SendDTMF:(char *)dtmfVapP;
-
 -(void)updateSpoknView:(id)object;
 /*
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -187,7 +187,7 @@ changed:(BOOL)changed;
 -(int)getFileSize:(char*)fileNameP :(unsigned long *)noSecP;
 
 -(int)showContactScreen:(id) navObject returnnumber:(SelectedContctType *)lselectedContactP  result:(int *) resultP;
-
+-(BOOL) enableEdge ;
 -(int) vmsForward:(char*)numberP :(char*)fileNameCharP;
 - (void) updateReachabilityStatus: (Reachability*) curReach;
 -(void) startCheckNetwork;
