@@ -247,6 +247,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -283,7 +285,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>8B964AB810CBE4E800CB00DB</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>8B8EC6B2101211570036D419</string>
@@ -293,6 +294,7 @@
 								<string>8BAD7A721121C07600ABBCC9</string>
 								<string>8B1AE7221120625600A957EA</string>
 								<string>322FEC6B10EB22AA0086D15B</string>
+								<string>8BAA7D8E109EBD3E0009C8D4</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
@@ -301,11 +303,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>179</integer>
+									<integer>171</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 2479}, {316, 683}}</string>
+							<string>{{0, 2343}, {316, 683}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -335,14 +337,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>LtpInterface.c</string>
+								<string>spoknaudio.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -350,11 +350,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>LtpInterface.c</string>
+										<string>spoknaudio.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8B72C7F711411085002C7E70</string>
+										<string>8B72CC4C11413F9A002C7E70</string>
 										<key>history</key>
 										<array>
 											<string>8B72C7B0114106D7002C7E70</string>
@@ -362,23 +362,33 @@
 											<string>8B72C7B2114106D7002C7E70</string>
 											<string>8B72C7B4114106D7002C7E70</string>
 											<string>8B72C7B5114106D7002C7E70</string>
-											<string>8B72C7ED11411085002C7E70</string>
 											<string>8B72C7EE11411085002C7E70</string>
-											<string>8B72C7EF11411085002C7E70</string>
 											<string>8B72C7F011411085002C7E70</string>
-											<string>8B72C7F211411085002C7E70</string>
-										</array>
-										<key>nextStack</key>
-										<array>
-											<string>8B72C7F511411085002C7E70</string>
+											<string>8B72CA2411413070002C7E70</string>
+											<string>8B72CC0411413ADE002C7E70</string>
+											<string>8B72CC0611413ADE002C7E70</string>
+											<string>8B72CC0811413ADE002C7E70</string>
+											<string>8B72CC0A11413ADE002C7E70</string>
+											<string>8B72CC0B11413ADE002C7E70</string>
+											<string>8B72CC0C11413ADE002C7E70</string>
+											<string>8B72CC0D11413ADE002C7E70</string>
+											<string>8B72CC0E11413ADE002C7E70</string>
+											<string>8B72CC0F11413ADE002C7E70</string>
+											<string>8B72CC1311413ADE002C7E70</string>
+											<string>8B72CC3E11413E61002C7E70</string>
+											<string>8B72CC3F11413E61002C7E70</string>
+											<string>8B72CC4011413E61002C7E70</string>
+											<string>8B72CC4111413E61002C7E70</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>8B72C7B8114106D7002C7E70</string>
 											<string>8B72C7B9114106D7002C7E70</string>
 											<string>8B72C7BA114106D7002C7E70</string>
-											<string>8B72C7F311411085002C7E70</string>
-											<string>8B72C7F411411085002C7E70</string>
+											<string>8B72CA2811413070002C7E70</string>
+											<string>8B72CC1611413ADE002C7E70</string>
+											<string>8B72CC4211413E61002C7E70</string>
+											<string>8B72CC4311413E61002C7E70</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -436,9 +446,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8B72C7691140FCCF002C7E70</string>
+				<string>8B72CA2E11413070002C7E70</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8B72C76A1140FCCF002C7E70</string>
+				<string>8B72CA2F11413070002C7E70</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -577,7 +587,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>289476741.33407801</real>
+	<real>289488794.25946403</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -592,11 +602,11 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>8B72C76B1140FCCF002C7E70</string>
-		<string>8B72C76D1140FCCF002C7E70</string>
+		<string>8B72CC4611413E61002C7E70</string>
+		<string>8B72CC4711413E61002C7E70</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>8B93025A1011EBB8004BDA41</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/mukesh/mygit/iphone/spokn.xcodeproj</string>
 	</array>
@@ -682,7 +692,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8B93025A1011EBB8004BDA41</string>
-				<string>8B72C75E1140FCAF002C7E70</string>
+				<string>8B72CA1C1141304B002C7E70</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -802,13 +812,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>8B72C7601140FCC3002C7E70</string>
+				<string>8B72CA3011413070002C7E70</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>8B72C7611140FCC3002C7E70</string>
-				<string>8B72C7621140FCC3002C7E70</string>
-				<string>8B72C7631140FCC3002C7E70</string>
-				<string>8B72C7641140FCC3002C7E70</string>
-				<string>8B72C7651140FCC3002C7E70</string>
+				<string>8B72CA3111413070002C7E70</string>
+				<string>8B72CA3211413070002C7E70</string>
+				<string>8B72CA3311413070002C7E70</string>
+				<string>8B72CA3411413070002C7E70</string>
+				<string>8B72CA3511413070002C7E70</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -835,8 +845,6 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
@@ -863,6 +871,8 @@
 							<string>427pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -898,8 +908,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>8B72C77F1140FF80002C7E70</string>
-				<string>8B72C7801140FF80002C7E70</string>
+				<string>8B72CA1811412FD7002C7E70</string>
+				<string>8B72CA1911412FD7002C7E70</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -964,7 +974,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>8B72C7661140FCC3002C7E70</string>
+				<string>8B72CA3611413070002C7E70</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

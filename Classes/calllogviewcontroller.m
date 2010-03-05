@@ -257,7 +257,6 @@
 
 - (void)addRow: (int )index sectionObject:(sectionType **)sectionPP;
 {
-	struct AddressBook *addressP;
 	void *objP;
 	char *typeCallP = 0;//"unknown";
 	char *objStrP=0;
