@@ -249,7 +249,7 @@
 -(void)cancelProgress
 {
 	stopProgressB = true;
-	printf("\n caqcle");
+	
 	self.navigationItem.titleView = 0;
 	[activityIndicator stopAnimating];
 	/*self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
@@ -1073,7 +1073,18 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 
 -(void)aboutPage:(id)sender
 {
-	NSString *urlAddress = [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"];
+	char *tmp;
+	NSString *srtrP;
+	tmp = getSupportPage();
+	if(tmp)
+	{
+		srtrP = [[NSString alloc] initWithUTF8String:tmp];
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:srtrP]];
+		free(tmp);
+		[ srtrP release];
+	}	
+	
+	/*NSString *urlAddress = [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"];
 	if(urlAddress)
 	{	
 		WebViewController     *WebViewControllerviewP;	
@@ -1100,7 +1111,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		
 		
 	}
-	
+	*/
 }
 
 

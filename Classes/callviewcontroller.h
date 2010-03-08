@@ -66,6 +66,7 @@
 	int failedCallB;
 	int endCalledPressed;
 	int firstTimeB;
+	UIActionSheet *uiActionSheetgP;
 
 }
 -(void)setObject:(id) object ;

@@ -194,7 +194,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 - (void)viewDidLoad {
 	buttonPressedB = NO;
 	#ifdef MAX_TONE
-	[self makeDTMF];
+	//[self makeDTMF];
 	#endif
   //  [super viewDidLoad];
 	//numberFieldP.text = @"19176775362";
@@ -634,7 +634,6 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 {
 	
 	
-	printf("\n dismiss called");
 	if(buttonIndex==0 && invalidUserB)
 	{	
 		alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self->ownerobject,0);

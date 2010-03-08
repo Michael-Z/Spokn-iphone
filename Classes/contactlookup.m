@@ -71,26 +71,27 @@
 -(Contactlookup*)init
 {
 	[super init];
-	ABAddressBookRef laddressRef;
-	laddressRef = ABAddressBookCreate();
-	peopleArray = (NSMutableArray *)ABAddressBookCopyArrayOfAllPeople(laddressRef);
+	
 //	ABAddressBookGetPersonCount(addressRef);
 	contactDictionaryP = [[NSMutableDictionary alloc]init];
-
+	appWillTerminateB = 0;
 	return self;
 }
 -(void) dealloc
 {
 	[contactDictionaryP release];
-	[peopleArray release];
+	contactDictionaryP = nil;
 	[super dealloc];
 
+}
+-(void)applicationwillTerminate
+{
+	appWillTerminateB = true;
 }
 
 
 
-
--(void) makeIndex
+-(int) makeIndex
 {
 	NSString *numberStringP;
 	
@@ -100,9 +101,23 @@
 	ABMultiValueRef name1 ;
 	NSString *tmpNumber;
 	AddressBookRecord *recordP;
+	ABAddressBookRef laddressRef;
+	NSMutableArray *peopleArray;
+	laddressRef = ABAddressBookCreate();
+	peopleArray = (NSMutableArray *)ABAddressBookCopyArrayOfAllPeople(laddressRef);
+	if(peopleArray==nil)
+	{
+		return 1;
+	}
 	for (NSString *person in peopleArray)
 	{
-			ABRecordID recordID = ABRecordGetRecordID(person); 
+		if(appWillTerminateB)
+		{
+			[peopleArray release];
+			peopleArray = nil;
+			return 1;
+		}
+		ABRecordID recordID = ABRecordGetRecordID(person); 
 		name1 =(NSString*)ABRecordCopyValue(person,kABRealPropertyType);
 		if(name1)
 		{	
@@ -203,6 +218,9 @@
 	
 		
 	}	
+	[peopleArray release];
+	peopleArray = nil;
+	return 0;
 		
 }
 -(NSString*) getNameByNumber:(NSString*)numberP

@@ -134,6 +134,7 @@
 	failedCallB  = 0;
 	firstTimeB = true;
 	self.title = @"Call";
+	uiActionSheetgP = nil;
 	self->showContactCallOnDelegate = nil;
 	//[ownerobject setStatusBarStyle:UIStatusBarStyleBlackTranslucent animation:NO];
 	
@@ -436,19 +437,67 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 
  */
+/*
+#pragma mark ACTIONSHEET
+- (void)didPresentActionSheet:(UIActionSheet *)actionSheet;  // after animation
+{
+	uiActionSheetgP = actionSheet;
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	uiActionSheetgP = nil;
+	//printf("%d",buttonIndex);
+	[actionSheet release];
+	
+}
+
+
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet
+{
+	uiActionSheetgP = nil;
+	[actionSheet release];
+}
+*/
 -(IBAction)speakerPressed:(id)sender
 {
 	UIButton *butP;
 	int enable;
-	
 	butP = (UIButton*)sender;
 	
 	enable = !butP.selected;
 	//AudioSessionSetActive(enable);
 	SetSpeakerOnOrOffNew(0,enable);
 	[butP setSelected:enable];
+	/*
+	if(ownerobject.blueTooth==false)
+	{	
+		butP = (UIButton*)sender;
 	
+		enable = !butP.selected;
+		//AudioSessionSetActive(enable);
+		SetSpeakerOnOrOffNew(0,enable);
+		[butP setSelected:enable];
+	}	
+	else
+	{
+		UIActionSheet *uiActionSheetP;
+		uiActionSheetP= [[UIActionSheet alloc] 
+						 initWithTitle: @"" 
+						 delegate:self
+						 cancelButtonTitle:_CANCEL_ 
+						 destructiveButtonTitle:nil
+						 otherButtonTitles:nil, nil];
+		
+		uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+		
+		[uiActionSheetP addButtonWithTitle:@"Bluetooth Audio"  ];
+		[uiActionSheetP addButtonWithTitle:@"iPhone"  ];
+		[uiActionSheetP addButtonWithTitle:@"Speaker"  ];
+		[uiActionSheetP showInView:self.view];
 	
+	}
+	
+	*/
 }
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
@@ -534,6 +583,11 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 - (void)dealloc {
 	
+	if(uiActionSheetgP)
+	{	
+		[uiActionSheetgP dismissWithClickedButtonIndex:[uiActionSheetgP cancelButtonIndex] animated:NO];
+		uiActionSheetgP = 0;
+	}
 	[self->parentObjectDelegate objectDestory];
 	self->parentObjectDelegate = nil;
 

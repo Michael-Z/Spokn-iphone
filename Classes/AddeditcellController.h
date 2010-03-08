@@ -55,6 +55,7 @@
 	int buttonType;
 	int onlyOneB;
 	int activeAditButtonB;
+	int hidefooterB;
 		
 }
 -(void)setData:/*out parameter*/(char *)lvalueCharP value:(char*)fieldP placeHolder:(char*)lplaceHolderP title:(char*)titleP/*out parameter*/returnValue:(int *)lreturnP;
@@ -65,6 +66,7 @@
 -(void) SetkeyBoardType:(UIKeyboardType) type : (int) maxCharInt buttonType:(int)lbuttonType;
 - (void) handleTextFieldChanged:(id)sender;
 - (void)updateUI:(id) objectP;
+-(void)hideFooter;
 @end
 
 

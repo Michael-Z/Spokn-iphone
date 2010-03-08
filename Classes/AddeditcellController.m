@@ -211,8 +211,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.tableView.sectionHeaderHeight = 2;//(tableView.sectionHeaderHeight+4)/2;
+	
+	self.tableView.sectionFooterHeight = 6;//(tableView.sectionFooterHeight+4)/2;   	
+	
 	onlyOneB = true;
-	self.tableView.scrollEnabled = NO;
+	//self.tableView.scrollEnabled = NO;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
@@ -260,7 +264,10 @@
 	
 	[headLabelP setText:typeP];
 	[footerLabelP setText:exampleStrP];
-	
+	if(self->hidefooterB)
+	{
+		footerLabelP.hidden = YES;
+	}
 	[self.tableView reloadData];
 	//[self updateUI:nil];
 	
@@ -312,6 +319,7 @@
 	{	
 	    [txtField becomeFirstResponder];
 		onlyOneB = false;
+		self.tableView.scrollEnabled = NO;
 	}
 	
 	
@@ -329,16 +337,18 @@
 	{	
 		self.title = @"Edit";
 	}
+	self->hidefooterB = false;
 	buttonType = 0;
 	activeAditButtonB = NO;
-	CGRect LabelFrame2 = CGRectMake(0, 5, 320, 60);
+	CGRect LabelFrame2 = CGRectMake(0, 5, 320, 80);
+	CGRect LabelFrame3 = CGRectMake(0, 5, 320, 40);
 	headLabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
 	headLabelP.textAlignment = UITextAlignmentCenter;
 	headLabelP.tag = 1;
 	headLabelP.numberOfLines = 2;
 		
 	//CGRect LabelFrame2 = CGRectMake(0, 5, 320, 60);
-	footerLabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
+	footerLabelP = [[UILabel alloc] initWithFrame:LabelFrame3];
 	footerLabelP.textAlignment = UITextAlignmentCenter;
 	footerLabelP.tag = 2;
 	footerLabelP.numberOfLines = 2;
@@ -504,7 +514,10 @@
 		[txtField resignFirstResponder];
 	return YES;
 }
-
+-(void)hideFooter
+{
+	self->hidefooterB = true;
+}
 - (void)dealloc {
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self];

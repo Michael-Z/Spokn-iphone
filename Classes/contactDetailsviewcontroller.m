@@ -595,6 +595,10 @@
 	AddeditcellController     *AddeditcellControllerviewP;	
 	AddeditcellControllerviewP = [[AddeditcellController alloc]init];
 	[AddeditcellControllerviewP setObject:self->ownerobject];
+	if(hideCallAndVmailButtonB)
+	{
+		[AddeditcellControllerviewP hideFooter];
+	}
 	viewResult = 0;
 	
 	[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypeDefault :CONTACT_RANGE buttonType:0];
@@ -1477,6 +1481,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		AddeditcellController     *AddeditcellControllerviewP;	
 		AddeditcellControllerviewP = [[AddeditcellController alloc]init];
 		[AddeditcellControllerviewP setObject:self->ownerobject];
+		if(hideCallAndVmailButtonB)
+		{
+			[AddeditcellControllerviewP hideFooter];
+		}
 		viewResult = 0;
 		if(section==2)
 		{
@@ -1486,7 +1494,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		{
 			if(sectionArray[section].dataforSection[row].elementP == addressDataP->spoknid)
 			{
-				[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :SPOKN_ID_RANGE buttonType:0];
+				[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :NUMBER_RANGE buttonType:0];
 			}
 			else
 			{

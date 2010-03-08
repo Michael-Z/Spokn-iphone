@@ -63,6 +63,7 @@
 @synthesize callOnB;
 @synthesize handSetB;
 @synthesize loginProgressStart;
+@synthesize blueTooth;
 - (void) handleTimer: (id) timer
 {
 	
@@ -779,6 +780,7 @@ void getProp()
 				
 				break;
 				case REFRESH_CONTACT:
+					[ spoknViewControllerP cancelProgress];
 					[self LoadContactView:contactviewP];
 					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:contactviewP waitUntilDone:YES];
 					//refresh cradit
@@ -1417,6 +1419,17 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 	pthread_t pt;
 	pthread_create(&pt, 0,ThreadForContactLookup,self);	
+	/*int majorver =0,minor1ver=0,minor2ver=0;
+	GetOsVersion(&majorver,&minor1ver,&minor2ver);
+	if(majorver>=3 && minor1ver>0 )
+	{
+		self->blueTooth = true;
+	}
+	else
+	{
+		self->blueTooth = false;
+	}*/
+	self->blueTooth = false;
 	//setProp();
 	//getProp();	
 		
@@ -1435,9 +1448,20 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{	
 		Contactlookup *lcontactLookup;
 		lcontactLookup = [[Contactlookup alloc] init];
-		[lcontactLookup makeIndex];
-		lcontactLookup.addressRef = self.addressRef;
-		contactlookupP = lcontactLookup;
+		intiallookupP = lcontactLookup;
+		if ([lcontactLookup makeIndex]==0)
+		{	
+			lcontactLookup.addressRef = self.addressRef;
+			contactlookupP = lcontactLookup;
+			intiallookupP = 0;
+		}	
+		else
+		{
+			intiallookupP = 0;
+			[lcontactLookup release];
+			lcontactLookup = 0;
+			
+		}
 	}	
 }
 /*
@@ -1491,6 +1515,20 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[nsTimerP invalidate];
 		nsTimerP = nil;
 	#endif
+	if(contactlookupP)
+	{	
+		[contactlookupP release];
+		contactlookupP = 0;
+	}
+	else
+	{
+		if(intiallookupP)
+		{
+			[intiallookupP applicationwillTerminate];
+			intiallookupP = 0;
+		}
+		
+	}
 	//[super applicationWillTerminate:application];
 	[ltpTimerP stopTimer ];
 	//logOut(ltpInterfacesP);
@@ -1507,8 +1545,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	[urlSendP release];
 	SetSpeakerOnOrOff(0,true);
-	[contactlookupP release];
-	contactlookupP = 0;
+	
 	//[contactNavigationController release];
 	//[vmsNavigationController release];
 	//[calllogNavigationController release];
@@ -2275,6 +2312,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 												  otherButtonTitles:@"OK", nil];
 			[alert show];
 			[alert release];*/
+			logOut(ltpInterfacesP,false);
 			SetConnection( ltpInterfacesP,0);
 			
 			alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);

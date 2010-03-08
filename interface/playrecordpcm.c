@@ -26,6 +26,11 @@
 #include "playrecordpcm.h"
 #include "LtpInterface.h"
 #import <AudioToolbox/AudioToolbox.h>
+int RouteAudio(void *uData,int optionInt)
+{
+
+	return 0;
+}
 int SetSpeakerOnOrOffNew(void *uData,Boolean onB)
 {
 		UInt32 route;
@@ -241,10 +246,12 @@ void SetAudioTypeLocal(void *uData,int type)
 	*/
 	
 	AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);		//AudioQueueAddPropertyListener(aqcP->queue,kAudioQueueProperty_IsRunning,AudioQueuePropertyListenerFunction,aqcP);
-	//if(sessionCategory == kAudioSessionCategory_PlayAndRecord )
+#ifdef _BLUETOOTH_SUPPORT
+	if(sessionCategory == kAudioSessionCategory_PlayAndRecord || sessionCategory == kAudioSessionCategory_RecordAudio )
 	{
 		AudioSessionPropertyID blueTooth;
 		UInt32 allowBluetoothInput = 1;
+		OSStatus err;
 		/*#if kAudioSessionProperty_OverrideCategoryEnableBluetoothInput
 			blueTooth = kAudioSessionProperty_OverrideCategoryEnableBluetoothInput;
 		
@@ -255,13 +262,13 @@ void SetAudioTypeLocal(void *uData,int type)
 		//#endif
 		int majorver =0,minor1ver=0,minor2ver=0;
 		GetOsVersion(&majorver,&minor1ver,&minor2ver);
-		printf("\nversion %d.%d.%d",majorver,minor1ver,minor2ver);
 		if(majorver>=3 && minor1ver>0 )
 		{	
-			AudioSessionSetProperty(blueTooth, sizeof(allowBluetoothInput), &allowBluetoothInput);
+			err = AudioSessionSetProperty(blueTooth, sizeof(allowBluetoothInput), &allowBluetoothInput);
+		//	printf("\n error  %d",err);
 		}
 	}
-	
+#endif
 	//SetAudioSessionPropertyListener(0,0)
 }
 void* InitAudio( void *udata,CallBackUIP callBackP,CallBackSoundP callBackSoundP)

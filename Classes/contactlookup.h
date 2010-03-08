@@ -37,21 +37,22 @@
 {
 
 	ABRecordID recordID;
+
 	
 
 }
 @property (readwrite,assign) ABRecordID recordID;
 @end
 @interface Contactlookup : NSObject {
-	NSMutableArray *peopleArray;
+	
 	ABAddressBookRef addressRef;
 	NSMutableDictionary *contactDictionaryP;// = [[NSMutableDictionary alloc]init];
-
+	int appWillTerminateB;
 	long count;
 }
 @property (readwrite,assign) ABAddressBookRef addressRef;
--(void) makeIndex;
+-(int) makeIndex;
 -(NSString*) getNameByNumber:(NSString*)numberP;
 -(int) searchNameAndTypeBynumber :(char*)lnumberCharP :(char **) nameStringP :(char**)typeP :(ABRecordID *)recIDP;
-
+-(void)applicationwillTerminate;
 @end
