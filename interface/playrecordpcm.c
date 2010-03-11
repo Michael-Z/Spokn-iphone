@@ -246,6 +246,7 @@ void SetAudioTypeLocal(void *uData,int type)
 	*/
 	
 	AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);		//AudioQueueAddPropertyListener(aqcP->queue,kAudioQueueProperty_IsRunning,AudioQueuePropertyListenerFunction,aqcP);
+#define _BLUETOOTH_SUPPORT
 #ifdef _BLUETOOTH_SUPPORT
 	if(sessionCategory == kAudioSessionCategory_PlayAndRecord || sessionCategory == kAudioSessionCategory_RecordAudio )
 	{
@@ -265,7 +266,8 @@ void SetAudioTypeLocal(void *uData,int type)
 		if(majorver>=3 && minor1ver>0 )
 		{	
 			err = AudioSessionSetProperty(blueTooth, sizeof(allowBluetoothInput), &allowBluetoothInput);
-		//	printf("\n error  %d",err);
+			printf("\n error  %d",err);
+			//HeadSetIsOn();
 		}
 	}
 #endif

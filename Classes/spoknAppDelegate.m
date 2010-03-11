@@ -965,6 +965,40 @@ void getProp()
 	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)object userInfo:nil];
 	[object alertAction:nil];
 }
+int blueToothIsOn()
+{
+	UInt32                              lioDataSize=0;
+	//char *dataP;
+	NSString *dataP=0;
+	
+	
+	
+	AudioSessionGetPropertySize(kAudioSessionProperty_AudioRoute,&lioDataSize);
+	AudioSessionGetProperty(          kAudioSessionProperty_AudioRoute,
+							&lioDataSize,
+							&dataP);    
+	if(dataP)
+	{
+		
+		NSString capStrP;
+		capStrP = [dataP capitalizedString];
+		NSLog(@"connect %@",capStrP);
+		
+		NSRange range = [capStrP rangeOfString:@"BT"];
+		if (range.location == NSNotFound ) 
+		{	
+			return 0;
+			
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	
+	return 0;
+
+}
 int HeadSetIsOn()
 {
 	UInt32                              lioDataSize=0;
@@ -980,8 +1014,12 @@ int HeadSetIsOn()
 	if(dataP)
 	{
 		
-				
-		NSRange range = [dataP rangeOfString:@"Headset"];
+		NSString capStrP;
+		capStrP = [dataP capitalizedString];
+		NSLog(@"connect %@",capStrP);
+		
+		
+		NSRange range = [capStrP rangeOfString:@"HEADSET"];
 		if (range.location == NSNotFound ) 
 		{	
 			return 0;

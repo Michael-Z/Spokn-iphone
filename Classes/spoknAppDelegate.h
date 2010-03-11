@@ -214,6 +214,7 @@ changed:(BOOL)changed;
 -(int) vmsShowRecordOrForwardScreen : (char*)noCharP VMSState:(VMSStateType)state filename:(char*)fileNameCharP duration:(int) maxtime vmail:(struct VMail*) lvmailP;
 -(int) profileResynFromApp;
 @end
+int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
 void * ThreadForContactLookup(void *udata);
 void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
