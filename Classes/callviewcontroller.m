@@ -131,6 +131,12 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	blueToothViewP.hidden = YES;
+	self->hideSourcesbuttonP.hidden = YES;
+	blueToothViewP.backgroundColor = [UIColor clearColor];
+	//[self->blueToothViewP setBackgroundColor:[[[UIColor alloc] 
+	//								initWithPatternImage:[UIImage imageNamed:@"square.png"]]
+	//							   autorelease]];
 	failedCallB  = 0;
 	firstTimeB = true;
 	self.title = @"Call";
@@ -148,6 +154,8 @@
 	[self.view setBackgroundColor:[[[UIColor alloc] 
 									 initWithPatternImage:[UIImage imageNamed:_CALL_WATERMARK_PNG_]]
 									autorelease]];
+	
+	[testP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	[self->viewMenuP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	[self->viewKeypadP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	//callnoLabelP.numberOfLines = 2;
@@ -462,14 +470,14 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 {
 	UIButton *butP;
 	int enable;
-	butP = (UIButton*)sender;
+//	butP = (UIButton*)sender;
 	
-	enable = !butP.selected;
+//	enable = !butP.selected;
 	//AudioSessionSetActive(enable);
-	SetSpeakerOnOrOffNew(0,enable);
-	[butP setSelected:enable];
-	/*
-	if(ownerobject.blueTooth==false)
+//	SetSpeakerOnOrOffNew(0,enable);
+//	[butP setSelected:enable];
+	
+/*	if(ownerobject.blueTooth==false)
 	{	
 		butP = (UIButton*)sender;
 	
@@ -477,10 +485,34 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		//AudioSessionSetActive(enable);
 		SetSpeakerOnOrOffNew(0,enable);
 		[butP setSelected:enable];
-	}	
-	else
+	}	*/
+//	else
 	{
-		UIActionSheet *uiActionSheetP;
+		if(self->blueToothViewP.hidden==YES)
+		{	
+			[UIView beginAnimations:nil context:NULL];
+			[UIView setAnimationDuration:0.5];
+			
+			[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft 
+								   forView:self->blueToothViewP cache:YES];
+			
+			self->blueToothViewP.hidden = NO;
+			//[UIView setAnimationDelegate:self];
+			//[UIView setAnimationDidStopSelector: @selector(animationDidStop)];
+			[UIView commitAnimations];
+			self->hideKeypadButtonP.hidden = NO;
+			self->endCallKeypadButtonP.hidden = NO;
+			self->viewMenuP.hidden = YES;
+			self->endCallButtonP.hidden = YES;
+			self->hideKeypadButtonP.hidden = YES;
+			self->hideSourcesbuttonP.hidden = NO;
+			
+		}
+		
+		
+		
+		
+		/*UIActionSheet *uiActionSheetP;
 		uiActionSheetP= [[UIActionSheet alloc] 
 						 initWithTitle: @"" 
 						 delegate:self
@@ -493,11 +525,47 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		[uiActionSheetP addButtonWithTitle:@"Bluetooth Audio"  ];
 		[uiActionSheetP addButtonWithTitle:@"iPhone"  ];
 		[uiActionSheetP addButtonWithTitle:@"Speaker"  ];
-		[uiActionSheetP showInView:self.view];
+		[uiActionSheetP showInView:self.view];*/
 	
 	}
 	
-	*/
+	
+}
+
+-(IBAction)blueToothViewAudio:(id)sender
+{
+	printf("\n\nblueToothViewAudiobuttonPressed\n\n");
+}
+-(IBAction)blueToothViewiphone:(id)sender
+{
+	printf("blueToothViewiphonebuttonPressed\n\n");
+}
+-(IBAction)blueToothViewspeaker:(id)sender
+{
+	printf("blueToothViewspeakerbuttonPressed\n\n");
+}
+
+
+-(IBAction)hidesourcesrPressed:(id)sender
+{
+	if(self->blueToothViewP.hidden==NO)
+	{
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.5];
+		
+		[UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight
+							   forView:self->viewMenuP  cache:YES];
+		
+		[UIView setAnimationDidStopSelector: @selector(animationDidStop:)];
+		[UIView commitAnimations];
+		self->blueToothViewP.hidden = YES;
+		self->viewMenuP.hidden = NO;
+		self->viewKeypadP.hidden = YES;
+		self->endCallKeypadButtonP.hidden = YES;
+		self->hideKeypadButtonP.hidden = YES;
+		self->endCallButtonP.hidden = NO;
+		self->hideSourcesbuttonP.hidden = YES;
+	}
 }
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
 {
@@ -532,6 +600,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		self->viewMenuP.hidden = YES;
 		self->endCallButtonP.hidden = YES;
 		delTextB = YES;
+		self->hideSourcesbuttonP.hidden = YES;
 				
 	}
 	else
@@ -554,6 +623,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		self->hideKeypadButtonP.hidden = YES;
 		self->endCallKeypadButtonP.hidden = YES;
 		self->endCallButtonP.hidden = NO;
+		self->hideSourcesbuttonP.hidden = YES;
 	}
 }
 -(void)setLabel:(NSString *)strP :(NSString *)strtypeP
