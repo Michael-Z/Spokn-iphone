@@ -67,6 +67,7 @@
 	int endCalledPressed;
 	int firstTimeB;
 	UIActionSheet *uiActionSheetgP;
+	UIButton      *testBP;
 
 }
 -(void)setObject:(id) object ;

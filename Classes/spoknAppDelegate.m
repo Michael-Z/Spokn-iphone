@@ -595,6 +595,10 @@ void getProp()
 								[dialviewP setStatusText: _STATUS_NO_ACCESS_ :nil :ALERT_OFFLINE :self->subID ];
 							}	
 							break;
+					case LOGIN_STATUS_TIMEDOUT:
+						[loginProtocolP stoploginIndicator];
+						[dialviewP setStatusText: _STATUS_TIMEOUT2_ :nil :ALERT_OFFLINE :self->subID ];
+						break;
 					default:
 						[loginProtocolP stoploginIndicator];
 						if(loginProtocolP)//mean login screen is on
@@ -980,9 +984,9 @@ int blueToothIsOn()
 	if(dataP)
 	{
 		
-		NSString capStrP;
-		capStrP = [dataP capitalizedString];
-		NSLog(@"connect %@",capStrP);
+		NSString *capStrP;
+		capStrP = [dataP uppercaseString];
+	//	NSLog(@"connect %@",capStrP);
 		
 		NSRange range = [capStrP rangeOfString:@"BT"];
 		if (range.location == NSNotFound ) 
@@ -1014,21 +1018,22 @@ int HeadSetIsOn()
 	if(dataP)
 	{
 		
-		NSString capStrP;
-		capStrP = [dataP capitalizedString];
-		NSLog(@"connect %@",capStrP);
+		NSString *capStrP;
+		capStrP = [dataP uppercaseString];
+		//NSLog(@"connect %@",capStrP);
 		
-		
+		if(capStrP==nil)
+		{	
+			return 0;
+		}
 		NSRange range = [capStrP rangeOfString:@"HEADSET"];
 		if (range.location == NSNotFound ) 
 		{	
 			return 0;
 						
 		}
-		else
-		{
-			return 1;
-		}
+	//	NSLog(@"connect %@",capStrP);
+		return 1;
 	}
 	return 0;
 	

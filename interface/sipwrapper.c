@@ -630,12 +630,12 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	char	buff[100];
 	pjsua_acc_info	info;
 	pj_status_t status;
-
+	
 	if (!pstack)
 		return;
-
+	
 	status = pjsua_acc_get_info(acc_id, &info);
-
+	
 	if (info.status == 0){
 		pstack->loginStatus = LOGIN_STATUS_OFFLINE;
 		alert(-1, ALERT_OFFLINE, info.status_text.ptr);
@@ -654,22 +654,35 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	}
 	else if (info.status == 401 || info.status == 407)
 		pstack->loginStatus = LOGIN_STATUS_TRYING_LOGIN;
-		
+	//bug#26354, Handle additional range between PJSIP_EFAILEDCREDENTIAL & PJSIP_EAUTHSTALECOUNT for authentication failure.
 	else if ((info.status >= 400 && info.status < 500 && (info.status != 401 ||info.status != 407)) || 
 			 (info.status >= PJSIP_EFAILEDCREDENTIAL && info.status <= PJSIP_EAUTHSTALECOUNT))
 	{
-		pstack->loginStatus = LOGIN_STATUS_FAILED;
+		//Sign-in attempt failed. Maximum number of stale retries exceeded. This happens when server 
+		//keeps rejecting our authorization request with stale=true. 
+		if (info.status == PJSIP_EAUTHSTALECOUNT)
+			pstack->loginStatus = LOGIN_STATUS_TIMEDOUT;
+		else
+		{
+			ltpLogin(pstack, CMD_LOGOUT);
+			pstack->loginStatus = LOGIN_STATUS_FAILED;
+		}
 		alert(-1, ALERT_OFFLINE, info.status_text.ptr);
 	}
-	else if (info.status >= 500)
+	else if (info.status >= 500 && info.status <= 606)
 		pstack->loginStatus = LOGIN_STATUS_NO_ACCESS;
 	
 	sprintf(buff, "%d", info.status);
-//	SetDlgItemTextA(wndMain, IDC_STATUS, buff);
+	//	SetDlgItemTextA(wndMain, IDC_STATUS, buff);
+}
+void       callbackpjsip(int level, const char *data, int len)
+{
+	if(data)
+	printf("\n%s",data);
+
 }
 
-
- int spokn_pj_init(char *errorstring)
+int spokn_pj_init(char *errorstring)
 {
 	pjsua_config cfg;
 	pjsua_logging_config log_cfg;
@@ -696,12 +709,13 @@ static void on_reg_state(pjsua_acc_id acc_id)
 	
 	pjsua_logging_config_default(&log_cfg);
 	log_cfg.console_level = 0;
+	//log_cfg.cb = callbackpjsip;
 	 pjsua_media_config_default(&cfgmedia);
 	cfgmedia.clock_rate = 8000;
 	cfgmedia.snd_clock_rate = 8000;
 		
 	cfgmedia.snd_auto_close_time = 0;
-	
+//	cfgmedia.ec_tail_len = 0;
 	
 	
 	

@@ -200,6 +200,7 @@ void SetAudioTypeLocal(void *uData,int type)
 		case 1://play back
 			//sessionCategory = kAudioSessionCategory_MediaPlayback;
 			sessionCategory = kAudioSessionCategory_PlayAndRecord;
+			AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
 			if(HeadSetIsOn()==0)
 			{
 				SetSpeakerOnOrOffNew(0,1);
@@ -208,6 +209,7 @@ void SetAudioTypeLocal(void *uData,int type)
 			{
 				SetSpeakerOnOrOffNew(0,0);
 			}
+			return;
 			break;
 		case 2:// record
 			sessionCategory = kAudioSessionCategory_RecordAudio;
@@ -246,7 +248,7 @@ void SetAudioTypeLocal(void *uData,int type)
 	*/
 	
 	AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);		//AudioQueueAddPropertyListener(aqcP->queue,kAudioQueueProperty_IsRunning,AudioQueuePropertyListenerFunction,aqcP);
-#define _BLUETOOTH_SUPPORT
+//#define _BLUETOOTH_SUPPORT
 #ifdef _BLUETOOTH_SUPPORT
 	if(sessionCategory == kAudioSessionCategory_PlayAndRecord || sessionCategory == kAudioSessionCategory_RecordAudio )
 	{

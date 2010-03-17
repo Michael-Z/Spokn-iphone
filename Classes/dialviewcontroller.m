@@ -759,6 +759,23 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 						[ alert show ];
 					}	
 					break;
+				case LOGIN_STATUS_TIMEDOUT:
+					if(alert==nil)
+					{	
+						alert = [ [ UIAlertView alloc ] initWithTitle: _SERVER_UNREACHABLE_ 
+															  message: [ NSString stringWithString:_STATUS_TIMEOUT2_ ]
+															 delegate: self
+													cancelButtonTitle: nil
+													otherButtonTitles: _OK_, nil
+								 ];
+						//invalidUserB = true;
+						alert.tag=self->subStatus;
+						
+						//[alert addButtonWithTitle:@"Cancel"];
+						[ alert show ];
+					}	
+					
+					break;
 				case LOGIN_STATUS_FAILED:
 					{	
 						if(alert==nil)

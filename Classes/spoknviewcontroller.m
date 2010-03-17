@@ -609,6 +609,9 @@ titleForHeaderInSection:(NSInteger)section
 			[activityIndicator stopAnimating];
 			switch(subStatus)
 			{
+				case LOGIN_STATUS_TIMEDOUT:
+					[labelStatus setText:_STATUS_TIMEOUT1_];
+					break;
 				case LOGIN_STATUS_FAILED:
 					[labelStatus setText:_STATUS_OFFLINE_];
 					//[labelStatus setText:@"Authentication failed"];

@@ -339,6 +339,7 @@
 		8BAAB29E1042DA1800F3EE73 /* DECODE.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BAAB29D1042DA1800F3EE73 /* DECODE.c */; };
 		8BAD7A741121C07600ABBCC9 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 8BAD7A731121C07600ABBCC9 /* about.html */; };
 		8BAD7A751121C07600ABBCC9 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 8BAD7A731121C07600ABBCC9 /* about.html */; };
+		8BB9F87C114A505900B87F78 /* libpjlib-util-i786-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB9F87B114A505900B87F78 /* libpjlib-util-i786-apple-darwin9.a */; };
 		8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD86B4107F5222008FD911 /* WebViewController.m */; };
 		8BBD86B7107F5222008FD911 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD86B5107F5222008FD911 /* WebViewController.xib */; };
 		8BC51C411108633600EC6597 /* spoknaudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC51C401108633600EC6597 /* spoknaudio.m */; };
@@ -602,6 +603,7 @@
 		8BAA8FDA11367CBF00ECEA5D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = rsc/spoknbuttonicon/Default.png; sourceTree = "<group>"; };
 		8BAAB29D1042DA1800F3EE73 /* DECODE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DECODE.c; path = ../lib/gsm/DECODE.c; sourceTree = SOURCE_ROOT; };
 		8BAD7A731121C07600ABBCC9 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		8BB9F87B114A505900B87F78 /* libpjlib-util-i786-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-i786-apple-darwin9.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-i786-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BBD86B3107F5222008FD911 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		8BBD86B4107F5222008FD911 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8BBD86B5107F5222008FD911 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -686,6 +688,7 @@
 				8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
 				8BC51C51110863A200EC6597 /* AVFoundation.framework in Frameworks */,
 				8B865761112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */,
+				8BB9F87C114A505900B87F78 /* libpjlib-util-i786-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,6 +1032,7 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
+				8BB9F87B114A505900B87F78 /* libpjlib-util-i786-apple-darwin9.a */,
 				8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */,
 				8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */,
 				8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */,

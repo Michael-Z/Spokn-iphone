@@ -129,6 +129,8 @@
 
 //Status messages
 #define _STATUS_CONNECTING_ @"Connecting..."
+#define _STATUS_TIMEOUT1_ @"TimeOut"
+#define _STATUS_TIMEOUT2_ @"Connection timed out. Please try to sign-in again."
 #define _STATUS_OFFLINE_ @"Offline"
 #define _STATUS_NO_NETWORK_ @"No Network"
 #define _STATUS_NO_WIFI_ @"No wifi available"
