@@ -41,13 +41,16 @@
 	//IBOutlet UILabel *timeLabelP;
 	//IBOutlet UILabel *dtmfLabelP;
 	IBOutlet UIView  *viewMenuP;
+	IBOutlet UIView    *bottomViewP;
 	IBOutlet UILabel *callTypeLabelP;
 	IBOutlet Keypadview  *viewKeypadP;
 	IBOutlet UIButton  *endCallButtonP;
 	IBOutlet UIButton  *hideKeypadButtonP;
 	IBOutlet UIButton  *endCallKeypadButtonP;
 	IBOutlet UIView    *topViewP;
-	IBOutlet UIView    *bottomViewP;
+	IBOutlet UIView  *blueToothViewP;
+	IBOutlet UIButton  *hideSourcesbuttonP;
+	
 	SpoknAppDelegate *ownerobject;
 	NSTimer *calltimerP;//this timer for call duration
 	Boolean onLineB;
@@ -67,7 +70,7 @@
 	int endCalledPressed;
 	int firstTimeB;
 	UIActionSheet *uiActionSheetgP;
-	UIButton      *testBP;
+	IBOutlet UIButton *testP;
 
 }
 -(void)setObject:(id) object ;
@@ -75,6 +78,7 @@
 -(void)setLabel:(NSString *)strP :(NSString *)strtypeP;
 -(IBAction)mutePressed:(id)sender;
 -(IBAction)speakerPressed:(id)sender;
+-(IBAction)hidesourcesrPressed:(id)sender;
 -(IBAction)keypadPressed:(id)sender;
 -(IBAction)endCallPressed:(id)sender;
 -(IBAction)endCallPressedKey:(id)sender;
@@ -84,6 +88,9 @@
 -(IBAction)addContactPressed:(id)sender;
 - (void) handleCallEndTimer: (id) timer;
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;
+-(IBAction)blueToothViewAudio:(id)sender;
+-(IBAction)blueToothViewiphone:(id)sender;
+-(IBAction)blueToothViewspeaker:(id)sender;
 @property (readwrite,assign) id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 
 @end
