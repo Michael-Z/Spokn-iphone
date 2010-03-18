@@ -32,6 +32,7 @@
 #include "contactviewcontroller.h"
 #import "spokncalladd.h"
 #import "alertmessages.h"
+#include "playrecordpcm.h"
 @implementation CallViewController
 @synthesize showContactCallOnDelegate;
 /*
@@ -102,7 +103,7 @@
 									   userInfo: nil
 										repeats: NO];*/
 		
-				SetAudioTypeLocal(0,0);
+		SetAudioTypeLocal(0,0);
 		//AudioSessionSetActive(true);
 		[self->parentObjectDelegate setParentObject:self];
 		alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
@@ -131,6 +132,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	ownerobject.blueTooth =  blueToothIsOn();
 	blueToothViewP.hidden = YES;
 	self->hideSourcesbuttonP.hidden = YES;
 	blueToothViewP.backgroundColor = [UIColor clearColor];
@@ -155,7 +157,7 @@
 									 initWithPatternImage:[UIImage imageNamed:_CALL_WATERMARK_PNG_]]
 									autorelease]];
 	
-	[testP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
+	//[testP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	[self->viewMenuP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	[self->viewKeypadP setBackgroundColor:[[UIColor clearColor] autorelease ] ];
 	//callnoLabelP.numberOfLines = 2;
@@ -477,7 +479,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 //	SetSpeakerOnOrOffNew(0,enable);
 //	[butP setSelected:enable];
 	
-/*	if(ownerobject.blueTooth==false)
+	if(ownerobject.blueTooth==false)
 	{	
 		butP = (UIButton*)sender;
 	
@@ -485,9 +487,10 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		//AudioSessionSetActive(enable);
 		SetSpeakerOnOrOffNew(0,enable);
 		[butP setSelected:enable];
-	}	*/
-//	else
+	}	
+	else
 	{
+		//[butP setSelected:NO];
 		if(self->blueToothViewP.hidden==YES)
 		{	
 			[UIView beginAnimations:nil context:NULL];
@@ -531,18 +534,35 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	
 	
 }
+-(void)routeChange:(int)reason
+{
+	switch(reason)
+	{
+		case 1://only iphone
+			[self hidesourcesrPressed:nil];
+			ownerobject.blueTooth = NO;
+			break;
+		case 2://blue tooth
+			ownerobject.blueTooth = YES;
+			break;
+	}
+	
+}
 
 -(IBAction)blueToothViewAudio:(id)sender
 {
 	printf("\n\nblueToothViewAudiobuttonPressed\n\n");
+	RouteAudio(0,1);
 }
 -(IBAction)blueToothViewiphone:(id)sender
 {
 	printf("blueToothViewiphonebuttonPressed\n\n");
+	RouteAudio(0,2);
 }
 -(IBAction)blueToothViewspeaker:(id)sender
 {
 	printf("blueToothViewspeakerbuttonPressed\n\n");
+	RouteAudio(0,3);
 }
 
 

@@ -112,5 +112,10 @@ void SetAudioTypeLocal(void *uData,int type);
 int SetSpeakerOnOrOff(void *uData,Boolean onB);
 void SetAudioSessionPropertyListener( void *uDataP,AudioSessionPropertyListener        inProc);
 int SetSpeakerOnOrOffNew(void *uData,Boolean onB);
+int RouteAudio(void *uData,int optionInt);
+int onOrBlueTooth(int onBluetoothB);
+int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
+int HeadSetIsOn();
+
 #endif
 

@@ -886,6 +886,10 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				[callViewControllerP startTimer];
 			}	
 			break;
+		case ROUTE_CHANGE:
+			[callViewControllerP routeChange:self->subStatus];
+			
+			break;
 		case TRYING_CALL:
 			
 			//[self setViewButton:1];

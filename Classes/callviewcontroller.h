@@ -70,7 +70,7 @@
 	int endCalledPressed;
 	int firstTimeB;
 	UIActionSheet *uiActionSheetgP;
-	IBOutlet UIButton *testP;
+	//IBOutlet UIButton *testP;
 
 }
 -(void)setObject:(id) object ;
@@ -91,6 +91,7 @@
 -(IBAction)blueToothViewAudio:(id)sender;
 -(IBAction)blueToothViewiphone:(id)sender;
 -(IBAction)blueToothViewspeaker:(id)sender;
+-(void)routeChange:(int)reason;
 @property (readwrite,assign) id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 
 @end

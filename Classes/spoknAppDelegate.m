@@ -444,6 +444,19 @@ void getProp()
 		}
 			break;
 		case ALERT_CONNECTED:
+			{
+				int majorver =0,minor1ver=0,minor2ver=0;
+				GetOsVersion(&majorver,&minor1ver,&minor2ver);
+				if(majorver>=3 && minor1ver>0 )
+				{	
+					
+					self.blueTooth =  blueToothIsOn();
+				}
+				else
+				{
+					self.blueTooth =  false;
+				}
+			}
 			[dialviewP setStatusText: @"ringing" :nil :ALERT_CONNECTED :0];
 			callOnB = true;
 			//getProp();
@@ -1050,8 +1063,37 @@ void MyAudioSessionPropertyListener(
 	UInt32                              lioDataSize=0;
 	//char *dataP;
 	NSString *dataP=0;
-	
-	
+	if (inID == kAudioSessionProperty_AudioRouteChange)
+	{
+		CFDictionaryRef routeDictionary = (CFDictionaryRef)inData;			
+		//CFShow(routeDictionary);
+		CFNumberRef reason = (CFNumberRef)CFDictionaryGetValue(routeDictionary, CFSTR(kAudioSession_AudioRouteChangeKey_Reason));
+		SInt32 reasonVal;
+		CFNumberGetValue(reason, kCFNumberSInt32Type, &reasonVal);
+		if (reasonVal != kAudioSessionRouteChangeReason_CategoryChange)
+		{
+			CFStringRef oldRoute = (CFStringRef)CFDictionaryGetValue(routeDictionary, CFSTR(kAudioSession_AudioRouteChangeKey_OldRoute));
+			 if (oldRoute)	
+			 {
+			 printf("old route:\n");
+			 CFShow(oldRoute);
+			 }
+			 else 
+			 printf("ERROR GETTING OLD AUDIO ROUTE!\n");
+			 
+			 CFStringRef newRoute;
+			 UInt32 size; size = sizeof(CFStringRef);
+			 OSStatus error = AudioSessionGetProperty(kAudioSessionProperty_AudioRoute, &size, &newRoute);
+			 if (error) printf("ERROR GETTING NEW AUDIO ROUTE! %d\n", error);
+			 else
+			 {
+			 printf("new route:\n");
+			 CFShow(newRoute);
+			 }
+			
+		}	
+		
+	}
 	return;
 	AudioSessionGetPropertySize(kAudioSessionProperty_AudioRoute,&lioDataSize);
 	AudioSessionGetProperty(          kAudioSessionProperty_AudioRoute,

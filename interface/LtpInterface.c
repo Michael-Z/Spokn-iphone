@@ -415,7 +415,7 @@ LtpInterfaceType *	  startLtp(AlertNotificationCallbackP  alertNotiCallbackP,uns
 		#endif
 	#endif	
 	
-		SetAudioTypeLocal((void*)userData,0);
+		SetAudioTypeLocal((void*)userData,3);
 		return ltpInterfaceP;
 	}
 	return NULL;

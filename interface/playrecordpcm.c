@@ -26,9 +26,53 @@
 #include "playrecordpcm.h"
 #include "LtpInterface.h"
 #import <AudioToolbox/AudioToolbox.h>
+int onOrBlueTooth(int onBluetoothB)
+{
+	AudioSessionPropertyID blueToothStatus;
+	UInt32 allowBluetoothInput = onBluetoothB;
+	OSStatus err;
+	/*#if kAudioSessionProperty_OverrideCategoryEnableBluetoothInput
+	 blueTooth = kAudioSessionProperty_OverrideCategoryEnableBluetoothInput;
+	 
+	 #else
+	 */
+	blueToothStatus = 'cblu';
+	
+	//#endif
+	int majorver =0,minor1ver=0,minor2ver=0;
+	GetOsVersion(&majorver,&minor1ver,&minor2ver);
+	if(majorver>=3 && minor1ver>0 )
+	{	
+		err = AudioSessionSetProperty(blueToothStatus, sizeof(allowBluetoothInput), &allowBluetoothInput);
+		return 0;
+		//HeadSetIsOn();
+	}
+	return 1;
+
+
+
+
+}
 int RouteAudio(void *uData,int optionInt)
 {
-
+	switch(optionInt)
+	{
+	
+		case 1://bluetooth
+			SetSpeakerOnOrOffNew(0,0);
+			onOrBlueTooth(1);//off
+			break;
+		case 2: //iphone
+			onOrBlueTooth(0);//off
+			SetSpeakerOnOrOffNew(0,0);
+			break;
+		case 3://speaker
+			SetSpeakerOnOrOffNew(0,1);
+			break;
+	
+	
+	
+	}
 	return 0;
 }
 int SetSpeakerOnOrOffNew(void *uData,Boolean onB)
@@ -176,9 +220,9 @@ void SetAudioSessionPropertyListener( void *uDataP,AudioSessionPropertyListener 
 		uglobalDataP = uDataP;
 	}
 	
-	//AudioSessionAddPropertyListener(    kAudioSessionProperty_AudioRouteChange,
-    //                                inProcglobal,
-       //                             uglobalDataP); 
+	AudioSessionAddPropertyListener(    kAudioSessionProperty_AudioRouteChange,
+                                    inProcglobal,
+                                   uglobalDataP); 
 	//AudioSessionAddPropertyListener(    kAudioSessionProperty_ServerDied,
      //                               inProcglobal,
           //                          uglobalDataP); 
@@ -190,8 +234,6 @@ void MyAudioSessionPropertyListener(
 									AudioSessionPropertyID	inID,
 									UInt32                  inDataSize,
 									const void *            inData);
-int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
-int HeadSetIsOn();
 void SetAudioTypeLocal(void *uData,int type)
 {
 	UInt32 sessionCategory = kAudioSessionCategory_PlayAndRecord;//kAudioSessionCategory_MediaPlayback
@@ -248,29 +290,11 @@ void SetAudioTypeLocal(void *uData,int type)
 	*/
 	
 	AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);		//AudioQueueAddPropertyListener(aqcP->queue,kAudioQueueProperty_IsRunning,AudioQueuePropertyListenerFunction,aqcP);
-//#define _BLUETOOTH_SUPPORT
+#define _BLUETOOTH_SUPPORT
 #ifdef _BLUETOOTH_SUPPORT
 	if(sessionCategory == kAudioSessionCategory_PlayAndRecord || sessionCategory == kAudioSessionCategory_RecordAudio )
 	{
-		AudioSessionPropertyID blueTooth;
-		UInt32 allowBluetoothInput = 1;
-		OSStatus err;
-		/*#if kAudioSessionProperty_OverrideCategoryEnableBluetoothInput
-			blueTooth = kAudioSessionProperty_OverrideCategoryEnableBluetoothInput;
-		
-		#else
-		*/
-			blueTooth = 'cblu';
-			
-		//#endif
-		int majorver =0,minor1ver=0,minor2ver=0;
-		GetOsVersion(&majorver,&minor1ver,&minor2ver);
-		if(majorver>=3 && minor1ver>0 )
-		{	
-			err = AudioSessionSetProperty(blueTooth, sizeof(allowBluetoothInput), &allowBluetoothInput);
-			printf("\n error  %d",err);
-			//HeadSetIsOn();
-		}
+		onOrBlueTooth(1);
 	}
 #endif
 	//SetAudioSessionPropertyListener(0,0)
