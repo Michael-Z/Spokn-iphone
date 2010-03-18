@@ -1686,8 +1686,8 @@
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "1FB04494-E6F4-44A0-83DF-ACDDFD7ADCD6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1FB04494-E6F4-44A0-83DF-ACDDFD7ADCD6";
+				PROVISIONING_PROFILE = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
 			};
 			name = Release;
 		};
@@ -1967,8 +1967,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "Don't Code Sign";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = 4.2;
@@ -1987,8 +1987,8 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Distribution;
@@ -2151,8 +2151,8 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "1FB04494-E6F4-44A0-83DF-ACDDFD7ADCD6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1FB04494-E6F4-44A0-83DF-ACDDFD7ADCD6";
+				PROVISIONING_PROFILE = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Release;

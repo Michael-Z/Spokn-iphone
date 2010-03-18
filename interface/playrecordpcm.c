@@ -219,11 +219,15 @@ void SetAudioSessionPropertyListener( void *uDataP,AudioSessionPropertyListener 
 	{
 		uglobalDataP = uDataP;
 	}
-	
-	AudioSessionAddPropertyListener(    kAudioSessionProperty_AudioRouteChange,
+	int majorver =0,minor1ver=0,minor2ver=0;
+	GetOsVersion(&majorver,&minor1ver,&minor2ver);
+	if(majorver>=3 && minor1ver>0 )
+	{	
+		AudioSessionAddPropertyListener(    kAudioSessionProperty_AudioRouteChange,
                                     inProcglobal,
                                    uglobalDataP); 
-	//AudioSessionAddPropertyListener(    kAudioSessionProperty_ServerDied,
+	}
+		//AudioSessionAddPropertyListener(    kAudioSessionProperty_ServerDied,
      //                               inProcglobal,
           //                          uglobalDataP); 
 	

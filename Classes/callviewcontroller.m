@@ -539,10 +539,12 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	switch(reason)
 	{
 		case 1://only iphone
-			[self hidesourcesrPressed:nil];
 			ownerobject.blueTooth = NO;
+			[self hidesourcesrPressed:nil];
+			
 			break;
 		case 2://blue tooth
+			[speakerButtonP setSelected:NO];
 			ownerobject.blueTooth = YES;
 			break;
 	}
@@ -553,16 +555,19 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 {
 	printf("\n\nblueToothViewAudiobuttonPressed\n\n");
 	RouteAudio(0,1);
+	[speakerButtonP setSelected:NO];
 }
 -(IBAction)blueToothViewiphone:(id)sender
 {
 	printf("blueToothViewiphonebuttonPressed\n\n");
 	RouteAudio(0,2);
+	[speakerButtonP setSelected:NO];
 }
 -(IBAction)blueToothViewspeaker:(id)sender
 {
 	printf("blueToothViewspeakerbuttonPressed\n\n");
 	RouteAudio(0,3);
+	[speakerButtonP setSelected:YES];
 }
 
 
@@ -585,6 +590,10 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		self->hideKeypadButtonP.hidden = YES;
 		self->endCallButtonP.hidden = NO;
 		self->hideSourcesbuttonP.hidden = YES;
+		if(ownerobject.blueTooth)
+		{
+			[speakerButtonP setSelected:NO];
+		}
 	}
 }
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context

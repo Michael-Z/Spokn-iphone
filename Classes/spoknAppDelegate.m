@@ -1063,6 +1063,9 @@ void MyAudioSessionPropertyListener(
 	UInt32                              lioDataSize=0;
 	//char *dataP;
 	NSString *dataP=0;
+	SpoknAppDelegate *spoknDelP;
+	spoknDelP = (SpoknAppDelegate *)inClientData;
+	if(spoknDelP==0) return;
 	if (inID == kAudioSessionProperty_AudioRouteChange)
 	{
 		CFDictionaryRef routeDictionary = (CFDictionaryRef)inData;			
@@ -1070,9 +1073,13 @@ void MyAudioSessionPropertyListener(
 		CFNumberRef reason = (CFNumberRef)CFDictionaryGetValue(routeDictionary, CFSTR(kAudioSession_AudioRouteChangeKey_Reason));
 		SInt32 reasonVal;
 		CFNumberGetValue(reason, kCFNumberSInt32Type, &reasonVal);
+		printf("\n %d",reasonVal);
+			
+		
+		
 		if (reasonVal != kAudioSessionRouteChangeReason_CategoryChange)
 		{
-			CFStringRef oldRoute = (CFStringRef)CFDictionaryGetValue(routeDictionary, CFSTR(kAudioSession_AudioRouteChangeKey_OldRoute));
+			/*CFStringRef oldRoute = (CFStringRef)CFDictionaryGetValue(routeDictionary, CFSTR(kAudioSession_AudioRouteChangeKey_OldRoute));
 			 if (oldRoute)	
 			 {
 			 printf("old route:\n");
@@ -1080,16 +1087,44 @@ void MyAudioSessionPropertyListener(
 			 }
 			 else 
 			 printf("ERROR GETTING OLD AUDIO ROUTE!\n");
-			 
+			 */
 			 CFStringRef newRoute;
 			 UInt32 size; size = sizeof(CFStringRef);
 			 OSStatus error = AudioSessionGetProperty(kAudioSessionProperty_AudioRoute, &size, &newRoute);
-			 if (error) printf("ERROR GETTING NEW AUDIO ROUTE! %d\n", error);
+			if(error==0)
+			{
+				NSString *capStrP;
+				printf("new route:\n");
+				CFShow(newRoute);
+				capStrP = [newRoute uppercaseString];
+				//NSLog(@"connect %@",capStrP);
+				
+				if(capStrP==nil)
+				{	
+					return ;
+				}
+				NSRange range = [capStrP rangeOfString:@"SPEAKER"];
+				if (range.location == NSNotFound ) 
+				{
+					range = [capStrP rangeOfString:@"BT"];//if bluetooth
+					if (range.location == NSNotFound )
+					{
+						[spoknDelP->dialviewP setStatusText: @"nobluetooth" :nil :ROUTE_CHANGE :1];
+
+					}
+					else
+					{	
+						[spoknDelP->dialviewP setStatusText: @"bluetooth" :nil :ROUTE_CHANGE :2];
+					}	
+				}
+			}
+			
+			/*if (error) printf("ERROR GETTING NEW AUDIO ROUTE! %d\n", error);
 			 else
 			 {
 			 printf("new route:\n");
 			 CFShow(newRoute);
-			 }
+			 }*/
 			
 		}	
 		
@@ -1275,6 +1310,33 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	[nsP release];
 }
+#pragma mark PUSH NOTIFICATIONS
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+	
+	NSString *str = [NSString stringWithFormat:@"Device Token=%@",deviceToken];
+    NSLog(str);
+	
+	printf("didRegisterForRemoteNotificationsWithDeviceToken");
+	//77ce8d8f 84ca6d40 41432d02 8d3aa87f bdd15f09 89be830d 473ee136 f1713a93
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {     
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+	
+	[self applicationDidFinishLaunching:application];
+	application.applicationIconBadgeNumber = 0;
+	printf("didFinishLaunchingWithOptions");
+	
+	return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+	printf("didFinishLaunchingWithOptions");
+}
+
 
 #pragma mark STARTING POINT
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    

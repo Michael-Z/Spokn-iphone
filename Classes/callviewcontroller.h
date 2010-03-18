@@ -47,6 +47,7 @@
 	IBOutlet UIButton  *endCallButtonP;
 	IBOutlet UIButton  *hideKeypadButtonP;
 	IBOutlet UIButton  *endCallKeypadButtonP;
+	IBOutlet UIButton  *speakerButtonP;
 	IBOutlet UIView    *topViewP;
 	IBOutlet UIView  *blueToothViewP;
 	IBOutlet UIButton  *hideSourcesbuttonP;
