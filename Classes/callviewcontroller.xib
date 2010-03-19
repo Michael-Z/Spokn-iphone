@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="34"/>
+			<integer value="137"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -754,6 +754,30 @@
 					</object>
 					<int key="connectionID">165</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">bluetoothbuttonP</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="762220067"/>
+					</object>
+					<int key="connectionID">166</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">audiobuttonP</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="378554040"/>
+					</object>
+					<int key="connectionID">167</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">speakerinbluetoothbuttonP</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="32499925"/>
+					</object>
+					<int key="connectionID">168</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -974,7 +998,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CallViewController</string>
 					<string>UIResponder</string>
-					<string>{{409, 353}, {320, 480}}</string>
+					<string>{{641, 352}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1022,7 +1046,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">165</int>
+			<int key="maxID">168</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1065,7 +1089,9 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>audiobuttonP</string>
 							<string>blueToothViewP</string>
+							<string>bluetoothbuttonP</string>
 							<string>bottomViewP</string>
 							<string>callTypeLabelP</string>
 							<string>callnoLabelP</string>
@@ -1076,13 +1102,16 @@
 							<string>parentObjectDelegate</string>
 							<string>showContactCallOnDelegate</string>
 							<string>speakerButtonP</string>
+							<string>speakerinbluetoothbuttonP</string>
 							<string>topViewP</string>
 							<string>viewKeypadP</string>
 							<string>viewMenuP</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
 							<string>UIView</string>
+							<string>UIButton</string>
 							<string>UIView</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -1092,6 +1121,7 @@
 							<string>UIButton</string>
 							<string>id</string>
 							<string>id</string>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIView</string>
 							<string>Keypadview</string>

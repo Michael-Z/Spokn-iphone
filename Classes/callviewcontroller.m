@@ -133,6 +133,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	ownerobject.blueTooth =  blueToothIsOn();
+	if(ownerobject.blueTooth)
+	{
+		selectedModeB = 1;
+		[self setselectedButtonImage:selectedModeB];
+	}
 	blueToothViewP.hidden = YES;
 	self->hideSourcesbuttonP.hidden = YES;
 	blueToothViewP.backgroundColor = [UIColor clearColor];
@@ -544,29 +549,74 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 			
 			break;
 		case 2://blue tooth
+			selectedModeB = 1;
+			[self setselectedButtonImage:selectedModeB];
 			[speakerButtonP setSelected:NO];
 			ownerobject.blueTooth = YES;
 			break;
 	}
 	
 }
+-(void)setSelectedOrUnselectedImage:(UIButton*)selectedButtonP :(UIImage*) imageP
+{
+		
 
+	if(imageP)
+	{
+	
+		[selectedButtonP setImage:imageP forState:UIControlStateNormal];
+		[selectedButtonP setImage:imageP forState:UIControlStateHighlighted];
+		[selectedButtonP setImage:imageP forState:UIControlStateSelected];
+		
+	
+	}
+
+
+}
+-(void)setselectedButtonImage:(int) button
+{
+	
+	[self setSelectedOrUnselectedImage:bluetoothbuttonP :0];
+	[self setSelectedOrUnselectedImage:audiobuttonP :0];
+	[self setSelectedOrUnselectedImage:speakerinbluetoothbuttonP :0];
+	
+	
+	switch(button)
+	{
+		case 1:
+		[self setSelectedOrUnselectedImage:bluetoothbuttonP :0];
+			break;
+		case 2:
+			[self setSelectedOrUnselectedImage:audiobuttonP :0];
+			break;
+		case 3:
+			[self setSelectedOrUnselectedImage:speakerinbluetoothbuttonP :0];
+			
+			break;
+			
+	
+	}
+
+}
 -(IBAction)blueToothViewAudio:(id)sender
 {
 	printf("\n\nblueToothViewAudiobuttonPressed\n\n");
 	RouteAudio(0,1);
+	selectedModeB = 1;
 	[speakerButtonP setSelected:NO];
 }
 -(IBAction)blueToothViewiphone:(id)sender
 {
 	printf("blueToothViewiphonebuttonPressed\n\n");
 	RouteAudio(0,2);
+	selectedModeB = 2;
 	[speakerButtonP setSelected:NO];
 }
 -(IBAction)blueToothViewspeaker:(id)sender
 {
 	printf("blueToothViewspeakerbuttonPressed\n\n");
 	RouteAudio(0,3);
+	selectedModeB = 3;
 	[speakerButtonP setSelected:YES];
 }
 

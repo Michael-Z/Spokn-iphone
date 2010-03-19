@@ -51,6 +51,9 @@
 	IBOutlet UIView    *topViewP;
 	IBOutlet UIView  *blueToothViewP;
 	IBOutlet UIButton  *hideSourcesbuttonP;
+	IBOutlet UIButton  *audiobuttonP;
+	IBOutlet UIButton  *speakerinbluetoothbuttonP;
+	IBOutlet UIButton  *bluetoothbuttonP;
 	
 	SpoknAppDelegate *ownerobject;
 	NSTimer *calltimerP;//this timer for call duration
@@ -66,10 +69,11 @@
 	id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 	//Boolean needTOStartTimerB;
 	id<ShowContactCallOnDelegate> parentObjectDelegate;
-	int sendCallRequestB; 
-	int failedCallB;
-	int endCalledPressed;
-	int firstTimeB;
+	Boolean sendCallRequestB; 
+	Boolean failedCallB;
+	Boolean endCalledPressed;
+	Boolean firstTimeB;
+	Boolean selectedModeB;
 	UIActionSheet *uiActionSheetgP;
 	//IBOutlet UIButton *testP;
 
@@ -93,6 +97,8 @@
 -(IBAction)blueToothViewiphone:(id)sender;
 -(IBAction)blueToothViewspeaker:(id)sender;
 -(void)routeChange:(int)reason;
+-(void)setselectedButtonImage:(int) button;
+-(void)setSelectedOrUnselectedImage:(UIButton*)selectedButtonP :(UIImage*)imageP;
 @property (readwrite,assign) id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 
 @end

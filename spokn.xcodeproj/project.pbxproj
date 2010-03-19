@@ -1967,8 +1967,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = 4.2;
@@ -1987,8 +1987,8 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
+				PROVISIONING_PROFILE = "1B4B2C2B-9942-4B3B-B671-5B6FB049CC9B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1B4B2C2B-9942-4B3B-B671-5B6FB049CC9B";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Distribution;
@@ -1998,7 +1998,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2023,8 +2023,8 @@
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
+				PROVISIONING_PROFILE = "1B4B2C2B-9942-4B3B-B671-5B6FB049CC9B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1B4B2C2B-9942-4B3B-B671-5B6FB049CC9B";
 			};
 			name = Distribution;
 		};

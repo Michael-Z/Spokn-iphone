@@ -136,6 +136,7 @@ typedef struct CallNumberType
 	ABAddressBookRef addressRef;
 	int edgevalue;
 	Boolean blueTooth;
+	NSString *devicePushTokenStrP;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -214,6 +215,7 @@ changed:(BOOL)changed;
 -(int)playUrlPath:(NSString*)pathP;
 -(int) vmsShowRecordOrForwardScreen : (char*)noCharP VMSState:(VMSStateType)state filename:(char*)fileNameCharP duration:(int) maxtime vmail:(struct VMail*) lvmailP;
 -(int) profileResynFromApp;
+-(void)setDeviceInforation:(NSString *)deviceTokenP;
 @end
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);

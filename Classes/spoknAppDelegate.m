@@ -1066,6 +1066,8 @@ void MyAudioSessionPropertyListener(
 	SpoknAppDelegate *spoknDelP;
 	spoknDelP = (SpoknAppDelegate *)inClientData;
 	if(spoknDelP==0) return;
+	
+	printf("\n inid %ld",(long)inID);
 	if (inID == kAudioSessionProperty_AudioRouteChange)
 	{
 		CFDictionaryRef routeDictionary = (CFDictionaryRef)inData;			
@@ -1096,7 +1098,7 @@ void MyAudioSessionPropertyListener(
 				NSString *capStrP;
 				printf("new route:\n");
 				CFShow(newRoute);
-				capStrP = [newRoute uppercaseString];
+				capStrP = [(NSString*)newRoute uppercaseString];
 				//NSLog(@"connect %@",capStrP);
 				
 				if(capStrP==nil)
@@ -1310,19 +1312,54 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	[nsP release];
 }
+-(void)setDeviceInforation:(NSString *)deviceTokenP
+{
+	//UIDevice *device = [UIDevice currentDevice];
+	//NSString *uniqueIdentifier = [device uniqueIdentifier];
+	NSString *versionP;
+	versionP = [[UIDevice currentDevice] systemVersion] ;
+	//float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+	NSString *model = [[UIDevice currentDevice] model];
+	char *osVerP=0;
+	char *osModelP=0;
+	char *uniqueIDCharP=0;
+	osVerP = (char*)[versionP cStringUsingEncoding:NSUTF8StringEncoding];
+	osModelP = (char*)[model cStringUsingEncoding:NSUTF8StringEncoding];
+	if(deviceTokenP)
+	{	
+		uniqueIDCharP = (char*)[deviceTokenP cStringUsingEncoding:NSUTF8StringEncoding];
+	}	
+	//uniqueIDCharP = (char*)[uniqueIdentifier cStringUsingEncoding:NSUTF8StringEncoding];
+	//SetDeviceDetail("spokn","1.0.12","windows desktop",osVerP,osModelP,uniqueIDCharP);
+	//SetDeviceDetail("spokn","1.0.3","Windows mobile",osVerP,osModelP,uniqueIDCharP);
+	if(uniqueIDCharP==0)
+	{
+		uniqueIDCharP="\0";
+	}
+	SetDeviceDetail("Spokn","1.0.0","iphone/ipod",osVerP,osModelP,uniqueIDCharP);
+
+
+
+
+}
 #pragma mark PUSH NOTIFICATIONS
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 	
-	NSString *str = [NSString stringWithFormat:@"Device Token=%@",deviceToken];
-    NSLog(str);
+	NSString *str = [NSString stringWithFormat:@"%@",deviceToken];
+    
+	NSString *newStr;
+	newStr = [str stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" <>"]];
+	NSLog(newStr);
+	[self setDeviceInforation:newStr];
 	
-	printf("didRegisterForRemoteNotificationsWithDeviceToken");
+	//printf("didRegisterForRemoteNotificationsWithDeviceToken");
 	//77ce8d8f 84ca6d40 41432d02 8d3aa87f bdd15f09 89be830d 473ee136 f1713a93
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {     
+	printf("didReceiveRemoteNotification");
 }
-
+/*
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
 	
@@ -1332,15 +1369,22 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	return YES;
 }
-
+*/
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-	printf("didFinishLaunchingWithOptions");
+	printf("didReceiveRemoteNotification");
+	[self profileResynFromApp];//profile Resyn
 }
 
 
 #pragma mark STARTING POINT
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
 	//[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+	
+	
+	application.applicationIconBadgeNumber = 0;
+	
+	
 	[self enableEdge];
     // Override point for customization after application launch
 	//CGRect screenBounds = [ [ UIScreen mainScreen ] bounds ];
@@ -1470,21 +1514,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	UACallBackInit(&uaCallback,ltpInterfacesP->ltpObjectP);
 	uaInit();
-	UIDevice *device = [UIDevice currentDevice];
-	NSString *uniqueIdentifier = [device uniqueIdentifier];
-	NSString *versionP;
-	versionP = [[UIDevice currentDevice] systemVersion] ;
-	//float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-	NSString *model = [[UIDevice currentDevice] model];
-	char *osVerP;
-	char *osModelP;
-	char *uniqueIDCharP;
-	osVerP = (char*)[versionP cStringUsingEncoding:NSUTF8StringEncoding];
-	osModelP = (char*)[model cStringUsingEncoding:NSUTF8StringEncoding];
-	uniqueIDCharP = (char*)[uniqueIdentifier cStringUsingEncoding:NSUTF8StringEncoding];
-	//SetDeviceDetail("spokn","1.0.12","windows desktop",osVerP,osModelP,uniqueIDCharP);
-	//SetDeviceDetail("spokn","1.0.3","Windows mobile",osVerP,osModelP,uniqueIDCharP);
-	//SetDeviceDetail("Spokn","0.1.7","iphone",osVerP,osModelP,uniqueIDCharP);
+	
 	
 //	[versionP release];
 	//[model release];
@@ -1676,6 +1706,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 		
 	}
+	[devicePushTokenStrP release];
+	devicePushTokenStrP = nil;
 	//[super applicationWillTerminate:application];
 	[ltpTimerP stopTimer ];
 	//logOut(ltpInterfacesP);
@@ -2439,7 +2471,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
     NetworkStatus netStatus = [curReach currentReachabilityStatus];
     BOOL connectionRequired=[curReach connectionRequired];
-    NSString* statusString= @"";
+  //  NSString* statusString= @"";
 	/*//only for wifi testing
 	if(netStatus==ReachableViaWiFi)
 	{
@@ -2543,7 +2575,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
     }
     if(connectionRequired)
     {
-        statusString= [NSString stringWithFormat: @"%@, Connection Required %d", statusString,netStatus];
+       // statusString= [NSString stringWithFormat: @"%@, Connection Required %d", statusString,netStatus];
 		SetConnection( ltpInterfacesP,0);
 		
 		alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);

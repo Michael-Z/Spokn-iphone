@@ -226,6 +226,7 @@ void SetAudioSessionPropertyListener( void *uDataP,AudioSessionPropertyListener 
 		AudioSessionAddPropertyListener(    kAudioSessionProperty_AudioRouteChange,
                                     inProcglobal,
                                    uglobalDataP); 
+				
 	}
 		//AudioSessionAddPropertyListener(    kAudioSessionProperty_ServerDied,
      //                               inProcglobal,
