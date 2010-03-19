@@ -1067,7 +1067,7 @@ void MyAudioSessionPropertyListener(
 	spoknDelP = (SpoknAppDelegate *)inClientData;
 	if(spoknDelP==0) return;
 	
-	printf("\n inid %ld",(long)inID);
+	
 	if (inID == kAudioSessionProperty_AudioRouteChange)
 	{
 		CFDictionaryRef routeDictionary = (CFDictionaryRef)inData;			
@@ -1075,7 +1075,6 @@ void MyAudioSessionPropertyListener(
 		CFNumberRef reason = (CFNumberRef)CFDictionaryGetValue(routeDictionary, CFSTR(kAudioSession_AudioRouteChangeKey_Reason));
 		SInt32 reasonVal;
 		CFNumberGetValue(reason, kCFNumberSInt32Type, &reasonVal);
-		printf("\n %d",reasonVal);
 			
 		
 		
@@ -1096,8 +1095,7 @@ void MyAudioSessionPropertyListener(
 			if(error==0)
 			{
 				NSString *capStrP;
-				printf("new route:\n");
-				CFShow(newRoute);
+				//CFShow(newRoute);
 				capStrP = [(NSString*)newRoute uppercaseString];
 				//NSLog(@"connect %@",capStrP);
 				
@@ -1121,12 +1119,7 @@ void MyAudioSessionPropertyListener(
 				}
 			}
 			
-			/*if (error) printf("ERROR GETTING NEW AUDIO ROUTE! %d\n", error);
-			 else
-			 {
-			 printf("new route:\n");
-			 CFShow(newRoute);
-			 }*/
+			
 			
 		}	
 		
@@ -1348,16 +1341,17 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	NSString *str = [NSString stringWithFormat:@"%@",deviceToken];
     
 	NSString *newStr;
-	newStr = [str stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" <>"]];
-	NSLog(newStr);
-	[self setDeviceInforation:newStr];
+	if(str)
+	{	
+		newStr = [str stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" <>"]];
+		[self setDeviceInforation:newStr];
+	}
 	
-	//printf("didRegisterForRemoteNotificationsWithDeviceToken");
 	//77ce8d8f 84ca6d40 41432d02 8d3aa87f bdd15f09 89be830d 473ee136 f1713a93
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {     
-	printf("didReceiveRemoteNotification");
+
 }
 /*
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -1371,7 +1365,6 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-	printf("didReceiveRemoteNotification");
 	[self profileResynFromApp];//profile Resyn
 }
 

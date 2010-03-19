@@ -600,21 +600,20 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 }
 -(IBAction)blueToothViewAudio:(id)sender
 {
-	printf("\n\nblueToothViewAudiobuttonPressed\n\n");
+	
 	RouteAudio(0,1);
 	selectedModeB = 1;
 	[speakerButtonP setSelected:NO];
 }
 -(IBAction)blueToothViewiphone:(id)sender
 {
-	printf("blueToothViewiphonebuttonPressed\n\n");
+	
 	RouteAudio(0,2);
 	selectedModeB = 2;
 	[speakerButtonP setSelected:NO];
 }
 -(IBAction)blueToothViewspeaker:(id)sender
 {
-	printf("blueToothViewspeakerbuttonPressed\n\n");
 	RouteAudio(0,3);
 	selectedModeB = 3;
 	[speakerButtonP setSelected:YES];
