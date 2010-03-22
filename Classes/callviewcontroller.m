@@ -484,7 +484,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 //	SetSpeakerOnOrOffNew(0,enable);
 //	[butP setSelected:enable];
 	
-	if(ownerobject.blueTooth==false)
+/*	if(ownerobject.blueTooth==false)
 	{	
 		butP = (UIButton*)sender;
 	
@@ -493,7 +493,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		SetSpeakerOnOrOffNew(0,enable);
 		[butP setSelected:enable];
 	}	
-	else
+	else*/
 	{
 		//[butP setSelected:NO];
 		if(self->blueToothViewP.hidden==YES)
@@ -604,6 +604,23 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	RouteAudio(0,1);
 	selectedModeB = 1;
 	[speakerButtonP setSelected:NO];
+	bluetoothbuttonP.selected = YES;
+	speakerinbluetoothbuttonP.selected = NO;
+	audiobuttonP.selected = NO;
+/*	
+	if(bluetoothbuttonP.selected)
+	{	
+		UIImage *buttonBackground;
+		UIImage *buttonBackgroundPressed;
+	
+		buttonBackground = [UIImage imageNamed:@"240x52-buttons-bluetoothaudio-speaker-normal.png"];
+		buttonBackgroundPressed = [UIImage imageNamed:@"240x52-buttons-bluetoothaudio-speaker-pressed.png"];
+		[CustomButton setImages:bluetoothbuttonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
+		[buttonBackground release];
+		[buttonBackgroundPressed release];
+		
+	}
+ */
 }
 -(IBAction)blueToothViewiphone:(id)sender
 {
@@ -611,12 +628,30 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	RouteAudio(0,2);
 	selectedModeB = 2;
 	[speakerButtonP setSelected:NO];
+	bluetoothbuttonP.selected = NO;
+	speakerinbluetoothbuttonP.selected = NO;
+	audiobuttonP.selected = YES;
+	
+/*	
+	UIImage *buttonBackground;
+	UIImage *buttonBackgroundPressed;
+	
+	buttonBackground = [UIImage imageNamed:@"240x52-buttons-bluetoothaudio-normal.png"];
+	buttonBackgroundPressed = [UIImage imageNamed:@"240x52-buttons-bluetoothaudio-normal.png"];
+	[CustomButton setImages:bluetoothbuttonP image:buttonBackground imagePressed:buttonBackgroundPressed change:NO];
+	[buttonBackground release];
+	[buttonBackgroundPressed release];
+*/	
+	
 }
 -(IBAction)blueToothViewspeaker:(id)sender
 {
 	RouteAudio(0,3);
 	selectedModeB = 3;
 	[speakerButtonP setSelected:YES];
+	bluetoothbuttonP.selected = NO;
+	speakerinbluetoothbuttonP.selected = YES;
+	audiobuttonP.selected = NO;
 }
 
 

@@ -431,7 +431,7 @@
 							<object class="IBUIImageView" id="381082173">
 								<reference key="NSNextResponder" ref="624887266"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{1, 11}, {248, 186}}</string>
+								<string key="NSFrame">{{1, 11}, {248, 193}}</string>
 								<reference key="NSSuperview" ref="624887266"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -439,66 +439,75 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">square_new.png</string>
+									<string key="NSResourceName">button-bg.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="762220067">
 								<reference key="NSNextResponder" ref="624887266"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{10, 35}, {231, 37}}</string>
+								<string key="NSFrame">{{6, 23}, {240, 52}}</string>
 								<reference key="NSSuperview" ref="624887266"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="842541695"/>
-								<string key="IBUINormalTitle">Bluetooth Audio</string>
 								<reference key="IBUIHighlightedTitleColor" ref="817511073"/>
 								<reference key="IBUINormalTitleColor" ref="817511073"/>
 								<object class="NSColor" key="IBUINormalTitleShadowColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
 								</object>
-								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="1072843403">
+								<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">button_selected.png</string>
+									<string key="NSResourceName">240x52-buttons-bluetoothaudio-speaker-normal.png</string>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="705736487">
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">button.png</string>
+									<string key="NSResourceName">240x52-buttons-bluetoothaudio-normal.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="378554040">
 								<reference key="NSNextResponder" ref="624887266"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{10, 86}, {231, 37}}</string>
+								<string key="NSFrame">{{5, 80}, {240, 52}}</string>
 								<reference key="NSSuperview" ref="624887266"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="842541695"/>
-								<string key="IBUINormalTitle">iPhone</string>
 								<reference key="IBUINormalTitleColor" ref="817511073"/>
 								<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
-								<reference key="IBUIHighlightedBackgroundImage" ref="1072843403"/>
-								<reference key="IBUINormalBackgroundImage" ref="705736487"/>
+								<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">240x52-buttons-iphone-speaker-normal.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">240x52-buttons-iphone-normal.png</string>
+								</object>
 							</object>
 							<object class="IBUIButton" id="32499925">
 								<reference key="NSNextResponder" ref="624887266"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{10, 137}, {231, 37}}</string>
+								<string key="NSFrame">{{5, 138}, {240, 52}}</string>
 								<reference key="NSSuperview" ref="624887266"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="842541695"/>
-								<string key="IBUINormalTitle">Speaker</string>
 								<reference key="IBUINormalTitleColor" ref="817511073"/>
 								<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
-								<reference key="IBUISelectedBackgroundImage" ref="1072843403"/>
-								<reference key="IBUINormalBackgroundImage" ref="705736487"/>
+								<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">240x52-buttons-speaker-speaker-normal.png</string>
+								</object>
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">240x52-buttons-speaker-normal.png</string>
+								</object>
 							</object>
 						</object>
 						<string key="NSFrame">{{31, 130}, {249, 204}}</string>
@@ -517,15 +526,18 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="842541695"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUIHighlightedTitle">Hide Sources</string>
-						<string key="IBUISelectedTitle">Hide Sources</string>
-						<string key="IBUINormalTitle">Hide Sources</string>
 						<reference key="IBUIHighlightedTitleColor" ref="601979502"/>
 						<reference key="IBUISelectedTitleColor" ref="817511073"/>
 						<reference key="IBUINormalTitleColor" ref="817511073"/>
 						<reference key="IBUINormalTitleShadowColor" ref="1063651778"/>
-						<reference key="IBUIHighlightedBackgroundImage" ref="1072843403"/>
-						<reference key="IBUINormalBackgroundImage" ref="705736487"/>
+						<object class="NSCustomResource" key="IBUISelectedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">132x52-hide-sources-pressed.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">132x52-hide-sources-normal.png</string>
+						</object>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -998,7 +1010,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CallViewController</string>
 					<string>UIResponder</string>
-					<string>{{641, 352}, {320, 480}}</string>
+					<string>{{539, 352}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
