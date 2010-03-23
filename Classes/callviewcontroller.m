@@ -207,6 +207,7 @@
 	
 	[[self navigationController] setNavigationBarHidden:YES animated:NO];
 	endCalledPressed = NO;
+	[self setSpeakerButtonImage];
 	
 }
 
@@ -484,7 +485,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 //	SetSpeakerOnOrOffNew(0,enable);
 //	[butP setSelected:enable];
 	
-/*	if(ownerobject.blueTooth==false)
+	if(ownerobject.blueTooth==false)
 	{	
 		butP = (UIButton*)sender;
 	
@@ -493,7 +494,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		SetSpeakerOnOrOffNew(0,enable);
 		[butP setSelected:enable];
 	}	
-	else*/
+	else
 	{
 		//[butP setSelected:NO];
 		if(self->blueToothViewP.hidden==YES)
@@ -545,17 +546,24 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	{
 		case 1://only iphone
 			ownerobject.blueTooth = NO;
+			bluetoothbuttonP.selected = NO;
+			audiobuttonP.selected = YES;
+			speakerinbluetoothbuttonP.selected = NO;
 			[self hidesourcesrPressed:nil];
+			
 			
 			break;
 		case 2://blue tooth
 			selectedModeB = 1;
 			[self setselectedButtonImage:selectedModeB];
 			[speakerButtonP setSelected:NO];
+			bluetoothbuttonP.selected = YES;
+			audiobuttonP.selected = NO;
+			speakerinbluetoothbuttonP.selected = NO;
 			ownerobject.blueTooth = YES;
 			break;
 	}
-	
+	[self setSpeakerButtonImage];
 }
 -(void)setSelectedOrUnselectedImage:(UIButton*)selectedButtonP :(UIImage*) imageP
 {
@@ -654,7 +662,37 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	audiobuttonP.selected = NO;
 }
 
+-(void)setSpeakerButtonImage
+{
+	UIImage *buttonImage;
+	
+	
+	
 
+	if(ownerobject.blueTooth)
+	{
+		buttonImage = [UIImage imageNamed:@"audio-source.png"];
+		[self setSelectedOrUnselectedImage:speakerButtonP :buttonImage];
+		bluetoothbuttonP.selected = YES;
+		audiobuttonP.selected = NO;
+		speakerinbluetoothbuttonP.selected = NO;
+		
+		
+	}
+	else
+	{
+		buttonImage = [UIImage imageNamed:@"speaker-wit-text.png"];
+		[self setSelectedOrUnselectedImage:speakerButtonP :buttonImage];
+		bluetoothbuttonP.selected = NO;
+		audiobuttonP.selected = YES;
+		speakerinbluetoothbuttonP.selected = NO;
+		
+
+	
+	}
+
+
+}
 -(IBAction)hidesourcesrPressed:(id)sender
 {
 	if(self->blueToothViewP.hidden==NO)

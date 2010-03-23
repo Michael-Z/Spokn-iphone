@@ -98,6 +98,7 @@
 -(IBAction)blueToothViewspeaker:(id)sender;
 -(void)routeChange:(int)reason;
 -(void)setselectedButtonImage:(int) button;
+-(void)setSpeakerButtonImage;
 -(void)setSelectedOrUnselectedImage:(UIButton*)selectedButtonP :(UIImage*)imageP;
 @property (readwrite,assign) id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 
