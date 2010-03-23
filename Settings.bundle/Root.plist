@@ -20,12 +20,6 @@
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>Please note that your carrier may charge based on data usage if you enable this.</string>
-		</dict>
-		<dict>
-			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
 			<string>Allow calls over 3G</string>
@@ -42,13 +36,15 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Spokn for iPhone is free software licensed under the GNU GPL and uses the following libraries -     PJSIP, Speex, GSM, MD5, ezXML</string>
+			<string>Please note that your carrier may charge based on data usage if you enable this.</string>
 		</dict>
 		<dict>
 			<key>Type</key>
-			<string>PSGroupSpecifier</string>
+			<string>PSChildPaneSpecifier</string>
 			<key>Title</key>
-			<string>The full license is available at http://spokn.com/help/licenses/gplv2</string>
+			<string>Legal</string>
+			<key>File</key>
+			<string>child</string>
 		</dict>
 	</array>
 </dict>

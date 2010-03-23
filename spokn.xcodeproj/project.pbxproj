@@ -59,6 +59,7 @@
 		32A01F2311258FA700DC9D85 /* speaker-wit-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F1A11258FA700DC9D85 /* speaker-wit-text.png */; };
 		32A01F601125902400DC9D85 /* blue-keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F5E1125902400DC9D85 /* blue-keypad.png */; };
 		32A01F611125902400DC9D85 /* grey-keypad.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F5F1125902400DC9D85 /* grey-keypad.png */; };
+		32C15BDE1158A9C200689F56 /* child.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32C15BDD1158A9C200689F56 /* child.plist */; };
 		32DF1FCD112EC4D00052C56D /* 132x52-answer-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FC5112EC4D00052C56D /* 132x52-answer-normal.png */; };
 		32DF1FCE112EC4D00052C56D /* 132x52-answer-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FC6112EC4D00052C56D /* 132x52-answer-pressed.png */; };
 		32DF1FCF112EC4D00052C56D /* 132x52-decline-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FC7112EC4D00052C56D /* 132x52-decline-normal.png */; };
@@ -460,6 +461,7 @@
 		32A01F5E1125902400DC9D85 /* blue-keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue-keypad.png"; path = "rsc/keypad/blue-keypad.png"; sourceTree = SOURCE_ROOT; };
 		32A01F5F1125902400DC9D85 /* grey-keypad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "grey-keypad.png"; path = "rsc/keypad/grey-keypad.png"; sourceTree = SOURCE_ROOT; };
 		32C02D441104406600766AB6 /* alertmessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alertmessages.h; sourceTree = "<group>"; };
+		32C15BDD1158A9C200689F56 /* child.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = child.plist; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* spokn_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spokn_Prefix.pch; sourceTree = "<group>"; };
 		32DF1FC5112EC4D00052C56D /* 132x52-answer-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-answer-normal.png"; path = "rsc/keypad/132x52-answer-normal.png"; sourceTree = SOURCE_ROOT; };
 		32DF1FC6112EC4D00052C56D /* 132x52-answer-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-answer-pressed.png"; path = "rsc/keypad/132x52-answer-pressed.png"; sourceTree = SOURCE_ROOT; };
@@ -908,6 +910,7 @@
 				8BAD7A721121C07600ABBCC9 /* docs */,
 				8B1AE7221120625600A957EA /* spoknbuttonicon */,
 				322FEC6B10EB22AA0086D15B /* Settings.bundle */,
+				32C15BDD1158A9C200689F56 /* child.plist */,
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
 				8B6739E2101209E900849952 /* spokn-Info.plist */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -1434,6 +1437,7 @@
 				328850EA1157571B00FADAC1 /* button-bg.png in Resources */,
 				328850EB1157571B00FADAC1 /* iphone-text.png in Resources */,
 				328850EC1157571B00FADAC1 /* speaket-text.png in Resources */,
+				32C15BDE1158A9C200689F56 /* child.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
