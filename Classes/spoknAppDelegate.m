@@ -460,7 +460,7 @@ void getProp()
 			[dialviewP setStatusText: @"ringing" :nil :ALERT_CONNECTED :0];
 			callOnB = true;
 			//getProp();
-			//openSoundInterface(ltpInterfacesP,1);
+			openSoundInterface(ltpInterfacesP,1);
 		#ifdef __IPHONE_3_0
 					[UIDevice currentDevice].proximityMonitoringEnabled = YES;
 		#else
@@ -479,7 +479,7 @@ void getProp()
 			if(lineID == 0)
 			{	
 				[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 ];
-				//closeSoundInterface(ltpInterfacesP);
+				closeSoundInterface(ltpInterfacesP);
 				SetAudioTypeLocal(0,3);
 				SetSpeakerOnOrOff(0,true);
 				#ifdef __IPHONE_3_0
@@ -1495,19 +1495,27 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	#ifndef _OWN_THREAD_
 		ltpTimerP = [[LtpTimer alloc] init];
 	#endif	
+		self->sipOnB = false;
 	if(ltpTimerP)
 	{	
-		ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(alertNotiFication,(unsigned long)self);
+		ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->sipOnB,alertNotiFication,(unsigned long)self);
 	}
 	else
 	{
-		ltpInterfacesP = startLtp(alertNotiFication,(unsigned long)self);
+		ltpInterfacesP = startLtp(self->sipOnB,alertNotiFication,(unsigned long)self);
 	}
-#ifdef _LTP_
-	setLtpServer(ltpInterfacesP,"64.49.236.88");
-#else
-	setLtpServer(ltpInterfacesP,"www.spokn.com");
-#endif	
+	#ifdef _LTP_
+		if(self->sipOnB)
+		{	
+			setLtpServer(ltpInterfacesP,"64.49.236.88");
+		}
+		else
+		{
+			setLtpServer(ltpInterfacesP,"www.spokn.com");
+		}
+	#else
+		setLtpServer(ltpInterfacesP,"www.spokn.com");
+	#endif	
 	
 	//setLtpServer(ltpInterfacesP,"64.49.244.225");
 

@@ -24,9 +24,11 @@
 
 #ifndef _LTP_AND_SIP_H_
 	#define _LTP_AND_SIP_H_
-	//#define _LTP_
+	#define _LTP_
 	#define _SPEEX_CODEC_
+#include "ltpmobile.h"
 	int spokn_pj_init(char *errorstring);
-
-	void setMute(int enableB);
+void setMute(struct ltpStack *ps,int enableB);
+void setHold(struct ltpStack *ps,int enableB);
+	//void setMute(int enableB);
 #endif

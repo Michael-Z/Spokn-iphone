@@ -141,7 +141,8 @@
 		8B1AEA1D11206A6500A957EA /* vms_out_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AEA1111206A6500A957EA /* vms_out_Active.png */; };
 		8B290898112A62F6003B5A05 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B290897112A62F6003B5A05 /* Entitlements.plist */; };
 		8B290899112A62F6003B5A05 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B290897112A62F6003B5A05 /* Entitlements.plist */; };
-		8B2C3D8C1096CB54003BB164 /* ltpandsip.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C3D8B1096CB54003BB164 /* ltpandsip.c */; };
+		8B33709E115A6A4C0059A105 /* sipwrappernew.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B33709D115A6A4C0059A105 /* sipwrappernew.c */; };
+		8B3370A1115A6ABD0059A105 /* ltpmobilenew.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B3370A0115A6ABD0059A105 /* ltpmobilenew.c */; };
 		8B39FFC8107C910200073950 /* vmshowviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B39FFC6107C910200073950 /* vmshowviewcontroller.m */; };
 		8B39FFC9107C910200073950 /* vmshowviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */; };
 		8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B413C4D1075ED71005A400F /* spoknviewcontroller.m */; };
@@ -180,6 +181,12 @@
 		8B865760112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */; };
 		8B865761112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */; };
 		8B8BB5C11159EDFF00A66C75 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8BB5C01159EDFF00A66C75 /* Default.png */; };
+		8B8BB8A4115A4CC700A66C75 /* ltpandsip.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BB897115A4CC700A66C75 /* ltpandsip.c */; };
+		8B8BB8A5115A4CC700A66C75 /* ltpdump.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BB899115A4CC700A66C75 /* ltpdump.c */; };
+		8B8BB8A6115A4CC700A66C75 /* LtpInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BB89B115A4CC700A66C75 /* LtpInterface.c */; };
+		8B8BB8A7115A4CC700A66C75 /* netlayer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BB89D115A4CC700A66C75 /* netlayer.c */; };
+		8B8BB8A8115A4CC700A66C75 /* playrecordpcm.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BB89F115A4CC700A66C75 /* playrecordpcm.c */; };
+		8B8BB8A9115A4CC700A66C75 /* vmsplayrecord.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BB8A1115A4CC700A66C75 /* vmsplayrecord.c */; };
 		8B8C9CBB1137A11C00120CF5 /* spoknlogo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8C9CBA1137A11C00120CF5 /* spoknlogo57.png */; };
 		8B8C9CBC1137A11C00120CF5 /* spoknlogo57.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8C9CBA1137A11C00120CF5 /* spoknlogo57.png */; };
 		8B9302811011EDFA004BDA41 /* contactDetailsviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */; };
@@ -263,11 +270,6 @@
 		8B964A5410CBE3BC00CB00DB /* DECODE.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BAAB29D1042DA1800F3EE73 /* DECODE.c */; };
 		8B964A5510CBE3BC00CB00DB /* customcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCA77341043C3E90018419C /* customcell.m */; };
 		8B964A5610CBE3BC00CB00DB /* overlayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */; };
-		8B964A5710CBE3BC00CB00DB /* vmsplayrecord.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */; };
-		8B964A5810CBE3BC00CB00DB /* playrecordpcm.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF56104BC54700703BE8 /* playrecordpcm.c */; };
-		8B964A5910CBE3BC00CB00DB /* netlayer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF58104BC54700703BE8 /* netlayer.c */; };
-		8B964A5A10CBE3BC00CB00DB /* LtpInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF5A104BC54700703BE8 /* LtpInterface.c */; };
-		8B964A5B10CBE3BC00CB00DB /* ltpdump.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF5C104BC54700703BE8 /* ltpdump.c */; };
 		8B964A5C10CBE3BC00CB00DB /* keypadview.m in Sources */ = {isa = PBXBuildFile; fileRef = F249AAB6106F6A340024AE84 /* keypadview.m */; };
 		8B964A5D10CBE3BC00CB00DB /* callviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B47D83010720BA400EEEF61 /* callviewcontroller.m */; };
 		8B964A5E10CBE3BC00CB00DB /* spoknviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B413C4D1075ED71005A400F /* spoknviewcontroller.m */; };
@@ -277,7 +279,6 @@
 		8B964A6210CBE3BC00CB00DB /* custombutton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB06B11083020A00468EC7 /* custombutton.m */; };
 		8B964A6310CBE3BC00CB00DB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3E2EF1084D100008CB625 /* Reachability.m */; };
 		8B964A6410CBE3BC00CB00DB /* testingview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B16790B108F36A3004D18C0 /* testingview.m */; };
-		8B964A6510CBE3BC00CB00DB /* ltpandsip.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B2C3D8B1096CB54003BB164 /* ltpandsip.c */; };
 		8B964A6610CBE3BC00CB00DB /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A61F10998423003BF3EA /* Contact.m */; };
 		8B964A6710CBE3BC00CB00DB /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62110998423003BF3EA /* ContactCell.m */; };
 		8B964A6810CBE3BC00CB00DB /* ContactCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62310998423003BF3EA /* ContactCellView.m */; };
@@ -388,11 +389,6 @@
 		8BE47B09112BB54D00421DFE /* 280x52-end-call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */; };
 		8BE47B0A112BB54D00421DFE /* 280x52-end-call-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B06112BB54D00421DFE /* 280x52-end-call-normal.png */; };
 		8BE47B0B112BB54D00421DFE /* 280x52-end-call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */; };
-		8BE6DF5D104BC54700703BE8 /* vmsplayrecord.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */; };
-		8BE6DF5E104BC54700703BE8 /* playrecordpcm.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF56104BC54700703BE8 /* playrecordpcm.c */; };
-		8BE6DF5F104BC54700703BE8 /* netlayer.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF58104BC54700703BE8 /* netlayer.c */; };
-		8BE6DF60104BC54700703BE8 /* LtpInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF5A104BC54700703BE8 /* LtpInterface.c */; };
-		8BE6DF61104BC54700703BE8 /* ltpdump.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BE6DF5C104BC54700703BE8 /* ltpdump.c */; };
 		8BF729B4103562B400C124B0 /* spoknalert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF729B3103562B400C124B0 /* spoknalert.m */; };
 		F249AAB7106F6A340024AE84 /* keypadview.m in Sources */ = {isa = PBXBuildFile; fileRef = F249AAB6106F6A340024AE84 /* keypadview.m */; };
 /* End PBXBuildFile section */
@@ -506,8 +502,8 @@
 		8B1AEA1011206A6500A957EA /* vmail_out_newHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmail_out_newHigh.png; sourceTree = "<group>"; };
 		8B1AEA1111206A6500A957EA /* vms_out_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vms_out_Active.png; sourceTree = "<group>"; };
 		8B290897112A62F6003B5A05 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		8B2C3D8A1096CB54003BB164 /* ltpandsip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpandsip.h; path = interface/ltpandsip.h; sourceTree = "<group>"; };
-		8B2C3D8B1096CB54003BB164 /* ltpandsip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpandsip.c; path = interface/ltpandsip.c; sourceTree = "<group>"; };
+		8B33709D115A6A4C0059A105 /* sipwrappernew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sipwrappernew.c; path = interface/sipwrappernew.c; sourceTree = "<group>"; };
+		8B3370A0115A6ABD0059A105 /* ltpmobilenew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpmobilenew.c; path = ../lib/common/src/ltpmobilenew.c; sourceTree = SOURCE_ROOT; };
 		8B39FFC5107C910200073950 /* vmshowviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmshowviewcontroller.h; sourceTree = "<group>"; };
 		8B39FFC6107C910200073950 /* vmshowviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = vmshowviewcontroller.m; sourceTree = "<group>"; };
 		8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = vmshowviewcontroller.xib; sourceTree = "<group>"; };
@@ -531,7 +527,6 @@
 		8B471AC21158EE2A002880EF /* keypad-wit-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypad-wit-text.png"; path = "rsc/bluettoth_icon/keypad-wit-text.png"; sourceTree = "<group>"; };
 		8B47D82F10720BA400EEEF61 /* callviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callviewcontroller.h; sourceTree = "<group>"; };
 		8B47D83010720BA400EEEF61 /* callviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callviewcontroller.m; sourceTree = "<group>"; };
-		8B594D571096E41000A6659A /* sipwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sipwrapper.h; path = ../lib/common/include/sipwrapper.h; sourceTree = SOURCE_ROOT; };
 		8B59A61E10998423003BF3EA /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		8B59A61F10998423003BF3EA /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		8B59A62010998423003BF3EA /* ContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCell.h; sourceTree = "<group>"; };
@@ -559,6 +554,19 @@
 		8B81C4AD114260230032C0EE /* spokn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spokn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B8BB5C01159EDFF00A66C75 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = rsc/spoknbuttonicon/Default.png; sourceTree = "<group>"; };
+		8B8BB897115A4CC700A66C75 /* ltpandsip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpandsip.c; path = interface/ltpandsip.c; sourceTree = "<group>"; };
+		8B8BB898115A4CC700A66C75 /* ltpandsip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpandsip.h; path = interface/ltpandsip.h; sourceTree = "<group>"; };
+		8B8BB899115A4CC700A66C75 /* ltpdump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpdump.c; path = interface/ltpdump.c; sourceTree = "<group>"; };
+		8B8BB89A115A4CC700A66C75 /* ltpdump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpdump.h; path = interface/ltpdump.h; sourceTree = "<group>"; };
+		8B8BB89B115A4CC700A66C75 /* LtpInterface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LtpInterface.c; path = interface/LtpInterface.c; sourceTree = "<group>"; };
+		8B8BB89C115A4CC700A66C75 /* LtpInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LtpInterface.h; path = interface/LtpInterface.h; sourceTree = "<group>"; };
+		8B8BB89D115A4CC700A66C75 /* netlayer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = netlayer.c; path = interface/netlayer.c; sourceTree = "<group>"; };
+		8B8BB89E115A4CC700A66C75 /* netlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = netlayer.h; path = interface/netlayer.h; sourceTree = "<group>"; };
+		8B8BB89F115A4CC700A66C75 /* playrecordpcm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = playrecordpcm.c; path = interface/playrecordpcm.c; sourceTree = "<group>"; };
+		8B8BB8A0115A4CC700A66C75 /* playrecordpcm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = playrecordpcm.h; path = interface/playrecordpcm.h; sourceTree = "<group>"; };
+		8B8BB8A1115A4CC700A66C75 /* vmsplayrecord.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vmsplayrecord.c; path = interface/vmsplayrecord.c; sourceTree = "<group>"; };
+		8B8BB8A2115A4CC700A66C75 /* vmsplayrecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vmsplayrecord.h; path = interface/vmsplayrecord.h; sourceTree = "<group>"; };
+		8B8BB8A3115A4CC700A66C75 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = windows.h; path = interface/windows.h; sourceTree = "<group>"; };
 		8B8C9CBA1137A11C00120CF5 /* spoknlogo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spoknlogo57.png; path = rsc/spoknlogo57.png; sourceTree = "<group>"; };
 		8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDetailsviewcontroller.h; sourceTree = "<group>"; };
 		8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDetailsviewcontroller.m; sourceTree = "<group>"; };
@@ -673,17 +681,6 @@
 		8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8BE47B06112BB54D00421DFE /* 280x52-end-call-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "280x52-end-call-normal.png"; path = "rsc/280x52-end-call-normal.png"; sourceTree = SOURCE_ROOT; };
 		8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "280x52-end-call-pressed.png"; path = "rsc/280x52-end-call-pressed.png"; sourceTree = SOURCE_ROOT; };
-		8BE6DF52104BC54700703BE8 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = windows.h; path = interface/windows.h; sourceTree = "<group>"; };
-		8BE6DF53104BC54700703BE8 /* vmsplayrecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vmsplayrecord.h; path = interface/vmsplayrecord.h; sourceTree = "<group>"; };
-		8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vmsplayrecord.c; path = interface/vmsplayrecord.c; sourceTree = "<group>"; };
-		8BE6DF55104BC54700703BE8 /* playrecordpcm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = playrecordpcm.h; path = interface/playrecordpcm.h; sourceTree = "<group>"; };
-		8BE6DF56104BC54700703BE8 /* playrecordpcm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = playrecordpcm.c; path = interface/playrecordpcm.c; sourceTree = "<group>"; };
-		8BE6DF57104BC54700703BE8 /* netlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = netlayer.h; path = interface/netlayer.h; sourceTree = "<group>"; };
-		8BE6DF58104BC54700703BE8 /* netlayer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = netlayer.c; path = interface/netlayer.c; sourceTree = "<group>"; };
-		8BE6DF59104BC54700703BE8 /* LtpInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LtpInterface.h; path = interface/LtpInterface.h; sourceTree = "<group>"; };
-		8BE6DF5A104BC54700703BE8 /* LtpInterface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = LtpInterface.c; path = interface/LtpInterface.c; sourceTree = "<group>"; };
-		8BE6DF5B104BC54700703BE8 /* ltpdump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpdump.h; path = interface/ltpdump.h; sourceTree = "<group>"; };
-		8BE6DF5C104BC54700703BE8 /* ltpdump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpdump.c; path = interface/ltpdump.c; sourceTree = "<group>"; };
 		8BF729B2103562B400C124B0 /* spoknalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknalert.h; sourceTree = "<group>"; };
 		8BF729B3103562B400C124B0 /* spoknalert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknalert.m; sourceTree = "<group>"; };
 		F249AAB5106F6A340024AE84 /* keypadview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keypadview.h; sourceTree = "<group>"; };
@@ -898,7 +895,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8B8EC6B2101211570036D419 /* interface */,
+				8B8BB896115A4C7D00A66C75 /* ltpInterface */,
 				8B9302A21011EEBE004BDA41 /* common */,
 				32CA4F630368D1EE00C91783 /* spokn_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -1142,25 +1139,26 @@
 			name = siplib;
 			sourceTree = "<group>";
 		};
-		8B8EC6B2101211570036D419 /* interface */ = {
+		8B8BB896115A4C7D00A66C75 /* ltpInterface */ = {
 			isa = PBXGroup;
 			children = (
-				8B594D571096E41000A6659A /* sipwrapper.h */,
-				8BE6DF52104BC54700703BE8 /* windows.h */,
-				8BE6DF53104BC54700703BE8 /* vmsplayrecord.h */,
-				8BE6DF54104BC54700703BE8 /* vmsplayrecord.c */,
-				8BE6DF55104BC54700703BE8 /* playrecordpcm.h */,
-				8BE6DF56104BC54700703BE8 /* playrecordpcm.c */,
-				8BE6DF57104BC54700703BE8 /* netlayer.h */,
-				8BE6DF58104BC54700703BE8 /* netlayer.c */,
-				8BE6DF59104BC54700703BE8 /* LtpInterface.h */,
-				8BE6DF5A104BC54700703BE8 /* LtpInterface.c */,
-				8B2C3D8B1096CB54003BB164 /* ltpandsip.c */,
-				8B2C3D8A1096CB54003BB164 /* ltpandsip.h */,
-				8BE6DF5B104BC54700703BE8 /* ltpdump.h */,
-				8BE6DF5C104BC54700703BE8 /* ltpdump.c */,
+				8B3370A0115A6ABD0059A105 /* ltpmobilenew.c */,
+				8B33709D115A6A4C0059A105 /* sipwrappernew.c */,
+				8B8BB897115A4CC700A66C75 /* ltpandsip.c */,
+				8B8BB898115A4CC700A66C75 /* ltpandsip.h */,
+				8B8BB899115A4CC700A66C75 /* ltpdump.c */,
+				8B8BB89A115A4CC700A66C75 /* ltpdump.h */,
+				8B8BB89B115A4CC700A66C75 /* LtpInterface.c */,
+				8B8BB89C115A4CC700A66C75 /* LtpInterface.h */,
+				8B8BB89D115A4CC700A66C75 /* netlayer.c */,
+				8B8BB89E115A4CC700A66C75 /* netlayer.h */,
+				8B8BB89F115A4CC700A66C75 /* playrecordpcm.c */,
+				8B8BB8A0115A4CC700A66C75 /* playrecordpcm.h */,
+				8B8BB8A1115A4CC700A66C75 /* vmsplayrecord.c */,
+				8B8BB8A2115A4CC700A66C75 /* vmsplayrecord.h */,
+				8B8BB8A3115A4CC700A66C75 /* windows.h */,
 			);
-			name = interface;
+			name = ltpInterface;
 			sourceTree = "<group>";
 		};
 		8B9302A21011EEBE004BDA41 /* common */ = {
@@ -1590,11 +1588,6 @@
 				8BAAB29E1042DA1800F3EE73 /* DECODE.c in Sources */,
 				8BCA77351043C3E90018419C /* customcell.m in Sources */,
 				8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */,
-				8BE6DF5D104BC54700703BE8 /* vmsplayrecord.c in Sources */,
-				8BE6DF5E104BC54700703BE8 /* playrecordpcm.c in Sources */,
-				8BE6DF5F104BC54700703BE8 /* netlayer.c in Sources */,
-				8BE6DF60104BC54700703BE8 /* LtpInterface.c in Sources */,
-				8BE6DF61104BC54700703BE8 /* ltpdump.c in Sources */,
 				F249AAB7106F6A340024AE84 /* keypadview.m in Sources */,
 				8B47D83210720BA400EEEF61 /* callviewcontroller.m in Sources */,
 				8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */,
@@ -1604,7 +1597,6 @@
 				8BCB06B21083020A00468EC7 /* custombutton.m in Sources */,
 				8BE3E2F11084D100008CB625 /* Reachability.m in Sources */,
 				8B16790E108F36A3004D18C0 /* testingview.m in Sources */,
-				8B2C3D8C1096CB54003BB164 /* ltpandsip.c in Sources */,
 				8B59A62C10998423003BF3EA /* Contact.m in Sources */,
 				8B59A62D10998423003BF3EA /* ContactCell.m in Sources */,
 				8B59A62E10998423003BF3EA /* ContactCellView.m in Sources */,
@@ -1615,6 +1607,14 @@
 				8BA11023111C117800433364 /* spokncalladd.m in Sources */,
 				8B957295111C52BF00761EDB /* TTSearchlightLabel.m in Sources */,
 				8B61B2171132A8A7003D6164 /* contactlookup.m in Sources */,
+				8B8BB8A4115A4CC700A66C75 /* ltpandsip.c in Sources */,
+				8B8BB8A5115A4CC700A66C75 /* ltpdump.c in Sources */,
+				8B8BB8A6115A4CC700A66C75 /* LtpInterface.c in Sources */,
+				8B8BB8A7115A4CC700A66C75 /* netlayer.c in Sources */,
+				8B8BB8A8115A4CC700A66C75 /* playrecordpcm.c in Sources */,
+				8B8BB8A9115A4CC700A66C75 /* vmsplayrecord.c in Sources */,
+				8B33709E115A6A4C0059A105 /* sipwrappernew.c in Sources */,
+				8B3370A1115A6ABD0059A105 /* ltpmobilenew.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1656,11 +1656,6 @@
 				8B964A5410CBE3BC00CB00DB /* DECODE.c in Sources */,
 				8B964A5510CBE3BC00CB00DB /* customcell.m in Sources */,
 				8B964A5610CBE3BC00CB00DB /* overlayviewcontroller.m in Sources */,
-				8B964A5710CBE3BC00CB00DB /* vmsplayrecord.c in Sources */,
-				8B964A5810CBE3BC00CB00DB /* playrecordpcm.c in Sources */,
-				8B964A5910CBE3BC00CB00DB /* netlayer.c in Sources */,
-				8B964A5A10CBE3BC00CB00DB /* LtpInterface.c in Sources */,
-				8B964A5B10CBE3BC00CB00DB /* ltpdump.c in Sources */,
 				8B964A5C10CBE3BC00CB00DB /* keypadview.m in Sources */,
 				8B964A5D10CBE3BC00CB00DB /* callviewcontroller.m in Sources */,
 				8B964A5E10CBE3BC00CB00DB /* spoknviewcontroller.m in Sources */,
@@ -1670,7 +1665,6 @@
 				8B964A6210CBE3BC00CB00DB /* custombutton.m in Sources */,
 				8B964A6310CBE3BC00CB00DB /* Reachability.m in Sources */,
 				8B964A6410CBE3BC00CB00DB /* testingview.m in Sources */,
-				8B964A6510CBE3BC00CB00DB /* ltpandsip.c in Sources */,
 				8B964A6610CBE3BC00CB00DB /* Contact.m in Sources */,
 				8B964A6710CBE3BC00CB00DB /* ContactCell.m in Sources */,
 				8B964A6810CBE3BC00CB00DB /* ContactCellView.m in Sources */,

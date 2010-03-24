@@ -81,7 +81,7 @@ typedef struct IncommingCallType
 	void  setLtpPassword(LtpInterfaceType *ltpInterfaceP,char *passwordCharP);
 	char* getLtpPassword();
     void  setLtpServer(LtpInterfaceType *ltpInterfaceP,char*serverCharP);
-	LtpInterfaceType *	  startLtp(AlertNotificationCallbackP  alertNotiCallbackP,unsigned long userData);	
+LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNotiCallbackP,unsigned long userData);
 	int DoPolling(LtpInterfaceType *localLtpInterfaceObjectP);
 	int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP);
 	int   endLtp(LtpInterfaceType *ltpInterfaceP);
@@ -110,5 +110,6 @@ typedef struct IncommingCallType
 	int getAddressUid(LtpInterfaceType *ltpInterfaceP);
 	int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB);
 	int setMuteInterface(LtpInterfaceType *ltpInterfaceP,int muteB);
+
 
 #endif

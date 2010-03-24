@@ -137,6 +137,7 @@ typedef struct CallNumberType
 	int edgevalue;
 	Boolean blueTooth;
 	NSString *devicePushTokenStrP;
+	Boolean sipOnB;
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;

@@ -459,6 +459,7 @@ void AudioInputCallback(
 {
 	
 	mutexLockInterface();
+	printf("\n audio record");
 	AudioInputCallbackLocal(inUserData,inAQ,inBuffer,inStartTime,inNumberPacketDescriptions,inPacketDescs);
 	mutexUnLockInterface();
 }
@@ -683,6 +684,8 @@ void AQBufferCallback(
 					  AudioQueueRef inQ,
 					  AudioQueueBufferRef outQB)
 {
+	
+	printf("\n audio record");
 	//	mutexLockInterface();
 	AQBufferCallbackLocal(in,inQ,outQB);
 	//mutexUnLockInterface();
@@ -745,8 +748,6 @@ void AQBufferCallbackLocal(
 		outQB->mAudioDataByteSize = 1200 ;
 		memset(coreAudioBuffer,0,1200);
 		AudioQueueEnqueueBuffer(inQ, outQB, 0, NULL);
-		
-		
 		return;
 	}
 	outQB->mAudioDataByteSize = aqcP->pcmBuffArray[aqcP->frontCount].bufferLength ;

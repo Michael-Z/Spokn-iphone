@@ -54,7 +54,7 @@ void readSocketData(LtpInterfaceType *localLtpInterfaceObjectP)
 	{
 		mutexLockInterface();
 		#ifdef _LTP_
-		
+			
 			ltpOnPacket(localLtpInterfaceObjectP->ltpObjectP, (char *)localLtpInterfaceObjectP->ltpReceType.bufferUChar, length, localLtpInterfaceObjectP->ltpReceType.address, localLtpInterfaceObjectP->ltpReceType.port);
 		
 		#endif
@@ -200,6 +200,10 @@ int openSoundInterface(void *udata,int isFullDuplex)
 {
 	LtpInterfaceType *ltpInterfaceP;
 	ltpInterfaceP = (LtpInterfaceType *)udata;
+	if(ltpInterfaceP->ltpObjectP->sipOnB)
+	{
+		return 0;
+	}
 
 	DeInitAudio( ltpInterfaceP->playbackP,false);
 	DeInitAudio( ltpInterfaceP->recordP,false);
@@ -234,7 +238,10 @@ void closeSoundInterface(void *udata)
 {
 	LtpInterfaceType *ltpInterfaceP;
 	ltpInterfaceP = (LtpInterfaceType *)udata;
-
+	if(ltpInterfaceP->ltpObjectP->sipOnB)
+	{
+		return 0;
+	}
 	StopAudio(ltpInterfaceP->recordP,false);
 	
 	StopAudio(ltpInterfaceP->playbackP,false);
@@ -363,10 +370,11 @@ void *PollThread(void *PollThreadP)
 	return NULL;
 	
 }
-LtpInterfaceType *	  startLtp(AlertNotificationCallbackP  alertNotiCallbackP,unsigned long userData)
+LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNotiCallbackP,unsigned long userData)
 {
 	LtpCallBackType localLtpCallBackType;
 	LtpInterfaceType *ltpInterfaceP;
+	int er = 0;
 	ltpInterfaceP = malloc(sizeof(LtpInterfaceType));
 	memset(ltpInterfaceP,0,sizeof(LtpInterfaceType));
 	ltpInterfaceP->socketID = -1;
@@ -375,12 +383,16 @@ LtpInterfaceType *	  startLtp(AlertNotificationCallbackP  alertNotiCallbackP,uns
 	
 	ltpInterfaceP->userData = userData;
 	ltpInterfaceP->alertNotifyP =  alertNotiCallbackP;
-	if(restartSocket(&ltpInterfaceP->socketID)==0)
+	if(sipOnB==false)
+	{
+		er = restartSocket(&ltpInterfaceP->socketID);
+	}
+	if(er ==0)
 	{	
 	#ifndef SUPPORT_SPEEX
-		ltpInterfaceP->ltpObjectP = ltpInit(2, LTP_CODEC_GSM, 4);
+		ltpInterfaceP->ltpObjectP = ltpInitNew(sipOnB,2, LTP_CODEC_GSM, 4);
 	#else		
-		ltpInterfaceP->ltpObjectP = ltpInit(2, LTP_CODEC_SPEEX, 4);
+		ltpInterfaceP->ltpObjectP = ltpInitNew(sipOnB,2, LTP_CODEC_SPEEX, 4);
 	#endif
 		if(ltpInterfaceP->ltpObjectP==0)
 		{
@@ -407,12 +419,15 @@ LtpInterfaceType *	  startLtp(AlertNotificationCallbackP  alertNotiCallbackP,uns
 		
 		#endif
 	#ifdef _LTP_	
-		pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-		pthread_mutex_init(&mutex, &attr);
-		ltpInterfaceP->pthreadstopB = false;
-		#ifdef _OWN_THREAD_
-			pthread_create(&ltpInterfaceP->pthObj, 0,PollThread,ltpInterfaceP);
-		#endif
+		if(sipOnB==false)
+		{	
+			pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+			pthread_mutex_init(&mutex, &attr);
+			ltpInterfaceP->pthreadstopB = false;
+			#ifdef _OWN_THREAD_
+				pthread_create(&ltpInterfaceP->pthObj, 0,PollThread,ltpInterfaceP);
+			#endif
+		}	
 	#endif	
 	
 		SetAudioTypeLocal((void*)userData,3);
@@ -426,17 +441,23 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 	DeInitAudio( ltpInterfaceP->recordP,false);
 	ltpInterfaceP->playbackP = 0;
 	ltpInterfaceP->recordP = 0;
-	#ifdef _LTP_		
-		#ifdef _OWN_THREAD_
+	#ifdef _LTP_	
 	
-		ltpInterfaceP->pthreadstopB = true;
-		while(ltpInterfaceP->pthreadstopB)
+		if(ltpInterfaceP->ltpObjectP->sipOnB==false)
 		{
-			sleep(1);
-		}
-		//pthread_cancel(ltpInterfaceP->pthObj);
-		//pthread_exit(ltpInterfaceP->pthObj);
-		ltpInterfaceP->pthObj = 0;
+			
+		
+			#ifdef _OWN_THREAD_
+	
+			ltpInterfaceP->pthreadstopB = true;
+			while(ltpInterfaceP->pthreadstopB)
+			{
+				sleep(1);
+			}
+			//pthread_cancel(ltpInterfaceP->pthObj);
+			//pthread_exit(ltpInterfaceP->pthObj);
+			ltpInterfaceP->pthObj = 0;
+		}	
 		#endif
 	#endif
 	if(terminateThread()==0)
@@ -466,21 +487,26 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 	{	
 		char errorstr[50];
 		
-		#ifdef _LTP_
-		restartSocket(&ltpInterfaceP->socketID);
-		#else
-		if(ltpInterfaceP->pjsipStartB==false)
+		
+		if(ltpInterfaceP->ltpObjectP->sipOnB==false)
 		{	
+			restartSocket(&ltpInterfaceP->socketID);
+		}
+		else
+		{	
+			if(ltpInterfaceP->pjsipStartB==false)
+			{	
 			
-			if (!spokn_pj_init(errorstr)){
+				if (!sip_spokn_pj_init(errorstr)){
 				
-				return 1;
+					return 1;
 			
-			}
+				}
 			//ltpInterfaceP->pjsipStartB==true;
+			}	
 		}	
 		
-		#endif
+		
 		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
 		ltpInterfaceP->alertNotifyP(START_LOGIN,0,0,ltpInterfaceP->userData,0);
 	}
@@ -612,6 +638,6 @@ int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB)
 }
 int setMuteInterface(LtpInterfaceType *ltpInterfaceP,int muteB)
 {
-	 setMute(muteB);
+	 setMute(ltpInterfaceP->ltpObjectP,muteB);
 	return 0;
 }

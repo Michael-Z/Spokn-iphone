@@ -23,10 +23,11 @@
  */
 
 #include "ltpandsip.h"
+#include "ltpmobile.h"
 #ifdef _LTP_
-#include "ltpmobile.c"
+//#include "ltpmobile.c"
 #else
-#include "sipwrapper.c"
+//#include "sipwrapper.c"
 #endif
 #ifdef _CALLBACKLTP_
 LtpCallBackPtr gltpCallBackP;
