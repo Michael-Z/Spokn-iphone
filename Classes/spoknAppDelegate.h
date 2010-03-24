@@ -135,6 +135,7 @@ typedef struct CallNumberType
 	Contactlookup *intiallookupP;
 	ABAddressBookRef addressRef;
 	int edgevalue;
+	int onoffSip;
 	Boolean blueTooth;
 	NSString *devicePushTokenStrP;
 	@public
@@ -192,6 +193,7 @@ changed:(BOOL)changed;
 
 -(int)showContactScreen:(id) navObject returnnumber:(SelectedContctType *)lselectedContactP  result:(int *) resultP;
 -(void) enableEdge ;
+-(void) enableSip;
 -(int) vmsForward:(char*)numberP :(char*)fileNameCharP;
 - (void) updateReachabilityStatus: (Reachability*) curReach;
 -(void) startCheckNetwork;
