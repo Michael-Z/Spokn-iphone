@@ -427,7 +427,7 @@
 							<object class="IBUIImageView" id="381082173">
 								<reference key="NSNextResponder" ref="624887266"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{270, 199}</string>
+								<string key="NSFrameSize">{282, 204}</string>
 								<reference key="NSSuperview" ref="624887266"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -441,18 +441,24 @@
 							<object class="IBUIButton" id="762220067">
 								<reference key="NSNextResponder" ref="624887266"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{15, 15}, {240, 52}}</string>
+								<string key="NSFrame">{{21, 12}, {240, 52}}</string>
 								<reference key="NSSuperview" ref="624887266"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="842541695"/>
+								<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
+								<bool key="IBUIAdjustsImageWhenDisabled">NO</bool>
 								<reference key="IBUIHighlightedTitleColor" ref="817511073"/>
 								<reference key="IBUINormalTitleColor" ref="817511073"/>
 								<object class="NSColor" key="IBUINormalTitleShadowColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
+								</object>
+								<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">240x52-buttons-bluetoothaudio-speaker-pressed.png</string>
 								</object>
 								<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
 									<string key="NSClassName">NSImage</string>
@@ -466,7 +472,7 @@
 							<object class="IBUIButton" id="378554040">
 								<reference key="NSNextResponder" ref="624887266"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{15, 74}, {240, 52}}</string>
+								<string key="NSFrame">{{21, 72}, {240, 52}}</string>
 								<reference key="NSSuperview" ref="624887266"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -487,7 +493,7 @@
 							<object class="IBUIButton" id="32499925">
 								<reference key="NSNextResponder" ref="624887266"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{15, 133}, {240, 52}}</string>
+								<string key="NSFrame">{{21, 132}, {240, 52}}</string>
 								<reference key="NSSuperview" ref="624887266"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -506,7 +512,7 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrame">{{25, 133}, {270, 199}}</string>
+						<string key="NSFrame">{{19, 130}, {282, 204}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="IBUIBackgroundColor" ref="817511073"/>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -786,6 +792,33 @@
 					</object>
 					<int key="connectionID">168</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">blueToothViewspeaker:</string>
+						<reference key="source" ref="32499925"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">169</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">blueToothViewiphone:</string>
+						<reference key="source" ref="378554040"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">170</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">blueToothViewAudio:</string>
+						<reference key="source" ref="762220067"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">171</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1006,7 +1039,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CallViewController</string>
 					<string>UIResponder</string>
-					<string>{{757, 353}, {320, 480}}</string>
+					<string>{{522, 351}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1054,7 +1087,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">168</int>
+			<int key="maxID">171</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -248,6 +248,7 @@ void SetAudioTypeLocal(void *uData,int type)
 			//sessionCategory = kAudioSessionCategory_MediaPlayback;
 			sessionCategory = kAudioSessionCategory_PlayAndRecord;
 			AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
+			onOrBlueTooth(1);
 			if(HeadSetIsOn()==0)
 			{
 				SetSpeakerOnOrOffNew(0,1);
@@ -256,6 +257,7 @@ void SetAudioTypeLocal(void *uData,int type)
 			{
 				SetSpeakerOnOrOffNew(0,0);
 			}
+			
 			return;
 			break;
 		case 2:// record

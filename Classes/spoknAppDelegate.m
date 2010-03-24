@@ -1110,11 +1110,20 @@ void MyAudioSessionPropertyListener(
 					if (range.location == NSNotFound )
 					{
 						[spoknDelP->dialviewP setStatusText: @"nobluetooth" :nil :ROUTE_CHANGE :1];
+						if(spoknDelP->callOnB==false)
+						{
+							range = [capStrP rangeOfString:@"HEADSET"];//if bluetooth
+							if (range.location == NSNotFound )
+							{		
+								SetSpeakerOnOrOffNew(0,1);
+							}
+						}
 
 					}
 					else
 					{	
 						[spoknDelP->dialviewP setStatusText: @"bluetooth" :nil :ROUTE_CHANGE :2];
+						
 					}	
 				}
 			}
@@ -1335,6 +1344,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 
 }
+#ifdef _PUSH_NOTIFICATION_
 #pragma mark PUSH NOTIFICATIONS
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 	
@@ -1373,7 +1383,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
 	//[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-	
+#else
+	- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+			
+#endif	
 	
 	application.applicationIconBadgeNumber = 0;
 	
