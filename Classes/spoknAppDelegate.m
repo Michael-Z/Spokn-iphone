@@ -95,6 +95,19 @@
 		self->edgevalue = 1;
 	}
 }
+-(void) enableSip
+{
+	NSString *toogleValue;
+	toogleValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"route_prefrence"];
+	if(toogleValue)
+	{	
+		self->onoffSip = ![toogleValue intValue];//this value are reverse
+	}
+	else
+	{
+		self->onoffSip = 1;
+	}
+}
 +(BOOL) emailValidate : (NSString *)emailid
 {
 	NSString *localPart;
