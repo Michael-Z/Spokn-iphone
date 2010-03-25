@@ -373,11 +373,11 @@
 	butP = (UIButton*)sender;
 	
 	enable = !butP.selected;
-	#ifndef _LTP_
-	setMuteInterface(ownerobject.ltpInterfacesP,enable);
-	#endif
-	[butP setSelected:enable];
 	
+	if(setMuteInterface(ownerobject.ltpInterfacesP,enable)==0)
+	{	
+		[butP setSelected:enable];
+	}
 	
 }
 
@@ -422,10 +422,11 @@
 	butP = (UIButton*)sender;
 	
 	enable = !butP.selected;
-#ifndef _LTP_
-	setHoldInterface(ownerobject.ltpInterfacesP, enable);
-#endif
-	[butP setSelected:enable];
+
+	if(setHoldInterface(ownerobject.ltpInterfacesP, enable)==0)
+	{	
+		[butP setSelected:enable];
+	}
 }
 /*
  - (void)setMute:(BOOL)enable
@@ -618,8 +619,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		imagePressed = [UIImage imageNamed:@"240x52-buttons-bluetoothaudio-speaker-pressed.png"];
 		
 		[bluetoothbuttonP setBackgroundImage:imagePressed forState:UIControlStateNormal];	
-		printf("hilighted YES");
-	}
+		}
 	else
 	{
 		imagePressed = [UIImage imageNamed:@"240x52-buttons-bluetoothaudio-normal.png"];
@@ -628,7 +628,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		
 		imagePressed = [UIImage imageNamed:@"240x52-buttons-bluetoothaudio-pressed.png"];
 		[bluetoothbuttonP setBackgroundImage:imagePressed forState:UIControlStateHighlighted];		
-		printf("hilighted YES");
+		
 		
 	}
 	if(audiobuttonP.selected==YES)

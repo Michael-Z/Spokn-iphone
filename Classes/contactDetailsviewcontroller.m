@@ -31,6 +31,7 @@
 #import  "AddeditcellController.h"
 #import "vmailviewcontroller.h"
 #include "alertmessages.h"
+#import "GEventTracker.h"
 #define MAX_ROW_HIGHT 42
 //self.navigationItem.leftBarButtonItem.enabled = YES;
 @implementation ContactDetailsViewController
@@ -652,6 +653,10 @@
 		{	
 			if(  strlen(addressDataP->title)&&(  strlen(addressDataP->mobile) ||  strlen(addressDataP->business)|| strlen(addressDataP->home)||  strlen(addressDataP->email)||  strlen(addressDataP->other) ||  strlen(addressDataP->spoknid)) )
 			{										 
+				#ifdef _ANALYST_
+					[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"ADD CONTACT" label:@"ADD CONTACT"];
+				#endif
+				
 				addContact(addressDataP->title,addressDataP->mobile,addressDataP->home,addressDataP->business,addressDataP->other,addressDataP->email,addressDataP->spoknid);
 			}
 			else

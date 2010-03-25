@@ -32,7 +32,7 @@
 #import "callviewcontroller.h"
 #import <AudioToolbox/AudioToolbox.h>
 #include "alertmessages.h"
-
+#import "GEventTracker.h"
 @implementation DialviewController
 const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'};
 //static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -432,8 +432,14 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	//if(buttonPressedB)
 	//	return;
 	
+	
+	
 	if(onLineB)
 	{	
+		#ifdef _ANALYST_
+			[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"CALL" label:@"OUT-CALL"];
+		#endif
+		
 		char *numbercharP;
 		numbercharP = (char*)[[numberlebelP text] cStringUsingEncoding:NSUTF8StringEncoding];
 		if(numbercharP==NULL || strlen(numbercharP)==0)
@@ -497,7 +503,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 													 otherButtonTitles: _OK_, nil
 								  ];
 			[ lalert show ];
-			
+		
 		}
 		//[self dismissKeyboard:numberFieldP];
 
@@ -506,7 +512,9 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 }
 -(IBAction)vmsShow:(id)sender
 {
-	
+#ifdef _ANALYST_
+	[[GEventTracker sharedInstance] trackEvent:@"VMS" action:@"INITIATED" label:@"DIALPAD"];
+#endif
 	//if(buttonPressedB)
 		//return;
 	//if(onLineB)
@@ -746,6 +754,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				case LOGIN_STATUS_OFFLINE:
 					if(alert==nil)
 					{	
+
 						alert = [ [ UIAlertView alloc ] initWithTitle: _SERVER_UNREACHABLE_ 
 															  message: [ NSString stringWithString:_SERVER_UNREACHABLE_MESSAGE_ ]
 															 delegate: self
@@ -809,7 +818,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 													cancelButtonTitle: nil
 													otherButtonTitles: _OK_, nil
 								 ];
-						
+
 						alert.tag=self->subStatus;
 						
 						//[alert addButtonWithTitle:@"Cancel"];

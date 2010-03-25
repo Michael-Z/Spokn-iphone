@@ -353,6 +353,19 @@ int PlayAudio(void *uData)
 	
 	
 }
+int pauseAudio(void *uData)
+{
+	if(uData==NULL)
+		return 1 ;
+	AQCallbackStruct *aqcP;
+	int err;
+	UInt32		isRunning;
+	aqcP = (AQCallbackStruct*)uData;
+	AudioQueuePause(aqcP->queue);
+	return 0;
+	
+
+}
 int StopAudio(void *uData,Boolean inImmediateB)
 {
 	if(uData==NULL)
@@ -459,7 +472,7 @@ void AudioInputCallback(
 {
 	
 	mutexLockInterface();
-	printf("\n audio record");
+	
 	AudioInputCallbackLocal(inUserData,inAQ,inBuffer,inStartTime,inNumberPacketDescriptions,inPacketDescs);
 	mutexUnLockInterface();
 }
@@ -550,7 +563,7 @@ int CreateSoundThread(int OutB,AQCallbackStruct *aqcP,Boolean sampleDataB,int sa
 								 AudioInputCallback,
 								 aqcP,
 								 NULL,
-								 kCFRunLoopCommonModes,
+								 kCFRunLoopDefaultMode,
 								 0,
 								 &aqcP->queue);
 		
@@ -685,7 +698,7 @@ void AQBufferCallback(
 					  AudioQueueBufferRef outQB)
 {
 	
-	printf("\n audio record");
+	
 	//	mutexLockInterface();
 	AQBufferCallbackLocal(in,inQ,outQB);
 	//mutexUnLockInterface();

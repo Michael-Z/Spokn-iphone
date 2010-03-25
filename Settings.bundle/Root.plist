@@ -22,15 +22,41 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>LTP/SIP</string>
+			<string>Send analytics data</string>
 			<key>Key</key>
-			<string>route_prefrence</string>
+			<string>analyst_prefrence</string>
 			<key>DefaultValue</key>
 			<false/>
 			<key>TrueValue</key>
 			<false/>
 			<key>FalseValue</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>If you are having problems connecting over SIP, use LTP.</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Enable LTP</string>
+			<key>Key</key>
+			<string>route_prefrence</string>
+			<key>DefaultValue</key>
+			<false/>
+			<key>TrueValue</key>
+			<true/>
+			<key>FalseValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Please note that your carrier may charge based on data usage if you enable calls over 3G.</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -50,7 +76,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Please note that your carrier may charge based on data usage if you enable calls over 3G.</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>Type</key>

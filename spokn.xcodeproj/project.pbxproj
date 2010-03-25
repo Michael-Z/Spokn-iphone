@@ -33,11 +33,6 @@
 		3286A5451133DA8D000221A1 /* 270x45-play-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 3286A5371133DA8D000221A1 /* 270x45-play-normal.png */; };
 		3286A5461133DA8D000221A1 /* 270x45-play-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3286A5381133DA8D000221A1 /* 270x45-play-pressed.png */; };
 		328795B311299DB60026B3D0 /* pic3.png in Resources */ = {isa = PBXBuildFile; fileRef = 328795B211299DB60026B3D0 /* pic3.png */; };
-		328850E81157571B00FADAC1 /* audio-source.png in Resources */ = {isa = PBXBuildFile; fileRef = 328850D81157571B00FADAC1 /* audio-source.png */; };
-		328850E91157571B00FADAC1 /* bluetooth-audio-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 328850D91157571B00FADAC1 /* bluetooth-audio-text.png */; };
-		328850EA1157571B00FADAC1 /* button-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 328850DA1157571B00FADAC1 /* button-bg.png */; };
-		328850EB1157571B00FADAC1 /* iphone-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 328850DB1157571B00FADAC1 /* iphone-text.png */; };
-		328850EC1157571B00FADAC1 /* speaket-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 328850DC1157571B00FADAC1 /* speaket-text.png */; };
 		32A01F1B11258FA700DC9D85 /* 3_delete_50_30_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F1211258FA700DC9D85 /* 3_delete_50_30_normal.png */; };
 		32A01F1C11258FA700DC9D85 /* 3_delete_50_30_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F1311258FA700DC9D85 /* 3_delete_50_30_pressed.png */; };
 		32A01F1D11258FA700DC9D85 /* add-cal-wit-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A01F1411258FA700DC9D85 /* add-cal-wit-text.png */; };
@@ -145,21 +140,6 @@
 		8B39FFC9107C910200073950 /* vmshowviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */; };
 		8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B413C4D1075ED71005A400F /* spoknviewcontroller.m */; };
 		8B413C501075ED71005A400F /* spoknviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */; };
-		8B471A851158EA41002880EF /* 132x52-hide-sources-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A771158EA41002880EF /* 132x52-hide-sources-normal.png */; };
-		8B471A861158EA41002880EF /* 132x52-hide-sources-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A781158EA41002880EF /* 132x52-hide-sources-pressed.png */; };
-		8B471A871158EA41002880EF /* 240x52-buttons-bluetoothaudio-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A791158EA41002880EF /* 240x52-buttons-bluetoothaudio-normal.png */; };
-		8B471A881158EA41002880EF /* 240x52-buttons-bluetoothaudio-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A7A1158EA41002880EF /* 240x52-buttons-bluetoothaudio-pressed.png */; };
-		8B471A891158EA41002880EF /* 240x52-buttons-bluetoothaudio-speaker-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A7B1158EA41002880EF /* 240x52-buttons-bluetoothaudio-speaker-normal.png */; };
-		8B471A8A1158EA41002880EF /* 240x52-buttons-bluetoothaudio-speaker-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A7C1158EA41002880EF /* 240x52-buttons-bluetoothaudio-speaker-pressed.png */; };
-		8B471A8B1158EA41002880EF /* 240x52-buttons-iphone-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A7D1158EA41002880EF /* 240x52-buttons-iphone-normal.png */; };
-		8B471A8C1158EA41002880EF /* 240x52-buttons-iphone-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A7E1158EA41002880EF /* 240x52-buttons-iphone-pressed.png */; };
-		8B471A8D1158EA41002880EF /* 240x52-buttons-iphone-speaker-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A7F1158EA41002880EF /* 240x52-buttons-iphone-speaker-normal.png */; };
-		8B471A8E1158EA41002880EF /* 240x52-buttons-iphone-speaker-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A801158EA41002880EF /* 240x52-buttons-iphone-speaker-pressed.png */; };
-		8B471A8F1158EA41002880EF /* 240x52-buttons-speaker-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A811158EA41002880EF /* 240x52-buttons-speaker-normal.png */; };
-		8B471A901158EA41002880EF /* 240x52-buttons-speaker-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A821158EA41002880EF /* 240x52-buttons-speaker-pressed.png */; };
-		8B471A911158EA41002880EF /* 240x52-buttons-speaker-speaker-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A831158EA41002880EF /* 240x52-buttons-speaker-speaker-normal.png */; };
-		8B471A921158EA41002880EF /* 240x52-buttons-speaker-speaker-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471A841158EA41002880EF /* 240x52-buttons-speaker-speaker-pressed.png */; };
-		8B471AC31158EE2A002880EF /* keypad-wit-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B471AC21158EE2A002880EF /* keypad-wit-text.png */; };
 		8B47D83210720BA400EEEF61 /* callviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B47D83010720BA400EEEF61 /* callviewcontroller.m */; };
 		8B59A62C10998423003BF3EA /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A61F10998423003BF3EA /* Contact.m */; };
 		8B59A62D10998423003BF3EA /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62110998423003BF3EA /* ContactCell.m */; };
@@ -172,6 +152,26 @@
 		8B61B2181132A8A7003D6164 /* contactlookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B61B2161132A8A7003D6164 /* contactlookup.m */; };
 		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
 		8B72CA1211412FA5002C7E70 /* ringtone.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8B72CA1111412FA5002C7E70 /* ringtone.wav */; };
+		8B788A15115B485900B9D5E7 /* GEventTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B788A11115B485900B9D5E7 /* GEventTracker.m */; };
+		8B788A16115B485900B9D5E7 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B788A14115B485900B9D5E7 /* libGoogleAnalytics.a */; };
+		8B788A18115B48A700B9D5E7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B788A17115B48A700B9D5E7 /* CFNetwork.framework */; };
+		8B788A1C115B49C200B9D5E7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B788A1B115B49C200B9D5E7 /* libsqlite3.dylib */; };
+		8B788C73115B87C400B9D5E7 /* 132x52-hide-sources-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C65115B87C400B9D5E7 /* 132x52-hide-sources-normal.png */; };
+		8B788C74115B87C400B9D5E7 /* 132x52-hide-sources-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C66115B87C400B9D5E7 /* 132x52-hide-sources-pressed.png */; };
+		8B788C75115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C67115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-normal.png */; };
+		8B788C76115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C68115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-pressed.png */; };
+		8B788C77115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-speaker-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C69115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-speaker-normal.png */; };
+		8B788C78115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-speaker-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C6A115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-speaker-pressed.png */; };
+		8B788C79115B87C400B9D5E7 /* 240x52-buttons-iphone-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C6B115B87C400B9D5E7 /* 240x52-buttons-iphone-normal.png */; };
+		8B788C7A115B87C400B9D5E7 /* 240x52-buttons-iphone-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C6C115B87C400B9D5E7 /* 240x52-buttons-iphone-pressed.png */; };
+		8B788C7B115B87C400B9D5E7 /* 240x52-buttons-iphone-speaker-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C6D115B87C400B9D5E7 /* 240x52-buttons-iphone-speaker-normal.png */; };
+		8B788C7C115B87C400B9D5E7 /* 240x52-buttons-iphone-speaker-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C6E115B87C400B9D5E7 /* 240x52-buttons-iphone-speaker-pressed.png */; };
+		8B788C7D115B87C400B9D5E7 /* 240x52-buttons-speaker-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C6F115B87C400B9D5E7 /* 240x52-buttons-speaker-normal.png */; };
+		8B788C7E115B87C400B9D5E7 /* 240x52-buttons-speaker-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C70115B87C400B9D5E7 /* 240x52-buttons-speaker-pressed.png */; };
+		8B788C7F115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C71115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-normal.png */; };
+		8B788C80115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C72115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-pressed.png */; };
+		8B788C93115B896500B9D5E7 /* keypad-wit-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C92115B896500B9D5E7 /* keypad-wit-text.png */; };
+		8B788D48115B95BF00B9D5E7 /* audio-source.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788D47115B95BF00B9D5E7 /* audio-source.png */; };
 		8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */; };
 		8B81B3F910317A2900A18DA1 /* addressbookcontact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B81B3F810317A2900A18DA1 /* addressbookcontact.m */; };
 		8B81B4AD10318AC300A18DA1 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */; };
@@ -431,11 +431,6 @@
 		3286A5371133DA8D000221A1 /* 270x45-play-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "270x45-play-normal.png"; path = "rsc/keypad/270x45-play-normal.png"; sourceTree = SOURCE_ROOT; };
 		3286A5381133DA8D000221A1 /* 270x45-play-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "270x45-play-pressed.png"; path = "rsc/keypad/270x45-play-pressed.png"; sourceTree = SOURCE_ROOT; };
 		328795B211299DB60026B3D0 /* pic3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pic3.png; path = rsc/pic3.png; sourceTree = SOURCE_ROOT; };
-		328850D81157571B00FADAC1 /* audio-source.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "audio-source.png"; path = "rsc/bluettoth_icon/audio-source.png"; sourceTree = "<group>"; };
-		328850D91157571B00FADAC1 /* bluetooth-audio-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bluetooth-audio-text.png"; path = "rsc/bluettoth_icon/bluetooth-audio-text.png"; sourceTree = "<group>"; };
-		328850DA1157571B00FADAC1 /* button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-bg.png"; path = "rsc/bluettoth_icon/button-bg.png"; sourceTree = "<group>"; };
-		328850DB1157571B00FADAC1 /* iphone-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iphone-text.png"; path = "rsc/bluettoth_icon/iphone-text.png"; sourceTree = "<group>"; };
-		328850DC1157571B00FADAC1 /* speaket-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "speaket-text.png"; path = "rsc/bluettoth_icon/speaket-text.png"; sourceTree = "<group>"; };
 		32A01F1211258FA700DC9D85 /* 3_delete_50_30_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3_delete_50_30_normal.png; path = rsc/3_delete_50_30_normal.png; sourceTree = SOURCE_ROOT; };
 		32A01F1311258FA700DC9D85 /* 3_delete_50_30_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3_delete_50_30_pressed.png; path = rsc/3_delete_50_30_pressed.png; sourceTree = SOURCE_ROOT; };
 		32A01F1411258FA700DC9D85 /* add-cal-wit-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add-cal-wit-text.png"; path = "rsc/add-cal-wit-text.png"; sourceTree = SOURCE_ROOT; };
@@ -507,21 +502,6 @@
 		8B413C4C1075ED71005A400F /* spoknviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknviewcontroller.h; sourceTree = "<group>"; };
 		8B413C4D1075ED71005A400F /* spoknviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknviewcontroller.m; sourceTree = "<group>"; };
 		8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spoknviewcontroller.xib; sourceTree = "<group>"; };
-		8B471A771158EA41002880EF /* 132x52-hide-sources-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-sources-normal.png"; path = "rsc/bluettoth_icon/132x52-hide-sources-normal.png"; sourceTree = "<group>"; };
-		8B471A781158EA41002880EF /* 132x52-hide-sources-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-sources-pressed.png"; path = "rsc/bluettoth_icon/132x52-hide-sources-pressed.png"; sourceTree = "<group>"; };
-		8B471A791158EA41002880EF /* 240x52-buttons-bluetoothaudio-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-bluetoothaudio-normal.png"; path = "rsc/bluettoth_icon/240x52-buttons-bluetoothaudio-normal.png"; sourceTree = "<group>"; };
-		8B471A7A1158EA41002880EF /* 240x52-buttons-bluetoothaudio-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-bluetoothaudio-pressed.png"; path = "rsc/bluettoth_icon/240x52-buttons-bluetoothaudio-pressed.png"; sourceTree = "<group>"; };
-		8B471A7B1158EA41002880EF /* 240x52-buttons-bluetoothaudio-speaker-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-bluetoothaudio-speaker-normal.png"; path = "rsc/bluettoth_icon/240x52-buttons-bluetoothaudio-speaker-normal.png"; sourceTree = "<group>"; };
-		8B471A7C1158EA41002880EF /* 240x52-buttons-bluetoothaudio-speaker-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-bluetoothaudio-speaker-pressed.png"; path = "rsc/bluettoth_icon/240x52-buttons-bluetoothaudio-speaker-pressed.png"; sourceTree = "<group>"; };
-		8B471A7D1158EA41002880EF /* 240x52-buttons-iphone-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-iphone-normal.png"; path = "rsc/bluettoth_icon/240x52-buttons-iphone-normal.png"; sourceTree = "<group>"; };
-		8B471A7E1158EA41002880EF /* 240x52-buttons-iphone-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-iphone-pressed.png"; path = "rsc/bluettoth_icon/240x52-buttons-iphone-pressed.png"; sourceTree = "<group>"; };
-		8B471A7F1158EA41002880EF /* 240x52-buttons-iphone-speaker-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-iphone-speaker-normal.png"; path = "rsc/bluettoth_icon/240x52-buttons-iphone-speaker-normal.png"; sourceTree = "<group>"; };
-		8B471A801158EA41002880EF /* 240x52-buttons-iphone-speaker-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-iphone-speaker-pressed.png"; path = "rsc/bluettoth_icon/240x52-buttons-iphone-speaker-pressed.png"; sourceTree = "<group>"; };
-		8B471A811158EA41002880EF /* 240x52-buttons-speaker-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-speaker-normal.png"; path = "rsc/bluettoth_icon/240x52-buttons-speaker-normal.png"; sourceTree = "<group>"; };
-		8B471A821158EA41002880EF /* 240x52-buttons-speaker-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-speaker-pressed.png"; path = "rsc/bluettoth_icon/240x52-buttons-speaker-pressed.png"; sourceTree = "<group>"; };
-		8B471A831158EA41002880EF /* 240x52-buttons-speaker-speaker-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-speaker-speaker-normal.png"; path = "rsc/bluettoth_icon/240x52-buttons-speaker-speaker-normal.png"; sourceTree = "<group>"; };
-		8B471A841158EA41002880EF /* 240x52-buttons-speaker-speaker-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-speaker-speaker-pressed.png"; path = "rsc/bluettoth_icon/240x52-buttons-speaker-speaker-pressed.png"; sourceTree = "<group>"; };
-		8B471AC21158EE2A002880EF /* keypad-wit-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypad-wit-text.png"; path = "rsc/bluettoth_icon/keypad-wit-text.png"; sourceTree = "<group>"; };
 		8B47D82F10720BA400EEEF61 /* callviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callviewcontroller.h; sourceTree = "<group>"; };
 		8B47D83010720BA400EEEF61 /* callviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callviewcontroller.m; sourceTree = "<group>"; };
 		8B59A61E10998423003BF3EA /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
@@ -542,6 +522,28 @@
 		8B6739E2101209E900849952 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B72CA1111412FA5002C7E70 /* ringtone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtone.wav; sourceTree = "<group>"; };
 		8B72CA7D11413220002C7E70 /* spoknTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = spoknTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B788A10115B485900B9D5E7 /* GEventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEventTracker.h; path = "Analytics sdk/GEventTracker.h"; sourceTree = "<group>"; };
+		8B788A11115B485900B9D5E7 /* GEventTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEventTracker.m; path = "Analytics sdk/GEventTracker.m"; sourceTree = "<group>"; };
+		8B788A13115B485900B9D5E7 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
+		8B788A14115B485900B9D5E7 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		8B788A17115B48A700B9D5E7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		8B788A1B115B49C200B9D5E7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		8B788C65115B87C400B9D5E7 /* 132x52-hide-sources-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-sources-normal.png"; path = "rsc/132x52-hide-sources-normal.png"; sourceTree = "<group>"; };
+		8B788C66115B87C400B9D5E7 /* 132x52-hide-sources-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-sources-pressed.png"; path = "rsc/132x52-hide-sources-pressed.png"; sourceTree = "<group>"; };
+		8B788C67115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-bluetoothaudio-normal.png"; path = "rsc/240x52-buttons-bluetoothaudio-normal.png"; sourceTree = "<group>"; };
+		8B788C68115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-bluetoothaudio-pressed.png"; path = "rsc/240x52-buttons-bluetoothaudio-pressed.png"; sourceTree = "<group>"; };
+		8B788C69115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-speaker-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-bluetoothaudio-speaker-normal.png"; path = "rsc/240x52-buttons-bluetoothaudio-speaker-normal.png"; sourceTree = "<group>"; };
+		8B788C6A115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-speaker-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-bluetoothaudio-speaker-pressed.png"; path = "rsc/240x52-buttons-bluetoothaudio-speaker-pressed.png"; sourceTree = "<group>"; };
+		8B788C6B115B87C400B9D5E7 /* 240x52-buttons-iphone-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-iphone-normal.png"; path = "rsc/240x52-buttons-iphone-normal.png"; sourceTree = "<group>"; };
+		8B788C6C115B87C400B9D5E7 /* 240x52-buttons-iphone-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-iphone-pressed.png"; path = "rsc/240x52-buttons-iphone-pressed.png"; sourceTree = "<group>"; };
+		8B788C6D115B87C400B9D5E7 /* 240x52-buttons-iphone-speaker-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-iphone-speaker-normal.png"; path = "rsc/240x52-buttons-iphone-speaker-normal.png"; sourceTree = "<group>"; };
+		8B788C6E115B87C400B9D5E7 /* 240x52-buttons-iphone-speaker-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-iphone-speaker-pressed.png"; path = "rsc/240x52-buttons-iphone-speaker-pressed.png"; sourceTree = "<group>"; };
+		8B788C6F115B87C400B9D5E7 /* 240x52-buttons-speaker-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-speaker-normal.png"; path = "rsc/240x52-buttons-speaker-normal.png"; sourceTree = "<group>"; };
+		8B788C70115B87C400B9D5E7 /* 240x52-buttons-speaker-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-speaker-pressed.png"; path = "rsc/240x52-buttons-speaker-pressed.png"; sourceTree = "<group>"; };
+		8B788C71115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-speaker-speaker-normal.png"; path = "rsc/240x52-buttons-speaker-speaker-normal.png"; sourceTree = "<group>"; };
+		8B788C72115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-speaker-speaker-pressed.png"; path = "rsc/240x52-buttons-speaker-speaker-pressed.png"; sourceTree = "<group>"; };
+		8B788C92115B896500B9D5E7 /* keypad-wit-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypad-wit-text.png"; path = "rsc/keypad-wit-text.png"; sourceTree = "<group>"; };
+		8B788D47115B95BF00B9D5E7 /* audio-source.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "audio-source.png"; path = "rsc/audio-source.png"; sourceTree = "<group>"; };
 		8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddeditcellController.m; sourceTree = "<group>"; };
 		8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddeditcellController.h; sourceTree = "<group>"; };
 		8B81B3F710317A2900A18DA1 /* addressbookcontact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addressbookcontact.h; sourceTree = "<group>"; };
@@ -729,6 +731,9 @@
 				8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
 				8BC51C51110863A200EC6597 /* AVFoundation.framework in Frameworks */,
 				8B865761112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */,
+				8B788A16115B485900B9D5E7 /* libGoogleAnalytics.a in Frameworks */,
+				8B788A18115B48A700B9D5E7 /* CFNetwork.framework in Frameworks */,
+				8B788A1C115B49C200B9D5E7 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -881,6 +886,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				8B788A0F115B483100B9D5E7 /* Analyst sdk */,
 				8B6609B410A81B74000F8DAE /* siplib */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -923,6 +929,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B788A1B115B49C200B9D5E7 /* libsqlite3.dylib */,
+				8B788A17115B48A700B9D5E7 /* CFNetwork.framework */,
 				8BC51C4F110863A200EC6597 /* AVFoundation.framework */,
 				8B81B4B010318ADB00A18DA1 /* AddressBook.framework */,
 				8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */,
@@ -938,26 +946,22 @@
 		328850CC115756ED00FADAC1 /* Bluetooth_icons */ = {
 			isa = PBXGroup;
 			children = (
-				8B471AC21158EE2A002880EF /* keypad-wit-text.png */,
-				8B471A771158EA41002880EF /* 132x52-hide-sources-normal.png */,
-				8B471A781158EA41002880EF /* 132x52-hide-sources-pressed.png */,
-				8B471A791158EA41002880EF /* 240x52-buttons-bluetoothaudio-normal.png */,
-				8B471A7A1158EA41002880EF /* 240x52-buttons-bluetoothaudio-pressed.png */,
-				8B471A7B1158EA41002880EF /* 240x52-buttons-bluetoothaudio-speaker-normal.png */,
-				8B471A7C1158EA41002880EF /* 240x52-buttons-bluetoothaudio-speaker-pressed.png */,
-				8B471A7D1158EA41002880EF /* 240x52-buttons-iphone-normal.png */,
-				8B471A7E1158EA41002880EF /* 240x52-buttons-iphone-pressed.png */,
-				8B471A7F1158EA41002880EF /* 240x52-buttons-iphone-speaker-normal.png */,
-				8B471A801158EA41002880EF /* 240x52-buttons-iphone-speaker-pressed.png */,
-				8B471A811158EA41002880EF /* 240x52-buttons-speaker-normal.png */,
-				8B471A821158EA41002880EF /* 240x52-buttons-speaker-pressed.png */,
-				8B471A831158EA41002880EF /* 240x52-buttons-speaker-speaker-normal.png */,
-				8B471A841158EA41002880EF /* 240x52-buttons-speaker-speaker-pressed.png */,
-				328850D81157571B00FADAC1 /* audio-source.png */,
-				328850D91157571B00FADAC1 /* bluetooth-audio-text.png */,
-				328850DA1157571B00FADAC1 /* button-bg.png */,
-				328850DB1157571B00FADAC1 /* iphone-text.png */,
-				328850DC1157571B00FADAC1 /* speaket-text.png */,
+				8B788D47115B95BF00B9D5E7 /* audio-source.png */,
+				8B788C92115B896500B9D5E7 /* keypad-wit-text.png */,
+				8B788C65115B87C400B9D5E7 /* 132x52-hide-sources-normal.png */,
+				8B788C66115B87C400B9D5E7 /* 132x52-hide-sources-pressed.png */,
+				8B788C67115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-normal.png */,
+				8B788C68115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-pressed.png */,
+				8B788C69115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-speaker-normal.png */,
+				8B788C6A115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-speaker-pressed.png */,
+				8B788C6B115B87C400B9D5E7 /* 240x52-buttons-iphone-normal.png */,
+				8B788C6C115B87C400B9D5E7 /* 240x52-buttons-iphone-pressed.png */,
+				8B788C6D115B87C400B9D5E7 /* 240x52-buttons-iphone-speaker-normal.png */,
+				8B788C6E115B87C400B9D5E7 /* 240x52-buttons-iphone-speaker-pressed.png */,
+				8B788C6F115B87C400B9D5E7 /* 240x52-buttons-speaker-normal.png */,
+				8B788C70115B87C400B9D5E7 /* 240x52-buttons-speaker-pressed.png */,
+				8B788C71115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-normal.png */,
+				8B788C72115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-pressed.png */,
 			);
 			name = Bluetooth_icons;
 			sourceTree = "<group>";
@@ -1136,6 +1140,26 @@
 				8B964AD510CBE6EA00CB00DB /* libgsmcodec-arm-apple-darwin9.a */,
 			);
 			name = siplib;
+			sourceTree = "<group>";
+		};
+		8B788A0F115B483100B9D5E7 /* Analyst sdk */ = {
+			isa = PBXGroup;
+			children = (
+				8B788A10115B485900B9D5E7 /* GEventTracker.h */,
+				8B788A11115B485900B9D5E7 /* GEventTracker.m */,
+				8B788A12115B485900B9D5E7 /* GoogleAnalytics */,
+			);
+			name = "Analyst sdk";
+			sourceTree = "<group>";
+		};
+		8B788A12115B485900B9D5E7 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				8B788A13115B485900B9D5E7 /* GANTracker.h */,
+				8B788A14115B485900B9D5E7 /* libGoogleAnalytics.a */,
+			);
+			name = GoogleAnalytics;
+			path = "Analytics sdk/GoogleAnalytics";
 			sourceTree = "<group>";
 		};
 		8B8BB896115A4C7D00A66C75 /* ltpInterface */ = {
@@ -1424,28 +1448,24 @@
 				322D2BA2114903E1009A8F91 /* square_new.png in Resources */,
 				322D2C291149165E009A8F91 /* button.png in Resources */,
 				322D2C5611492861009A8F91 /* button_selected.png in Resources */,
-				328850E81157571B00FADAC1 /* audio-source.png in Resources */,
-				328850E91157571B00FADAC1 /* bluetooth-audio-text.png in Resources */,
-				328850EA1157571B00FADAC1 /* button-bg.png in Resources */,
-				328850EB1157571B00FADAC1 /* iphone-text.png in Resources */,
-				328850EC1157571B00FADAC1 /* speaket-text.png in Resources */,
 				32C15BDE1158A9C200689F56 /* child.plist in Resources */,
-				8B471A851158EA41002880EF /* 132x52-hide-sources-normal.png in Resources */,
-				8B471A861158EA41002880EF /* 132x52-hide-sources-pressed.png in Resources */,
-				8B471A871158EA41002880EF /* 240x52-buttons-bluetoothaudio-normal.png in Resources */,
-				8B471A881158EA41002880EF /* 240x52-buttons-bluetoothaudio-pressed.png in Resources */,
-				8B471A891158EA41002880EF /* 240x52-buttons-bluetoothaudio-speaker-normal.png in Resources */,
-				8B471A8A1158EA41002880EF /* 240x52-buttons-bluetoothaudio-speaker-pressed.png in Resources */,
-				8B471A8B1158EA41002880EF /* 240x52-buttons-iphone-normal.png in Resources */,
-				8B471A8C1158EA41002880EF /* 240x52-buttons-iphone-pressed.png in Resources */,
-				8B471A8D1158EA41002880EF /* 240x52-buttons-iphone-speaker-normal.png in Resources */,
-				8B471A8E1158EA41002880EF /* 240x52-buttons-iphone-speaker-pressed.png in Resources */,
-				8B471A8F1158EA41002880EF /* 240x52-buttons-speaker-normal.png in Resources */,
-				8B471A901158EA41002880EF /* 240x52-buttons-speaker-pressed.png in Resources */,
-				8B471A911158EA41002880EF /* 240x52-buttons-speaker-speaker-normal.png in Resources */,
-				8B471A921158EA41002880EF /* 240x52-buttons-speaker-speaker-pressed.png in Resources */,
-				8B471AC31158EE2A002880EF /* keypad-wit-text.png in Resources */,
 				8B8BB5C11159EDFF00A66C75 /* Default.png in Resources */,
+				8B788C73115B87C400B9D5E7 /* 132x52-hide-sources-normal.png in Resources */,
+				8B788C74115B87C400B9D5E7 /* 132x52-hide-sources-pressed.png in Resources */,
+				8B788C75115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-normal.png in Resources */,
+				8B788C76115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-pressed.png in Resources */,
+				8B788C77115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-speaker-normal.png in Resources */,
+				8B788C78115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-speaker-pressed.png in Resources */,
+				8B788C79115B87C400B9D5E7 /* 240x52-buttons-iphone-normal.png in Resources */,
+				8B788C7A115B87C400B9D5E7 /* 240x52-buttons-iphone-pressed.png in Resources */,
+				8B788C7B115B87C400B9D5E7 /* 240x52-buttons-iphone-speaker-normal.png in Resources */,
+				8B788C7C115B87C400B9D5E7 /* 240x52-buttons-iphone-speaker-pressed.png in Resources */,
+				8B788C7D115B87C400B9D5E7 /* 240x52-buttons-speaker-normal.png in Resources */,
+				8B788C7E115B87C400B9D5E7 /* 240x52-buttons-speaker-pressed.png in Resources */,
+				8B788C7F115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-normal.png in Resources */,
+				8B788C80115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-pressed.png in Resources */,
+				8B788C93115B896500B9D5E7 /* keypad-wit-text.png in Resources */,
+				8B788D48115B95BF00B9D5E7 /* audio-source.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1613,6 +1633,7 @@
 				8B8BB8A8115A4CC700A66C75 /* playrecordpcm.c in Sources */,
 				8B8BB8A9115A4CC700A66C75 /* vmsplayrecord.c in Sources */,
 				8BDDE49A115B319B00FC4BA3 /* sipandltpwrapper.c in Sources */,
+				8B788A15115B485900B9D5E7 /* GEventTracker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1724,6 +1745,7 @@
 					"\"$(SRCROOT)/../../pjproject/pjnath/lib\"",
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
+					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
 				SDKROOT = iphonesimulator2.2.1;
@@ -1758,6 +1780,7 @@
 					"\"$(SRCROOT)/../../pjproject/pjnath/lib\"",
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
+					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
 				PROVISIONING_PROFILE = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
@@ -2096,6 +2119,7 @@
 					"\"$(SRCROOT)/../../pjproject/pjnath/lib\"",
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
+					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
 				PROVISIONING_PROFILE = "1B4B2C2B-9942-4B3B-B671-5B6FB049CC9B";
@@ -2163,6 +2187,7 @@
 					"\"$(SRCROOT)/../../pjproject/pjnath/lib\"",
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
+					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
 				PROVISIONING_PROFILE = "20317E46-100A-445F-9554-B6E85FCE2193";

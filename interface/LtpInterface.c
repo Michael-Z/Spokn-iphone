@@ -32,6 +32,7 @@
 #include "ua.h"
 #include "ltpandsip.h"
 #include "sipwrapper.h"
+#include "sipandltpwrapper.h"
 //#include <types.h>
 pthread_mutexattr_t    attr;
 pthread_mutex_t         mutex;
@@ -194,7 +195,10 @@ void outputSoundInterface(void *udata,struct ltpStack *ps, struct Call *pc, shor
 	
 	LtpInterfaceType *ltpInterfaceP;
 	ltpInterfaceP = (LtpInterfaceType *)udata;
-	AddPcmData(ltpInterfaceP->playbackP,(unsigned short*)pcm,length,true);
+	if(ltpInterfaceP->holdB==false) 
+	{	
+		AddPcmData(ltpInterfaceP->playbackP,(unsigned short*)pcm,length,true);
+	}	
 }
 int openSoundInterface(void *udata,int isFullDuplex)
 {
@@ -204,7 +208,7 @@ int openSoundInterface(void *udata,int isFullDuplex)
 	{
 		return 0;
 	}
-
+	ltpInterfaceP->holdB = false;
 	DeInitAudio( ltpInterfaceP->playbackP,false);
 	DeInitAudio( ltpInterfaceP->recordP,false);
 	ltpInterfaceP->playbackP = 0;
@@ -240,7 +244,7 @@ void closeSoundInterface(void *udata)
 	ltpInterfaceP = (LtpInterfaceType *)udata;
 	if(ltpInterfaceP->ltpObjectP->sipOnB)
 	{
-		return 0;
+		return ;
 	}
 	StopAudio(ltpInterfaceP->recordP,false);
 	
@@ -633,11 +637,48 @@ int getAddressUid(LtpInterfaceType *ltpInterfaceP)
 }
 int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB)
 {
-	 setHold(ltpInterfaceP->ltpObjectP,holdB);
+	int er = 0;
+	if(ltpInterfaceP->ltpObjectP->sipOnB==false) //ltp interface
+	{
+		if(holdB)
+		{	
+			
+			er = pauseAudio(ltpInterfaceP->recordP);
+			er =  pauseAudio(ltpInterfaceP->playbackP);
+			if(er==0)
+			{
+				ltpInterfaceP->holdB = true;
+			}
+		}
+		else
+		{
+			ltpInterfaceP->holdB = false;
+			PlayAudio(ltpInterfaceP->recordP);
+			return 	PlayAudio(ltpInterfaceP->playbackP);
+		}
+		return 0;
+	}
+	setHold(ltpInterfaceP->ltpObjectP,holdB);
+	
+	
+	
 	return 0;
 }
 int setMuteInterface(LtpInterfaceType *ltpInterfaceP,int muteB)
 {
-	 setMute(ltpInterfaceP->ltpObjectP,muteB);
+	if(ltpInterfaceP->ltpObjectP->sipOnB==false) //ltp interface
+	{
+		if(muteB)
+		{	
+			return	pauseAudio(ltpInterfaceP->recordP);
+		}
+		else
+		{
+			return 	PlayAudio(ltpInterfaceP->recordP);
+		}
+		return 0;
+	}
+	
+	setMute(ltpInterfaceP->ltpObjectP,muteB);
 	return 0;
 }

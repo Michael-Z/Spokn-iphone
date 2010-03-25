@@ -31,7 +31,7 @@
 #import "vmshowviewcontroller.h"
 #include "ua.h"
 #include "alertmessages.h"
-
+#import "GEventTracker.h"
 @implementation VmailViewController
 @synthesize ltpInterfacesP;
 
@@ -1040,6 +1040,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}	
 	
 	*/
+#ifdef _ANALYST_
+	[[GEventTracker sharedInstance] trackEvent:@"VMS" action:@"INITIATED" label:@"NAVIGATION BAR"];
+#endif
 	openVmsCompose = 0;
 	VmShowViewController     *vmShowViewControllerP;	
 	vmShowViewControllerP = [[VmShowViewController alloc] initWithNibName:@"vmshowviewcontroller" bundle:[NSBundle mainBundle]];

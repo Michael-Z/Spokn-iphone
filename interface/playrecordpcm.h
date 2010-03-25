@@ -116,6 +116,7 @@ int RouteAudio(void *uData,int optionInt);
 int onOrBlueTooth(int onBluetoothB);
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
 int HeadSetIsOn();
+int pauseAudio(void *uData);
 
 #endif
 

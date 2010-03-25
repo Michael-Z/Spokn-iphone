@@ -73,6 +73,7 @@ typedef struct IncommingCallType
 			Boolean pjsipStartB;
 			int recordUId;
 			int recordID;	
+			int holdB;
 			
 			
 		}LtpInterfaceType;

@@ -28,7 +28,7 @@
 #import "overlayviewcontroller.h"
 #include "alertmessages.h"
 #import "contactviewcontroller.h"
-
+#import "GEventTracker.h"
 @implementation VmShowViewController
 -(void)showOrHideSendButton:(BOOL)showB
 {
@@ -75,6 +75,9 @@
 {
 	if(lallForwardContactP)
 	{	
+	#ifdef _ANALYST_
+		[[GEventTracker sharedInstance] trackEvent:@"VMS" action:@"FORWARD" label:@"FORWARD"];
+	#endif
 		if([ownerobject vmsForward:lallForwardContactP :fileNameCharP]!=0)
 		{
 			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_TITLE_ message:_VMS_SENDING_FAILED_ delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
@@ -295,6 +298,10 @@
 				
 				if(vmstateType == VMSStateRecord)
 				{
+					
+					#ifdef _ANALYST_
+						[[GEventTracker sharedInstance] trackEvent:@"VMS" action:@"SEND" label:@"SEND"];
+					#endif
 					if([ownerobject vmsSend:contactNumberP :fileNameCharP]!=0)
 					{
 						UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:_TITLE_ message:_VMS_SENDING_FAILED_ delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
@@ -753,6 +760,9 @@
 		strcpy(lselectP->nameChar,nameCharP);
 		strcpy(lselectP->type,typeCharP);
 		[self showForwardOrReplyScreen:VMSStateRecord :lselectP];
+		#ifdef _ANALYST_
+			[[GEventTracker sharedInstance] trackEvent:@"VMS" action:@"REPLY" label:@"REPLYVMS"];
+		#endif
 		//modalB = true;
 		//self.navigationItem.hidesBackButton = YES;
 		free(lselectP);

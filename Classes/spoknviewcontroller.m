@@ -32,6 +32,7 @@
 #import "WebViewController.h"
 #include "ua.h"
 #import "alertmessages.h"
+#import "GEventTracker.h"
 #define SPOKNCOLOR [UIColor colorWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0]
 #define ROW_HEIGHT 42
 
@@ -99,6 +100,8 @@
 }
 
 - (IBAction)switchChange:(UISwitch*)sender {
+	
+	
 	sender.enabled = NO;
 	if(sender.on)
 	{
@@ -115,6 +118,9 @@
 		}
 		[labelForword setTextColor:SPOKNCOLOR]; 
 		SetOrReSetForwardNo(true,forwordCharP);
+		#ifdef _ANALYST_
+			[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"CALL FORWARD" label:@"ENABLE/DISABLE"];
+		#endif
 		[ownerobject profileResynFromApp];
 		[self startforwardactivityIndicator];
  
@@ -122,6 +128,9 @@
 	else
 	{
 		SetOrReSetForwardNo(false,forwardNoCharP);
+		#ifdef _ANALYST_
+			[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"CALL FORWARD" label:@"ENABLE/DISABLE"];
+		#endif
 		[ownerobject profileResynFromApp];
 		[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
 		[self startforwardactivityIndicator];
@@ -389,6 +398,9 @@
 			if(switchView.on)
 			{	
 				SetOrReSetForwardNo(true,forwardNoCharP);
+				#ifdef _ANALYST_
+					[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"CALL FORWARD" label:@"ENABLE/DISABLE"];
+				#endif
 				[ownerobject profileResynFromApp];
 				switchView.enabled = NO;
 				[self startforwardactivityIndicator];
@@ -406,6 +418,9 @@
 			//if(switchView.on)
 			{	
 				SetOrReSetForwardNo(false,forwardNoCharP);
+				#ifdef _ANALYST_
+					[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"CALL FORWARD" label:@"ENABLE/DISABLE"];
+				#endif
 				[ownerobject profileResynFromApp];
 			}
 			switchView.enabled = NO;
@@ -1062,6 +1077,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 
 -(void)buyCredit:(id)sender
 {
+#ifdef _ANALYST_
+	[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"BUY CREDIT" label:@"CREDITS"];
+#endif
 	char *tmp;
 	NSString *srtrP;
 	tmp = getCreditsPage();
@@ -1076,6 +1094,10 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 
 -(void)aboutPage:(id)sender
 {
+#ifdef _ANALYST_
+	[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"SUPPORT" label:@"SUPPORT"];
+#endif
+	
 	char *tmp;
 	NSString *srtrP;
 	tmp = getSupportPage();

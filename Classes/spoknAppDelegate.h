@@ -58,6 +58,7 @@
 #define CALL_ALERT 5001
 #define ATTEMPT_GPRS_LOGIN 5002
 #define HOST_NAME_NOT_FOUND_ERROR 12
+#define _ANALYST_ 
 
 
 @class VmailViewController;
@@ -136,9 +137,10 @@ typedef struct CallNumberType
 	ABAddressBookRef addressRef;
 	int edgevalue;
 	int onoffSip;
+	int onoffAnalytics;
 	Boolean blueTooth;
 	NSString *devicePushTokenStrP;
-	Boolean sipOnB;
+	
 	@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -195,6 +197,7 @@ changed:(BOOL)changed;
 -(int)showContactScreen:(id) navObject returnnumber:(SelectedContctType *)lselectedContactP  result:(int *) resultP;
 -(void) enableEdge ;
 -(void) enableSip;
+-(void) enableAnalytics;
 -(int) vmsForward:(char*)numberP :(char*)fileNameCharP;
 - (void) updateReachabilityStatus: (Reachability*) curReach;
 -(void) startCheckNetwork;

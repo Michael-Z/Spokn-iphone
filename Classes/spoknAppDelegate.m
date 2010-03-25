@@ -41,6 +41,7 @@
 //#import "NSFileManager.h"
 #include "alertmessages.h"
 #import "contactlookup.h"
+#import "GEventTracker.h"
 @implementation SpoknAppDelegate
 /*
 @synthesize window;
@@ -106,6 +107,20 @@
 	else
 	{
 		self->onoffSip = 1;
+	}
+	//printf("\nenablesip %d",self->onoffSip);
+}
+-(void) enableAnalytics
+{
+	NSString *toogleValue;
+	toogleValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"analyst_prefrence"];
+	if(toogleValue)
+	{	
+		self->onoffAnalytics = ![toogleValue intValue];//this value are reverse
+	}
+	else
+	{
+		self->onoffAnalytics = 1;
 	}
 }
 +(BOOL) emailValidate : (NSString *)emailid
@@ -602,7 +617,7 @@ void getProp()
 				{
 					case LOGIN_STATUS_OFFLINE:
 						[loginProtocolP stoploginIndicator];
-						if(loginProtocolP)//mean login screen is on
+						if(loginProtocolP && loginProgressStart)//mean login screen is on
 						{
 							[dialviewP setStatusText: _STATUS_OFFLINE_ :nil :ALERT_OFFLINE :self->subID ];
 						}
@@ -653,6 +668,10 @@ void getProp()
 			break;	
 		case ALERT_INCOMING_CALL:
 			//[self performSelectorOnMainThread : @ selector(LoadInCommingView: ) withObject:nil waitUntilDone:YES];
+			
+			#ifdef _ANALYST_
+				[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"CALL-IN" label:@"CALL"];
+			#endif
 			#ifdef __IPHONE_3_0
 						[UIDevice currentDevice].proximityMonitoringEnabled = YES;
 			#else
@@ -1399,12 +1418,26 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 #else
 	- (void)applicationDidFinishLaunching:(UIApplication *)application {    
 			
-#endif	
+#endif
+		
 	
 	application.applicationIconBadgeNumber = 0;
 	
 	
 	[self enableEdge];
+	[self enableSip];
+	[self enableAnalytics];	
+	#ifdef _ANALYST_
+		{
+			GEventTracker *geventTP;
+			geventTP = [GEventTracker sharedInstance];
+			geventTP.showTrakerB = self->onoffAnalytics;
+			[geventTP startEventTracker];
+			[geventTP trackEvent:@"SPOKN" action:@"APPLICATION LAUNCH" label:@"LAUNCH"];
+		}	
+	#endif	
+		
+		
     // Override point for customization after application launch
 	//CGRect screenBounds = [ [ UIScreen mainScreen ] bounds ];
 	
@@ -1508,14 +1541,14 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	#ifndef _OWN_THREAD_
 		ltpTimerP = [[LtpTimer alloc] init];
 	#endif	
-		self->sipOnB = false;
+	
 	if(ltpTimerP)
 	{	
-		ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->sipOnB,alertNotiFication,(unsigned long)self);
+		ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self);
 	}
 	else
 	{
-		ltpInterfacesP = startLtp(self->sipOnB,alertNotiFication,(unsigned long)self);
+		ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self);
 	}
 	#ifdef _LTP_
 		if(self->sipOnB)
