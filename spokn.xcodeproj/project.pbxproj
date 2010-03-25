@@ -172,13 +172,13 @@
 		8B788C80115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C72115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-pressed.png */; };
 		8B788C93115B896500B9D5E7 /* keypad-wit-text.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C92115B896500B9D5E7 /* keypad-wit-text.png */; };
 		8B788D48115B95BF00B9D5E7 /* audio-source.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788D47115B95BF00B9D5E7 /* audio-source.png */; };
+		8B788DF4115B9C8700B9D5E7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788DF3115B9C8700B9D5E7 /* Default.png */; };
 		8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */; };
 		8B81B3F910317A2900A18DA1 /* addressbookcontact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B81B3F810317A2900A18DA1 /* addressbookcontact.m */; };
 		8B81B4AD10318AC300A18DA1 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4AC10318AC300A18DA1 /* AddressBookUI.framework */; };
 		8B81B4B110318ADB00A18DA1 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B81B4B010318ADB00A18DA1 /* AddressBook.framework */; };
 		8B865760112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */; };
 		8B865761112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */; };
-		8B8BB5C11159EDFF00A66C75 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8BB5C01159EDFF00A66C75 /* Default.png */; };
 		8B8BB8A4115A4CC700A66C75 /* ltpandsip.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BB897115A4CC700A66C75 /* ltpandsip.c */; };
 		8B8BB8A5115A4CC700A66C75 /* ltpdump.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BB899115A4CC700A66C75 /* ltpdump.c */; };
 		8B8BB8A6115A4CC700A66C75 /* LtpInterface.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B8BB89B115A4CC700A66C75 /* LtpInterface.c */; };
@@ -544,6 +544,7 @@
 		8B788C72115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "240x52-buttons-speaker-speaker-pressed.png"; path = "rsc/240x52-buttons-speaker-speaker-pressed.png"; sourceTree = "<group>"; };
 		8B788C92115B896500B9D5E7 /* keypad-wit-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "keypad-wit-text.png"; path = "rsc/keypad-wit-text.png"; sourceTree = "<group>"; };
 		8B788D47115B95BF00B9D5E7 /* audio-source.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "audio-source.png"; path = "rsc/audio-source.png"; sourceTree = "<group>"; };
+		8B788DF3115B9C8700B9D5E7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = rsc/spoknbuttonicon/Default.png; sourceTree = "<group>"; };
 		8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddeditcellController.m; sourceTree = "<group>"; };
 		8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddeditcellController.h; sourceTree = "<group>"; };
 		8B81B3F710317A2900A18DA1 /* addressbookcontact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addressbookcontact.h; sourceTree = "<group>"; };
@@ -552,7 +553,6 @@
 		8B81B4B010318ADB00A18DA1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		8B81C4AD114260230032C0EE /* spokn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spokn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8B8BB5C01159EDFF00A66C75 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = rsc/spoknbuttonicon/Default.png; sourceTree = "<group>"; };
 		8B8BB897115A4CC700A66C75 /* ltpandsip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpandsip.c; path = interface/ltpandsip.c; sourceTree = "<group>"; };
 		8B8BB898115A4CC700A66C75 /* ltpandsip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpandsip.h; path = interface/ltpandsip.h; sourceTree = "<group>"; };
 		8B8BB899115A4CC700A66C75 /* ltpdump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpdump.c; path = interface/ltpdump.c; sourceTree = "<group>"; };
@@ -911,7 +911,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8B8BB5C01159EDFF00A66C75 /* Default.png */,
+				8B788DF3115B9C8700B9D5E7 /* Default.png */,
 				328850CC115756ED00FADAC1 /* Bluetooth_icons */,
 				8B8C9CBA1137A11C00120CF5 /* spoknlogo57.png */,
 				8BAD7A721121C07600ABBCC9 /* docs */,
@@ -1449,7 +1449,6 @@
 				322D2C291149165E009A8F91 /* button.png in Resources */,
 				322D2C5611492861009A8F91 /* button_selected.png in Resources */,
 				32C15BDE1158A9C200689F56 /* child.plist in Resources */,
-				8B8BB5C11159EDFF00A66C75 /* Default.png in Resources */,
 				8B788C73115B87C400B9D5E7 /* 132x52-hide-sources-normal.png in Resources */,
 				8B788C74115B87C400B9D5E7 /* 132x52-hide-sources-pressed.png in Resources */,
 				8B788C75115B87C400B9D5E7 /* 240x52-buttons-bluetoothaudio-normal.png in Resources */,
@@ -1466,6 +1465,7 @@
 				8B788C80115B87C400B9D5E7 /* 240x52-buttons-speaker-speaker-pressed.png in Resources */,
 				8B788C93115B896500B9D5E7 /* keypad-wit-text.png in Resources */,
 				8B788D48115B95BF00B9D5E7 /* audio-source.png in Resources */,
+				8B788DF4115B9C8700B9D5E7 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
