@@ -141,8 +141,6 @@
 		8B1AEA1D11206A6500A957EA /* vms_out_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AEA1111206A6500A957EA /* vms_out_Active.png */; };
 		8B290898112A62F6003B5A05 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B290897112A62F6003B5A05 /* Entitlements.plist */; };
 		8B290899112A62F6003B5A05 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B290897112A62F6003B5A05 /* Entitlements.plist */; };
-		8B33709E115A6A4C0059A105 /* sipwrappernew.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B33709D115A6A4C0059A105 /* sipwrappernew.c */; };
-		8B3370A1115A6ABD0059A105 /* ltpmobilenew.c in Sources */ = {isa = PBXBuildFile; fileRef = 8B3370A0115A6ABD0059A105 /* ltpmobilenew.c */; };
 		8B39FFC8107C910200073950 /* vmshowviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B39FFC6107C910200073950 /* vmshowviewcontroller.m */; };
 		8B39FFC9107C910200073950 /* vmshowviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */; };
 		8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B413C4D1075ED71005A400F /* spoknviewcontroller.m */; };
@@ -383,6 +381,7 @@
 		8BD0C6141121710600D05D74 /* callblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C6131121710600D05D74 /* callblue.png */; };
 		8BD0C6151121710600D05D74 /* callblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C6131121710600D05D74 /* callblue.png */; };
 		8BD982EC10C400E0002793BE /* callviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD982EB10C400E0002793BE /* callviewcontroller.xib */; };
+		8BDDE49A115B319B00FC4BA3 /* sipandltpwrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BDDE499115B319B00FC4BA3 /* sipandltpwrapper.c */; };
 		8BE3E2F11084D100008CB625 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3E2EF1084D100008CB625 /* Reachability.m */; };
 		8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */; };
 		8BE47B08112BB54D00421DFE /* 280x52-end-call-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B06112BB54D00421DFE /* 280x52-end-call-normal.png */; };
@@ -502,8 +501,6 @@
 		8B1AEA1011206A6500A957EA /* vmail_out_newHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmail_out_newHigh.png; sourceTree = "<group>"; };
 		8B1AEA1111206A6500A957EA /* vms_out_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vms_out_Active.png; sourceTree = "<group>"; };
 		8B290897112A62F6003B5A05 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
-		8B33709D115A6A4C0059A105 /* sipwrappernew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sipwrappernew.c; path = interface/sipwrappernew.c; sourceTree = "<group>"; };
-		8B3370A0115A6ABD0059A105 /* ltpmobilenew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpmobilenew.c; path = ../lib/common/src/ltpmobilenew.c; sourceTree = SOURCE_ROOT; };
 		8B39FFC5107C910200073950 /* vmshowviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vmshowviewcontroller.h; sourceTree = "<group>"; };
 		8B39FFC6107C910200073950 /* vmshowviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = vmshowviewcontroller.m; sourceTree = "<group>"; };
 		8B39FFC7107C910200073950 /* vmshowviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = vmshowviewcontroller.xib; sourceTree = "<group>"; };
@@ -676,6 +673,8 @@
 		8BD0C5EB112165D400D05D74 /* black1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black1.png; sourceTree = "<group>"; };
 		8BD0C6131121710600D05D74 /* callblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = callblue.png; sourceTree = "<group>"; };
 		8BD982EB10C400E0002793BE /* callviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = callviewcontroller.xib; sourceTree = "<group>"; };
+		8BDDE499115B319B00FC4BA3 /* sipandltpwrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sipandltpwrapper.c; sourceTree = "<group>"; };
+		8BDDE49B115B31A900FC4BA3 /* sipandltpwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sipandltpwrapper.h; sourceTree = "<group>"; };
 		8BE3E2EF1084D100008CB625 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8BE3E2F01084D100008CB625 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1142,8 +1141,6 @@
 		8B8BB896115A4C7D00A66C75 /* ltpInterface */ = {
 			isa = PBXGroup;
 			children = (
-				8B3370A0115A6ABD0059A105 /* ltpmobilenew.c */,
-				8B33709D115A6A4C0059A105 /* sipwrappernew.c */,
 				8B8BB897115A4CC700A66C75 /* ltpandsip.c */,
 				8B8BB898115A4CC700A66C75 /* ltpandsip.h */,
 				8B8BB899115A4CC700A66C75 /* ltpdump.c */,
@@ -1175,6 +1172,7 @@
 		8B9302A31011EEBE004BDA41 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				8BDDE49B115B31A900FC4BA3 /* sipandltpwrapper.h */,
 				8B9302A41011EEBE004BDA41 /* blowfish.h */,
 				8B9302A51011EEBE004BDA41 /* ezxml.h */,
 				8B9302A61011EEBE004BDA41 /* ltpmobile.h */,
@@ -1186,6 +1184,7 @@
 		8B9302A91011EEBE004BDA41 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				8BDDE499115B319B00FC4BA3 /* sipandltpwrapper.c */,
 				8B9302AA1011EEBE004BDA41 /* blowfish.c */,
 				8B9302AB1011EEBE004BDA41 /* ezxml.c */,
 				8B9302AF1011EEBE004BDA41 /* ua.c */,
@@ -1613,8 +1612,7 @@
 				8B8BB8A7115A4CC700A66C75 /* netlayer.c in Sources */,
 				8B8BB8A8115A4CC700A66C75 /* playrecordpcm.c in Sources */,
 				8B8BB8A9115A4CC700A66C75 /* vmsplayrecord.c in Sources */,
-				8B33709E115A6A4C0059A105 /* sipwrappernew.c in Sources */,
-				8B3370A1115A6ABD0059A105 /* ltpmobilenew.c in Sources */,
+				8BDDE49A115B319B00FC4BA3 /* sipandltpwrapper.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2051,6 +2049,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					../pjproject/third_party/speex/include,
 					../pjproject/pjlib/include,
 					"../pjproject/pjlib-util/include",
 					../pjproject/pjnath/include,
@@ -2063,8 +2062,8 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
+				PROVISIONING_PROFILE = "83552E3D-FA93-4610-A16B-33BBE460D1EF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "83552E3D-FA93-4610-A16B-33BBE460D1EF";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Distribution;
@@ -2099,8 +2098,8 @@
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BB1FB976-0BE9-43F5-B5B2-D0069180A411";
+				PROVISIONING_PROFILE = "1B4B2C2B-9942-4B3B-B671-5B6FB049CC9B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1B4B2C2B-9942-4B3B-B671-5B6FB049CC9B";
 			};
 			name = Distribution;
 		};
@@ -2117,6 +2116,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					../pjproject/third_party/speex/include,
 					../pjproject/pjlib/include,
 					"../pjproject/pjlib-util/include",
 					../pjproject/pjnath/include,
@@ -2183,6 +2183,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					../pjproject/third_party/speex/include,
+					../pjproject/third_party/speex/include,
 					../pjproject/pjlib/include,
 					"../pjproject/pjlib-util/include",
 					../pjproject/pjnath/include,
@@ -2215,6 +2217,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					../pjproject/third_party/speex/include,
 					../pjproject/pjlib/include,
 					"../pjproject/pjlib-util/include",
 					../pjproject/pjnath/include,
