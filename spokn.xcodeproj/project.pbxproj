@@ -13,10 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
-		322D2B2E1148F4A9009A8F91 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 322D2B2D1148F4A9009A8F91 /* square.png */; };
-		322D2BA2114903E1009A8F91 /* square_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 322D2BA1114903E1009A8F91 /* square_new.png */; };
-		322D2C291149165E009A8F91 /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 322D2C281149165E009A8F91 /* button.png */; };
-		322D2C5611492861009A8F91 /* button_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 322D2C5511492861009A8F91 /* button_selected.png */; };
 		322FEC6C10EB22AA0086D15B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 322FEC6B10EB22AA0086D15B /* Settings.bundle */; };
 		3286A5391133DA8D000221A1 /* 10_bgblue_94_111_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 3286A52B1133DA8D000221A1 /* 10_bgblue_94_111_left.png */; };
 		3286A53A1133DA8D000221A1 /* 10_bgblue_94_111_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 3286A52C1133DA8D000221A1 /* 10_bgblue_94_111_right.png */; };
@@ -388,6 +384,7 @@
 		8BE47B09112BB54D00421DFE /* 280x52-end-call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */; };
 		8BE47B0A112BB54D00421DFE /* 280x52-end-call-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B06112BB54D00421DFE /* 280x52-end-call-normal.png */; };
 		8BE47B0B112BB54D00421DFE /* 280x52-end-call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */; };
+		8BF6E46C115C8B8F009DF9CD /* button-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF6E46B115C8B8F009DF9CD /* button-bg.png */; };
 		8BF729B4103562B400C124B0 /* spoknalert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF729B3103562B400C124B0 /* spoknalert.m */; };
 		F249AAB7106F6A340024AE84 /* keypadview.m in Sources */ = {isa = PBXBuildFile; fileRef = F249AAB6106F6A340024AE84 /* keypadview.m */; };
 /* End PBXBuildFile section */
@@ -411,10 +408,6 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		322D2B2D1148F4A9009A8F91 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square.png; path = rsc/square.png; sourceTree = SOURCE_ROOT; };
-		322D2BA1114903E1009A8F91 /* square_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square_new.png; path = rsc/square_new.png; sourceTree = SOURCE_ROOT; };
-		322D2C281149165E009A8F91 /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button.png; path = rsc/button.png; sourceTree = SOURCE_ROOT; };
-		322D2C5511492861009A8F91 /* button_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = button_selected.png; path = rsc/button_selected.png; sourceTree = SOURCE_ROOT; };
 		322FEC6B10EB22AA0086D15B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3286A52B1133DA8D000221A1 /* 10_bgblue_94_111_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 10_bgblue_94_111_left.png; path = rsc/keypad/10_bgblue_94_111_left.png; sourceTree = SOURCE_ROOT; };
 		3286A52C1133DA8D000221A1 /* 10_bgblue_94_111_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 10_bgblue_94_111_right.png; path = rsc/keypad/10_bgblue_94_111_right.png; sourceTree = SOURCE_ROOT; };
@@ -682,6 +675,7 @@
 		8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8BE47B06112BB54D00421DFE /* 280x52-end-call-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "280x52-end-call-normal.png"; path = "rsc/280x52-end-call-normal.png"; sourceTree = SOURCE_ROOT; };
 		8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "280x52-end-call-pressed.png"; path = "rsc/280x52-end-call-pressed.png"; sourceTree = SOURCE_ROOT; };
+		8BF6E46B115C8B8F009DF9CD /* button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-bg.png"; path = "rsc/button-bg.png"; sourceTree = "<group>"; };
 		8BF729B2103562B400C124B0 /* spoknalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknalert.h; sourceTree = "<group>"; };
 		8BF729B3103562B400C124B0 /* spoknalert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknalert.m; sourceTree = "<group>"; };
 		F249AAB5106F6A340024AE84 /* keypadview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keypadview.h; sourceTree = "<group>"; };
@@ -946,6 +940,7 @@
 		328850CC115756ED00FADAC1 /* Bluetooth_icons */ = {
 			isa = PBXGroup;
 			children = (
+				8BF6E46B115C8B8F009DF9CD /* button-bg.png */,
 				8B788D47115B95BF00B9D5E7 /* audio-source.png */,
 				8B788C92115B896500B9D5E7 /* keypad-wit-text.png */,
 				8B788C65115B87C400B9D5E7 /* 132x52-hide-sources-normal.png */,
@@ -969,9 +964,6 @@
 		32A01E9411258EDA00DC9D85 /* Lattest */ = {
 			isa = PBXGroup;
 			children = (
-				322D2C5511492861009A8F91 /* button_selected.png */,
-				322D2C281149165E009A8F91 /* button.png */,
-				322D2B2D1148F4A9009A8F91 /* square.png */,
 				3286A52B1133DA8D000221A1 /* 10_bgblue_94_111_left.png */,
 				3286A52C1133DA8D000221A1 /* 10_bgblue_94_111_right.png */,
 				3286A52D1133DA8D000221A1 /* 10_bgblue_94_113_left.png */,
@@ -1012,7 +1004,6 @@
 		8B1AE7221120625600A957EA /* spoknbuttonicon */ = {
 			isa = PBXGroup;
 			children = (
-				322D2BA1114903E1009A8F91 /* square_new.png */,
 				328795B211299DB60026B3D0 /* pic3.png */,
 				32A01E9411258EDA00DC9D85 /* Lattest */,
 				8BD0C6131121710600D05D74 /* callblue.png */,
@@ -1444,10 +1435,6 @@
 				3286A5461133DA8D000221A1 /* 270x45-play-pressed.png in Resources */,
 				8B8C9CBB1137A11C00120CF5 /* spoknlogo57.png in Resources */,
 				8B72CA1211412FA5002C7E70 /* ringtone.wav in Resources */,
-				322D2B2E1148F4A9009A8F91 /* square.png in Resources */,
-				322D2BA2114903E1009A8F91 /* square_new.png in Resources */,
-				322D2C291149165E009A8F91 /* button.png in Resources */,
-				322D2C5611492861009A8F91 /* button_selected.png in Resources */,
 				32C15BDE1158A9C200689F56 /* child.plist in Resources */,
 				8B788C73115B87C400B9D5E7 /* 132x52-hide-sources-normal.png in Resources */,
 				8B788C74115B87C400B9D5E7 /* 132x52-hide-sources-pressed.png in Resources */,
@@ -1466,6 +1453,7 @@
 				8B788C93115B896500B9D5E7 /* keypad-wit-text.png in Resources */,
 				8B788D48115B95BF00B9D5E7 /* audio-source.png in Resources */,
 				8B788DF4115B9C8700B9D5E7 /* Default.png in Resources */,
+				8BF6E46C115C8B8F009DF9CD /* button-bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1211,11 +1211,22 @@ titleForHeaderInSection:(NSInteger)section
 			text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>"]];
 			
 			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-			typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
+			
 			
 			strcpy(secContactP->number,numbercharP);
-			strcpy(secContactP->type,typeCharP);
-						alleastOneB = TRUE;
+			if(text1)
+			{	
+				//NSLog(@"%@",text1);
+				NSString *nsP;
+				nsP = [text1 lowercaseString];
+				typeCharP = (char*)[nsP  cStringUsingEncoding:NSUTF8StringEncoding];
+				strcpy(secContactP->type,typeCharP);
+			}
+			else
+			{
+				strcpy(secContactP->type,"mobile");
+			}
+			alleastOneB = TRUE;
 			[ContactControllerDetailsviewP addContactDetails:secContactP];
 			
 			
@@ -1239,10 +1250,21 @@ titleForHeaderInSection:(NSInteger)section
 			
 			
 			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-			typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
-			
+						
 			strcpy(secContactP->number,numbercharP);
-			strcpy(secContactP->type,typeCharP);
+			if(text1)
+			{	
+				//NSLog(@"%@",text1);
+				NSString *nsP;
+				nsP = [text1 lowercaseString];
+				typeCharP = (char*)[nsP  cStringUsingEncoding:NSUTF8StringEncoding];
+				strcpy(secContactP->type,typeCharP);
+			}
+			else
+			{
+				strcpy(secContactP->type,"email");
+			}
+			
 			if(strstr(numbercharP,"@"))//only email allowed
 			{	
 				alleastOneB = TRUE;
@@ -1496,6 +1518,41 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	
 }
+-(Boolean)searchStringFroName:(NSString*)nameStrP key:(NSString*)keyStrP
+{
+	NSRange range1;// = [nameStrP rangeOfString:searchStrP options:NSCaseInsensitiveSearch];//[[[self getName:person] uppercaseString] rangeOfString:upString];
+	NSArray *nsarrayStrP = 0;
+	NSString *strP;
+	if(nameStrP)
+	{	
+		
+		nsarrayStrP = 	[nameStrP componentsSeparatedByString:@" "];	
+		if(nsarrayStrP)
+		{
+			int i=0;
+			for(i=0;i<nsarrayStrP.count;++i)
+			{
+				strP = [nsarrayStrP objectAtIndex:i];
+				if(strP)
+				{
+					//NSLog(@"\nstr = %@",strP);
+					range1 = [strP rangeOfString:keyStrP options:NSCaseInsensitiveSearch];
+					if(range1.location!=NSNotFound)
+					{
+						if(range1.location==0)
+							return TRUE;
+					}
+				
+				
+				}
+			}
+		
+		}
+		
+	}	
+	return FALSE;
+
+}
 - (int) reloadLocal:(NSString *)searchStrP : (int*) firstSectionP {
 	int count = 0; 
 	int noShowB = false;
@@ -1618,7 +1675,7 @@ titleForHeaderInSection:(NSInteger)section
 				{	
 					if([searchStrP length]>0)
 					{	
-						NSRange range1 = [[CellIdentifier uppercaseString] rangeOfString:searchStrP];//[[[self getName:person] uppercaseString] rangeOfString:upString];
+						/*NSRange range1 = [[CellIdentifier uppercaseString] rangeOfString:searchStrP];//[[[self getName:person] uppercaseString] rangeOfString:upString];
 						
 						if (range1.location != NSNotFound) 
 						{	
@@ -1629,7 +1686,13 @@ titleForHeaderInSection:(NSInteger)section
 								[ setTypeP->elementP addObject:secP];
 								noShowB = true;
 							}	
-						}	
+							
+						}*/
+						if([self searchStringFroName:CellIdentifier key:searchStrP]==TRUE)
+						{
+							[ setTypeP->elementP addObject:secP];
+							noShowB = true;
+						}
 					}
 					else
 					{

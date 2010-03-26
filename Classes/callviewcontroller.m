@@ -616,47 +616,47 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		
 		//imagePressed = [UIImage imageNamed:@"240x52-buttons-bluetoothaudio-speaker-normal.png"];
 		//[bluetoothbuttonP setBackgroundImage:imagePressed forState:UIControlStateNormal];
-		imagePressed = [UIImage imageNamed:@"240x52-buttons-bluetoothaudio-speaker-pressed.png"];
+		imagePressed = [UIImage imageNamed:_BLUETOOTH_AUDIO_SPEAKER_PRESSED_PNG_];
 		
 		[bluetoothbuttonP setBackgroundImage:imagePressed forState:UIControlStateNormal];	
 		}
 	else
 	{
-		imagePressed = [UIImage imageNamed:@"240x52-buttons-bluetoothaudio-normal.png"];
+		imagePressed = [UIImage imageNamed:_BLUETOOTH_AUDIO_PNG_];
 		
 		[bluetoothbuttonP setBackgroundImage:imagePressed forState:UIControlStateNormal];	
 		
-		imagePressed = [UIImage imageNamed:@"240x52-buttons-bluetoothaudio-pressed.png"];
+		imagePressed = [UIImage imageNamed:_BLUETOOTH_AUDIO_PRESSED_PNG_];
 		[bluetoothbuttonP setBackgroundImage:imagePressed forState:UIControlStateHighlighted];		
 		
 		
 	}
 	if(audiobuttonP.selected==YES)
 	{
-		imagePressed = [UIImage imageNamed:@"240x52-buttons-iphone-speaker-pressed.png"];
+		imagePressed = [UIImage imageNamed:_BLUETOOTH_IPHONE_SPEAKER_PRESSED_PNG_];
 		[audiobuttonP setBackgroundImage:imagePressed forState:UIControlStateNormal];	
 		
 	}
 	else
 	{
-		imagePressed = [UIImage imageNamed:@"240x52-buttons-iphone-pressed.png"];
+		imagePressed = [UIImage imageNamed:_BLUETOOTH_IPHONE_PRESSED_PNG_];
 		[audiobuttonP setBackgroundImage:imagePressed forState:UIControlStateHighlighted];	
-		imagePressed = [UIImage imageNamed:@"240x52-buttons-iphone-normal.png"];
+		imagePressed = [UIImage imageNamed:_BLUETOOTH_IPHONE_PNG_];
 		[audiobuttonP setBackgroundImage:imagePressed forState:UIControlStateNormal];	
 		
 	}
 	if(speakerinbluetoothbuttonP.selected==YES)
 	{
-		imagePressed = [UIImage imageNamed:@"240x52-buttons-speaker-speaker-pressed.png"];
+		imagePressed = [UIImage imageNamed:_BLUETOOTH_SPEAKER_SPEAKER_PRESSED_PNG_];
 		[speakerinbluetoothbuttonP setBackgroundImage:imagePressed forState:UIControlStateNormal];		
 		
 		
 	}
 	else
 	{
-		imagePressed = [UIImage imageNamed:@"240x52-buttons-speaker-pressed.png"];
+		imagePressed = [UIImage imageNamed:_BLUETOOTH_SPEAKER_PRESSED_PNG_];
 		[speakerinbluetoothbuttonP setBackgroundImage:imagePressed forState:UIControlStateHighlighted];	
-		imagePressed = [UIImage imageNamed:@"240x52-buttons-speaker-normal.png"];
+		imagePressed = [UIImage imageNamed:_BLUETOOTH_SPEAKER_PNG_];
 		[speakerinbluetoothbuttonP setBackgroundImage:imagePressed forState:UIControlStateNormal];	
 		
 	}
@@ -736,7 +736,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 	if(ownerobject.blueTooth)
 	{
-		buttonImage = [UIImage imageNamed:@"audio-source.png"];
+		buttonImage = [UIImage imageNamed:_BLUETOOTH_SOURCE_PNG_];
 		[self setSelectedOrUnselectedImage:speakerButtonP :buttonImage];
 		bluetoothbuttonP.selected = YES;
 		audiobuttonP.selected = NO;
@@ -746,7 +746,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	}
 	else
 	{
-		buttonImage = [UIImage imageNamed:@"speaker-wit-text.png"];
+		buttonImage = [UIImage imageNamed:_CALL_SPEAKER_PNG_];
 		[self setSelectedOrUnselectedImage:speakerButtonP :buttonImage];
 		bluetoothbuttonP.selected = NO;
 		audiobuttonP.selected = YES;

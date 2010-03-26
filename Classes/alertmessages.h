@@ -198,6 +198,30 @@
 #define _DEL_PRESSED_PNG_ @"6_deleteconfirm_302_45_pressed.png"
 #define _SCREEN_BORDERS_PNG_ @"black1.png"
 
+#define _CALL_SPEAKER_PNG_ @"speaker-wit-text.png"
+#define _CALL_KEYPAD_PNG_ @"keypad-wit-text.png"
+
+#define _BLUETOOTH_PANEL_PNG_ @"button-bg.png"
+#define _BLUETOOTH_SOURCE_PNG_ @"audio-source.png"
+#define _BLUETOOTH_HIDE_PNG_ @"132x52-hide-sources-normal.png"
+#define _BLUETOOTH_HIDE_PRESSED_PNG_ @"132x52-hide-sources-pressed.png"
+#define _BLUETOOTH_AUDIO_PNG_ @"240x52-buttons-bluetoothaudio-normal.png"
+#define _BLUETOOTH_AUDIO_PRESSED_PNG_ @"240x52-buttons-bluetoothaudio-pressed.png"
+#define _BLUETOOTH_AUDIO_SPEAKER_PNG_ @"240x52-buttons-bluetoothaudio-speaker-normal.png"
+#define _BLUETOOTH_AUDIO_SPEAKER_PRESSED_PNG_ @"240x52-buttons-bluetoothaudio-speaker-pressed.png"
+#define _BLUETOOTH_IPHONE_PNG_ @"240x52-buttons-iphone-normal.png"
+#define _BLUETOOTH_IPHONE_PRESSED_PNG_ @"240x52-buttons-iphone-pressed.png"
+#define _BLUETOOTH_IPHONE_SPEAKER_PNG_ @"240x52-buttons-iphone-speaker-normal.png"
+#define _BLUETOOTH_IPHONE_SPEAKER_PRESSED_PNG_ @"240x52-buttons-iphone-speaker-pressed.png"
+#define _BLUETOOTH_SPEAKER_PNG_ @"240x52-buttons-speaker-normal.png"
+#define _BLUETOOTH_SPEAKER_PRESSED_PNG_ @"240x52-buttons-speaker-pressed.png"
+#define _BLUETOOTH_SPEAKER_SPEAKER_PNG_ @"240x52-buttons-speaker-speaker-normal.png"
+#define _BLUETOOTH_SPEAKER_SPEAKER_PRESSED_PNG_ @"240x52-buttons-speaker-speaker-pressed.png"
+
+
+
+
+
 //Sound Files
 #define _TONE_FILE_TYPE_ @"wav"
 #define _TONE_ONLINE_ @""
