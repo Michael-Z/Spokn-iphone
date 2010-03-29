@@ -274,6 +274,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	nameInt = 0;
 	statusInt = 0;
 	//[buybuttonCtlP retain];
 	//[aboutbuttonCtlP retain];
@@ -577,10 +578,12 @@ titleForHeaderInSection:(NSInteger)section
 	if(stringStrP.length >0)
 	{	
 		self.navigationItem.title = stringStrP;
+		nameInt = 1;
 	}
 	else
 	{
 		self.navigationItem.title = nil;
+		nameInt = 0;
 	}
 	[stringStrP release];
 	
@@ -698,12 +701,20 @@ titleForHeaderInSection:(NSInteger)section
 //		switchView.enabled = YES;
 		if(statusInt)
 		{
-			switchView.enabled = YES;
+			if(nameInt)
+			{	
+				switchView.enabled = YES;
+			}
+			else
+			{
+				switchView.enabled = NO;
+			}	
 			[self stopforwardactivityIndicator];
 			
 		}
 		else
 		{
+			nameInt = 0;
 			switchView.enabled = NO;
 			[self stopforwardactivityIndicator];
 		}
@@ -892,11 +903,19 @@ titleForHeaderInSection:(NSInteger)section
 			[cell addSubview:forwardactivityIndicator];
 			if(statusInt)
 			{	
-				switchView.enabled = YES;
+				if(nameInt)
+				{	
+					switchView.enabled = YES;
+				}
+				else
+				{
+					switchView.enabled = NO;
+				}
 				[self stopforwardactivityIndicator];
 			}
 			else
 			{
+				nameInt = 0;
 				switchView.enabled = NO;
 				//[self startforwardactivityIndicator];
 			}
@@ -973,11 +992,19 @@ titleForHeaderInSection:(NSInteger)section
 			//[cell addSubview:switchView]; 
 			if(statusInt)
 			{	
-				switchView.enabled = YES;
+				if(nameInt)
+				{	
+					switchView.enabled = YES;
+				}
+				else
+				{
+					switchView.enabled = NO;
+				}
 				[self stopforwardactivityIndicator];
 			}
 			else
 			{
+				nameInt = 0;
 				switchView.enabled = NO;
 				//[self startforwardactivityIndicator];
 			}

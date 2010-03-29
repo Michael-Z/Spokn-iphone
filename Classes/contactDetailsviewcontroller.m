@@ -216,7 +216,7 @@
 		sectionCount = 1;
 		
 		[self setTitle:@"Info"];
-		[self setTitlesString:@"Contact details"];
+		[self setTitlesString:@"Select number for vms"];
 		[self setSelectedNumber:"\0" showAddButton:NO];
 		msgLabelP = 0;
 		for(int i=0;i<MAX_SECTION;++i)
@@ -1654,6 +1654,7 @@ titleForHeaderInSection:(NSInteger)section
 			strcpy(sectionArray[0].dataforSection[firstSecCount].nameofRow,lcontactdataP->type);
 			strcpy(sectionArray[0].dataforSection[firstSecCount].placeholder,"Phone");
 			sectionArray[0].dataforSection[firstSecCount].elementP = sectionArray[0].dataforSection[firstSecCount].contactdataP->number;
+			printf("\n number %s %s",sectionArray[0].dataforSection[firstSecCount].elementP,selectNoCharP);
 			if(!strcmp(selectNoCharP,sectionArray[0].dataforSection[firstSecCount].elementP ))
 			{
 				sectionArray[0].dataforSection[firstSecCount].selected = 1;

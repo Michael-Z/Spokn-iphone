@@ -1750,7 +1750,7 @@ id createImage(float percentage)
 					[ContactControllerDetailsviewP setRecordID:vmailP->recordUId :vmailP->recordUId];
 					//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
 					[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
-					
+					[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
 					
 					
 					[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:NO ];

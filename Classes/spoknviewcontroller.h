@@ -63,6 +63,7 @@ typedef struct ImageNameType
 	UIActivityIndicatorView *activityIndicator;
 	UIActivityIndicatorView *forwardactivityIndicator;
 	int statusInt;
+	int nameInt;
 	
 
 }
