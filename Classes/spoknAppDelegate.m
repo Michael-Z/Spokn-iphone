@@ -1670,6 +1670,19 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//setProp();
 	//getProp();	
 		
+		{	
+			int setIndex;
+			setIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"tabBarIndex"];
+			
+			if(setIndex>0)
+			{
+				setIndex--;
+				tabBarController.selectedIndex = setIndex;
+			}
+			//[[NSUserDefaults standardUserDefaults] synchronize];
+		}
+		
+		
 }/*
 -(BOOL) transformedValue: (id) value 
 { 
@@ -1752,6 +1765,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[nsTimerP invalidate];
 		nsTimerP = nil;
 	#endif
+	[[NSUserDefaults standardUserDefaults] setInteger:[tabBarController selectedIndex]+1  forKey:@"tabBarIndex"];
+	
 	if(contactlookupP)
 	{	
 		[contactlookupP release];
