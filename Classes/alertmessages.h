@@ -71,7 +71,7 @@
 #define _NO_MICROPHONE_ @"No microphone detected"
 #define _NO_MICROPHONE_MESSAGE_ @"In order to use Spokn you must use supported earphones with remote and microphone."
 #define _USER_OFFLINE_ @"Still connecting to Spokn"
-#define _USER_OFFLINE_MESSAGE_ @"Please try again after sometime."
+#define _USER_OFFLINE_MESSAGE_ @"Please try after some time."
 //#define _NO_NUMBER_IN_CONTACT_ @"No number in contact to call."
 #define _CHECK_NETWORK_SETTINGS_ @"Please check your Internet connection and retry."
 #define _SIGN_IN_FAILED_ @"Sign-in failed"

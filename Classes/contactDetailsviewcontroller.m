@@ -1642,6 +1642,7 @@ titleForHeaderInSection:(NSInteger)section
 }
 -(void) addContactDetails:(SelectedContctType *)lcontactdataP
 {
+	char *normalizeNoCharP=0;
 	if(strstr(lcontactdataP->number,"@")==0)
 	{	
 		if(firstSecCount<MAX_COUNT)
@@ -1654,13 +1655,18 @@ titleForHeaderInSection:(NSInteger)section
 			strcpy(sectionArray[0].dataforSection[firstSecCount].nameofRow,lcontactdataP->type);
 			strcpy(sectionArray[0].dataforSection[firstSecCount].placeholder,"Phone");
 			sectionArray[0].dataforSection[firstSecCount].elementP = sectionArray[0].dataforSection[firstSecCount].contactdataP->number;
-			printf("\n number %s %s",sectionArray[0].dataforSection[firstSecCount].elementP,selectNoCharP);
-			if(!strcmp(selectNoCharP,sectionArray[0].dataforSection[firstSecCount].elementP ))
+			normalizeNoCharP = NormalizeNumber(sectionArray[0].dataforSection[firstSecCount].elementP,0);
+			if(!strcmp(selectNoCharP,normalizeNoCharP ))
 			{
 				sectionArray[0].dataforSection[firstSecCount].selected = 1;
 			}
 			sectionArray[0].count++;
 			firstSecCount++;
+			if(normalizeNoCharP)
+			{	
+				free(normalizeNoCharP);
+				normalizeNoCharP = 0;
+			}
 		}	
 		
 	}
