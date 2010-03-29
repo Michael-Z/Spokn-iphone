@@ -485,6 +485,11 @@
 
 
 - (void)dealloc {
+	if(uiActionSheetgP)
+	{	
+		[uiActionSheetgP dismissWithClickedButtonIndex:[uiActionSheetgP cancelButtonIndex] animated:NO];
+		uiActionSheetgP = 0;
+	}
 	[labelBalance release];
 	[labelStatus release];
 	[labelForword release];
@@ -1108,7 +1113,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 #ifdef _ANALYST_
 	[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"BUY CREDIT" label:@"CREDITS"];
 #endif
-	char *tmp;
+/*	char *tmp;
 	NSString *srtrP;
 	tmp = getCreditsPage();
 	if(tmp)
@@ -1117,7 +1122,17 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:srtrP]];
 		free(tmp);
 		[ srtrP release];
-	}	
+	}*/
+	
+	uiActionSheetgP= [[UIActionSheet alloc] 
+					 initWithTitle: @"Please select payment option" 
+					 delegate:self
+					 cancelButtonTitle:_CANCEL_ 
+					 destructiveButtonTitle:nil
+					 otherButtonTitles:@"Paypal",@"Credit Card", nil];
+	
+	uiActionSheetgP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+	[uiActionSheetgP showInView:[ownerobject tabBarController].view];
 }
 
 -(void)aboutPage:(id)sender
@@ -1166,6 +1181,39 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}
 	*/
 }
+#pragma mark ACTIONSHEET
 
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet
+{
+	[actionSheet release];
+	uiActionSheetgP = nil;
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	switch(buttonIndex)//mean Paypal button
+	{
+		case 0:
+			break;
+		case 1:
+		{	
+			char *tmp;
+			NSString *srtrP;
+			tmp = getCreditsPage();
+			if(tmp)
+			{
+				srtrP = [[NSString alloc] initWithUTF8String:tmp];
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:srtrP]];
+				free(tmp);
+				[ srtrP release];
+			}
+		}	
+		break;
+		
+		default:
+			break;
+	}
+	[actionSheet release];
+	
 
+}
 @end

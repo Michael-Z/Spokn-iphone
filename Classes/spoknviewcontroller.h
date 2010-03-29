@@ -38,7 +38,7 @@ typedef struct ImageNameType
 #define MAXIMAGE 6
 
 @class SpoknAppDelegate;
-@interface SpoknViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
+@interface SpoknViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate> {
 	
 	SpoknAppDelegate *ownerobject;
 	//SubViewDetails subViewDetails[MAXVIEW];
@@ -64,6 +64,7 @@ typedef struct ImageNameType
 	UIActivityIndicatorView *forwardactivityIndicator;
 	int statusInt;
 	int nameInt;
+	UIActionSheet *uiActionSheetgP;
 	
 
 }

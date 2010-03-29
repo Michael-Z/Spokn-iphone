@@ -379,7 +379,6 @@
 	
 	uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
 	[uiActionSheetP showInView:[ownerobject tabBarController].view];
-	//uiActionSheetgP = uiActionSheetP;
 	
 }
 
