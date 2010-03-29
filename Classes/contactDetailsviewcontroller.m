@@ -216,7 +216,7 @@
 		sectionCount = 1;
 		
 		[self setTitle:@"Info"];
-		[self setTitlesString:@"Select number for vms"];
+		[self setTitlesString:@"Contact details"];
 		[self setSelectedNumber:"\0" showAddButton:NO];
 		msgLabelP = 0;
 		for(int i=0;i<MAX_SECTION;++i)

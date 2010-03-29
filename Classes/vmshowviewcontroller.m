@@ -989,7 +989,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			{
 				dispP.height = 52;
 			}
-			dispP.colorP = [UIColor colorWithRed:40/255.0 green:108/255.0 blue:214/255.0 alpha:1.0];
+			dispP.colorP = [UIColor blackColor];//[UIColor colorWithRed:40/255.0 green:108/255.0 blue:214/255.0 alpha:1.0];
 			
 			dispP.boldB = YES;
 			dispP.fntSz = 20;
@@ -999,7 +999,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 			stringStrP = [[NSString alloc] initWithUTF8String:objStrP ];
 			dispP.dataP = stringStrP;
 			[stringStrP release];
-			//[dispP.colorP release];
+			[dispP.colorP release];
 			
 			[secLocP->elementP addObject:dispP];
 			
