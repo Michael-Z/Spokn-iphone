@@ -403,7 +403,7 @@ void getProp()
 			if(loginGprsB)//this is for login via gprs
 			{
 				[loginProtocolP stoploginIndicator];
-				[loginProtocolP cleartextField];
+				//[loginProtocolP cleartextField];
 				//if(loginProtocolP)
 				{	
 					[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :HOST_NAME_NOT_FOUND_ERROR ];

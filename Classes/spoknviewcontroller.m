@@ -719,7 +719,8 @@ titleForHeaderInSection:(NSInteger)section
 		}
 		else
 		{	
-			stringStrP = [[NSString alloc] initWithUTF8String:spoknCharP ];
+		//	stringStrP = [[NSString alloc] initWithUTF8String:spoknCharP ];
+			stringStrP = [[NSString alloc] initWithString:@"None"];
 		}	
 		[labelSpoknNo setText:stringStrP];
 		[stringStrP release];
