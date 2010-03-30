@@ -472,10 +472,26 @@
 				{	
 					for(int j=0;j<sectionArray[k].count;++j)
 					{	
+					//	[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP] ];
+					//	stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
 						
-						
-						[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP] ];
-						
+						NSString *str,*str1,*str2;
+						str1=[NSString stringWithFormat:@"%s",sectionArray[k].dataforSection[j].nameofRow];
+						if([str1 length]>7)
+						{
+							str=[NSString stringWithString:[str1 substringToIndex:5]];
+							str=[str stringByAppendingString:@"..."];
+							str2=[NSString stringWithFormat:@"%-10s",sectionArray[k].dataforSection[j].elementP];
+							str=[str stringByAppendingString:str2];
+							
+							//str=[str appendString:@"%-22s",sectionArray[k].dataforSection[j].elementP];
+							//str = [NSString stringWithFormat:@"%s %-22s",substring , sectionArray[k].dataforSection[j].elementP] ;
+						}
+						else
+						{	
+							str = [NSString stringWithFormat:@"%+10s %-22s",sectionArray[k].dataforSection[j].nameofRow, sectionArray[k].dataforSection[j].elementP] ;
+						}
+						[uiActionSheetP addButtonWithTitle:str];
 						stringSelected[i++] = sectionArray[k].dataforSection[j].elementP;
 						
 					}
