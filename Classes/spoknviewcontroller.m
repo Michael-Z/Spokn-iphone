@@ -1125,7 +1125,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}*/
 	
 	uiActionSheetgP= [[UIActionSheet alloc] 
-					 initWithTitle: @"Please select payment option" 
+					 initWithTitle: @"Please select a payment option" 
 					 delegate:self
 					 cancelButtonTitle:_CANCEL_ 
 					 destructiveButtonTitle:nil
@@ -1190,11 +1190,23 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	switch(buttonIndex)//mean Paypal button
+	switch(buttonIndex)
 	{
-		case 0:
+		case 0://mean Paypal button
+		{	
+			char *tmp;
+			NSString *srtrP;
+			tmp = getPayPalPage();
+			if(tmp)
+			{
+				srtrP = [[NSString alloc] initWithUTF8String:tmp];
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:srtrP]];
+				free(tmp);
+				[ srtrP release];
+			}
+		}	
 			break;
-		case 1:
+		case 1://mean Credit card button
 		{	
 			char *tmp;
 			NSString *srtrP;
