@@ -38,7 +38,7 @@
 }
 @property (nonatomic, retain) UIWebView *accountswebView;
 -(void)setObject:(id) object;
--(void)setData:(NSString*)urlP web:(Boolean)lwebB;
+-(void)setData:(NSString*)urlP web:(Boolean)lwebB :(NSString*)title;
 -(void)modelViewB:(Boolean)lmodalB;
 
 @end

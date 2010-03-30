@@ -56,11 +56,14 @@
 	modalB = lmodalB;
 
 }
--(void)setData:(NSString*)urlP web:(Boolean)lwebB
+-(void)setData:(NSString*)urlP web:(Boolean)lwebB :(NSString*)title
 {
 	nowebB = !lwebB;
 	urlToLoadP = [[NSString alloc] initWithString:urlP];
-
+	if([title length]>0)
+	{
+		[self setTitle:title];
+	}	
 	//[urlToLoadP retain];
 }
 
@@ -103,7 +106,7 @@
 	
 		//URL Requst Object
 		NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-		[self setTitle:@"Account history"];
+	//	[self setTitle:@"Account history"];
 
 		//Load the request in the UIWebView.
 		[accountswebView loadRequest:requestObj];
@@ -120,7 +123,7 @@
 		[urlToLoadP release];
 	
 		urlToLoadP = nil;
-		[self setTitle:@"About"];
+	//	[self setTitle:@"About"];
 	}
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {    

@@ -1068,7 +1068,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		tempurl = getAccountPage();
 		urlAddress = [[NSString alloc] initWithUTF8String:tempurl];
 		free(tempurl);
-		[WebViewControllerviewP setData:urlAddress web:YES];
+		[WebViewControllerviewP setData:urlAddress web:YES :@"Account history"];
 		
 		[ [self navigationController] pushViewController:WebViewControllerviewP animated: YES ];
 		[WebViewControllerviewP release];	
@@ -1099,7 +1099,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 			[WebViewControllerviewP setObject:self->ownerobject];
 			//-(void)setData:(NSString*)urlP noweb:(Boolean)lwebB;
 		
-			[WebViewControllerviewP setData:urlAddress web:NO];
+			[WebViewControllerviewP setData:urlAddress web:NO :nil];
 			[ [self navigationController] pushViewController:WebViewControllerviewP animated: YES ];
 			[WebViewControllerviewP release];	
 			[urlAddress release];
@@ -1129,7 +1129,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 					 delegate:self
 					 cancelButtonTitle:_CANCEL_ 
 					 destructiveButtonTitle:nil
-					 otherButtonTitles:@"Paypal",@"Credit Card", nil];
+					 otherButtonTitles:@"PayPal",@"Credit Card", nil];
 	
 	uiActionSheetgP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
 	[uiActionSheetgP showInView:[ownerobject tabBarController].view];
@@ -1141,7 +1141,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"SUPPORT" label:@"SUPPORT"];
 #endif
 	
-	char *tmp;
+/*	char *tmp;
 	NSString *srtrP;
 	tmp = getSupportPage();
 	if(tmp)
@@ -1150,8 +1150,31 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:srtrP]];
 		free(tmp);
 		[ srtrP release];
-	}	
+	}
+ 
+*/ 
+	WebViewController     *WebViewControllerviewP;	
+	NSString *urlAddress;
+	WebViewControllerviewP = [[WebViewController alloc] init];
 	
+	
+	[WebViewControllerviewP setObject:self->ownerobject];
+	char * tempurl;
+	tempurl = getSupportPage();
+	urlAddress = [[NSString alloc] initWithUTF8String:tempurl];
+	free(tempurl);
+	[WebViewControllerviewP setData:urlAddress web:YES :@"Support"];
+	[WebViewControllerviewP modelViewB:YES];
+	UINavigationController *tmpCtl;
+	tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: WebViewControllerviewP ] autorelease];
+	if(tmpCtl)
+	{	
+		
+		[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
+	}	
+	//[ [self navigationController] pushViewController:WebViewControllerviewP animated: YES ];
+	[WebViewControllerviewP release];	
+	[urlAddress release];
 	/*NSString *urlAddress = [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"];
 	if(urlAddress)
 	{	
