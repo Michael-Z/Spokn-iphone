@@ -1718,7 +1718,7 @@ id createImage(float percentage)
 		[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:self selectedContact:selectP] ;
 	
 		[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILFROMVMS];
-		[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
+		[ContactControllerDetailsviewP setTitlesString:@"Info"];
 		[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:NO ];
 		[ContactControllerDetailsviewP setObject:self->ownerobject];
 		
@@ -1749,7 +1749,7 @@ id createImage(float percentage)
 					[ContactControllerDetailsviewP setRecordID:vmailP->recordUId :vmailP->recordUId];
 					//selectedContact:(char*)lnumberCharP rootObject:(id)lrootObjectP
 					[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:0 selectedContact:0] ;
-					[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
+					[ContactControllerDetailsviewP setTitlesString:@"Info"];
 					
 					
 					[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:NO ];
@@ -1795,7 +1795,7 @@ id createImage(float percentage)
 			[ContactControllerDetailsviewP setReturnValue:&returnValueInt selectedContactNumber:0  rootObject:self selectedContact:0]  ;
 			
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CONTACTDETAILFROMVMS];
-			[ContactControllerDetailsviewP setTitlesString:@"Contact details"];
+			[ContactControllerDetailsviewP setTitlesString:@"Info"];
 			[ContactControllerDetailsviewP setSelectedNumber:numberCharP showAddButton:YES ];
 			[ContactControllerDetailsviewP setObject:self->ownerobject];
 			
