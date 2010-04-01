@@ -65,6 +65,7 @@
 @synthesize handSetB;
 @synthesize loginProgressStart;
 @synthesize blueTooth;
+@synthesize firstTimeB;
 - (void) handleTimer: (id) timer
 {
 	
@@ -1376,6 +1377,58 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 
 }
+#pragma mark StartRutine
+
+-(void)startRutine
+{
+	if(self->firstTimeB)
+	{
+		self->firstTimeB = 0;
+	}
+	else
+	{
+		return;
+	}	
+	
+		
+	[self enableAnalytics];	
+#ifdef _ANALYST_
+	{
+		GEventTracker *geventTP;
+		geventTP = [GEventTracker sharedInstance];
+		geventTP.showTrakerB = self->onoffAnalytics;
+		[geventTP startEventTracker];
+		[geventTP trackEvent:@"SPOKN" action:@"APPLICATION LAUNCH" label:@"LAUNCH"];
+	}	
+#endif	
+		
+		
+	if(DoLtpLogin(ltpInterfacesP))//mean error ask dial to load login view
+	{
+		animation = 0;
+		alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self,0);
+	}
+	
+		
+	
+	[self createRing];
+	SetSpeakerOnOrOff(0,true);
+	[vmsviewP setcomposeStatus:1 ];
+	SetAudioSessionPropertyListener(self,MyAudioSessionPropertyListener);
+	[self newBadgeArrived:vmsNavigationController];	
+	loadMissCall();
+	[callviewP setMissCallCount];
+	
+	addressRef = ABAddressBookCreate();
+	
+	pthread_t pt;
+	pthread_create(&pt, 0,ThreadForContactLookup,self);	
+	
+
+
+}
+
+//#define _PUSH_NOTIFICATION_
 #ifdef _PUSH_NOTIFICATION_
 #pragma mark PUSH NOTIFICATIONS
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -1424,19 +1477,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	application.applicationIconBadgeNumber = 0;
 	
 	
-	[self enableEdge];
-	[self enableSip];
-	[self enableAnalytics];	
-	#ifdef _ANALYST_
-		{
-			GEventTracker *geventTP;
-			geventTP = [GEventTracker sharedInstance];
-			geventTP.showTrakerB = self->onoffAnalytics;
-			[geventTP startEventTracker];
-			[geventTP trackEvent:@"SPOKN" action:@"APPLICATION LAUNCH" label:@"LAUNCH"];
-		}	
-	#endif	
-		
+			
 		
     // Override point for customization after application launch
 	//CGRect screenBounds = [ [ UIScreen mainScreen ] bounds ];
@@ -1537,125 +1578,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	tabBarController.delegate = self; 	
 	[window addSubview:tabBarController.view];
-	ltpTimerP = nil;	
-	#ifndef _OWN_THREAD_
-		ltpTimerP = [[LtpTimer alloc] init];
-	#endif	
 	
-	if(ltpTimerP)
-	{	
-		ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self);
-	}
-	else
-	{
-		ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self);
-	}
-	#ifdef _LTP_
-		if(self->sipOnB)
-		{	
-			setLtpServer(ltpInterfacesP,"64.49.236.88");
-		}
-		else
-		{
-			setLtpServer(ltpInterfacesP,"www.spokn.com");
-		}
-	#else
-		setLtpServer(ltpInterfacesP,"www.spokn.com");
-	#endif	
-	
-	//setLtpServer(ltpInterfacesP,"64.49.244.225");
-
-	//start ua 
-	UACallBackType uaCallback = {0};
-	uaCallback.uData = self;
-	uaCallback.pathFunPtr = GetPathFunction;
-	uaCallback.creatorDirectoryFunPtr = CreateDirectoryFunction;
-	uaCallback.alertNotifyP = alertNotiFication;
-	
-	UACallBackInit(&uaCallback,ltpInterfacesP->ltpObjectP);
-	uaInit();
-	
-	
-//	[versionP release];
-	//[model release];
-	//[uniqueIdentifier release];
-	//[device release];
-	
-	
-	//;
-	//dialviewP.ltpTimerP  = ltpTimerP;
-	
-	dialviewP.ltpInterfacesP  = ltpInterfacesP;
-	
-	contactviewP.ltpInterfacesP = ltpInterfacesP;
-	vmsviewP.ltpInterfacesP = ltpInterfacesP;
-	//callviewP.ltpInterfacesP = ltpInterfacesP;
-    [ window makeKeyAndVisible ];
-	//tabBarController.selectedViewController = dialviewP;
-	
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:self selector:@selector(alertAction:) name:@"ALERTNOTIFICATION" object:nil];
-	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	//[nc postNotificationName:@"DEQUEUEAUDIO" object:idP userInfo:nil];
-	cdrLoad();
-
-	
-	
-	/*
-	NSString *idValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"id_prefrence"];
-	NSString *passValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"pass_prefrence"];
-	char *idValueCharP;
-	char *idPasswordCharP;
-	idValueCharP =(char*) [idValue cStringUsingEncoding:1];
-	idPasswordCharP = (char*)[passValue cStringUsingEncoding:1];
-	
-	userNameCharP = getLtpUserName(ltpInterfacesP);
-	if(idValueCharP)
-	{	
-		if(strlen(userNameCharP)==0 || (strlen(idValueCharP)>0 && strcmp(userNameCharP,idValueCharP)!=0 ) )
-		{
-			
-			setLtpUserName(ltpInterfacesP, idValueCharP);
-			setLtpPassword(ltpInterfacesP, idPasswordCharP);
-			
-		}
-	}	
-	free(userNameCharP);
-	[idValue release];
-	[passValue release];*/
-	//setLtpUserName(ltpInterfacesP, "");
-	//setLtpPassword(ltpInterfacesP, "");
-	//NSString *ltpValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"protocol_prefrence"];
-	//[self startCheckNetwork];	
-	
-	if(DoLtpLogin(ltpInterfacesP))//mean error ask dial to load login view
-	{
-		animation = 0;
-		alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self,0);
-	}
-	
-	//[self startCheckNetwork];	
-	/*
-	[self LoadContactView:contactviewP];
-	[self LoadContactView:vmsviewP];
-	[self LoadContactView:callviewP];
-	*/	
-
 		
-	tabBarController.selectedViewController = spoknViewNavigationController;//dialviewP;
+	//tabBarController.selectedViewController = spoknViewNavigationController;//dialviewP;
 	[vmsNavigationController.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:_TAB_VMS_PNG_] tag:4];
-	[self createRing];
-	SetSpeakerOnOrOff(0,true);
-	[vmsviewP setcomposeStatus:1 ];
-	SetAudioSessionPropertyListener(self,MyAudioSessionPropertyListener);
-	[self newBadgeArrived:vmsNavigationController];	
-	loadMissCall();
-	[callviewP setMissCallCount];
 	
-	 addressRef = ABAddressBookCreate();
-
-	pthread_t pt;
-	pthread_create(&pt, 0,ThreadForContactLookup,self);	
 	/*int majorver =0,minor1ver=0,minor2ver=0;
 	GetOsVersion(&majorver,&minor1ver,&minor2ver);
 	if(majorver>=3 && minor1ver>0 )
@@ -1681,8 +1608,66 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			}
 			//[[NSUserDefaults standardUserDefaults] synchronize];
 		}
+		self->firstTimeB = 1;
+	//	[self startRutine];
+		[ window makeKeyAndVisible ];
+		[self enableEdge];
+		[self enableSip];
 		
 		
+		ltpTimerP = nil;	
+#ifndef _OWN_THREAD_
+		ltpTimerP = [[LtpTimer alloc] init];
+#endif	
+		
+		if(ltpTimerP)
+		{	
+			ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self);
+		}
+		else
+		{
+			ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self);
+		}
+#ifdef _LTP_
+		if(self->sipOnB)
+		{	
+			setLtpServer(ltpInterfacesP,"64.49.236.88");
+		}
+		else
+		{
+			setLtpServer(ltpInterfacesP,"www.spokn.com");
+		}
+#else
+		setLtpServer(ltpInterfacesP,"www.spokn.com");
+#endif	
+		
+		
+		
+		//start ua 
+		UACallBackType uaCallback = {0};
+		uaCallback.uData = self;
+		uaCallback.pathFunPtr = GetPathFunction;
+		uaCallback.creatorDirectoryFunPtr = CreateDirectoryFunction;
+		uaCallback.alertNotifyP = alertNotiFication;
+		
+		UACallBackInit(&uaCallback,ltpInterfacesP->ltpObjectP);
+		uaInit();
+		
+		dialviewP.ltpInterfacesP  = ltpInterfacesP;
+		
+		contactviewP.ltpInterfacesP = ltpInterfacesP;
+		vmsviewP.ltpInterfacesP = ltpInterfacesP;
+		//callviewP.ltpInterfacesP = ltpInterfacesP;
+		
+		//tabBarController.selectedViewController = dialviewP;
+		
+		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+		[nc addObserver:self selector:@selector(alertAction:) name:@"ALERTNOTIFICATION" object:nil];
+		//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+		//[nc postNotificationName:@"DEQUEUEAUDIO" object:idP userInfo:nil];
+		cdrLoad();
+		
+
 }/*
 -(BOOL) transformedValue: (id) value 
 { 
@@ -2271,6 +2256,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		
 	}
+//	if(self->firstTimeB )
+//	{
+//		self->firstTimeB = 0;
+//		[self startRutine];
+//	}
 	prvCtlP = viewController;
 }
 -(void)tabBarController:(UITabBarController*)tabBarController didEndCustomizingViewController:(NSArray*)viewcontrollers

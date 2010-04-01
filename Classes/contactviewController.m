@@ -109,6 +109,7 @@
 	{	
 	
 		int res;
+		int dontChangeB = false;
 		normalizeNoCharP = NormalizeNumber(lnumberCharP,1);
 		for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
 		{
@@ -120,10 +121,17 @@
 			}
 			 
 				 
-			text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"+- _$!<>"]];
-			numberStrP = [numberStringP stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"+- _$!<>"]];
+			text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"()+- _$!<>"]];
+			numberStrP = [numberStringP stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"()+- _$!<>"]];
 			
-			
+			if([text1 isEqualToString:labelStringP])
+			{
+				dontChangeB = true;
+			}
+			else
+			{
+				dontChangeB = false;
+			}
 			numbercharP = (char*)[numberStrP  cStringUsingEncoding:NSUTF8StringEncoding];
 			//normalizeNoCharP = NormalizeNumber(numbercharP,0);
 			res=  strcmp(numbercharP,normalizeNoCharP);
@@ -137,6 +145,13 @@
 				{
 					*typeP = malloc(strlen(tmpcharP)+4); 
 					strcpy(*typeP,tmpcharP);
+					if(dontChangeB==false)
+					{	
+						if((*typeP)[0]<91)
+						{
+							(*typeP)[0]= (*typeP)[0]+32;
+						}
+					}	
 					
 				}
 				
@@ -185,6 +200,7 @@
 				
 				if(strstr(numbercharP,"@"))//only email allowed
 				{	
+					int dontChangeB=false;
 					char *lnormalizeNoCharP = NormalizeNumber(numbercharP,2);
 					if(strcmp(lnormalizeNoCharP,normalizeNoCharP)==0)
 					{
@@ -193,12 +209,27 @@
 						if(labelStringP)
 						{
 							text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"+- _$!<>"]];
-						
+							if([text1 isEqualToString:labelStringP])
+							{
+								dontChangeB = true;
+							}
+							else
+							{
+								dontChangeB = false;
+							}
+							
 							tmpcharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
 							if(tmpcharP)
 							{
 								*typeP = malloc(strlen(tmpcharP)+4); 
 								strcpy(*typeP,tmpcharP);
+								if(dontChangeB==false)
+								{	
+									if((*typeP)[0]<91)
+									{
+										(*typeP)[0]= (*typeP)[0]+32;
+									}
+								}
 							
 							}
 							[labelStringP release];
@@ -730,6 +761,7 @@ titleForHeaderInSection:(NSInteger)section
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	[ownerobject startRutine];
 	refreshB = 0;
 	searchbar = [[UISearchBar alloc] init];
 	searchbar.delegate = self;
@@ -1197,7 +1229,7 @@ titleForHeaderInSection:(NSInteger)section
 	name1 =(NSString*)ABRecordCopyValue(person,kABRealPropertyType);
 	if(name1)
 	{	
-		
+		int dontChangeB = false;
 		for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
 		{
 			numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
@@ -1210,17 +1242,34 @@ titleForHeaderInSection:(NSInteger)section
 			//text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]];
 			text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>"]];
 			
+			if([text1 isEqualToString:labelStringP])
+			{
+				dontChangeB = true;
+			}
+			else
+			{
+				dontChangeB = false;
+			}
+			
+			
 			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 			
 			
 			strcpy(secContactP->number,numbercharP);
 			if(text1)
 			{	
-				//NSLog(@"%@",text1);
-				NSString *nsP;
-				nsP = [text1 lowercaseString];
-				typeCharP = (char*)[nsP  cStringUsingEncoding:NSUTF8StringEncoding];
+			//	NSString *nsP;
+				
+				//nsP = [text1 lowercaseString];
+				typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
 				strcpy(secContactP->type,typeCharP);
+				if(dontChangeB==false)
+				{	
+					if(secContactP->type[0]<91)
+					{
+						secContactP->type[0]= secContactP->type[0]+32;
+					}
+				}	
 			}
 			else
 			{
@@ -1238,6 +1287,7 @@ titleForHeaderInSection:(NSInteger)section
 	name1 =(NSString*)ABRecordCopyValue(person,kABDateTimePropertyType);
 	if(name1)
 	{	
+		int dontChangeB = false;
 		for(CFIndex i=0;i<ABMultiValueGetCount(name1);i++)
 		{
 			numberStringP=(NSString*)ABMultiValueCopyValueAtIndex(name1,i);
@@ -1248,17 +1298,31 @@ titleForHeaderInSection:(NSInteger)section
 			}
 			text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>"]];
 			
+			if([text1 isEqualToString:labelStringP])
+			{
+				dontChangeB = true;
+			}
+			else
+			{
+				dontChangeB = false;
+			}
 			
 			numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 						
 			strcpy(secContactP->number,numbercharP);
 			if(text1)
 			{	
-				//NSLog(@"%@",text1);
-				NSString *nsP;
-				nsP = [text1 lowercaseString];
-				typeCharP = (char*)[nsP  cStringUsingEncoding:NSUTF8StringEncoding];
+				//NSString *nsP;
+				//nsP = [text1 lowercaseString];
+				typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
 				strcpy(secContactP->type,typeCharP);
+				if(dontChangeB==false)
+				{	
+					if(secContactP->type[0]<91)
+					{
+						secContactP->type[0]= secContactP->type[0]+32;
+					}
+				}	
 			}
 			else
 			{
@@ -1535,7 +1599,6 @@ titleForHeaderInSection:(NSInteger)section
 				strP = [nsarrayStrP objectAtIndex:i];
 				if(strP)
 				{
-					//NSLog(@"\nstr = %@",strP);
 					range1 = [strP rangeOfString:keyStrP options:NSCaseInsensitiveSearch];
 					if(range1.location!=NSNotFound)
 					{

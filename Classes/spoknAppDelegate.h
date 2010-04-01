@@ -140,8 +140,9 @@ typedef struct CallNumberType
 	int onoffAnalytics;
 	Boolean blueTooth;
 	NSString *devicePushTokenStrP;
+	int firstTimeB;
 	
-	@public
+	//@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
 
@@ -158,6 +159,7 @@ typedef struct CallNumberType
 -(void)LoadContactView:(id)object;
 -(void)SendDTMF:(char *)dtmfVapP;
 -(void)updateSpoknView:(id)object;
+-(void)startRutine;
 /*
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, assign) IBOutlet DialviewController *dialviewP;
@@ -177,6 +179,7 @@ typedef struct CallNumberType
 @property (nonatomic, assign) IBOutlet UINavigationController *calllogNavigationController;
 @property (nonatomic, assign) IBOutlet UINavigationController *contactNavigationController;
 @property (nonatomic, assign) Boolean onLineB;
+@property (nonatomic, assign) int firstTimeB;
 @property (nonatomic, assign) UITabBarController *tabBarController;
 //@property (nonatomic, retain) IBOutlet spoknviewcontroller *viewController;
 //add delegate

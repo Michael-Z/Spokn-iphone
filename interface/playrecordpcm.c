@@ -358,8 +358,8 @@ int pauseAudio(void *uData)
 	if(uData==NULL)
 		return 1 ;
 	AQCallbackStruct *aqcP;
-	int err;
-	UInt32		isRunning;
+	///int err;
+	//UInt32		isRunning;
 	aqcP = (AQCallbackStruct*)uData;
 	AudioQueuePause(aqcP->queue);
 	return 0;

@@ -168,7 +168,7 @@
 				}*/
 				//numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
 				//typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
-				tmpNumber = [numberStringP stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"+- _$!<>"]];
+				tmpNumber = [numberStringP stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"()+- _$!<>"]];
 				
 				recordP = [[AddressBookRecord alloc] init];
 				recordP.recordID = recordID;
@@ -203,9 +203,12 @@
 				
 				if(strstr(numbercharP,"@"))//only email allowed
 				{	
+					//printf("email %s",numbercharP);
+					NSString *trimStrP;
 					recordP = [[AddressBookRecord alloc] init];
 					recordP.recordID = recordID;
-					[contactDictionaryP setObject: recordP forKey: numberStringP];
+					trimStrP = [numberStringP stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+					[contactDictionaryP setObject: recordP forKey: trimStrP];
 					
 				}
 				[numberStringP release];
@@ -257,8 +260,14 @@
 		*recIDP = -1;
 	}
 	numberP = [NSString stringWithUTF8String:lnumberCharP];
-	newNumberP = [numberP stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"+- _$!<>"]];
-	
+	if(strstr(lnumberCharP,"@")==0)
+	{	
+		newNumberP = [numberP stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"()+- _$!<>"]];
+	}
+	else
+	{
+		newNumberP = numberP;
+	}
 	recordP = [contactDictionaryP objectForKey:newNumberP];
 	if(recordP==nil)
 		return 1;

@@ -348,31 +348,31 @@
 			{	
 				if(strlen(addressDataP->home)>0)
 				{	
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%+10s %-22s", "home",addressDataP->home] ];
 					stringSelected[i++] = addressDataP->home;
 				}
 				if(strlen(addressDataP->business)>0)
 				{	
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","work" ,addressDataP->business] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%+10s %-22s","work" ,addressDataP->business] ];
 					stringSelected[i++] = addressDataP->business;
 				}	
 				if(strlen(addressDataP->mobile)>0)
 				{	
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%+10s %-22s","mobile", addressDataP->mobile] ];
 					stringSelected[i++] = addressDataP->mobile;
 				}	
 
 			
 				if(strlen(addressDataP->spoknid)>0)
 				{		
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "spokn",addressDataP->spoknid] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%+10s %-22s", "spokn",addressDataP->spoknid] ];
 					stringSelected[i++] = addressDataP->spoknid;
 				}	
 
 			
 				if(strlen(addressDataP->other)>0)
 				{	
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%+10s %-22s","other", addressDataP->other] ];
 			
 					stringSelected[i++] = addressDataP->other;
 				}
@@ -448,38 +448,38 @@
 			{	
 				if(strlen(addressDataP->home)>0)
 				{	
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "home",addressDataP->home] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%+10s %-22s", "home",addressDataP->home] ];
 					stringSelected[i++] = addressDataP->home;
 				}
 				if(strlen(addressDataP->business)>0)
 				{	
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","work" ,addressDataP->business] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%+10s %-22s","work" ,addressDataP->business] ];
 					stringSelected[i++] = addressDataP->business;
 				}	
 				if(strlen(addressDataP->mobile)>0)
 				{	
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","mobile", addressDataP->mobile] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%+10s %-22s","mobile", addressDataP->mobile] ];
 					stringSelected[i++] = addressDataP->mobile;
 				}	
 			
 			
 				if(strlen(addressDataP->spoknid)>0)
 				{		
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s", "Spokn",addressDataP->spoknid] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%+10s %-22s", "Spokn",addressDataP->spoknid] ];
 					stringSelected[i++] = addressDataP->spoknid;
 				}	
 			
 			
 				if(strlen(addressDataP->other)>0)
 				{	
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","other", addressDataP->other] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%+10s %-22s","other", addressDataP->other] ];
 				
 					stringSelected[i++] = addressDataP->other;
 				}			
 			
 				if(strlen(addressDataP->email)>0)
 				{	
-					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%-8s %-15s","email", addressDataP->email] ];
+					[uiActionSheetP addButtonWithTitle:[NSString stringWithFormat:@"%+10s %-22s","email", addressDataP->email] ];
 			
 					stringSelected[i++] = addressDataP->email;
 				}	

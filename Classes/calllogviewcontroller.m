@@ -1067,6 +1067,7 @@ cancelButtonTitle: nil
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[ownerobject startRutine];
 	showMisscallInt = GETCALLLOGLIST;
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"Calllog" image:nil tag:2];

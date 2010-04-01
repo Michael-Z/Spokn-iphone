@@ -1038,7 +1038,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 				dispP.row = 1;
 				dispP.height = 40;
 				stringStrP = [[NSString alloc] initWithUTF8String:typeCallP ];
-				dispP.dataP = [stringStrP lowercaseString];
+				dispP.dataP = stringStrP;//[stringStrP lowercaseString];
 				[stringStrP release];
 				dispP.colorP = [UIColor lightGrayColor];
 			
