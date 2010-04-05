@@ -1037,11 +1037,13 @@ int blueToothIsOn()
 		NSRange range = [capStrP rangeOfString:@"BT"];
 		if (range.location == NSNotFound ) 
 		{	
+			[dataP release];
 			return 0;
 			
 		}
 		else
 		{
+			[dataP release];	
 			return 1;
 		}
 	}
@@ -1073,12 +1075,15 @@ int HeadSetIsOn()
 			return 0;
 		}
 		NSRange range = [capStrP rangeOfString:@"HEADSET"];
+		
 		if (range.location == NSNotFound ) 
 		{	
+			[dataP release];
 			return 0;
 						
 		}
 	//	NSLog(@"connect %@",capStrP);
+		[dataP release];
 		return 1;
 	}
 	return 0;
@@ -1378,15 +1383,24 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 }
 #pragma mark StartRutine
+- (void) openRscTimer: (id) timer
+{
 
+	[timer invalidate];
+	printf("\n by timer");
+	[self startRutine];
+
+}
 -(void)startRutine
 {
 	if(self->firstTimeB)
 	{
+		
 		self->firstTimeB = 0;
 	}
 	else
 	{
+		
 		return;
 	}	
 	
@@ -1606,11 +1620,16 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				setIndex--;
 				tabBarController.selectedIndex = setIndex;
 			}
+			else
+			{
+				tabBarController.selectedIndex = 4;//spokn tab
+			}
 			//[[NSUserDefaults standardUserDefaults] synchronize];
 		}
-		self->firstTimeB = 1;
-	//	[self startRutine];
+			//	[self startRutine];
 		[ window makeKeyAndVisible ];
+		self->firstTimeB = 1;
+
 		[self enableEdge];
 		[self enableSip];
 		
@@ -1666,6 +1685,16 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 		//[nc postNotificationName:@"DEQUEUEAUDIO" object:idP userInfo:nil];
 		cdrLoad();
+		[NSTimer scheduledTimerWithTimeInterval: 5
+		 
+										 target: self
+		 
+									   selector: @selector(openRscTimer:)
+		 
+									   userInfo: nil
+		 
+										repeats: YES];
+		
 		
 
 }/*

@@ -188,10 +188,14 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 }
 - (void)viewDidAppear:(BOOL)animated
 {
+	
 	buttonPressedB = NO;
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	
+	
+	
 	[ownerobject startRutine];
 	buttonPressedB = NO;
 	#ifdef MAX_TONE
