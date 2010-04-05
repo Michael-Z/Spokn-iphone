@@ -1685,7 +1685,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 		//[nc postNotificationName:@"DEQUEUEAUDIO" object:idP userInfo:nil];
 		cdrLoad();
-		[NSTimer scheduledTimerWithTimeInterval: 5
+		[NSTimer scheduledTimerWithTimeInterval: 1
 		 
 										 target: self
 		 
