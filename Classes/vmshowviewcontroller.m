@@ -1392,7 +1392,27 @@ id createImage(float percentage)
 			}
 			else
 			{
-				[msgLabelP setText:[NSString stringWithFormat:@"Outgoing VMS\n%s", s1]];
+				
+				switch(vmailP->status)
+				{
+					case VMAIL_DELIVERED:
+						[msgLabelP setText:[NSString stringWithFormat:@"Outgoing VMS - Delivered \n%s", s1]];
+						break;
+					case VMAIL_FAILED:
+						[msgLabelP setText:[NSString stringWithFormat:@"Outgoing VMS - Undelivered \n%s", s1]];
+						break;
+					case VMAIL_ACTIVE:
+						[msgLabelP setText:[NSString stringWithFormat:@"Outgoing VMS - Pending \n%s", s1]];
+						break;
+					case VMAIL_NEW:
+						[msgLabelP setText:[NSString stringWithFormat:@"Outgoing VMS - Pending \n%s", s1]];
+						break;
+						
+					default:
+						[msgLabelP setText:[NSString stringWithFormat:@"Outgoing VMS - Pending \n%s", s1]];
+						break;
+				}	
+				//	[msgLabelP setText:[NSString stringWithFormat:@"Outgoing VMS - Pending \n%s", s1]];
 			}
 			
 		}	
