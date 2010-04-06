@@ -155,19 +155,6 @@
 				{
 					continue;
 				}
-				/*numbercharP =(char*) [numberStringP UTF8String];
-				numbercharP = NormalizeNumber(numbercharP, 1);
-				if(numbercharP)
-				{
-					tmpNumber = [NSString stringWithUTF8String:numbercharP];
-					free(numbercharP);
-				}
-				else
-				{
-					tmpNumber = numberStringP;
-				}*/
-				//numbercharP = (char*)[numberStringP  cStringUsingEncoding:NSUTF8StringEncoding];
-				//typeCharP = (char*)[text1  cStringUsingEncoding:NSUTF8StringEncoding];
 				tmpNumber = [numberStringP stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"()+- _$!<>"]];
 				
 				recordP = [[AddressBookRecord alloc] init];

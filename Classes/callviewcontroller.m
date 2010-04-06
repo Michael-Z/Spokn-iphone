@@ -132,6 +132,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self->holdOnB = false;
 	ownerobject.blueTooth =  blueToothIsOn();
 	if(ownerobject.blueTooth)
 	{
@@ -257,6 +258,11 @@
 		
 		free(newStringP);
 		
+	}
+	//put on hold if hold button is pressed
+	if(self->holdOnB)
+	{	
+		setHoldInterface(ownerobject.ltpInterfacesP, self->holdOnB);
 	}
 	free(newLineP);
 }
@@ -422,7 +428,7 @@
 	butP = (UIButton*)sender;
 	
 	enable = !butP.selected;
-
+	holdOnB = enable;
 	if(setHoldInterface(ownerobject.ltpInterfacesP, enable)==0)
 	{	
 		[butP setSelected:enable];

@@ -75,6 +75,7 @@
 	Boolean firstTimeB;
 	Boolean selectedModeB;
 	UIActionSheet *uiActionSheetgP;
+	int holdOnB;
 	//IBOutlet UIButton *testP;
 
 }
