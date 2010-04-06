@@ -407,7 +407,6 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* spoknAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* spoknAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* spokn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spokn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
@@ -554,6 +553,7 @@
 		8B81B4B010318ADB00A18DA1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		8B81C4AD114260230032C0EE /* spokn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spokn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8B86D6A3116B610B00EDA2D4 /* spokn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spokn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8BB897115A4CC700A66C75 /* ltpandsip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpandsip.c; path = interface/ltpandsip.c; sourceTree = "<group>"; };
 		8B8BB898115A4CC700A66C75 /* ltpandsip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ltpandsip.h; path = interface/ltpandsip.h; sourceTree = "<group>"; };
 		8B8BB899115A4CC700A66C75 /* ltpdump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltpdump.c; path = interface/ltpdump.c; sourceTree = "<group>"; };
@@ -882,9 +882,9 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* spokn.app */,
 				8B72CA7D11413220002C7E70 /* spoknTest.octest */,
 				8B81C4AD114260230032C0EE /* spokn.app */,
+				8B86D6A3116B610B00EDA2D4 /* spokn.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1287,7 +1287,7 @@
 			);
 			name = spokn;
 			productName = spokn;
-			productReference = 1D6058910D05DD3D006BFB54 /* spokn.app */;
+			productReference = 8B86D6A3116B610B00EDA2D4 /* spokn.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8B9649CB10CBE3BC00CB00DB /* spokntesting */ = {
@@ -2068,7 +2068,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
@@ -2136,7 +2136,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -2168,7 +2168,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
