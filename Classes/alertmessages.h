@@ -121,7 +121,7 @@
 #define _MOBILE_ @"mobile"
 #define _HOME_ @"home"
 #define _BUSINESS_ @"business"
-#define _SPOKN_ID_ @"Spokn ID"
+#define _SPOKN_ID_ @"spokn"
 #define _OTHER_ @"Other"
 #define _EMAIL_ @"email"
 

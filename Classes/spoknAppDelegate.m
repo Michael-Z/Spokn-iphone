@@ -1387,7 +1387,6 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 
 	[timer invalidate];
-	printf("\n by timer");
 	[self startRutine];
 
 }

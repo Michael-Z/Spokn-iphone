@@ -1405,7 +1405,7 @@ id createImage(float percentage)
 						[msgLabelP setText:[NSString stringWithFormat:@"Outgoing VMS - Pending \n%s", s1]];
 						break;
 					case VMAIL_NEW:
-						[msgLabelP setText:[NSString stringWithFormat:@"Outgoing VMS - Pending \n%s", s1]];
+						[msgLabelP setText:[NSString stringWithFormat:@"Outgoing VMS - Sending \n%s", s1]];
 						break;
 						
 					default:
