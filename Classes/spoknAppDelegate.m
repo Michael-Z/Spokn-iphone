@@ -1649,7 +1649,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 #ifdef _LTP_
 		if(self->sipOnB)
 		{	
-			setLtpServer(ltpInterfacesP,"64.49.236.88");
+			setLtpServer(ltpInterfacesP,"www.spokn.com");
 		}
 		else
 		{

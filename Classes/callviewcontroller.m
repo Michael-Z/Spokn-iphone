@@ -103,7 +103,7 @@
 									   userInfo: nil
 										repeats: NO];*/
 		
-		SetAudioTypeLocal(0,0);
+		
 		//AudioSessionSetActive(true);
 		[self->parentObjectDelegate setParentObject:self];
 		alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
@@ -132,6 +132,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	SetAudioTypeLocal(0,0);
 	self->holdOnB = false;
 	ownerobject.blueTooth =  blueToothIsOn();
 	if(ownerobject.blueTooth)
@@ -265,6 +266,16 @@
 		setHoldInterface(ownerobject.ltpInterfacesP, self->holdOnB);
 	}
 	free(newLineP);
+	ownerobject.blueTooth =  blueToothIsOn();
+	if(ownerobject.blueTooth)
+	{
+		[self routeChange:2];
+	}
+	/*else
+	{
+		[self routeChange:1];
+	}*/
+	
 }
 -(int)  stopTimer
 {
@@ -549,6 +560,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 }
 -(void)routeChange:(int)reason
 {
+	
 	switch(reason)
 	{
 		case 1://only iphone
