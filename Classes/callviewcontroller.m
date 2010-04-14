@@ -101,9 +101,18 @@
 									   selector: @selector(makeCallTimer:)
 									   userInfo: nil
 										repeats: NO];*/
+		SetAudioTypeLocal(0,0);
+		
+		ownerobject.blueTooth =  blueToothIsOn();
+		if(ownerobject.blueTooth)
+		{
+			selectedModeB = 1;
+			[self setselectedButtonImage:selectedModeB];
+		}
 		
 		
 		//AudioSessionSetActive(true);
+	//	printf("\n session active");
 		[self->parentObjectDelegate setParentObject:self];
 		alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
 		firstTimeB = 0;
@@ -131,14 +140,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	SetAudioTypeLocal(0,0);
 	self->holdOnB = false;
-	ownerobject.blueTooth =  blueToothIsOn();
-	if(ownerobject.blueTooth)
-	{
-		selectedModeB = 1;
-		[self setselectedButtonImage:selectedModeB];
-	}
 	blueToothViewP.hidden = YES;
 	self->hideSourcesbuttonP.hidden = YES;
 	blueToothViewP.backgroundColor = [UIColor clearColor];
