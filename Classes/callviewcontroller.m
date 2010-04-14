@@ -74,9 +74,8 @@
 	}
 	[super viewWillAppear:animated];
 }
-- (void)viewDidDisappear:(BOOL)animated
+-(void)sendLtpHang
 {
-	[super viewDidDisappear:animated];
 	if(endCalledPressed)
 	{
 		[self->parentObjectDelegate objectDestory];
@@ -84,6 +83,14 @@
 		hangLtpInterface(self->ownerobject.ltpInterfacesP);
 		
 	}
+
+
+}
+- (void)viewDidDisappear:(BOOL)animated
+{
+	printf("\n					view viewDidDisappear");
+	[super viewDidDisappear:animated];
+	
 }
 -(void)setParentObject:(id) object 
 {
@@ -92,7 +99,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
+	printf("\n view viewDidAppear");
 	loadedB = true;
 	if(firstTimeB)
 	{	
@@ -375,13 +382,14 @@
 	[self->ownerobject endCall:0];
 	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 	endCalledPressed = YES;
+	[self sendLtpHang];
 }
 -(IBAction)endCallPressed:(id)sender
 {
 	endCalledPressed = YES;
 	[self->ownerobject endCall:0];
 	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
-	
+	[self sendLtpHang];
 	
 }
 -(IBAction)mutePressed:(id)sender

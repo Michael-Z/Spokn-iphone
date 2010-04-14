@@ -503,7 +503,7 @@ void getProp()
 			break;	
 		case ALERT_DISCONNECTED:
 			callOnB = false;
-			
+		
 			if(lineID == 0)
 			{	
 				[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 ];
@@ -1270,6 +1270,35 @@ int GetOsVersion(int *majorP,int *minor1P,int *minor2P)
 void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned long userData,void *otherinfoP)
 {
 	SpoknAppDelegate *spoknDelP;
+	if(type==CALL_ALERT)
+	{
+		spoknDelP = (SpoknAppDelegate *)userData;
+	
+		if(spoknDelP==0) return;
+		if(valSubLong==1)
+		{
+			spoknDelP->callNumber.direction = 0;
+			return;
+		}
+		switch(spoknDelP->callNumber.direction)
+		{
+			case 1:
+				callLtpInterface(spoknDelP->ltpInterfacesP,spoknDelP->callNumber.number);
+				spoknDelP->callNumber.direction = 0;
+				break;
+			case 2:
+				AcceptInterface(spoknDelP->ltpInterfacesP, spoknDelP->callNumber.lineId);
+				spoknDelP->callNumber.direction = 0;
+				
+				break;
+		}		
+		return;
+		
+	
+	
+	}
+	
+	
 	NSAutoreleasePool *autoreleasePool = [[ NSAutoreleasePool alloc ] init];
 	spoknDelP = (SpoknAppDelegate *)userData;
 	[spoknDelP setLtpInfo:type :valSubLong :lineID :otherinfoP];

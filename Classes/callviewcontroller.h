@@ -101,6 +101,7 @@
 -(void)setSpeakerButtonImage;
 -(void)setSelectedOrUnselectedImage:(UIButton*)selectedButtonP :(UIImage*)imageP;
 -(void) changeSelectedImage;
+-(void)sendLtpHang;
 @property (readwrite,assign) id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 
 @end
