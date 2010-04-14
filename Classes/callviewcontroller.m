@@ -272,6 +272,7 @@
 	{
 		[self routeChange:2];
 	}
+	setMuteInterface(ownerobject.ltpInterfacesP,false);
 	/*else
 	{
 		[self routeChange:1];
