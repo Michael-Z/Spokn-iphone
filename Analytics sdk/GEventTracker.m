@@ -35,7 +35,9 @@
 id sharedEventTracker;
 
 
-
+#ifndef GOOGLE_ID
+#define GOOGLE_ID @"XXX"
+#endif 
 
 @implementation GEventTracker
 @synthesize showTrakerB;
@@ -66,7 +68,7 @@ id sharedEventTracker;
 #endif
 	if(self.showTrakerB)
 	{	
-		[[GANTracker sharedTracker] startTrackerWithAccountID:@ "xxxx" dispatchPeriod:DISPATCH_INTERVAL delegate:self];
+		[[GANTracker sharedTracker] startTrackerWithAccountID:GOOGLE_ID dispatchPeriod:DISPATCH_INTERVAL delegate:self];
 	}
 }
 - (void)trackEvent:(NSString *)category action:(NSString *)action label:(NSString *)label {
