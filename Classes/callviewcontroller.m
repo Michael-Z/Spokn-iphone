@@ -88,7 +88,6 @@
 }
 - (void)viewDidDisappear:(BOOL)animated
 {
-	printf("\n					view viewDidDisappear");
 	[super viewDidDisappear:animated];
 	
 }
@@ -99,7 +98,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	printf("\n view viewDidAppear");
 	loadedB = true;
 	if(firstTimeB)
 	{	
