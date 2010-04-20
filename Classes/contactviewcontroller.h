@@ -99,7 +99,7 @@
 - (void) doneSearching_Clicked:(id)sender;
 -(void) setReturnVariable:(id) rootObject :(SelectedContctType *)lselectedContactP : (int *)valP;
 -(int)  showContactDetailScreen: (struct AddressBook * )addressP :(ViewTypeEnum) viewEnum contactBook:(ABRecordRef)contactRefP;
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar;
+- (BOOL)searchBarStartEditing:(UISearchBar *)searchBar;
 -(void)cancelSearch;
 - (void) doRefresh ;
 - (void) removeSelectionFromAddressBook;

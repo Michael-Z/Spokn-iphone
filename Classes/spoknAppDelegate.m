@@ -1817,7 +1817,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 		if(intiallookupP)
 		{
-			[intiallookupP applicationwillTerminate];
+			[intiallookupP appTerminate];
 			intiallookupP = 0;
 		}
 		

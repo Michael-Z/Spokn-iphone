@@ -502,28 +502,25 @@
 
 	
 }
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+- (BOOL)searchBarStartEditing:(UISearchBar *)searchBar
 {
-	
-	
-	#ifdef _NO_SEARCH_MOVE_
+#ifdef _NO_SEARCH_MOVE_
 	CGFloat searchBarHeight = [searchbar frame].size.height;
 	[searchbar setFrame:CGRectMake(0,0,320,searchBarHeight)];
-	#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
-		[searchBar setShowsCancelButton:YES animated:YES];
+#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
+	[searchBar setShowsCancelButton:YES animated:YES];
 	
-
-	#else
-		searchbar.showsCancelButton = YES;
-	#endif	
-		//self.navigationItem.rightBarButtonItem = nil;
+	
+#else
+	searchbar.showsCancelButton = YES;
+#endif	
+	//self.navigationItem.rightBarButtonItem = nil;
 	searchStartB = true;
 	[self->tableView reloadData];
-
+	
 	return YES;
-	#endif
-	#ifndef _HIDDEN_NAVBAR
+#endif
+#ifndef _HIDDEN_NAVBAR
 	CGRect lframe;
 	lframe = gframe;
 	lframe.size.width-=4;
@@ -531,25 +528,25 @@
 	searchStartB = true;
 	tableView.tableHeaderView = 0;
 	self.navigationItem.titleView = searchBar;
-	#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
-		[searchBar setShowsCancelButton:YES animated:YES];
-		
-	#else
-		searchbar.showsCancelButton = YES;
-	#endif	
+#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
+	[searchBar setShowsCancelButton:YES animated:YES];
+	
+#else
+	searchbar.showsCancelButton = YES;
+#endif	
 	
 	self.navigationItem.rightBarButtonItem = nil;
-	#else
+#else
 	//CGRect lframe;
 	//lframe = gframe;
 	//lframe.size.width-=40;
 	//searchBar.frame = lframe; 
-	#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
-		[searchBar setShowsCancelButton:YES animated:YES];
-		
-	#else
-		searchbar.showsCancelButton = YES;
-	#endif	
+#if (__IPHONE_OS_VERSION_MIN_REQUIRED >= 30000) 
+	[searchBar setShowsCancelButton:YES animated:YES];
+	
+#else
+	searchbar.showsCancelButton = YES;
+#endif	
 	//[searchBar setShowsCancelButton:YES animated:YES];
 	//[searchBar setActive : YES animated:YES];
 	//+ (void)beginAnimations:(NSString *)animationID context:(void *)context;  // additional context info passed to will start/did stop selectors. begin/commit can be nested
@@ -580,9 +577,16 @@
 	searchStartB = true;
 	[self->tableView reloadData];
 	
-	#endif	
+#endif	
 	return YES;
+	
 }
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+	
+	return [self searchBarStartEditing:searchBar];
+}	
 - (void) searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
 	
 	//This method is called again when the user clicks back from the detail view.

@@ -32,21 +32,6 @@
 @class SpoknAppDelegate;
 @class GTokenField;
 @class Contact;
-/*typedef struct ContactListType
-	{
-		SelectedContctType  contactObject;	
-		struct ContactListType *prevP;
-		struct ContactListType *nextP;
-	}ContactListType;*/
-/*
-@interface BarBG : UIView {
-	UIColor* _color1;
-	UIColor* _color2;
-}
-@property(nonatomic,retain) UIColor* color1;
-@property(nonatomic,retain) UIColor* color2;
-@end
-*/
 @protocol UpDateViewProtocol
 
 @optional
@@ -97,8 +82,6 @@
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier;
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker;
 -(void)setData:/*out parameter*/(char *)valueCharP value:(char*)fieldP placeHolder:(char*)placeHolderP/*out parameter*/returnValue:(int *)returnP;
-//-(IBAction)cancelPressed;
-//-(IBAction)savePressed;
 -(void)setObject:(id) object;
 -(void) SetkeyBoardType:(UIKeyboardType) type : (int) maxCharInt buttonType:(int)lbuttonType;
 - (IBAction) updateSearchTable : (id) sender;

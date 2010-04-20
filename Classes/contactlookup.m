@@ -83,7 +83,7 @@
 	[super dealloc];
 
 }
--(void)applicationwillTerminate
+-(void)appTerminate
 {
 	appWillTerminateB = true;
 }

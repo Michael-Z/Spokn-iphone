@@ -53,5 +53,5 @@
 -(int) makeIndex;
 -(NSString*) getNameByNumber:(NSString*)numberP;
 -(int) searchNameAndTypeBynumber :(char*)lnumberCharP :(char **) nameStringP :(char**)typeP :(ABRecordID *)recIDP;
--(void)applicationwillTerminate;
+-(void)appTerminate;
 @end

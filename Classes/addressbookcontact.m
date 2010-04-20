@@ -549,7 +549,7 @@ titleForHeaderInSection:(NSInteger)section
 //	#ifdef _HIDDEN_NAVBAR
 	searchB = true;
 	//#endif
-	return [ (ContactViewController*)controllerP searchBarShouldBeginEditing:searchBar];
+	return [ (ContactViewController*)controllerP searchBarStartEditing:searchBar];
 }
 -(void)setSearchBarAndTable:(UISearchBar *)lBarP :(UITableView *)tableP PerentObject:(UIViewController *)lcontrollerP OverlayView:(OverlayViewController **)lovController;
 
