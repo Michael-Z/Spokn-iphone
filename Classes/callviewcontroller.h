@@ -92,7 +92,6 @@
 -(IBAction)HoldPressed:(id)sender;
 -(IBAction)addContactPressed:(id)sender;
 - (void) handleCallEndTimer: (id) timer;
--(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context;
 -(IBAction)blueToothViewAudio:(id)sender;
 -(IBAction)blueToothViewiphone:(id)sender;
 -(IBAction)blueToothViewspeaker:(id)sender;

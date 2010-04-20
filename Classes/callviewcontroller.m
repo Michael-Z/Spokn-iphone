@@ -532,8 +532,6 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 								   forView:self->blueToothViewP cache:YES];
 			
 			self->blueToothViewP.hidden = NO;
-			//[UIView setAnimationDelegate:self];
-			//[UIView setAnimationDidStopSelector: @selector(animationDidStop)];
 			[UIView commitAnimations];
 			self->hideKeypadButtonP.hidden = NO;
 			self->endCallKeypadButtonP.hidden = NO;
@@ -795,7 +793,6 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		[UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight
 							   forView:self->viewMenuP  cache:YES];
 		
-		[UIView setAnimationDidStopSelector: @selector(animationDidStop:)];
 		[UIView commitAnimations];
 		self->blueToothViewP.hidden = YES;
 		self->viewMenuP.hidden = NO;
@@ -810,20 +807,6 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		}
 	}
 }
--(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
-{
-	if(delTextB)
-	{
-		self->viewMenuP.hidden = YES;
-	}
-	else
-	{
-		self->viewKeypadP.hidden = YES;
-	}
-
-}
-
-
 -(IBAction)keypadPressed:(id)sender
 {
 	if(self->viewKeypadP.hidden==YES)
@@ -835,8 +818,6 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 							   forView:self->viewKeypadP cache:YES];
 		
 		self->viewKeypadP.hidden = NO;
-		//[UIView setAnimationDelegate:self];
-		//[UIView setAnimationDidStopSelector: @selector(animationDidStop)];
 		 [UIView commitAnimations];
 		self->hideKeypadButtonP.hidden = NO;
 		self->endCallKeypadButtonP.hidden = NO;
@@ -857,8 +838,6 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		[UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight
 							   forView:self->viewMenuP  cache:YES];
 		
-		[UIView setAnimationDidStopSelector: @selector(animationDidStop:)];
-
 		self->viewMenuP.hidden = NO;
 		
 		 [UIView commitAnimations];
