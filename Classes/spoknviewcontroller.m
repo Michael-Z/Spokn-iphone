@@ -326,11 +326,13 @@
 	if(statusInt)
 	{
 		buybuttonCtlP.enabled = YES;
+		aboutbuttonCtlP.enabled = YES;
 	
 	}
 	else
 	{	
 		buybuttonCtlP.enabled = NO;
+		aboutbuttonCtlP.enabled = NO;
 	}
 /*	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
 											   initWithTitle:@"Buy Credits" 
@@ -654,9 +656,11 @@ titleForHeaderInSection:(NSInteger)section
 			
 			
 			buybuttonCtlP.enabled = NO;
+			aboutbuttonCtlP.enabled = NO;
 			break;
 		case 1:
 			buybuttonCtlP.enabled = YES;
+			aboutbuttonCtlP.enabled = YES;
 			//self.navigationItem.titleView = 0;
 			//[activityIndicator stopAnimating];
 			switch(subStatus)
