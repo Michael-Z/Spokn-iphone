@@ -92,7 +92,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-		[self.tabBarItem initWithTabBarSystemItem:UITabBarSystemItemRecents tag:2];
+		//[self.tabBarItem initWithTabBarSystemItem:UITabBarSystemItemRecents tag:2];
+		[self.tabBarItem initWithTitle:@"Calls" image:[UIImage imageNamed:_TAB_CALLS_PNG_] tag:2];
 		hideB = false;
     }
     return self;
@@ -1092,7 +1093,7 @@ cancelButtonTitle: nil
 	tableView.dataSource = self;
 //	tableView.tag = TABLE_VIEW_TAG;
 	[tableView reloadData];
-	[self setTitle:@"Recents"];
+	[self setTitle:@"Calls"];
 	segmentedControl = [ [ UISegmentedControl alloc ] initWithItems: nil ];
 	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	

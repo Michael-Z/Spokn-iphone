@@ -77,9 +77,11 @@ id sharedEventTracker;
 #endif
 	if(self.showTrakerB)
 	{
-		if([[GANTracker sharedTracker] trackEvent:category action:action label:label value:-1 withError:&error]) {
-		NSLog(@"Tracked event ==> Category: %@, Action: %@, Label: %@", category, action, label);
-		}
+		BOOL result;
+		result = [[GANTracker sharedTracker] trackEvent:category action:action label:label value:-1 withError:&error];
+		/*if(result) {
+			NSLog(@"Tracked event ==> Category: %@, Action: %@, Label: %@", category, action, label);
+		}*/
 	}
 }
 

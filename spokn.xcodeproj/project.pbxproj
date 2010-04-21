@@ -137,6 +137,7 @@
 		8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B413C4D1075ED71005A400F /* spoknviewcontroller.m */; };
 		8B413C501075ED71005A400F /* spoknviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */; };
 		8B47D83210720BA400EEEF61 /* callviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B47D83010720BA400EEEF61 /* callviewcontroller.m */; };
+		8B4FD512117DCF4700FEAFDF /* TB-recent.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B4FD511117DCF4700FEAFDF /* TB-recent.png */; };
 		8B59A62C10998423003BF3EA /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A61F10998423003BF3EA /* Contact.m */; };
 		8B59A62D10998423003BF3EA /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62110998423003BF3EA /* ContactCell.m */; };
 		8B59A62E10998423003BF3EA /* ContactCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62310998423003BF3EA /* ContactCellView.m */; };
@@ -500,6 +501,7 @@
 		8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spoknviewcontroller.xib; sourceTree = "<group>"; };
 		8B47D82F10720BA400EEEF61 /* callviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callviewcontroller.h; sourceTree = "<group>"; };
 		8B47D83010720BA400EEEF61 /* callviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callviewcontroller.m; sourceTree = "<group>"; };
+		8B4FD511117DCF4700FEAFDF /* TB-recent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TB-recent.png"; path = "rsc/TB-recent.png"; sourceTree = "<group>"; };
 		8B59A61E10998423003BF3EA /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		8B59A61F10998423003BF3EA /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
 		8B59A62010998423003BF3EA /* ContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCell.h; sourceTree = "<group>"; };
@@ -917,6 +919,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8B4FD511117DCF4700FEAFDF /* TB-recent.png */,
 				8B788DF3115B9C8700B9D5E7 /* Default.png */,
 				328850CC115756ED00FADAC1 /* Bluetooth_icons */,
 				8B8C9CBA1137A11C00120CF5 /* spoknlogo57.png */,
@@ -1470,6 +1473,7 @@
 				8B788D48115B95BF00B9D5E7 /* audio-source.png in Resources */,
 				8B788DF4115B9C8700B9D5E7 /* Default.png in Resources */,
 				8BF6E46C115C8B8F009DF9CD /* button-bg.png in Resources */,
+				8B4FD512117DCF4700FEAFDF /* TB-recent.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

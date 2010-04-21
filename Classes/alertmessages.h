@@ -147,7 +147,7 @@
 #define _TAB_VMS_PNG_ @"TB-VMS.png"
 #define _TAB_MY_SPOKN_PNG_ @"TB-Spokn.png"
 #define _TAB_KEYPAD_PNG_ @"Dial.png"
-
+#define _TAB_CALLS_PNG_ @"TB-recent.png"
 #define _CALL_MISS_PNG_ @"Call-log-Icons-missed.png"
 #define _CALL_IN_PNG_ @"Call-log-Icons-incoming.png"
 #define _CALL_OUT_PNG_ @"Call-log-Icons-outgoing.png"

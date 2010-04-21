@@ -1622,7 +1622,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 		
 	//tabBarController.selectedViewController = spoknViewNavigationController;//dialviewP;
+	[calllogNavigationController.tabBarItem initWithTitle:@"Calls" image:[UIImage imageNamed:_TAB_CALLS_PNG_] tag:2];
 	[vmsNavigationController.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:_TAB_VMS_PNG_] tag:4];
+		
 	
 	/*int majorver =0,minor1ver=0,minor2ver=0;
 	GetOsVersion(&majorver,&minor1ver,&minor2ver);
@@ -1824,9 +1826,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	[devicePushTokenStrP release];
 	devicePushTokenStrP = nil;
-	//[super applicationWillTerminate:application];
 	[ltpTimerP stopTimer ];
-	//logOut(ltpInterfacesP);
 	logOut(ltpInterfacesP,false);
 	endLtp(ltpInterfacesP);
 	saveMissCall();
