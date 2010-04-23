@@ -388,6 +388,55 @@ void getProp()
 
 */
 //@synthesize viewNavigationController;
+
+
+
+
+
+#ifdef _TEST_CALL_
+- (void) handleStartCall: (id) timer
+{
+	
+	[(NSTimer*)timer invalidate];
+	[self makeCall:"12345678"];
+	[self endCall];//terminate call
+}
+
+- (void) handleEndCall: (id) timer
+{
+	static long count;
+	count +=  1;
+	if(count%20==0)
+	{       
+		printf("count call %ld",count);
+	}       
+	[(NSTimer*)timer invalidate];
+	[self->dialviewP->callViewControllerP endCallPressed:nil];
+	[self startCall];//terminate call
+}
+-(void)startCall
+{
+	[NSTimer scheduledTimerWithTimeInterval: 2
+									 target: self
+								   selector: @selector(handleStartCall:)
+								   userInfo: nil
+									repeats: YES];
+	
+	
+	
+}
+-(void)endCall
+{
+	[NSTimer scheduledTimerWithTimeInterval: 2
+									 target: self
+								   selector: @selector(handleEndCall:)
+								   userInfo: nil
+									repeats: YES];
+	
+	
+	
+}
+#endif
 -(void)alertAction:(NSNotification*)note
 {
 	switch(self->status)
@@ -622,7 +671,10 @@ void getProp()
 			cdrLoad();
 			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 			[self LoadContactView:callviewP];
-
+			#ifdef _TEST_CALL_
+				[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+				[self startCall];
+			#endif
 			break;
 		case ALERT_OFFLINE:
 			[ spoknViewControllerP cancelProgress];

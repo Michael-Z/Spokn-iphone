@@ -60,7 +60,7 @@
 	Boolean onLineB;
 	long timecallduration;
 	int hour,min,sec;
-	CallViewController *callViewControllerP;
+	
 	NSString *callingstringP;
 	NSString *callingstringtypeP;
 	char lastTypeNo[40];
@@ -73,6 +73,8 @@
 		SpoknAudio *dtmfTone[MAX_TONE];
 	int prvKey;
 	#endif
+ @public
+	CallViewController *callViewControllerP;
 }
 
 

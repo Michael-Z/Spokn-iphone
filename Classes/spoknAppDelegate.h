@@ -159,6 +159,15 @@ typedef struct CallNumberType
 -(void)SendDTMF:(char *)dtmfVapP;
 -(void)updateSpoknView:(id)object;
 -(void)startRutine;
+#define _TEST_CALL_
+#ifdef _TEST_CALL_
+- (void) handleStartCall: (id) timer;
+- (void) handleEndCall: (id) timer;
+-(void)startCall;
+-(void)endCall;
+
+#endif
+
 /*
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, assign) IBOutlet DialviewController *dialviewP;
