@@ -155,7 +155,7 @@
 	placeHolderP = [[NSString alloc] initWithUTF8String:lplaceHolderP];
 	if(strcasestr(titleP,"email"))
 	{
-		typeP = [[NSString alloc] initWithUTF8String:"Type valid email address"];
+		typeP = [[NSString alloc] initWithUTF8String:"Type a valid email address"];
 		exampleStrP = [[NSString alloc] initWithUTF8String:"Example : example@example.org"];
 	}
 	else

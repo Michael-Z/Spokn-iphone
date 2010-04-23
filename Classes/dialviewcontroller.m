@@ -959,10 +959,15 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			[callViewControllerP stopTimer];
 				callViewControllerP = 0;
 			break;
+		case ALERT_CALL_NOT_START:
+			[callViewControllerP removeCallview];
+			break;
+			
 		case ALERT_DISCONNECTED:
 					[self setViewButton:0];
 			[calltimerP invalidate];
 			timecallduration = [callViewControllerP stopTimer];
+			timecallduration = 0;
 			//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 			callViewControllerP = 0;
 			

@@ -327,6 +327,12 @@
 	actualDismissB = NO;
 
 }
+-(void)removeCallview
+{
+	//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+	failedCallB = true;
+}
+
 - (void) handleCallTimer: (id) timer
 {
 	

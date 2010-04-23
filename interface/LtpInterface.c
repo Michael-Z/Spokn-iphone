@@ -105,6 +105,7 @@ void alertInterface(void *udata,int lineid, int alertcode, void *data)
 			closeSound();
 			break;*/
 			break;
+		case ALERT_CALL_NOT_START:	
 		case ALERT_DISCONNECTED:
 			if (ltpInterfaceP->ltpObjectP->call[lineid].timeStop)
 				cdrAdd(ltpInterfaceP->ltpObjectP->call[lineid].remoteUserid, (time_t) ltpInterfaceP->ltpObjectP->call[lineid].timeStart, 

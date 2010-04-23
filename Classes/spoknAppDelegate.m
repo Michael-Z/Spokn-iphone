@@ -501,6 +501,23 @@ void getProp()
 				nsTimerP = nil;
 			#endif
 			break;	
+		case ALERT_CALL_NOT_START:
+			[dialviewP setStatusText: @"end call" :nil :ALERT_CALL_NOT_START :0 ];
+			closeSoundInterface(ltpInterfacesP);
+			SetAudioTypeLocal(0,3);
+			SetSpeakerOnOrOff(0,true);
+			#ifdef __IPHONE_3_0
+						[UIDevice currentDevice].proximityMonitoringEnabled = NO;
+			#else
+						[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
+			#endif
+			
+			//reload log
+			[self LoadContactView:callviewP];
+			[callviewP doRefresh];
+			
+			break;
+			
 		case ALERT_DISCONNECTED:
 			callOnB = false;
 		

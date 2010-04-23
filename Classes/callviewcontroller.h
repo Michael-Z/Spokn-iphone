@@ -101,6 +101,7 @@
 -(void)setSelectedOrUnselectedImage:(UIButton*)selectedButtonP :(UIImage*)imageP;
 -(void) changeSelectedImage;
 -(void)sendLtpHang;
+-(void)removeCallview;
 @property (readwrite,assign) id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 
 @end
