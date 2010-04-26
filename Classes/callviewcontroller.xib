@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="34"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -426,20 +426,6 @@
 						<int key="NSvFlags">274</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIImageView" id="381082173">
-								<reference key="NSNextResponder" ref="624887266"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{282, 204}</string>
-								<reference key="NSSuperview" ref="624887266"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-								<int key="IBUIContentMode">4</int>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">button-bg.png</string>
-								</object>
-							</object>
 							<object class="IBUIButton" id="762220067">
 								<reference key="NSNextResponder" ref="624887266"/>
 								<int key="NSvFlags">292</int>
@@ -516,7 +502,12 @@
 						</object>
 						<string key="NSFrame">{{19, 130}, {282, 204}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="IBUIBackgroundColor" ref="817511073"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">6</int>
+							<string key="NSCatalogName">System</string>
+							<string key="NSColorName">controlLightHighlightColor</string>
+							<reference key="NSColor" ref="601979502"/>
+						</object>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 					</object>
 					<object class="IBUIButton" id="322356252">
@@ -965,7 +956,6 @@
 						<reference key="object" ref="624887266"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="381082173"/>
 							<reference ref="762220067"/>
 							<reference ref="378554040"/>
 							<reference ref="32499925"/>
@@ -976,11 +966,6 @@
 						<int key="objectID">149</int>
 						<reference key="object" ref="322356252"/>
 						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">156</int>
-						<reference key="object" ref="381082173"/>
-						<reference key="parent" ref="624887266"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">93</int>
@@ -1020,7 +1005,6 @@
 					<string>132.IBPluginDependency</string>
 					<string>137.IBPluginDependency</string>
 					<string>149.IBPluginDependency</string>
-					<string>156.IBPluginDependency</string>
 					<string>158.IBPluginDependency</string>
 					<string>159.IBPluginDependency</string>
 					<string>160.IBPluginDependency</string>
@@ -1041,8 +1025,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CallViewController</string>
 					<string>UIResponder</string>
-					<string>{{522, 351}, {320, 480}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{804, 351}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

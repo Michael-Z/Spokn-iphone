@@ -43,6 +43,22 @@
     return self;
 }
 */
+/*
+CallViewController *globalCallViewControllerP;
++(CallViewController*) callViewControllerObject
+{
+	if(globalCallViewControllerP==0)
+	{	
+		globalCallViewControllerP = [[CallViewController alloc] initWithNibName:@"callviewcontroller" bundle:[NSBundle mainBundle]];
+	}	
+	[globalCallViewControllerP retain];
+	return globalCallViewControllerP;
+}
++(void)releaseCallViewController
+{
+	[globalCallViewControllerP release];
+}
+*/
 - (void)keyPressedDown:(NSString *)stringkey keycode:(int)keyVal
 {
 	
@@ -145,7 +161,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	uiImageP = [[UIImageView alloc]initWithImage:[ UIImage imageNamed:_CALL_BLUETOOH_BG_ ]];
 	self->holdOnB = false;
+	[blueToothViewP insertSubview :uiImageP atIndex:0];
 	blueToothViewP.hidden = YES;
 	self->hideSourcesbuttonP.hidden = YES;
 	blueToothViewP.backgroundColor = [UIColor clearColor];
@@ -516,7 +534,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	//AudioSessionSetActive(enable);
 //	SetSpeakerOnOrOffNew(0,enable);
 //	[butP setSelected:enable];
-	
+	ownerobject.blueTooth = true;
 	if(ownerobject.blueTooth==false)
 	{	
 		butP = (UIButton*)sender;
@@ -880,7 +898,6 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 
 - (void)dealloc {
-	
 	if(uiActionSheetgP)
 	{	
 		[uiActionSheetgP dismissWithClickedButtonIndex:[uiActionSheetgP cancelButtonIndex] animated:NO];
@@ -896,8 +913,25 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	
 	[labelStrP release];
 	[labeltypeStrP release];
+	[viewMenuP release];
+	[bottomViewP release];
+	[callTypeLabelP release];
+	[viewKeypadP release];
+	[endCallButtonP release];
+	[hideKeypadButtonP release];
+	[endCallKeypadButtonP release];
+	[speakerButtonP release];
+	[topViewP release];
+	[blueToothViewP release];
+	[hideSourcesbuttonP release];
+	[audiobuttonP release];
+	[speakerinbluetoothbuttonP release];
+	[bluetoothbuttonP release];
+	[uiImageP release];
 	
     [super dealloc];
+	//NSLog(@"\n retaincount %d %d %d %d",[blueToothViewP retainCount],[uiImageP retainCount],[speakerinbluetoothbuttonP retainCount],[audiobuttonP retainCount]);
+	
 }
 
 

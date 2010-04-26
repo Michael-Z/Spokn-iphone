@@ -53,7 +53,7 @@
 	IBOutlet UIButton  *audiobuttonP;
 	IBOutlet UIButton  *speakerinbluetoothbuttonP;
 	IBOutlet UIButton  *bluetoothbuttonP;
-	
+	UIImageView   *uiImageP;
 	SpoknAppDelegate *ownerobject;
 	NSTimer *calltimerP;//this timer for call duration
 	Boolean onLineB;

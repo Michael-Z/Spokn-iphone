@@ -152,7 +152,7 @@
 #define _CALL_IN_PNG_ @"Call-log-Icons-incoming.png"
 #define _CALL_OUT_PNG_ @"Call-log-Icons-outgoing.png"
 #define _CALL_WATERMARK_PNG_ @"Default.png"
-
+#define _CALL_BLUETOOH_BG_ @"button-bg.png"
 #define _VMS_OUT_ACTIVE_PNG_ @"vms_out_Active.png"
 #define _VMS_OUT_DELIVERED_PNG_ @"vm_icons_outgoing_delivered.png"
 #define _VMS_OUT_UNDELIVERED_PNG_ @"vm_icons_outgoing_undelivered.png"

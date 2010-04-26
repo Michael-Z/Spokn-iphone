@@ -1232,6 +1232,8 @@ void MyAudioSessionPropertyListener(
 						
 					}	
 				}
+				
+				[(NSString*)newRoute release];
 			}
 			
 			
