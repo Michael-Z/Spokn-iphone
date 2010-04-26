@@ -534,7 +534,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	//AudioSessionSetActive(enable);
 //	SetSpeakerOnOrOffNew(0,enable);
 //	[butP setSelected:enable];
-	ownerobject.blueTooth = true;
+	
 	if(ownerobject.blueTooth==false)
 	{	
 		butP = (UIButton*)sender;
