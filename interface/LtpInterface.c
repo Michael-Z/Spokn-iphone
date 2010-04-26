@@ -529,6 +529,7 @@ int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGOUT);
 		if(clearAllB)
 		{	
+			loggedOut();
 			profileClear();
 			cdrRemoveAll();
 			resetMissCallCount();

@@ -1475,12 +1475,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 		uniqueIDCharP="\0";
 	}
-	SetDeviceDetail("Spokn","1.0.0","iphone/ipod",osVerP,osModelP,uniqueIDCharP);
-
-
-
+	SetDeviceDetail("Spokn","1.0.0","iphone",osVerP,osModelP,uniqueIDCharP);
 
 }
+
+
 #pragma mark StartRutine
 - (void) openRscTimer: (id) timer
 {
@@ -1794,10 +1793,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 									   userInfo: nil
 		 
 										repeats: YES];
-		
-		
-
-}/*
+}
+/*
 -(BOOL) transformedValue: (id) value 
 { 
 	if (value isKindOfClass: [BOOL class]) 
@@ -1872,7 +1869,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	self.calllogNavigationController.tabBarItem.badgeValue= nil;
 	SetSpeakerOnOrOff(0,true);
 	self->onLineB = false;
+	
 }
+	
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	#ifndef _LTP_
