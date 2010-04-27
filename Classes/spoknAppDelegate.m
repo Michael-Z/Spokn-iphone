@@ -1585,7 +1585,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 #endif
 		
 	
-	application.applicationIconBadgeNumber = 0;
+	//application.applicationIconBadgeNumber = 0;
 	
 	
 			
@@ -1874,6 +1874,21 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+	
+	int count;
+	
+	count = newVMailCount();
+	if(count)
+	{	
+		application.applicationIconBadgeNumber = count;
+	}
+	else
+	{
+		application.applicationIconBadgeNumber = 0;
+	}
+	
+	
+	
 	#ifndef _LTP_
 		[nsTimerP invalidate];
 		nsTimerP = nil;
