@@ -416,7 +416,7 @@ void getProp()
 }
 -(void)startCall
 {
-	[NSTimer scheduledTimerWithTimeInterval: 2
+	[NSTimer scheduledTimerWithTimeInterval: 2.0
 									 target: self
 								   selector: @selector(handleStartCall:)
 								   userInfo: nil
@@ -427,7 +427,7 @@ void getProp()
 }
 -(void)endCall
 {
-	[NSTimer scheduledTimerWithTimeInterval: 2
+	[NSTimer scheduledTimerWithTimeInterval: 2.0
 									 target: self
 								   selector: @selector(handleEndCall:)
 								   userInfo: nil

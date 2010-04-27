@@ -220,6 +220,7 @@ int vmsSetFileRecord(VmsPlayRecordType *vmsP,char *nameP)
 
 int vmsStartRecord(VmsPlayRecordType *vmsP)
 {
+	int er;
 		vmsP->playRecordObj = gsm_create();
 		SetAudioTypeLocal(0,2);//record 
 		vmsP->aqRecordPlayPcm = InitAudio(vmsP, CallBackVmsUI, CallBackVmsSoundPCM);//playback
@@ -232,8 +233,14 @@ int vmsStartRecord(VmsPlayRecordType *vmsP)
 		}
 		else
 		{	
-			PlayAudio(vmsP->aqRecordPlayPcm);
-			return 0;
+			er = PlayAudio(vmsP->aqRecordPlayPcm);
+			if(er)
+			{	
+				DeInitAudio( vmsP->aqRecordPlayPcm,true);
+				vmsP->aqRecordPlayPcm = 0;
+			
+			}	
+			return er;
 		}	
 	
 	

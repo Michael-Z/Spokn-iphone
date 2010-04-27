@@ -358,6 +358,8 @@
 		8BAAB29E1042DA1800F3EE73 /* DECODE.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BAAB29D1042DA1800F3EE73 /* DECODE.c */; };
 		8BAD7A741121C07600ABBCC9 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 8BAD7A731121C07600ABBCC9 /* about.html */; };
 		8BAD7A751121C07600ABBCC9 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 8BAD7A731121C07600ABBCC9 /* about.html */; };
+		8BB1F6251186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB1F6241186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a */; };
+		8BB1F6271186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB1F6261186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a */; };
 		8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD86B4107F5222008FD911 /* WebViewController.m */; };
 		8BBD86B7107F5222008FD911 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD86B5107F5222008FD911 /* WebViewController.xib */; };
 		8BC51C411108633600EC6597 /* spoknaudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC51C401108633600EC6597 /* spoknaudio.m */; };
@@ -365,8 +367,6 @@
 		8BC51C50110863A200EC6597 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C4F110863A200EC6597 /* AVFoundation.framework */; };
 		8BC51C51110863A200EC6597 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C4F110863A200EC6597 /* AVFoundation.framework */; };
 		8BC568FC10BE9A590083F77D /* dialview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BC568FB10BE9A590083F77D /* dialview.xib */; };
-		8BC766B61185713400A2213E /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC766B51185713400A2213E /* libpjmedia-audiodev-arm-apple-darwin9.a */; };
-		8BC766B81185715300A2213E /* libportaudio-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC766B71185715300A2213E /* libportaudio-arm-apple-darwin9.a */; };
 		8BCA77351043C3E90018419C /* customcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCA77341043C3E90018419C /* customcell.m */; };
 		8BCB06B21083020A00468EC7 /* custombutton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB06B11083020A00468EC7 /* custombutton.m */; };
 		8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */; };
@@ -653,6 +653,8 @@
 		8BA9F5DF1026E50D0082B6AE /* calllog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = calllog.xib; sourceTree = "<group>"; };
 		8BAAB29D1042DA1800F3EE73 /* DECODE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DECODE.c; path = ../lib/gsm/DECODE.c; sourceTree = SOURCE_ROOT; };
 		8BAD7A731121C07600ABBCC9 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		8BB1F6241186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-arm-apple-darwin9.a"; path = "../pjproject15/third_party/lib/libportaudio-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8BB1F6261186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-arm-apple-darwin9.a"; path = "../pjproject15/pjmedia/lib/libpjmedia-audiodev-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BBD86B3107F5222008FD911 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		8BBD86B4107F5222008FD911 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8BBD86B5107F5222008FD911 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -660,8 +662,6 @@
 		8BC51C401108633600EC6597 /* spoknaudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknaudio.m; sourceTree = "<group>"; };
 		8BC51C4F110863A200EC6597 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8BC568FB10BE9A590083F77D /* dialview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = dialview.xib; sourceTree = "<group>"; };
-		8BC766B51185713400A2213E /* libpjmedia-audiodev-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-arm-apple-darwin9.a"; path = "../pjprojectdebug15/pjmedia/lib/libpjmedia-audiodev-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8BC766B71185715300A2213E /* libportaudio-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-arm-apple-darwin9.a"; path = "../pjprojectdebug15/third_party/lib/libportaudio-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BCA77331043C3E90018419C /* customcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customcell.h; sourceTree = "<group>"; };
 		8BCA77341043C3E90018419C /* customcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customcell.m; sourceTree = "<group>"; };
 		8BCB06B01083020A00468EC7 /* custombutton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = custombutton.h; sourceTree = "<group>"; };
@@ -734,8 +734,8 @@
 				8B788A16115B485900B9D5E7 /* libGoogleAnalytics.a in Frameworks */,
 				8B788A18115B48A700B9D5E7 /* CFNetwork.framework in Frameworks */,
 				8B788A1C115B49C200B9D5E7 /* libsqlite3.dylib in Frameworks */,
-				8BC766B61185713400A2213E /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */,
-				8BC766B81185715300A2213E /* libportaudio-arm-apple-darwin9.a in Frameworks */,
+				8BB1F6251186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a in Frameworks */,
+				8BB1F6271186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1108,8 +1108,8 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
-				8BC766B71185715300A2213E /* libportaudio-arm-apple-darwin9.a */,
-				8BC766B51185713400A2213E /* libpjmedia-audiodev-arm-apple-darwin9.a */,
+				8BB1F6261186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a */,
+				8BB1F6241186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a */,
 				8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */,
 				8B964B2710CBE7BB00CB00DB /* libpj-i386-apple-darwin9.a */,
 				8B964B2810CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a */,
