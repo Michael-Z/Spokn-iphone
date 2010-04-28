@@ -387,6 +387,8 @@
 		8BE47B09112BB54D00421DFE /* 280x52-end-call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */; };
 		8BE47B0A112BB54D00421DFE /* 280x52-end-call-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B06112BB54D00421DFE /* 280x52-end-call-normal.png */; };
 		8BE47B0B112BB54D00421DFE /* 280x52-end-call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */; };
+		8BE79E401186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE79E3F1186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a */; };
+		8BE79E421186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE79E411186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a */; };
 		8BF6E46C115C8B8F009DF9CD /* button-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF6E46B115C8B8F009DF9CD /* button-bg.png */; };
 		8BF729B4103562B400C124B0 /* spoknalert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF729B3103562B400C124B0 /* spoknalert.m */; };
 		F249AAB7106F6A340024AE84 /* keypadview.m in Sources */ = {isa = PBXBuildFile; fileRef = F249AAB6106F6A340024AE84 /* keypadview.m */; };
@@ -681,6 +683,8 @@
 		8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8BE47B06112BB54D00421DFE /* 280x52-end-call-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "280x52-end-call-normal.png"; path = "rsc/280x52-end-call-normal.png"; sourceTree = SOURCE_ROOT; };
 		8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "280x52-end-call-pressed.png"; path = "rsc/280x52-end-call-pressed.png"; sourceTree = SOURCE_ROOT; };
+		8BE79E3F1186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-i386-apple-darwin9.a"; path = "../pjproject15/pjmedia/lib/libpjmedia-audiodev-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8BE79E411186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-i386-apple-darwin9.a"; path = "../pjproject15/third_party/lib/libportaudio-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BF6E46B115C8B8F009DF9CD /* button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-bg.png"; path = "rsc/button-bg.png"; sourceTree = "<group>"; };
 		8BF729B2103562B400C124B0 /* spoknalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknalert.h; sourceTree = "<group>"; };
 		8BF729B3103562B400C124B0 /* spoknalert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknalert.m; sourceTree = "<group>"; };
@@ -736,6 +740,8 @@
 				8B788A1C115B49C200B9D5E7 /* libsqlite3.dylib in Frameworks */,
 				8BB1F6251186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a in Frameworks */,
 				8BB1F6271186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */,
+				8BE79E401186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */,
+				8BE79E421186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1108,6 +1114,8 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
+				8BE79E411186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a */,
+				8BE79E3F1186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a */,
 				8BB1F6261186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a */,
 				8BB1F6241186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a */,
 				8B86575F112036A000E63C47 /* libspeex-arm-apple-darwin9.a */,

@@ -451,6 +451,7 @@
 				{			
 					NSArray *string = (NSArray*)peopleMobile;
 					Contact *object = nil;
+					NSString *str;
 					for(int j = 0; j < [string count]; j++)
 					{
 						object = [[Contact alloc] init];
@@ -460,12 +461,19 @@
 						
 						object.Detail = [[self remSpChar:(NSString *)xyz] lowercaseString];
 						object.Number = [self remSpChar:[string objectAtIndex:j]];
-						
-						//object.Detail = [NSString stringWithString:(NSString *)xyz];
-						//object.Number = [NSString stringWithString:[string	:j]];
+						if([object.Detail length]>8)
+						{
+							str = [NSString stringWithString:[object.Detail substringToIndex:5]];
+							str = [str stringByAppendingString:@"..."];
+							object.Detail = str;
+						}
+						else
+						{
+							object.Detail = [[self remSpChar:(NSString *)xyz] lowercaseString];
+						}
 						
 						[searchedContacts addObject:object];					
-						[object release], object = nil;
+						[object release]; object = nil;
 					}	
 					CFRelease(peopleMobile);
 				}

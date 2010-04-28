@@ -427,7 +427,7 @@ void getProp()
 }
 -(void)endCall
 {
-	[NSTimer scheduledTimerWithTimeInterval: 2.0
+	[NSTimer scheduledTimerWithTimeInterval: 7.0
 									 target: self
 								   selector: @selector(handleEndCall:)
 								   userInfo: nil
@@ -618,6 +618,8 @@ void getProp()
 				}
 				else
 				{
+					[UIApplication sharedApplication] .networkActivityIndicatorVisible = YES;
+					
 					loginProgressStart = 1;
 				
 				}
@@ -627,6 +629,7 @@ void getProp()
 			break;
 		case ALERT_ONLINE://login
 			
+			[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
 			loginProgressStart = 0;
 			[vmsviewP setcomposeStatus:1 ];
 			[loginProtocolP stoploginIndicator];
@@ -665,7 +668,7 @@ void getProp()
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];
 			//[self performSelectorOnMainThread : @ selector(popLoginView: ) withObject:nil waitUntilDone:YES];
-
+			
 			profileResync();
 			cdrEmpty();
 			cdrLoad();
@@ -677,6 +680,7 @@ void getProp()
 			#endif
 			break;
 		case ALERT_OFFLINE:
+			[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
 			[ spoknViewControllerP cancelProgress];
 			self->onLineB = false;
 			//logOut(ltpInterfacesP,false);
@@ -921,7 +925,13 @@ void getProp()
 					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 					[self LoadContactView:callviewP];
 					break;
-					
+				case BEGIN_THREAD:	
+				
+					[UIApplication sharedApplication] .networkActivityIndicatorVisible = YES;
+				break;
+				case END_THREAD:
+					[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
+				break;
 				
 					
 			}
@@ -1387,11 +1397,11 @@ void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned lon
 	
 		//[self postNotificationOnMainThreadWithName:name object:object userInfo:userInfo waitUntilDone:NO];
 		
-		/*	if(type==ALERT_CONNECTED|| type==ALERT_ONLINE || type==ALERT_OFFLINE || type==ALERT_INCOMING_CALL || type==ALERT_DISCONNECTED)
+		if(type==ALERT_CONNECTED|| type==ALERT_ONLINE || type==ALERT_OFFLINE || type==ALERT_INCOMING_CALL || type==ALERT_DISCONNECTED || type==BEGIN_THREAD || type ==END_THREAD)
 		{	
 			[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:YES];
 		}
-		else*/
+		else
 		{
 			[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:NO];
 
@@ -1539,7 +1549,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 }
 
-//#define _PUSH_NOTIFICATION_
+#define _PUSH_NOTIFICATION_
 #ifdef _PUSH_NOTIFICATION_
 #pragma mark PUSH NOTIFICATIONS
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
