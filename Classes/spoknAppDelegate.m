@@ -41,6 +41,21 @@
 #include "alertmessages.h"
 #import "contactlookup.h"
 #import "GEventTracker.h"
+@implementation spoknMessage
+@synthesize spokndelegateP;
+@synthesize status;
+@synthesize subID;
+@synthesize dataP;
+@synthesize lineID;
+-(id) init
+{
+	return [super init];
+}
+- (void)dealloc {
+	[super dealloc];
+}
+@end
+
 @implementation SpoknAppDelegate
 /*
 @synthesize window;
@@ -1088,6 +1103,13 @@ void getProp()
 	
 	[self startRing];
 }
+-(void)sendMessageFromOtherThread:(spoknMessage*)spoknMsgP
+{
+	//printf("\n msg %d %d %d",spoknMsgP->status,spoknMsgP->subID,spoknMsgP->lineID);
+	[spoknMsgP.spokndelegateP setLtpInfo:spoknMsgP.status :spoknMsgP.subID :spoknMsgP.lineID :spoknMsgP.dataP];
+	[spoknMsgP.spokndelegateP alertAction:nil];
+	[spoknMsgP release];
+}
 -(void) sendMessage:(id)object
 {
 	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)object userInfo:nil];
@@ -1348,7 +1370,7 @@ int GetOsVersion(int *majorP,int *minor1P,int *minor2P)
 	return 0;
 
 }
-void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned long userData,void *otherinfoP)
+void alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned long userData,void *otherinfoP)
 {
 	SpoknAppDelegate *spoknDelP;
 	if(type==CALL_ALERT)
@@ -1382,8 +1404,9 @@ void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned lon
 	
 	NSAutoreleasePool *autoreleasePool = [[ NSAutoreleasePool alloc ] init];
 	spoknDelP = (SpoknAppDelegate *)userData;
-	[spoknDelP setLtpInfo:type :valSubLong :lineID :otherinfoP];
+	
 	if( pthread_main_np() ){
+		[spoknDelP setLtpInfo:type :valSubLong :llineID :otherinfoP];
 		[spoknDelP sendMessage:spoknDelP];
 		[autoreleasePool release];
 		return;
@@ -1397,7 +1420,7 @@ void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned lon
 	
 		//[self postNotificationOnMainThreadWithName:name object:object userInfo:userInfo waitUntilDone:NO];
 		
-		if(type==ALERT_CONNECTED|| type==ALERT_ONLINE || type==ALERT_OFFLINE || type==ALERT_INCOMING_CALL || type==ALERT_DISCONNECTED || type==BEGIN_THREAD || type ==END_THREAD)
+		/*if(type==ALERT_CONNECTED|| type==ALERT_ONLINE || type==ALERT_OFFLINE || type==ALERT_INCOMING_CALL || type==ALERT_DISCONNECTED || type==BEGIN_THREAD || type ==END_THREAD)
 		{	
 			[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:YES];
 		}
@@ -1405,7 +1428,16 @@ void alertNotiFication(int type,unsigned int lineID,int valSubLong, unsigned lon
 		{
 			[spoknDelP performSelectorOnMainThread : @ selector(sendMessage: ) withObject:spoknDelP waitUntilDone:NO];
 
-		}
+		}*/
+		spoknMessage *tmpObjP;
+		tmpObjP = [[spoknMessage alloc] init];
+		tmpObjP.status = type;
+		tmpObjP.spokndelegateP = spoknDelP;
+		tmpObjP.subID = valSubLong;
+		tmpObjP.lineID = llineID;
+		tmpObjP.dataP =  otherinfoP;
+		
+		[spoknDelP performSelectorOnMainThread : @ selector(sendMessageFromOtherThread: ) withObject:tmpObjP waitUntilDone:NO];
 	}	
 	[autoreleasePool release];
 	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];

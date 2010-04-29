@@ -145,6 +145,7 @@ void alertInterface(void *udata,int lineid, int alertcode, void *data)
 		if(ltpInterfaceP->alertNotifyP)
 		{
 			ltpInterfaceP->alertNotifyP(alertcode,lineid,subid,ltpInterfaceP->userData,ldata);
+			
 		}
 	}	
 }

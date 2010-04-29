@@ -70,6 +70,28 @@ typedef struct CallNumberType
 	int lineId;
 }CallNumberType;
 //
+@class SpoknAppDelegate;
+@interface spoknMessage:NSObject
+{
+	
+	SpoknAppDelegate *spokndelegateP;
+	int status;
+	int subID;
+	int lineID; 
+	void *dataP;
+
+}
+@property(nonatomic,assign) SpoknAppDelegate *spokndelegateP;
+@property(nonatomic,assign) int status;
+@property(nonatomic,assign) int subID;
+@property(nonatomic,assign) int lineID;
+@property(nonatomic,assign) void* dataP;
+
+@end
+
+
+
+
 @interface SpoknAppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate> {
   //  @public
 	UIWindow *window;
@@ -233,6 +255,7 @@ changed:(BOOL)changed;
 -(int) vmsShowRecordOrForwardScreen : (char*)noCharP VMSState:(VMSStateType)state filename:(char*)fileNameCharP duration:(int) maxtime vmail:(struct VMail*) lvmailP;
 -(int) profileResynFromApp;
 -(void)setDeviceInforation:(NSString *)deviceTokenP;
+-(void)sendMessageFromOtherThread:(spoknMessage*)spoknMsgP;
 @end
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
