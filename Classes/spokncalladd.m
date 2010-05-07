@@ -26,8 +26,11 @@
 #import "contactviewcontroller.h"
 #import "spoknAppDelegate.h"
 #import "alertmessages.h"
+#import "dialviewcontroller.h"
+#import "calllogviewcontroller.h"
 
 @implementation Spokncalladd
+@synthesize addCallB;
 #pragma mark NAVIGATIONOBJECT
 // Called when the navigation controller shows a new top view controller via a push, pop or setting of the view controller stack.
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
@@ -49,18 +52,41 @@
 }
 
 
-/*
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-    }
-    return self;
+		addCallB = 0;
+	
+	}
+  
+	
+	return self;
 }
-*/
+-(void)makeCall:(char*)numberP
+{
+	printf("\n number %s",numberP);
+	[callViewCtlP makeCall:numberP];
+	[self.parentViewController dismissModalViewControllerAnimated:YES ];
+}
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	
-	[self.parentViewController dismissModalViewControllerAnimated:YES ];
+	NSEnumerator *enumerator = [touches objectEnumerator];
+	UITouch *touch;
+	CGPoint point ;
+	
+		
+	while ((touch = [enumerator nextObject])) 
+	{
+		 point = [touch locationInView:self.view];
+		break;	
+	}
+	printf("\npoint %f",point.y);
+	if(point.y<40)
+	{	
+		[self.parentViewController dismissModalViewControllerAnimated:YES ];
+	}	
 }
 -(void)setObject:(id) object 
 {
@@ -121,26 +147,90 @@
 	
 	
 	//[[self navigationController] setNavigationBarHidden:NO animated:NO];
-	contactP = [[ContactViewController alloc] initWithNibName:@"contact" bundle:[NSBundle mainBundle]];
-	[contactP hideCallAndVmailButton:YES];
-	contactP.parentView = 0;
-	[contactP setObject:ownerobject];
-	contactP.uaObject = GETCONTACTLIST;
-	[contactP setObjType:GETCONTACTLIST];
-	contactP.ltpInterfacesP =ownerobject.ltpInterfacesP;
-	//navBarShow = NO;
-	
-	
-	[contactP setReturnVariable:self :0 :0];
-	
-	tmpCtl = [ [ UINavigationController alloc ] initWithRootViewController: contactP ] ;
-	//self.view = tmpCtl.view;
-	tmpCtl.delegate =self;
-	CGRect rectFrame;
-	rectFrame = tmpCtl.view.frame;
-	rectFrame.origin.y-=20;
-	tmpCtl.view.frame = rectFrame;
-	[viewP addSubview:tmpCtl.view];
+	if(self.addCallB==false)
+	{	
+		contactP = [[ContactViewController alloc] initWithNibName:@"contact" bundle:[NSBundle mainBundle]];
+		[contactP hideCallAndVmailButton:YES];
+		contactP.parentView = 0;
+		[contactP setObject:ownerobject];
+		contactP.uaObject = GETCONTACTLIST;
+		[contactP setObjType:GETCONTACTLIST];
+		contactP.ltpInterfacesP =ownerobject.ltpInterfacesP;
+		//navBarShow = NO;
+		
+		
+		[contactP setReturnVariable:self :0 :0];
+		
+		tmpCtl = [ [ UINavigationController alloc ] initWithRootViewController: contactP ] ;
+		//self.view = tmpCtl.view;
+		tmpCtl.delegate =self;
+		CGRect rectFrame;
+		rectFrame = tmpCtl.view.frame;
+		rectFrame.origin.y-=20;
+		tmpCtl.view.frame = rectFrame;
+		[viewP addSubview:tmpCtl.view];
+	}	
+	else {
+		UITabBarController *tabBarControllerP;
+		NSMutableArray *viewControllers;
+		viewControllers = [[NSMutableArray alloc] init];
+		
+		
+		contactP = [[ContactViewController alloc] initWithNibName:@"contact" bundle:[NSBundle mainBundle]];
+		contactP.addcallDelegate = self;
+		[contactP hideCallAndVmailButton:YES];
+		contactP.parentView = 0;
+		[contactP setObject:ownerobject];
+		contactP.uaObject = GETCONTACTLIST;
+		[contactP setObjType:GETCONTACTLIST];
+		contactP.ltpInterfacesP =ownerobject.ltpInterfacesP;
+		tmpCtl = [ [ UINavigationController alloc ] initWithRootViewController: contactP ] ;
+		
+		DialviewController* dialviewP = [[DialviewController alloc] initWithNibName:@"dialview" bundle:[NSBundle mainBundle]];
+		dialviewP.addcallDelegate = self;
+		[dialviewP setObject:ownerobject];
+		CalllogViewController *callviewP = [[CalllogViewController alloc] initWithNibName:@"calllog" bundle:[NSBundle mainBundle]];
+		UINavigationController* calllogNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: callviewP ];
+		[callviewP release];	
+		[callviewP setObject:ownerobject];
+		callviewP.addcallDelegate = self;
+		//[viewControllers addObject:loginViewP];
+		[viewControllers addObject:tmpCtl];
+		[viewControllers addObject:calllogNavigationController];
+		[viewControllers addObject:dialviewP];
+	//	[ownerobject.contactNavigationController release];
+		
+	//	[viewControllers addObject:ownerobject.calllogNavigationController];
+		//[ownerobject.calllogNavigationController release];
+		
+		
+		// [viewControllers addObject:ownerobject.dialviewP];
+		//[ownerobject.dialviewP release];
+		
+		tabBarControllerP = [ [ UITabBarController alloc ] init ];
+		
+		tabBarControllerP.viewControllers = viewControllers;
+		[viewControllers release];
+		
+		
+		
+		
+		
+		//self.view = tmpCtl.view;
+		tmpCtl.delegate =self;
+		CGRect rectFrame;
+		rectFrame = dialviewP.view.frame;
+		//rectFrame.origin.y-=20;
+		rectFrame.size.height-=40;
+		dialviewP.view.frame = rectFrame;
+		rectFrame = tabBarControllerP.view.frame;
+		rectFrame.size.height-=60;
+		//rectFrame.origin.y-=20;
+		tabBarControllerP.view.frame = rectFrame;
+		[viewP addSubview:tabBarControllerP.view];
+		
+	}
+
 	//tmpCtl.view.frame = viewP.frame;
 	//[self.view addSubview:tmpCtl.view  ];
 	

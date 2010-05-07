@@ -24,24 +24,17 @@
 #import <UIKit/UIKit.h>
 #import "keypadview.h"
 #import "contactDetailsviewcontroller.h"
+#import "spokncalladd.h"
+#import "callmanagement.h"
+
+
 @class SpoknAppDelegate;
-@protocol ShowContactCallOnDelegate
-
-@optional
-- (void)upDateUI;
--(void)objectDestory; 
--(void)setParentObject:(id)parentP;
-
-
-@end
-
-@interface CallViewController : UIViewController<KeypadProtocol,UIActionSheetDelegate> {
+@interface CallViewController : UIViewController<KeypadProtocol,UIActionSheetDelegate,UITableViewDataSource, UITableViewDelegate,AddCallProtocol> {
+	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *callnoLabelP;
-	//IBOutlet UILabel *timeLabelP;
-	//IBOutlet UILabel *dtmfLabelP;
+	IBOutlet UILabel *callTypeLabelP;
 	IBOutlet UIView  *viewMenuP;
 	IBOutlet UIView    *bottomViewP;
-	IBOutlet UILabel *callTypeLabelP;
 	IBOutlet Keypadview  *viewKeypadP;
 	IBOutlet UIButton  *endCallButtonP;
 	IBOutlet UIButton  *hideKeypadButtonP;
@@ -53,12 +46,14 @@
 	IBOutlet UIButton  *audiobuttonP;
 	IBOutlet UIButton  *speakerinbluetoothbuttonP;
 	IBOutlet UIButton  *bluetoothbuttonP;
+	UILabel    *name1LabelP;
+	UILabel    *name2LabelP;
+	UILabel    *type2LabelP;
+	UILabel    *type1LabelP;
 	UIImageView   *uiImageP;
 	SpoknAppDelegate *ownerobject;
 	NSTimer *calltimerP;//this timer for call duration
 	Boolean onLineB;
-	long timecallduration;
-	int hour,min,sec;
 	NSString *labelStrP;
 	NSString *labeltypeStrP;
 	Boolean navBarShow;
@@ -75,7 +70,9 @@
 	Boolean selectedModeB;
 	UIActionSheet *uiActionSheetgP;
 	int holdOnB;
-	//IBOutlet UIButton *testP;
+	id<AddCallProtocol> addcallDelegate;
+	CallManagement *callManagmentP;
+		//IBOutlet UIButton *testP;
 
 }
 -(void)setObject:(id) object ;
@@ -87,8 +84,8 @@
 -(IBAction)keypadPressed:(id)sender;
 -(IBAction)endCallPressed:(id)sender;
 -(IBAction)endCallPressedKey:(id)sender;
--(void) startTimer;
--(int)  stopTimer;
+-(void) startTimer:(int) lineID;
+-(int)  stopTimer:(int) lineID;
 -(IBAction)HoldPressed:(id)sender;
 -(IBAction)addContactPressed:(id)sender;
 - (void) handleCallEndTimer: (id) timer;
@@ -102,6 +99,12 @@
 -(void) changeSelectedImage;
 -(void)sendLtpHang;
 -(void)removeCallview;
+-(void)makeCall:(char*)numberP;
+-(IBAction)callAdded:(id)sender;
+
+-(void) updatescreen:(int )time;
 @property (readwrite,assign) id<ShowContactCallOnDelegate> showContactCallOnDelegate;
+@property(readwrite,assign) id<AddCallProtocol> addcallDelegate;
+-(void)updateTableSubView:(Boolean)hideB;
 
 @end

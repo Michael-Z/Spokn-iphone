@@ -395,9 +395,9 @@ LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNo
 	if(er ==0)
 	{	
 	#ifndef SUPPORT_SPEEX
-		ltpInterfaceP->ltpObjectP = ltpInitNew(sipOnB,2, LTP_CODEC_GSM, 4);
+		ltpInterfaceP->ltpObjectP = ltpInitNew(sipOnB,MAX_CALL_ALLOWED, LTP_CODEC_GSM, 4);
 	#else		
-		ltpInterfaceP->ltpObjectP = ltpInitNew(sipOnB,2, LTP_CODEC_SPEEX, 4);
+		ltpInterfaceP->ltpObjectP = ltpInitNew(sipOnB,MAX_CALL_ALLOWED, LTP_CODEC_SPEEX, 4);
 	#endif
 		if(ltpInterfaceP->ltpObjectP==0)
 		{
@@ -550,23 +550,23 @@ int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 	return 1;
 	
 }
-Boolean callLtpInterface(LtpInterfaceType *ltpInterfaceP,char *numberCharP)
+int callLtpInterface(LtpInterfaceType *ltpInterfaceP,char *numberCharP)
 {
 #ifdef _SNDLOOPBACK_
 	openSoundInterface(true);
 #else
-	ltpRing(ltpInterfaceP->ltpObjectP, numberCharP, CMD_RING);
+	return ltpRing(ltpInterfaceP->ltpObjectP, numberCharP, CMD_RING);
 #endif
-	return true;
+	return 0;
 }
-Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP)
+Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId)
 {
 
 #ifdef _SNDLOOPBACK_
 
 	closeSoundInterface(ltpInterfaceP);
 #else
-	ltpHangup(ltpInterfaceP->ltpObjectP, 0);
+	ltpHangup(ltpInterfaceP->ltpObjectP, llineId);
 
 #endif
 	return true;
@@ -683,4 +683,18 @@ int setMuteInterface(LtpInterfaceType *ltpInterfaceP,int muteB)
 	
 	setMute(ltpInterfaceP->ltpObjectP,muteB);
 	return 0;
+}
+void startConferenceInterface(LtpInterfaceType *ltpInterfaceP)
+{
+	return startConference(ltpInterfaceP->ltpObjectP);
+}
+
+void switchReinviteInterface(LtpInterfaceType *ltpInterfaceP ,int llineid)
+{
+	return switchReinvite(ltpInterfaceP->ltpObjectP,llineid);
+}
+void UnconferenceInterface(LtpInterfaceType *ltpInterfaceP)
+{
+	return Unconference(ltpInterfaceP->ltpObjectP);
+	
 }

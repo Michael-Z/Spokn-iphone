@@ -127,9 +127,11 @@
     CGFloat spotRadius = self.font.capHeight*2;
 
     CGImageRef mask = [self newSpotlightMask:rect origin:spotOrigin radius:spotRadius];
-    CGContextClipToMask(context, rect, mask);
-    CGImageRelease(mask);
-    
+	 if(mask)
+	 {	 
+		 CGContextClipToMask(context, rect, mask);
+		 CGImageRelease(mask);
+	 }
     [_spotlightColor setFill];
     CGContextShowTextAtPoint(context, x, y, [self.text UTF8String], self.text.length);
   }

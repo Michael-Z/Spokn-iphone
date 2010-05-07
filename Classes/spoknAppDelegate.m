@@ -26,6 +26,7 @@
 #import "Ltptimer.h"
 #import "LtpInterface.h"
 #import "loginviewcontroller.h"
+
 #import "dialviewcontroller.h"
 #import "contactviewcontroller.h"
 #import "contactDetailsviewcontroller.h"
@@ -80,6 +81,7 @@
 @synthesize loginProgressStart;
 @synthesize blueTooth;
 @synthesize firstTimeB;
+@synthesize dialviewP;
 - (void) handleTimer: (id) timer
 {
 	
@@ -319,7 +321,7 @@
 }
 -(void) showText:(NSString *)testStringP
 {
-	[dialviewP setStatusText:testStringP :nil :0 :0];
+	[dialviewP setStatusText:testStringP :nil :0 :0 :0];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -470,7 +472,7 @@ void getProp()
 				//[loginProtocolP cleartextField];
 				//if(loginProtocolP)
 				{	
-					[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :HOST_NAME_NOT_FOUND_ERROR ];
+					[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :HOST_NAME_NOT_FOUND_ERROR :0];
 				}
 				loginGprsB = false;
 				
@@ -526,7 +528,7 @@ void getProp()
 					{
 						[loginProtocolP stoploginIndicator];
 						[loginProtocolP cleartextField];
-						[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :LOGIN_STATUS_FAILED ];
+						[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :LOGIN_STATUS_FAILED :0 ];
 						loginGprsB = false;
 						
 					}
@@ -549,7 +551,7 @@ void getProp()
 					self.blueTooth =  false;
 				}
 			}
-			[dialviewP setStatusText: @"ringing" :nil :ALERT_CONNECTED :0];
+			[dialviewP setStatusText: @"ringing" :nil :ALERT_CONNECTED :0 :self->lineID];
 			callOnB = true;
 			//getProp();
 			openSoundInterface(ltpInterfacesP,1);
@@ -566,7 +568,7 @@ void getProp()
 			#endif
 			break;	
 		case ALERT_CALL_NOT_START:
-			[dialviewP setStatusText: @"end call" :nil :ALERT_CALL_NOT_START :0 ];
+			[dialviewP setStatusText: @"end call" :nil :ALERT_CALL_NOT_START :0 :0];
 			closeSoundInterface(ltpInterfacesP);
 			SetAudioTypeLocal(0,3);
 			SetSpeakerOnOrOff(0,true);
@@ -584,10 +586,10 @@ void getProp()
 			
 		case ALERT_DISCONNECTED:
 			callOnB = false;
-		
-			if(lineID == 0)
+			
+			if([dialviewP callDisconnected:self->lineID]==0)
 			{	
-				[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 ];
+			//	[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 :self->lineID];
 				closeSoundInterface(ltpInterfacesP);
 				SetAudioTypeLocal(0,3);
 				SetSpeakerOnOrOff(0,true);
@@ -638,7 +640,7 @@ void getProp()
 					loginProgressStart = 1;
 				
 				}
-			[dialviewP setStatusText:_STATUS_CONNECTING_ :nil :START_LOGIN :0 ];
+			[dialviewP setStatusText:_STATUS_CONNECTING_ :nil :START_LOGIN :0 :self->lineID];
 			[loginProtocolP startloginIndicator];
 			[spoknViewControllerP startProgress];
 			break;
@@ -678,7 +680,7 @@ void getProp()
 				[ spoknViewControllerP cancelProgress];
 			}
 			self->onLineB = true;
-			[dialviewP setStatusText:_STATUS_ONLINE_ :nil :ALERT_ONLINE :0 ];
+			[dialviewP setStatusText:_STATUS_ONLINE_ :nil :ALERT_ONLINE :0 :self->lineID];
 			
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];
@@ -707,13 +709,13 @@ void getProp()
 						[loginProtocolP stoploginIndicator];
 						if(loginProtocolP && loginProgressStart)//mean login screen is on
 						{
-							[dialviewP setStatusText: _STATUS_OFFLINE_ :nil :ALERT_OFFLINE :self->subID ];
+							[dialviewP setStatusText: _STATUS_OFFLINE_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
 						}
 						break;
 					case LOGIN_STATUS_FAILED:
 							[loginProtocolP stoploginIndicator];
 							[loginProtocolP cleartextField];
-							[dialviewP setStatusText: _STATUS_AUTHENTICATION_FAILED_ :nil :ALERT_OFFLINE :self->subID ];
+							[dialviewP setStatusText: _STATUS_AUTHENTICATION_FAILED_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
 								
 							break;
 					case LOGIN_STATUS_NO_ACCESS:
@@ -721,18 +723,18 @@ void getProp()
 							[loginProtocolP stoploginIndicator];
 							if(loginProtocolP)//mean login screen is on
 							{
-								[dialviewP setStatusText: _STATUS_NO_ACCESS_ :nil :ALERT_OFFLINE :self->subID ];
+								[dialviewP setStatusText: _STATUS_NO_ACCESS_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
 							}	
 							break;
 					case LOGIN_STATUS_TIMEDOUT:
 						[loginProtocolP stoploginIndicator];
-						[dialviewP setStatusText: _STATUS_TIMEOUT2_ :nil :ALERT_OFFLINE :self->subID ];
+						[dialviewP setStatusText: _STATUS_TIMEOUT2_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
 						break;
 					default:
 						[loginProtocolP stoploginIndicator];
 						if(loginProtocolP)//mean login screen is on
 						{
-							[dialviewP setStatusText: _STATUS_OFFLINE_ :nil :ALERT_OFFLINE :self->subID ];
+							[dialviewP setStatusText: _STATUS_OFFLINE_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
 						}
 				}
 			
@@ -890,7 +892,7 @@ void getProp()
 				[vmsviewP setcomposeStatus:1 ];
 				[loginProtocolP stoploginIndicator];
 				self->onLineB = true;
-				[dialviewP setStatusText: _STATUS_ONLINE_ :nil :ALERT_ONLINE :0 ];
+				[dialviewP setStatusText: _STATUS_ONLINE_ :nil :ALERT_ONLINE :0 :0];
 				[self playonlineTone];
 				[self popLoginView];
 				[self newBadgeArrived:vmsNavigationController];	
@@ -922,7 +924,7 @@ void getProp()
 					//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:contactviewP waitUntilDone:YES];
 					//refresh cradit
 					//balance = getBalance();
-				[dialviewP setStatusText: nil :nil :UA_ALERT :REFRESH_CONTACT ];
+				[dialviewP setStatusText: nil :nil :UA_ALERT :REFRESH_CONTACT :0];
 					[self updateSpoknView:0];
 					//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 					
@@ -1247,7 +1249,7 @@ void MyAudioSessionPropertyListener(
 					range = [capStrP rangeOfString:@"BT"];//if bluetooth
 					if (range.location == NSNotFound )
 					{
-						[spoknDelP->dialviewP setStatusText: @"nobluetooth" :nil :ROUTE_CHANGE :1];
+						[spoknDelP->dialviewP setStatusText: @"nobluetooth" :nil :ROUTE_CHANGE :1 :0];
 						if(spoknDelP->callOnB==false)
 						{
 							range = [capStrP rangeOfString:@"HEADSET"];//if bluetooth
@@ -1260,7 +1262,7 @@ void MyAudioSessionPropertyListener(
 					}
 					else
 					{	
-						[spoknDelP->dialviewP setStatusText: @"bluetooth" :nil :ROUTE_CHANGE :2];
+						[spoknDelP->dialviewP setStatusText: @"bluetooth" :nil :ROUTE_CHANGE :2 :0];
 						
 					}	
 				}
@@ -1370,23 +1372,23 @@ int GetOsVersion(int *majorP,int *minor1P,int *minor2P)
 	return 0;
 
 }
-void alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned long userData,void *otherinfoP)
+int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned long userData,void *otherinfoP)
 {
 	SpoknAppDelegate *spoknDelP;
 	if(type==CALL_ALERT)
 	{
 		spoknDelP = (SpoknAppDelegate *)userData;
-	
-		if(spoknDelP==0) return;
+		int er = 0;
+		if(spoknDelP==0) return 0;
 		if(valSubLong==1)
 		{
 			spoknDelP->callNumber.direction = 0;
-			return;
+			return 0;
 		}
 		switch(spoknDelP->callNumber.direction)
 		{
 			case 1:
-				callLtpInterface(spoknDelP->ltpInterfacesP,spoknDelP->callNumber.number);
+				er = callLtpInterface(spoknDelP->ltpInterfacesP,spoknDelP->callNumber.number);
 				spoknDelP->callNumber.direction = 0;
 				break;
 			case 2:
@@ -1395,7 +1397,7 @@ void alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lo
 				
 				break;
 		}		
-		return;
+		return er;
 		
 	
 	
@@ -1409,7 +1411,7 @@ void alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lo
 		[spoknDelP setLtpInfo:type :valSubLong :llineID :otherinfoP];
 		[spoknDelP sendMessage:spoknDelP];
 		[autoreleasePool release];
-		return;
+		return 0;
 	}
 	if(type==UA_ALERT && valSubLong==LOAD_ADDRESS_BOOK)
 	{
@@ -1442,7 +1444,7 @@ void alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lo
 	[autoreleasePool release];
 	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)spoknDelP userInfo:nil];
-
+	return 0;
 }
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP
 {
@@ -1650,9 +1652,6 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	NSMutableArray *viewControllers;
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	dialviewP = [[DialviewController alloc] initWithNibName:@"dialview" bundle:[NSBundle mainBundle]];
-	
-
-
 	contactviewP = [[ContactViewController alloc] initWithNibName:@"contact" bundle:[NSBundle mainBundle]];
 	vmsviewP = [[VmailViewController alloc] initWithNibName:@"vmailview" bundle:[NSBundle mainBundle]];
 	callviewP = [[CalllogViewController alloc] initWithNibName:@"calllog" bundle:[NSBundle mainBundle]];
@@ -2078,7 +2077,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		//strP = [[NSString alloc] initWithUTF8String:noCharP] ;
 		//[strP setString:@"Calling "];
 		//	tempStringP = [NSMutableString stringWithString:@"calling "]	;
-	[dialviewP setStatusText:strP :strtypeP :TRYING_CALL :0];
+	[dialviewP setStatusText:strP :strtypeP :TRYING_CALL :0 :0];
 		//[tempStringP release];
 		//[tempStringP release ];
 	[strP release ];
@@ -2350,7 +2349,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		retB = 1;
 		[SpoknAudio destorySoundUrl:&allSoundP];
 		//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
-		[dialviewP setStatusText:strP :temp1P :TRYING_CALL :0];
+		[dialviewP setStatusText:strP :temp1P :TRYING_CALL :0  :0];
 		//[tempStringP release ];
 		[strP release];
 		[strtypP release];
@@ -2405,7 +2404,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	callOnB =false;
 	
 	//hangLtpInterface(self->ltpInterfacesP);
-	[dialviewP setStatusText: @"call end" :nil :ALERT_DISCONNECTED :0];
+	[dialviewP setStatusText: @"call end" :nil :ALERT_DISCONNECTED :0 :0];
 	//SetSpeakerOnOrOff(0,true);
 	#ifdef __IPHONE_3_0
 		[UIDevice currentDevice].proximityMonitoringEnabled = NO;

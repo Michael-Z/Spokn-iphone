@@ -34,6 +34,7 @@
 
 
 
+@protocol AddCallProtocol;
 
 @interface DialviewController : UIViewController<UITextFieldDelegate, KeypadProtocol,ShowContactCallOnDelegate> {
 //	@public
@@ -55,12 +56,13 @@
 	int status;
 	int subStatus;
 	int currentView;
-	
+	id<AddCallProtocol> addcallDelegate;
+
 	NSTimer *calltimerP;//this timer for call duration
 	Boolean onLineB;
 	long timecallduration;
 	int hour,min,sec;
-	
+	int lineID;
 	NSString *callingstringP;
 	NSString *callingstringtypeP;
 	char lastTypeNo[40];
@@ -77,6 +79,7 @@
 	CallViewController *callViewControllerP;
 }
 
+@property(readwrite,assign,setter=setAddCall) id<AddCallProtocol> addcallDelegate;
 
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 @property(readwrite,assign) int currentView;
@@ -89,7 +92,7 @@
 -(IBAction)backkeyReleased:(id)sender;
 - (IBAction)dismissKeyboard: (id)sender;
 - (IBAction)valueChanged: (id)sender;
--(void)setStatusText:(NSString *)strP :(NSString *)strtypeP :(int)status :(int)subStatus;
+-(void)setStatusText:(NSString *)strP :(NSString *)strtypeP :(int)lstatus :(int)lsubStatus :(int)llineID;
 //- (void)controlPressed:(id) sender;
 -(void)setViewButton:(int)viewButton;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
@@ -98,4 +101,5 @@
 - (void)deleteRepeat;
 -(void)makeDTMF;
 -(void)destroyDTMF;
+-(int)callDisconnected:(int )llineID;
 @end

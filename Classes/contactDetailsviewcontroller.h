@@ -82,6 +82,7 @@ typedef enum ViewTypeEnum
 -(void) setResult:(int) resultValue;
 
 @end
+@protocol AddCallProtocol;
 
 @interface ContactDetailsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,ContactDeailsProtocol> {
 	IBOutlet UILabel *userNameP;
@@ -128,6 +129,7 @@ typedef enum ViewTypeEnum
 	int numberFound;
 	int showAlertB;
 	id<ContactDeailsProtocol>contactDetailsProtocolP; 
+	id<AddCallProtocol> addcallDelegate;
 	Boolean hideCallAndVmailButtonB;
 	int editDataInt;	//id<VmailProtocol> VmailProtocolP;
 	int addDataInt;
@@ -136,6 +138,7 @@ typedef enum ViewTypeEnum
 	UIActionSheet *uiActionSheetgP;
 	
 }
+@property (nonatomic, assign) id<AddCallProtocol>addcallDelegate;
 @property (nonatomic, assign) id<ContactDeailsProtocol>contactDetailsProtocolP;
 -(void)hideCallAndVmailButton:(Boolean)showB;
 - (void)addRow: (int)lsection:(int )row sectionObject:(sectionType **)sectionPP;

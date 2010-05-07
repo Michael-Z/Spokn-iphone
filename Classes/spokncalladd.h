@@ -28,15 +28,39 @@
 @class ContactViewController;
 @class SpoknAppDelegate;
 @class CallViewController;
+@protocol AddCallProtocol
+
+
+@optional
+-(void)handupCall:(int)llineID;
+- (void)makeCall:(char*)numberP;
+-(int)totalCallActive;
+-(NSString*)getStringByIndex:(int)index;
+-(void) selectedCall:(int)index;
+
+@end
+@protocol ShowContactCallOnDelegate
+
+@optional
+- (void)upDateUI;
+-(void)objectDestory; 
+-(void)setParentObject:(id)parentP;
+
+
+@end
+
+//#import "callviewcontroller.h"
+
 #define _HILIGHT_SEARCH_
 @protocol ShowContactCallOnDelegate;
-@interface Spokncalladd : UIViewController<UINavigationControllerDelegate,ShowContactCallOnDelegate> {
+@interface Spokncalladd : UIViewController<UINavigationControllerDelegate,ShowContactCallOnDelegate,AddCallProtocol> {
 	
 	IBOutlet UIView *viewP;
 	SpoknAppDelegate      *ownerobject;
 	ContactViewController *contactP;
 	UINavigationController *tmpCtl;
 	CallViewController *callViewCtlP;
+	int addCallB;
 #ifdef _HILIGHT_SEARCH_
 	TTSearchlightLabel* label;
 #else
@@ -46,6 +70,7 @@
 	
 		//
 }
+@property(nonatomic,assign) int addCallB;
 -(void)setObject:(id) object ;
 -(void)setParent:(CallViewController *)lcallViewCtlP;
 @end

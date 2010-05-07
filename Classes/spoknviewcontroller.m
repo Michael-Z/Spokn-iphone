@@ -830,6 +830,7 @@ titleForHeaderInSection:(NSInteger)section
 				#else
 								cell.text = @"About";
 				#endif
+				
 				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			}
 			#ifdef __IPHONE_3_0

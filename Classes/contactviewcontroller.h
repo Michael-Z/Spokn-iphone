@@ -41,7 +41,7 @@
 //@class ABPeoplePickerNavigationController;
 #define _NEW_ADDRESS_BOOK_
 #define _NO_SEARCH_MOVE_
-
+@protocol AddCallProtocol;
 @interface ContactViewController : UIViewController<ABPeoplePickerNavigationControllerDelegate , UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate>  {
 	IBOutlet UITableView *tableView;
 	IBOutlet UIView *noResultViewP;
@@ -78,13 +78,14 @@
 	int noserchResultShowB;
 	Boolean hideCallAndVmailButtonB;
 	Boolean viewOnB;
-	
+	id<AddCallProtocol> addcallDelegate;
 	//NSArray *sectionNSArrayP;
 	#ifdef _NEW_ADDRESS_BOOK_
 		ABPeoplePickerNavigationController *addressBookP;
 	#endif
 
 }
+@property(readwrite,assign) id<AddCallProtocol> addcallDelegate;
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 
 @property (readwrite,assign) UAObjectType uaObject;

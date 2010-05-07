@@ -38,6 +38,7 @@
 	int _lineCount;
 	CGPoint _cursorOrigin;
 	int tableonB;
+	NSString *commaSeparatedNumber;
 }
 
 @property(nonatomic,copy)NSString* text;

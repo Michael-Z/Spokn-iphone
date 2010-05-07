@@ -211,6 +211,7 @@ typedef struct CallNumberType
 @property (nonatomic, assign) Boolean onLineB;
 @property (nonatomic, assign) int firstTimeB;
 @property (nonatomic, assign) UITabBarController *tabBarController;
+@property (nonatomic,assign) DialviewController    *dialviewP; 
 //@property (nonatomic, retain) IBOutlet spoknviewcontroller *viewController;
 //add delegate
 -(void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController;
@@ -260,7 +261,7 @@ changed:(BOOL)changed;
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
 void * ThreadForContactLookup(void *udata);
-void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
+int alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
 void MyAudioSessionPropertyListener(
 									void *                  inClientData,
 									AudioSessionPropertyID	inID,

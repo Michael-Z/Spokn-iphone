@@ -29,8 +29,10 @@
 #import "AddEditcontactViewController.h"
 #import "customcell.h"
 #include "alertmessages.h"
+#import "spokncalladd.h"
 
 @implementation CalllogViewController
+@synthesize addcallDelegate;
 #pragma mark MISSEDCALL
 -(int)missCallSetCount
 {
@@ -95,6 +97,7 @@
 		//[self.tabBarItem initWithTabBarSystemItem:UITabBarSystemItemRecents tag:2];
 		[self.tabBarItem initWithTitle:@"Calls" image:[UIImage imageNamed:_TAB_CALLS_PNG_] tag:2];
 		hideB = false;
+		addcallDelegate = nil;
     }
     return self;
 }
@@ -421,7 +424,7 @@
 				default:
 					if(difftime<7)
 					{
-						sprintf(s1,days[tmP1.tm_wday]);
+						sprintf(s1,"%s",days[tmP1.tm_wday]);
 					}
 					else
 					{
@@ -809,8 +812,15 @@
 	{	
 		
 		SetAddressBookDetails(ownerobject.ltpInterfacesP,cdrP->recordUId,cdrP->recordUId);
-		[self->ownerobject makeCall:cdrP->userid];
-		[self->ownerobject changeView];
+		if(addcallDelegate)
+		{
+			[addcallDelegate makeCall:cdrP->userid];
+		}
+		else {
+			
+				[self->ownerobject makeCall:cdrP->userid];
+				[self->ownerobject changeView];
+		}
 	}
 	else
 	{

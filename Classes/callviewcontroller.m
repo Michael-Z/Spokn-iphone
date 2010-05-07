@@ -32,17 +32,124 @@
 #import "spokncalladd.h"
 #import "alertmessages.h"
 #include "playrecordpcm.h"
+#import "spokncalladd.h"
+#include "LtpInterface.h"
+#import "confrenceviewcontroller.h"
 @implementation CallViewController
 @synthesize showContactCallOnDelegate;
-/*
+@synthesize addcallDelegate;
+-(void)handupCall:(int)llineID
+{
+	if(llineID!=CONFRENCE_LINE_ID && llineID>=0)
+		hangLtpInterface(self->ownerobject.ltpInterfacesP,llineID);
+}
+-(void)makeCall:(char*)numberP
+{
+	int llineID = callLtpInterface(self->ownerobject.ltpInterfacesP,numberP);
+	char *nameP=0;
+	char typeP[100];
+	char typeCallint[110];
+	if(llineID>=0)
+	{	
+				
+		
+		
+		
+			
+		nameP = [ownerobject getNameAndTypeFromNumber:numberP :typeP :0];
+		if(nameP)
+		{	
+			[labelStrP release];
+			labelStrP = [[NSString alloc] initWithUTF8String:nameP];
+			[labeltypeStrP release];
+			labeltypeStrP = [[NSString alloc] initWithUTF8String:typeCallint];
+			
+			[callManagmentP addCall:llineID :labelStrP :labeltypeStrP];
+			free(nameP);
+		}	
+		[self updateTableSubView:NO];
+		//[callnoLabelP setText:labelStrP];
+		//[callTypeLabelP setText:labeltypeStrP];
+		[self updatescreen:0 ];
+	}
+
+}
+-(int)totalCallActive
+{
+	return [callManagmentP totalCallActive];
+}
+-(NSString*)getStringByIndex:(int)index
+{
+	
+	return [callManagmentP getStringByIndex:index];
+}
+-(void) selectedCall:(int)index
+{
+	[callManagmentP selectedCall:index];	
+	[self updateTableSubView:NO];
+	int llineID;
+	llineID = [callManagmentP getActiveLineID];
+	if(llineID>=0)
+	{
+		setHoldInterface(ownerobject.ltpInterfacesP, YES);
+		
+		switchReinviteInterface(ownerobject.ltpInterfacesP ,llineID);
+	}
+	//[callnoLabelP setText:labelStrP];
+	//[callTypeLabelP setText:labeltypeStrP];
+	[self updatescreen:0 ];
+	[self->tableView reloadData];
+	
+}
+
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
-    }
+		addcallDelegate = nil;
+		callManagmentP = [[CallManagement alloc] init];
+		CGRect LabelFrame1 = CGRectMake(10, 0, 150, 50);
+		name1LabelP = [[UILabel alloc] initWithFrame:LabelFrame1];
+		name1LabelP.textAlignment = UITextAlignmentLeft;
+		//label1.text = temp;
+		name1LabelP.font = [UIFont boldSystemFontOfSize:20];
+		
+		name2LabelP = [[UILabel alloc] initWithFrame:LabelFrame1];
+		//label1.text = temp;
+		name2LabelP.font = [UIFont boldSystemFontOfSize:20];
+		name1LabelP.textAlignment = UITextAlignmentLeft;
+		
+		CGRect LabelFrame2 = CGRectMake(200, 0, 100, 50);
+		type1LabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
+		type1LabelP.textAlignment = UITextAlignmentRight;
+		//label1.text = temp;
+		type1LabelP.font = [UIFont boldSystemFontOfSize:20];
+		
+		type2LabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
+		//label1.text = temp;
+		type2LabelP.font = [UIFont boldSystemFontOfSize:20];
+		type2LabelP.textAlignment = UITextAlignmentRight;
+		type1LabelP.backgroundColor=[UIColor clearColor];
+		type2LabelP.backgroundColor=[UIColor clearColor];
+		name1LabelP.backgroundColor=[UIColor clearColor];
+		name2LabelP.backgroundColor=[UIColor clearColor];
+		
+		type1LabelP.textColor=[UIColor whiteColor];
+		type2LabelP.textColor=[UIColor whiteColor];
+		name1LabelP.textColor=[UIColor whiteColor];
+		name2LabelP.textColor=[UIColor whiteColor];
+		
+		
+		type1LabelP.hidden = YES;
+		type2LabelP.hidden = YES;
+		name1LabelP.hidden = YES;
+		name2LabelP.hidden = YES;
+		
+				
+	}
     return self;
 }
-*/
+
 /*
 CallViewController *globalCallViewControllerP;
 +(CallViewController*) callViewControllerObject
@@ -92,14 +199,36 @@ CallViewController *globalCallViewControllerP;
 }
 -(void)sendLtpHang
 {
+	int llineID =   [callManagmentP getActiveLineID];
+	int activeLineId;
+	
 	if(endCalledPressed)
 	{
-		[self->parentObjectDelegate objectDestory];
-		self->parentObjectDelegate = nil;
-		hangLtpInterface(self->ownerobject.ltpInterfacesP);
+		
+		if([callManagmentP getCount]<=1)
+		{	
+			[self->parentObjectDelegate objectDestory];
+			self->parentObjectDelegate = nil;
+		}
+				
+	}
+	if(llineID==CONFRENCE_LINE_ID)
+	{
+		activeLineId = [callManagmentP RemoveAllCallInConf:self];
+	}
+	else {
+		activeLineId = [callManagmentP removeCallByID:llineID];
+		if(llineID!=CONFRENCE_LINE_ID && llineID>=0)
+			hangLtpInterface(self->ownerobject.ltpInterfacesP,llineID);
 		
 	}
 
+	if(activeLineId>=0)
+		switchReinviteInterface(ownerobject.ltpInterfacesP ,[callManagmentP getActiveLineID]);
+	[self updateTableSubView:NO];
+	[self updatescreen:0 ];
+	[tableView reloadData];
+	
 
 }
 - (void)viewDidDisappear:(BOOL)animated
@@ -135,7 +264,13 @@ CallViewController *globalCallViewControllerP;
 		//AudioSessionSetActive(true);
 	//	printf("\n session active");
 		[self->parentObjectDelegate setParentObject:self];
-		alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
+		int llineID =1;
+		llineID = alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
+		if(llineID>=0)
+		{	
+			[callManagmentP addCall:llineID :labelStrP :labeltypeStrP];
+		}
+		[tableView reloadData];
 		firstTimeB = 0;
 	}
 	if(actualDismissB)
@@ -161,6 +296,24 @@ CallViewController *globalCallViewControllerP;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	CGRect LabelFrame2;
+	LabelFrame2 = callnoLabelP.frame;
+	LabelFrame2.origin.x = 0;
+	LabelFrame2.origin.y = 0;
+	LabelFrame2.size.height = 50;
+	callnoLabelP.frame = LabelFrame2;
+	LabelFrame2 = callTypeLabelP.frame;
+	LabelFrame2.origin.x = 0;
+	LabelFrame2.origin.y = 0;
+	LabelFrame2.size.height = 50;
+	callTypeLabelP.frame = LabelFrame2;
+	callTypeLabelP.textColor=[UIColor whiteColor];
+	tableView.editing = NO;
+	tableView.delegate = self;
+	tableView.dataSource = self;
+	//tableView.tableFooterView = callTypeLabelP;
+	//tableView.tableHeaderView = callnoLabelP;
+	tableView.backgroundColor = [UIColor clearColor];
 	uiImageP = [[UIImageView alloc]initWithImage:[ UIImage imageNamed:_CALL_BLUETOOH_BG_ ]];
 	self->holdOnB = false;
 	[blueToothViewP insertSubview :uiImageP atIndex:0];
@@ -235,6 +388,7 @@ CallViewController *globalCallViewControllerP;
 	endCalledPressed = NO;
 	[self setSpeakerButtonImage];
 	
+	
 }
 
 
@@ -245,26 +399,69 @@ CallViewController *globalCallViewControllerP;
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
--(void) startTimer
+-(void) updatescreen:(int )time
 {
-	if(calltimerP)
+	NSString *mainlableP=0;
+	NSString *mainTypeP=0;
+	NSString *lable1P=0;
+	NSString *type1P=0;
+	NSString *lable2P=0;
+	NSString *type2P=0;
+	int lactiveLineId;
+	lactiveLineId = [callManagmentP updatescreenData:time :&mainlableP :&mainTypeP : &lable1P :&type1P :&lable2P :&type2P];
+	if(mainlableP)
 	{
-		return;
+		callnoLabelP.text = mainlableP;
+		[labelStrP release];
+		
+		labelStrP = mainlableP;
+		
 	}
+	if(mainTypeP)
+	{
+		callTypeLabelP.text = mainTypeP;
+		[labeltypeStrP release];
+		labeltypeStrP = mainTypeP;
+	}
+	if(lable1P)
+	{
+		name1LabelP.text = lable1P;
+		[lable1P release];
+	}
+	if(type1P)
+	{
+		type1LabelP.text = type1P;
+		[type1P release];
+	}
+	if(lable2P)
+	{
+		name2LabelP.text = lable2P;
+		[lable2P release];
+	}
+	if(type2P)
+	{
+		type2LabelP.text = type2P;
+		[type2P release];
+	}
+	
+		
+	 
+}
+-(void) startTimer:(int) llineID
+{
+	if(calltimerP==nil)
+	{
+		
+	
 	calltimerP = [NSTimer scheduledTimerWithTimeInterval: 1
 												  target: self
 												selector: @selector(handleCallTimer:)
 												userInfo: nil
 												 repeats: YES];
-	char *newLineP;
-	char *stringP;
-	char*tmpStrP;
-	timecallduration = time(0);
-	timecallduration = 0;
-	hour = 0;
-	min = 0;
-	sec = 0;
-	stringP = (char*)[labeltypeStrP cStringUsingEncoding:NSUTF8StringEncoding];
+	}
+		[callManagmentP callStart:llineID];
+	
+		/*stringP = (char*)[labeltypeStrP cStringUsingEncoding:NSUTF8StringEncoding];
 	newLineP = malloc(strlen(stringP)+4);
 	strcpy(newLineP,stringP);
 	tmpStrP = strstr(newLineP,"calling ");
@@ -283,13 +480,13 @@ CallViewController *globalCallViewControllerP;
 		
 		free(newStringP);
 		
-	}
+	}*/
 	//put on hold if hold button is pressed
 	if(self->holdOnB)
 	{	
 		setHoldInterface(ownerobject.ltpInterfacesP, self->holdOnB);
 	}
-	free(newLineP);
+	
 	ownerobject.blueTooth =  blueToothIsOn();
 	if(ownerobject.blueTooth)
 	{
@@ -302,12 +499,11 @@ CallViewController *globalCallViewControllerP;
 	}*/
 	
 }
--(int)  stopTimer
+-(int)  stopTimer:(int)llineID
 {
-	
+	int lactiveLineId;
 	actualDismissB = true;
-	[calltimerP invalidate];
-	calltimerP = nil;
+	int results = 0;	
 	if(loadedB==false)
 	{	
 		failedCallB = true;
@@ -320,14 +516,41 @@ CallViewController *globalCallViewControllerP;
 												userInfo: nil
 												 repeats: NO];*/
 	//[callEndtimerP autorelease];
+		[calltimerP invalidate];
+		calltimerP = nil;
+		results = 1;
 	}
 	else
 	{
-		
-		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+		if([callManagmentP getCount]<=1)
+		{	
+			[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+			[calltimerP invalidate];
+			calltimerP = nil;
+			results = 1;
+		}	
 
 	}
-	return timecallduration;
+	lactiveLineId = [callManagmentP removeCallByID:llineID];
+			
+	
+	
+	if(lactiveLineId>=0)
+	{	
+		switchReinviteInterface(ownerobject.ltpInterfacesP ,[callManagmentP getActiveLineID]);
+		[self updateTableSubView:NO];
+		[self updatescreen:0];
+		[tableView reloadData];
+	}
+	else
+	{
+		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+		[calltimerP invalidate];
+		calltimerP = nil;
+		results = 1;
+
+	}
+	return results;
 }
 - (void) makeCallTimer: (id) timer
 {
@@ -350,7 +573,6 @@ CallViewController *globalCallViewControllerP;
 	//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 	failedCallB = true;
 }
-
 - (void) handleCallTimer: (id) timer
 {
 	
@@ -358,38 +580,8 @@ CallViewController *globalCallViewControllerP;
 	{	
 		[self->showContactCallOnDelegate upDateUI];	
 	}
-	self->timecallduration++;
-	time_t timeP = {0};
-	struct tm ;// tmLoc;
-	//struct tm *tmP=0;
-	//readSocketData(self->ltpInterfacesP);//read socket
-	
-	timeP = self->timecallduration;
-	
-	if(sec>59)
-	{
-		min++;
-		sec=0;
-	}
-	if(min>59)
-	{
-		min = 0;
-		hour++;
-	}
-	//	tmLoc.tm_sec = 
-	//tmP = localtime(&timeP);
-	//if(tmP)
-	{	
-		char s1[20];
-		NSString *stringStrP;
-		//sprintf(s1,"%02d:%02d:%02d",tmLoc.tm_hour,tmLoc.tm_min,tmLoc.tm_sec);
-		sprintf(s1,"%02d:%02d",min,sec);
-		stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
-		[callTypeLabelP setText:stringStrP];
-		[stringStrP release];
-		
-	}
-	sec++;
+	[callManagmentP upDateTime];
+	[self updatescreen:1];
 }
 
 
@@ -398,21 +590,34 @@ CallViewController *globalCallViewControllerP;
 	self->ownerobject = object;
 	actualDismissB = NO;
 }
+-(void)endCalled
+{
+	if([callManagmentP getCount]<=1)
+	{	
+		endCalledPressed = YES;
+		[self->ownerobject endCall:0];
+		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+	}	
+	[self sendLtpHang];
+	if([callManagmentP getCount]<1)
+	{	
+		[self->parentObjectDelegate objectDestory];
+		self->parentObjectDelegate = nil;
+		endCalledPressed = YES;
+		[self->ownerobject endCall:0];
+		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+	}
+	
+	
+
+}
 -(IBAction)endCallPressedKey:(id)sender
 {
-	endCalledPressed = YES;
-	[self->ownerobject endCall:0];
-	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
-	endCalledPressed = YES;
-	[self sendLtpHang];
+	[self endCalled];
 }
 -(IBAction)endCallPressed:(id)sender
 {
-	endCalledPressed = YES;
-	[self->ownerobject endCall:0];
-	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
-	[self sendLtpHang];
-	
+	[self endCalled];	
 }
 -(IBAction)mutePressed:(id)sender
 {
@@ -463,20 +668,74 @@ CallViewController *globalCallViewControllerP;
 	[[self navigationController] presentModalViewController:spoknViewCallP animated: YES ];
 	[spoknViewCallP release];
 }
+-(IBAction)callAdded:(id)sender
+{
+	int confOn;
+	confOn = [callManagmentP shouldStartConfrence];
+	if(confOn)
+	//if(count>1 && confrenceOn==0 && showDiscloser==0)
+	{
+		startConferenceInterface(ownerobject.ltpInterfacesP);
+		if(confOn==1)
+		{	
+			[labelStrP release];
+			labelStrP = [[NSString alloc] initWithUTF8String:"confrence"];
+		
+			[labeltypeStrP release];
+			labeltypeStrP = [[NSString alloc] initWithUTF8String:" "];
+			[callManagmentP makeconfrence:labelStrP :labeltypeStrP ];
+		}
+		[callManagmentP putAllCallInConfrance];
+		[self updateTableSubView:NO];
+		[self updatescreen:0];
+		[tableView reloadData];
+		
+		return;
+	
+	}
+	Spokncalladd *spoknViewCallP;
+	spoknViewCallP = [[Spokncalladd alloc] initWithNibName:@"spokncalladd" bundle:[NSBundle mainBundle]];
+	[spoknViewCallP setObject:ownerobject];
+	spoknViewCallP.addCallB = TRUE;
+	[spoknViewCallP setParent:self];
+	[[self navigationController] presentModalViewController:spoknViewCallP animated: YES ];
+	[spoknViewCallP release];
+	
+
+}
 -(IBAction)HoldPressed:(id)sender
 {
 	UIButton *butP;
 	int enable;
+	if([callManagmentP swapLineID])
+	{
+		if([callManagmentP getActiveLineID]==CONFRENCE_LINE_ID)
+		{
+			startConferenceInterface(ownerobject.ltpInterfacesP);
+			//showDiscloser = 1;
+			[self updateTableSubView:NO];
+
+		}
+		else {
+			switchReinviteInterface(ownerobject.ltpInterfacesP ,[callManagmentP getActiveLineID]);
+		}
+		
+		
+		
+		
+		[self updatescreen:0];
+		return;
+	}
 	
 	butP = (UIButton*)sender;
 	
 	enable = !butP.selected;
 	holdOnB = enable;
 	if(setHoldInterface(ownerobject.ltpInterfacesP, enable)==0)
-	{	
+	{
 		[butP setSelected:enable];
 	}
-}
+}	
 /*
  - (void)setMute:(BOOL)enable
  {
@@ -831,6 +1090,36 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		}
 	}
 }
+-(void)updateTableSubView:(Boolean)hideB
+{
+	//if(count==1 || showDiscloser)
+	if([callManagmentP upDateView]==1)
+	{
+		hideB = YES;
+	}
+	if(hideB)
+	{
+		type1LabelP.hidden = YES;
+		type2LabelP.hidden = YES;
+		name1LabelP.hidden = YES;
+		name2LabelP.hidden = YES;
+		callnoLabelP.hidden = NO;
+		callTypeLabelP.hidden = NO;
+	}
+	else {
+		if([callManagmentP getCount]>1)//more then one call
+		{
+			type1LabelP.hidden = NO;
+			type2LabelP.hidden = NO;
+			name1LabelP.hidden = NO;
+			name2LabelP.hidden = NO;
+			callnoLabelP.hidden = YES;
+			callTypeLabelP.hidden = YES;
+		
+		}
+	}
+
+}
 -(IBAction)keypadPressed:(id)sender
 {
 	if(self->viewKeypadP.hidden==YES)
@@ -849,6 +1138,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		self->endCallButtonP.hidden = YES;
 		delTextB = YES;
 		self->hideSourcesbuttonP.hidden = YES;
+		[self updateTableSubView:1];
 				
 	}
 	else
@@ -870,6 +1160,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		self->endCallKeypadButtonP.hidden = YES;
 		self->endCallButtonP.hidden = NO;
 		self->hideSourcesbuttonP.hidden = YES;
+		[self updateTableSubView:0];
 	}
 }
 -(void)setLabel:(NSString *)strP :(NSString *)strtypeP
@@ -931,6 +1222,143 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	
     [super dealloc];
 	//NSLog(@"\n retaincount %d %d %d %d",[blueToothViewP retainCount],[uiImageP retainCount],[speakerinbluetoothbuttonP retainCount],[audiobuttonP retainCount]);
+	
+}
+#pragma mark Table view methods
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Detemine if it's in editing mode
+	
+    return UITableViewCellEditingStyleNone;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	//if([listOfItems count])
+	//	return [listOfItems count];
+	return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	
+		return 2;
+	//return [[listOfItems objectAtIndex:section] count];
+	//return [ fileList count ];
+}
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	
+	
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 50;
+	
+}
+/*
+ - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+ {
+ return 32.0;
+ }
+ - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+ {
+ return 32.0;
+ }
+ */
+- (UITableViewCell *)tableView:(UITableView *)ltableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	int row = [indexPath row];
+	int section = [indexPath section];
+	NSString *CellIdentifier = nil;
+	CellIdentifier = [NSString stringWithFormat:@"Cell%d%d",section,row];
+	UITableViewCell *cell = [ltableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  
+	  if (cell == nil) {
+		
+		#ifdef __IPHONE_3_0
+				
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		#else
+				cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+		#endif
+				switch(row)
+				{
+					case 0:
+						[cell.contentView addSubview:callnoLabelP];
+						[cell.contentView addSubview:name1LabelP];
+						[cell.contentView addSubview:type1LabelP];
+						//callnoLabelP.hidden = YES;
+						
+						
+						break;
+					case 1:
+						//callTypeLabelP.text = @"mukesh";
+						[cell.contentView addSubview:callTypeLabelP];
+						
+						[cell.contentView addSubview:name2LabelP];
+						[cell.contentView addSubview:type2LabelP];
+						break;
+				}
+						
+				
+	}
+	[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+	if([callManagmentP isConfranceOnForIndex:row] )
+	{
+		
+		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+	
+	}
+	else {
+		
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	}
+
+	return cell;	
+	
+}
+- (void)tableView:(UITableView *)tableView 
+accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath 
+{ 
+	//[[self navigationController] pushViewController:[[ImageController alloc] init] 
+	//animated:YES]; 
+	ConfrenceViewController *spoknconfP;
+	spoknconfP = [[ConfrenceViewController alloc] initWithNibName:@"confrenceviewcontroller" bundle:[NSBundle mainBundle]];
+	[spoknconfP setDelegate:self];
+	[[self navigationController] pushViewController:spoknconfP animated: YES ];
+	[spoknconfP release];
+	
+} 
+
+- (void)tableView:(UITableView *)tableView 
+commitEditingStyle:(UITableViewCellEditingStyle) editingStyle 
+forRowAtIndexPath:(NSIndexPath *) indexPath 
+{ 
+	
+	//int row = [indexPath row];
+	//int section = [indexPath section];
+	
+	
+	
+}
+
+- (void)tableView:(UITableView *)ltableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	int row = [indexPath row];
+	
+	//int section = [indexPath section];
+	if([callManagmentP swapRow:row])
+	{	
+		/*if(rowTable[row]!=activeLineId)
+		{
+			
+			//switchReinviteInterface(ownerobject.ltpInterfacesP ,callID[row].lineID);
+
+			//activeLineId = row;
+			//[self updatescreen:0];
+			
+		}*/
+		[self HoldPressed:nil];//swap the call
+	}	
+	
 	
 }
 

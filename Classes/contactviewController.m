@@ -36,6 +36,7 @@
 #import "customcell.h"
 #import "alertmessages.h"
 #import "contactlookup.h"
+#import "spokncalladd.h"
 /*
 @interface MyNavControler : UINavigationBar 
 
@@ -58,6 +59,7 @@
 @synthesize ltpInterfacesP;
 @synthesize  uaObject;
 @synthesize parentView;
+@synthesize addcallDelegate;
 
 -(void)hideCallAndVmailButton:(Boolean)showB
 {
@@ -675,6 +677,7 @@
         // Custom initialization
 		[self.tabBarItem   initWithTabBarSystemItem: 
 												  UITabBarSystemItemContacts tag:1];
+		self.addcallDelegate = nil;
 		parentView = 0;
 		sectionArray = [[NSMutableArray alloc] init] ;
     }
@@ -1383,6 +1386,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+		ContactControllerDetailsviewP.addcallDelegate = self.addcallDelegate;
 		[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];
 		if(parentView)
 		{	
@@ -1441,6 +1445,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+		ContactControllerDetailsviewP.addcallDelegate = self.addcallDelegate;
 		[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];		//[ ContactControllerDetailsviewP setRecordID:(int)ABRecordGetRecordID(person) : 0];
 		if(parentView)
 		{	
@@ -1534,6 +1539,7 @@ titleForHeaderInSection:(NSInteger)section
 	 */
 	ContactDetailsViewController     *ContactControllerDetailsviewP;	
 	ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+	ContactControllerDetailsviewP.addcallDelegate = self.addcallDelegate;
 	[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];
 	[ContactControllerDetailsviewP setObject:self->ownerobject];
 	[ContactControllerDetailsviewP setAddressBook:0 editable:true :CONTACTADDVIEWENUM];

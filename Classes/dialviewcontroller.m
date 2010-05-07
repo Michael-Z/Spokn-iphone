@@ -20,6 +20,7 @@
  You should have received a copy of the GNU General Public License
  along with Spokn for iPhone.  If not, see <http://www.gnu.org/licenses/>.
  */
+#import "spokncalladd.h"
 #import "callviewcontroller.h"
 #import "dialviewcontroller.h"
 #import "Ltptimer.h"
@@ -32,11 +33,13 @@
 #import <AudioToolbox/AudioToolbox.h>
 #include "alertmessages.h"
 #import "GEventTracker.h"
+
 @implementation DialviewController
 const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'};
 //static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 @synthesize ltpInterfacesP;
 @synthesize currentView;
+@synthesize addcallDelegate;
 - (void)keyPressedDown:(NSString *)stringkey keycode:(int)keyVal
 {
 		
@@ -431,6 +434,14 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 {
 	[self stopTimer];
 }
+-(void) setAddCall:(id) laddcallDelegate
+{
+	addcallDelegate = laddcallDelegate;
+	if(laddcallDelegate)
+	{	
+		onLineB = true;
+	}	
+}
 -(IBAction)callLtp:(id)sender
 {
 	//if(buttonPressedB)
@@ -460,15 +471,29 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		}
 		strcpy(lastTypeNo,numbercharP);
 		SetAddressBookDetails(ownerobject.ltpInterfacesP,0,0);
-		if([ownerobject makeCall:numbercharP])
+		if(addcallDelegate==nil)
 		{	
-			currentView = 1;
-			
-			numberlebelP.text = @"";
-			statusLabel1P.hidden = NO;
-			statusLabel2P.hidden = NO;
-			buttonPressedB = YES;
+		
+			if([ownerobject makeCall:numbercharP])
+			{	
+				currentView = 1;
+				
+				numberlebelP.text = @"";
+				statusLabel1P.hidden = NO;
+				statusLabel2P.hidden = NO;
+				buttonPressedB = YES;
+			}	
 		}	
+		else {
+				
+				[addcallDelegate makeCall:numbercharP];
+				currentView = 1;
+				numberlebelP.text = @"";
+				statusLabel1P.hidden = NO;
+				statusLabel2P.hidden = NO;
+				buttonPressedB = YES;
+		}
+
 	}
 	else
 	{
@@ -526,7 +551,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		
 		if(currentView==1)
 		{	
-			hangLtpInterface(ltpInterfacesP);
+			hangLtpInterface(ltpInterfacesP,0);
 			//[self dismissKeyboard:numberFieldP];
 			currentView = 0;
 		//	[hangUpButtonP setTitle:@"Vms" forState:UIControlStateNormal];
@@ -622,7 +647,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 - (void) handleCallTimerHang: (id) timer
 {
 	
-	hangLtpInterface(ownerobject.ltpInterfacesP);
+	hangLtpInterface(ownerobject.ltpInterfacesP,0);
 	timecallduration = 0;
 	[(NSTimer*)timer invalidate];
 	
@@ -632,7 +657,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 {
 	//[statusLabelP setText:@"end call"];
 	
-	hangLtpInterface(ownerobject.ltpInterfacesP);
+	hangLtpInterface(ownerobject.ltpInterfacesP,0);
 	timecallduration = 0;
 	[(NSTimer*)timer invalidate];
 	[ownerobject profileResynFromApp];
@@ -664,6 +689,17 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 -(void)setParentObject:(id)parentP
 {
 	callViewControllerP = parentP;
+}
+-(int)callDisconnected:(int )llineID
+{
+	timecallduration = [callViewControllerP stopTimer:self->lineID];
+	if(timecallduration)//mean no call is active
+	{
+		callViewControllerP = 0;
+		return 0;
+		
+	}
+	return 1;
 }
 -(void) setButton:(id) sender
 {
@@ -896,7 +932,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				
 				}
 			
-				[callViewControllerP startTimer];
+				[callViewControllerP startTimer:self->lineID];
 			}	
 			break;
 		case ROUTE_CHANGE:
@@ -957,7 +993,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			break;
 		case END_CALL_PRESSED:
 				[self setViewButton:0];
-			[callViewControllerP stopTimer];
+			[callViewControllerP stopTimer:self->lineID];
 				callViewControllerP = 0;
 			break;
 		case ALERT_CALL_NOT_START:
@@ -965,12 +1001,18 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			break;
 			
 		case ALERT_DISCONNECTED:
-					[self setViewButton:0];
+			[self setViewButton:0];
 			[calltimerP invalidate];
-			timecallduration = [callViewControllerP stopTimer];
+			timecallduration = [callViewControllerP stopTimer:self->lineID];
+			if(timecallduration)//mean no call is active
+			{
+				callViewControllerP = 0;
+			
+			}
+			
 			timecallduration = 0;
 			//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
-			callViewControllerP = 0;
+			
 			
 			calltimerP = nil;
 			//again for show time for sec
@@ -1013,7 +1055,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 
 }
 
--(void)setStatusText:(NSString *)strP :(NSString *)strtypeP :(int)lstatus :(int)lsubStatus
+-(void)setStatusText:(NSString *)strP :(NSString *)strtypeP :(int)lstatus :(int)lsubStatus :(int)llineID
 {
 	//statusLabelP.text = strP;
 		//[statusLabelP performSelector:@selector(setText:) withObject:@"Updated Text" afterDelay:0.1f];
@@ -1034,6 +1076,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		//[statusLabelP drawRect];
 	self->status = lstatus;
 	self->subStatus = lsubStatus;
+	self->lineID = llineID;
 	[self setButton:nil];
 	//[self performSelectorOnMainThread : @ selector(setButton: ) withObject:nil waitUntilDone:YES];
 	//numberFieldP.text = strP;
