@@ -137,6 +137,12 @@
 		8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B413C4D1075ED71005A400F /* spoknviewcontroller.m */; };
 		8B413C501075ED71005A400F /* spoknviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */; };
 		8B47D83210720BA400EEEF61 /* callviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B47D83010720BA400EEEF61 /* callviewcontroller.m */; };
+		8B495617119408AF00994239 /* Discousure-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495611119408AF00994239 /* Discousure-Indicator.png */; };
+		8B495618119408AF00994239 /* End-Conf-Call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495612119408AF00994239 /* End-Conf-Call.png */; };
+		8B495619119408AF00994239 /* Merge-Calls.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495613119408AF00994239 /* Merge-Calls.png */; };
+		8B49561A119408AF00994239 /* Phone-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495614119408AF00994239 /* Phone-Icon.png */; };
+		8B49561B119408AF00994239 /* Private-Conf-Call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495615119408AF00994239 /* Private-Conf-Call.png */; };
+		8B49561C119408AF00994239 /* Swap-Calls.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495616119408AF00994239 /* Swap-Calls.png */; };
 		8B4FD512117DCF4700FEAFDF /* TB-recent.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B4FD511117DCF4700FEAFDF /* TB-recent.png */; };
 		8B59A62C10998423003BF3EA /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A61F10998423003BF3EA /* Contact.m */; };
 		8B59A62D10998423003BF3EA /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62110998423003BF3EA /* ContactCell.m */; };
@@ -361,8 +367,8 @@
 		8BAD7A751121C07600ABBCC9 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 8BAD7A731121C07600ABBCC9 /* about.html */; };
 		8BB1F6251186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB1F6241186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a */; };
 		8BB1F6271186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB1F6261186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a */; };
-		8BB617F9118ECBEA0039E696 /* confrenceviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB617F7118ECBEA0039E696 /* confrenceviewcontroller.m */; };
-		8BB617FA118ECBEA0039E696 /* confrenceviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BB617F8118ECBEA0039E696 /* confrenceviewcontroller.xib */; };
+		8BB617F9118ECBEA0039E696 /* conferenceviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB617F7118ECBEA0039E696 /* conferenceviewcontroller.m */; };
+		8BB617FA118ECBEA0039E696 /* conferenceviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BB617F8118ECBEA0039E696 /* conferenceviewcontroller.xib */; };
 		8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD86B4107F5222008FD911 /* WebViewController.m */; };
 		8BBD86B7107F5222008FD911 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD86B5107F5222008FD911 /* WebViewController.xib */; };
 		8BC51C411108633600EC6597 /* spoknaudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC51C401108633600EC6597 /* spoknaudio.m */; };
@@ -505,6 +511,12 @@
 		8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spoknviewcontroller.xib; sourceTree = "<group>"; };
 		8B47D82F10720BA400EEEF61 /* callviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callviewcontroller.h; sourceTree = "<group>"; };
 		8B47D83010720BA400EEEF61 /* callviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callviewcontroller.m; sourceTree = "<group>"; };
+		8B495611119408AF00994239 /* Discousure-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Discousure-Indicator.png"; sourceTree = "<group>"; };
+		8B495612119408AF00994239 /* End-Conf-Call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "End-Conf-Call.png"; sourceTree = "<group>"; };
+		8B495613119408AF00994239 /* Merge-Calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Merge-Calls.png"; sourceTree = "<group>"; };
+		8B495614119408AF00994239 /* Phone-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Phone-Icon.png"; sourceTree = "<group>"; };
+		8B495615119408AF00994239 /* Private-Conf-Call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Private-Conf-Call.png"; sourceTree = "<group>"; };
+		8B495616119408AF00994239 /* Swap-Calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Swap-Calls.png"; sourceTree = "<group>"; };
 		8B4FD511117DCF4700FEAFDF /* TB-recent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TB-recent.png"; path = "rsc/TB-recent.png"; sourceTree = "<group>"; };
 		8B59A61E10998423003BF3EA /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		8B59A61F10998423003BF3EA /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
@@ -663,9 +675,9 @@
 		8BAD7A731121C07600ABBCC9 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		8BB1F6241186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-arm-apple-darwin9.a"; path = "../pjproject15/third_party/lib/libportaudio-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BB1F6261186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-arm-apple-darwin9.a"; path = "../pjproject15/pjmedia/lib/libpjmedia-audiodev-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		8BB617F6118ECBEA0039E696 /* confrenceviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = confrenceviewcontroller.h; sourceTree = "<group>"; };
-		8BB617F7118ECBEA0039E696 /* confrenceviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = confrenceviewcontroller.m; sourceTree = "<group>"; };
-		8BB617F8118ECBEA0039E696 /* confrenceviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = confrenceviewcontroller.xib; sourceTree = "<group>"; };
+		8BB617F6118ECBEA0039E696 /* conferenceviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conferenceviewcontroller.h; sourceTree = "<group>"; };
+		8BB617F7118ECBEA0039E696 /* conferenceviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = conferenceviewcontroller.m; sourceTree = "<group>"; };
+		8BB617F8118ECBEA0039E696 /* conferenceviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = conferenceviewcontroller.xib; sourceTree = "<group>"; };
 		8BBD86B3107F5222008FD911 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		8BBD86B4107F5222008FD911 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8BBD86B5107F5222008FD911 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
@@ -887,9 +899,9 @@
 				8BA1101E111C117800433364 /* spokncalladd.h */,
 				8BA1101F111C117800433364 /* spokncalladd.m */,
 				8BA11020111C117800433364 /* spokncalladd.xib */,
-				8BB617F6118ECBEA0039E696 /* confrenceviewcontroller.h */,
-				8BB617F7118ECBEA0039E696 /* confrenceviewcontroller.m */,
-				8BB617F8118ECBEA0039E696 /* confrenceviewcontroller.xib */,
+				8BB617F6118ECBEA0039E696 /* conferenceviewcontroller.h */,
+				8BB617F7118ECBEA0039E696 /* conferenceviewcontroller.m */,
+				8BB617F8118ECBEA0039E696 /* conferenceviewcontroller.xib */,
 				8BA6E96111928F6400435756 /* callmanagement.h */,
 				8BA6E96211928F6400435756 /* callmanagement.m */,
 			);
@@ -934,6 +946,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8B495610119408AF00994239 /* Conference Icons */,
 				8BDAED64119199BE00DB14B2 /* 11_declinecall_36_18.png */,
 				8B4FD511117DCF4700FEAFDF /* TB-recent.png */,
 				8B788DF3115B9C8700B9D5E7 /* Default.png */,
@@ -1108,6 +1121,20 @@
 				8B1AEA1111206A6500A957EA /* vms_out_Active.png */,
 			);
 			path = vmsicons;
+			sourceTree = "<group>";
+		};
+		8B495610119408AF00994239 /* Conference Icons */ = {
+			isa = PBXGroup;
+			children = (
+				8B495611119408AF00994239 /* Discousure-Indicator.png */,
+				8B495612119408AF00994239 /* End-Conf-Call.png */,
+				8B495613119408AF00994239 /* Merge-Calls.png */,
+				8B495614119408AF00994239 /* Phone-Icon.png */,
+				8B495615119408AF00994239 /* Private-Conf-Call.png */,
+				8B495616119408AF00994239 /* Swap-Calls.png */,
+			);
+			name = "Conference Icons";
+			path = "rsc/Conference Icons";
 			sourceTree = "<group>";
 		};
 		8B59A61D10998423003BF3EA /* GCustomControls */ = {
@@ -1490,8 +1517,14 @@
 				8B788DF4115B9C8700B9D5E7 /* Default.png in Resources */,
 				8BF6E46C115C8B8F009DF9CD /* button-bg.png in Resources */,
 				8B4FD512117DCF4700FEAFDF /* TB-recent.png in Resources */,
-				8BB617FA118ECBEA0039E696 /* confrenceviewcontroller.xib in Resources */,
+				8BB617FA118ECBEA0039E696 /* conferenceviewcontroller.xib in Resources */,
 				8BDAED65119199BE00DB14B2 /* 11_declinecall_36_18.png in Resources */,
+				8B495617119408AF00994239 /* Discousure-Indicator.png in Resources */,
+				8B495618119408AF00994239 /* End-Conf-Call.png in Resources */,
+				8B495619119408AF00994239 /* Merge-Calls.png in Resources */,
+				8B49561A119408AF00994239 /* Phone-Icon.png in Resources */,
+				8B49561B119408AF00994239 /* Private-Conf-Call.png in Resources */,
+				8B49561C119408AF00994239 /* Swap-Calls.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1660,7 +1693,7 @@
 				8B8BB8A9115A4CC700A66C75 /* vmsplayrecord.c in Sources */,
 				8BDDE49A115B319B00FC4BA3 /* sipandltpwrapper.c in Sources */,
 				8B788A15115B485900B9D5E7 /* GEventTracker.m in Sources */,
-				8BB617F9118ECBEA0039E696 /* confrenceviewcontroller.m in Sources */,
+				8BB617F9118ECBEA0039E696 /* conferenceviewcontroller.m in Sources */,
 				8BA6E96311928F6400435756 /* callmanagement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

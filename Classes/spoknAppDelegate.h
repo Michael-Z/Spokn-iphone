@@ -47,6 +47,7 @@
 #define LOAD_VIEW 1000
 #define LOAD_LOGIN_VIEW 1
 #define TRYING_CALL 4000
+#define INCOMMING_CALL_ACCEPTED 4005
 #define ROUTE_CHANGE 4010
 #define _SIP_ 5000
 #define ERR_CODE_CALL_FWD_DUPLICATE 402
@@ -169,14 +170,14 @@ typedef struct CallNumberType
 
 
 }
--(void)LoadInCommingView:(id)objid;
+-(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 
 -(void) showText:(NSString *)testStringP;
 -(void)changeView;
 -(IBAction)loginLtp:(id)sender;
 -(IBAction)cancelLtp:(id)sender;
--(void)AcceptCall:(IncommingCallType *)inComP;
--(void)RejectCall:(IncommingCallType *)inComP;
+-(void)AcceptCall:(IncommingCallType*) inComP :(UIViewController*)perentControllerP;
+-(void)RejectCall:(IncommingCallType *)inComP:(UIViewController*)perentControllerP;
 -(void)LoadContactView:(id)object;
 -(void)SendDTMF:(char *)dtmfVapP;
 -(void)updateSpoknView:(id)object;

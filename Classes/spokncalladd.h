@@ -37,6 +37,7 @@
 -(int)totalCallActive;
 -(NSString*)getStringByIndex:(int)index;
 -(void) selectedCall:(int)index;
+-(void) objectDestroy;
 
 @end
 @protocol ShowContactCallOnDelegate

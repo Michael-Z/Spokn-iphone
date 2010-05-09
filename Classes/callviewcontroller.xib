@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="177"/>
+			<integer value="34"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -908,6 +908,22 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					</object>
 					<int key="connectionID">178</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">holdButtonP</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="834870923"/>
+					</object>
+					<int key="connectionID">179</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">addcallButtonP</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="311710151"/>
+					</object>
+					<int key="connectionID">180</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1126,7 +1142,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>CallViewController</string>
 					<string>UIResponder</string>
-					<string>{{518, 346}, {320, 480}}</string>
+					<string>{{442, 346}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1170,7 +1186,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">178</int>
+			<int key="maxID">180</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1284,6 +1300,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addcallButtonP</string>
 							<string>addcallDelegate</string>
 							<string>audiobuttonP</string>
 							<string>blueToothViewP</string>
@@ -1295,6 +1312,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>endCallKeypadButtonP</string>
 							<string>hideKeypadButtonP</string>
 							<string>hideSourcesbuttonP</string>
+							<string>holdButtonP</string>
 							<string>parentObjectDelegate</string>
 							<string>showContactCallOnDelegate</string>
 							<string>speakerButtonP</string>
@@ -1306,6 +1324,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
 							<string>id</string>
 							<string>UIButton</string>
 							<string>UIView</string>
@@ -1313,6 +1332,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>UIView</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
@@ -1331,6 +1351,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>addcallButtonP</string>
 							<string>addcallDelegate</string>
 							<string>audiobuttonP</string>
 							<string>blueToothViewP</string>
@@ -1342,6 +1363,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>endCallKeypadButtonP</string>
 							<string>hideKeypadButtonP</string>
 							<string>hideSourcesbuttonP</string>
+							<string>holdButtonP</string>
 							<string>parentObjectDelegate</string>
 							<string>showContactCallOnDelegate</string>
 							<string>speakerButtonP</string>
@@ -1353,6 +1375,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">addcallButtonP</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">addcallDelegate</string>
 								<string key="candidateClassName">id</string>
@@ -1395,6 +1421,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAACAgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">hideSourcesbuttonP</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">holdButtonP</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">

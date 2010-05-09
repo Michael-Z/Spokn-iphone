@@ -34,10 +34,49 @@
 #include "playrecordpcm.h"
 #import "spokncalladd.h"
 #include "LtpInterface.h"
-#import "confrenceviewcontroller.h"
+#import "conferenceviewcontroller.h"
 @implementation CallViewController
 @synthesize showContactCallOnDelegate;
 @synthesize addcallDelegate;
+-(int)AddIncommingCall :(int)llineID :(NSString*)llabelStrP :(NSString*)ltypeStrP
+{
+	alertNotiFication(CALL_ALERT,0,0,  (unsigned long)ownerobject,0);
+	[callManagmentP addCall:llineID :llabelStrP :ltypeStrP];
+	[self updateTableSubView:NO];
+	//[callnoLabelP setText:labelStrP];
+	//[callTypeLabelP setText:labeltypeStrP];
+	[self updatescreen:0 ];
+	[tableView reloadData];
+	return 0;
+
+}
+
+-(int)isCallOn
+{
+	if([callManagmentP isConfranceOn] &&[ callManagmentP getTotalDisplayCall]==1)
+	{
+		return 1;//show accept reject dialog
+	}
+	else {
+			if([callManagmentP isConfranceOn])
+			{
+				return 2;
+			}
+			else {
+					if([callManagmentP getCount]>1)
+					{
+						return 2;
+					}
+			}
+
+	}
+	return 1;//show accept reject dialog
+
+}
+-(void) objectDestroy
+{
+	spoknconfP = nil;
+}
 -(void)handupCall:(int)llineID
 {
 	if(llineID!=CONFRENCE_LINE_ID && llineID>=0)
@@ -71,6 +110,7 @@
 		//[callnoLabelP setText:labelStrP];
 		//[callTypeLabelP setText:labeltypeStrP];
 		[self updatescreen:0 ];
+		[tableView reloadData];
 	}
 
 }
@@ -91,9 +131,9 @@
 	llineID = [callManagmentP getActiveLineID];
 	if(llineID>=0)
 	{
-		setHoldInterface(ownerobject.ltpInterfacesP, YES);
-		
-		switchReinviteInterface(ownerobject.ltpInterfacesP ,llineID);
+		//setHoldInterface(ownerobject.ltpInterfacesP, YES);
+		setPrivateCallInterface(ownerobject.ltpInterfacesP,llineID );
+		//switchReinviteInterface(ownerobject.ltpInterfacesP ,llineID);
 	}
 	//[callnoLabelP setText:labelStrP];
 	//[callTypeLabelP setText:labeltypeStrP];
@@ -119,7 +159,7 @@
 		name2LabelP.font = [UIFont boldSystemFontOfSize:20];
 		name1LabelP.textAlignment = UITextAlignmentLeft;
 		
-		CGRect LabelFrame2 = CGRectMake(200, 0, 100, 50);
+		CGRect LabelFrame2 = CGRectMake(180, 0, 100, 50);
 		type1LabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
 		type1LabelP.textAlignment = UITextAlignmentRight;
 		//label1.text = temp;
@@ -224,7 +264,19 @@ CallViewController *globalCallViewControllerP;
 	}
 
 	if(activeLineId>=0)
-		switchReinviteInterface(ownerobject.ltpInterfacesP ,[callManagmentP getActiveLineID]);
+	{	
+		if([callManagmentP getActiveLineID]==CONFRENCE_LINE_ID)
+		{
+			shiftToConferenceCallInterface(ownerobject.ltpInterfacesP);
+			
+			
+		}
+		else {
+			switchReinviteInterface(ownerobject.ltpInterfacesP ,[callManagmentP getActiveLineID]);
+		}
+
+		
+	}
 	[self updateTableSubView:NO];
 	[self updatescreen:0 ];
 	[tableView reloadData];
@@ -408,6 +460,21 @@ CallViewController *globalCallViewControllerP;
 	NSString *lable2P=0;
 	NSString *type2P=0;
 	int lactiveLineId;
+	if(time==0)
+	{
+		NSString *holdImageP = 0;
+		NSString *addCallImageP = 0;
+		[callManagmentP imageForholdAndAddCall:&holdImageP :&addCallImageP];
+		[holdButtonP setImage:[UIImage imageNamed:holdImageP] forState:UIControlStateNormal];
+		[holdButtonP setImage:[UIImage imageNamed:holdImageP] forState:UIControlStateHighlighted];
+		[addcallButtonP setImage:[UIImage imageNamed:addCallImageP] forState:UIControlStateNormal];
+		[addcallButtonP setImage:[UIImage imageNamed:addCallImageP] forState:UIControlStateHighlighted];
+		[holdImageP release];
+		[addCallImageP release];
+		
+	
+	}
+	
 	lactiveLineId = [callManagmentP updatescreenData:time :&mainlableP :&mainTypeP : &lable1P :&type1P :&lable2P :&type2P];
 	if(mainlableP)
 	{
@@ -537,7 +604,16 @@ CallViewController *globalCallViewControllerP;
 	
 	if(lactiveLineId>=0)
 	{	
-		switchReinviteInterface(ownerobject.ltpInterfacesP ,[callManagmentP getActiveLineID]);
+		if([callManagmentP getActiveLineID]==CONFRENCE_LINE_ID)
+		{
+			shiftToConferenceCallInterface(ownerobject.ltpInterfacesP);
+			
+			
+		}
+		else {
+			switchReinviteInterface(ownerobject.ltpInterfacesP ,[callManagmentP getActiveLineID]);
+		}
+		
 		[self updateTableSubView:NO];
 		[self updatescreen:0];
 		[tableView reloadData];
@@ -550,6 +626,8 @@ CallViewController *globalCallViewControllerP;
 		results = 1;
 
 	}
+	if(results==0)
+	[spoknconfP reload];//again reloaded table
 	return results;
 }
 - (void) makeCallTimer: (id) timer
@@ -711,13 +789,15 @@ CallViewController *globalCallViewControllerP;
 	{
 		if([callManagmentP getActiveLineID]==CONFRENCE_LINE_ID)
 		{
-			startConferenceInterface(ownerobject.ltpInterfacesP);
+			//startConferenceInterface(ownerobject.ltpInterfacesP);
 			//showDiscloser = 1;
+			shiftToConferenceCallInterface(ownerobject.ltpInterfacesP);
 			[self updateTableSubView:NO];
 
 		}
 		else {
-			switchReinviteInterface(ownerobject.ltpInterfacesP ,[callManagmentP getActiveLineID]);
+				setPrivateCallInterface(ownerobject.ltpInterfacesP,[callManagmentP getActiveLineID]);
+			//switchReinviteInterface(ownerobject.ltpInterfacesP ,[callManagmentP getActiveLineID]);
 		}
 		
 		
@@ -1319,11 +1399,22 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 - (void)tableView:(UITableView *)tableView 
 accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath 
 { 
+	int dispRow;
 	//[[self navigationController] pushViewController:[[ImageController alloc] init] 
 	//animated:YES]; 
-	ConfrenceViewController *spoknconfP;
-	spoknconfP = [[ConfrenceViewController alloc] initWithNibName:@"confrenceviewcontroller" bundle:[NSBundle mainBundle]];
+	dispRow = [callManagmentP getTotalDisplayCall];
+	
+	
+	spoknconfP = [[ConferenceViewController alloc] initWithNibName:@"conferenceviewcontroller" bundle:[NSBundle mainBundle]];
 	[spoknconfP setDelegate:self];
+	if(dispRow==2)
+	{
+		[spoknconfP showPrivate:NO];
+	}
+	else {
+		[spoknconfP showPrivate:YES];
+	}
+
 	[[self navigationController] pushViewController:spoknconfP animated: YES ];
 	[spoknconfP release];
 	
@@ -1357,6 +1448,10 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 			
 		}*/
 		[self HoldPressed:nil];//swap the call
+		if([callManagmentP isConfranceOn]==YES)
+		{
+			[tableView reloadData];
+		}
 	}	
 	
 	

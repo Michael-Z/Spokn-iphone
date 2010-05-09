@@ -113,6 +113,8 @@ Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId);
 	int setMuteInterface(LtpInterfaceType *ltpInterfaceP,int muteB);
 	void startConferenceInterface(LtpInterfaceType *ltpInterfaceP);
 	void switchReinviteInterface(LtpInterfaceType *ltpInterfaceP ,int llineid);
-    void UnconferenceInterface(LtpInterfaceType *ltpInterfaceP); 
+	void UnconferenceInterface(LtpInterfaceType *ltpInterfaceP); 
+	void shiftToConferenceCallInterface(LtpInterfaceType *ltpInterfaceP);
+	void setPrivateCallInterface(LtpInterfaceType *ltpInterfaceP,int lineid);
 
 #endif

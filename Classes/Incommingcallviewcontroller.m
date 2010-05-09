@@ -135,7 +135,7 @@
 	buttonPressedB =YES;
 //	[UIApplication sharedApplication] .statusBarStyle = prvStyle;
 	[self retain];
-	[self->ownerobject AcceptCall:self->ltpInDataP];
+	[self->ownerobject AcceptCall:self->ltpInDataP :[self parentViewController]];
 	[self autorelease];
 	
 }
@@ -146,12 +146,15 @@
 	buttonPressedB =YES;	
 	//[UIApplication sharedApplication] .statusBarStyle = prvStyle;
 	[self retain];
-	[self->ownerobject RejectCall:self->ltpInDataP];
+	[self->ownerobject RejectCall:self->ltpInDataP :[self parentViewController]];
 	[self autorelease];
 	
 
 }
-
+-(void)directAccept:(int)ldirectB
+{
+	directB = ldirectB;
+}
 -(void)setObject:(id) object 
 {
 	

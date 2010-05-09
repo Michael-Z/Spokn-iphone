@@ -768,7 +768,8 @@ void getProp()
 						[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 			#endif
 			[VmsProtocolP	VmsStopRequest];
-			if(lineID != 0)
+			int result = [dialviewP isCallOn];
+			if(result==2)//mean more then one call is active
 			{	
 				
 				
@@ -778,8 +779,15 @@ void getProp()
 			else
 			{
 				SetAudioTypeLocal(0,1);
-				[self LoadInCommingView:0];	
-				
+				if(result==0)
+				{	
+					[self LoadInCommingView:0 :tabBarController];	
+					
+				}
+				else {
+					[self LoadInCommingView:0 :[dialviewP getCallViewController]];	
+				}
+
 			}	
 			//[ navigationNavigationController pushViewNavigationController: inCommingCallViewP animated: YES ];
 			//[statusLabelP performSelectorOnMainThread : @ selector(setText: ) withObject:strP waitUntilDone:YES];
@@ -1081,7 +1089,7 @@ void getProp()
 {
 	[object reload];
 }
--(void)LoadInCommingView:(id)object
+-(void)LoadInCommingView:(id)object :(UIViewController*)controllerForIncommingView
 {
 	IncommingCallViewController     *inCommingCallViewP;	
 	[tabBarController dismissModalViewControllerAnimated:NO];
@@ -1090,11 +1098,21 @@ void getProp()
 	inCommingCallViewP.ltpInterfacesP = ltpInterfacesP;
 	[inCommingCallViewP setIncommingData:self->incommingCallList[self->lineID]];
 	[inCommingCallViewP setObject:self];
-	
+	if(controllerForIncommingView)
+	{	
+		[inCommingCallViewP directAccept:YES];
+		[controllerForIncommingView presentModalViewController:inCommingCallViewP animated:YES];
+
+	}
+	else {
+		[inCommingCallViewP directAccept:NO];
+		[tabBarController presentModalViewController:inCommingCallViewP animated:YES];
+
+	}
+
 	//[ dialNavigationController pushViewController: inCommingCallViewP animated: YES ];
 	
-	[tabBarController presentModalViewController:inCommingCallViewP animated:YES];
-	if([inCommingCallViewP retainCount]>1)
+		if([inCommingCallViewP retainCount]>1)
 		[inCommingCallViewP release];
 	
 
@@ -2034,7 +2052,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//tabBarController.selectedViewController = dialNavigationController;
 }
 //call by incomming method
--(void)AcceptCall:(IncommingCallType*) inComP
+	-(void)AcceptCall:(IncommingCallType*) inComP :(UIViewController*)perentControllerP
 {
 	[self stopRing];
 	self->incommingCallList[inComP->lineid] = 0;
@@ -2042,7 +2060,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	
 	dialviewP.currentView = 1;//mean show hang button
-	[tabBarController dismissModalViewControllerAnimated:NO];
+	[perentControllerP dismissModalViewControllerAnimated:NO];
 	
 	//[ dialNavigationController popToViewController: dialviewP animated: YES ];
 	//NSMutableString *tempStringP;
@@ -2077,7 +2095,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		//strP = [[NSString alloc] initWithUTF8String:noCharP] ;
 		//[strP setString:@"Calling "];
 		//	tempStringP = [NSMutableString stringWithString:@"calling "]	;
-	[dialviewP setStatusText:strP :strtypeP :TRYING_CALL :0 :0];
+	[dialviewP setStatusText:strP :strtypeP :INCOMMING_CALL_ACCEPTED :0 :inComP->lineid];
 		//[tempStringP release];
 		//[tempStringP release ];
 	[strP release ];
@@ -2095,7 +2113,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 
 }
--(void)RejectCall:(IncommingCallType *)inComP
+	-(void)RejectCall:(IncommingCallType *)inComP :(UIViewController*)parentViewP
 {
 	[self stopRing];
 	 //pjsua_call_answer(call_id, 180, NULL, NULL);
@@ -2103,7 +2121,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	self->incommingCallList[inComP->lineid] = 0;
 	free(inComP);
 	//[ dialNavigationController popToViewController: dialviewP animated: YES ];
-	[tabBarController dismissModalViewControllerAnimated:YES];
+	[parentViewP dismissModalViewControllerAnimated:YES];
 	[self changeView];
 
 

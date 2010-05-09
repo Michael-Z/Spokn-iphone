@@ -102,4 +102,6 @@
 -(void)makeDTMF;
 -(void)destroyDTMF;
 -(int)callDisconnected:(int )llineID;
+-(int)isCallOn;
+-(UIViewController*)getCallViewController;
 @end

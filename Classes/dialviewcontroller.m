@@ -40,6 +40,12 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 @synthesize ltpInterfacesP;
 @synthesize currentView;
 @synthesize addcallDelegate;
+
+-(UIViewController*)getCallViewController
+{
+	return self->callViewControllerP;
+	
+}
 - (void)keyPressedDown:(NSString *)stringkey keycode:(int)keyVal
 {
 		
@@ -690,6 +696,11 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 {
 	callViewControllerP = parentP;
 }
+-(int)isCallOn
+{
+	if(callViewControllerP==nil) return 0;
+	return  [callViewControllerP isCallOn];
+}
 -(int)callDisconnected:(int )llineID
 {
 	timecallduration = [callViewControllerP stopTimer:self->lineID];
@@ -939,6 +950,12 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			[callViewControllerP routeChange:self->subStatus];
 			
 			break;
+		case INCOMMING_CALL_ACCEPTED:
+			if(callViewControllerP)
+			{
+				[callViewControllerP AddIncommingCall:self->lineID:callingstringP :callingstringtypeP];
+				break;
+			}
 		case TRYING_CALL:
 			
 			//[self setViewButton:1];

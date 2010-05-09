@@ -217,8 +217,17 @@
 #define _BLUETOOTH_SPEAKER_SPEAKER_PNG_ @"240x52-buttons-speaker-speaker-normal.png"
 #define _BLUETOOTH_SPEAKER_SPEAKER_PRESSED_PNG_ @"240x52-buttons-speaker-speaker-pressed.png"
 
+#define PRIVATE_CALL_IMG_PNG  @"Private-Conf-Call.png"
+#define PHONE_CALL_IMG_PNG  @"Phone-Icon.png"
 
+#define END_CALL_IMG_PNG  @"End-Conf-Call.png"
+#define END_CALL_IMG_PNG  @"End-Conf-Call.png"
 
+#define DISCOUSURE_CALL_IMG_PNG				  @"Discousure-Indicator.png"	
+#define ADD_CALL_PNG @"add-cal-wit-text.png"
+#define HOLD_CALL_PNG @"hold-wit-text.png"
+#define SWAP_CALL_IMG_PNG  @"Swap-Calls.png"
+#define MERGE_CALL_IMG_PNG  @"Merge-Calls.png"
 
 
 //Sound Files

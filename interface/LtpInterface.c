@@ -698,3 +698,11 @@ void UnconferenceInterface(LtpInterfaceType *ltpInterfaceP)
 	return Unconference(ltpInterfaceP->ltpObjectP);
 	
 }
+void shiftToConferenceCallInterface(LtpInterfaceType *ltpInterfaceP)
+{
+	return shiftToConferenceCall(ltpInterfaceP->ltpObjectP);
+}
+void setPrivateCallInterface(LtpInterfaceType *ltpInterfaceP,int lineid)
+{
+	return setPrivateCall(ltpInterfaceP->ltpObjectP,lineid);
+}

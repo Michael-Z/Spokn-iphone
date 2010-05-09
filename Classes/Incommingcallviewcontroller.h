@@ -42,6 +42,7 @@
 	NSString *nameStrP;
 	int buttonPressedB;
 	int acceptPressedB;
+	int directB;
 	//UIBarStyle prvStyle;
 	
 }
@@ -54,4 +55,5 @@
 -(void)setObject:(id) object ;
 -(id)initVariable;
 -(void)setIncommingData:(IncommingCallType *)lltpInDataP;
+-(void)directAccept:(int)ldirectB;
 @end

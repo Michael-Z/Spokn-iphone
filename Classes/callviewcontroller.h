@@ -27,7 +27,7 @@
 #import "spokncalladd.h"
 #import "callmanagement.h"
 
-
+@class ConferenceViewController;
 @class SpoknAppDelegate;
 @interface CallViewController : UIViewController<KeypadProtocol,UIActionSheetDelegate,UITableViewDataSource, UITableViewDelegate,AddCallProtocol> {
 	IBOutlet UITableView *tableView;
@@ -46,6 +46,10 @@
 	IBOutlet UIButton  *audiobuttonP;
 	IBOutlet UIButton  *speakerinbluetoothbuttonP;
 	IBOutlet UIButton  *bluetoothbuttonP;
+	IBOutlet UIButton  *holdButtonP;
+	IBOutlet UIButton  *addcallButtonP;
+
+	
 	UILabel    *name1LabelP;
 	UILabel    *name2LabelP;
 	UILabel    *type2LabelP;
@@ -72,6 +76,7 @@
 	int holdOnB;
 	id<AddCallProtocol> addcallDelegate;
 	CallManagement *callManagmentP;
+	ConferenceViewController *spoknconfP;
 		//IBOutlet UIButton *testP;
 
 }
@@ -106,5 +111,7 @@
 @property (readwrite,assign) id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 @property(readwrite,assign) id<AddCallProtocol> addcallDelegate;
 -(void)updateTableSubView:(Boolean)hideB;
-
+-(void) objectDestroy;
+-(int)isCallOn;
+-(int)AddIncommingCall :(int)llineID :(NSString*)labelStrP :(NSString*)typeStrP;
 @end
