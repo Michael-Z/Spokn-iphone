@@ -118,9 +118,19 @@
 	// e.g. self.myOutlet = nil;
 }
 
+-(int)incommingViewDestroy:(int)lineID
+{
+	if(lineID==ltpInDataP->lineid)
+	{
+		[[self parentViewController] dismissModalViewControllerAnimated:YES];
+		return 0;
+	}
+	return 1;
 
+
+}
 - (void)dealloc {
-	
+	[ownerobject setIncommingCallDelegate:nil];
 	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleDefault;
 	[self->nameStrP release];
 	[self->statusStrP release];

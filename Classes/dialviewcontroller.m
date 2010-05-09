@@ -54,8 +54,11 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	
 	if(length==0)
 	{	
-		statusLabel1P.hidden = YES;
-		statusLabel2P.hidden = YES;
+		//if(addcallDelegate==nil)
+		{	
+			statusLabel1P.hidden = YES;
+			statusLabel2P.hidden = YES;
+		}	
 	}
 	if([curText length]<NUMBER_RANGE)
 	{
@@ -202,6 +205,43 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	
+	if(addcallDelegate)//deasible vmail button
+	{
+#define YSIZE 20
+		hangUpButtonP.hidden = YES;
+		//statusLabel1P.hidden = YES;
+		//statusLabel2P.hidden = YES;
+		//backgroundButtonP.hidden = YES;
+		CGRect x;
+		x = statusLabel2P.frame;
+		x.origin.y-=5;
+		x.size.height-=5;
+		statusLabel2P.frame = x;
+		
+		
+		x = backgroundButtonP.frame;
+		x.size.height-=YSIZE;
+		backgroundButtonP.frame = x;
+	
+		x = numberlebelP.frame;
+		x.origin.y-=10;
+		
+		numberlebelP.frame = x;
+		x = keypadmain.frame;
+		x.origin.y-=YSIZE;
+		keypadmain.frame = x;
+		
+		x = callButtonP.frame;
+		x.origin.y-=YSIZE;
+		callButtonP.frame = x;
+		x = hangUpButtonP.frame;
+		x.origin.y-=YSIZE;
+		hangUpButtonP.frame = x;
+		x = backButtonP.frame;
+		x.origin.y-=YSIZE;
+		backButtonP.frame = x;
+		
+	}
 	
 	
 	[ownerobject startRutine];
@@ -249,7 +289,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	status = 0;
 	subStatus = 0;
 	activityIndicator.hidesWhenStopped = YES;
-	//[numberFieldP becomeFirstResponder];
+		//[numberFieldP becomeFirstResponder];
 	//numberFieldP.delegate = self;
 	/*
 	[callButton setImage:[UIImage imageNamed:@"answer.png"] 

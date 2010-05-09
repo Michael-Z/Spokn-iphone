@@ -92,7 +92,7 @@ typedef struct CallNumberType
 
 
 
-
+@class IncommingCallViewController;
 @interface SpoknAppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate> {
   //  @public
 	UIWindow *window;
@@ -163,7 +163,7 @@ typedef struct CallNumberType
 	Boolean blueTooth;
 	NSString *devicePushTokenStrP;
 	int firstTimeB;
-	
+	IncommingCallViewController     *inCommingCallViewP;
 	//@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -258,6 +258,7 @@ changed:(BOOL)changed;
 -(int) profileResynFromApp;
 -(void)setDeviceInforation:(NSString *)deviceTokenP;
 -(void)sendMessageFromOtherThread:(spoknMessage*)spoknMsgP;
+-(void) setIncommingCallDelegate:(id)incommingP;
 @end
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);

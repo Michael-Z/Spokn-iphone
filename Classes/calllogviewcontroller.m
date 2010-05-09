@@ -694,6 +694,8 @@
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
 			[ContactControllerDetailsviewP setSelectedNumber:cdrP->userid showAddButton:NO];
 			[ContactControllerDetailsviewP setRecordID:cdrP->recordUId :cdrP->recordUId];
+			ContactControllerDetailsviewP.addcallDelegate = self.addcallDelegate;
+			[ContactControllerDetailsviewP hideCallAndVmailButton:YES];
 			[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
 			
 			
@@ -729,6 +731,8 @@
 					
 					
 					[ContactControllerDetailsviewP setSelectedNumber:cdrP->userid showAddButton:NO ];
+					ContactControllerDetailsviewP.addcallDelegate = self.addcallDelegate;
+					[ContactControllerDetailsviewP hideCallAndVmailButton:YES];
 					[ContactViewController addDetailsFromAddressBook :ContactControllerDetailsviewP :CALLLOGDETAILVIEWENUM contactBook:person];
 					
 					[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];

@@ -47,6 +47,8 @@
 	IBOutlet UILabel *mainstatusLabelP;
 	IBOutlet UIButton *hangUpButtonP;
 	IBOutlet UIButton *callButtonP;
+	IBOutlet UIButton *backButtonP;
+	IBOutlet UIButton *backgroundButtonP;
 	IBOutlet Keypadview *keypadmain;
 	
 	SpoknAppDelegate *ownerobject;

@@ -129,13 +129,13 @@
 	#endif
 	
 	label.text = _RETURN_TO_CALL_;
-	label.font = [UIFont systemFontOfSize:25];
+	label.font = [UIFont systemFontOfSize:15];
 	label.textAlignment = UITextAlignmentCenter;
 	label.contentMode = UIViewContentModeCenter;
 	label.backgroundColor = [UIColor blackColor];
 	label.textColor = [UIColor grayColor];
-	[label sizeToFit];
-	label.frame = CGRectMake(0, 0, 320, 40);
+	//[label sizeToFit];
+	label.frame = CGRectMake(0, 0, 320, 30);
 	//label.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backview.png"]];
 	
 		[self.view addSubview:label];
@@ -224,11 +224,11 @@
 		rectFrame.size.height-=40;
 		dialviewP.view.frame = rectFrame;
 		rectFrame = tabBarControllerP.view.frame;
-		rectFrame.size.height-=60;
+		rectFrame.size.height-=45;
 		//rectFrame.origin.y-=20;
 		tabBarControllerP.view.frame = rectFrame;
 		[viewP addSubview:tabBarControllerP.view];
-		
+	//	[ [UIApplication sharedApplication] setStatusBarHidden:YES];
 	}
 
 	//tmpCtl.view.frame = viewP.frame;

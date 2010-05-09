@@ -40,6 +40,7 @@
 @synthesize addcallDelegate;
 -(int)AddIncommingCall :(int)llineID :(NSString*)llabelStrP :(NSString*)ltypeStrP
 {
+	SetAudioTypeLocal(0,0);
 	alertNotiFication(CALL_ALERT,0,0,  (unsigned long)ownerobject,0);
 	[callManagmentP addCall:llineID :llabelStrP :ltypeStrP];
 	[self updateTableSubView:NO];
@@ -235,6 +236,7 @@ CallViewController *globalCallViewControllerP;
 		navBarShow = NO;
 		[[self navigationController] setNavigationBarHidden:YES animated:NO];
 	}
+	//[ [UIApplication sharedApplication] setStatusBarHidden:NO];
 	[super viewWillAppear:animated];
 }
 -(void)sendLtpHang

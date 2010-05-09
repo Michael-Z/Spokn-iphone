@@ -272,6 +272,11 @@
 	return 1;
 	
 }
+-(void) setIncommingCallDelegate:(id)incommingP
+{
+	inCommingCallViewP = incommingP;
+
+}
 
 -(void) playcallendTone
 {
@@ -586,7 +591,14 @@ void getProp()
 			
 		case ALERT_DISCONNECTED:
 			callOnB = false;
-			
+			if(inCommingCallViewP)
+			{	
+				if([inCommingCallViewP incommingViewDestroy]==0)
+				{
+					[self stopRing];
+				}
+				
+			}	
 			if([dialviewP callDisconnected:self->lineID]==0)
 			{	
 			//	[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 :self->lineID];
@@ -602,11 +614,6 @@ void getProp()
 				//reload log
 				[self LoadContactView:callviewP];
 				[callviewP doRefresh];
-				if([self stopRing]==0)//for incomming called not ans
-				{
-					
-					[tabBarController dismissModalViewControllerAnimated:NO];
-				}
 				if(self->subID)
 				{
 					[callviewP missCallSetCount];
@@ -769,7 +776,7 @@ void getProp()
 			#endif
 			[VmsProtocolP	VmsStopRequest];
 			int result = [dialviewP isCallOn];
-			if(result==2)//mean more then one call is active
+			if(result==2  || inCommingCallViewP)//mean more then one call is active
 			{	
 				
 				
@@ -778,9 +785,11 @@ void getProp()
 			}
 			else
 			{
-				SetAudioTypeLocal(0,1);
+				
 				if(result==0)
 				{	
+					SetAudioTypeLocal(0,1);
+					[tabBarController dismissModalViewControllerAnimated:NO];
 					[self LoadInCommingView:0 :tabBarController];	
 					
 				}
@@ -1091,8 +1100,8 @@ void getProp()
 }
 -(void)LoadInCommingView:(id)object :(UIViewController*)controllerForIncommingView
 {
-	IncommingCallViewController     *inCommingCallViewP;	
-	[tabBarController dismissModalViewControllerAnimated:NO];
+		
+	//[tabBarController dismissModalViewControllerAnimated:NO];
 	inCommingCallViewP = [[IncommingCallViewController alloc] initWithNibName:@"incommingcall" bundle:[NSBundle mainBundle]];
 	[inCommingCallViewP initVariable];
 	inCommingCallViewP.ltpInterfacesP = ltpInterfacesP;
@@ -2095,6 +2104,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		//strP = [[NSString alloc] initWithUTF8String:noCharP] ;
 		//[strP setString:@"Calling "];
 		//	tempStringP = [NSMutableString stringWithString:@"calling "]	;
+	self->callNumber.direction = 2;
+	self->callNumber.lineId = inComP->lineid;
 	[dialviewP setStatusText:strP :strtypeP :INCOMMING_CALL_ACCEPTED :0 :inComP->lineid];
 		//[tempStringP release];
 		//[tempStringP release ];
@@ -2105,8 +2116,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	#else
 		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 	#endif
-	self->callNumber.direction = 2;
-	self->callNumber.lineId = inComP->lineid;
+	
 	//AcceptInterface(ltpInterfacesP, inComP->lineid);
 	free(inComP);
 	//[self changeView];
