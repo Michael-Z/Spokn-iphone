@@ -1168,7 +1168,7 @@ cancelButtonTitle: nil
 	[missImageP release];
 	[inImageP release];
 	[outImageP release];
-	printf("\n calllog view dealloc");
+//	printf("\n calllog view dealloc");
 
     [super dealloc];
 }

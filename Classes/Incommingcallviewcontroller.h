@@ -56,5 +56,6 @@
 -(id)initVariable;
 -(void)setIncommingData:(IncommingCallType *)lltpInDataP;
 -(void)directAccept:(int)ldirectB;
+
 -(int)incommingViewDestroy:(int)lineID;
 @end

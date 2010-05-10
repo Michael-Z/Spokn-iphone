@@ -1184,7 +1184,7 @@ titleForHeaderInSection:(NSInteger)section
 	[sectionArray release];
 	[noResultLabelP release];
     [noResultViewP release];
-	printf("\n contact view dealloc");
+	//printf("\n contact view dealloc");
 	[super dealloc];
 }
 -(void) setReturnVariable:(id) rootObject :(SelectedContctType *)lselectedContactP: (int *)lvalP

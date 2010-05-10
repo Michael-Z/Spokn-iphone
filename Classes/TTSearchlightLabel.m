@@ -130,7 +130,7 @@
 	 if(mask)
 	 {	 
 		 CGContextClipToMask(context, rect, mask);
-		 CGImageRelease(mask);
+		// CGImageRelease(mask);
 	 }
     [_spotlightColor setFill];
     CGContextShowTextAtPoint(context, x, y, [self.text UTF8String], self.text.length);

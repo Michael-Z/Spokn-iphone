@@ -593,12 +593,13 @@ void getProp()
 			callOnB = false;
 			if(inCommingCallViewP)
 			{	
-				if([inCommingCallViewP incommingViewDestroy]==0)
+				if([inCommingCallViewP incommingViewDestroy:self->lineID]==0)
 				{
 					[self stopRing];
 				}
 				
 			}	
+			printf("main didconnect %d",self->lineID);
 			if([dialviewP callDisconnected:self->lineID]==0)
 			{	
 			//	[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 :self->lineID];

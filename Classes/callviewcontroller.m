@@ -160,7 +160,7 @@
 		name2LabelP.font = [UIFont boldSystemFontOfSize:20];
 		name1LabelP.textAlignment = UITextAlignmentLeft;
 		
-		CGRect LabelFrame2 = CGRectMake(180, 0, 100, 50);
+		CGRect LabelFrame2 = CGRectMake(180, 0, 108, 50);
 		type1LabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
 		type1LabelP.textAlignment = UITextAlignmentRight;
 		//label1.text = temp;
@@ -518,6 +518,8 @@ CallViewController *globalCallViewControllerP;
 }
 -(void) startTimer:(int) llineID
 {
+	
+	printf("\n connect %d",llineID);
 	if(calltimerP==nil)
 	{
 		
@@ -573,7 +575,8 @@ CallViewController *globalCallViewControllerP;
 	int lactiveLineId;
 	actualDismissB = true;
 	int results = 0;	
-	printf("\n call end %d",llineID);
+	printf("\n disconnect %d",llineID);
+	
 	if(loadedB==false)
 	{	
 		failedCallB = true;
@@ -589,17 +592,12 @@ CallViewController *globalCallViewControllerP;
 		[calltimerP invalidate];
 		calltimerP = nil;
 		results = 1;
+		return 1;
 	}
-	else
+	lactiveLineId = [callManagmentP getindexByLineID:llineID];
+	if(lactiveLineId<0)
 	{
-		if([callManagmentP getCount]<=1)
-		{	
-			[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
-			[calltimerP invalidate];
-			calltimerP = nil;
-			results = 1;
-		}	
-
+		return 0;
 	}
 	lactiveLineId = [callManagmentP removeCallByID:llineID];
 			
@@ -630,7 +628,9 @@ CallViewController *globalCallViewControllerP;
 
 	}
 	if(results==0)
-	[spoknconfP reload];//again reloaded table
+	{	
+		[spoknconfP reload];//again reloaded table
+	}	
 	return results;
 }
 - (void) makeCallTimer: (id) timer
@@ -766,7 +766,7 @@ CallViewController *globalCallViewControllerP;
 			labeltypeStrP = [[NSString alloc] initWithUTF8String:" "];
 			[callManagmentP makeconfrence:labelStrP :labeltypeStrP ];
 		}
-		[callManagmentP putAllCallInConfrance];
+		[callManagmentP putAllCallInConfrance:YES];
 		[self updateTableSubView:NO];
 		[self updatescreen:0];
 		[tableView reloadData];
@@ -1349,6 +1349,35 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
  return 32.0;
  }
  */
+-(void)disclouserClicked:(UIButton *)buttonP
+{
+	//UIView *lsuperView;
+	//lsuperView = [buttonP superview]; 
+	//printf("super %d",lsuperView.tag);
+	//[addCallP selectedCall:lsuperView.tag-1000];
+	//[[self navigationController] popViewControllerAnimated:YES];
+	int dispRow;
+	//[[self navigationController] pushViewController:[[ImageController alloc] init] 
+	//animated:YES]; 
+	dispRow = [callManagmentP getTotalDisplayCall];
+	
+	
+	spoknconfP = [[ConferenceViewController alloc] initWithNibName:@"conferenceviewcontroller" bundle:[NSBundle mainBundle]];
+	[spoknconfP setDelegate:self];
+	if(dispRow==2)
+	{
+		[spoknconfP showPrivate:NO];
+	}
+	else {
+		[spoknconfP showPrivate:YES];
+	}
+	
+	[[self navigationController] pushViewController:spoknconfP animated: YES ];
+	[spoknconfP release];
+	
+	
+}
+
 - (UITableViewCell *)tableView:(UITableView *)ltableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	int row = [indexPath row];
 	int section = [indexPath section];
@@ -1389,11 +1418,22 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	if([callManagmentP isConfranceOnForIndex:row] )
 	{
 		
-		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+		//cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+		UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+		[button setBackgroundImage:[UIImage imageNamed:DISCOUSURE_CALL_IMG_PNG] forState:UIControlStateNormal];
+		[button setFrame:CGRectMake(0.0f, 0.0f, 30.0f, 29.0f)];
+		//[button setCenter:CGPointMake(40.0f, 20.0f)];
+		//	[button setTitle:@"PRIVATE" forState:UIControlStateNormal];
+		button.tag = 1000 + row;
+		[button addTarget:self action:@selector(disclouserClicked:) forControlEvents:UIControlEventTouchUpInside];
+		cell.accessoryView = button;
+		//[button release];
+		//cell.imageView = [UIImage imageNamed:@"11_declinecall_36_18.png"];
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 	
 	}
 	else {
-		
+		cell.accessoryView = nil;
 		cell.accessoryType = UITableViewCellAccessoryNone;
 	}
 

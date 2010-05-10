@@ -66,7 +66,7 @@
 }
 -(void)makeCall:(char*)numberP
 {
-	printf("\n number %s",numberP);
+//	printf("\n number %s",numberP);
 	[callViewCtlP makeCall:numberP];
 	[self.parentViewController dismissModalViewControllerAnimated:YES ];
 }
