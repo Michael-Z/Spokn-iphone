@@ -800,6 +800,7 @@ CallViewController *globalCallViewControllerP;
 		}
 		else {
 				setPrivateCallInterface(ownerobject.ltpInterfacesP,[callManagmentP getActiveLineID]);
+				[self updateTableSubView:NO];
 			//switchReinviteInterface(ownerobject.ltpInterfacesP ,[callManagmentP getActiveLineID]);
 		}
 		
