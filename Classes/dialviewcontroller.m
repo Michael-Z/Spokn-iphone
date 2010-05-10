@@ -385,7 +385,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	{	
 		[callingstringtypeP release];
 	}
-	
+	printf("\n dial view dealloc");
 	//[statusLabelP release];
 	//[numberFieldP release];
     [super dealloc];

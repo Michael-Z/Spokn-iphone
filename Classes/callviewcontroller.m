@@ -573,6 +573,7 @@ CallViewController *globalCallViewControllerP;
 	int lactiveLineId;
 	actualDismissB = true;
 	int results = 0;	
+	printf("\n call end %d",llineID);
 	if(loadedB==false)
 	{	
 		failedCallB = true;

@@ -62,6 +62,7 @@
 	UINavigationController *tmpCtl;
 	CallViewController *callViewCtlP;
 	int addCallB;
+	UITabBarController *tabBarControllerP;
 #ifdef _HILIGHT_SEARCH_
 	TTSearchlightLabel* label;
 #else

@@ -171,7 +171,7 @@
 		[viewP addSubview:tmpCtl.view];
 	}	
 	else {
-		UITabBarController *tabBarControllerP;
+		
 		NSMutableArray *viewControllers;
 		viewControllers = [[NSMutableArray alloc] init];
 		
@@ -185,7 +185,8 @@
 		[contactP setObjType:GETCONTACTLIST];
 		contactP.ltpInterfacesP =ownerobject.ltpInterfacesP;
 		tmpCtl = [ [ UINavigationController alloc ] initWithRootViewController: contactP ] ;
-		
+		[contactP release];
+		contactP = nil;
 		DialviewController* dialviewP = [[DialviewController alloc] initWithNibName:@"dialview" bundle:[NSBundle mainBundle]];
 		dialviewP.addcallDelegate = self;
 		[dialviewP setObject:ownerobject];
@@ -196,8 +197,12 @@
 		callviewP.addcallDelegate = self;
 		//[viewControllers addObject:loginViewP];
 		[viewControllers addObject:tmpCtl];
+		[tmpCtl release];
+		tmpCtl = nil;
 		[viewControllers addObject:calllogNavigationController];
+		[calllogNavigationController release];
 		[viewControllers addObject:dialviewP];
+		[dialviewP release];
 	//	[ownerobject.contactNavigationController release];
 		
 	//	[viewControllers addObject:ownerobject.calllogNavigationController];
@@ -217,7 +222,7 @@
 		
 		
 		//self.view = tmpCtl.view;
-		tmpCtl.delegate =self;
+	//	tmpCtl.delegate =self;
 		CGRect rectFrame;
 		rectFrame = dialviewP.view.frame;
 		//rectFrame.origin.y-=20;
@@ -279,7 +284,7 @@
 }
 - (void)dealloc {
 	callViewCtlP.showContactCallOnDelegate = nil;
-	
+	[tabBarControllerP release];
 	tmpCtl.delegate =nil;
 	[contactP release];
 	contactP = nil;
