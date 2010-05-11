@@ -137,12 +137,6 @@
 		8B413C4F1075ED71005A400F /* spoknviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B413C4D1075ED71005A400F /* spoknviewcontroller.m */; };
 		8B413C501075ED71005A400F /* spoknviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */; };
 		8B47D83210720BA400EEEF61 /* callviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B47D83010720BA400EEEF61 /* callviewcontroller.m */; };
-		8B495617119408AF00994239 /* Discousure-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495611119408AF00994239 /* Discousure-Indicator.png */; };
-		8B495618119408AF00994239 /* End-Conf-Call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495612119408AF00994239 /* End-Conf-Call.png */; };
-		8B495619119408AF00994239 /* Merge-Calls.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495613119408AF00994239 /* Merge-Calls.png */; };
-		8B49561A119408AF00994239 /* Phone-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495614119408AF00994239 /* Phone-Icon.png */; };
-		8B49561B119408AF00994239 /* Private-Conf-Call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495615119408AF00994239 /* Private-Conf-Call.png */; };
-		8B49561C119408AF00994239 /* Swap-Calls.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B495616119408AF00994239 /* Swap-Calls.png */; };
 		8B4FD512117DCF4700FEAFDF /* TB-recent.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B4FD511117DCF4700FEAFDF /* TB-recent.png */; };
 		8B59A62C10998423003BF3EA /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A61F10998423003BF3EA /* Contact.m */; };
 		8B59A62D10998423003BF3EA /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62110998423003BF3EA /* ContactCell.m */; };
@@ -378,6 +372,12 @@
 		8BC568FC10BE9A590083F77D /* dialview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BC568FB10BE9A590083F77D /* dialview.xib */; };
 		8BCA77351043C3E90018419C /* customcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCA77341043C3E90018419C /* customcell.m */; };
 		8BCB06B21083020A00468EC7 /* custombutton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB06B11083020A00468EC7 /* custombutton.m */; };
+		8BCB127E119994B200F5390D /* Discousure-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB1278119994B200F5390D /* Discousure-Indicator.png */; };
+		8BCB127F119994B200F5390D /* End-Conf-Call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB1279119994B200F5390D /* End-Conf-Call.png */; };
+		8BCB1280119994B200F5390D /* Merge-Calls.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB127A119994B200F5390D /* Merge-Calls.png */; };
+		8BCB1281119994B200F5390D /* Phone-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB127B119994B200F5390D /* Phone-Icon.png */; };
+		8BCB1282119994B200F5390D /* Private-Conf-Call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB127C119994B200F5390D /* Private-Conf-Call.png */; };
+		8BCB1283119994B200F5390D /* Swap-Calls.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB127D119994B200F5390D /* Swap-Calls.png */; };
 		8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */; };
 		8BCEEB2D104AD235001DF4AC /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCEEB2C104AD235001DF4AC /* OverlayView.xib */; };
 		8BD0C5571121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C5551121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png */; };
@@ -511,12 +511,6 @@
 		8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spoknviewcontroller.xib; sourceTree = "<group>"; };
 		8B47D82F10720BA400EEEF61 /* callviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callviewcontroller.h; sourceTree = "<group>"; };
 		8B47D83010720BA400EEEF61 /* callviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callviewcontroller.m; sourceTree = "<group>"; };
-		8B495611119408AF00994239 /* Discousure-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Discousure-Indicator.png"; sourceTree = "<group>"; };
-		8B495612119408AF00994239 /* End-Conf-Call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "End-Conf-Call.png"; sourceTree = "<group>"; };
-		8B495613119408AF00994239 /* Merge-Calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Merge-Calls.png"; sourceTree = "<group>"; };
-		8B495614119408AF00994239 /* Phone-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Phone-Icon.png"; sourceTree = "<group>"; };
-		8B495615119408AF00994239 /* Private-Conf-Call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Private-Conf-Call.png"; sourceTree = "<group>"; };
-		8B495616119408AF00994239 /* Swap-Calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Swap-Calls.png"; sourceTree = "<group>"; };
 		8B4FD511117DCF4700FEAFDF /* TB-recent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TB-recent.png"; path = "rsc/TB-recent.png"; sourceTree = "<group>"; };
 		8B59A61E10998423003BF3EA /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		8B59A61F10998423003BF3EA /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
@@ -689,6 +683,12 @@
 		8BCA77341043C3E90018419C /* customcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customcell.m; sourceTree = "<group>"; };
 		8BCB06B01083020A00468EC7 /* custombutton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = custombutton.h; sourceTree = "<group>"; };
 		8BCB06B11083020A00468EC7 /* custombutton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = custombutton.m; sourceTree = "<group>"; };
+		8BCB1278119994B200F5390D /* Discousure-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Discousure-Indicator.png"; sourceTree = "<group>"; };
+		8BCB1279119994B200F5390D /* End-Conf-Call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "End-Conf-Call.png"; sourceTree = "<group>"; };
+		8BCB127A119994B200F5390D /* Merge-Calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Merge-Calls.png"; sourceTree = "<group>"; };
+		8BCB127B119994B200F5390D /* Phone-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Phone-Icon.png"; sourceTree = "<group>"; };
+		8BCB127C119994B200F5390D /* Private-Conf-Call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Private-Conf-Call.png"; sourceTree = "<group>"; };
+		8BCB127D119994B200F5390D /* Swap-Calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Swap-Calls.png"; sourceTree = "<group>"; };
 		8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = overlayviewcontroller.m; sourceTree = "<group>"; };
 		8BCEEAED104ACC87001DF4AC /* overlayviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = overlayviewcontroller.h; sourceTree = "<group>"; };
 		8BCEEB2C104AD235001DF4AC /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
@@ -946,7 +946,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8B495610119408AF00994239 /* Conference Icons */,
+				8BCB1277119994B200F5390D /* Conference_Icons */,
 				8BDAED64119199BE00DB14B2 /* 11_declinecall_36_18.png */,
 				8B4FD511117DCF4700FEAFDF /* TB-recent.png */,
 				8B788DF3115B9C8700B9D5E7 /* Default.png */,
@@ -1121,20 +1121,6 @@
 				8B1AEA1111206A6500A957EA /* vms_out_Active.png */,
 			);
 			path = vmsicons;
-			sourceTree = "<group>";
-		};
-		8B495610119408AF00994239 /* Conference Icons */ = {
-			isa = PBXGroup;
-			children = (
-				8B495611119408AF00994239 /* Discousure-Indicator.png */,
-				8B495612119408AF00994239 /* End-Conf-Call.png */,
-				8B495613119408AF00994239 /* Merge-Calls.png */,
-				8B495614119408AF00994239 /* Phone-Icon.png */,
-				8B495615119408AF00994239 /* Private-Conf-Call.png */,
-				8B495616119408AF00994239 /* Swap-Calls.png */,
-			);
-			name = "Conference Icons";
-			path = "rsc/Conference Icons";
 			sourceTree = "<group>";
 		};
 		8B59A61D10998423003BF3EA /* GCustomControls */ = {
@@ -1314,6 +1300,20 @@
 			);
 			name = docs;
 			path = rsc/docs;
+			sourceTree = "<group>";
+		};
+		8BCB1277119994B200F5390D /* Conference_Icons */ = {
+			isa = PBXGroup;
+			children = (
+				8BCB1278119994B200F5390D /* Discousure-Indicator.png */,
+				8BCB1279119994B200F5390D /* End-Conf-Call.png */,
+				8BCB127A119994B200F5390D /* Merge-Calls.png */,
+				8BCB127B119994B200F5390D /* Phone-Icon.png */,
+				8BCB127C119994B200F5390D /* Private-Conf-Call.png */,
+				8BCB127D119994B200F5390D /* Swap-Calls.png */,
+			);
+			name = Conference_Icons;
+			path = rsc/Conference_Icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1519,12 +1519,12 @@
 				8B4FD512117DCF4700FEAFDF /* TB-recent.png in Resources */,
 				8BB617FA118ECBEA0039E696 /* conferenceviewcontroller.xib in Resources */,
 				8BDAED65119199BE00DB14B2 /* 11_declinecall_36_18.png in Resources */,
-				8B495617119408AF00994239 /* Discousure-Indicator.png in Resources */,
-				8B495618119408AF00994239 /* End-Conf-Call.png in Resources */,
-				8B495619119408AF00994239 /* Merge-Calls.png in Resources */,
-				8B49561A119408AF00994239 /* Phone-Icon.png in Resources */,
-				8B49561B119408AF00994239 /* Private-Conf-Call.png in Resources */,
-				8B49561C119408AF00994239 /* Swap-Calls.png in Resources */,
+				8BCB127E119994B200F5390D /* Discousure-Indicator.png in Resources */,
+				8BCB127F119994B200F5390D /* End-Conf-Call.png in Resources */,
+				8BCB1280119994B200F5390D /* Merge-Calls.png in Resources */,
+				8BCB1281119994B200F5390D /* Phone-Icon.png in Resources */,
+				8BCB1282119994B200F5390D /* Private-Conf-Call.png in Resources */,
+				8BCB1283119994B200F5390D /* Swap-Calls.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

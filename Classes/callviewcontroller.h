@@ -73,11 +73,16 @@
 	Boolean firstTimeB;
 	Boolean selectedModeB;
 	UIActionSheet *uiActionSheetgP;
+	int speakerOnB;
 	int holdOnB;
+
 	id<AddCallProtocol> addcallDelegate;
 	CallManagement *callManagmentP;
 	ConferenceViewController *spoknconfP;
 		//IBOutlet UIButton *testP;
+	int muteOnB;
+	//IBOutlet UIButton *testP;
+
 
 }
 -(void)setObject:(id) object ;

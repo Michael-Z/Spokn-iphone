@@ -162,7 +162,7 @@
 	{
 		if(strcasestr(titleP,"Name"))
 		{
-			typeP = [[NSString alloc] initWithUTF8String:"Enter name"];
+			typeP = [[NSString alloc] initWithUTF8String:"Enter your first and last name"];
 			exampleStrP = [[NSString alloc] initWithUTF8String:""];
 
 		}

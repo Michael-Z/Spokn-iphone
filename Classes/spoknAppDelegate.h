@@ -163,7 +163,11 @@ typedef struct CallNumberType
 	Boolean blueTooth;
 	NSString *devicePushTokenStrP;
 	int firstTimeB;
+
 	IncommingCallViewController     *inCommingCallViewP;
+
+	int shifttovmsTab;
+
 	//@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -263,7 +267,9 @@ changed:(BOOL)changed;
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
 void * ThreadForContactLookup(void *udata);
+
 int alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
+
 void MyAudioSessionPropertyListener(
 									void *                  inClientData,
 									AudioSessionPropertyID	inID,

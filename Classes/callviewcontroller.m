@@ -350,6 +350,7 @@ CallViewController *globalCallViewControllerP;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+
 	CGRect LabelFrame2;
 	LabelFrame2 = callnoLabelP.frame;
 	LabelFrame2.origin.x = 0;
@@ -368,6 +369,8 @@ CallViewController *globalCallViewControllerP;
 	//tableView.tableFooterView = callTypeLabelP;
 	//tableView.tableHeaderView = callnoLabelP;
 	tableView.backgroundColor = [UIColor clearColor];
+	muteOnB = false;
+	speakerOnB = false;
 	uiImageP = [[UIImageView alloc]initWithImage:[ UIImage imageNamed:_CALL_BLUETOOH_BG_ ]];
 	self->holdOnB = false;
 	[blueToothViewP insertSubview :uiImageP atIndex:0];
@@ -611,7 +614,14 @@ CallViewController *globalCallViewControllerP;
 	{	
 		setHoldInterface(ownerobject.ltpInterfacesP, self->holdOnB);
 	}
-	
+	if(self->speakerOnB)
+	{
+		SetSpeakerOnOrOffNew(0,1);
+	}
+	if(self->muteOnB)
+	{	
+		setMuteInterface(ownerobject.ltpInterfacesP,1);
+	}	
 	ownerobject.blueTooth =  blueToothIsOn();
 	if(ownerobject.blueTooth)
 	{
@@ -762,7 +772,7 @@ CallViewController *globalCallViewControllerP;
 	butP = (UIButton*)sender;
 	
 	enable = !butP.selected;
-	
+	muteOnB = enable;
 	if(setMuteInterface(ownerobject.ltpInterfacesP,enable)==0)
 	{	
 		[butP setSelected:enable];
@@ -937,6 +947,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 		butP = (UIButton*)sender;
 	
 		enable = !butP.selected;
+		speakerOnB = enable;
 		//AudioSessionSetActive(enable);
 		SetSpeakerOnOrOffNew(0,enable);
 		[butP setSelected:enable];

@@ -861,7 +861,7 @@
 
 - (void)updateUI:(id) objectP
 {
-
+	
 	if(viewResult )
 	{
 				
@@ -961,7 +961,7 @@
 	
 	tableView.sectionFooterHeight = 0;//(tableView.sectionFooterHeight+4)/2;   	
 	loadedB = true;
-	
+	orignalheight = sectionViewP.frame.size.height;
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
 	if(hideCallAndVmailButtonB)
@@ -1101,6 +1101,8 @@
 				viewFrame = sectionViewP.frame;
 				viewFrame.size.height+=LabelFrame2.size.height+10;
 				sectionViewP.frame = viewFrame;
+				orignalheight = sectionViewP.frame.size.height;
+				
 				//[msgLabelP release];
 				
 				char s1[200];
@@ -1591,6 +1593,7 @@ titleForHeaderInSection:(NSInteger)section
 	return 1;
 }
 - (CGFloat)tableView:(UITableView *)ltableView heightForHeaderInSection:(NSInteger)section{
+	
 	return sectionArray[section].sectionheight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -1795,7 +1798,8 @@ titleForHeaderInSection:(NSInteger)section
 		else
 		{
 			sectionArray[sectionCount].sectionView = sectionViewP;
-			sectionArray[sectionCount].sectionheight = sectionViewP.frame.size.height+7;//+tableView.sectionHeaderHeight;//+tableView.sectionFooterHeight;
+			sectionArray[sectionCount].sectionheight = orignalheight+7;//+tableView.sectionHeaderHeight;//+tableView.sectionFooterHeight;
+			
 		}
 		
 		
@@ -2006,7 +2010,7 @@ titleForHeaderInSection:(NSInteger)section
 	{
 		sectionCount = 0;
 		sectionArray[sectionCount].sectionView = sectionViewP;
-		sectionArray[sectionCount].sectionheight = sectionViewP.frame.size.height+tableView.sectionHeaderHeight,tableView.sectionFooterHeight;
+		sectionArray[sectionCount].sectionheight = orignalheight+tableView.sectionHeaderHeight,tableView.sectionFooterHeight;
 		if(laddressDataP)
 		{	
 			addressDataP = malloc(sizeof(struct AddressBook)+4);//extra 4 for padding

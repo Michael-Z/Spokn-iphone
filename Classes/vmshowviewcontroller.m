@@ -143,7 +143,7 @@
 			else
 			{
 				
-				CGRect frame = CGRectMake(0, frameP->size.height, width, height);
+				CGRect frame = CGRectMake(0, frameP->size.height+8, width, height);
 				ovController.view.frame = frame;	
 			}
 			//UILabel *labP;

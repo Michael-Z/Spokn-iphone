@@ -2,17 +2,17 @@
 {
 	1D3623240D0F684500981E51 /* spoknAppDelegate.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {811, 4352}}";
-			sepNavSelRange = "{4241, 27}";
-			sepNavVisRange = "{3711, 780}";
+			sepNavIntBoundsRect = "{{0, 0}, {1167, 3767}}";
+			sepNavSelRange = "{8691, 0}";
+			sepNavVisRange = "{7768, 1133}";
 			sepNavWindowFrame = "{{387, 29}, {1025, 797}}";
 		};
 	};
 	1D3623250D0F684500981E51 /* spoknAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1099, 42884}}";
-			sepNavSelRange = "{1921, 0}";
-			sepNavVisRange = "{1687, 466}";
+			sepNavIntBoundsRect = "{{0, 0}, {1091, 43414}}";
+			sepNavSelRange = "{34522, 0}";
+			sepNavVisRange = "{34221, 658}";
 			sepNavWindowFrame = "{{15, 81}, {1040, 797}}";
 		};
 	};
@@ -66,8 +66,8 @@
 			8B16752A117716CD0042F09C /* ua.c:1333 */,
 			8B1675341177171E0042F09C /* ua.c:1291 */,
 			8BDAED1C1191917400DB14B2 /* conferenceviewcontroller.m:211 */,
-			8B2312B511982CC000387394 /* callviewcontroller.m:847 */,
-			8B9205C1119923E0006114CF /* callviewcontroller.m:505 */,
+			8B2312B511982CC000387394 /* callviewcontroller.m:840 */,
+			8B9205C1119923E0006114CF /* callviewcontroller.m:503 */,
 			8B92063811992C27006114CF /* callmanagement.m:188 */,
 		);
 		codeSenseManager = 8B9302581011EBA2004BDA41 /* Code sense */;
@@ -246,10 +246,12 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 295252420;
-			PBXWorkspaceStateSaveDate = 295252420;
+			PBXPerProjectTemplateStateSaveDate = 295277707;
+			PBXWorkspaceStateSaveDate = 295277707;
 		};
 		perUserProjectItems = {
+			8B2D1A3B119993A200F1DC30 /* PBXTextBookmark */ = 8B2D1A3B119993A200F1DC30 /* PBXTextBookmark */;
+			8B2D1A42119993A200F1DC30 /* PBXTextBookmark */ = 8B2D1A42119993A200F1DC30 /* PBXTextBookmark */;
 			8B9206CD11993A60006114CF /* PBXTextBookmark */ = 8B9206CD11993A60006114CF /* PBXTextBookmark */;
 			8B9206CE11993A60006114CF /* PBXTextBookmark */ = 8B9206CE11993A60006114CF /* PBXTextBookmark */;
 			8B9206CF11993A60006114CF /* PBXTextBookmark */ = 8B9206CF11993A60006114CF /* PBXTextBookmark */;
@@ -259,9 +261,8 @@
 			8B9206D511993A60006114CF /* PBXTextBookmark */ = 8B9206D511993A60006114CF /* PBXTextBookmark */;
 			8B9206DC11993B8A006114CF /* PBXTextBookmark */ = 8B9206DC11993B8A006114CF /* PBXTextBookmark */;
 			8B9206DD11993B8A006114CF /* PBXTextBookmark */ = 8B9206DD11993B8A006114CF /* PBXTextBookmark */;
-			8B9206DE11993B8A006114CF /* PBXTextBookmark */ = 8B9206DE11993B8A006114CF /* PBXTextBookmark */;
 			8B9206E511993EB9006114CF /* PBXTextBookmark */ = 8B9206E511993EB9006114CF /* PBXTextBookmark */;
-			8B9206E611993EB9006114CF /* PBXTextBookmark */ = 8B9206E611993EB9006114CF /* PBXTextBookmark */;
+			8BCB128B119994BE00F5390D /* PBXTextBookmark */ = 8BCB128B119994BE00F5390D /* PBXTextBookmark */;
 		};
 		sourceControlManager = 8B9302571011EBA2004BDA41 /* Source Control */;
 		userBuildSettings = {
@@ -348,7 +349,7 @@
 		ignoreCount = 0;
 		lineNumber = 1291;
 		location = spokn;
-		modificationTime = 295253545.948793;
+		modificationTime = 295253545.9487931;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -372,7 +373,7 @@
 			sepNavWindowFrame = "{{15, 76}, {1224, 797}}";
 		};
 	};
-	8B2312B511982CC000387394 /* callviewcontroller.m:847 */ = {
+	8B2312B511982CC000387394 /* callviewcontroller.m:840 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -384,11 +385,31 @@
 		functionName = "-HoldPressed:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 847;
+		lineNumber = 840;
 		location = spokn;
 		modificationTime = 295253545.949;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
+	};
+	8B2D1A3B119993A200F1DC30 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8B59A62410998423003BF3EA /* GTokenField.h */;
+		name = "GTokenField.h: 41";
+		rLen = 0;
+		rLoc = 1101;
+		rType = 0;
+		vrLen = 938;
+		vrLoc = 760;
+	};
+	8B2D1A42119993A200F1DC30 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8B47D83010720BA400EEEF61 /* callviewcontroller.m */;
+		name = "callviewcontroller.m: 622";
+		rLen = 0;
+		rLoc = 17045;
+		rType = 0;
+		vrLen = 625;
+		vrLoc = 16805;
 	};
 	8B39FFC5107C910200073950 /* vmshowviewcontroller.h */ = {
 		uiCtxt = {
@@ -484,39 +505,24 @@
 		ignoreCount = 0;
 		lineNumber = 641;
 		location = spokn;
-		modificationTime = 295253545.94767;
+		modificationTime = 295253545.9476701;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
 	8B47D82F10720BA400EEEF61 /* callviewcontroller.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1099, 1808}}";
-			sepNavSelRange = "{2540, 10}";
-			sepNavVisRange = "{2301, 1211}";
+			sepNavIntBoundsRect = "{{0, 0}, {1091, 1944}}";
+			sepNavSelRange = "{2459, 0}";
+			sepNavVisRange = "{2273, 730}";
 			sepNavWindowFrame = "{{38, 98}, {1079, 750}}";
 		};
 	};
 	8B47D83010720BA400EEEF61 /* callviewcontroller.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1099, 23756}}";
-			sepNavSelRange = "{18419, 6}";
-			sepNavVisRange = "{18033, 677}";
+			sepNavIntBoundsRect = "{{0, 0}, {1099, 23986}}";
+			sepNavSelRange = "{17019, 0}";
+			sepNavVisRange = "{16805, 588}";
 			sepNavWindowFrame = "{{216, 244}, {1224, 604}}";
-		};
-	};
-	8B495611119408AF00994239 /* Discousure-Indicator.png */ = {
-		uiCtxt = {
-			sepNavWindowFrame = "{{15, 77}, {1040, 797}}";
-		};
-	};
-	8B495612119408AF00994239 /* End-Conf-Call.png */ = {
-		uiCtxt = {
-			sepNavWindowFrame = "{{15, 77}, {1040, 797}}";
-		};
-	};
-	8B495615119408AF00994239 /* Private-Conf-Call.png */ = {
-		uiCtxt = {
-			sepNavWindowFrame = "{{15, 77}, {1040, 797}}";
 		};
 	};
 	8B59A61E10998423003BF3EA /* Contact.h */ = {
@@ -563,9 +569,9 @@
 	};
 	8B59A62410998423003BF3EA /* GTokenField.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {804, 1312}}";
-			sepNavSelRange = "{1133, 0}";
-			sepNavVisRange = "{1656, 711}";
+			sepNavIntBoundsRect = "{{0, 0}, {1099, 1341}}";
+			sepNavSelRange = "{1101, 0}";
+			sepNavVisRange = "{760, 938}";
 			sepNavWindowFrame = "{{176, 122}, {1224, 604}}";
 		};
 	};
@@ -937,7 +943,7 @@
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
-	8B9205C1119923E0006114CF /* callviewcontroller.m:505 */ = {
+	8B9205C1119923E0006114CF /* callviewcontroller.m:503 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -949,7 +955,7 @@
 		functionName = "-updatescreen:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 505;
+		lineNumber = 503;
 		location = spokn;
 		modificationTime = 295253545.949066;
 		originalNumberOfMultipleMatches = 1;
@@ -961,23 +967,6 @@
 		name = conferenceviewcontroller.m;
 		path = /Users/mukesh/mygit/iphone/Classes/conferenceviewcontroller.m;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1307, 3324}}";
-			sepNavSelRange = "{2415, 0}";
-			sepNavVisRange = "{1917, 911}";
-		};
-	};
-	8B9205F611992635006114CF /* callviewcontroller.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = callviewcontroller.m;
-		path = /Users/mukesh/mygit/iphone/Classes/callviewcontroller.m;
-		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1099, 23756}}";
-			sepNavSelRange = "{18419, 6}";
-			sepNavVisRange = "{18033, 677}";
-		};
 	};
 	8B92063811992C27006114CF /* callmanagement.m:188 */ = {
 		isa = PBXFileBreakpoint;
@@ -993,7 +982,7 @@
 		ignoreCount = 0;
 		lineNumber = 188;
 		location = spokn;
-		modificationTime = 295253545.949086;
+		modificationTime = 295253545.9490861;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
 	};
@@ -1082,20 +1071,10 @@
 		fRef = 8B47D82F10720BA400EEEF61 /* callviewcontroller.h */;
 		name = "callviewcontroller.h: 79";
 		rLen = 10;
-		rLoc = 2540;
+		rLoc = 2528;
 		rType = 0;
 		vrLen = 1211;
 		vrLoc = 2301;
-	};
-	8B9206DE11993B8A006114CF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 8B9205F611992635006114CF /* callviewcontroller.m */;
-		name = "callviewcontroller.m: 686";
-		rLen = 6;
-		rLoc = 18419;
-		rType = 0;
-		vrLen = 697;
-		vrLoc = 17970;
 	};
 	8B9206E511993EB9006114CF /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1106,16 +1085,6 @@
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 1917;
-	};
-	8B9206E611993EB9006114CF /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 8B47D83010720BA400EEEF61 /* callviewcontroller.m */;
-		name = "callviewcontroller.m: 686";
-		rLen = 6;
-		rLoc = 18419;
-		rType = 0;
-		vrLen = 677;
-		vrLoc = 18033;
 	};
 	8B9302571011EBA2004BDA41 /* Source Control */ = {
 		isa = PBXSourceControlManager;
@@ -1470,7 +1439,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = "";
-		modificationTime = 295253545.959378;
+		modificationTime = 295253545.9593781;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 		symbolName = keyBoardOnOrOff;
@@ -1486,7 +1455,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = "";
-		modificationTime = 295253545.959512;
+		modificationTime = 295253545.9595121;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 		symbolName = keyBoardOnOrOff;
@@ -1552,11 +1521,6 @@
 		name = callmanagement.h;
 		path = /Users/mukesh/mygit/iphone/Classes/callmanagement.h;
 		sourceTree = "<absolute>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1099, 1297}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 639}";
-		};
 	};
 	8BA8E39E1027EF800022801E /* addeditcontactviewcontroller.h */ = {
 		uiCtxt = {
@@ -1857,6 +1821,16 @@
 			sepNavWindowFrame = "{{15, 111}, {1079, 767}}";
 		};
 	};
+	8BCB128B119994BE00F5390D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 8B47D83010720BA400EEEF61 /* callviewcontroller.m */;
+		name = "callviewcontroller.m: 619";
+		rLen = 0;
+		rLoc = 17019;
+		rType = 0;
+		vrLen = 588;
+		vrLoc = 16805;
+	};
 	8BCE14A9113D4335005C8A4E /* contactDetailsviewcontroller.m:672 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
@@ -1937,7 +1911,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 124;
-		modificationTime = 295253545.947905;
+		modificationTime = 295253545.9479049;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};
@@ -2039,7 +2013,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 29;
-		modificationTime = 295253545.948169;
+		modificationTime = 295253545.9481691;
 		originalNumberOfMultipleMatches = 0;
 		state = 2;
 	};

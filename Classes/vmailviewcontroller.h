@@ -56,6 +56,7 @@
 	int onLine;
 	int refreshB;
 	int lbold;
+	int startIndicator;
 	
 
 

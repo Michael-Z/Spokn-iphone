@@ -1406,7 +1406,9 @@ int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lon
 	if(type==CALL_ALERT)
 	{
 		spoknDelP = (SpoknAppDelegate *)userData;
+
 		int er = 0;
+
 		if(spoknDelP==0) return 0;
 		if(valSubLong==1)
 		{
@@ -1425,6 +1427,7 @@ int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lon
 				
 				break;
 		}		
+
 		return er;
 		
 	
@@ -1470,6 +1473,7 @@ int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lon
 		[spoknDelP performSelectorOnMainThread : @ selector(sendMessageFromOtherThread: ) withObject:tmpObjP waitUntilDone:NO];
 	}	
 	[autoreleasePool release];
+	return 0;
 	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)spoknDelP userInfo:nil];
 	return 0;
@@ -1785,8 +1789,16 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			
 			if(setIndex>0)
 			{
-				setIndex--;
-				tabBarController.selectedIndex = setIndex;
+				if(shifttovmsTab)
+				{
+					tabBarController.selectedIndex = 3;	//VMS tab
+					[vmsviewP startProgress];
+				}
+				else
+				{
+					setIndex--;
+					tabBarController.selectedIndex = setIndex;
+				}
 			}
 			else
 			{
@@ -1905,15 +1917,23 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Device Token", @"") message:[NSString stringWithFormat:@"%@", err] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] autorelease];
 	//	[alert show];
 }
+*/
+ - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	 shifttovmsTab = 0;
+	 if(launchOptions == nil)
+	 {
+			shifttovmsTab = 0;
+	 }
+	 else
+	 {
+			shifttovmsTab = 1;
+	 }
+ 
+	 [self applicationDidFinishLaunching:application];
+	 return YES;
+ } 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"APNS" message:[NSString stringWithFormat:@"%@", launchOptions] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] autorelease];
-	[alert show];
-	[self applicationDidFinishLaunching:application];
-	return YES;
-}
-
+	/*
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"APNS" message:[NSString stringWithFormat:@"%@", userInfo] delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"") otherButtonTitles:nil] autorelease];
 	[alert show];
