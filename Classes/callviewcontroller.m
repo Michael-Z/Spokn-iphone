@@ -80,7 +80,7 @@
 }
 -(void)handupCall:(int)llineID
 {
-	if(llineID!=CONFRENCE_LINE_ID && llineID>=0)
+	if(llineID!=CONFERENCE_LINE_ID && llineID>=0)
 		hangLtpInterface(self->ownerobject.ltpInterfacesP,llineID);
 }
 -(void)makeCall:(char*)numberP
@@ -149,7 +149,7 @@
         // Custom initialization
 		addcallDelegate = nil;
 		callManagmentP = [[CallManagement alloc] init];
-		CGRect LabelFrame1 = CGRectMake(10, 0, 150, 50);
+		CGRect LabelFrame1 = CGRectMake(24, 0, 150, 50);
 		name1LabelP = [[UILabel alloc] initWithFrame:LabelFrame1];
 		name1LabelP.textAlignment = UITextAlignmentLeft;
 		//label1.text = temp;
@@ -254,20 +254,20 @@ CallViewController *globalCallViewControllerP;
 		}
 				
 	}
-	if(llineID==CONFRENCE_LINE_ID)
+	if(llineID==CONFERENCE_LINE_ID)
 	{
 		activeLineId = [callManagmentP RemoveAllCallInConf:self];
 	}
 	else {
 		activeLineId = [callManagmentP removeCallByID:llineID];
-		if(llineID!=CONFRENCE_LINE_ID && llineID>=0)
+		if(llineID!=CONFERENCE_LINE_ID && llineID>=0)
 			hangLtpInterface(self->ownerobject.ltpInterfacesP,llineID);
 		
 	}
 
 	if(activeLineId>=0)
 	{	
-		if([callManagmentP getActiveLineID]==CONFRENCE_LINE_ID)
+		if([callManagmentP getActiveLineID]==CONFERENCE_LINE_ID)
 		{
 			shiftToConferenceCallInterface(ownerobject.ltpInterfacesP);
 			
@@ -500,8 +500,35 @@ CallViewController *globalCallViewControllerP;
 	if(type1P)
 	{
 		type1LabelP.text = type1P;
+		if(time==0)
+		{
+			if([type1P isEqualToString:@"HOLD"] )
+			{
+				name1LabelP.textColor = [[UIColor grayColor] autorelease];
+				type1LabelP.textColor = [[UIColor grayColor] autorelease];
+				
+				
+			}
+			else {
+				name1LabelP.textColor = [[UIColor whiteColor] autorelease];
+				type1LabelP.textColor = [[UIColor whiteColor] autorelease];
+			}
+			
+		}
+		
 		[type1P release];
 	}
+	else
+	{
+		if(time==0)
+		{
+				name1LabelP.textColor = [[UIColor whiteColor] autorelease];
+				type1LabelP.textColor = [[UIColor whiteColor] autorelease];
+			
+		}
+		
+	}
+
 	if(lable2P)
 	{
 		name2LabelP.text = lable2P;
@@ -510,9 +537,36 @@ CallViewController *globalCallViewControllerP;
 	if(type2P)
 	{
 		type2LabelP.text = type2P;
+		if(time==0)
+		{
+			if([type2P isEqualToString:@"HOLD"] )
+			{
+				name2LabelP.textColor = [[UIColor grayColor] autorelease];
+				type2LabelP.textColor = [[UIColor grayColor] autorelease];
+
+				
+			}
+			else {
+					name2LabelP.textColor = [[UIColor whiteColor] autorelease];
+					type2LabelP.textColor = [[UIColor whiteColor] autorelease];
+			}
+			
+		}
+		
+		
+		
 		[type2P release];
 	}
-	
+	else
+	{
+		if(time==0)
+		{
+			name2LabelP.textColor = [[UIColor whiteColor] autorelease];
+			type2LabelP.textColor = [[UIColor whiteColor] autorelease];
+			
+		}
+		
+	}
 		
 	 
 }
@@ -605,7 +659,7 @@ CallViewController *globalCallViewControllerP;
 	
 	if(lactiveLineId>=0)
 	{	
-		if([callManagmentP getActiveLineID]==CONFRENCE_LINE_ID)
+		if([callManagmentP getActiveLineID]==CONFERENCE_LINE_ID)
 		{
 			shiftToConferenceCallInterface(ownerobject.ltpInterfacesP);
 			
@@ -760,7 +814,7 @@ CallViewController *globalCallViewControllerP;
 		if(confOn==1)
 		{	
 			[labelStrP release];
-			labelStrP = [[NSString alloc] initWithUTF8String:"confrence"];
+			labelStrP = [[NSString alloc] initWithUTF8String:"Conference"];
 		
 			[labeltypeStrP release];
 			labeltypeStrP = [[NSString alloc] initWithUTF8String:" "];
@@ -790,7 +844,7 @@ CallViewController *globalCallViewControllerP;
 	int enable;
 	if([callManagmentP swapLineID])
 	{
-		if([callManagmentP getActiveLineID]==CONFRENCE_LINE_ID)
+		if([callManagmentP getActiveLineID]==CONFERENCE_LINE_ID)
 		{
 			//startConferenceInterface(ownerobject.ltpInterfacesP);
 			//showDiscloser = 1;
@@ -1273,6 +1327,8 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 
 - (void)dealloc {
+	[callManagmentP release];
+	callManagmentP = 0;
 	if(uiActionSheetgP)
 	{	
 		[uiActionSheetgP dismissWithClickedButtonIndex:[uiActionSheetgP cancelButtonIndex] animated:NO];
