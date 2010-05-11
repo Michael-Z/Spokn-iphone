@@ -40,7 +40,7 @@
 	#define _OWN_THREAD_
 	
   #include <pthread.h>
-typedef void (*AlertNotificationCallbackP)(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherInfoP);
+typedef int (*AlertNotificationCallbackP)(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherInfoP);
 typedef struct LtpReceiveDataType
 		{
 		

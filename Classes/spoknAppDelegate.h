@@ -260,7 +260,7 @@ changed:(BOOL)changed;
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
 void * ThreadForContactLookup(void *udata);
-void alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
+int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned long userData,void *otherinfoP);
 void MyAudioSessionPropertyListener(
 									void *                  inClientData,
 									AudioSessionPropertyID	inID,

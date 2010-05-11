@@ -74,7 +74,9 @@
 	Boolean firstTimeB;
 	Boolean selectedModeB;
 	UIActionSheet *uiActionSheetgP;
+	int speakerOnB;
 	int holdOnB;
+	int muteOnB;
 	//IBOutlet UIButton *testP;
 
 }

@@ -421,7 +421,7 @@
 				default:
 					if(difftime<7)
 					{
-						sprintf(s1,days[tmP1.tm_wday]);
+						sprintf(s1,"%s",days[tmP1.tm_wday]);
 					}
 					else
 					{

@@ -134,6 +134,7 @@ typedef enum ViewTypeEnum
 	//this two variable for solving crash
 	UIAlertView *alertgP;
 	UIActionSheet *uiActionSheetgP;
+	int orignalheight;
 	
 }
 @property (nonatomic, assign) id<ContactDeailsProtocol>contactDetailsProtocolP;

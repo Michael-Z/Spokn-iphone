@@ -229,6 +229,7 @@
 		//[self.tabBarItem initWithTitle:@"Voicemail" image:[UIImage imageNamed:@"vmstab.png"] tag:4];
 		[self setTitle:@"VMS"];
 		[self.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:_TAB_VMS_PNG_] tag:4];
+		startIndicator = 0;
     }
     return self;
 }
@@ -450,7 +451,7 @@
 				default:
 				if(difftime<7)
 				{
-					sprintf(s1,days[tmP1.tm_wday]);
+					sprintf(s1,"%s",days[tmP1.tm_wday]);
 				}
 				else
 				{
@@ -1263,7 +1264,10 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhite];
 	activityIndicator.tag = 1;
 	[[self navigationController].view addSubview:activityIndicator];
-
+	if(startIndicator)
+	{
+		[self startProgress];
+	}
 	
 }
 -(void)refreshView
@@ -1281,6 +1285,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 
 -(void)startProgress
 {
+	startIndicator = 1;
 	self.navigationItem.leftBarButtonItem.enabled = NO;
 	[activityIndicator startAnimating];
 	

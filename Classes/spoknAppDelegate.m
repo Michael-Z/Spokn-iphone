@@ -1370,18 +1370,18 @@ int GetOsVersion(int *majorP,int *minor1P,int *minor2P)
 	return 0;
 
 }
-void alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned long userData,void *otherinfoP)
+int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned long userData,void *otherinfoP)
 {
 	SpoknAppDelegate *spoknDelP;
 	if(type==CALL_ALERT)
 	{
 		spoknDelP = (SpoknAppDelegate *)userData;
 	
-		if(spoknDelP==0) return;
+		if(spoknDelP==0) return 0;
 		if(valSubLong==1)
 		{
 			spoknDelP->callNumber.direction = 0;
-			return;
+			return 0;
 		}
 		switch(spoknDelP->callNumber.direction)
 		{
@@ -1395,7 +1395,7 @@ void alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lo
 				
 				break;
 		}		
-		return;
+		return 0;
 		
 	
 	
@@ -1409,7 +1409,7 @@ void alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lo
 		[spoknDelP setLtpInfo:type :valSubLong :llineID :otherinfoP];
 		[spoknDelP sendMessage:spoknDelP];
 		[autoreleasePool release];
-		return;
+		return 0;
 	}
 	if(type==UA_ALERT && valSubLong==LOAD_ADDRESS_BOOK)
 	{
@@ -1440,6 +1440,7 @@ void alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lo
 		[spoknDelP performSelectorOnMainThread : @ selector(sendMessageFromOtherThread: ) withObject:tmpObjP waitUntilDone:NO];
 	}	
 	[autoreleasePool release];
+	return 0;
 	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)spoknDelP userInfo:nil];
 
@@ -1761,6 +1762,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				if(shifttovmsTab)
 				{
 					tabBarController.selectedIndex = 3;	//VMS tab
+					[vmsviewP startProgress];
 				}
 				else
 				{
