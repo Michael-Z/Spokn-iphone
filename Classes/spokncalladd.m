@@ -185,6 +185,7 @@
 		[contactP setObjType:GETCONTACTLIST];
 		contactP.ltpInterfacesP =ownerobject.ltpInterfacesP;
 		tmpCtl = [ [ UINavigationController alloc ] initWithRootViewController: contactP ] ;
+		tmpCtl.delegate =self;
 		[contactP release];
 		contactP = nil;
 		DialviewController* dialviewP = [[DialviewController alloc] initWithNibName:@"dialview" bundle:[NSBundle mainBundle]];
@@ -197,8 +198,8 @@
 		callviewP.addcallDelegate = self;
 		//[viewControllers addObject:loginViewP];
 		[viewControllers addObject:tmpCtl];
-		[tmpCtl release];
-		tmpCtl = nil;
+		//[tmpCtl release];
+		//tmpCtl = nil;
 		[viewControllers addObject:calllogNavigationController];
 		[calllogNavigationController release];
 		[viewControllers addObject:dialviewP];
