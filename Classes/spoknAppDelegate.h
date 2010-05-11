@@ -162,7 +162,7 @@ typedef struct CallNumberType
 	Boolean blueTooth;
 	NSString *devicePushTokenStrP;
 	int firstTimeB;
-	
+	int shifttovmsTab;
 	//@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
