@@ -576,7 +576,6 @@ CallViewController *globalCallViewControllerP;
 -(void) startTimer:(int) llineID
 {
 	
-	printf("\n connect %d",llineID);
 	if(calltimerP==nil)
 	{
 		
@@ -639,7 +638,7 @@ CallViewController *globalCallViewControllerP;
 	int lactiveLineId;
 	actualDismissB = true;
 	int results = 0;	
-	printf("\n disconnect %d",llineID);
+	
 	
 	if(loadedB==false)
 	{	

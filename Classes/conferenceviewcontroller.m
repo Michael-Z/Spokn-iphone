@@ -43,6 +43,7 @@
 	[self navigationController].navigationBar.barStyle = UIBarStyleBlack;
 	tableView.delegate = self;
 	tableView.dataSource = self;
+	tableView.separatorColor = [[UIColor grayColor] autorelease];
 	//tableView.alpha = 0.5;
 	//tableView.tableFooterView = callTypeLabelP;
 	//tableView.tableHeaderView = callnoLabelP;
@@ -155,7 +156,7 @@
 #else
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 #endif
-		cell.textLabel.textColor = [UIColor grayColor];
+		cell.textLabel.textColor = [UIColor whiteColor];
 		cell.textLabel.text = resultP;
 		if(showB)
 		{	
@@ -171,6 +172,7 @@
 			//cell.imageView = [UIImage imageNamed:@"11_declinecall_36_18.png"];
 			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		}	
+		cell.imageView.image = [UIImage imageNamed:END_CALL_IMG_PNG];
 		//[cell addSubview:button];
 	}
 	cell.tag = 1000 + row;

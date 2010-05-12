@@ -82,7 +82,7 @@
 		 point = [touch locationInView:self.view];
 		break;	
 	}
-	printf("\npoint %f",point.y);
+	
 	if(point.y<40)
 	{	
 		[self.parentViewController dismissModalViewControllerAnimated:YES ];

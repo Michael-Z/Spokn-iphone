@@ -1661,7 +1661,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 #endif
 		
 	
-	//application.applicationIconBadgeNumber = 0;
+	application.applicationIconBadgeNumber = 0;
 	
 	
 			
@@ -1970,6 +1970,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(count)
 	{	
 		application.applicationIconBadgeNumber = count;
+		
 	}
 	else
 	{
