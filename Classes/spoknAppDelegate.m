@@ -1628,7 +1628,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 #endif
 		
 	
-	//application.applicationIconBadgeNumber = 0;
+	application.applicationIconBadgeNumber = 0;
 	
 	
 			
