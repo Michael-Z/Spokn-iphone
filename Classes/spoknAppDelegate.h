@@ -167,6 +167,7 @@ typedef struct CallNumberType
 	IncommingCallViewController     *inCommingCallViewP;
 
 	int shifttovmsTab;
+	int isCallOnB;
 
 	//@public
 	//ContactDetailsViewController     *contactDetailsviewP;

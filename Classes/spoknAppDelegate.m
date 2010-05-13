@@ -253,7 +253,10 @@
 			
 		//	[incommingP playSoundUrl];
 			ringStartB = 1;
-			SetAudioTypeLocal(0,1);
+			if(isCallOnB==false)
+			{	
+				SetAudioTypeLocal(0,1);
+			}	
 		//	[path release];
 		}	
 		
@@ -266,7 +269,11 @@
 		[ringTimer invalidate];
 		ringTimer = nil;
 		[incommingSoundP stopSoundUrl];
-		SetAudioTypeLocal(0,3);
+		if(isCallOnB==false)
+		{	
+			SetAudioTypeLocal(0,3);
+		}	
+		isCallOnB = false;
 		return 0;
 	}	
 	return 1;
@@ -770,11 +777,6 @@ void getProp()
 			#ifdef _ANALYST_
 				[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"CALL-IN" label:@"CALL"];
 			#endif
-			#ifdef __IPHONE_3_0
-						[UIDevice currentDevice].proximityMonitoringEnabled = YES;
-			#else
-						[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
-			#endif
 			[VmsProtocolP	VmsStopRequest];
 			int result = [dialviewP isCallOn];
 			if(result==2  || inCommingCallViewP)//mean more then one call is active
@@ -789,12 +791,14 @@ void getProp()
 				
 				if(result==0)
 				{	
+					isCallOnB = false;
 					SetAudioTypeLocal(0,1);
 					[tabBarController dismissModalViewControllerAnimated:NO];
 					[self LoadInCommingView:0 :tabBarController];	
 					
 				}
 				else {
+					isCallOnB = true;
 					[self LoadInCommingView:0 :[dialviewP getCallViewController]];	
 				}
 
