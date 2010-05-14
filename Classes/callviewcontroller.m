@@ -291,6 +291,12 @@ CallViewController *globalCallViewControllerP;
 	{	
 		setHoldInterface(ownerobject.ltpInterfacesP, self->holdOnB);
 	}
+	free(newLineP);
+	ownerobject.blueTooth =  blueToothIsOn();
+	if(ownerobject.blueTooth)
+	{
+		[self routeChange:2];
+	}
 	if(self->speakerOnB)
 	{
 		SetSpeakerOnOrOffNew(0,1);
@@ -299,13 +305,7 @@ CallViewController *globalCallViewControllerP;
 	{	
 		setMuteInterface(ownerobject.ltpInterfacesP,1);
 	}	
-	free(newLineP);
-	ownerobject.blueTooth =  blueToothIsOn();
-	if(ownerobject.blueTooth)
-	{
-		[self routeChange:2];
-	}
-	setMuteInterface(ownerobject.ltpInterfacesP,false);
+	
 	/*else
 	{
 		[self routeChange:1];

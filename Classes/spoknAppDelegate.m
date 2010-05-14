@@ -549,10 +549,11 @@ void getProp()
 					self.blueTooth =  false;
 				}
 			}
+			openSoundInterface(ltpInterfacesP,1);
 			[dialviewP setStatusText: @"ringing" :nil :ALERT_CONNECTED :0];
 			callOnB = true;
 			//getProp();
-			openSoundInterface(ltpInterfacesP,1);
+			
 		#ifdef __IPHONE_3_0
 					[UIDevice currentDevice].proximityMonitoringEnabled = YES;
 		#else
