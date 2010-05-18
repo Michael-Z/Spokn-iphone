@@ -502,7 +502,7 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 			if(ltpInterfaceP->pjsipStartB==false)
 			{	
 			
-				if (!sip_spokn_pj_init(errorstr)){
+				if (!sip_spokn_pj_init(ltpInterfaceP->ltpObjectP ,errorstr)){
 				
 					return 1;
 			
