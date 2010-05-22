@@ -1656,7 +1656,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 
 #pragma mark STARTING POINT
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
+- (void)applicationDidFinishLaunching:(UIApplication *)application { 
+	[[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 	//[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
 #else
@@ -1878,7 +1879,46 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 									   userInfo: nil
 		 
 										repeats: YES];
+		
+		UIDevice *device = [UIDevice currentDevice];
+		device.batteryMonitoringEnabled = YES;
+
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(onCharging:)
+													 name:UIDeviceBatteryStateDidChangeNotification
+												   object:device];
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(ProximityChange:)
+													 name:UIDeviceProximityStateDidChangeNotification
+												   object:device];
+		
 }
+	
+-(void)onCharging:(NSNotification *)notification
+{
+	UIDevice *device = [notification object];
+	if (device.batteryState == UIDeviceBatteryStateCharging ||
+		device.batteryState == UIDeviceBatteryStateFull) {
+		[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+		
+	}
+	else
+	{
+		[[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+	}
+	
+}
+- (void) ProximityChange:(NSNotification *)notification {
+		UIDevice *device = [notification object];
+		
+
+	if(VmsProtocolP)
+	{	
+		
+		[VmsProtocolP proximityChange:device.proximityState];
+	}
+}	
 /*
 -(BOOL) transformedValue: (id) value 
 { 
@@ -2458,7 +2498,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	callOnB =false;
 	
 	//hangLtpInterface(self->ltpInterfacesP);
-	[dialviewP setStatusText: @"call end" :nil :ALERT_DISCONNECTED :0 :0];
+	[dialviewP setStatusText: @"call end" :nil :ALERT_DISCONNECTED :0 :lineid];
 	//SetSpeakerOnOrOff(0,true);
 	#ifdef __IPHONE_3_0
 		[UIDevice currentDevice].proximityMonitoringEnabled = NO;

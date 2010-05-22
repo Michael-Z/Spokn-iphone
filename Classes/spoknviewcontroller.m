@@ -2,6 +2,7 @@
 //  Created on 02/10/09.
 
 /**
+
   Copyright 2009, 2010 Geodesic Limited. <http://www.geodesic.com/>
  
  Spokn for iPhone.
@@ -391,11 +392,16 @@
 	{
 		//updatecontact = 1;
 		viewResult = 0;
-		
+		if(forwardNoCharP)
+		{	
+			[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:forwardNoCharP] forKey:@"forwardnumber"]; 
+			[[NSUserDefaults standardUserDefaults] synchronize];
+		}	
 		if(strlen(forwardNoCharP)>0)
 		{
 			NSString *nsP;
 			nsP = [[NSString alloc] initWithUTF8String:forwardNoCharP];
+			
 			[labelForword setText:nsP];
 			[nsP release];
 			if(switchView.on)
@@ -697,6 +703,7 @@ titleForHeaderInSection:(NSInteger)section
 			}	
 			//switchView.on = YES;
 			[labelForword setTextColor:SPOKNCOLOR]; 
+			printf("forward number set");
 		}
 		else
 		{
@@ -707,6 +714,25 @@ titleForHeaderInSection:(NSInteger)section
 			}	
 			[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
 		}
+		if(strlen(lforwardNoCharP)>0)
+		{
+			
+			//[[NSUserDefaults standardUserDefaults] setObject: forkey:@"forwardnumber"];
+			[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:lforwardNoCharP] forKey:@"forwardnumber"]; 
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			
+		}
+		else {
+			NSString *nsP;
+			nsP = [[NSUserDefaults standardUserDefaults] stringForKey:@"forwardnumber"];
+			if(nsP)
+			{
+				[labelForword setText:nsP];
+				[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]];
+			}
+		}
+
+		
 //		switchView.enabled = YES;
 		if(statusInt)
 		{
@@ -936,7 +962,10 @@ titleForHeaderInSection:(NSInteger)section
 			if([temp isEqualToString:@"Buy Credits"]==0  && [temp isEqualToString:@"About"]==0)
 
 			{
-				label2.textColor = SPOKNCOLOR;
+				if(label2 != labelForword)
+				{	
+					label2.textColor = SPOKNCOLOR;
+				}	
 				[cell.contentView addSubview:label2];
 			}
 				//[label2 release];

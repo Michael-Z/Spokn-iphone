@@ -35,7 +35,7 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-	self.view.backgroundColor =  [UIColor blackColor];
+	//self.view.backgroundColor =  [[UIColor blackColor] autorelease];
 	/*[self.view setBackgroundColor:[[[UIColor alloc] 
 									initWithPatternImage:[UIImage imageNamed:_CALL_WATERMARK_PNG_]]
 								   autorelease]];*/
@@ -43,11 +43,11 @@
 	[self navigationController].navigationBar.barStyle = UIBarStyleBlack;
 	tableView.delegate = self;
 	tableView.dataSource = self;
-	tableView.separatorColor = [[UIColor grayColor] autorelease];
+	tableView.separatorColor = [[UIColor darkGrayColor] autorelease];
 	//tableView.alpha = 0.5;
 	//tableView.tableFooterView = callTypeLabelP;
 	//tableView.tableHeaderView = callnoLabelP;
-	tableView.backgroundColor = [UIColor clearColor];
+	tableView.backgroundColor = [[UIColor blackColor] autorelease];
 	//uiImageP = [[UIImageView alloc]initWithImage:[ UIImage imageNamed:_CALL_BLUETOOH_BG_ ]];
 	self.title = @"Conference";
 	tableView.editing = NO;
@@ -116,7 +116,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 50;
+	return 70;
 	
 }
 /*
@@ -156,13 +156,13 @@
 #else
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 #endif
-		cell.textLabel.textColor = [UIColor whiteColor];
+		cell.textLabel.textColor = [[UIColor whiteColor] autorelease];
 		cell.textLabel.text = resultP;
 		if(showB)
 		{	
 			UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 			[button setBackgroundImage:[UIImage imageNamed:PRIVATE_CALL_IMG_PNG] forState:UIControlStateNormal];
-			[button setFrame:CGRectMake(160.0f, 0.0f, 76.0f, 40.0f)];
+			[button setFrame:CGRectMake(160.0f, 0.0f, 76.0f, 23.0f)];
 			//[button setCenter:CGPointMake(40.0f, 20.0f)];
 		//	[button setTitle:@"PRIVATE" forState:UIControlStateNormal];
 			button.tag = 1000 + row;

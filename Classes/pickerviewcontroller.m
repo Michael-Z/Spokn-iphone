@@ -1126,5 +1126,9 @@
 	[self update_txtDestNo:obj.Number];	
 	return nil;
 }
+-(void)openKeyBoard
+{
+	[txtDestNo becomeFirstResponder];
+}
 
 @end

@@ -157,6 +157,7 @@
 	{
 		typeP = [[NSString alloc] initWithUTF8String:"Type a valid email address"];
 		exampleStrP = [[NSString alloc] initWithUTF8String:"Example : example@example.org"];
+		autoCapitalOn = 0;
 	}
 	else
 	{
@@ -164,12 +165,14 @@
 		{
 			typeP = [[NSString alloc] initWithUTF8String:"Enter your first and last name"];
 			exampleStrP = [[NSString alloc] initWithUTF8String:""];
+			autoCapitalOn = 1;
 
 		}
 		else
 		{	
 			typeP = [[NSString alloc] initWithUTF8String:"7-digit Spokn ID or phone number with country code "];
 			exampleStrP = [[NSString alloc] initWithUTF8String:"Example : +1 847 425 5380"];
+			autoCapitalOn = 0;
 		}	
 	}
 /*	if(strcasestr(lplaceHolderP,"email"))
@@ -338,6 +341,7 @@
 	}
 	self->hidefooterB = false;
 	buttonType = 0;
+	autoCapitalOn = 0;
 	activeAditButtonB = NO;
 	CGRect LabelFrame2 = CGRectMake(0, 5, 320, 80);
 	CGRect LabelFrame3 = CGRectMake(0, 5, 320, 40);
@@ -446,7 +450,15 @@
 						txtField.keyboardType = keyboardtype;
 						txtField.delegate = self;
 						txtField.placeholder = placeHolderP;
-						txtField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+						if(autoCapitalOn)
+						{ 
+							txtField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+							txtField.autocorrectionType = UITextAutocorrectionTypeYes;
+						}
+						else 
+						{
+							txtField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+						}
 						if(StringP)
 						{	
 							txtField.text =StringP;

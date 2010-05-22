@@ -45,7 +45,7 @@ typedef struct CallStructType
 -(int) removeLineId:(int)lineID;
 -(int) getindexByLineID:(int)llineID;
 -(void)setHoldOnOtherThen:(int)llineid;
--(void) addCall:(int)llineID :(NSString *)nameStrP :(NSString*)typeStrP;
+-(int) addCall:(int)llineID :(NSString *)nameStrP :(NSString*)typeStrP;
 -(int)totalCallActive;
 -(NSString*)getStringByIndex:(int)index;
 -(void) selectedCall:(int)index;
@@ -66,7 +66,8 @@ typedef struct CallStructType
 -(void)assignNewIndex;
 -(int)RemoveAllCallInConf:(CallViewController*)calP;
 -(int)putAllCallInConfrance:(int)YesB;
--(int)imageForholdAndAddCall:(NSString**)holdImagePP :(NSString**)addCallImagePP;
+-(int)imageForholdAndAddCall:(NSString**)holdImagePP :(NSString**)addCallImagePP :(int*)disableP;
 -(int)getTotalDisplayCall;
 -(int)totalCallInConf;
+-(int)freeSlotForCall;
 @end

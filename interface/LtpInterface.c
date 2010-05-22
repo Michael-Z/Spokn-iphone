@@ -205,7 +205,7 @@ int openSoundInterface(void *udata,int isFullDuplex)
 {
 	LtpInterfaceType *ltpInterfaceP;
 	ltpInterfaceP = (LtpInterfaceType *)udata;
-	if(ltpInterfaceP->ltpObjectP->sipOnB)
+	if(ltpInterfaceP->ltpObjectP->sipOnB || ltpInterfaceP->playbackP)
 	{
 		return 0;
 	}
@@ -502,7 +502,7 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 			if(ltpInterfaceP->pjsipStartB==false)
 			{	
 			
-				if (!sip_spokn_pj_init(errorstr)){
+				if (!sip_spokn_pj_init(ltpInterfaceP->ltpObjectP,errorstr)){
 				
 					return 1;
 			
@@ -660,8 +660,10 @@ int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB)
 		}
 		return 0;
 	}
-	setHold(ltpInterfaceP->ltpObjectP,holdB);
-	
+	else
+	{	
+		setHold(ltpInterfaceP->ltpObjectP,holdB);
+	}
 	
 	
 	return 0;

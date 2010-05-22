@@ -30,6 +30,7 @@
 - (void)VmsStart;
 - (void)VmsStop;
 - (void)VmsStopRequest;
+- (void)proximityChange:(BOOL)onB;
 
 @end
 typedef enum  VMSStateType

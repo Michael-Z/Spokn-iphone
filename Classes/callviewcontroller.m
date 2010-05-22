@@ -54,6 +54,10 @@
 
 -(int)isCallOn
 {
+	if([callManagmentP freeSlotForCall]!=0)
+	{
+		return 2;
+	}
 	if([callManagmentP isConfranceOn] &&[ callManagmentP getTotalDisplayCall]==1)
 	{
 		return 1;//show accept reject dialog
@@ -85,10 +89,15 @@
 }
 -(void)makeCall:(char*)numberP
 {
-	int llineID = callLtpInterface(self->ownerobject.ltpInterfacesP,numberP);
+	int llineID=-1 ;
 	char *nameP=0;
 	char typeP[100];
 	char typeCallint[110];
+	if([callManagmentP freeSlotForCall]!=0)
+	{
+		return;
+	}
+	llineID = callLtpInterface(self->ownerobject.ltpInterfacesP,numberP);
 	if(llineID>=0)
 	{	
 				
@@ -244,16 +253,6 @@ CallViewController *globalCallViewControllerP;
 	int llineID =   [callManagmentP getActiveLineID];
 	int activeLineId;
 	
-	if(endCalledPressed)
-	{
-		
-		if([callManagmentP getCount]<=1)
-		{	
-			[self->parentObjectDelegate objectDestory];
-			self->parentObjectDelegate = nil;
-		}
-				
-	}
 	if(llineID==CONFERENCE_LINE_ID)
 	{
 		activeLineId = [callManagmentP RemoveAllCallInConf:self];
@@ -464,18 +463,23 @@ CallViewController *globalCallViewControllerP;
 	NSString *type1P=0;
 	NSString *lable2P=0;
 	NSString *type2P=0;
+	int disableButton = 0;
 	int lactiveLineId;
 	if(time==0)
 	{
 		NSString *holdImageP = 0;
 		NSString *addCallImageP = 0;
-		[callManagmentP imageForholdAndAddCall:&holdImageP :&addCallImageP];
-		[holdButtonP setImage:[UIImage imageNamed:holdImageP] forState:UIControlStateNormal];
-		[holdButtonP setImage:[UIImage imageNamed:holdImageP] forState:UIControlStateHighlighted];
+		[callManagmentP imageForholdAndAddCall:&holdImageP :&addCallImageP :&disableButton];
+		if(holdOnB==false)
+		{	
+			[holdButtonP setImage:[UIImage imageNamed:holdImageP] forState:UIControlStateNormal];
+			[holdButtonP setImage:[UIImage imageNamed:holdImageP] forState:UIControlStateHighlighted];
+		}
 		[addcallButtonP setImage:[UIImage imageNamed:addCallImageP] forState:UIControlStateNormal];
 		[addcallButtonP setImage:[UIImage imageNamed:addCallImageP] forState:UIControlStateHighlighted];
 		[holdImageP release];
 		[addCallImageP release];
+		addcallButtonP.enabled = !disableButton;
 		
 	
 	}
@@ -640,7 +644,7 @@ CallViewController *globalCallViewControllerP;
 	int results = 0;	
 	
 	
-	if(loadedB==false)
+	if(loadedB==false || llineID==-1)
 	{	
 		failedCallB = true;
 		//NSTimer *callEndtimerP;
@@ -736,20 +740,15 @@ CallViewController *globalCallViewControllerP;
 }
 -(void)endCalled
 {
-	if([callManagmentP getCount]<=1)
-	{	
-		endCalledPressed = YES;
-		[self->ownerobject endCall:0];
-		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
-	}	
 	[self sendLtpHang];
 	if([callManagmentP getCount]<1)
 	{	
+		[self->ownerobject endCall:-1];
 		[self->parentObjectDelegate objectDestory];
 		self->parentObjectDelegate = nil;
 		endCalledPressed = YES;
-		[self->ownerobject endCall:0];
-		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+		
+	//	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 	}
 	
 	
@@ -1337,6 +1336,8 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 
 - (void)dealloc {
+	printf("dalloc");
+	closeSoundInterface(ownerobject.ltpInterfacesP);
 	[callManagmentP release];
 	callManagmentP = 0;
 	if(uiActionSheetgP)

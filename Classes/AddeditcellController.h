@@ -55,6 +55,7 @@
 	int onlyOneB;
 	int activeAditButtonB;
 	int hidefooterB;
+	int autoCapitalOn;
 		
 }
 -(void)setData:/*out parameter*/(char *)lvalueCharP value:(char*)fieldP placeHolder:(char*)lplaceHolderP title:(char*)titleP/*out parameter*/returnValue:(int *)lreturnP;

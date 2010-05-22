@@ -148,7 +148,7 @@
 				dispP = [ [displayData alloc] init];
 				dispP.left = 5;
 				dispP.top = 0;
-				dispP.width = 56;
+				dispP.width = 60;
 				dispP.textAlignmentType = UITextAlignmentLeft;
 				dispP.height = 70;
 				stringStrP = [[NSString alloc] initWithUTF8String:secObjStrP ];

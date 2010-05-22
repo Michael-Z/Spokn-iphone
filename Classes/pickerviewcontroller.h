@@ -98,5 +98,6 @@
 - (void)updateLayout;
 -(int) addElement :(NSMutableArray *)searchedContactsP contactObject:(Contact*)lcontactP;
 -(void)removeKeyBoard;
+-(void)openKeyBoard;
 @property(nonatomic,readwrite,assign) id<UpDateViewProtocol> upDateProtocolP;
 @end

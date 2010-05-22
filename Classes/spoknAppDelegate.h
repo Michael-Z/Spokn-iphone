@@ -187,6 +187,9 @@ typedef struct CallNumberType
 -(void)SendDTMF:(char *)dtmfVapP;
 -(void)updateSpoknView:(id)object;
 -(void)startRutine;
+- (void) ProximityChange:(NSNotification *)notification	;
+-(void)onCharging:(NSNotification *)notification;	
+
 //#define _TEST_CALL_
 #ifdef _TEST_CALL_
 - (void) handleStartCall: (id) timer;

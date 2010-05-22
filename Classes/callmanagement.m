@@ -145,12 +145,28 @@
 	return newlineid;
 	
 }
--(void) addCall:(int)llineID :(NSString *)nameStrP :(NSString*)typeStrP
+-(int)freeSlotForCall
+{
+	if(count<MAXCALL)
+	{
+		return 0;
+	}
+	return 1;
+
+
+}
+-(int) addCall:(int)llineID :(NSString *)nameStrP :(NSString*)typeStrP
 {
 		
-		
+	int t;
+	t = [self addLineId:llineID];
+	if(t<0)
+	{
+		return 1;
+	
+	}
 	activeLineId2 = activeLineId;
-	activeLineId  = 	[self addLineId:llineID];
+	activeLineId  = 	t;
 	
 	rowTable[0] = activeLineId2;
 	rowTable[1] = activeLineId;
@@ -162,7 +178,7 @@
 	[nameStrP retain]; 
 	callID[activeLineId].labeltypeStrP = typeStrP;
 	[typeStrP retain];
-	
+	return 0;
 	
 }
 -(int)totalCallActive
@@ -636,7 +652,7 @@
 }
 -(int)swapLineID
 {
-	if(count>1 )
+	if((count>1 && conferenceOn==FALSE) || (conferenceOn==TRUE && totalDisplayCall>1) )
 	{
 		int t;
 		t= activeLineId;
@@ -670,9 +686,12 @@
 	return 0;
 
 }
--(int)imageForholdAndAddCall:(NSString**)holdImagePP :(NSString**)addCallImagePP
+-(int)imageForholdAndAddCall:(NSString**)holdImagePP :(NSString**)addCallImagePP :(int*)disableP
 {
-	
+	if(disableP)
+	{
+		*disableP = NO;
+	}
 	
 	if((conferenceOn==false && count>1 )|| (conferenceOn==YES && totalDisplayCall>1) )
 	{
@@ -682,6 +701,22 @@
 	else {
 		*holdImagePP = [[NSString alloc ] initWithString:HOLD_CALL_PNG];
 		*addCallImagePP = [[NSString alloc ] initWithString:ADD_CALL_PNG];
+		if(count<MAXCALL)
+		{
+			
+			if(disableP)
+			{	
+				*disableP = NO;
+			}	
+		}
+		else
+		{
+			
+			if(disableP)
+			{	
+				*disableP = YES;
+			}	
+		}
 
 	}
 
