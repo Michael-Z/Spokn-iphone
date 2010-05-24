@@ -160,7 +160,14 @@ int CallBackSoundPCM(void *uData,sampleFrame *pcmBufferP,unsigned int *lengthP,B
 	AddPcmData(ltpInterfaceP->playbackP,(unsigned short*)pcmBufferP,*lengthP,true);
 #else
 	#ifdef _LTP_
-	ltpSoundInput(ltPInterfaceP->ltpObjectP,(short*)pcmBufferP,*lengthP,true);
+	if(ltPInterfaceP->holdB==true || ltPInterfaceP->muteB==true)
+	{
+		ltpSoundInput(ltPInterfaceP->ltpObjectP,(short*)ltPInterfaceP->blankData,160,true);
+	}
+	else
+	{	
+		ltpSoundInput(ltPInterfaceP->ltpObjectP,(short*)pcmBufferP,*lengthP,true);
+	}	
 #endif
 	/*if(length<640)
 	{
@@ -645,7 +652,7 @@ int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB)
 		if(holdB)
 		{	
 			
-			er = pauseAudio(ltpInterfaceP->recordP);
+			//er = pauseAudio(ltpInterfaceP->recordP);
 			er =  pauseAudio(ltpInterfaceP->playbackP);
 			if(er==0)
 			{
@@ -655,7 +662,7 @@ int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB)
 		else
 		{
 			ltpInterfaceP->holdB = false;
-			PlayAudio(ltpInterfaceP->recordP);
+			//PlayAudio(ltpInterfaceP->recordP);
 			return 	PlayAudio(ltpInterfaceP->playbackP);
 		}
 		return 0;
@@ -672,14 +679,15 @@ int setMuteInterface(LtpInterfaceType *ltpInterfaceP,int muteB)
 {
 	if(ltpInterfaceP->ltpObjectP->sipOnB==false) //ltp interface
 	{
-		if(muteB)
+		ltpInterfaceP->muteB = muteB;
+		/*if(muteB)
 		{	
 			return	pauseAudio(ltpInterfaceP->recordP);
 		}
 		else
 		{
 			return 	PlayAudio(ltpInterfaceP->recordP);
-		}
+		}*/
 		return 0;
 	}
 	
@@ -700,9 +708,9 @@ void UnconferenceInterface(LtpInterfaceType *ltpInterfaceP)
 	return Unconference(ltpInterfaceP->ltpObjectP);
 	
 }
-void shiftToConferenceCallInterface(LtpInterfaceType *ltpInterfaceP)
+void shiftToConferenceCallInterface(LtpInterfaceType *ltpInterfaceP,int oldLineId)
 {
-	return shiftToConferenceCall(ltpInterfaceP->ltpObjectP);
+	return shiftToConferenceCall(ltpInterfaceP->ltpObjectP,oldLineId);
 }
 void setPrivateCallInterface(LtpInterfaceType *ltpInterfaceP,int lineid)
 {

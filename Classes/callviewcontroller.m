@@ -268,7 +268,7 @@ CallViewController *globalCallViewControllerP;
 	{	
 		if([callManagmentP getActiveLineID]==CONFERENCE_LINE_ID)
 		{
-			shiftToConferenceCallInterface(ownerobject.ltpInterfacesP);
+			shiftToConferenceCallInterface(ownerobject.ltpInterfacesP,-1);
 			
 			
 		}
@@ -612,6 +612,9 @@ CallViewController *globalCallViewControllerP;
 		free(newStringP);
 		
 	}*/
+	if([callManagmentP isConfranceOn])
+		setPrivateCallInterface(ownerobject.ltpInterfacesP,llineID);
+
 	//put on hold if hold button is pressed
 	if(self->holdOnB)
 	{	
@@ -674,7 +677,7 @@ CallViewController *globalCallViewControllerP;
 	{	
 		if([callManagmentP getActiveLineID]==CONFERENCE_LINE_ID)
 		{
-			shiftToConferenceCallInterface(ownerobject.ltpInterfacesP);
+			shiftToConferenceCallInterface(ownerobject.ltpInterfacesP,-1);
 			
 			
 		}
@@ -850,13 +853,14 @@ CallViewController *globalCallViewControllerP;
 {
 	UIButton *butP;
 	int enable;
+	int oldID = [callManagmentP getActiveLineID];
 	if([callManagmentP swapLineID])
 	{
 		if([callManagmentP getActiveLineID]==CONFERENCE_LINE_ID)
 		{
 			//startConferenceInterface(ownerobject.ltpInterfacesP);
 			//showDiscloser = 1;
-			shiftToConferenceCallInterface(ownerobject.ltpInterfacesP);
+			shiftToConferenceCallInterface(ownerobject.ltpInterfacesP,oldID);
 			[self updateTableSubView:NO];
 
 		}
