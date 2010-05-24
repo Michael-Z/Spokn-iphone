@@ -37,7 +37,7 @@
 	#define MAXTIME_RESYNC 180 //this is in sec 
 	#define NO_WIFI_AVAILABLE 1001 
 	#define END_CALL_PRESSED 2150
-	#define MAX_CALL_ALLOWED  3 
+	#define MAX_CALL_ALLOWED  4 
 	#define _OWN_THREAD_
 	
   #include <pthread.h>

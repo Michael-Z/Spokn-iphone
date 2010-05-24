@@ -54,7 +54,7 @@
 
 #define _HILIGHT_SEARCH_
 @protocol ShowContactCallOnDelegate;
-@interface Spokncalladd : UIViewController<UINavigationControllerDelegate,ShowContactCallOnDelegate,AddCallProtocol> {
+@interface Spokncalladd : UIViewController<UINavigationControllerDelegate,ShowContactCallOnDelegate,AddCallProtocol,UITabBarControllerDelegate> {
 	
 	IBOutlet UIView *viewP;
 	SpoknAppDelegate      *ownerobject;

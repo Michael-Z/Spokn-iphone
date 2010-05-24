@@ -48,6 +48,7 @@
 @synthesize subID;
 @synthesize dataP;
 @synthesize lineID;
+
 -(id) init
 {
 	return [super init];
@@ -82,6 +83,7 @@
 @synthesize blueTooth;
 @synthesize firstTimeB;
 @synthesize dialviewP;
+@synthesize globalAddressP;
 - (void) handleTimer: (id) timer
 {
 	
@@ -2059,7 +2061,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}
 	[urlSendP release];
 	SetSpeakerOnOrOff(0,true);
-	
+	if(self->globalAddressP)
+	{
+		[self->globalAddressP release];
+		self->globalAddressP =0;
+		
+	}
 	//[contactNavigationController release];
 	//[vmsNavigationController release];
 	//[calllogNavigationController release];

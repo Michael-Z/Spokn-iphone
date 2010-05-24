@@ -164,7 +164,10 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 
 }
 
-
+-(void)setIncreaseHeight:(int)lheight
+{
+	increaseheight = lheight;
+}
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -172,6 +175,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		[self.tabBarItem initWithTitle:@"Keypad" image:[UIImage imageNamed:_TAB_KEYPAD_PNG_] tag:3];
 		callingstringP = nil;
 		callingstringtypeP = nil;
+		increaseheight = 0;
     }
     return self;
 }
@@ -204,7 +208,17 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	if(increaseheight)
+	{
+		CGRect rectFrame;
+		rectFrame = self.view.frame;
+		//rectFrame.origin.y-=20;
+		rectFrame.size.height-=increaseheight;
+		self.view.frame = rectFrame;
+		
 	
+	
+	}
 	if(addcallDelegate)//deasible vmail button
 	{
 #define YSIZE 20

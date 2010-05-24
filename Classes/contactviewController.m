@@ -37,6 +37,7 @@
 #import "alertmessages.h"
 #import "contactlookup.h"
 #import "spokncalladd.h"
+
 /*
 @interface MyNavControler : UINavigationBar 
 
@@ -788,7 +789,13 @@ titleForHeaderInSection:(NSInteger)section
 	//searchbar.bounds = cellFrame;
 	
 	#ifdef _NEW_ADDRESS_BOOK_
-	addressBookP = [[ABPeoplePickerNavigationController alloc] init];
+	if(ownerobject.globalAddressP==0)
+	{
+		ownerobject.globalAddressP = [[ABPeoplePickerNavigationController alloc] init];
+		
+	}
+	addressBookP = ownerobject.globalAddressP;
+	[addressBookP retain];
 	[addressBookP setNavigationBarHidden:YES animated:NO];
 	[addressBookP setPeoplePickerDelegate:self];
 	//addressBookP.view.frame = self.view.frame;

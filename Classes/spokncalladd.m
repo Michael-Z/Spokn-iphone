@@ -164,11 +164,12 @@
 		tmpCtl = [ [ UINavigationController alloc ] initWithRootViewController: contactP ] ;
 		//self.view = tmpCtl.view;
 		tmpCtl.delegate =self;
+		[viewP addSubview:tmpCtl.view];
 		CGRect rectFrame;
 		rectFrame = tmpCtl.view.frame;
 		rectFrame.origin.y-=20;
 		tmpCtl.view.frame = rectFrame;
-		[viewP addSubview:tmpCtl.view];
+		
 	}	
 	else {
 		
@@ -224,16 +225,13 @@
 		
 		//self.view = tmpCtl.view;
 	//	tmpCtl.delegate =self;
+		
+		[viewP addSubview:tabBarControllerP.view];
 		CGRect rectFrame;
-		rectFrame = dialviewP.view.frame;
-		//rectFrame.origin.y-=20;
-		rectFrame.size.height-=40;
-		dialviewP.view.frame = rectFrame;
 		rectFrame = tabBarControllerP.view.frame;
 		rectFrame.size.height-=45;
 		//rectFrame.origin.y-=20;
 		tabBarControllerP.view.frame = rectFrame;
-		[viewP addSubview:tabBarControllerP.view];
 	//	[ [UIApplication sharedApplication] setStatusBarHidden:YES];
 	}
 

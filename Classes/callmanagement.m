@@ -344,7 +344,7 @@
 	}
 	else {
 		
-		*lmainTypeP = [[NSString alloc] initWithFormat:@"%2d:%2d",callID[activeLineId].min,callID[activeLineId].sec];
+		*lmainTypeP = [[NSString alloc] initWithFormat:@"%2d:%02d",callID[activeLineId].min,callID[activeLineId].sec];
 		
 
 		
@@ -376,7 +376,7 @@
 					
 				}
 				else {
-					str = [[NSString alloc] initWithFormat:@"%2d:%2d",callID[activeLineId].min,callID[activeLineId].sec];
+					str = [[NSString alloc] initWithFormat:@"%2d:%02d",callID[activeLineId].min,callID[activeLineId].sec];
 					*type1P = str;
 				}
 				
@@ -400,7 +400,7 @@
 					
 				}
 				else {
-					str = [[NSString alloc] initWithFormat:@"%2d:%2d",callID[activeLineId].min,callID[activeLineId].sec];
+					str = [[NSString alloc] initWithFormat:@"%2d:%02d",callID[activeLineId].min,callID[activeLineId].sec];
 					*type2P = str;
 				}
 			}	

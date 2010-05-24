@@ -169,7 +169,7 @@
 		name2LabelP.font = [UIFont boldSystemFontOfSize:20];
 		name1LabelP.textAlignment = UITextAlignmentLeft;
 		
-		CGRect LabelFrame2 = CGRectMake(180, 0, 108, 50);
+		CGRect LabelFrame2 = CGRectMake(180, 0, 102, 50);
 		type1LabelP = [[UILabel alloc] initWithFrame:LabelFrame2];
 		type1LabelP.textAlignment = UITextAlignmentRight;
 		//label1.text = temp;
@@ -810,6 +810,7 @@ CallViewController *globalCallViewControllerP;
 	*/
 	Spokncalladd *spoknViewCallP;
 	spoknViewCallP = [[Spokncalladd alloc] initWithNibName:@"spokncalladd" bundle:[NSBundle mainBundle]];
+	[spoknViewCallP setObject:ownerobject];
 	[spoknViewCallP setParent:self];
 	[[self navigationController] presentModalViewController:spoknViewCallP animated: YES ];
 	[spoknViewCallP release];
@@ -871,7 +872,10 @@ CallViewController *globalCallViewControllerP;
 		}
 		
 		
-		
+		if([callManagmentP isConfranceOn]==YES)
+		{
+			[tableView reloadData];
+		}
 		
 		[self updatescreen:0];
 		return;
@@ -1563,10 +1567,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 			
 		}*/
 		[self HoldPressed:nil];//swap the call
-		if([callManagmentP isConfranceOn]==YES)
-		{
-			[tableView reloadData];
-		}
+		
 	}	
 	
 	

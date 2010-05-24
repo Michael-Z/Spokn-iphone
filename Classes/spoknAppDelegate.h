@@ -169,6 +169,8 @@ typedef struct CallNumberType
 	int shifttovmsTab;
 	int isCallOnB;
 
+	ABPeoplePickerNavigationController *globalAddressP;
+
 	//@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -208,6 +210,7 @@ typedef struct CallNumberType
 @property (nonatomic, assign) IBOutlet CalllogViewController *callviewP;
 
 */
+@property(nonatomic,assign) ABPeoplePickerNavigationController *globalAddressP;
 @property (nonatomic, assign) Boolean blueTooth;
 @property (nonatomic, assign) ABAddressBookRef addressRef;
 @property (nonatomic, assign) int callOnB;

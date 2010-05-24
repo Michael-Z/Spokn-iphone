@@ -73,6 +73,7 @@
 	NSTimer *_deleteTimer;
 	int invalidUserB;
 	int buttonPressedB;
+	int increaseheight;
 	#ifdef MAX_TONE
 		SpoknAudio *dtmfTone[MAX_TONE];
 	int prvKey;
@@ -85,7 +86,7 @@
 
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 @property(readwrite,assign) int currentView;
-
+-(void)setIncreaseHeight:(int)lheight;
 
 -(void)setObject:(id) object ;
 -(IBAction)callLtp:(id)sender;
