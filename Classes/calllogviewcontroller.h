@@ -29,6 +29,8 @@
 
 
 @class SpoknAppDelegate;
+@protocol AddCallProtocol;
+
 @interface CalllogViewController : UIViewController< UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,UIActionSheetDelegate> {
 	IBOutlet UITableView *tableView;
 	SpoknAppDelegate *ownerobject;	
@@ -47,6 +49,7 @@
 	long count;
 	int refreshB;
 	int lbold;
+	id<AddCallProtocol> addcallDelegate;
 	
 }
 -(int)missCallSetCount;
@@ -58,4 +61,7 @@
 - (void)addRow: (int )index sectionObject:(sectionType **)sectionPP;
 -(void) hideLeftbutton:(Boolean) lhideB;
 - (void) reload;
+@property(readwrite,assign) id<AddCallProtocol> addcallDelegate;
+
+
 @end

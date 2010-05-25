@@ -29,8 +29,10 @@
 #import "AddEditcontactViewController.h"
 #import "customcell.h"
 #include "alertmessages.h"
+#import "spokncalladd.h"
 
 @implementation CalllogViewController
+@synthesize addcallDelegate;
 #pragma mark MISSEDCALL
 -(int)missCallSetCount
 {
@@ -95,6 +97,7 @@
 		//[self.tabBarItem initWithTabBarSystemItem:UITabBarSystemItemRecents tag:2];
 		[self.tabBarItem initWithTitle:@"Calls" image:[UIImage imageNamed:_TAB_CALLS_PNG_] tag:2];
 		hideB = false;
+		addcallDelegate = nil;
     }
     return self;
 }
@@ -691,6 +694,8 @@
 			[ContactControllerDetailsviewP setAddressBook:addressP editable:false :CALLLOGDETAILVIEWENUM];
 			[ContactControllerDetailsviewP setSelectedNumber:cdrP->userid showAddButton:NO];
 			[ContactControllerDetailsviewP setRecordID:cdrP->recordUId :cdrP->recordUId];
+			ContactControllerDetailsviewP.addcallDelegate = self.addcallDelegate;
+			[ContactControllerDetailsviewP hideCallAndVmailButton:YES];
 			[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
 			
 			
@@ -726,6 +731,8 @@
 					
 					
 					[ContactControllerDetailsviewP setSelectedNumber:cdrP->userid showAddButton:NO ];
+					ContactControllerDetailsviewP.addcallDelegate = self.addcallDelegate;
+					[ContactControllerDetailsviewP hideCallAndVmailButton:YES];
 					[ContactViewController addDetailsFromAddressBook :ContactControllerDetailsviewP :CALLLOGDETAILVIEWENUM contactBook:person];
 					
 					[ [self navigationController] pushViewController:ContactControllerDetailsviewP animated: YES ];
@@ -809,8 +816,15 @@
 	{	
 		
 		SetAddressBookDetails(ownerobject.ltpInterfacesP,cdrP->recordUId,cdrP->recordUId);
-		[self->ownerobject makeCall:cdrP->userid];
-		[self->ownerobject changeView];
+		if(addcallDelegate)
+		{
+			[addcallDelegate makeCall:cdrP->userid];
+		}
+		else {
+			
+				[self->ownerobject makeCall:cdrP->userid];
+				[self->ownerobject changeView];
+		}
 	}
 	else
 	{
@@ -1154,7 +1168,7 @@ cancelButtonTitle: nil
 	[missImageP release];
 	[inImageP release];
 	[outImageP release];
-	
+//	printf("\n calllog view dealloc");
 
     [super dealloc];
 }

@@ -47,6 +47,7 @@
 #define LOAD_VIEW 1000
 #define LOAD_LOGIN_VIEW 1
 #define TRYING_CALL 4000
+#define INCOMMING_CALL_ACCEPTED 4005
 #define ROUTE_CHANGE 4010
 #define _SIP_ 5000
 #define ERR_CODE_CALL_FWD_DUPLICATE 402
@@ -91,7 +92,7 @@ typedef struct CallNumberType
 
 
 
-
+@class IncommingCallViewController;
 @interface SpoknAppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate> {
   //  @public
 	UIWindow *window;
@@ -162,25 +163,35 @@ typedef struct CallNumberType
 	Boolean blueTooth;
 	NSString *devicePushTokenStrP;
 	int firstTimeB;
+
+	IncommingCallViewController     *inCommingCallViewP;
+
 	int shifttovmsTab;
+	int isCallOnB;
+	int setDeviceID;
+	ABPeoplePickerNavigationController *globalAddressP;
+
 	//@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
 
 
 }
--(void)LoadInCommingView:(id)objid;
+-(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 
 -(void) showText:(NSString *)testStringP;
 -(void)changeView;
 -(IBAction)loginLtp:(id)sender;
 -(IBAction)cancelLtp:(id)sender;
--(void)AcceptCall:(IncommingCallType *)inComP;
--(void)RejectCall:(IncommingCallType *)inComP;
+-(void)AcceptCall:(IncommingCallType*) inComP :(UIViewController*)perentControllerP;
+-(void)RejectCall:(IncommingCallType *)inComP:(UIViewController*)perentControllerP;
 -(void)LoadContactView:(id)object;
 -(void)SendDTMF:(char *)dtmfVapP;
 -(void)updateSpoknView:(id)object;
 -(void)startRutine;
+- (void) ProximityChange:(NSNotification *)notification	;
+-(void)onCharging:(NSNotification *)notification;	
+
 //#define _TEST_CALL_
 #ifdef _TEST_CALL_
 - (void) handleStartCall: (id) timer;
@@ -199,6 +210,7 @@ typedef struct CallNumberType
 @property (nonatomic, assign) IBOutlet CalllogViewController *callviewP;
 
 */
+@property(nonatomic,assign) ABPeoplePickerNavigationController *globalAddressP;
 @property (nonatomic, assign) Boolean blueTooth;
 @property (nonatomic, assign) ABAddressBookRef addressRef;
 @property (nonatomic, assign) int callOnB;
@@ -211,6 +223,7 @@ typedef struct CallNumberType
 @property (nonatomic, assign) Boolean onLineB;
 @property (nonatomic, assign) int firstTimeB;
 @property (nonatomic, assign) UITabBarController *tabBarController;
+@property (nonatomic,assign) DialviewController    *dialviewP; 
 //@property (nonatomic, retain) IBOutlet spoknviewcontroller *viewController;
 //add delegate
 -(void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController;
@@ -256,11 +269,14 @@ changed:(BOOL)changed;
 -(int) profileResynFromApp;
 -(void)setDeviceInforation:(NSString *)deviceTokenP;
 -(void)sendMessageFromOtherThread:(spoknMessage*)spoknMsgP;
+-(void) setIncommingCallDelegate:(id)incommingP;
 @end
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
 void * ThreadForContactLookup(void *udata);
-int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned long userData,void *otherinfoP);
+
+int alertNotiFication(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherinfoP);
+
 void MyAudioSessionPropertyListener(
 									void *                  inClientData,
 									AudioSessionPropertyID	inID,

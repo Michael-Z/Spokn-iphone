@@ -118,9 +118,19 @@
 	// e.g. self.myOutlet = nil;
 }
 
+-(int)incommingViewDestroy:(int)lineID
+{
+	if(lineID==ltpInDataP->lineid)
+	{
+		[[self parentViewController] dismissModalViewControllerAnimated:YES];
+		return 0;
+	}
+	return 1;
 
+
+}
 - (void)dealloc {
-	
+	[ownerobject setIncommingCallDelegate:nil];
 	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleDefault;
 	[self->nameStrP release];
 	[self->statusStrP release];
@@ -135,7 +145,7 @@
 	buttonPressedB =YES;
 //	[UIApplication sharedApplication] .statusBarStyle = prvStyle;
 	[self retain];
-	[self->ownerobject AcceptCall:self->ltpInDataP];
+	[self->ownerobject AcceptCall:self->ltpInDataP :[self parentViewController]];
 	[self autorelease];
 	
 }
@@ -146,12 +156,15 @@
 	buttonPressedB =YES;	
 	//[UIApplication sharedApplication] .statusBarStyle = prvStyle;
 	[self retain];
-	[self->ownerobject RejectCall:self->ltpInDataP];
+	[self->ownerobject RejectCall:self->ltpInDataP :[self parentViewController]];
 	[self autorelease];
 	
 
 }
-
+-(void)directAccept:(int)ldirectB
+{
+	directB = ldirectB;
+}
 -(void)setObject:(id) object 
 {
 	

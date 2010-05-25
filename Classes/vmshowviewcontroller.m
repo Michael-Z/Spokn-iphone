@@ -438,8 +438,30 @@
 {
 	
 }
+- (void)proximityChange:(BOOL)onB
+{
+	
+	
+	if(onB)
+	{
+	RouteAudio(0,2);
+	}
+	else {
+		RouteAudio(0,4);
+	}
+
+	//SetSpeakerOnOrOffNew(0,!onB);
+
+
+}
 - (void)VmsStop
 {
+#ifdef __IPHONE_3_0
+	[UIDevice currentDevice].proximityMonitoringEnabled = NO;
+#else
+	[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
+#endif
+	
 	if(vmstateType==VMSStatePlay)
 	{
 		deleteButton.enabled = YES;
@@ -625,6 +647,12 @@
 			return;
 			
 		}
+		#ifdef __IPHONE_3_0
+				[UIDevice currentDevice].proximityMonitoringEnabled = YES;
+		#else
+				[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+		#endif
+		
 	}
 	else
 	{
@@ -743,6 +771,12 @@
 		[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
 		//[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 		[sendButtonP setTitleColor:[[UIColor grayColor] autorelease]  forState:UIControlStateDisabled];
+		#ifdef __IPHONE_3_0
+				[UIDevice currentDevice].proximityMonitoringEnabled = YES;
+		#else
+				[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+		#endif
+		
 		
 	}	
 	else
@@ -1686,6 +1720,11 @@ id createImage(float percentage)
 											   initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 											   target: self
 											   action: @selector(cancelClicked) ] autorelease ];*/
+	if(vmstateType==VMSStateForward)
+	{
+		
+		[pickerviewcontrollerviewP openKeyBoard];
+	}
 	
 }
 
@@ -1975,6 +2014,7 @@ id createImage(float percentage)
 
 
 - (void)dealloc {
+	
 	if(alertgP)
 	{	
 		[alertgP dismissWithClickedButtonIndex:0 animated:NO]	;
@@ -2037,6 +2077,11 @@ id createImage(float percentage)
 	nameCharP = 0;
 	typeCharP = 0;
 	vmailP = 0;
+#ifdef __IPHONE_3_0
+	[UIDevice currentDevice].proximityMonitoringEnabled = NO;
+#else
+	[[UIApplication sharedApplication] setProximitySensingEnabled:NO];
+#endif
 	
 	[super dealloc];
 	

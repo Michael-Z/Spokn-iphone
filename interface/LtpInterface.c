@@ -160,7 +160,14 @@ int CallBackSoundPCM(void *uData,sampleFrame *pcmBufferP,unsigned int *lengthP,B
 	AddPcmData(ltpInterfaceP->playbackP,(unsigned short*)pcmBufferP,*lengthP,true);
 #else
 	#ifdef _LTP_
-	ltpSoundInput(ltPInterfaceP->ltpObjectP,(short*)pcmBufferP,*lengthP,true);
+	if(ltPInterfaceP->holdB==true || ltPInterfaceP->muteB==true)
+	{
+		ltpSoundInput(ltPInterfaceP->ltpObjectP,(short*)ltPInterfaceP->blankData,160,true);
+	}
+	else
+	{	
+		ltpSoundInput(ltPInterfaceP->ltpObjectP,(short*)pcmBufferP,*lengthP,true);
+	}	
 #endif
 	/*if(length<640)
 	{
@@ -205,7 +212,7 @@ int openSoundInterface(void *udata,int isFullDuplex)
 {
 	LtpInterfaceType *ltpInterfaceP;
 	ltpInterfaceP = (LtpInterfaceType *)udata;
-	if(ltpInterfaceP->ltpObjectP->sipOnB)
+	if(ltpInterfaceP->ltpObjectP->sipOnB || ltpInterfaceP->playbackP)
 	{
 		return 0;
 	}
@@ -395,9 +402,9 @@ LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNo
 	if(er ==0)
 	{	
 	#ifndef SUPPORT_SPEEX
-		ltpInterfaceP->ltpObjectP = ltpInitNew(sipOnB,2, LTP_CODEC_GSM, 4);
+		ltpInterfaceP->ltpObjectP = ltpInitNew(sipOnB,MAX_CALL_ALLOWED, LTP_CODEC_GSM, 4);
 	#else		
-		ltpInterfaceP->ltpObjectP = ltpInitNew(sipOnB,2, LTP_CODEC_SPEEX, 4);
+		ltpInterfaceP->ltpObjectP = ltpInitNew(sipOnB,MAX_CALL_ALLOWED, LTP_CODEC_SPEEX, 4);
 	#endif
 		if(ltpInterfaceP->ltpObjectP==0)
 		{
@@ -502,7 +509,9 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 			if(ltpInterfaceP->pjsipStartB==false)
 			{	
 			
-				if (!sip_spokn_pj_init(ltpInterfaceP->ltpObjectP ,errorstr)){
+
+				if (!sip_spokn_pj_init(ltpInterfaceP->ltpObjectP,errorstr)){
+
 				
 					return 1;
 			
@@ -550,23 +559,23 @@ int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 	return 1;
 	
 }
-Boolean callLtpInterface(LtpInterfaceType *ltpInterfaceP,char *numberCharP)
+int callLtpInterface(LtpInterfaceType *ltpInterfaceP,char *numberCharP)
 {
 #ifdef _SNDLOOPBACK_
 	openSoundInterface(true);
 #else
-	ltpRing(ltpInterfaceP->ltpObjectP, numberCharP, CMD_RING);
+	return ltpRing(ltpInterfaceP->ltpObjectP, numberCharP, CMD_RING);
 #endif
-	return true;
+	return 0;
 }
-Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP)
+Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId)
 {
 
 #ifdef _SNDLOOPBACK_
 
 	closeSoundInterface(ltpInterfaceP);
 #else
-	ltpHangup(ltpInterfaceP->ltpObjectP, 0);
+	ltpHangup(ltpInterfaceP->ltpObjectP, llineId);
 
 #endif
 	return true;
@@ -645,7 +654,7 @@ int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB)
 		if(holdB)
 		{	
 			
-			er = pauseAudio(ltpInterfaceP->recordP);
+			//er = pauseAudio(ltpInterfaceP->recordP);
 			er =  pauseAudio(ltpInterfaceP->playbackP);
 			if(er==0)
 			{
@@ -655,13 +664,15 @@ int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB)
 		else
 		{
 			ltpInterfaceP->holdB = false;
-			PlayAudio(ltpInterfaceP->recordP);
+			//PlayAudio(ltpInterfaceP->recordP);
 			return 	PlayAudio(ltpInterfaceP->playbackP);
 		}
 		return 0;
 	}
-	setHold(ltpInterfaceP->ltpObjectP,holdB);
-	
+	else
+	{	
+		setHold(ltpInterfaceP->ltpObjectP,holdB);
+	}
 	
 	
 	return 0;
@@ -670,17 +681,40 @@ int setMuteInterface(LtpInterfaceType *ltpInterfaceP,int muteB)
 {
 	if(ltpInterfaceP->ltpObjectP->sipOnB==false) //ltp interface
 	{
-		if(muteB)
+		ltpInterfaceP->muteB = muteB;
+		/*if(muteB)
 		{	
 			return	pauseAudio(ltpInterfaceP->recordP);
 		}
 		else
 		{
 			return 	PlayAudio(ltpInterfaceP->recordP);
-		}
+		}*/
 		return 0;
 	}
 	
 	setMute(ltpInterfaceP->ltpObjectP,muteB);
 	return 0;
+}
+void startConferenceInterface(LtpInterfaceType *ltpInterfaceP)
+{
+	return startConference(ltpInterfaceP->ltpObjectP);
+}
+
+void switchReinviteInterface(LtpInterfaceType *ltpInterfaceP ,int llineid)
+{
+	return switchReinvite(ltpInterfaceP->ltpObjectP,llineid);
+}
+void UnconferenceInterface(LtpInterfaceType *ltpInterfaceP)
+{
+	return Unconference(ltpInterfaceP->ltpObjectP);
+	
+}
+void shiftToConferenceCallInterface(LtpInterfaceType *ltpInterfaceP,int oldLineId)
+{
+	return shiftToConferenceCall(ltpInterfaceP->ltpObjectP,oldLineId);
+}
+void setPrivateCallInterface(LtpInterfaceType *ltpInterfaceP,int lineid)
+{
+	return setPrivateCall(ltpInterfaceP->ltpObjectP,lineid);
 }

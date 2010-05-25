@@ -69,7 +69,18 @@ int RouteAudio(void *uData,int optionInt)
 			SetSpeakerOnOrOffNew(0,1);
 			break;
 	
-	
+		case 4:
+			onOrBlueTooth(1);
+			if(HeadSetIsOn()==0)
+			{
+				SetSpeakerOnOrOffNew(0,1);
+			}
+			else
+			{
+				SetSpeakerOnOrOffNew(0,0);
+			}
+			
+			break;
 	
 	}
 	return 0;
@@ -471,10 +482,10 @@ void AudioInputCallback(
 						const AudioStreamPacketDescription *inPacketDescs)
 {
 	
-	mutexLockInterface();
+	//mutexLockInterface();
 	
 	AudioInputCallbackLocal(inUserData,inAQ,inBuffer,inStartTime,inNumberPacketDescriptions,inPacketDescs);
-	mutexUnLockInterface();
+	//mutexUnLockInterface();
 }
 void AudioInputCallbackLocal(
 							 void *                          inUserData,
@@ -721,6 +732,9 @@ void AQBufferCallbackLocal(
 		return;
 	if(aqcP->stopB)
 	{
+		outQB->mAudioDataByteSize = 1200 ;
+		memset(coreAudioBuffer,0,1200);
+		AudioQueueEnqueueBuffer(inQ, outQB, 0, NULL);
 		return;
 	}
 	
@@ -728,6 +742,9 @@ void AQBufferCallbackLocal(
 	{
 		if(aqcP->playStartedB==false)
 		{
+			outQB->mAudioDataByteSize = 1200 ;
+			memset(coreAudioBuffer,0,1200);
+			AudioQueueEnqueueBuffer(inQ, outQB, 0, NULL);
 			return;
 		}
 		sz = outQB->mAudioDataByteSize/2;
@@ -735,7 +752,8 @@ void AQBufferCallbackLocal(
 		{
 			aqcP->stopB = true;
 			aqcP->playStartedB = false;
-			return;
+			
+			
 		}
 		outQB->mAudioDataByteSize = sz*2;
 		AudioQueueEnqueueBuffer(inQ, outQB, 0, NULL);

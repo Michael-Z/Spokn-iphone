@@ -31,10 +31,12 @@
 #import "vmailviewcontroller.h"
 #include "alertmessages.h"
 #import "GEventTracker.h"
+#import "spokncalladd.h"
 #define MAX_ROW_HIGHT 42
 //self.navigationItem.leftBarButtonItem.enabled = YES;
 @implementation ContactDetailsViewController
 @synthesize contactDetailsProtocolP;
+@synthesize addcallDelegate;
 -(void) setResult:(int)resultValue
 {
 	if(retValP)
@@ -146,7 +148,7 @@
 				dispP = [ [displayData alloc] init];
 				dispP.left = 5;
 				dispP.top = 0;
-				dispP.width = 56;
+				dispP.width = 60;
 				dispP.textAlignmentType = UITextAlignmentLeft;
 				dispP.height = 70;
 				stringStrP = [[NSString alloc] initWithUTF8String:secObjStrP ];
@@ -213,7 +215,7 @@
         // Custom initialization
 		loadedB = false;
 		sectionCount = 1;
-		
+		addcallDelegate = nil;
 		[self setTitle:@"Info"];
 		[self setTitlesString:@"Select number for vms"];
 		[self setSelectedNumber:"\0" showAddButton:NO];
@@ -1447,21 +1449,23 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
 {
+	int row = [newIndexPath row];
+	int section = [newIndexPath section];
+
 	if(hideCallAndVmailButtonB && editableB==false)//dont to any thing
 	{
 		[self->tableView deselectRowAtIndexPath : newIndexPath animated:YES];
-
+		[addcallDelegate makeCall:sectionArray[section].dataforSection[row].elementP];
 		return;
 	}
 	
 	//selection = [[[UIFont familyNames] objectAtIndex:[newIndexPath row]] retain];
-	int row = [newIndexPath row];
-	int section = [newIndexPath section];
-	
+		
 	if(editableB==false)
 	{	
 		if(viewEnum == CONTACTFORWARDVMS)
 		{
+			
 			if(retValP)
 			{
 				*retValP = 1;

@@ -34,6 +34,7 @@
 
 
 
+@protocol AddCallProtocol;
 
 @interface DialviewController : UIViewController<UITextFieldDelegate, KeypadProtocol,ShowContactCallOnDelegate> {
 //	@public
@@ -46,6 +47,8 @@
 	IBOutlet UILabel *mainstatusLabelP;
 	IBOutlet UIButton *hangUpButtonP;
 	IBOutlet UIButton *callButtonP;
+	IBOutlet UIButton *backButtonP;
+	IBOutlet UIButton *backgroundButtonP;
 	IBOutlet Keypadview *keypadmain;
 	
 	SpoknAppDelegate *ownerobject;
@@ -55,12 +58,13 @@
 	int status;
 	int subStatus;
 	int currentView;
-	
+	id<AddCallProtocol> addcallDelegate;
+
 	NSTimer *calltimerP;//this timer for call duration
 	Boolean onLineB;
 	long timecallduration;
 	int hour,min,sec;
-	
+	int lineID;
 	NSString *callingstringP;
 	NSString *callingstringtypeP;
 	char lastTypeNo[40];
@@ -69,6 +73,7 @@
 	NSTimer *_deleteTimer;
 	int invalidUserB;
 	int buttonPressedB;
+	int increaseheight;
 	#ifdef MAX_TONE
 		SpoknAudio *dtmfTone[MAX_TONE];
 	int prvKey;
@@ -77,10 +82,11 @@
 	CallViewController *callViewControllerP;
 }
 
+@property(readwrite,assign,setter=setAddCall) id<AddCallProtocol> addcallDelegate;
 
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
 @property(readwrite,assign) int currentView;
-
+-(void)setIncreaseHeight:(int)lheight;
 
 -(void)setObject:(id) object ;
 -(IBAction)callLtp:(id)sender;
@@ -89,7 +95,7 @@
 -(IBAction)backkeyReleased:(id)sender;
 - (IBAction)dismissKeyboard: (id)sender;
 - (IBAction)valueChanged: (id)sender;
--(void)setStatusText:(NSString *)strP :(NSString *)strtypeP :(int)status :(int)subStatus;
+-(void)setStatusText:(NSString *)strP :(NSString *)strtypeP :(int)lstatus :(int)lsubStatus :(int)llineID;
 //- (void)controlPressed:(id) sender;
 -(void)setViewButton:(int)viewButton;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
@@ -98,4 +104,7 @@
 - (void)deleteRepeat;
 -(void)makeDTMF;
 -(void)destroyDTMF;
+-(int)callDisconnected:(int )llineID;
+-(int)isCallOn;
+-(UIViewController*)getCallViewController;
 @end

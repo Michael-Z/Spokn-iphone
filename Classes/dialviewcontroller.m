@@ -20,6 +20,7 @@
  You should have received a copy of the GNU General Public License
  along with Spokn for iPhone.  If not, see <http://www.gnu.org/licenses/>.
  */
+#import "spokncalladd.h"
 #import "callviewcontroller.h"
 #import "dialviewcontroller.h"
 #import "Ltptimer.h"
@@ -32,11 +33,19 @@
 #import <AudioToolbox/AudioToolbox.h>
 #include "alertmessages.h"
 #import "GEventTracker.h"
+
 @implementation DialviewController
 const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'};
 //static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 @synthesize ltpInterfacesP;
 @synthesize currentView;
+@synthesize addcallDelegate;
+
+-(UIViewController*)getCallViewController
+{
+	return self->callViewControllerP;
+	
+}
 - (void)keyPressedDown:(NSString *)stringkey keycode:(int)keyVal
 {
 		
@@ -45,8 +54,11 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	
 	if(length==0)
 	{	
-		statusLabel1P.hidden = YES;
-		statusLabel2P.hidden = YES;
+		//if(addcallDelegate==nil)
+		{	
+			statusLabel1P.hidden = YES;
+			statusLabel2P.hidden = YES;
+		}	
 	}
 	if([curText length]<NUMBER_RANGE)
 	{
@@ -152,7 +164,10 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 
 }
 
-
+-(void)setIncreaseHeight:(int)lheight
+{
+	increaseheight = lheight;
+}
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -160,6 +175,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		[self.tabBarItem initWithTitle:@"Keypad" image:[UIImage imageNamed:_TAB_KEYPAD_PNG_] tag:3];
 		callingstringP = nil;
 		callingstringtypeP = nil;
+		increaseheight = 0;
     }
     return self;
 }
@@ -192,7 +208,54 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+	if(increaseheight)
+	{
+		CGRect rectFrame;
+		rectFrame = self.view.frame;
+		//rectFrame.origin.y-=20;
+		rectFrame.size.height-=increaseheight;
+		self.view.frame = rectFrame;
+		
 	
+	
+	}
+	if(addcallDelegate)//deasible vmail button
+	{
+#define YSIZE 20
+		hangUpButtonP.hidden = YES;
+		//statusLabel1P.hidden = YES;
+		//statusLabel2P.hidden = YES;
+		//backgroundButtonP.hidden = YES;
+		CGRect x;
+		x = statusLabel2P.frame;
+		x.origin.y-=5;
+		x.size.height-=5;
+		statusLabel2P.frame = x;
+		
+		
+		x = backgroundButtonP.frame;
+		x.size.height-=YSIZE;
+		backgroundButtonP.frame = x;
+	
+		x = numberlebelP.frame;
+		x.origin.y-=10;
+		
+		numberlebelP.frame = x;
+		x = keypadmain.frame;
+		x.origin.y-=YSIZE;
+		keypadmain.frame = x;
+		
+		x = callButtonP.frame;
+		x.origin.y-=YSIZE;
+		callButtonP.frame = x;
+		x = hangUpButtonP.frame;
+		x.origin.y-=YSIZE;
+		hangUpButtonP.frame = x;
+		x = backButtonP.frame;
+		x.origin.y-=YSIZE;
+		backButtonP.frame = x;
+		
+	}
 	
 	
 	[ownerobject startRutine];
@@ -240,7 +303,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	status = 0;
 	subStatus = 0;
 	activityIndicator.hidesWhenStopped = YES;
-	//[numberFieldP becomeFirstResponder];
+		//[numberFieldP becomeFirstResponder];
 	//numberFieldP.delegate = self;
 	/*
 	[callButton setImage:[UIImage imageNamed:@"answer.png"] 
@@ -336,7 +399,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	{	
 		[callingstringtypeP release];
 	}
-	
+	//printf("\n dial view dealloc");
 	//[statusLabelP release];
 	//[numberFieldP release];
     [super dealloc];
@@ -431,6 +494,14 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 {
 	[self stopTimer];
 }
+-(void) setAddCall:(id) laddcallDelegate
+{
+	addcallDelegate = laddcallDelegate;
+	if(laddcallDelegate)
+	{	
+		onLineB = true;
+	}	
+}
 -(IBAction)callLtp:(id)sender
 {
 	//if(buttonPressedB)
@@ -460,15 +531,29 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		}
 		strcpy(lastTypeNo,numbercharP);
 		SetAddressBookDetails(ownerobject.ltpInterfacesP,0,0);
-		if([ownerobject makeCall:numbercharP])
+		if(addcallDelegate==nil)
 		{	
-			currentView = 1;
-			
-			numberlebelP.text = @"";
-			statusLabel1P.hidden = NO;
-			statusLabel2P.hidden = NO;
-			buttonPressedB = YES;
+		
+			if([ownerobject makeCall:numbercharP])
+			{	
+				currentView = 1;
+				
+				numberlebelP.text = @"";
+				statusLabel1P.hidden = NO;
+				statusLabel2P.hidden = NO;
+				buttonPressedB = YES;
+			}	
 		}	
+		else {
+				
+				[addcallDelegate makeCall:numbercharP];
+				currentView = 1;
+				numberlebelP.text = @"";
+				statusLabel1P.hidden = NO;
+				statusLabel2P.hidden = NO;
+				buttonPressedB = YES;
+		}
+
 	}
 	else
 	{
@@ -526,7 +611,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		
 		if(currentView==1)
 		{	
-			hangLtpInterface(ltpInterfacesP);
+			hangLtpInterface(ltpInterfacesP,0);
 			//[self dismissKeyboard:numberFieldP];
 			currentView = 0;
 		//	[hangUpButtonP setTitle:@"Vms" forState:UIControlStateNormal];
@@ -622,7 +707,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 - (void) handleCallTimerHang: (id) timer
 {
 	
-	hangLtpInterface(ownerobject.ltpInterfacesP);
+	hangLtpInterface(ownerobject.ltpInterfacesP,0);
 	timecallduration = 0;
 	[(NSTimer*)timer invalidate];
 	
@@ -632,7 +717,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 {
 	//[statusLabelP setText:@"end call"];
 	
-	hangLtpInterface(ownerobject.ltpInterfacesP);
+	hangLtpInterface(ownerobject.ltpInterfacesP,0);
 	timecallduration = 0;
 	[(NSTimer*)timer invalidate];
 	[ownerobject profileResynFromApp];
@@ -664,6 +749,22 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 -(void)setParentObject:(id)parentP
 {
 	callViewControllerP = parentP;
+}
+-(int)isCallOn
+{
+	if(callViewControllerP==nil) return 0;
+	return  [callViewControllerP isCallOn];
+}
+-(int)callDisconnected:(int )llineID
+{
+	timecallduration = [callViewControllerP stopTimer:llineID];
+	if(timecallduration)//mean no call is active
+	{
+		callViewControllerP = 0;
+		return 0;
+		
+	}
+	return 1;
 }
 -(void) setButton:(id) sender
 {
@@ -896,13 +997,19 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				
 				}
 			
-				[callViewControllerP startTimer];
+				[callViewControllerP startTimer:self->lineID];
 			}	
 			break;
 		case ROUTE_CHANGE:
 			[callViewControllerP routeChange:self->subStatus];
 			
 			break;
+		case INCOMMING_CALL_ACCEPTED:
+			if(callViewControllerP)
+			{
+				[callViewControllerP AddIncommingCall:self->lineID:callingstringP :callingstringtypeP];
+				break;
+			}
 		case TRYING_CALL:
 			
 			//[self setViewButton:1];
@@ -957,7 +1064,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			break;
 		case END_CALL_PRESSED:
 				[self setViewButton:0];
-			[callViewControllerP stopTimer];
+			[callViewControllerP stopTimer:self->lineID];
 				callViewControllerP = 0;
 			break;
 		case ALERT_CALL_NOT_START:
@@ -965,12 +1072,18 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			break;
 			
 		case ALERT_DISCONNECTED:
-					[self setViewButton:0];
+			[self setViewButton:0];
 			[calltimerP invalidate];
-			timecallduration = [callViewControllerP stopTimer];
+			timecallduration = [callViewControllerP stopTimer:self->lineID];
+			if(timecallduration)//mean no call is active
+			{
+				callViewControllerP = 0;
+			
+			}
+			
 			timecallduration = 0;
 			//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
-			callViewControllerP = 0;
+			
 			
 			calltimerP = nil;
 			//again for show time for sec
@@ -1013,7 +1126,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 
 }
 
--(void)setStatusText:(NSString *)strP :(NSString *)strtypeP :(int)lstatus :(int)lsubStatus
+-(void)setStatusText:(NSString *)strP :(NSString *)strtypeP :(int)lstatus :(int)lsubStatus :(int)llineID
 {
 	//statusLabelP.text = strP;
 		//[statusLabelP performSelector:@selector(setText:) withObject:@"Updated Text" afterDelay:0.1f];
@@ -1034,6 +1147,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		//[statusLabelP drawRect];
 	self->status = lstatus;
 	self->subStatus = lsubStatus;
+	self->lineID = llineID;
 	[self setButton:nil];
 	//[self performSelectorOnMainThread : @ selector(setButton: ) withObject:nil waitUntilDone:YES];
 	//numberFieldP.text = strP;

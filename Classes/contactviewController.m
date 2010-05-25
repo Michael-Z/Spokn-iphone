@@ -36,6 +36,8 @@
 #import "customcell.h"
 #import "alertmessages.h"
 #import "contactlookup.h"
+#import "spokncalladd.h"
+
 /*
 @interface MyNavControler : UINavigationBar 
 
@@ -58,6 +60,7 @@
 @synthesize ltpInterfacesP;
 @synthesize  uaObject;
 @synthesize parentView;
+@synthesize addcallDelegate;
 
 -(void)hideCallAndVmailButton:(Boolean)showB
 {
@@ -675,6 +678,7 @@
         // Custom initialization
 		[self.tabBarItem   initWithTabBarSystemItem: 
 												  UITabBarSystemItemContacts tag:1];
+		self.addcallDelegate = nil;
 		parentView = 0;
 		sectionArray = [[NSMutableArray alloc] init] ;
     }
@@ -785,7 +789,13 @@ titleForHeaderInSection:(NSInteger)section
 	//searchbar.bounds = cellFrame;
 	
 	#ifdef _NEW_ADDRESS_BOOK_
-	addressBookP = [[ABPeoplePickerNavigationController alloc] init];
+	if(ownerobject.globalAddressP==0)
+	{
+		ownerobject.globalAddressP = [[ABPeoplePickerNavigationController alloc] init];
+		
+	}
+	addressBookP = ownerobject.globalAddressP;
+	[addressBookP retain];
 	[addressBookP setNavigationBarHidden:YES animated:NO];
 	[addressBookP setPeoplePickerDelegate:self];
 	//addressBookP.view.frame = self.view.frame;
@@ -1181,6 +1191,7 @@ titleForHeaderInSection:(NSInteger)section
 	[sectionArray release];
 	[noResultLabelP release];
     [noResultViewP release];
+	//printf("\n contact view dealloc");
 	[super dealloc];
 }
 -(void) setReturnVariable:(id) rootObject :(SelectedContctType *)lselectedContactP: (int *)lvalP
@@ -1383,6 +1394,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+		ContactControllerDetailsviewP.addcallDelegate = self.addcallDelegate;
 		[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];
 		if(parentView)
 		{	
@@ -1441,6 +1453,7 @@ titleForHeaderInSection:(NSInteger)section
 		
 		ContactDetailsViewController     *ContactControllerDetailsviewP;	
 		ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+		ContactControllerDetailsviewP.addcallDelegate = self.addcallDelegate;
 		[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];		//[ ContactControllerDetailsviewP setRecordID:(int)ABRecordGetRecordID(person) : 0];
 		if(parentView)
 		{	
@@ -1534,6 +1547,7 @@ titleForHeaderInSection:(NSInteger)section
 	 */
 	ContactDetailsViewController     *ContactControllerDetailsviewP;	
 	ContactControllerDetailsviewP = [[ContactDetailsViewController alloc] initWithNibName:@"contactDetails" bundle:[NSBundle mainBundle]];
+	ContactControllerDetailsviewP.addcallDelegate = self.addcallDelegate;
 	[ContactControllerDetailsviewP hideCallAndVmailButton:hideCallAndVmailButtonB];
 	[ContactControllerDetailsviewP setObject:self->ownerobject];
 	[ContactControllerDetailsviewP setAddressBook:0 editable:true :CONTACTADDVIEWENUM];

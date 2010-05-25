@@ -29,7 +29,7 @@
 	#include "ltpmobile.h"
 	#include "playrecordpcm.h"
 	//#define USERAGENT  "desktop-windows-d2-1.0"
-	#define USERAGENT "spokn-iphone-0.1.1"
+	#define USERAGENT "spokn-iphone-1.0.0"
 	#define ALERT_OFFLINE_WRONG_ID 1000
 	#define START_LOGIN        6000 
 	#define MAXDATA 2000
@@ -37,6 +37,7 @@
 	#define MAXTIME_RESYNC 180 //this is in sec 
 	#define NO_WIFI_AVAILABLE 1001 
 	#define END_CALL_PRESSED 2150
+	#define MAX_CALL_ALLOWED  4 
 	#define _OWN_THREAD_
 	
   #include <pthread.h>
@@ -73,7 +74,8 @@ typedef struct IncommingCallType
 			int recordUId;
 			int recordID;	
 			int holdB;
-			
+			int muteB;
+			short int blankData[160];//blank data
 			
 		}LtpInterfaceType;
 	void  setLtpUserName(LtpInterfaceType *ltpInterfaceP,char *unameCharP);
@@ -93,8 +95,8 @@ LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNo
 	void outputSoundInterface(void *udata,struct ltpStack *ps, struct Call *pc, short *pcm, int length);
 	int netWriteInterface(void *udata,void *msg, int length, unsigned int32 address, unsigned short16 port);
 	int CallBackSoundPCM(void *uData,sampleFrame *pcmBufferP,unsigned int *lengthP,Boolean recordB);
-	Boolean callLtpInterface(LtpInterfaceType *ltpInterfaceP,char *numberCharP);
-	Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP);
+	int callLtpInterface(LtpInterfaceType *ltpInterfaceP,char *numberCharP);
+Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId);
 	int  CallBackUI(void *uData,Boolean palyBackB);
 	void RemoveSoundThread(LtpInterfaceType *ltpInterfaceP,Boolean playBackB);
 	int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB);
@@ -110,6 +112,10 @@ LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNo
 	int getAddressUid(LtpInterfaceType *ltpInterfaceP);
 	int setHoldInterface(LtpInterfaceType *ltpInterfaceP,int holdB);
 	int setMuteInterface(LtpInterfaceType *ltpInterfaceP,int muteB);
-
+	void startConferenceInterface(LtpInterfaceType *ltpInterfaceP);
+	void switchReinviteInterface(LtpInterfaceType *ltpInterfaceP ,int llineid);
+	void UnconferenceInterface(LtpInterfaceType *ltpInterfaceP); 
+void shiftToConferenceCallInterface(LtpInterfaceType *ltpInterfaceP,int oldLineId);
+	void setPrivateCallInterface(LtpInterfaceType *ltpInterfaceP,int lineid);
 
 #endif
