@@ -168,7 +168,7 @@ typedef struct CallNumberType
 
 	int shifttovmsTab;
 	int isCallOnB;
-
+	int setDeviceID;
 	ABPeoplePickerNavigationController *globalAddressP;
 
 	//@public

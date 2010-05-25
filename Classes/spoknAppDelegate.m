@@ -1557,7 +1557,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 		uniqueIDCharP="\0";
 	}
-	SetDeviceDetail("Spokn","1.0.0","iphone",osVerP,osModelP,uniqueIDCharP);
+	SetDeviceDetail("Spokn","1.1.0","iphone",osVerP,osModelP,uniqueIDCharP);
 
 }
 
@@ -1632,6 +1632,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(str)
 	{	
 		newStr = [str stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" <>"]];
+		setDeviceID = 1;
 		[self setDeviceInforation:newStr];
 	}
 	
@@ -1669,9 +1670,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 	
 	application.applicationIconBadgeNumber = 0;
-	
-	
-			
+	if(setDeviceID==0)
+	{	
+		[self setDeviceInforation:@" "];
+	}		
 		
     // Override point for customization after application launch
 	//CGRect screenBounds = [ [ UIScreen mainScreen ] bounds ];
