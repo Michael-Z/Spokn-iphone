@@ -612,6 +612,10 @@ void getProp()
 				
 			}	
 			printf("main didconnect %d",self->lineID);
+			if(self->subID)
+			{
+				[callviewP missCallSetCount];
+			}
 			if([dialviewP callDisconnected:self->lineID]==0)
 			{	
 			//	[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 :self->lineID];
@@ -627,10 +631,7 @@ void getProp()
 				//reload log
 				[self LoadContactView:callviewP];
 				[callviewP doRefresh];
-				if(self->subID)
-				{
-					[callviewP missCallSetCount];
-				}
+
 				#ifndef _LTP_
 					[nsTimerP invalidate];
 				
