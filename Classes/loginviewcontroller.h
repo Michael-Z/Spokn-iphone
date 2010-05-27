@@ -52,7 +52,7 @@
 
 
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
-- (void)drawRect:(CGRect)rect;
+
 -(void)setObject:(id) object ;
 -(IBAction)loginLtp:(id)sender;
 -(IBAction)openUrl:(id)sender;

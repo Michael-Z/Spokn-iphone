@@ -537,6 +537,7 @@ int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 	if(ltpInterfaceP)
 	{	
 		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGOUT);
+		sip_pj_DeInit(ltpInterfaceP->ltpObjectP);
 		if(clearAllB)
 		{	
 			loggedOut();

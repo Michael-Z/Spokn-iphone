@@ -28,7 +28,7 @@ typedef struct CallStructType
 
 @interface CallManagement : NSObject {
 	CallStructType callID[MAXCALL];
-	
+	int maxCallConf[MAXCALL];
 	int count;
 	int activeLineId;
 	int conferenceOn;
@@ -70,4 +70,6 @@ typedef struct CallStructType
 -(int)getTotalDisplayCall;
 -(int)totalCallInConf;
 -(int)freeSlotForCall;
+-(void)setConfCallIndex;
+
 @end

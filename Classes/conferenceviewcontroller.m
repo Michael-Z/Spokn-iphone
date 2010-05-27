@@ -170,8 +170,9 @@
 			cell.accessoryView = button;
 			[button release];
 			//cell.imageView = [UIImage imageNamed:@"11_declinecall_36_18.png"];
-			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+			
 		}	
+		[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 		cell.imageView.image = [UIImage imageNamed:END_CALL_IMG_PNG];
 		//[cell addSubview:button];
 	}

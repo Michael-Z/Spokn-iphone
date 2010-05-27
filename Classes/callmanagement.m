@@ -191,14 +191,33 @@
 }
 -(NSString*)getStringByIndex:(int)index
 {
+	int j = 0;
 	index++;
-	if(callID[index].isConfB==false)
-	{
-		index++;
-	}
-	return callID[index].labelStrP;
+	
+	j=maxCallConf[index];
+	NSLog(@"\n%d %@",callID[j].lineID,callID[j].labelStrP);
+	return callID[j].labelStrP;
 	
 }
+-(void)setConfCallIndex
+{
+	
+	int j=0;
+	int i=0;
+	memset(maxCallConf,0,MAXCALL);
+	for(i=0;i<MAXCALL;++i)
+	{
+		if(callID[i].isConfB)
+		{
+			maxCallConf[j]=i;
+			j++;
+		}
+			
+	}
+
+
+}
+
 -(void) selectedCall:(int)index
 {
 	if(count<4)//mean only two call in confrence

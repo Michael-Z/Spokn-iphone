@@ -1443,9 +1443,10 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 	//animated:YES]; 
 	dispRow = [callManagmentP getTotalDisplayCall];
 	
-	
+	[callManagmentP setConfCallIndex];
 	spoknconfP = [[ConferenceViewController alloc] initWithNibName:@"conferenceviewcontroller" bundle:[NSBundle mainBundle]];
 	[spoknconfP setDelegate:self];
+	
 	if(dispRow==2)
 	{
 		[spoknconfP showPrivate:NO];
@@ -1529,7 +1530,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 	//[[self navigationController] pushViewController:[[ImageController alloc] init] 
 	//animated:YES]; 
 	dispRow = [callManagmentP getTotalDisplayCall];
-	
+	[callManagmentP setConfCallIndex];
 	
 	spoknconfP = [[ConferenceViewController alloc] initWithNibName:@"conferenceviewcontroller" bundle:[NSBundle mainBundle]];
 	[spoknconfP setDelegate:self];
