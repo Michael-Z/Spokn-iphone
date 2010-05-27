@@ -1147,6 +1147,14 @@ void getProp()
 	//printf("\n msg %d %d %d",spoknMsgP->status,spoknMsgP->subID,spoknMsgP->lineID);
 	[spoknMsgP.spokndelegateP setLtpInfo:spoknMsgP.status :spoknMsgP.subID :spoknMsgP.lineID :spoknMsgP.dataP];
 	[spoknMsgP.spokndelegateP alertAction:nil];
+	if(spoknMsgP.status==ALERT_SERVERMSG)
+	{
+		if(spoknMsgP.dataP)
+		{	
+			free(spoknMsgP.dataP);
+			spoknMsgP.dataP = 0;
+		}	
+	}
 	[spoknMsgP release];
 }
 -(void) sendMessage:(id)object
@@ -1477,8 +1485,25 @@ int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lon
 		tmpObjP.spokndelegateP = spoknDelP;
 		tmpObjP.subID = valSubLong;
 		tmpObjP.lineID = llineID;
-		tmpObjP.dataP =  otherinfoP;
-		
+		if(otherinfoP)
+		{	
+			if(type==ALERT_SERVERMSG)
+			{
+				if(otherinfoP)
+				{	
+					tmpObjP.dataP =  strdup(otherinfoP);
+				}	
+			}
+			else {
+				tmpObjP.dataP =  otherinfoP;
+			}
+
+			
+		}
+		else {
+			tmpObjP.dataP  = 0;
+		}
+
 		[spoknDelP performSelectorOnMainThread : @ selector(sendMessageFromOtherThread: ) withObject:tmpObjP waitUntilDone:NO];
 	}	
 	[autoreleasePool release];
@@ -1502,10 +1527,13 @@ int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lon
 		if(srvMsgCharP)
 		{	
 			free(srvMsgCharP);
+			srvMsgCharP = 0;
 		}
-		srvMsgCharP = malloc(strlen((char*)dataVoidP)+4);
-		strcpy(srvMsgCharP,(char*)dataVoidP);
-		
+		if(dataVoidP)
+		{	
+			srvMsgCharP = malloc(strlen((char*)dataVoidP)+4);
+			strcpy(srvMsgCharP,(char*)dataVoidP);
+		}
 	}
 	
 }
@@ -1656,6 +1684,20 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	return YES;
 }
 */
+
+- (BOOL) checkForIpad 
+{
+	#if (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
+		if ([[UIDevice currentDevice] respondsToSelector: @selector(userInterfaceIdiom)])
+		//	if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) 
+		//	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+			return YES;
+	#endif
+
+	return NO;
+}
+
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 	[self profileResynFromApp];//profile Resyn
 }

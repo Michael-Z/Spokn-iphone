@@ -33,24 +33,26 @@
 @end
 
 @class SpoknAppDelegate;
-@interface LoginViewController : UIViewController<UITextFieldDelegate,LoginProtocol> {
+@interface LoginViewController : UIViewController<UITextFieldDelegate,LoginProtocol,UITableViewDataSource, UITableViewDelegate> {
 	IBOutlet UITextField*usernameFieldP;
 	IBOutlet UITextField *passwordFieldP;
 	IBOutlet UIButton *spoknButtonP;
 	IBOutlet UIButton *mainViewButton;
 	IBOutlet UIButton *lineViewButton;
 	IBOutlet UILabel *loginstatusLabel;
+	IBOutlet UIButton *dividorlineP;
 	//LtpTimer *ltpTimerP;
 	SpoknAppDelegate * ownerobject;
 	LtpInterfaceType *ltpInterfacesP;
 	UIActivityIndicatorView *loginactivityIndicator;
+	IBOutlet UITableView *tableView;
 	
 	
 }
 
 
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
-
+- (void)drawRect:(CGRect)rect;
 -(void)setObject:(id) object ;
 -(IBAction)loginLtp:(id)sender;
 -(IBAction)openUrl:(id)sender;

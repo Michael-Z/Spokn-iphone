@@ -957,8 +957,14 @@
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	sectionViewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	tableView.sectionHeaderHeight = 14;//(tableView.sectionHeaderHeight+4)/2;
-	
+	if([ownerobject checkForIpad] == NO)
+	{ 
+		tableView.sectionHeaderHeight = 14;//(tableView.sectionHeaderHeight+4)/2;
+	}
+	else {
+		tableView.sectionHeaderHeight = 10;
+	}
+
 	tableView.sectionFooterHeight = 0;//(tableView.sectionFooterHeight+4)/2;   	
 	loadedB = true;
 	orignalheight = sectionViewP.frame.size.height;

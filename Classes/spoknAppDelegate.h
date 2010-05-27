@@ -191,7 +191,7 @@ typedef struct CallNumberType
 -(void)startRutine;
 - (void) ProximityChange:(NSNotification *)notification	;
 -(void)onCharging:(NSNotification *)notification;	
-
+- (BOOL) checkForIpad ;
 //#define _TEST_CALL_
 #ifdef _TEST_CALL_
 - (void) handleStartCall: (id) timer;
@@ -270,6 +270,7 @@ changed:(BOOL)changed;
 -(void)setDeviceInforation:(NSString *)deviceTokenP;
 -(void)sendMessageFromOtherThread:(spoknMessage*)spoknMsgP;
 -(void) setIncommingCallDelegate:(id)incommingP;
+
 @end
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);

@@ -70,7 +70,6 @@
 }
 */
 
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,8 +78,10 @@
 	char *unameP;
 	char *passwordP;
 
-	loginstatusLabel.textColor = [[UIColor grayColor] autorelease];
-	
+	tableView.delegate = self;
+	tableView.dataSource = self;
+	tableView.backgroundColor = [[UIColor clearColor] autorelease];
+	self->tableView.scrollEnabled = NO;
 	if(ltpInterfacesP)
 	{	
 		unameP = getLtpUserName(ltpInterfacesP);
@@ -97,12 +98,13 @@
 	usernameFieldP.delegate = self;
 	passwordFieldP.delegate = self;
 	[usernameFieldP becomeFirstResponder];
+	
 	[ownerobject setLoginDelegate:self];
 	loginactivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 	[loginactivityIndicator setCenter:CGPointMake(80.0f, 140.0f)];
 	[self.view addSubview:loginactivityIndicator];
 	loginstatusLabel.hidden = YES;
-
+	[tableView reloadData];
 
 }
 
@@ -118,6 +120,7 @@
 	lineViewButton.hidden = YES;
 	usernameFieldP.hidden = YES;
 	passwordFieldP.hidden = YES;
+	tableView.hidden = YES;
 }
 
 -(void) stoploginIndicator
@@ -127,6 +130,7 @@
 	lineViewButton.hidden = NO;
 	usernameFieldP.hidden = NO;
 	passwordFieldP.hidden = NO;
+	tableView.hidden = NO;
 }
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -274,6 +278,63 @@
 {
 	self->ownerobject = object;
 }
+#pragma mark Table view methods
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Detemine if it's in editing mode
+	
+    return UITableViewCellEditingStyleNone;
+}
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return 1;
+}
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	
+	return 2;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 50;
+	
+}
+- (UITableViewCell *)tableView:(UITableView *)ltableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSInteger row = [indexPath row];
+	NSInteger section = [indexPath section];
+    
+	static NSString *CellIdentifier = @"Cell";
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
+#ifdef __IPHONE_3_0
+		
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+#else
+		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+#endif
+		
+		if(section==0 && row==0 )
+		{
+		//	cell.text = @"Oth row";
+			usernameFieldP.frame = CGRectMake(cell.frame.origin.x+20,cell.frame.origin.y, cell.frame.size.width-50, cell.frame.size.height);
+			[cell addSubview:usernameFieldP];
+			[usernameFieldP becomeFirstResponder];
+
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		}
+		if(section==0 && row==1 )
+		{
+			passwordFieldP.frame = CGRectMake(cell.frame.origin.x+20,cell.frame.origin.y, cell.frame.size.width-50, cell.frame.size.height);
+			[cell addSubview:passwordFieldP];
+			[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+		}
+	}	
+	
+	return cell;
+
+}
+- (void)tableView:(UITableView *)ltableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	//int row = [indexPath row];
+	//int section = [indexPath section];
+}
 @end
