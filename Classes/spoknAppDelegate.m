@@ -90,8 +90,11 @@
 	if(self.onLineB)
 	{	
 		profileResync();
-	}	
-	
+	}
+	else
+	{
+		[self startCheckNetwork];
+	}
 }
 -(int) profileResynFromApp
 {

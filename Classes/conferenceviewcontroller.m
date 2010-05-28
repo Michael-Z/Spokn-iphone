@@ -133,7 +133,6 @@
 {
 	UIView *lsuperView;
 	lsuperView = [buttonP superview]; 
-	printf("super %d",lsuperView.tag);
 	[addCallP selectedCall:lsuperView.tag-1000];
 	[[self navigationController] popViewControllerAnimated:YES];
 
@@ -157,7 +156,7 @@
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
 #endif
 		cell.textLabel.textColor = [[UIColor whiteColor] autorelease];
-		cell.textLabel.text = resultP;
+		
 		if(showB)
 		{	
 			UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];

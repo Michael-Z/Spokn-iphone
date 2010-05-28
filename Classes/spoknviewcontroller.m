@@ -703,7 +703,7 @@ titleForHeaderInSection:(NSInteger)section
 			}	
 			//switchView.on = YES;
 			[labelForword setTextColor:SPOKNCOLOR]; 
-			printf("forward number set");
+
 		}
 		else
 		{

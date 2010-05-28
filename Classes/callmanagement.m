@@ -47,7 +47,7 @@
 	for(i=0;i<MAXCALL;++i)
 	{
 		
-		for(j=0;j<MAXCALL-2;++j)
+		for(j=0;j<MAXCALL-1;++j)
 		{
 			if(callID[j].order>callID[j+1].order)
 			{

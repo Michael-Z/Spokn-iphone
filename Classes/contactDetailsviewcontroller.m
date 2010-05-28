@@ -1461,8 +1461,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	if(hideCallAndVmailButtonB && editableB==false)//dont to any thing
 	{
 		[self->tableView deselectRowAtIndexPath : newIndexPath animated:YES];
-		[addcallDelegate makeCall:sectionArray[section].dataforSection[row].elementP];
-		return;
+		
+		if(addcallDelegate)
+		{	
+			
+			[addcallDelegate makeCall:sectionArray[section].dataforSection[row].elementP];
+			return;
+		}	
 	}
 	
 	//selection = [[[UIFont familyNames] objectAtIndex:[newIndexPath row]] retain];
