@@ -674,7 +674,7 @@ void getProp()
 			loginProgressStart = 0;
 			[vmsviewP setcomposeStatus:1 ];
 			[loginProtocolP stoploginIndicator];
-			
+			ltpInterfacesP->valChange=1;
 			
 			#ifndef _LTP_
 			[nsTimerP invalidate];
