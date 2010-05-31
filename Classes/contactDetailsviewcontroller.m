@@ -963,6 +963,7 @@
 	}
 	else {
 		tableView.sectionHeaderHeight = 10;
+		
 	}
 
 	tableView.sectionFooterHeight = 0;//(tableView.sectionFooterHeight+4)/2;   	

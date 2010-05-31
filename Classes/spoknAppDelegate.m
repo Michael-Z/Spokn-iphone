@@ -751,8 +751,20 @@ void getProp()
 							}	
 							break;
 					case LOGIN_STATUS_TIMEDOUT:
-						[loginProtocolP stoploginIndicator];
-						[dialviewP setStatusText: _STATUS_TIMEOUT2_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
+						if(showErrorOnTimeOut(ltpInterfacesP))
+						{	
+							[loginProtocolP stoploginIndicator];
+							[dialviewP setStatusText: _STATUS_TIMEOUT2_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
+						}
+						else {
+									if(DoLtpLogin(self.ltpInterfacesP)==0)
+									{	
+										//[dialviewP setStatusText:_STATUS_CONNECTING_ :nil :START_LOGIN :0 :self->lineID];
+										[loginProtocolP startloginIndicator];
+										[spoknViewControllerP startProgress];
+									}	
+						}
+
 						break;
 					default:
 						[loginProtocolP stoploginIndicator];
@@ -1161,6 +1173,14 @@ void getProp()
 	}
 	[spoknMsgP release];
 }
+-(int)getIncommingLineID
+{
+	if(self->callNumber.direction==2)//incomming call
+	{
+		return self->callNumber.lineId;
+	}
+	return -1;
+}
 -(void) sendMessage:(id)object
 {
 	//[nc postNotificationName:@"ALERTNOTIFICATION" object:(id)object userInfo:nil];
@@ -1444,6 +1464,7 @@ int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lon
 				break;
 			case 2:
 				AcceptInterface(spoknDelP->ltpInterfacesP, spoknDelP->callNumber.lineId);
+				er = spoknDelP->callNumber.lineId;
 				spoknDelP->callNumber.direction = 0;
 				
 				break;
@@ -1592,6 +1613,31 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 		uniqueIDCharP="\0";
 	}
+	ipadB = 0;
+	if(model)
+	{
+		NSRange range={0,0};
+		range = [model rangeOfString:@"iPad" options:NSCaseInsensitiveSearch];
+		if (range.location !=NSNotFound)
+		{
+				ipadB = 1;
+		}
+		
+		
+		
+	
+	}
+	if(ipadB==0)
+	{
+		double x;
+		x = [versionP doubleValue];
+		
+		if(x>=3.2 && x<3.3)
+		{
+			ipadB = 1;
+		}
+		
+	}
 	SetDeviceDetail("Spokn","1.1.0","iphone",osVerP,osModelP,uniqueIDCharP);
 
 }
@@ -1691,14 +1737,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 - (BOOL) checkForIpad 
 {
-	#if (__IPHONE_OS_VERSION_MAX_ALLOWED >= 30200)
-		if ([[UIDevice currentDevice] respondsToSelector: @selector(userInterfaceIdiom)])
-		//	if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) 
-		//	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-			return YES;
-	#endif
+	return self->ipadB;
 
-	return NO;
 }
 
 
@@ -1899,8 +1939,14 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		setLtpServer(ltpInterfacesP,"www.spokn.com");
 #endif	
 		
+		int stunServer;
+		stunServer = [[NSUserDefaults standardUserDefaults] integerForKey:@"stunserversetting"];
+		if(stunServer)
+		{
+			stunServer--;
+			setStunSettingIngetface(ltpInterfacesP, stunServer);
 		
-		
+		}
 		//start ua 
 		UACallBackType uaCallback = {0};
 		uaCallback.uData = self;
@@ -2064,6 +2110,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	int count;
 	
+	[[NSUserDefaults standardUserDefaults] setInteger:getStunSettingInterface(ltpInterfacesP)+1  forKey:@"stunserversetting"];
 	count = newVMailCount();
 	if(count)
 	{	

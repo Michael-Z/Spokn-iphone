@@ -119,4 +119,5 @@
 -(void) objectDestroy;
 -(int)isCallOn;
 -(int)AddIncommingCall :(int)llineID :(NSString*)labelStrP :(NSString*)typeStrP;
+
 @end

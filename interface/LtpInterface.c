@@ -447,6 +447,26 @@ LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNo
 	}
 	return NULL;
 }
+int  showErrorOnTimeOut(LtpInterfaceType *ltpInterfaceP)
+{
+	if(ltpInterfaceP->valChange==0)
+	{
+		ltpInterfaceP->valChange = 1;
+		ltpInterfaceP->ltpObjectP->stunB = !ltpInterfaceP->ltpObjectP->stunB;
+		//ltpInterfaceP->ltpObjectP->timeOut = MAXTIMEOUT*2;
+		return 0;//attempt relogin
+	}
+	return 1;
+}
+void setStunSettingIngetface(LtpInterfaceType *ltpInterfaceP, int stunB)
+{
+	//ltpInterfaceP->ltpObjectP->stunB = 1;
+	ltpInterfaceP->ltpObjectP->stunB = stunB;
+}
+int  getStunSettingInterface(LtpInterfaceType *ltpInterfaceP)
+{
+	return ltpInterfaceP->ltpObjectP->stunB;
+}
 int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 {
 	

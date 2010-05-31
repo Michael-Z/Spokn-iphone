@@ -75,6 +75,7 @@ typedef struct IncommingCallType
 			int recordID;	
 			int holdB;
 			int muteB;
+			int valChange;
 			short int blankData[160];//blank data
 			
 		}LtpInterfaceType;
@@ -115,7 +116,9 @@ Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId);
 	void startConferenceInterface(LtpInterfaceType *ltpInterfaceP);
 	void switchReinviteInterface(LtpInterfaceType *ltpInterfaceP ,int llineid);
 	void UnconferenceInterface(LtpInterfaceType *ltpInterfaceP); 
-void shiftToConferenceCallInterface(LtpInterfaceType *ltpInterfaceP,int oldLineId);
+	void shiftToConferenceCallInterface(LtpInterfaceType *ltpInterfaceP,int oldLineId);
 	void setPrivateCallInterface(LtpInterfaceType *ltpInterfaceP,int lineid);
-
+	int  showErrorOnTimeOut(LtpInterfaceType *ltpInterfaceP);
+void setStunSettingIngetface(LtpInterfaceType *ltpInterfaceP, int stunB);
+	int  getStunSettingInterface(LtpInterfaceType *ltpInterfaceP);
 #endif

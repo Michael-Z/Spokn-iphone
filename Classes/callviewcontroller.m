@@ -318,8 +318,14 @@ CallViewController *globalCallViewControllerP;
 	//	printf("\n session active");
 		[self->parentObjectDelegate setParentObject:self];
 		int llineID =1;
+		int incommingLineID = [ownerobject getIncommingLineID];
+		if(incommingLineID>=0)
+		{
+			[callManagmentP addCall:incommingLineID :labelStrP :labeltypeStrP];
+			[callManagmentP callStart:incommingLineID];
+		}
 		llineID = alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
-		if(llineID>=0)
+		if(llineID>=0 && incommingLineID <0)
 		{	
 			[callManagmentP addCall:llineID :labelStrP :labeltypeStrP];
 		}
@@ -353,13 +359,13 @@ CallViewController *globalCallViewControllerP;
 	CGRect LabelFrame2;
 	LabelFrame2 = callnoLabelP.frame;
 	LabelFrame2.origin.x = 0;
-	LabelFrame2.origin.y = 0;
+	LabelFrame2.origin.y = 7;
 	LabelFrame2.size.height = 50;
 	callnoLabelP.frame = LabelFrame2;
 	LabelFrame2 = callTypeLabelP.frame;
 	LabelFrame2.origin.x = 0;
 	LabelFrame2.origin.y = 0;
-	LabelFrame2.size.height = 50;
+	LabelFrame2.size.height = 44;
 	callTypeLabelP.frame = LabelFrame2;
 	callTypeLabelP.textColor=[UIColor whiteColor];
 	tableView.editing = NO;

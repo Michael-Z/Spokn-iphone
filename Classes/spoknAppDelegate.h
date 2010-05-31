@@ -169,6 +169,7 @@ typedef struct CallNumberType
 	int shifttovmsTab;
 	int isCallOnB;
 	int setDeviceID;
+	int ipadB;
 	ABPeoplePickerNavigationController *globalAddressP;
 
 	//@public
@@ -270,7 +271,7 @@ changed:(BOOL)changed;
 -(void)setDeviceInforation:(NSString *)deviceTokenP;
 -(void)sendMessageFromOtherThread:(spoknMessage*)spoknMsgP;
 -(void) setIncommingCallDelegate:(id)incommingP;
-
+-(int)getIncommingLineID;
 @end
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
