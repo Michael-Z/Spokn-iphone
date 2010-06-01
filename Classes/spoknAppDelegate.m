@@ -1617,6 +1617,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(model)
 	{
 		NSRange range={0,0};
+		
 		range = [model rangeOfString:@"iPad" options:NSCaseInsensitiveSearch];
 		if (range.location !=NSNotFound)
 		{
@@ -1994,7 +1995,50 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 												   object:device];
 		
 }
+-(void)registerUnregisterOriantation:(BOOL)registerB
+{
+	UIDevice *device = [UIDevice currentDevice];
+	prioximityB = 0;
+	if(registerB)
+	{	
+		[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(onOrientationChangeApp:)
+												 name:UIDeviceOrientationDidChangeNotification
+											   object:device];
+	}
+	else {
+		[[NSNotificationCenter defaultCenter] removeObserver:self
+												  name:UIDeviceOrientationDidChangeNotification
+												   object:device];
+	}
+
+
+}
 	
+-(void)onOrientationChangeApp:(NSNotification *)notification
+	{
+		
+		
+
+		if(prioximityB)
+		{	
+			UIDevice *device = [notification object];
+			if(device.orientation!=UIDeviceOrientationLandscapeLeft && device.orientation!=UIDeviceOrientationLandscapeRight)
+			{
+				if(VmsProtocolP)
+				{	
+					//if(device.proximityState)
+					{	
+						[VmsProtocolP proximityChange:0];
+					}	
+				}
+				else{
+						[VmsProtocolP proximityChange:1];
+				}
+			}	
+		}	
+	
+	}
 -(void)onCharging:(NSNotification *)notification
 {
 	UIDevice *device = [notification object];
@@ -2015,8 +2059,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 	if(VmsProtocolP)
 	{	
-		
-		[VmsProtocolP proximityChange:device.proximityState];
+		if(device.proximityState)
+		{	
+			[VmsProtocolP proximityChange:device.proximityState];
+			prioximityB = 1;
+		}	
 	}
 }	
 /*

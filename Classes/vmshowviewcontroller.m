@@ -440,14 +440,18 @@
 }
 - (void)proximityChange:(BOOL)onB
 {
-	
+	printf(" val = %d ",onB);
 	
 	if(onB)
 	{
-	RouteAudio(0,2);
+		checkRouteB = 0;
+		RouteAudio(0,2);
 	}
 	else {
-		RouteAudio(0,4);
+		if(checkRouteB==0)
+		{	
+			RouteAudio(0,4);
+		}	
 	}
 
 	//SetSpeakerOnOrOffNew(0,!onB);
@@ -456,6 +460,7 @@
 }
 - (void)VmsStop
 {
+	[ownerobject registerUnregisterOriantation:NO];
 #ifdef __IPHONE_3_0
 	[UIDevice currentDevice].proximityMonitoringEnabled = NO;
 #else
@@ -563,6 +568,13 @@
 	if(amt<maxTime)
 	{	
 		amt += 1;
+		if(checkRouteB)
+		{
+			checkRouteB  =  false;
+			UIDevice *device = [UIDevice currentDevice];
+			printf("state %d",device.proximityState); 
+		}
+		
 	#ifdef PROGRESS_VIEW
 
 		[uiProgBarP setProgress: (amt / maxTimeLoc)];
@@ -647,6 +659,7 @@
 			return;
 			
 		}
+		[ownerobject registerUnregisterOriantation:YES];
 		#ifdef __IPHONE_3_0
 				[UIDevice currentDevice].proximityMonitoringEnabled = YES;
 		#else
@@ -771,6 +784,7 @@
 		[sendButtonP setTitleColor:[[UIColor grayColor] autorelease ]  forState:UIControlStateHighlighted];
 		//[sendButtonP setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.5]  forState:UIControlStateDisabled];
 		[sendButtonP setTitleColor:[[UIColor grayColor] autorelease]  forState:UIControlStateDisabled];
+		[ownerobject registerUnregisterOriantation:YES];
 		#ifdef __IPHONE_3_0
 				[UIDevice currentDevice].proximityMonitoringEnabled = YES;
 		#else
@@ -1663,6 +1677,7 @@ id createImage(float percentage)
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
 	doNothing = 0;
 	sendButtonP.exclusiveTouch = YES;
 	previewButtonP.exclusiveTouch = YES;
@@ -2017,6 +2032,7 @@ id createImage(float percentage)
 
 
 - (void)dealloc {
+	
 	
 	if(alertgP)
 	{	

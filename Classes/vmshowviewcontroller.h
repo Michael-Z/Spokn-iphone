@@ -98,6 +98,8 @@ typedef enum  VMSStateType
 	Boolean contactPickB;
 	UIAlertView *alertgP;
 	UIActionSheet *uiActionSheetgP;
+	int checkRouteB;
+	
 	
 	//(SelectedContctType *)lselectedContactP
 	
