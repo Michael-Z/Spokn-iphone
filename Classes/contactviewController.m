@@ -1701,7 +1701,12 @@ titleForHeaderInSection:(NSInteger)section
 		for (i=0;i<count;++i)
 		{
 			sectionData *secP;
-			addressP = GetObjectAtIndex(uaObject ,i);		
+			addressP = GetObjectAtIndex(uaObject ,i);	
+			if(addressP==0)
+			{
+				continue;
+			}
+				
 			ignoreSpaceStrP = addressP->title;
 			
 			while(*ignoreSpaceStrP==' ')

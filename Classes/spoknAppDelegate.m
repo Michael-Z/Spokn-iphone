@@ -651,6 +651,10 @@ void getProp()
 			}	
 			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 			break;
+		case  ATTEMPT_LOGIN:
+			
+			SendLoginPacket(self->ltpInterfacesP);
+			break;
 		case START_LOGIN:
 				if(self->subID==1)//mean no connectivity
 				{

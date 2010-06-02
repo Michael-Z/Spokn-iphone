@@ -504,6 +504,44 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 		pthread_mutex_destroy(&mutex);
 		return 0;
 }
+void *createThread(void *spoknP)
+{
+	char errorstring[50]; 
+	LtpInterfaceType *ltpInterfaceP;
+	ltpInterfaceP = (LtpInterfaceType *)spoknP;
+	ltpInterfaceP->pjsipThreadStartB = 1;
+	if(sip_spokn_pj_config(ltpInterfaceP->ltpObjectP,errorstring)==1)
+	{
+		
+		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN,0,0,ltpInterfaceP->userData,0);
+
+		
+	}
+	ltpInterfaceP->pjsipThreadStartB =0;
+	return 0;
+	
+}
+void startThreadLogin(LtpInterfaceType *ltpInterfaceP)
+{
+	pthread_t pt;
+	sip_spokn_pj_Create(ltpInterfaceP->ltpObjectP);
+	pthread_create(&pt, 0,createThread,ltpInterfaceP);
+}
+int SendLoginPacket(LtpInterfaceType *ltpInterfaceP)
+{
+	if(ltpInterfaceP->LogoutSendB) 
+	{
+		sip_pj_DeInit(ltpInterfaceP->ltpObjectP);
+		ltpInterfaceP->LogoutSendB = 0;
+	}
+	else {
+		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
+	}
+
+	return 0;
+
+
+}
 int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 {
 	
@@ -518,32 +556,36 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 	}
 	if(ltpInterfaceP->connectionActiveByte)
 	{	
-		char errorstr[50];
-		
+		//char errorstr[50];
+		if(ltpInterfaceP->LogoutSendB)
+		{
+			return 0;
+		}
 		
 		if(ltpInterfaceP->ltpObjectP->sipOnB==false)
 		{	
 			restartSocket(&ltpInterfaceP->socketID);
+			ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
 		}
 		else
 		{	
 			if(ltpInterfaceP->pjsipStartB==false)
 			{	
 			
-
-				if (!sip_spokn_pj_init(ltpInterfaceP->ltpObjectP,errorstr)){
+				startThreadLogin(ltpInterfaceP);	
+				
+				/*if (!sip_spokn_pj_init(ltpInterfaceP->ltpObjectP,errorstr)){
 
 				
 					return 1;
 			
-				}
+				}*/
 			//ltpInterfaceP->pjsipStartB==true;
 			}	
+			
 		}	
-		
-		
-		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
 		ltpInterfaceP->alertNotifyP(START_LOGIN,0,0,ltpInterfaceP->userData,0);
+		
 	}
 	else
 	{
@@ -557,8 +599,15 @@ int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 {
 	if(ltpInterfaceP)
 	{	
-		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGOUT);
-		sip_pj_DeInit(ltpInterfaceP->ltpObjectP);
+		if(ltpInterfaceP->pjsipThreadStartB==false || ltpInterfaceP->ltpObjectP->sipOnB==false)
+		{	
+			ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGOUT);
+			sip_pj_DeInit(ltpInterfaceP->ltpObjectP);
+		}	
+		else {
+			ltpInterfaceP->LogoutSendB = 1;
+		}
+
 		if(clearAllB)
 		{	
 			loggedOut();

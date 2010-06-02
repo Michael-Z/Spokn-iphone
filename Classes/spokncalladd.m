@@ -257,7 +257,7 @@
 }
 - (void)viewDidDisappear:(BOOL)animated;  // Called after the view was dismissed, covered or otherwise hidden. Default does nothing
 {
-	[super viewDidAppear:animated];
+	[super viewDidDisappear:animated];
 	
 }
 - (void)didReceiveMemoryWarning {

@@ -32,6 +32,7 @@
 	#define USERAGENT "spokn-iphone-1.0.0"
 	#define ALERT_OFFLINE_WRONG_ID 1000
 	#define START_LOGIN        6000 
+	#define ATTEMPT_LOGIN      6010  
 	#define MAXDATA 2000
 	#define MAXINCALL 15 
 	#define MAXTIME_RESYNC 180 //this is in sec 
@@ -76,6 +77,8 @@ typedef struct IncommingCallType
 			int holdB;
 			int muteB;
 			int valChange;
+			int pjsipThreadStartB;
+			int LogoutSendB;
 			short int blankData[160];//blank data
 			
 		}LtpInterfaceType;
@@ -121,4 +124,5 @@ Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId);
 	int  showErrorOnTimeOut(LtpInterfaceType *ltpInterfaceP);
 void setStunSettingIngetface(LtpInterfaceType *ltpInterfaceP, int stunB);
 	int  getStunSettingInterface(LtpInterfaceType *ltpInterfaceP);
+int SendLoginPacket(LtpInterfaceType *ltpInterfaceP);
 #endif
