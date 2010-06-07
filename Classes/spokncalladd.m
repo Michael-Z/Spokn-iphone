@@ -66,9 +66,16 @@
 }
 -(void)makeCall:(char*)numberP
 {
-//	printf("\n number %s",numberP);
+
 	[callViewCtlP makeCall:numberP];
-	[self.parentViewController dismissModalViewControllerAnimated:YES ];
+	/*if([callViewCtlP childWillDie])
+	{	
+		
+		[self dismissModalViewControllerAnimated:YES ];
+	
+	}*/
+	[self dismissModalViewControllerAnimated:YES ];
+	
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	
@@ -85,7 +92,14 @@
 	
 	if(point.y<40)
 	{	
-		[self.parentViewController dismissModalViewControllerAnimated:YES ];
+		/*if([callViewCtlP childWillDie])
+		{	
+			
+			[self dismissModalViewControllerAnimated:YES ];
+			
+		}		
+		*/
+		[self dismissModalViewControllerAnimated:YES ];
 	}	
 }
 -(void)setObject:(id) object 
@@ -248,10 +262,30 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
+- (void) removeController: (id) timer
+{
+	[timer invalidate];
+	timer = nil;
+	[self dismissModalViewControllerAnimated:YES];
+	
+	
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
 	
+	if([callViewCtlP childWillDie]==0)
+	{
+		removeControllerB = 0;
+		[NSTimer scheduledTimerWithTimeInterval: 0.1
+										 target: self
+									   selector: @selector(removeController:)
+									   userInfo: nil
+										repeats: NO];
+		
+				
+	}
 	//[contactP updateUI]; 
 	
 }
@@ -282,6 +316,8 @@
 	#endif
 }
 - (void)dealloc {
+	
+	
 	callViewCtlP.showContactCallOnDelegate = nil;
 	[tabBarControllerP release];
 	tmpCtl.delegate =nil;
@@ -302,5 +338,8 @@
 {
 	//- (void)updateSpotlight;
 }
-
+-(void)removeController
+{
+	removeControllerB = true;
+}
 @end

@@ -663,7 +663,7 @@
 	}	
 	else
 	{
-		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+		[self dismissModalViewControllerAnimated:YES];
 	}
 }
 -(IBAction)doneClicked
@@ -771,7 +771,7 @@
 		}	
 		else
 		{
-			[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+			[self dismissModalViewControllerAnimated:YES];
 			[ownerobject refreshallViews];
 		}
 		if(retValP)
@@ -1465,8 +1465,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 		
 		if(addcallDelegate)
 		{	
-			
-			[addcallDelegate makeCall:sectionArray[section].dataforSection[row].elementP];
+			if(sectionArray[section].dataforSection[row].elementP)
+			{	
+				if(strstr( sectionArray[section].dataforSection[row].elementP,"@")==0)
+				{	
+					[addcallDelegate makeCall:sectionArray[section].dataforSection[row].elementP];
+				
+				}
+			}
 			return;
 		}	
 	}

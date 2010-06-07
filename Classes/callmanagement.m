@@ -28,6 +28,12 @@
 	}
 	return -1;
 }
+-(int)getLineIdByIndex:(int)index
+{
+	if(index<0 || index>MAXCALL)
+		return -1;
+	return callID[index].lineID;
+}
 -(int) resetLineId
 {
 	for(int i=0;i<MAXCALL;++i)
@@ -147,7 +153,7 @@
 }
 -(int)freeSlotForCall
 {
-	if(count<MAXCALL)
+	if(count<MAXCALL-1)
 	{
 		return 0;
 	}
@@ -160,7 +166,7 @@
 		
 	int t;
 	t = [self addLineId:llineID];
-	if(t<0)
+	if(t<0 ||llineID==200 )
 	{
 		return 1;
 	
@@ -195,7 +201,7 @@
 	index++;
 	
 	j=maxCallConf[index];
-	NSLog(@"\n%d %@",callID[j].lineID,callID[j].labelStrP);
+	//NSLog(@"\n%d %@",callID[j].lineID,callID[j].labelStrP);
 	return callID[j].labelStrP;
 	
 }
@@ -639,7 +645,12 @@
 			
 		}
 	}
-	
+	conferenceOn = 0;
+	showDiscloser = 0;
+	if(count)
+	{
+		totalDisplayCall=1;
+	}
 	activeLineId =  [self sortByOrder];
 	return activeLineId;
 
@@ -720,7 +731,7 @@
 	else {
 		*holdImagePP = [[NSString alloc ] initWithString:HOLD_CALL_PNG];
 		*addCallImagePP = [[NSString alloc ] initWithString:ADD_CALL_PNG];
-		if(count<MAXCALL)
+		if(count<MAXCALL-1)
 		{
 			
 			if(disableP)

@@ -440,7 +440,7 @@
 }
 - (void)proximityChange:(BOOL)onB
 {
-	printf(" val = %d ",onB);
+	
 	
 	if(onB)
 	{
@@ -571,8 +571,8 @@
 		if(checkRouteB)
 		{
 			checkRouteB  =  false;
-			UIDevice *device = [UIDevice currentDevice];
-			printf("state %d",device.proximityState); 
+		//	UIDevice *device = [UIDevice currentDevice];
+			
 		}
 		
 	#ifdef PROGRESS_VIEW
@@ -1766,7 +1766,7 @@ id createImage(float percentage)
 		
 		[self stopButtonPressed:nil];
 		//[ ownerobject.vmsNavigationController popViewControllerAnimated:NO ];
-		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+		[self dismissModalViewControllerAnimated:YES];
 		
 	}	
 	

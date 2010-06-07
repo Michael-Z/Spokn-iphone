@@ -33,6 +33,7 @@
 	#define ALERT_OFFLINE_WRONG_ID 1000
 	#define START_LOGIN        6000 
 	#define ATTEMPT_LOGIN      6010  
+	#define ATTEMPT_LOGIN_ERROR      6015 
 	#define MAXDATA 2000
 	#define MAXINCALL 15 
 	#define MAXTIME_RESYNC 180 //this is in sec 

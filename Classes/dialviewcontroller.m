@@ -41,8 +41,9 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 @synthesize currentView;
 @synthesize addcallDelegate;
 
--(UIViewController*)getCallViewController
+-(CallViewController*)getCallViewController
 {
+	
 	return self->callViewControllerP;
 	
 }
@@ -1007,10 +1008,15 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			[callViewControllerP routeChange:self->subStatus];
 			
 			break;
+		case INCOMMING_CALL_REJECT:
+			[callViewControllerP removeTempId];
+			break;
 		case INCOMMING_CALL_ACCEPTED:
 			if(callViewControllerP)
 			{
+				[callViewControllerP removeTempId];
 				[callViewControllerP AddIncommingCall:self->lineID:callingstringP :callingstringtypeP];
+				
 				break;
 			}
 		case TRYING_CALL:
@@ -1020,7 +1026,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			if(callViewControllerP==0)
 			{	
 				
-			//	AudioSessionSetActive(true);
+				AudioSessionSetActive(true);
 				//SetAudioTypeLocal(self,0);
 
 				//setHoldInterface(ownerobject.ltpInterfacesP, 0);

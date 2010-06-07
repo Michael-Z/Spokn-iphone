@@ -493,6 +493,11 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 		}	
 		#endif
 	#endif
+	if(ltpInterfaceP->ltpObjectP->sipOnB)
+	{
+		sip_pj_DeInit(ltpInterfaceP->ltpObjectP);
+		ltpInterfaceP->pjsipStartB = false;
+	}
 	if(terminateThread()==0)
 	{	
 		free(ltpInterfaceP->ltpObjectP);
@@ -510,12 +515,17 @@ void *createThread(void *spoknP)
 	LtpInterfaceType *ltpInterfaceP;
 	ltpInterfaceP = (LtpInterfaceType *)spoknP;
 	ltpInterfaceP->pjsipThreadStartB = 1;
+	errorstring[0] = 0;
 	if(sip_spokn_pj_config(ltpInterfaceP->ltpObjectP,errorstring)==1)
 	{
 		
 		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN,0,0,ltpInterfaceP->userData,0);
 
 		
+	}
+	else
+	{
+		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN_ERROR,0,0,ltpInterfaceP->userData,strdup(errorstring));
 	}
 	ltpInterfaceP->pjsipThreadStartB =0;
 	return 0;
@@ -524,14 +534,20 @@ void *createThread(void *spoknP)
 void startThreadLogin(LtpInterfaceType *ltpInterfaceP)
 {
 	pthread_t pt;
-	sip_spokn_pj_Create(ltpInterfaceP->ltpObjectP);
-	pthread_create(&pt, 0,createThread,ltpInterfaceP);
+	if(sip_spokn_pj_Create(ltpInterfaceP->ltpObjectP))
+	{	
+		pthread_create(&pt, 0,createThread,ltpInterfaceP);
+	}
+	else {
+		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN_ERROR,0,0,ltpInterfaceP->userData,strdup("sip library can not create."));
+	}
+
 }
 int SendLoginPacket(LtpInterfaceType *ltpInterfaceP)
 {
 	if(ltpInterfaceP->LogoutSendB) 
 	{
-		sip_pj_DeInit(ltpInterfaceP->ltpObjectP);
+		//sip_pj_DeInit(ltpInterfaceP->ltpObjectP);
 		ltpInterfaceP->LogoutSendB = 0;
 	}
 	else {
@@ -559,6 +575,7 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 		//char errorstr[50];
 		if(ltpInterfaceP->LogoutSendB)
 		{
+			ltpInterfaceP->LogoutSendB = 0;
 			return 0;
 		}
 		
@@ -580,8 +597,12 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 					return 1;
 			
 				}*/
-			//ltpInterfaceP->pjsipStartB==true;
+				ltpInterfaceP->pjsipStartB=true;
 			}	
+			else {
+				SendLoginPacket(ltpInterfaceP);
+			}
+
 			
 		}	
 		ltpInterfaceP->alertNotifyP(START_LOGIN,0,0,ltpInterfaceP->userData,0);
@@ -602,7 +623,7 @@ int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 		if(ltpInterfaceP->pjsipThreadStartB==false || ltpInterfaceP->ltpObjectP->sipOnB==false)
 		{	
 			ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGOUT);
-			sip_pj_DeInit(ltpInterfaceP->ltpObjectP);
+			
 		}	
 		else {
 			ltpInterfaceP->LogoutSendB = 1;

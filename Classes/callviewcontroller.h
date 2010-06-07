@@ -64,6 +64,7 @@
 	Boolean  actualDismissB;
 	Boolean loadedB;
 	Boolean delTextB;
+	Boolean refreshViewB;
 	id<ShowContactCallOnDelegate> showContactCallOnDelegate;
 	//Boolean needTOStartTimerB;
 	id<ShowContactCallOnDelegate> parentObjectDelegate;
@@ -83,7 +84,7 @@
 	int muteOnB;
 	//IBOutlet UIButton *testP;
 
-
+	int gchildWillDie;
 }
 -(void)setObject:(id) object ;
 -(void)setParentObject:(id) object ;
@@ -107,7 +108,7 @@
 -(void)setSpeakerButtonImage;
 -(void)setSelectedOrUnselectedImage:(UIButton*)selectedButtonP :(UIImage*)imageP;
 -(void) changeSelectedImage;
--(void)sendLtpHang;
+-(void)sendLtpHang:(int)lineID;
 -(void)removeCallview;
 -(void)makeCall:(char*)numberP;
 -(IBAction)callAdded:(id)sender;
@@ -119,5 +120,8 @@
 -(void) objectDestroy;
 -(int)isCallOn;
 -(int)AddIncommingCall :(int)llineID :(NSString*)labelStrP :(NSString*)typeStrP;
-
+-(void) removeTempId;
+-(void) addTempId;
+-(void) dismisscontroller:(int)parentB;
+-(int)childWillDie;
 @end

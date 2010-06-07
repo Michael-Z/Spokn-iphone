@@ -30,7 +30,7 @@
 
 //Specifies if application mode is developer or user. Events will not be tracked for developer mode
 // Comment following line when not in developer mode
-//#define DEVELOPER_MODE
+#define DEVELOPER_MODE
 
 id sharedEventTracker;
 
@@ -100,7 +100,7 @@ id sharedEventTracker;
                   eventsDispatched:(NSUInteger)eventsDispatched
               eventsFailedDispatch:(NSUInteger)eventsFailedDispatch
 {
-	NSLog(@"Events dispatched: %i , Events Failed: %i", eventsDispatched, eventsFailedDispatch);
+//	NSLog(@"Events dispatched: %i , Events Failed: %i", eventsDispatched, eventsFailedDispatch);
 }
 
 @end

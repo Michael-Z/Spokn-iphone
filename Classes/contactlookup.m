@@ -195,6 +195,7 @@
 					recordP.recordID = recordID;
 					trimStrP = [numberStringP stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 					[contactDictionaryP setObject: recordP forKey: trimStrP];
+					[recordP release];
 					
 				}
 				[numberStringP release];

@@ -350,7 +350,7 @@
 	}
 	else
 	{
-		[self.parentViewController dismissModalViewControllerAnimated:YES ];
+		[self dismissModalViewControllerAnimated:YES ];
 	
 	}
 	

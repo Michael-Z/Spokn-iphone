@@ -48,6 +48,7 @@
 #define LOAD_LOGIN_VIEW 1
 #define TRYING_CALL 4000
 #define INCOMMING_CALL_ACCEPTED 4005
+#define INCOMMING_CALL_REJECT  4006
 #define ROUTE_CHANGE 4010
 #define _SIP_ 5000
 #define ERR_CODE_CALL_FWD_DUPLICATE 402
@@ -128,6 +129,7 @@ typedef struct CallNumberType
 	int status;
 	int subID;
 	int lineID;
+	void *otherDataP;
 	id<VmsProtocol> VmsProtocolP;
 	id<LoginProtocol> loginProtocolP;
 	IncommingCallType *incommingCallList[MAXINCALL];
@@ -171,6 +173,7 @@ typedef struct CallNumberType
 	int setDeviceID;
 	int ipadB;
 	int prioximityB;
+	int timeOutB;
 	ABPeoplePickerNavigationController *globalAddressP;
 
 	//@public

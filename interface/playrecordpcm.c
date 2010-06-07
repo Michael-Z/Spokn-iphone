@@ -268,7 +268,7 @@ void SetAudioTypeLocal(void *uData,int type)
 			{
 				SetSpeakerOnOrOffNew(0,0);
 			}
-			
+			AudioSessionSetActive(true);
 			return;
 			break;
 		case 2:// record
@@ -293,7 +293,7 @@ void SetAudioTypeLocal(void *uData,int type)
 
 		
 		AudioSessionInitialize(0,0,AudioSessionInterruptionListenerClient,uData);
-				
+		AudioSessionSetActive(true);		
 		/*propertySetError = AudioSessionSetProperty (
 													kAudioSessionProperty_OverrideCategoryMixWithOthers,  // 1
 													sizeof (allowMixing),                                 // 2
@@ -315,6 +315,7 @@ void SetAudioTypeLocal(void *uData,int type)
 		onOrBlueTooth(1);
 	}
 #endif
+	
 	//SetAudioSessionPropertyListener(0,0)
 }
 void* InitAudio( void *udata,CallBackUIP callBackP,CallBackSoundP callBackSoundP)

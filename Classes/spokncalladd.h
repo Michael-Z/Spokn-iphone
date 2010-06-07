@@ -38,6 +38,7 @@
 -(NSString*)getStringByIndex:(int)index;
 -(void) selectedCall:(int)index;
 -(void) objectDestroy;
+-(void) endSelectedCall:(int)index;
 
 @end
 @protocol ShowContactCallOnDelegate
@@ -62,6 +63,7 @@
 	UINavigationController *tmpCtl;
 	CallViewController *callViewCtlP;
 	int addCallB;
+	int removeControllerB;
 	UITabBarController *tabBarControllerP;
 #ifdef _HILIGHT_SEARCH_
 	TTSearchlightLabel* label;
@@ -75,4 +77,5 @@
 @property(nonatomic,assign) int addCallB;
 -(void)setObject:(id) object ;
 -(void)setParent:(CallViewController *)lcallViewCtlP;
+-(void)removeController;
 @end

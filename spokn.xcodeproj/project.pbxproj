@@ -399,6 +399,7 @@
 		8BE47B0B112BB54D00421DFE /* 280x52-end-call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */; };
 		8BE79E401186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE79E3F1186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a */; };
 		8BE79E421186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE79E411186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a */; };
+		8BF41D9711B64266007EAEBC /* End_big_conf_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF41D9611B64266007EAEBC /* End_big_conf_call.png */; };
 		8BF6E46C115C8B8F009DF9CD /* button-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF6E46B115C8B8F009DF9CD /* button-bg.png */; };
 		8BF729B4103562B400C124B0 /* spoknalert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF729B3103562B400C124B0 /* spoknalert.m */; };
 		F249AAB7106F6A340024AE84 /* keypadview.m in Sources */ = {isa = PBXBuildFile; fileRef = F249AAB6106F6A340024AE84 /* keypadview.m */; };
@@ -707,6 +708,7 @@
 		8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "280x52-end-call-pressed.png"; path = "rsc/280x52-end-call-pressed.png"; sourceTree = SOURCE_ROOT; };
 		8BE79E3F1186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-i386-apple-darwin9.a"; path = "../pjproject15/pjmedia/lib/libpjmedia-audiodev-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BE79E411186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-i386-apple-darwin9.a"; path = "../pjproject15/third_party/lib/libportaudio-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8BF41D9611B64266007EAEBC /* End_big_conf_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = End_big_conf_call.png; sourceTree = "<group>"; };
 		8BF6E46B115C8B8F009DF9CD /* button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-bg.png"; path = "rsc/button-bg.png"; sourceTree = "<group>"; };
 		8BF729B2103562B400C124B0 /* spoknalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknalert.h; sourceTree = "<group>"; };
 		8BF729B3103562B400C124B0 /* spoknalert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknalert.m; sourceTree = "<group>"; };
@@ -1305,6 +1307,7 @@
 		8BCB1277119994B200F5390D /* Conference_Icons */ = {
 			isa = PBXGroup;
 			children = (
+				8BF41D9611B64266007EAEBC /* End_big_conf_call.png */,
 				8BCB1278119994B200F5390D /* Discousure-Indicator.png */,
 				8BCB1279119994B200F5390D /* End-Conf-Call.png */,
 				8BCB127A119994B200F5390D /* Merge-Calls.png */,
@@ -1525,6 +1528,7 @@
 				8BCB1281119994B200F5390D /* Phone-Icon.png in Resources */,
 				8BCB1282119994B200F5390D /* Private-Conf-Call.png in Resources */,
 				8BCB1283119994B200F5390D /* Swap-Calls.png in Resources */,
+				8BF41D9711B64266007EAEBC /* End_big_conf_call.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

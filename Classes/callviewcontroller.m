@@ -38,6 +38,25 @@
 @implementation CallViewController
 @synthesize showContactCallOnDelegate;
 @synthesize addcallDelegate;
+-(void) removeTempId
+{
+	[callManagmentP removeCallByID:200];
+	
+	if([callManagmentP getCount]>0)
+	{
+		[self updateTableSubView:NO];
+		//[callnoLabelP setText:labelStrP];
+		//[callTypeLabelP setText:labeltypeStrP];
+		[self updatescreen:0 ];
+		[tableView reloadData];
+		
+	}
+}
+-(void) addTempId
+{
+	[callManagmentP addCall:200 :@"" :@""];
+
+}
 -(int)AddIncommingCall :(int)llineID :(NSString*)llabelStrP :(NSString*)ltypeStrP
 {
 	SetAudioTypeLocal(0,0);
@@ -48,6 +67,7 @@
 	//[callTypeLabelP setText:labeltypeStrP];
 	[self updatescreen:0 ];
 	[tableView reloadData];
+	refreshViewB = 1;
 	return 0;
 
 }
@@ -86,6 +106,17 @@
 {
 	if(llineID!=CONFERENCE_LINE_ID && llineID>=0)
 		hangLtpInterface(self->ownerobject.ltpInterfacesP,llineID);
+}
+-(int)childWillDie
+{
+	if(gchildWillDie==0)
+	{	
+	
+	
+		gchildWillDie = 1;
+		return 1;
+	}	
+	return 0;
 }
 -(void)makeCall:(char*)numberP
 {
@@ -132,6 +163,11 @@
 {
 	
 	return [callManagmentP getStringByIndex:index];
+}
+-(void)endSelectedCall:(int)index
+{
+	int llineID = [callManagmentP getLineIdByIndex:index+1];
+	[self sendLtpHang:llineID];
 }
 -(void) selectedCall:(int)index
 {
@@ -248,14 +284,15 @@ CallViewController *globalCallViewControllerP;
 	//[ [UIApplication sharedApplication] setStatusBarHidden:NO];
 	[super viewWillAppear:animated];
 }
--(void)sendLtpHang
+-(void)sendLtpHang:(int)llineID
 {
-	int llineID =   [callManagmentP getActiveLineID];
+	
 	int activeLineId;
 	
 	if(llineID==CONFERENCE_LINE_ID)
 	{
 		activeLineId = [callManagmentP RemoveAllCallInConf:self];
+		//now change merge button to add call
 	}
 	else {
 		activeLineId = [callManagmentP removeCallByID:llineID];
@@ -297,6 +334,8 @@ CallViewController *globalCallViewControllerP;
 {
 	[super viewDidAppear:animated];
 	loadedB = true;
+	gchildWillDie = 0;
+		
 	if(firstTimeB)
 	{	
 	/*	[NSTimer scheduledTimerWithTimeInterval: 4
@@ -314,7 +353,7 @@ CallViewController *globalCallViewControllerP;
 		}
 		
 		
-		//AudioSessionSetActive(true);
+		AudioSessionSetActive(true);
 	//	printf("\n session active");
 		[self->parentObjectDelegate setParentObject:self];
 		int llineID =1;
@@ -349,6 +388,34 @@ CallViewController *globalCallViewControllerP;
 													   selector: @selector(handleCallEndTimer:)
 													   userInfo: nil
 														repeats: NO];
+		[calltimerP invalidate];
+		calltimerP = nil;
+	}
+	else
+	{	
+		if([callManagmentP getCount]<=0)
+		{
+			[NSTimer scheduledTimerWithTimeInterval: 0.1
+										 target: self
+									   selector: @selector(handleCallEndTimer:)
+									   userInfo: nil
+										repeats: NO];
+			[calltimerP invalidate];
+			calltimerP = nil;
+		
+				
+		
+		}
+	}	
+	if(refreshViewB)
+	{
+		[self updateTableSubView:NO];
+		//[callnoLabelP setText:labelStrP];
+		//[callTypeLabelP setText:labeltypeStrP];
+		[self updatescreen:0 ];
+		[tableView reloadData];
+		refreshViewB = false;
+		
 	}
 }
 
@@ -653,27 +720,44 @@ CallViewController *globalCallViewControllerP;
 	}*/
 	
 }
+-(void) dismisscontroller:(int)parentB
+{
+	if(parentB)
+	{
+		
+		//if(gchildWillDie!=2)
+		{	
+			[self dismissModalViewControllerAnimated:YES];
+		}
+	}
+	else {
+		//if(gchildWillDie==0)
+		{	
+			
+			gchildWillDie =2;
+			[self dismissModalViewControllerAnimated:YES];
+			
+			
+		}	
+	}
+
+		[calltimerP invalidate];
+	calltimerP = nil;
+
+}
 -(int)  stopTimer:(int)llineID
 {
 	int lactiveLineId;
 	actualDismissB = true;
 	int results = 0;	
 	
-	
+	refreshViewB = 1;
 	if(loadedB==false || llineID==-1)
 	{	
 		failedCallB = true;
+		[self dismisscontroller:!loadedB];
 		//NSTimer *callEndtimerP;
-	
-		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
-		/*callEndtimerP = [NSTimer scheduledTimerWithTimeInterval: 3
-												  target: self
-												selector: @selector(handleCallEndTimer:)
-												userInfo: nil
-												 repeats: NO];*/
-	//[callEndtimerP autorelease];
-		[calltimerP invalidate];
-		calltimerP = nil;
+		
 		results = 1;
 		return 1;
 	}
@@ -704,9 +788,7 @@ CallViewController *globalCallViewControllerP;
 	}
 	else
 	{
-		[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
-		[calltimerP invalidate];
-		calltimerP = nil;
+		[self dismisscontroller:0];
 		results = 1;
 
 	}
@@ -727,7 +809,7 @@ CallViewController *globalCallViewControllerP;
 - (void) handleCallEndTimer: (id) timer
 {
 	[timer invalidate];
-	
+	timer = nil;
 	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 	actualDismissB = NO;
 
@@ -756,7 +838,8 @@ CallViewController *globalCallViewControllerP;
 }
 -(void)endCalled
 {
-	[self sendLtpHang];
+	int llineID =   [callManagmentP getActiveLineID];
+	[self sendLtpHang:llineID];
 	if([callManagmentP getCount]<1)
 	{	
 		[self->ownerobject endCall:-1];
@@ -1357,7 +1440,7 @@ pjsua_conf_adjust_rx_level(0 , 1.0f);
 
 
 - (void)dealloc {
-	printf("dalloc");
+	
 	closeSoundInterface(ownerobject.ltpInterfacesP);
 	[callManagmentP release];
 	callManagmentP = 0;

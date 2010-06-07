@@ -93,7 +93,12 @@
 	}
 	else
 	{
-		[self startCheckNetwork];
+		if(self->timeOutB)
+		{
+			self->timeOutB = 0;
+			[self startCheckNetwork];
+		
+		}	
 	}
 }
 -(int) profileResynFromApp
@@ -103,6 +108,15 @@
 		profileResync();
 		return 0;
 	}	
+	else
+	{
+		if(self->timeOutB)
+		{
+			self->timeOutB = 0;
+			[self startCheckNetwork];
+			
+		}	
+	}
 	return 1;
 }
 -(void) enableEdge
@@ -363,18 +377,28 @@
 	
 	
 }
+extern void restartPlayAndRecord();
+/*
+void restartPlayAndRecord()
+{
+}*/
 - (void) handleIntrrept: (id) timer
 {
 	OSStatus x;
 	
-	SetAudioTypeLocal(0,0);
 	x = AudioSessionSetActive(true);
 	if(x==0)
 	{	
-		
+		//printf("intrr co");
+		restartPlayAndRecord();
 		setHoldInterface(self->ltpInterfacesP, 0);
 		
+		
 	}
+	/*else {
+		printf(" intrr different");
+	}
+	 */
 	[(NSTimer*)timer invalidate];
 }
 /*
@@ -473,6 +497,8 @@ void getProp()
 #endif
 -(void)alertAction:(NSNotification*)note
 {
+	
+	Boolean lonlineB;
 	switch(self->status)
 	{
 		
@@ -610,11 +636,12 @@ void getProp()
 			{	
 				if([inCommingCallViewP incommingViewDestroy:self->lineID]==0)
 				{
+					[dialviewP setStatusText:0 :0 :INCOMMING_CALL_REJECT :0 :self->lineID];
 					[self stopRing];
 				}
 				
 			}	
-			printf("main didconnect %d",self->lineID);
+			
 			if(self->subID)
 			{
 				[callviewP missCallSetCount];
@@ -654,6 +681,19 @@ void getProp()
 		case  ATTEMPT_LOGIN:
 			
 			SendLoginPacket(self->ltpInterfacesP);
+			break;
+		case ATTEMPT_LOGIN_ERROR:
+		{	
+			UIAlertView *alertP = [ [ UIAlertView alloc ] initWithTitle: _SIP_LIB_NOT_INIT_ 
+												  message: [ NSString stringWithUTF8String:self->otherDataP ]
+												 delegate: self
+										cancelButtonTitle: nil
+										otherButtonTitles: _OK_, nil
+					 ];
+			[alertP show];
+			[alertP release];
+			
+		}	
 			break;
 		case START_LOGIN:
 				if(self->subID==1)//mean no connectivity
@@ -727,7 +767,9 @@ void getProp()
 		case ALERT_OFFLINE:
 			[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
 			[ spoknViewControllerP cancelProgress];
+			lonlineB = self->onLineB;
 			self->onLineB = false;
+			self->timeOutB = 0;
 			//logOut(ltpInterfacesP,false);
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];
@@ -755,10 +797,17 @@ void getProp()
 							}	
 							break;
 					case LOGIN_STATUS_TIMEDOUT:
+						self->timeOutB = 1;
 						if(showErrorOnTimeOut(ltpInterfacesP))
 						{	
 							[loginProtocolP stoploginIndicator];
 							[dialviewP setStatusText: _STATUS_TIMEOUT2_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
+							if(lonlineB && loginProtocolP==0)//mean previously on line
+							{
+								[self startCheckNetwork];
+							
+							}
+							 
 						}
 						else {
 									if(DoLtpLogin(self.ltpInterfacesP)==0)
@@ -824,7 +873,10 @@ void getProp()
 				}
 				else {
 					isCallOnB = true;
-					[self LoadInCommingView:0 :[dialviewP getCallViewController]];	
+					CallViewController *tmpObjP;
+					tmpObjP = [dialviewP getCallViewController];
+					[(CallViewController*)tmpObjP addTempId];
+					[self LoadInCommingView:0 :tmpObjP];	
 				}
 
 			}	
@@ -891,8 +943,10 @@ void getProp()
 			switch(self->subID)
 			{
 				case 0:
-					SetAudioTypeLocal(0,0);
+					//SetAudioTypeLocal(0,0);
 					AudioSessionSetActive(true);
+					//printf("\n inttrrept come");
+					restartPlayAndRecord();
 					setHoldInterface(self->ltpInterfacesP, 0);
 					
 					break;
@@ -1139,6 +1193,7 @@ void getProp()
 	[inCommingCallViewP setObject:self];
 	if(controllerForIncommingView)
 	{	
+		
 		[inCommingCallViewP directAccept:YES];
 		[controllerForIncommingView presentModalViewController:inCommingCallViewP animated:YES];
 
@@ -1167,7 +1222,7 @@ void getProp()
 	//printf("\n msg %d %d %d",spoknMsgP->status,spoknMsgP->subID,spoknMsgP->lineID);
 	[spoknMsgP.spokndelegateP setLtpInfo:spoknMsgP.status :spoknMsgP.subID :spoknMsgP.lineID :spoknMsgP.dataP];
 	[spoknMsgP.spokndelegateP alertAction:nil];
-	if(spoknMsgP.status==ALERT_SERVERMSG)
+	if(spoknMsgP.status==ALERT_SERVERMSG || spoknMsgP.status==ATTEMPT_LOGIN_ERROR)
 	{
 		if(spoknMsgP.dataP)
 		{	
@@ -1249,7 +1304,7 @@ int HeadSetIsOn()
 		{	
 			return 0;
 		}
-		NSRange range = [capStrP rangeOfString:@"HEADSET"];
+		NSRange range = [capStrP rangeOfString:@"HEAD"];
 		
 		if (range.location == NSNotFound ) 
 		{	
@@ -1546,7 +1601,7 @@ int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lon
 	self->status = ltpstatus;
 	self->subID = subid;
 	self->lineID = llineID;
-	
+	self->otherDataP = dataVoidP;
 	if(ltpstatus==ALERT_INCOMING_CALL)
 	{
 		self->incommingCallList[llineID] = dataVoidP;//this is ltp incomming call structure
@@ -1643,7 +1698,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 		
 	}
-	SetDeviceDetail("Spokn","1.1.0","iphone",osVerP,osModelP,uniqueIDCharP);
+	SetDeviceDetail("Spokn","1.1.4","iphone",osVerP,osModelP,uniqueIDCharP);
 
 }
 
@@ -2031,15 +2086,24 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			{
 				if(VmsProtocolP)
 				{	
-					//if(device.proximityState)
-					{	
+					if(device.orientation!=UIDeviceOrientationUnknown)
+					{
 						[VmsProtocolP proximityChange:0];
-					}	
-				}
-				else{
+					}
+					else {
 						[VmsProtocolP proximityChange:1];
+					}
+
 				}
+				
 			}	
+			else {
+				if(VmsProtocolP)
+				{	
+					[VmsProtocolP proximityChange:1];
+				}
+			}
+
 		}	
 	
 	}
@@ -2146,6 +2210,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[calllogNavigationController popToRootViewControllerAnimated:NO];
 		[contactNavigationController popToRootViewControllerAnimated:NO];
 		[spoknViewNavigationController popToRootViewControllerAnimated:NO];
+		
 	}
 	[vmsviewP setcomposeStatus:0 ];
 	logOut(ltpInterfacesP,clearAllB);
@@ -2153,7 +2218,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	self.calllogNavigationController.tabBarItem.badgeValue= nil;
 	SetSpeakerOnOrOff(0,true);
 	self->onLineB = false;
-	
+	if(clearAllB)
+	{
+		[[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"forwardnumber"]; 
+		[[NSUserDefaults standardUserDefaults] synchronize];
+
+	}
 }
 	
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -2349,6 +2419,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	-(void)RejectCall:(IncommingCallType *)inComP :(UIViewController*)parentViewP
 {
 	[self stopRing];
+	[dialviewP setStatusText:0 :0 :INCOMMING_CALL_REJECT :0 :inComP->lineid];
 	 //pjsua_call_answer(call_id, 180, NULL, NULL);
 	RejectInterface(ltpInterfacesP, inComP->lineid);
 	self->incommingCallList[inComP->lineid] = 0;

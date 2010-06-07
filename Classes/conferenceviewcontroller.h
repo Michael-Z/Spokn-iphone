@@ -10,15 +10,30 @@
 
 @class CallViewController ;
 @class SpoknAppDelegate;
+
+//#define FRAMEX 60
+#define SPACE_DEL 15
+#define SPACE_NO_DEL 5
 @protocol AddCallProtocol;
+typedef struct callRowOrder
+{
+	int order;
+	int selected;
+}callRowOrder;
 @interface ConferenceViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
 	IBOutlet UITableView *tableView;
 	SpoknAppDelegate *ownerObject;
 	id<AddCallProtocol> addCallP;
 	int showB;
+	int firstB;
+	callRowOrder callRow[10];
+	
+	
 }
 -(void)reload;
 -(void)setObject:(id)ownerObjP;
 -(void)setDelegate:(CallViewController *)lcallViewCtlP;
 -(void)showPrivate:(int)lshowB;
+-(void)giveOrder;
+-(void)sortByOrder;
 @end

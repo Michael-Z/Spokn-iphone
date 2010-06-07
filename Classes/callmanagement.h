@@ -10,7 +10,7 @@
 #include "LtpInterface.h"
 @class CallViewController;
 #define CONFERENCE_LINE_ID 307
-#define MAXCALL MAX_CALL_ALLOWED + 1
+#define MAXCALL MAX_CALL_ALLOWED + 2
 typedef struct CallStructType
 {
 	int lineID;
@@ -44,12 +44,14 @@ typedef struct CallStructType
 -(int) addLineId:(int)lineID;
 -(int) removeLineId:(int)lineID;
 -(int) getindexByLineID:(int)llineID;
+-(int)getLineIdByIndex:(int)index;
 -(void)setHoldOnOtherThen:(int)llineid;
 -(int) addCall:(int)llineID :(NSString *)nameStrP :(NSString*)typeStrP;
 -(int)totalCallActive;
 -(NSString*)getStringByIndex:(int)index;
 -(void) selectedCall:(int)index;
 -(int)getCount;
+
 -(int)getActiveLineID;
 -(int)removeCallByID:(int)llineID;
 -(int) updatescreenData:(int)time :(NSString**)lmainlableP :(NSString**)lmainTypeP  :(NSString**)llable1P  :(NSString**)type1P :(NSString**)llable2P :(NSString**)type2P ;

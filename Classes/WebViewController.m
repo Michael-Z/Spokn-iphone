@@ -71,7 +71,7 @@
 	
 	//[txtField resignFirstResponder];
 	
-	[self.parentViewController  dismissModalViewControllerAnimated:YES];
+	[self  dismissModalViewControllerAnimated:YES];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

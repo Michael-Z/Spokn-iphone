@@ -48,8 +48,14 @@
 - (void) viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
+	[ownerobject setIncommingCallDelegate:nil];
 	
 
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	[ownerobject setIncommingCallDelegate:self];
 }
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -122,7 +128,7 @@
 {
 	if(lineID==ltpInDataP->lineid)
 	{
-		[[self parentViewController] dismissModalViewControllerAnimated:YES];
+		[self dismissModalViewControllerAnimated:YES];
 		return 0;
 	}
 	return 1;

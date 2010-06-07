@@ -76,7 +76,7 @@
 #define _SIGN_IN_FAILED_ @"Sign-in failed"
 //#define _UPGRADE_AVAILABLE_ @"Upgrade Available"
 #define _NO_NETWORK_ @"Unable to connect to Spokn"
-
+#define _SIP_LIB_NOT_INIT_ @"Sip library not initialize."
 //Alert messages not used in build
 #define _CALLING_FAILED_ @"Unable to call the destination number."
 #define _CLEAR_VMS_LOG_ @"Are u sure you want to clear vmail?"
@@ -221,7 +221,7 @@
 #define PHONE_CALL_IMG_PNG  @"Phone-Icon.png"
 
 #define END_CALL_IMG_PNG  @"End-Conf-Call.png"
-#define END_CALL_IMG_PNG  @"End-Conf-Call.png"
+#define END_CALL_BIG_IMG_PNG  @"End_big_conf_call.png"
 
 #define DISCOUSURE_CALL_IMG_PNG				  @"Discousure-Indicator.png"	
 #define ADD_CALL_PNG @"add-cal-wit-text.png"
