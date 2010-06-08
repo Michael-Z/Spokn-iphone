@@ -1698,7 +1698,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 		
 	}
-	SetDeviceDetail("Spokn","1.1.4","iphone",osVerP,osModelP,uniqueIDCharP);
+	SetDeviceDetail("Spokn","1.1.3","iphone",osVerP,osModelP,uniqueIDCharP);
 
 }
 

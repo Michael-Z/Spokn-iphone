@@ -26,11 +26,11 @@
 #import "SpoknAppDelegate.h"
 
 //Tracked events will be dispatched to the Google Analytics server after specified no of seconds
-#define DISPATCH_INTERVAL 10
+#define DISPATCH_INTERVAL 20
 
 //Specifies if application mode is developer or user. Events will not be tracked for developer mode
 // Comment following line when not in developer mode
-#define DEVELOPER_MODE
+//#define DEVELOPER_MODE
 
 id sharedEventTracker;
 
