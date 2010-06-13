@@ -382,7 +382,7 @@ void *PollThread(void *PollThreadP)
 	return NULL;
 	
 }
-LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNotiCallbackP,unsigned long userData)
+LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNotiCallbackP,unsigned long userData,int randomVariable)
 {
 	LtpCallBackType localLtpCallBackType;
 	LtpInterfaceType *ltpInterfaceP;
@@ -441,7 +441,7 @@ LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNo
 			#endif
 		}	
 	#endif	
-	
+		sip_set_randomVariable(ltpInterfaceP->ltpObjectP,randomVariable);
 		SetAudioTypeLocal((void*)userData,3);
 		return ltpInterfaceP;
 	}
@@ -630,7 +630,7 @@ int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 		}
 
 		if(clearAllB)
-		{	
+		{	sip_destroy_transation(ltpInterfaceP->ltpObjectP);
 			loggedOut();
 			profileClear();
 			cdrRemoveAll();

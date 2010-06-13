@@ -989,6 +989,7 @@
 	[buttonBackground release];
 	[buttonBackgroundPressed release];
 	delButtonP.backgroundColor =  [[UIColor clearColor] autorelease ];	
+	tableView.backgroundColor =  [[UIColor clearColor] autorelease ];	
 	/*
 	UIImage *buttonBackground = [UIImage imageNamed:@"blueButton.png"];
 	UIImage *buttonBackgroundPressed = [UIImage imageNamed:@"green.png"];

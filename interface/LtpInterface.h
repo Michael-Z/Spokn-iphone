@@ -33,7 +33,6 @@
 	#define ALERT_OFFLINE_WRONG_ID 1000
 	#define START_LOGIN        6000 
 	#define ATTEMPT_LOGIN      6010  
-	#define ATTEMPT_LOGIN_ERROR      6015 
 	#define MAXDATA 2000
 	#define MAXINCALL 15 
 	#define MAXTIME_RESYNC 180 //this is in sec 
@@ -88,7 +87,7 @@ typedef struct IncommingCallType
 	void  setLtpPassword(LtpInterfaceType *ltpInterfaceP,char *passwordCharP);
 	char* getLtpPassword();
     void  setLtpServer(LtpInterfaceType *ltpInterfaceP,char*serverCharP);
-LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNotiCallbackP,unsigned long userData);
+LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNotiCallbackP,unsigned long userData,int randomVariable);
 	int DoPolling(LtpInterfaceType *localLtpInterfaceObjectP);
 	int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP);
 	int   endLtp(LtpInterfaceType *ltpInterfaceP);

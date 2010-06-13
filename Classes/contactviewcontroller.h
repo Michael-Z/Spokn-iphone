@@ -83,10 +83,12 @@
 	#ifdef _NEW_ADDRESS_BOOK_
 		ABPeoplePickerNavigationController *addressBookP;
 	#endif
+	Boolean contactTabControllerB;
 
 }
 @property(readwrite,assign) id<AddCallProtocol> addcallDelegate;
 @property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
+@property(readwrite,assign) Boolean  contactTabControllerB;
 
 @property (readwrite,assign) UAObjectType uaObject;
 @property(readwrite,assign) int parentView;

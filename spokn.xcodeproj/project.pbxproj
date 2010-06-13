@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -149,8 +149,6 @@
 		8B61B2181132A8A7003D6164 /* contactlookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B61B2161132A8A7003D6164 /* contactlookup.m */; };
 		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
 		8B72CA1211412FA5002C7E70 /* ringtone.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8B72CA1111412FA5002C7E70 /* ringtone.wav */; };
-		8B788A15115B485900B9D5E7 /* GEventTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B788A11115B485900B9D5E7 /* GEventTracker.m */; };
-		8B788A16115B485900B9D5E7 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B788A14115B485900B9D5E7 /* libGoogleAnalytics.a */; };
 		8B788A18115B48A700B9D5E7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B788A17115B48A700B9D5E7 /* CFNetwork.framework */; };
 		8B788A1C115B49C200B9D5E7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B788A1B115B49C200B9D5E7 /* libsqlite3.dylib */; };
 		8B788C73115B87C400B9D5E7 /* 132x52-hide-sources-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B788C65115B87C400B9D5E7 /* 132x52-hide-sources-normal.png */; };
@@ -399,6 +397,8 @@
 		8BE47B0B112BB54D00421DFE /* 280x52-end-call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */; };
 		8BE79E401186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE79E3F1186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a */; };
 		8BE79E421186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE79E411186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a */; };
+		8BEDE4DA11BE6CA600F813B0 /* GEventTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEDE4D611BE6CA600F813B0 /* GEventTracker.m */; };
+		8BEDE4DB11BE6CA600F813B0 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEDE4D911BE6CA600F813B0 /* libGoogleAnalytics.a */; };
 		8BF41D9711B64266007EAEBC /* End_big_conf_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF41D9611B64266007EAEBC /* End_big_conf_call.png */; };
 		8BF6E46C115C8B8F009DF9CD /* button-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BF6E46B115C8B8F009DF9CD /* button-bg.png */; };
 		8BF729B4103562B400C124B0 /* spoknalert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF729B3103562B400C124B0 /* spoknalert.m */; };
@@ -531,10 +531,6 @@
 		8B6739E2101209E900849952 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B72CA1111412FA5002C7E70 /* ringtone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtone.wav; sourceTree = "<group>"; };
 		8B72CA7D11413220002C7E70 /* spoknTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = spoknTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B788A10115B485900B9D5E7 /* GEventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEventTracker.h; path = "Analytics sdk/GEventTracker.h"; sourceTree = "<group>"; };
-		8B788A11115B485900B9D5E7 /* GEventTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEventTracker.m; path = "Analytics sdk/GEventTracker.m"; sourceTree = "<group>"; };
-		8B788A13115B485900B9D5E7 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
-		8B788A14115B485900B9D5E7 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		8B788A17115B48A700B9D5E7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		8B788A1B115B49C200B9D5E7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		8B788C65115B87C400B9D5E7 /* 132x52-hide-sources-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-sources-normal.png"; path = "rsc/132x52-hide-sources-normal.png"; sourceTree = "<group>"; };
@@ -708,6 +704,10 @@
 		8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "280x52-end-call-pressed.png"; path = "rsc/280x52-end-call-pressed.png"; sourceTree = SOURCE_ROOT; };
 		8BE79E3F1186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-i386-apple-darwin9.a"; path = "../pjproject15/pjmedia/lib/libpjmedia-audiodev-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BE79E411186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-i386-apple-darwin9.a"; path = "../pjproject15/third_party/lib/libportaudio-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		8BEDE4D511BE6CA600F813B0 /* GEventTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEventTracker.h; sourceTree = "<group>"; };
+		8BEDE4D611BE6CA600F813B0 /* GEventTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEventTracker.m; sourceTree = "<group>"; };
+		8BEDE4D811BE6CA600F813B0 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
+		8BEDE4D911BE6CA600F813B0 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		8BF41D9611B64266007EAEBC /* End_big_conf_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = End_big_conf_call.png; sourceTree = "<group>"; };
 		8BF6E46B115C8B8F009DF9CD /* button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-bg.png"; path = "rsc/button-bg.png"; sourceTree = "<group>"; };
 		8BF729B2103562B400C124B0 /* spoknalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknalert.h; sourceTree = "<group>"; };
@@ -759,13 +759,13 @@
 				8B964B2C10CBE7BB00CB00DB /* libpj-arm-apple-darwin9.a in Frameworks */,
 				8BC51C51110863A200EC6597 /* AVFoundation.framework in Frameworks */,
 				8B865761112036A000E63C47 /* libspeex-arm-apple-darwin9.a in Frameworks */,
-				8B788A16115B485900B9D5E7 /* libGoogleAnalytics.a in Frameworks */,
 				8B788A18115B48A700B9D5E7 /* CFNetwork.framework in Frameworks */,
 				8B788A1C115B49C200B9D5E7 /* libsqlite3.dylib in Frameworks */,
 				8BB1F6251186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a in Frameworks */,
 				8BB1F6271186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */,
 				8BE79E401186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */,
 				8BE79E421186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a in Frameworks */,
+				8BEDE4DB11BE6CA600F813B0 /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -923,7 +923,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				8B788A0F115B483100B9D5E7 /* Analyst sdk */,
+				8BEDE4D411BE6CA600F813B0 /* Analytics sdk */,
 				8B6609B410A81B74000F8DAE /* siplib */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -1183,26 +1183,6 @@
 			name = siplib;
 			sourceTree = "<group>";
 		};
-		8B788A0F115B483100B9D5E7 /* Analyst sdk */ = {
-			isa = PBXGroup;
-			children = (
-				8B788A10115B485900B9D5E7 /* GEventTracker.h */,
-				8B788A11115B485900B9D5E7 /* GEventTracker.m */,
-				8B788A12115B485900B9D5E7 /* GoogleAnalytics */,
-			);
-			name = "Analyst sdk";
-			sourceTree = "<group>";
-		};
-		8B788A12115B485900B9D5E7 /* GoogleAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				8B788A13115B485900B9D5E7 /* GANTracker.h */,
-				8B788A14115B485900B9D5E7 /* libGoogleAnalytics.a */,
-			);
-			name = GoogleAnalytics;
-			path = "Analytics sdk/GoogleAnalytics";
-			sourceTree = "<group>";
-		};
 		8B8BB896115A4C7D00A66C75 /* ltpInterface */ = {
 			isa = PBXGroup;
 			children = (
@@ -1319,6 +1299,25 @@
 			path = rsc/Conference_Icons;
 			sourceTree = "<group>";
 		};
+		8BEDE4D411BE6CA600F813B0 /* Analytics sdk */ = {
+			isa = PBXGroup;
+			children = (
+				8BEDE4D511BE6CA600F813B0 /* GEventTracker.h */,
+				8BEDE4D611BE6CA600F813B0 /* GEventTracker.m */,
+				8BEDE4D711BE6CA600F813B0 /* GoogleAnalytics */,
+			);
+			path = "Analytics sdk";
+			sourceTree = "<group>";
+		};
+		8BEDE4D711BE6CA600F813B0 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				8BEDE4D811BE6CA600F813B0 /* GANTracker.h */,
+				8BEDE4D911BE6CA600F813B0 /* libGoogleAnalytics.a */,
+			);
+			path = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1381,7 +1380,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "spokn" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -1696,9 +1695,9 @@
 				8B8BB8A8115A4CC700A66C75 /* playrecordpcm.c in Sources */,
 				8B8BB8A9115A4CC700A66C75 /* vmsplayrecord.c in Sources */,
 				8BDDE49A115B319B00FC4BA3 /* sipandltpwrapper.c in Sources */,
-				8B788A15115B485900B9D5E7 /* GEventTracker.m in Sources */,
 				8BB617F9118ECBEA0039E696 /* conferenceviewcontroller.m in Sources */,
 				8BA6E96311928F6400435756 /* callmanagement.m in Sources */,
+				8BEDE4DA11BE6CA600F813B0 /* GEventTracker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1795,6 +1794,7 @@
 				GCC_VERSION = 4.2;
 				GENERATE_PROFILING_CODE = YES;
 				INFOPLIST_FILE = "spokn-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../speexlib/build\"",
@@ -1814,7 +1814,9 @@
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
-				SDKROOT = iphonesimulator2.2.1;
+				PROVISIONING_PROFILE = "029A38C9-B406-4D61-BCC3-3B65C702829C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "029A38C9-B406-4D61-BCC3-3B65C702829C";
+				SDKROOT = iphoneos4.0;
 				SKIP_INSTALL = NO;
 			};
 			name = Debug;
@@ -1849,8 +1851,8 @@
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
+				PROVISIONING_PROFILE = "029A38C9-B406-4D61-BCC3-3B65C702829C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "029A38C9-B406-4D61-BCC3-3B65C702829C";
 			};
 			name = Release;
 		};
@@ -2155,9 +2157,9 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "3BEA50CA-833F-4794-83B0-8D4F80E235A1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3BEA50CA-833F-4794-83B0-8D4F80E235A1";
-				SDKROOT = iphoneos3.0;
+				PROVISIONING_PROFILE = "AD69C2C9-8270-44B7-845E-BA4F9FB4640B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD69C2C9-8270-44B7-845E-BA4F9FB4640B";
+				SDKROOT = iphoneos4.0;
 			};
 			name = Distribution;
 		};
@@ -2173,6 +2175,7 @@
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
 				GCC_VERSION = 4.2;
 				INFOPLIST_FILE = "spokn-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../speexlib/build\"",
@@ -2192,8 +2195,8 @@
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "91531E8C-9F8C-4024-96A6-6EA89AB582DE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "91531E8C-9F8C-4024-96A6-6EA89AB582DE";
+				PROVISIONING_PROFILE = "AD69C2C9-8270-44B7-845E-BA4F9FB4640B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD69C2C9-8270-44B7-845E-BA4F9FB4640B";
 			};
 			name = Distribution;
 		};
@@ -2292,9 +2295,9 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
-				SDKROOT = iphoneos2.2.1;
+				PROVISIONING_PROFILE = "029A38C9-B406-4D61-BCC3-3B65C702829C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "029A38C9-B406-4D61-BCC3-3B65C702829C";
+				SDKROOT = iphoneos4.0;
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
 			};
@@ -2325,9 +2328,9 @@
 					"../lib/gsm/**",
 				);
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
+				PROVISIONING_PROFILE = "029A38C9-B406-4D61-BCC3-3B65C702829C";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F765A89A-27AA-4CF7-BC5F-47AF3C5BC4CD";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Release;
 		};

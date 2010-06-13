@@ -42,6 +42,11 @@
 #include "alertmessages.h"
 #import "contactlookup.h"
 #import "GEventTracker.h"
+#include "sipandltpwrapper.h"
+#include "sipandltpwrapper.h"
+#include <stdlib.h>
+#include <string.h>
+
 @implementation spoknMessage
 @synthesize spokndelegateP;
 @synthesize status;
@@ -135,6 +140,7 @@
 -(void) enableSip
 {
 	NSString *toogleValue;
+	int lrandowVariable;
 	toogleValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"route_prefrence"];
 	if(toogleValue)
 	{	
@@ -144,6 +150,15 @@
 	{
 		self->onoffSip = 1;
 	}
+	lrandowVariable =  [[NSUserDefaults standardUserDefaults] integerForKey:@"random_variable"];
+	if(lrandowVariable==0)
+	{	
+		lrandowVariable = time(0);//get random variable
+		lrandowVariable = lrandowVariable&0x1FFF;
+		[[NSUserDefaults standardUserDefaults] setInteger:lrandowVariable forKey:@"random_variable"];
+	
+	}
+	self->randowVariable = lrandowVariable;
 	//printf("\nenablesip %d",self->onoffSip);
 }
 -(void) enableAnalytics
@@ -378,10 +393,8 @@
 	
 }
 extern void restartPlayAndRecord();
-/*
-void restartPlayAndRecord()
-{
-}*/
+
+
 - (void) handleIntrrept: (id) timer
 {
 	OSStatus x;
@@ -1867,6 +1880,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[dialviewP setObject:self];
 	[contactviewP setObject:self];
 	contactviewP.uaObject = GETCONTACTLIST;
+	contactviewP.contactTabControllerB	= YES;
 	[contactviewP setObjType:GETCONTACTLIST];
 	
 	
@@ -1980,11 +1994,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		if(ltpTimerP)
 		{	
-			ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self);
+			ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable);
 		}
 		else
 		{
-			ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self);
+			ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable);
 		}
 #ifdef _LTP_
 		if(self->sipOnB)
@@ -2462,48 +2476,59 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	else
 	{
 		int uID=0;
+		int result = 0;
 		char *addressBookNameP = 0;
 		char *addressBookTypeP = 0;
 		uID = getAddressUid(self->ltpInterfacesP);
 		if(uID)
 		{
-			[ContactViewController	getNameAndType:self.addressRef :uID :pnumberP :&addressBookNameP :&addressBookTypeP];
-			if(addressBookNameP)
+			result = [ContactViewController	getNameAndType:self.addressRef :uID :pnumberP :&addressBookNameP :&addressBookTypeP];
+			if(result==0)
 			{	
-				nameP = addressBookNameP;
-				if(nameP)
+				if(addressBookNameP)
 				{	
-					while(*nameP==' '){
-						nameP++;
-					}
-					if(*nameP!='\0')
-					{
-						nameP = addressBookNameP;
-						findB = true;
+					nameP = addressBookNameP;
+					if(nameP)
+					{	
+						while(*nameP==' '){
+							nameP++;
+						}
+						if(*nameP!='\0')
+						{
+							nameP = addressBookNameP;
+							findB = true;
+						}
+						else
+						{
+							nameP = pnumberP;
+						}
+						
+					}	
+					returnCharP = malloc(strlen(nameP)+10);
+					strcpy(returnCharP,nameP);
+					
+					if(addressBookTypeP)
+					{	
+						strcpy(typeP,addressBookTypeP);
 					}
 					else
 					{
-						nameP = pnumberP;
+						strcpy(typeP,"Unknown");
 					}
-					
-				}	
-				returnCharP = malloc(strlen(nameP)+10);
-				strcpy(returnCharP,nameP);
-				
-				if(addressBookTypeP)
-				{	
-					strcpy(typeP,addressBookTypeP);
+					free(addressBookNameP);
+					if(addressBookTypeP)
+					{	
+						free(addressBookTypeP);
+					}	
 				}
 				else
 				{
-					strcpy(typeP,"Unknown");
+					if(addressBookNameP)
+					{	
+						free(addressBookNameP);
+					}	
+					uID = 0;
 				}
-				free(addressBookNameP);
-				if(addressBookTypeP)
-				{	
-					free(addressBookTypeP);
-				}	
-				
 			}
 			else
 			{
@@ -3167,5 +3192,35 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	
 }
+#pragma mark 4gfunction
+	- (void)applicationWillResignActive:(UIApplication *)application {
+		/*
+		 Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+		 Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+		 */
+	}
+	
+	
+	- (void)applicationDidEnterBackground:(UIApplication *)application {
+		/*
+		 Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+		 If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
+		 */
+	}
+	
+	
+	- (void)applicationWillEnterForeground:(UIApplication *)application {
+		/*
+		 Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
+		 */
+	}
+	
+	
+	- (void)applicationDidBecomeActive:(UIApplication *)application {
+		/*
+		 Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+		 */
+	}
+	
 
 @end

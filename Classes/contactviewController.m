@@ -61,7 +61,7 @@
 @synthesize  uaObject;
 @synthesize parentView;
 @synthesize addcallDelegate;
-
+@synthesize contactTabControllerB;
 -(void)hideCallAndVmailButton:(Boolean)showB
 {
 	hideCallAndVmailButtonB = showB;
@@ -681,6 +681,7 @@
 		self.addcallDelegate = nil;
 		parentView = 0;
 		sectionArray = [[NSMutableArray alloc] init] ;
+		contactTabControllerB = NO;
     }
     return self;
 }
@@ -794,8 +795,15 @@ titleForHeaderInSection:(NSInteger)section
 		ownerobject.globalAddressP = [[ABPeoplePickerNavigationController alloc] init];
 		
 	}
-	addressBookP = ownerobject.globalAddressP;
-	[addressBookP retain];
+	if(contactTabControllerB==NO)
+	{	
+		addressBookP = ownerobject.globalAddressP;
+		[addressBookP retain];
+	}
+	else
+	{
+		addressBookP= [[ABPeoplePickerNavigationController alloc] init];
+	}
 	[addressBookP setNavigationBarHidden:YES animated:NO];
 	[addressBookP setPeoplePickerDelegate:self];
 	//addressBookP.view.frame = self.view.frame;

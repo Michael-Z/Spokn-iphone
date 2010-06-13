@@ -30,7 +30,7 @@
 
 //Specifies if application mode is developer or user. Events will not be tracked for developer mode
 // Comment following line when not in developer mode
-//#define DEVELOPER_MODE
+#define DEVELOPER_MODE
 
 id sharedEventTracker;
 
@@ -65,16 +65,17 @@ id sharedEventTracker;
 - (void)startEventTracker {
 #ifdef DEVELOPER_MODE
 	return;
-#endif
+#else
 	if(self.showTrakerB)
 	{	
 		[[GANTracker sharedTracker] startTrackerWithAccountID:GOOGLE_ID dispatchPeriod:DISPATCH_INTERVAL delegate:self];
 	}
+#endif	
 }
 - (void)trackEvent:(NSString *)category action:(NSString *)action label:(NSString *)label {
 #ifdef DEVELOPER_MODE
 	return;
-#endif
+#else
 	if(self.showTrakerB)
 	{
 		BOOL result;
@@ -83,16 +84,18 @@ id sharedEventTracker;
 			NSLog(@"Tracked event ==> Category: %@, Action: %@, Label: %@", category, action, label);
 		}*/
 	}
+#endif	
 }
 
 - (void)stopEventTracker {
 #ifdef DEVELOPER_MODE
 	return;
-#endif
+#else
 	if(self.showTrakerB)
 	{
 		[[GANTracker sharedTracker] stopTracker];
 	}	
+#endif
 }
 #pragma mark GANTrackerDelegate methods
 

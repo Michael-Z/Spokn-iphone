@@ -175,7 +175,7 @@ typedef struct CallNumberType
 	int prioximityB;
 	int timeOutB;
 	ABPeoplePickerNavigationController *globalAddressP;
-
+	int randowVariable;
 	//@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
