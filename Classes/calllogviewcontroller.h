@@ -50,6 +50,7 @@
 	int refreshB;
 	int lbold;
 	id<AddCallProtocol> addcallDelegate;
+	Boolean viewDownB;
 	
 }
 -(int)missCallSetCount;

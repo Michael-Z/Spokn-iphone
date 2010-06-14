@@ -659,6 +659,7 @@ void getProp()
 			{
 				[callviewP missCallSetCount];
 			}
+			[callviewP doRefresh];
 			if([dialviewP callDisconnected:self->lineID]==0)
 			{	
 			//	[dialviewP setStatusText: @"end call" :nil :ALERT_DISCONNECTED :0 :self->lineID];
@@ -3200,12 +3201,21 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		 */
 	}
 	
+	void keepAliveHandler() 
+	{
 	
+	}
 	- (void)applicationDidEnterBackground:(UIApplication *)application {
 		/*
 		 Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
 		 If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
 		 */
+		//- (BOOL)setKeepAliveTimeout:(NSTimeInterval)timeout handler:(void(^)(void))keepAliveHandler __OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_4_0);
+
+		[ application setKeepAliveTimeout:610 handler:^{
+		
+			printf("\n hello mukesh where are u");
+		} ];
 	}
 	
 	

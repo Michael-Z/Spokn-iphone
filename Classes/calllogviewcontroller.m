@@ -927,10 +927,13 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 - (void) doRefresh
 {
 	refreshB = 1;
-	if([tableView numberOfRowsInSection:0])
-	{
-		NSUInteger index[] = {0,0};
-		[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:index length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+	if(viewDownB==0)
+	{	
+		if([tableView numberOfRowsInSection:0])
+		{
+			NSUInteger index[] = {0,0};
+			[tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndexes:index length:2] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+		}
 	}	
 	
 }
@@ -1053,9 +1056,11 @@ cancelButtonTitle: nil
 {
 	[super viewDidDisappear:animated];
 	refreshB = 0;
+	viewDownB = 1;
 }
 - (void)viewDidAppear:(BOOL)animated
 {
+	viewDownB = 0;
 	[super viewDidAppear:animated];
 	if(resultInt)
 	{
