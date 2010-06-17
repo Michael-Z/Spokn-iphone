@@ -201,6 +201,10 @@
 
 		
 	}
+	if(ownerobject.inbackgroundModeB)
+	{
+		[ownerobject scheduleAlarmForDate:[NSString stringWithFormat:@"Incomming call from %@",nameStrP]];
+	}
 		
 }
 @end

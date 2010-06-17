@@ -827,7 +827,10 @@ CallViewController *globalCallViewControllerP;
 		[self->showContactCallOnDelegate upDateUI];	
 	}
 	[callManagmentP upDateTime];
-	[self updatescreen:1];
+	if(ownerobject.inbackgroundModeB==false)
+	{	
+		[self updatescreen:1];
+	}	
 }
 
 

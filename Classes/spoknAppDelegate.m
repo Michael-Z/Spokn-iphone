@@ -89,6 +89,7 @@
 @synthesize firstTimeB;
 @synthesize dialviewP;
 @synthesize globalAddressP;
+@synthesize inbackgroundModeB;
 - (void) handleTimer: (id) timer
 {
 	
@@ -865,6 +866,7 @@ void getProp()
 			#ifdef _ANALYST_
 				[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"CALL-IN" label:@"CALL"];
 			#endif
+			
 			[VmsProtocolP	VmsStopRequest];
 			int result = [dialviewP isCallOn];
 			if(result==2  || inCommingCallViewP)//mean more then one call is active
@@ -1203,8 +1205,10 @@ void getProp()
 	inCommingCallViewP = [[IncommingCallViewController alloc] initWithNibName:@"incommingcall" bundle:[NSBundle mainBundle]];
 	[inCommingCallViewP initVariable];
 	inCommingCallViewP.ltpInterfacesP = ltpInterfacesP;
-	[inCommingCallViewP setIncommingData:self->incommingCallList[self->lineID]];
 	[inCommingCallViewP setObject:self];
+	[inCommingCallViewP setIncommingData:self->incommingCallList[self->lineID]];
+	
+	
 	if(controllerForIncommingView)
 	{	
 		
@@ -1230,6 +1234,7 @@ void getProp()
 	[self changeView];
 	
 	[self startRing];
+	
 }
 -(void)sendMessageFromOtherThread:(spoknMessage*)spoknMsgP
 {
@@ -1657,7 +1662,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//char *fullPathDir ;
 	NSString *nsP;
 	nsP = [[NSString alloc] initWithUTF8String:pathCharP];
-    [defaultManager createDirectoryAtPath:nsP attributes:nil];
+    //[defaultManager createDirectoryAtPath:nsP attributes:nil];
+#ifdef __IPHONE_4_0
+	[defaultManager createDirectoryAtPath:nsP withIntermediateDirectories:YES attributes:nil error:NULL];
+#else
+	[defaultManager createDirectoryAtPath:nsP attributes:nil];
+#endif
 	
 	
 	[nsP release];
@@ -3211,8 +3221,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		 If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
 		 */
 		//- (BOOL)setKeepAliveTimeout:(NSTimeInterval)timeout handler:(void(^)(void))keepAliveHandler __OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_4_0);
-
-		[ application setKeepAliveTimeout:610 handler:^{
+		inbackgroundModeB = true;
+		[ application setKeepAliveTimeout:600 handler:^{
 		
 			printf("\n hello mukesh where are u");
 		} ];
@@ -3223,6 +3233,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		/*
 		 Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
 		 */
+		inbackgroundModeB = false;
 	}
 	
 	
@@ -3230,7 +3241,32 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		/*
 		 Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 		 */
+		inbackgroundModeB = false;
 	}
-	
+	- (void)scheduleAlarmForDate:(NSString*)msgStringP
+	{
+		UIApplication* app = [UIApplication sharedApplication];
+		NSArray*    oldNotifications = [app scheduledLocalNotifications];
+		NSDate* theDate,*newDate;
+		theDate = [NSDate date];
+		newDate = [theDate dateByAddingTimeInterval:5];
+		
+		// Clear out the old notification before scheduling a new one.
+		if ([oldNotifications count] > 0)
+			[app cancelAllLocalNotifications];
+		
+		// Create a new notification
+		UILocalNotification* alarm = [[[UILocalNotification alloc] init] autorelease];
+		if (alarm)
+		{
+			alarm.fireDate = newDate;
+			alarm.timeZone = [NSTimeZone defaultTimeZone];
+			alarm.repeatInterval = 0;
+			//alarm.soundName = @"alarmsound.caf";
+			alarm.alertBody = msgStringP;
+			
+			[app scheduleLocalNotification:alarm];
+		}
+	}
 
 @end

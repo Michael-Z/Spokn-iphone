@@ -48,6 +48,7 @@
 		32DF1FD3112EC4D00052C56D /* 132x52-hide-keypad-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */; };
 		32DF1FD4112EC4D00052C56D /* 132x52-hide-keypad-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */; };
 		32EE820410A5B71A00B0BAAD /* contact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE820310A5B71A00B0BAAD /* contact.xib */; };
+		8B140C4211CA1814004ACB15 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B140C4111CA1814004ACB15 /* spokn-Info.plist */; };
 		8B16790D108F36A3004D18C0 /* testingview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B16790A108F36A3004D18C0 /* testingview.xib */; };
 		8B16790E108F36A3004D18C0 /* testingview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B16790B108F36A3004D18C0 /* testingview.m */; };
 		8B1AE7821120625600A957EA /* 5_done_270_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AE7431120625600A957EA /* 5_done_270_45_normal.png */; };
@@ -145,7 +146,6 @@
 		8B59A68F109987FB003BF3EA /* pickerviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */; };
 		8B61B2171132A8A7003D6164 /* contactlookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B61B2161132A8A7003D6164 /* contactlookup.m */; };
 		8B61B2181132A8A7003D6164 /* contactlookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B61B2161132A8A7003D6164 /* contactlookup.m */; };
-		8B6739E3101209E900849952 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
 		8B72CA1211412FA5002C7E70 /* ringtone.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8B72CA1111412FA5002C7E70 /* ringtone.wav */; };
 		8B788A18115B48A700B9D5E7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B788A17115B48A700B9D5E7 /* CFNetwork.framework */; };
 		8B788A1C115B49C200B9D5E7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B788A1B115B49C200B9D5E7 /* libsqlite3.dylib */; };
@@ -214,7 +214,6 @@
 		8B9649CE10CBE3BC00CB00DB /* contactDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302661011EDFA004BDA41 /* contactDetails.xib */; };
 		8B9649CF10CBE3BC00CB00DB /* incommingcall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B93026F1011EDFA004BDA41 /* incommingcall.xib */; };
 		8B9649D010CBE3BC00CB00DB /* loginview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9302731011EDFA004BDA41 /* loginview.xib */; };
-		8B9649D210CBE3BC00CB00DB /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B6739E2101209E900849952 /* spokn-Info.plist */; };
 		8B9649D310CBE3BC00CB00DB /* calllog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA9F5DF1026E50D0082B6AE /* calllog.xib */; };
 		8B9649D410CBE3BC00CB00DB /* addeditcontact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E3A01027EF800022801E /* addeditcontact.xib */; };
 		8B9649D510CBE3BC00CB00DB /* vmailview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8E555102835BC0022801E /* vmailview.xib */; };
@@ -458,6 +457,7 @@
 		32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-normal.png"; path = "rsc/keypad/132x52-hide-keypad-normal.png"; sourceTree = SOURCE_ROOT; };
 		32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-pressed.png"; path = "rsc/keypad/132x52-hide-keypad-pressed.png"; sourceTree = SOURCE_ROOT; };
 		32EE820310A5B71A00B0BAAD /* contact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contact.xib; sourceTree = "<group>"; };
+		8B140C4111CA1814004ACB15 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B16790A108F36A3004D18C0 /* testingview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = testingview.xib; sourceTree = "<group>"; };
 		8B16790B108F36A3004D18C0 /* testingview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testingview.m; sourceTree = "<group>"; };
 		8B16790C108F36A3004D18C0 /* testingview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testingview.h; sourceTree = "<group>"; };
@@ -526,7 +526,6 @@
 		8B59A68D109987FB003BF3EA /* pickerviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pickerviewcontroller.h; sourceTree = "<group>"; };
 		8B61B2151132A8A7003D6164 /* contactlookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactlookup.h; sourceTree = "<group>"; };
 		8B61B2161132A8A7003D6164 /* contactlookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactlookup.m; sourceTree = "<group>"; };
-		8B6739E2101209E900849952 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B72CA1111412FA5002C7E70 /* ringtone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtone.wav; sourceTree = "<group>"; };
 		8B72CA7D11413220002C7E70 /* spoknTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = spoknTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B788A17115B48A700B9D5E7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -946,6 +945,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8B140C4111CA1814004ACB15 /* spokn-Info.plist */,
 				8BCB1277119994B200F5390D /* Conference_Icons */,
 				8BDAED64119199BE00DB14B2 /* 11_declinecall_36_18.png */,
 				8B4FD511117DCF4700FEAFDF /* TB-recent.png */,
@@ -957,7 +957,6 @@
 				322FEC6B10EB22AA0086D15B /* Settings.bundle */,
 				32C15BDD1158A9C200689F56 /* child.plist */,
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
-				8B6739E2101209E900849952 /* spokn-Info.plist */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8B27217311C789F30077C43F /* Entitlements.plist */,
 			);
@@ -1400,7 +1399,6 @@
 				8B9302821011EDFA004BDA41 /* contactDetails.xib in Resources */,
 				8B9302881011EDFA004BDA41 /* incommingcall.xib in Resources */,
 				8B93028B1011EDFA004BDA41 /* loginview.xib in Resources */,
-				8B6739E3101209E900849952 /* spokn-Info.plist in Resources */,
 				8BA9F5E11026E50D0082B6AE /* calllog.xib in Resources */,
 				8BA8E3A21027EF800022801E /* addeditcontact.xib in Resources */,
 				8BA8E558102835BC0022801E /* vmailview.xib in Resources */,
@@ -1525,6 +1523,7 @@
 				8BCB1282119994B200F5390D /* Private-Conf-Call.png in Resources */,
 				8BCB1283119994B200F5390D /* Swap-Calls.png in Resources */,
 				8BF41D9711B64266007EAEBC /* End_big_conf_call.png in Resources */,
+				8B140C4211CA1814004ACB15 /* spokn-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1536,7 +1535,6 @@
 				8B9649CE10CBE3BC00CB00DB /* contactDetails.xib in Resources */,
 				8B9649CF10CBE3BC00CB00DB /* incommingcall.xib in Resources */,
 				8B9649D010CBE3BC00CB00DB /* loginview.xib in Resources */,
-				8B9649D210CBE3BC00CB00DB /* spokn-Info.plist in Resources */,
 				8B9649D310CBE3BC00CB00DB /* calllog.xib in Resources */,
 				8B9649D410CBE3BC00CB00DB /* addeditcontact.xib in Resources */,
 				8B9649D510CBE3BC00CB00DB /* vmailview.xib in Resources */,

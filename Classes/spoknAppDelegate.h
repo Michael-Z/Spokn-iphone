@@ -176,6 +176,7 @@ typedef struct CallNumberType
 	int timeOutB;
 	ABPeoplePickerNavigationController *globalAddressP;
 	int randowVariable;
+	Boolean inbackgroundModeB;
 	//@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
@@ -230,6 +231,7 @@ typedef struct CallNumberType
 @property (nonatomic, assign) int firstTimeB;
 @property (nonatomic, assign) UITabBarController *tabBarController;
 @property (nonatomic,assign) DialviewController    *dialviewP; 
+@property(nonatomic,assign)Boolean inbackgroundModeB;
 //@property (nonatomic, retain) IBOutlet spoknviewcontroller *viewController;
 //add delegate
 -(void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController;
@@ -279,6 +281,7 @@ changed:(BOOL)changed;
 -(int)getIncommingLineID;
 
 -(void)onOrientationChangeApp:(NSNotification *)notification;
+- (void)scheduleAlarmForDate:(NSString*)msgStringP;
 @end
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);
