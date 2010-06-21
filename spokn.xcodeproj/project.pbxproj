@@ -1828,6 +1828,7 @@
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
 				GCC_VERSION = 4.2;
 				INFOPLIST_FILE = "spokn-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../speexlib/build\"",
@@ -2152,6 +2153,7 @@
 					"../lib/common/**",
 					"../lib/gsm/**",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "AD69C2C9-8270-44B7-845E-BA4F9FB4640B";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AD69C2C9-8270-44B7-845E-BA4F9FB4640B";

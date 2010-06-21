@@ -997,6 +997,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
  */
 #define TABLE_VIEW_TAG			2010
 #pragma mark ACTIONSHEET
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	if(buttonIndex==0)//mean delete button
@@ -1013,8 +1014,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-	
-	[actionSheet release];
+	[ownerobject retianThisObject:actionSheet];
 }
 
 

@@ -31,6 +31,11 @@
 - (void)dealloc {
     [super dealloc];
 }
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+	[alertView retain];
+	//[ownerobject retianThisObject:alertView];
+}
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex  // after animation
 {

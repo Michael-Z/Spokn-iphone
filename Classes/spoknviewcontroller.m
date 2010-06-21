@@ -1242,8 +1242,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-	[actionSheet release];
-	uiActionSheetgP = nil;
+	[ownerobject retianThisObject:actionSheet];
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {

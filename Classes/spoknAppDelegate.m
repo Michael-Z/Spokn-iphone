@@ -90,6 +90,14 @@
 @synthesize dialviewP;
 @synthesize globalAddressP;
 @synthesize inbackgroundModeB;
+-(void)retianThisObject:(id)retainObject
+{
+
+	if(isBackgroundSupported)
+	{	
+		[retainObject retain];
+	}	
+}
 - (void) handleTimer: (id) timer
 {
 	
@@ -105,6 +113,14 @@
 			[self startCheckNetwork];
 		
 		}	
+	}
+	if(inbackgroundModeB)
+	{
+		[nsTimerP invalidate];
+		nsTimerP = nil;
+
+	
+	
 	}
 }
 -(int) profileResynFromApp
@@ -175,6 +191,7 @@
 		self->onoffAnalytics = 1;
 	}
 }
+
 +(BOOL) emailValidate : (NSString *)emailid
 {
 	NSString *localPart;
@@ -370,6 +387,7 @@
 {
 	[dialviewP setStatusText:testStringP :nil :0 :0 :0];
 }
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	
@@ -622,7 +640,7 @@ void getProp()
 		#endif
 			
 			
-			#ifndef _LTP_
+			#ifndef _LTP_COMPILE_
 				[nsTimerP invalidate];
 				nsTimerP = nil;
 			#endif
@@ -677,7 +695,7 @@ void getProp()
 				[self LoadContactView:callviewP];
 				[callviewP doRefresh];
 
-				#ifndef _LTP_
+				#ifndef _LTP_COMPILE_
 					[nsTimerP invalidate];
 				
 					nsTimerP = [NSTimer scheduledTimerWithTimeInterval: MAXTIME_RESYNC
@@ -735,7 +753,7 @@ void getProp()
 			[loginProtocolP stoploginIndicator];
 			ltpInterfacesP->valChange=1;
 			
-			#ifndef _LTP_
+			#ifndef _LTP_COMPILE_
 			[nsTimerP invalidate];
 			
 			nsTimerP = [NSTimer scheduledTimerWithTimeInterval: MAXTIME_RESYNC
@@ -1557,7 +1575,11 @@ int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lon
 	
 	NSAutoreleasePool *autoreleasePool = [[ NSAutoreleasePool alloc ] init];
 	spoknDelP = (SpoknAppDelegate *)userData;
+	if(spoknDelP.inbackgroundModeB)
+	{
 	
+		printf("\nspokn %d %d",type,llineID);
+	}
 	if( pthread_main_np() ){
 		[spoknDelP setLtpInfo:type :valSubLong :llineID :otherinfoP];
 		[spoknDelP sendMessage:spoknDelP];
@@ -1848,7 +1870,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[self setDeviceInforation:@" "];
 	}		
 
-		
+		UIDevice* device = [UIDevice currentDevice];
+		isBackgroundSupported = NO;
+		if ([device respondsToSelector:@selector(isMultitaskingSupported)])
+			isBackgroundSupported = device.multitaskingSupported;	
     // Override point for customization after application launch
 	//CGRect screenBounds = [ [ UIScreen mainScreen ] bounds ];
 	
@@ -2065,7 +2090,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		 
 										repeats: YES];
 		
-		UIDevice *device = [UIDevice currentDevice];
+		device = [UIDevice currentDevice];
 		device.batteryMonitoringEnabled = YES;
 
 		[[NSNotificationCenter defaultCenter] addObserver:self
@@ -2255,7 +2280,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 	
 	int count;
-	
+	printf("\napplicationWillTerminate  tese\n");
 	[[NSUserDefaults standardUserDefaults] setInteger:getStunSettingInterface(ltpInterfacesP)+1  forKey:@"stunserversetting"];
 	count = newVMailCount();
 	if(count)
@@ -3203,6 +3228,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	
 }
+#define G4_DEFINE
+#ifdef G4_DEFINE	
+#ifdef __IPHONE_4_0	
+	
 #pragma mark 4gfunction
 	- (void)applicationWillResignActive:(UIApplication *)application {
 		/*
@@ -3216,16 +3245,106 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	}
 	- (void)applicationDidEnterBackground:(UIApplication *)application {
+		
+	#ifndef _LTP_
+			[nsTimerP invalidate];
+			nsTimerP = nil;
+			
+	#endif
+		
+		
+		
 		/*
 		 Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
 		 If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
 		 */
 		//- (BOOL)setKeepAliveTimeout:(NSTimeInterval)timeout handler:(void(^)(void))keepAliveHandler __OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_4_0);
 		inbackgroundModeB = true;
+		if(self.onLineB==false)
+		{
+			char*userNameP=0;
+			char *passwordCharP=0;
+			userNameP = getLtpUserName(ltpInterfacesP);
+			passwordCharP = getLtpPassword(ltpInterfacesP);
+			if(userNameP&&passwordCharP)
+			{	
+				if(strlen(userNameP)==0 || strlen(passwordCharP)== 0 )
+				{
+					free(userNameP);
+					free(passwordCharP);
+					[application clearKeepAliveTimeout];
+					bg_task = 	 [application beginBackgroundTaskWithExpirationHandler: ^{
+						dispatch_async(dispatch_get_main_queue(), ^{
+							printf("\nI am going to expire\n");
+							[application endBackgroundTask:bg_task];
+							
+						});
+					}];
+				//	[application endBackgroundTask:bg_task];
+					return;
+					
+				}
+				free(userNameP);
+				free(passwordCharP);
+			}
+			else {
+				[application clearKeepAliveTimeout];
+				bg_task = 	 [application beginBackgroundTaskWithExpirationHandler: ^{
+					dispatch_async(dispatch_get_main_queue(), ^{
+						printf("\nI am going to expire\n");
+						[application endBackgroundTask:bg_task];
+						
+					});
+				}];
+			//	[application endBackgroundTask:bg_task];
+				
+				
+				return;
+			}
+
+		
+		}
+		printf("\nbackground time %lf ",[application backgroundTimeRemaining] );
 		[ application setKeepAliveTimeout:600 handler:^{
 		
 			printf("\n hello mukesh where are u");
 		} ];
+		
+		NSLog(@"Application entered background state.");
+		// UIBackgroundTaskIdentifier bgTask is instance variable
+			
+		bg_task = 	 [application beginBackgroundTaskWithExpirationHandler: ^{
+			dispatch_async(dispatch_get_main_queue(), ^{
+				printf("\nI am going to expire\n");
+				//[application endBackgroundTask:bg_task];
+				
+			});
+		}];
+		
+		/*dispatch_async(dispatch_get_main_queue(), ^{
+			while ([application backgroundTimeRemaining] > 1.0) {
+				/*NSString *friend = @"mukesh";//[self checkForIncomingChat];
+				if (friend) {
+					UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+					if (localNotif) {
+						localNotif.alertBody = [NSString stringWithFormat:
+												NSLocalizedString(@"%@ has a message for you.", nil), friend];
+						localNotif.alertAction = NSLocalizedString(@"Read Msg", nil);
+						localNotif.soundName = @"alarmsound.caf";
+						localNotif.applicationIconBadgeNumber = 1;
+						[application presentLocalNotificationNow:localNotif];
+						[localNotif release];
+						friend = nil;
+						break;
+					}
+				}
+				printf("\nmy message %lf",[application backgroundTimeRemaining]);
+				
+			}
+			//[application endBackgroundTask:tmp1];
+			
+		});*/
+		
 	}
 	
 	
@@ -3242,14 +3361,35 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		 Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 		 */
 		inbackgroundModeB = false;
+		
+#ifndef _LTP_
+		
+		if(onLineB)
+		{	
+			[nsTimerP invalidate];
+			nsTimerP = nil;
+			nsTimerP = [NSTimer scheduledTimerWithTimeInterval: MAXTIME_RESYNC
+					
+													target: self
+					
+												  selector: @selector(handleTimer:)
+					
+												  userInfo: nil
+					
+												   repeats: YES];
+		}	
+#endif
+		
+		
+		
 	}
 	- (void)scheduleAlarmForDate:(NSString*)msgStringP
 	{
 		UIApplication* app = [UIApplication sharedApplication];
 		NSArray*    oldNotifications = [app scheduledLocalNotifications];
-		NSDate* theDate,*newDate;
-		theDate = [NSDate date];
-		newDate = [theDate dateByAddingTimeInterval:5];
+		//NSDate* theDate,*newDate;
+		//theDate = [NSDate date];
+		//newDate = [theDate dateByAddingTimeInterval:2];
 		
 		// Clear out the old notification before scheduling a new one.
 		if ([oldNotifications count] > 0)
@@ -3259,14 +3399,16 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		UILocalNotification* alarm = [[[UILocalNotification alloc] init] autorelease];
 		if (alarm)
 		{
-			alarm.fireDate = newDate;
-			alarm.timeZone = [NSTimeZone defaultTimeZone];
+			//alarm.fireDate = newDate;
+			//alarm.timeZone = [NSTimeZone defaultTimeZone];
 			alarm.repeatInterval = 0;
 			//alarm.soundName = @"alarmsound.caf";
 			alarm.alertBody = msgStringP;
 			
-			[app scheduleLocalNotification:alarm];
+			//[app scheduleLocalNotification:alarm];
+			[app presentLocalNotificationNow:alarm];
 		}
 	}
-
+#endif
+#endif	
 @end

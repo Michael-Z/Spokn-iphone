@@ -380,6 +380,11 @@
 	[uiActionSheetP showInView:[ownerobject tabBarController].view];
 	
 }
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+	[ownerobject retianThisObject:alertView];
+	
+}
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
 {
@@ -430,8 +435,7 @@
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
-	uiActionSheetgP = nil;
-	[actionSheet release];
+	[ownerobject retianThisObject:actionSheet];
 }
 
 - (void)VmsStart

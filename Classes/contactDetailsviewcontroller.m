@@ -243,6 +243,10 @@
 	}
     return self;
 }
+- (void)alertViewCancel:(UIAlertView *)alertView
+{
+	[ownerobject retianThisObject:alertView];
+}
 
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
@@ -269,6 +273,10 @@
 - (void)didPresentActionSheet:(UIActionSheet *)actionSheet;  // after animation
 {
 	uiActionSheetgP = actionSheet;
+}
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet
+{
+	[ownerobject retianThisObject:actionSheet];
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
  {
@@ -324,11 +332,7 @@
  }
 
 
-- (void)actionSheetCancel:(UIActionSheet *)actionSheet
-{
-	[actionSheet release];
-	uiActionSheetgP = nil;
-}
+
 
 - (void) presentSheet:(int)typeInt
 {

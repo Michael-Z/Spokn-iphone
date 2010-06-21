@@ -177,10 +177,13 @@ typedef struct CallNumberType
 	ABPeoplePickerNavigationController *globalAddressP;
 	int randowVariable;
 	Boolean inbackgroundModeB;
+	Boolean isBackgroundSupported;
+#ifdef __IPHONE_4_0
+	UIBackgroundTaskIdentifier bg_task;	
 	//@public
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
-
+#endif
 
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
@@ -282,6 +285,7 @@ changed:(BOOL)changed;
 
 -(void)onOrientationChangeApp:(NSNotification *)notification;
 - (void)scheduleAlarmForDate:(NSString*)msgStringP;
+-(void)retianThisObject:(id)retainObject;
 @end
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);

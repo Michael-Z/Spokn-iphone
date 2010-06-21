@@ -201,10 +201,12 @@
 
 		
 	}
+	#ifdef __IPHONE_4_0	
 	if(ownerobject.inbackgroundModeB)
 	{
 		[ownerobject scheduleAlarmForDate:[NSString stringWithFormat:@"Incomming call from %@",nameStrP]];
 	}
+	#endif
 		
 }
 @end
