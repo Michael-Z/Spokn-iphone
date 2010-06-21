@@ -38,6 +38,7 @@
 @class CalllogViewController;
 @class AddEditcontactViewController;
 @class Contactlookup;
+//#define G4_DEFINE
 #include "vmsplayrecord.h"
 #import "vmshowviewcontroller.h"
 #import "loginviewcontroller.h"
@@ -184,6 +185,12 @@ typedef struct CallNumberType
 	//ContactDetailsViewController     *contactDetailsviewP;
 	//AddEditcontactViewController     *addeditviewP;
 #endif
+	Boolean loginAttemptB;
+	int outCallType;//1 sip ,2 callback, 3 both 
+	int actualOnlineB;
+	Boolean uaLoginSuccessB;
+	Boolean sipLoginAttemptStartB;
+	
 
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
@@ -284,8 +291,15 @@ changed:(BOOL)changed;
 -(int)getIncommingLineID;
 
 -(void)onOrientationChangeApp:(NSNotification *)notification;
-- (void)scheduleAlarmForDate:(NSString*)msgStringP;
+
 -(void)retianThisObject:(id)retainObject;
+
+
+#ifdef G4_DEFINE	
+#ifdef __IPHONE_4_0	
+- (void)scheduleAlarmForDate:(NSString*)msgStringP;
+#endif
+#endif
 @end
 int blueToothIsOn();
 int GetOsVersion(int *majorP,int *minor1P,int *minor2P);

@@ -715,6 +715,27 @@ void getProp()
 			
 			SendLoginPacket(self->ltpInterfacesP);
 			break;
+		case UA_LOGIN_SUCCESSFULL:	
+			if(loginAttemptB)
+			{   
+				sipLoginAttemptStartB  = 1;
+				DoLtpSipLoginInterface(ltpInterfacesP);
+				loginAttemptB = false;
+				[UIApplication sharedApplication] .networkActivityIndicatorVisible = YES;
+				if(self->onLineB==false && loginProtocolP)
+				{	
+					[self popLoginView];
+				}
+				uaLoginSuccessB = 1;
+				self->onLineB = true;
+				//self->onLineB = true;
+				[self updateSpoknView:0];
+				[vmsviewP setcomposeStatus:1 ];
+				uaLoginSuccessB = 1;
+			}	
+			
+			break;
+			
 		case ATTEMPT_LOGIN_ERROR:
 		{	
 			UIAlertView *alertP = [ [ UIAlertView alloc ] initWithTitle: _SIP_LIB_NOT_INIT_ 
@@ -725,6 +746,7 @@ void getProp()
 					 ];
 			[alertP show];
 			[alertP release];
+			sipLoginAttemptStartB = 0;
 			
 		}	
 			break;
@@ -739,6 +761,14 @@ void getProp()
 					[UIApplication sharedApplication] .networkActivityIndicatorVisible = YES;
 					
 					loginProgressStart = 1;
+					#ifdef _UA_LOGIN_FIRST_ 
+						if(uaLoginSuccessB==0)
+						{	
+							loginAttemptB = YES;   
+							profileResync();
+						}	
+					#endif   
+					
 				
 				}
 			[dialviewP setStatusText:_STATUS_CONNECTING_ :nil :START_LOGIN :0 :self->lineID];
@@ -752,10 +782,10 @@ void getProp()
 			[vmsviewP setcomposeStatus:1 ];
 			[loginProtocolP stoploginIndicator];
 			ltpInterfacesP->valChange=1;
-			
+			actualOnlineB = 1;
 			#ifndef _LTP_COMPILE_
 			[nsTimerP invalidate];
-			
+			sipLoginAttemptStartB = 0;
 			nsTimerP = [NSTimer scheduledTimerWithTimeInterval: MAXTIME_RESYNC
 						
 														target: self
@@ -786,8 +816,13 @@ void getProp()
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];
 			//[self performSelectorOnMainThread : @ selector(popLoginView: ) withObject:nil waitUntilDone:YES];
+			#ifndef _UA_LOGIN_FIRST_ 
+				profileResync();
+			#else
+				[ spoknViewControllerP cancelProgress];
+			#endif
 			
-			profileResync();
+			
 			cdrEmpty();
 			cdrLoad();
 			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
@@ -798,11 +833,13 @@ void getProp()
 			#endif
 			break;
 		case ALERT_OFFLINE:
+			sipLoginAttemptStartB = 0;
 			[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
 			[ spoknViewControllerP cancelProgress];
-			lonlineB = self->onLineB;
+			lonlineB = self->actualOnlineB;
 			self->onLineB = false;
 			self->timeOutB = 0;
+			actualOnlineB = 0;
 			//logOut(ltpInterfacesP,false);
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];
@@ -818,8 +855,10 @@ void getProp()
 					case LOGIN_STATUS_FAILED:
 							[loginProtocolP stoploginIndicator];
 							[loginProtocolP cleartextField];
-							[dialviewP setStatusText: _STATUS_AUTHENTICATION_FAILED_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
-								
+							if(loginProtocolP)
+							{	
+								[dialviewP setStatusText: _STATUS_AUTHENTICATION_FAILED_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
+							}	
 							break;
 					case LOGIN_STATUS_NO_ACCESS:
 							loginProgressStart = 0;
@@ -834,7 +873,11 @@ void getProp()
 						if(showErrorOnTimeOut(ltpInterfacesP))
 						{	
 							[loginProtocolP stoploginIndicator];
-							[dialviewP setStatusText: _STATUS_TIMEOUT2_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
+							
+							if(loginProtocolP)
+							{	
+								[dialviewP setStatusText: _STATUS_TIMEOUT2_ :nil :ALERT_OFFLINE :self->subID :self->lineID];	
+							}		
 							if(lonlineB && loginProtocolP==0)//mean previously on line
 							{
 								[self startCheckNetwork];
@@ -859,7 +902,27 @@ void getProp()
 							[dialviewP setStatusText: _STATUS_OFFLINE_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
 						}
 				}
+			if(uaLoginSuccessB)//mean call back is allowed ,http online
+			{
+				self->onLineB = true;
+				[self updateSpoknView:0];
+				[vmsviewP setcomposeStatus:1 ];
+				#ifndef _LTP_COMPILE_
+								[nsTimerP invalidate];
+								sipLoginAttemptStartB = 0;
+								nsTimerP = [NSTimer scheduledTimerWithTimeInterval: MAXTIME_RESYNC
+											
+																			target: self
+											
+																		  selector: @selector(handleTimer:)
+											
+																		  userInfo: nil
+											
+																		   repeats: YES];
+				#endif
+				
 			
+			}
 			break;
 		case VMS_PLAY_KILL:
 			//remove object from memory
@@ -1189,23 +1252,43 @@ void getProp()
 		
 		
 	}
-	if(wifiavailable)
-	{	
+	if(sipLoginAttemptStartB==true && uaLoginSuccessB)
+	{
+		[spoknViewControllerP setDetails:getTitle() :self->onLineB :ATTEMPTING_SIP_ :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
 		
-		[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
 	}
 	else
-	{
-		if(self->onLineB)
-		{	
-			[spoknViewControllerP setDetails:getTitle() :self->onLineB :NO_WIFI_AVAILABLE :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
-		}
-		else
+	{	
+		if(actualOnlineB==false && onLineB==true)
 		{
-			[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
+			
+			[spoknViewControllerP setDetails:getTitle() :self->onLineB :NO_SIP_AVAILABLE :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
+			
 			
 		}
-	}
+		else {
+			
+		
+
+			if(wifiavailable)
+			{	
+				
+				[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
+			}
+			else
+			{
+				if(self->onLineB)
+				{	
+					[spoknViewControllerP setDetails:getTitle() :self->onLineB :NO_WIFI_AVAILABLE :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
+				}
+				else
+				{
+					[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
+					
+				}
+			}
+		}	
+	}	
 	if(unameP)
 	{
 		free(unameP);
@@ -2260,6 +2343,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[calllogNavigationController popToRootViewControllerAnimated:NO];
 		[contactNavigationController popToRootViewControllerAnimated:NO];
 		[spoknViewNavigationController popToRootViewControllerAnimated:NO];
+		uaLoginSuccessB = 0;
 		
 	}
 	[vmsviewP setcomposeStatus:0 ];
@@ -2661,6 +2745,15 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	char *resultCharP;
 	//struct AddressBook *addressP;
 	resultCharP = NormalizeNumber(noCharP,0);
+	
+	if(outCallType==2 || outCallType==3 && actualOnlineB==false)
+	{
+	
+		free(resultCharP);
+		resultCharP = 0;
+		return 1;
+	}
+	
 	
 /*	if(validateNo(resultCharP))//mean invalid number
 	{
@@ -3228,7 +3321,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	
 }
-#define G4_DEFINE
+//#define G4_DEFINE
 #ifdef G4_DEFINE	
 #ifdef __IPHONE_4_0	
 	

@@ -133,6 +133,8 @@
 #define _STATUS_OFFLINE_ @"Offline"
 #define _STATUS_NO_NETWORK_ @"No Network"
 #define _STATUS_NO_WIFI_ @"No wifi available"
+#define _STATUS_NO_SIP_ @"Online(callback)"
+#define _STATUS_ATTEMPTING_SIP_ @"trying voip login..."
 #define _STATUS_ONLINE_ @"Online"
 #define _STATUS_AUTHENTICATION_FAILED_ @"Authentication failed"
 #define _STATUS_NO_ACCESS_ @"No access"

@@ -37,10 +37,12 @@
 	#define MAXINCALL 15 
 	#define MAXTIME_RESYNC 180 //this is in sec 
 	#define NO_WIFI_AVAILABLE 1001 
+	#define NO_SIP_AVAILABLE 1002 
+	#define ATTEMPTING_SIP_ 1003 
 	#define END_CALL_PRESSED 2150
 	#define MAX_CALL_ALLOWED  4 
 	#define _OWN_THREAD_
-	
+	#define _UA_LOGIN_FIRST_ 
   #include <pthread.h>
 typedef int (*AlertNotificationCallbackP)(int type,unsigned int valLong,int valSubLong, unsigned long userData,void *otherInfoP);
 typedef struct LtpReceiveDataType
@@ -79,6 +81,7 @@ typedef struct IncommingCallType
 			int valChange;
 			int pjsipThreadStartB;
 			int LogoutSendB;
+			int firstTimeLoginB;
 			short int blankData[160];//blank data
 			
 		}LtpInterfaceType;
@@ -125,4 +128,5 @@ Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId);
 void setStunSettingIngetface(LtpInterfaceType *ltpInterfaceP, int stunB);
 	int  getStunSettingInterface(LtpInterfaceType *ltpInterfaceP);
 int SendLoginPacket(LtpInterfaceType *ltpInterfaceP);
+int DoLtpSipLoginInterface(LtpInterfaceType *ltpInterfaceP);
 #endif

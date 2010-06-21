@@ -558,6 +558,39 @@ int SendLoginPacket(LtpInterfaceType *ltpInterfaceP)
 
 
 }
+int DoLtpSipLoginInterface(LtpInterfaceType *ltpInterfaceP)
+{
+	ltpInterfaceP->firstTimeLoginB = false;
+	if(ltpInterfaceP->ltpObjectP->sipOnB==false)
+	{	
+		restartSocket(&ltpInterfaceP->socketID);
+		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
+	}
+	else
+	{	
+		if(ltpInterfaceP->pjsipStartB==false)
+		{	
+			
+			startThreadLogin(ltpInterfaceP);	
+			
+			/*if (!sip_spokn_pj_init(ltpInterfaceP->ltpObjectP,errorstr)){
+			 
+			 
+			 return 1;
+			 
+			 }*/
+			ltpInterfaceP->pjsipStartB=true;
+		}	
+		else {
+			SendLoginPacket(ltpInterfaceP);
+		}
+		
+		
+	}
+	return 0;
+	
+
+}
 int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 {
 	
@@ -578,33 +611,14 @@ int   DoLtpLogin(LtpInterfaceType *ltpInterfaceP)
 			ltpInterfaceP->LogoutSendB = 0;
 			return 0;
 		}
-		
-		if(ltpInterfaceP->ltpObjectP->sipOnB==false)
-		{	
-			restartSocket(&ltpInterfaceP->socketID);
-			ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
-		}
-		else
-		{	
-			if(ltpInterfaceP->pjsipStartB==false)
-			{	
-			
-				startThreadLogin(ltpInterfaceP);	
-				
-				/*if (!sip_spokn_pj_init(ltpInterfaceP->ltpObjectP,errorstr)){
-
-				
-					return 1;
-			
-				}*/
-				ltpInterfaceP->pjsipStartB=true;
-			}	
-			else {
-				SendLoginPacket(ltpInterfaceP);
-			}
-
-			
+		 #ifndef _UA_LOGIN_FIRST_
+			DoLtpSipLoginInterface(ltpInterfaceP);
+		#else
+		if(ltpInterfaceP->firstTimeLoginB==false)
+		{
+			DoLtpSipLoginInterface(ltpInterfaceP);
 		}	
+		#endif
 		ltpInterfaceP->alertNotifyP(START_LOGIN,0,0,ltpInterfaceP->userData,0);
 		
 	}
@@ -637,6 +651,7 @@ int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 			resetMissCallCount();
 			setLtpUserName(ltpInterfaceP,"");
 			setLtpPassword(ltpInterfaceP,"");
+			ltpInterfaceP->firstTimeLoginB = true;
 		}
 		else
 		{

@@ -674,6 +674,13 @@ titleForHeaderInSection:(NSInteger)section
 				case NO_WIFI_AVAILABLE:
 				[labelStatus setText:_STATUS_NO_WIFI_];
 				break;
+				case NO_SIP_AVAILABLE:
+					[labelStatus setText:_STATUS_NO_SIP_];
+					break;
+				case ATTEMPTING_SIP_:
+					[labelStatus setText:_STATUS_ATTEMPTING_SIP_];
+					break;
+					
 				default:
 				[labelStatus setText:_STATUS_ONLINE_];
 			}
