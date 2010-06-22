@@ -389,10 +389,10 @@ LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNo
 	int er = 0;
 	ltpInterfaceP = malloc(sizeof(LtpInterfaceType));
 	memset(ltpInterfaceP,0,sizeof(LtpInterfaceType));
+	ltpInterfaceP->firstTimeLoginB = true;
 	ltpInterfaceP->socketID = -1;
 	ltpInterfaceP->ltpObjectP = 0;
 	ltpInterfaceP->ltpReceType.bufferLength = MAXDATA;
-	
 	ltpInterfaceP->userData = userData;
 	ltpInterfaceP->alertNotifyP =  alertNotiCallbackP;
 	if(sipOnB==false)

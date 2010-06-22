@@ -6,7 +6,7 @@
 #define _strdup strdup
 #include "stdlib.h"
 #import <Availability.h>
-     
+#pragma pack(4)     
 // #define _TEST_MEMORY_
 #ifdef __OBJC__
 	#import <Foundation/Foundation.h>

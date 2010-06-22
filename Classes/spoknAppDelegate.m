@@ -599,14 +599,18 @@ void getProp()
 				}
 				break;
 				case 401:
-					if(loginGprsB)//this is for login via gprs
-					{
-						[loginProtocolP stoploginIndicator];
-						[loginProtocolP cleartextField];
-						[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :LOGIN_STATUS_FAILED :0 ];
-						loginGprsB = false;
+					#ifndef _UA_LOGIN_FIRST_
+						if(loginGprsB)//this is for login via gprs
+					#else
+						if(loginAttemptB)	
+					#endif
+						{
+							[loginProtocolP stoploginIndicator];
+							[loginProtocolP cleartextField];
+							[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :LOGIN_STATUS_FAILED :0 ];
+							loginGprsB = false;
 						
-					}
+						}
 					break;
 			
 			}
