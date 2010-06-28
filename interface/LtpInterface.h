@@ -129,4 +129,6 @@ void setStunSettingIngetface(LtpInterfaceType *ltpInterfaceP, int stunB);
 	int  getStunSettingInterface(LtpInterfaceType *ltpInterfaceP);
 int SendLoginPacket(LtpInterfaceType *ltpInterfaceP);
 int DoLtpSipLoginInterface(LtpInterfaceType *ltpInterfaceP);
+//void set_sizeof_buffer(int size);
+//int get_sizeof_buffer();
 #endif

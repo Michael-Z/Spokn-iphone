@@ -25,7 +25,7 @@
 #import "LtpInterface.h"
 #include "ua.h"
 #import "customCell.h"
-
+#pragma pack(4)  
 
 
 @class SpoknAppDelegate;

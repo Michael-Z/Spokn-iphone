@@ -373,8 +373,41 @@
 	[navButton release];
 	[buyCreditsButton release];*/
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	loadB = true;
 	
-	[ownerobject updateSpoknView:self];
+	//[ownerobject updateSpoknView:self];
+	if(functioncallB)
+	{	
+		[self setDetails:gtitelCharP :gstatusInt :gsubStatus :gbalance :gforwardCharP :gspoknCharP forwardOn:gforwardOn spoknID:gspoknLoginId];
+	}
+	else
+	{
+		[ownerobject updateSpoknView:self];
+	}
+	if(gtitelCharP)
+	{
+		free(gtitelCharP);
+		gtitelCharP = 0;
+		
+	}
+	if(gforwardCharP)
+	{
+		free(gforwardCharP);
+		gforwardCharP = 0;
+		
+	}
+	if(gspoknCharP)
+	{
+		free(gspoknCharP);
+		gspoknCharP = 0;
+		
+	}
+	if(gspoknLoginId)
+	{
+		free(gspoknLoginId);
+		gspoknLoginId = 0;
+		
+	}
 	
 	
 }
@@ -478,6 +511,281 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
+-(void)setDetails:(char *)titleCharP :(int )lstatusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward spoknID:(char*)spoknLoginId
+{
+	balance = balance/100;
+	char s1[20];
+	NSString *stringStrP;
+	
+	if(loadB==false)
+	{	
+		functioncallB = true;
+		if(titleCharP)
+		{	
+			if(gtitelCharP)
+			{
+				free(gtitelCharP);
+				gtitelCharP = 0;
+				
+			}
+			gtitelCharP = malloc(strlen(titleCharP)+2);
+			strcpy(gtitelCharP,titleCharP);
+			
+		}	
+		gstatusInt = lstatusInt;
+		gsubStatus = subStatus;
+		gbalance = balance;
+		gforwardOn = forward;
+		if(lforwardNoCharP)
+		{	
+			if(gforwardCharP)
+			{
+				free(gforwardCharP);
+				gforwardCharP = 0;
+				
+			}
+			gforwardCharP = malloc(strlen(lforwardNoCharP)+2);
+			strcpy(gforwardCharP,lforwardNoCharP);
+			
+		}	
+		if(spoknCharP)
+		{	
+			if(gspoknCharP)
+			{
+				free(gspoknCharP);
+				gspoknCharP = 0;
+				
+			}
+			gspoknCharP = malloc(strlen(spoknCharP)+2);
+			strcpy(gspoknCharP,spoknCharP);
+			
+		}	
+		if(spoknLoginId)
+		{	
+			if(gspoknLoginId)
+			{
+				free(gspoknLoginId);
+				gspoknLoginId = 0;
+				
+			}
+			gspoknLoginId = malloc(strlen(spoknLoginId)+2);
+			strcpy(gspoknLoginId,spoknLoginId);
+			
+		}	
+		
+		
+		
+	}	
+	stringStrP = [[NSString alloc] initWithUTF8String:titleCharP ];
+	
+	if(stringStrP.length >0)
+	{	
+		self.navigationItem.title = stringStrP;
+		nameInt = 1;
+	}
+	else
+	{
+		self.navigationItem.title = nil;
+		nameInt = 0;
+	}
+	[stringStrP release];
+	
+	
+	
+	
+	sprintf(s1,"USD %.2f",balance);
+	stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
+	[labelBalance setText:stringStrP];
+	[stringStrP release];
+	/*switch(statusInt)
+	 {
+	 case LOGIN_STATUS_OFFLINE:
+	 
+	 [dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
+	 break;
+	 case LOGIN_STATUS_FAILED:
+	 [dialviewP setStatusText: @"Authentication failed" :ALERT_OFFLINE :self->subID ];
+	 break;
+	 case LOGIN_STATUS_NO_ACCESS:
+	 [dialviewP setStatusText: @"no access" :ALERT_OFFLINE :self->subID ];
+	 break;
+	 default:
+	 [dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
+	 }
+	 */
+	
+	if(statusInt!=lstatusInt)
+	{
+		statusInt = lstatusInt;
+		[self->tableView reloadData];
+		
+	}
+	
+	
+	
+	switch(lstatusInt)
+	{
+		case 0:
+			self.navigationItem.titleView = 0;
+			[activityIndicator stopAnimating];
+			switch(subStatus)
+		{
+			case LOGIN_STATUS_TIMEDOUT:
+				[labelStatus setText:_STATUS_TIMEOUT1_];
+				break;
+			case LOGIN_STATUS_FAILED:
+				[labelStatus setText:_STATUS_OFFLINE_];
+				//[labelStatus setText:@"Authentication failed"];
+				break;
+			case LOGIN_STATUS_NO_ACCESS:
+				[labelStatus setText:_STATUS_NO_NETWORK_];
+				break;
+			default:
+				[labelStatus setText:_STATUS_OFFLINE_];	
+		}
+			//[self stopforwardactivityIndicator];
+			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+													   initWithTitle:SIGN_IN_TEXT 
+													   style:UIBarButtonItemStylePlain 
+													   target:self 
+													   action:@selector(LoginPressed)] autorelease];
+			
+			
+			buybuttonCtlP.enabled = NO;
+			aboutbuttonCtlP.enabled = NO;
+			break;
+		case 1:
+			buybuttonCtlP.enabled = YES;
+			aboutbuttonCtlP.enabled = YES;
+			//self.navigationItem.titleView = 0;
+			//[activityIndicator stopAnimating];
+			switch(subStatus)
+		{
+			case NO_WIFI_AVAILABLE:
+				[labelStatus setText:_STATUS_NO_WIFI_];
+				break;
+			case NO_SIP_AVAILABLE:
+				[labelStatus setText:_STATUS_NO_SIP_];
+				break;
+			case ATTEMPTING_SIP_:
+				[labelStatus setText:_STATUS_ATTEMPTING_SIP_];
+				break;
+				
+			default:
+				[labelStatus setText:_STATUS_ONLINE_];
+		}
+			//[labelStatus setText:@"Online  "];
+			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+													   initWithTitle:SIGN_OUT_TEXT 
+													   style:UIBarButtonItemStylePlain 
+													   target:self 
+													   action:@selector(LogoutPressed)] autorelease];
+			
+			break;
+			
+			
+	}
+	if(lforwardNoCharP)
+	{	
+		stringStrP = [[NSString alloc] initWithUTF8String:lforwardNoCharP ];
+		[labelForword setText:stringStrP];
+		[stringStrP release];
+		//if(strlen(lforwardNoCharP)>0)
+		if(forward && strlen(lforwardNoCharP)>0)
+		{
+			if(switchView.on==NO)
+			{	
+				//switchView.on = YES;
+				[switchView setOn:YES animated:NO];
+			}	
+			//switchView.on = YES;
+			[labelForword setTextColor:SPOKNCOLOR]; 
+			
+		}
+		else
+		{
+			if(switchView.on==YES)
+			{	
+				//switchView.on = NO;
+				[switchView setOn:NO animated:NO];
+			}	
+			[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
+		}
+		if(strlen(lforwardNoCharP)>0)
+		{
+			
+			//[[NSUserDefaults standardUserDefaults] setObject: forkey:@"forwardnumber"];
+			[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:lforwardNoCharP] forKey:@"forwardnumber"]; 
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			
+		}
+		else {
+			NSString *nsP;
+			nsP = [[NSUserDefaults standardUserDefaults] stringForKey:@"forwardnumber"];
+			if(nsP)
+			{
+				[labelForword setText:nsP];
+				[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]];
+			}
+		}
+		
+		
+		//		switchView.enabled = YES;
+		if(statusInt)
+		{
+			if(nameInt)
+			{	
+				switchView.enabled = YES;
+			}
+			else
+			{
+				switchView.enabled = NO;
+			}	
+			[self stopforwardactivityIndicator];
+			
+		}
+		else
+		{
+			nameInt = 0;
+			switchView.enabled = NO;
+			[self stopforwardactivityIndicator];
+		}
+	}
+	
+	if(spoknCharP)
+	{	
+		
+		if(strlen(spoknCharP)>0)
+		{
+			stringStrP = [[NSString alloc] initWithFormat:@"+%s",(const char*)spoknCharP ];
+			
+		}
+		else
+		{	
+			//	stringStrP = [[NSString alloc] initWithUTF8String:spoknCharP ];
+			stringStrP = [[NSString alloc] initWithString:@"None"];
+		}	
+		[labelSpoknNo setText:stringStrP];
+		[stringStrP release];
+	}
+	else
+	{
+		[labelSpoknNo setText:@""];
+	}
+	if(spoknLoginId)
+	{	
+		stringStrP = [[NSString alloc] initWithUTF8String:spoknLoginId ];
+		[labelSpoknID setText:stringStrP];
+		[stringStrP release];
+	}
+	else
+	{
+		[labelSpoknID setText:@""];
+	}
+	
+	
+}
+
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -493,6 +801,31 @@
 
 
 - (void)dealloc {
+	if(gtitelCharP)
+	{
+		free(gtitelCharP);
+		gtitelCharP = 0;
+		
+	}
+	if(gforwardCharP)
+	{
+		free(gforwardCharP);
+		gforwardCharP = 0;
+		
+	}
+	if(gspoknCharP)
+	{
+		free(gspoknCharP);
+		gspoknCharP = 0;
+		
+	}
+	if(gspoknLoginId)
+	{
+		free(gspoknLoginId);
+		gspoknLoginId = 0;
+		
+	}
+	
 	if(uiActionSheetgP)
 	{	
 		[uiActionSheetgP dismissWithClickedButtonIndex:[uiActionSheetgP cancelButtonIndex] animated:NO];
@@ -522,7 +855,7 @@
     [super dealloc];
 }
 // Add a title for each section 
-
+#pragma mark Table view methods
 - (NSString *)tableView:(UITableView *)tableView 
 titleForHeaderInSection:(NSInteger)section 
 { 
@@ -541,7 +874,7 @@ titleForHeaderInSection:(NSInteger)section
 	
 		return nil;
 }
-#pragma mark Table view methods
+
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Detemine if it's in editing mode
@@ -581,221 +914,6 @@ titleForHeaderInSection:(NSInteger)section
 	return 32.0;
 }
  */
--(void)setDetails:(char *)titleCharP :(int )lstatusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward spoknID:(char*)spoknLoginId
-{
-	balance = balance/100;
-	char s1[20];
-	NSString *stringStrP;
-	stringStrP = [[NSString alloc] initWithUTF8String:titleCharP ];
-	
-	if(stringStrP.length >0)
-	{	
-		self.navigationItem.title = stringStrP;
-		nameInt = 1;
-	}
-	else
-	{
-		self.navigationItem.title = nil;
-		nameInt = 0;
-	}
-	[stringStrP release];
-	
-	
-	
-	
-	sprintf(s1,"USD %.2f",balance);
-	stringStrP = [[NSString alloc] initWithUTF8String:s1 ];
-	[labelBalance setText:stringStrP];
-	[stringStrP release];
-	/*switch(statusInt)
-	{
-		case LOGIN_STATUS_OFFLINE:
-			
-			[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
-			break;
-		case LOGIN_STATUS_FAILED:
-			[dialviewP setStatusText: @"Authentication failed" :ALERT_OFFLINE :self->subID ];
-			break;
-		case LOGIN_STATUS_NO_ACCESS:
-			[dialviewP setStatusText: @"no access" :ALERT_OFFLINE :self->subID ];
-			break;
-		default:
-			[dialviewP setStatusText: @"Offline" :ALERT_OFFLINE :self->subID ];
-	}
-	*/
-	
-	if(statusInt!=lstatusInt)
-	{
-		statusInt = lstatusInt;
-		[self->tableView reloadData];
-		
-	}
-	
-		
-	
-	switch(lstatusInt)
-	{
-		case 0:
-			self.navigationItem.titleView = 0;
-			[activityIndicator stopAnimating];
-			switch(subStatus)
-			{
-				case LOGIN_STATUS_TIMEDOUT:
-					[labelStatus setText:_STATUS_TIMEOUT1_];
-					break;
-				case LOGIN_STATUS_FAILED:
-					[labelStatus setText:_STATUS_OFFLINE_];
-					//[labelStatus setText:@"Authentication failed"];
-					break;
-				case LOGIN_STATUS_NO_ACCESS:
-					[labelStatus setText:_STATUS_NO_NETWORK_];
-					break;
-				default:
-					[labelStatus setText:_STATUS_OFFLINE_];	
-			}
-			//[self stopforwardactivityIndicator];
-			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-													   initWithTitle:SIGN_IN_TEXT 
-													   style:UIBarButtonItemStylePlain 
-													   target:self 
-													   action:@selector(LoginPressed)] autorelease];
-			
-			
-			buybuttonCtlP.enabled = NO;
-			aboutbuttonCtlP.enabled = NO;
-			break;
-		case 1:
-			buybuttonCtlP.enabled = YES;
-			aboutbuttonCtlP.enabled = YES;
-			//self.navigationItem.titleView = 0;
-			//[activityIndicator stopAnimating];
-			switch(subStatus)
-			{
-				case NO_WIFI_AVAILABLE:
-				[labelStatus setText:_STATUS_NO_WIFI_];
-				break;
-				case NO_SIP_AVAILABLE:
-					[labelStatus setText:_STATUS_NO_SIP_];
-					break;
-				case ATTEMPTING_SIP_:
-					[labelStatus setText:_STATUS_ATTEMPTING_SIP_];
-					break;
-					
-				default:
-				[labelStatus setText:_STATUS_ONLINE_];
-			}
-			//[labelStatus setText:@"Online  "];
-			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-													   initWithTitle:SIGN_OUT_TEXT 
-													   style:UIBarButtonItemStylePlain 
-													   target:self 
-													   action:@selector(LogoutPressed)] autorelease];
-			
-			break;
-			
-	
-	}
-	if(lforwardNoCharP)
-	{	
-		stringStrP = [[NSString alloc] initWithUTF8String:lforwardNoCharP ];
-		[labelForword setText:stringStrP];
-		[stringStrP release];
-		//if(strlen(lforwardNoCharP)>0)
-		if(forward && strlen(lforwardNoCharP)>0)
-		{
-			if(switchView.on==NO)
-			{	
-				//switchView.on = YES;
-				[switchView setOn:YES animated:NO];
-			}	
-			//switchView.on = YES;
-			[labelForword setTextColor:SPOKNCOLOR]; 
-
-		}
-		else
-		{
-			if(switchView.on==YES)
-			{	
-				//switchView.on = NO;
-				[switchView setOn:NO animated:NO];
-			}	
-			[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]]; 	
-		}
-		if(strlen(lforwardNoCharP)>0)
-		{
-			
-			//[[NSUserDefaults standardUserDefaults] setObject: forkey:@"forwardnumber"];
-			[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:lforwardNoCharP] forKey:@"forwardnumber"]; 
-			[[NSUserDefaults standardUserDefaults] synchronize];
-			
-		}
-		else {
-			NSString *nsP;
-			nsP = [[NSUserDefaults standardUserDefaults] stringForKey:@"forwardnumber"];
-			if(nsP)
-			{
-				[labelForword setText:nsP];
-				[labelForword setTextColor:[[UIColor lightGrayColor] autorelease]];
-			}
-		}
-
-		
-//		switchView.enabled = YES;
-		if(statusInt)
-		{
-			if(nameInt)
-			{	
-				switchView.enabled = YES;
-			}
-			else
-			{
-				switchView.enabled = NO;
-			}	
-			[self stopforwardactivityIndicator];
-			
-		}
-		else
-		{
-			nameInt = 0;
-			switchView.enabled = NO;
-			[self stopforwardactivityIndicator];
-		}
-	}
-	
-	if(spoknCharP)
-	{	
-		
-		if(strlen(spoknCharP)>0)
-		{
-			stringStrP = [[NSString alloc] initWithFormat:@"+%s",(const char*)spoknCharP ];
-
-		}
-		else
-		{	
-		//	stringStrP = [[NSString alloc] initWithUTF8String:spoknCharP ];
-			stringStrP = [[NSString alloc] initWithString:@"None"];
-		}	
-		[labelSpoknNo setText:stringStrP];
-		[stringStrP release];
-	}
-	else
-	{
-		[labelSpoknNo setText:@""];
-	}
-	if(spoknLoginId)
-	{	
-		stringStrP = [[NSString alloc] initWithUTF8String:spoknLoginId ];
-		[labelSpoknID setText:stringStrP];
-		[stringStrP release];
-	}
-	else
-	{
-		[labelSpoknID setText:@""];
-	}
-	
-	
-}
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)ltableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSInteger row = [indexPath row];
@@ -1164,7 +1282,9 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		free(tmp);
 		[ srtrP release];
 	}*/
-	
+	//UIApplication *myApp = [UIApplication sharedApplication];
+	//[myApp openURL:[NSURL URLWithString:@"tel://09820522264"]];
+	//return;
 	uiActionSheetgP= [[UIActionSheet alloc] 
 					 initWithTitle: @"Please select a payment option" 
 					 delegate:self

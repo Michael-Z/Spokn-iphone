@@ -35,7 +35,7 @@
 //#include <types.h>
 pthread_mutexattr_t    attr;
 pthread_mutex_t         mutex;
-
+//int gsizeBuffer;
 void setHold(struct ltpStack *ps,int enableB);
 //#define _SNDLOOPBACK_
 //#import <Foundation/Foundation.h>
@@ -526,6 +526,7 @@ void *createThread(void *spoknP)
 	else
 	{
 		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN_ERROR,0,0,ltpInterfaceP->userData,strdup(errorstring));
+		
 	}
 	ltpInterfaceP->pjsipThreadStartB =0;
 	return 0;
@@ -540,6 +541,7 @@ void startThreadLogin(LtpInterfaceType *ltpInterfaceP)
 	}
 	else {
 		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN_ERROR,0,0,ltpInterfaceP->userData,strdup("sip library can not create."));
+		ltpInterfaceP->LogoutSendB = 0;
 	}
 
 }
@@ -825,3 +827,12 @@ void setPrivateCallInterface(LtpInterfaceType *ltpInterfaceP,int lineid)
 {
 	return setPrivateCall(ltpInterfaceP->ltpObjectP,lineid);
 }
+/*void set_sizeof_buffer(int size)
+{
+	gsizeBuffer = size;
+}
+int get_sizeof_buffer()
+{
+	return gsizeBuffer;
+
+}*/

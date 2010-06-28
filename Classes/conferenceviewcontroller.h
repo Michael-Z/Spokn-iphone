@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#pragma pack(4)  
 @class CallViewController ;
 @class SpoknAppDelegate;
 

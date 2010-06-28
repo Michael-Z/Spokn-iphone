@@ -62,8 +62,17 @@
 	acceptPressedB = NO;
 	buttonPressedB = NO;
     [super viewDidLoad];
+	if([UIApplication sharedApplication] .statusBarStyle!=UIStatusBarStyleDefault)
+	{	
+		dontResetStyle = YES; 
 	
-	[UIApplication sharedApplication] .statusBarStyle = UIBarStyleBlackOpaque;
+	}
+	else {
+		[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleBlackOpaque;
+		dontResetStyle = NO;
+	}
+
+	
 	//self.tabBarItem = [UITabBarItem alloc];
 	//[self.tabBarItem initWithTitle:@"IncommingCall" image:nil tag:2];
 	nameLabelP.backgroundColor = [UIColor clearColor];
@@ -137,7 +146,10 @@
 }
 - (void)dealloc {
 	[ownerobject setIncommingCallDelegate:nil];
-	[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleDefault;
+	if(dontResetStyle==NO)
+	{	
+		[UIApplication sharedApplication] .statusBarStyle = UIStatusBarStyleDefault;
+	}
 	[self->nameStrP release];
 	[self->statusStrP release];
     [super dealloc];
@@ -147,6 +159,7 @@
 	if(buttonPressedB)
 		return;
 	acceptPressedB = 1;
+	dontResetStyle = YES;
 	//[ownerobject.tabBarController dismissModalViewControllerAnimated:NO];
 	buttonPressedB =YES;
 //	[UIApplication sharedApplication] .statusBarStyle = prvStyle;
@@ -201,11 +214,15 @@
 
 		
 	}
-	#ifdef __IPHONE_4_0	
-	if(ownerobject.inbackgroundModeB)
-	{
-		[ownerobject scheduleAlarmForDate:[NSString stringWithFormat:@"Incomming call from %@",nameStrP]];
-	}
+
+	#ifdef G4_DEFINE
+		#ifdef __IPHONE_4_0	
+	
+			if(ownerobject.inbackgroundModeB)
+			{
+				[ownerobject sendIncommingPushNotification:[NSString stringWithFormat:INCOMMING_PUSH_MSG,nameStrP]];
+			}
+		#endif
 	#endif
 		
 }

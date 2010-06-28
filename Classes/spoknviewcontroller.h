@@ -64,6 +64,11 @@ typedef struct ImageNameType
 	int statusInt;
 	int nameInt;
 	UIActionSheet *uiActionSheetgP;
+	char *gtitelCharP,*gspoknCharP,*gspoknLoginId,*gforwardCharP;
+	int gstatusInt,gsubStatus,gforwardOn;
+	Boolean loadB;
+	Boolean functioncallB;
+	float gbalance;
 	
 
 }

@@ -133,13 +133,13 @@
 #define _STATUS_OFFLINE_ @"Offline"
 #define _STATUS_NO_NETWORK_ @"No Network"
 #define _STATUS_NO_WIFI_ @"No wifi available"
-#define _STATUS_NO_SIP_ @"Online(callback)"
-#define _STATUS_ATTEMPTING_SIP_ @"trying voip login..."
+#define _STATUS_NO_SIP_ @"Network error"
+#define _STATUS_ATTEMPTING_SIP_ @"Trying voip login..."
 #define _STATUS_ONLINE_ @"Online"
 #define _STATUS_AUTHENTICATION_FAILED_ @"Authentication failed"
 #define _STATUS_NO_ACCESS_ @"No access"
-
-
+#define INCOMMING_PUSH_MSG @"Incoming call from %@"
+#define VOIP_CALL_NOT_POSSIBLE @"VoIP calls not possible due to connectivity issues. However, you can send and receive VMSes."
 //URLS
 #define _URL_SPOKN_ @"http://www.spokn.com"
 #define _URL_SIGNUP_ @"http://www.spokn.com/cgi-bin/signup.cgi"

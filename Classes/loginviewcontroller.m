@@ -77,7 +77,7 @@
 	NSString *passwordStringP;
 	char *unameP;
 	char *passwordP;
-
+	dontSendLoginB = NO;
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	tableView.backgroundColor = [[UIColor clearColor] autorelease];
@@ -121,6 +121,7 @@
 	usernameFieldP.hidden = YES;
 	passwordFieldP.hidden = YES;
 	tableView.hidden = YES;
+	dontSendLoginB = YES;
 }
 
 -(void) stoploginIndicator
@@ -131,6 +132,7 @@
 	usernameFieldP.hidden = NO;
 	passwordFieldP.hidden = NO;
 	tableView.hidden = NO;
+	dontSendLoginB = NO;
 }
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -166,6 +168,9 @@
 	UIAlertView *alert;
 	NSString *userNameStrP;
 	NSString *passwordStrP;
+	if(dontSendLoginB)
+		return;
+	[ownerobject setLoginDelegate:self];
 	if([usernameFieldP.text length]==0)
 	{
 		alert = [ [ UIAlertView alloc ] initWithTitle: _EMPTY_USERNAME_ 
@@ -241,6 +246,7 @@
 			}
 			free(uNameCharP);
 		}
+		[ownerobject startTakingEvent];
 		setLtpUserName(ltpInterfacesP,userNamecharP);
 		setLtpPassword(ltpInterfacesP,passwordcharP);
 		usernameFieldP.selected = FALSE;

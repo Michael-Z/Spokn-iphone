@@ -32,7 +32,7 @@
 #import "spoknaudio.h"
 #define MAX_TONE 13 
 
-
+#pragma pack(4)  
 
 @protocol AddCallProtocol;
 
@@ -61,7 +61,7 @@
 	id<AddCallProtocol> addcallDelegate;
 
 	NSTimer *calltimerP;//this timer for call duration
-	Boolean onLineB;
+	//Boolean onLineB;
 	long timecallduration;
 	int hour,min,sec;
 	int lineID;

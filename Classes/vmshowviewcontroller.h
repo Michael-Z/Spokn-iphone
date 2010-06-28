@@ -24,6 +24,7 @@
 
 #import "contactDetailsviewcontroller.h"
 #import "pickerviewcontroller.h"
+#pragma pack(4)  
 @protocol VmsProtocol
 
 @optional

@@ -24,6 +24,7 @@
 #import <UIKit/UIKit.h>
 #include "LtpInterface.h"
 #import "custombutton.h"
+#pragma pack(4)  
 @class SpoknAppDelegate;
 
 //IncommingCallType *ownerobject;
@@ -43,6 +44,7 @@
 	int buttonPressedB;
 	int acceptPressedB;
 	int directB;
+	Boolean dontResetStyle;
 	//UIBarStyle prvStyle;
 	
 }

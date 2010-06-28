@@ -38,7 +38,7 @@
 @class CalllogViewController;
 @class AddEditcontactViewController;
 @class Contactlookup;
-//#define G4_DEFINE
+#define G4_DEFINE
 #include "vmsplayrecord.h"
 #import "vmshowviewcontroller.h"
 #import "loginviewcontroller.h"
@@ -60,8 +60,9 @@
 #define CALL_ALERT 5001
 #define ATTEMPT_GPRS_LOGIN 5002
 #define HOST_NAME_NOT_FOUND_ERROR 12
+#define NO_WIFI_OR_DATA_NETWORK_REACHEBLE 10
 #define _ANALYST_ 
-
+#pragma pack(4)  
 
 @class VmailViewController;
 @class SpoknViewController;
@@ -173,6 +174,7 @@ typedef struct CallNumberType
 	int isCallOnB;
 	int setDeviceID;
 	int ipadB;
+	int iphoneHighResolationB;
 	int prioximityB;
 	int timeOutB;
 	ABPeoplePickerNavigationController *globalAddressP;
@@ -190,6 +192,8 @@ typedef struct CallNumberType
 	int actualOnlineB;
 	Boolean uaLoginSuccessB;
 	Boolean sipLoginAttemptStartB;
+	int intrrruptB;
+	Boolean dontTakeMsg;
 	
 
 }
@@ -215,6 +219,8 @@ typedef struct CallNumberType
 - (void) handleEndCall: (id) timer;
 -(void)startCall;
 -(void)endCall;
+- (BOOL) checkForHighResolution;
+-(void) setPjsipBufferSize;
 
 #endif
 
@@ -293,11 +299,11 @@ changed:(BOOL)changed;
 -(void)onOrientationChangeApp:(NSNotification *)notification;
 
 -(void)retianThisObject:(id)retainObject;
-
-
+- (BOOL) checkForHighResolution;	
+-(void) startTakingEvent;
 #ifdef G4_DEFINE	
 #ifdef __IPHONE_4_0	
-- (void)scheduleAlarmForDate:(NSString*)msgStringP;
+- (void)sendIncommingPushNotification:(NSString*)msgStringP;
 #endif
 #endif
 @end

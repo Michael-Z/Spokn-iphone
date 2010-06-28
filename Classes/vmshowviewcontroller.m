@@ -1709,7 +1709,7 @@ id createImage(float percentage)
 
 	tableView.delegate = self;
 	tableView.dataSource = self;
-	if([ownerobject checkForIpad] == YES)
+	if([ownerobject checkForHighResolution] == YES)
 	{
 		tableView.sectionHeaderHeight = tableView.sectionHeaderHeight-7;
 	}

@@ -109,6 +109,7 @@
 
 		//Load the request in the UIWebView.
 		[accountswebView loadRequest:requestObj];
+		accountswebView.dataDetectorTypes = UIDataDetectorTypeNone;
 		[urlToLoadP release];
 		urlToLoadP = nil;
 	}

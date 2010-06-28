@@ -500,7 +500,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	addcallDelegate = laddcallDelegate;
 	if(laddcallDelegate)
 	{	
-		onLineB = true;
+		//onLineB = true;
 	}	
 }
 -(IBAction)callLtp:(id)sender
@@ -510,7 +510,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	
 	
 	
-	if(onLineB)
+	if(ownerobject.onLineB)
 	{	
 		#ifdef _ANALYST_
 			[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"CALL" label:@"OUT-CALL"];
@@ -823,7 +823,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				 target: self
 				 action: @selector(LogoutPressed) ] ;
 				
-				onLineB = true;
+				
 				
 				
 			}	
@@ -971,7 +971,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			[self setViewButton:0];
 			
 			
-			onLineB = false;
+			
 			break;
 		case ALERT_CONNECTED:
 			if(calltimerP==nil)

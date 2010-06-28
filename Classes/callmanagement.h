@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #include "LtpInterface.h"
+#pragma pack(4)  
 @class CallViewController;
 #define CONFERENCE_LINE_ID 307
 #define MAXCALL MAX_CALL_ALLOWED + 2

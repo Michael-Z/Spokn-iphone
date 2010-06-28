@@ -6,7 +6,8 @@
 #define _strdup strdup
 #include "stdlib.h"
 #import <Availability.h>
-#pragma pack(4)     
+#define CLIENT_VERSION "1.1.4"
+ #define GOOGLE_ID @"UA-10360983-5"  
 // #define _TEST_MEMORY_
 #ifdef __OBJC__
 	#import <Foundation/Foundation.h>

@@ -59,6 +59,7 @@ void ResetLtpCallback(struct ltpStack *ps)
 unsigned int32 lookupDNS(char *host)
 {
 	
+	
 	if(gltpCallBackP)
 	{
 		if(gltpCallBackP->alertCallBackPtr)

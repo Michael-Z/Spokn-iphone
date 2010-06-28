@@ -24,6 +24,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TTSearchlightLabel.h"
+#pragma pack(4)  
 //#import "TTDefaultStyleSheet.h"
 @class ContactViewController;
 @class SpoknAppDelegate;

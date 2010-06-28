@@ -958,16 +958,23 @@
 	self->delButtonP.exclusiveTouch = YES;
 	numberFound = 0;
 	updatecontact = 0;
+	printf("\norg %f     ",tableView.frame.origin.y);
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	sectionViewP.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	if([ownerobject checkForIpad] == NO)
+	if([ownerobject checkForHighResolution] == NO)
 	{ 
 		tableView.sectionHeaderHeight = 14;//(tableView.sectionHeaderHeight+4)/2;
 	}
 	else {
-		tableView.sectionHeaderHeight = 10;
 		
+		tableView.sectionHeaderHeight = 10;
+		if(editableB)
+		{	
+			CGRect xr = tableView.frame;
+			xr.origin.y-=5;
+			tableView.frame = xr;
+		}
 	}
 
 	tableView.sectionFooterHeight = 0;//(tableView.sectionFooterHeight+4)/2;   	
@@ -1617,6 +1624,7 @@ titleForHeaderInSection:(NSInteger)section
 }
 - (CGFloat)tableView:(UITableView *)ltableView heightForHeaderInSection:(NSInteger)section{
 	
+	printf("\nheight %d",sectionArray[section].sectionheight);
 	return sectionArray[section].sectionheight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

@@ -738,7 +738,8 @@ titleForHeaderInSection:(NSInteger)section
 	}
 	//tableframe = self->tableView.frame;
 	CGRect r  = tableframe, t;
-    [[note.userInfo valueForKey:UIKeyboardBoundsUserInfoKey] getValue: &t];
+    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &t];
+	//printf("\n height %.2f",t.size.height);
 	r.size.height -=  t.size.height;
 	if(ownerobject.tabBarController.modalViewController==0)
 	{	
@@ -754,7 +755,7 @@ titleForHeaderInSection:(NSInteger)section
 
 -(void) keyboardWillHide:(NSNotification *) note
 {
-	if(viewDidLodadedB==false || viewOnB==false)
+	if(viewDidLodadedB==false)// || viewOnB==false)
 	{
 		return;
 	}

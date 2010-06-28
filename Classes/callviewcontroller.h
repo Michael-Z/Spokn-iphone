@@ -29,6 +29,7 @@
 
 @class ConferenceViewController;
 @class SpoknAppDelegate;
+#pragma pack(4)  
 @interface CallViewController : UIViewController<KeypadProtocol,UIActionSheetDelegate,UITableViewDataSource, UITableViewDelegate,AddCallProtocol> {
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *callnoLabelP;

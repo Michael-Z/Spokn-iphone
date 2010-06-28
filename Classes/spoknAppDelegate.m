@@ -46,7 +46,8 @@
 #include "sipandltpwrapper.h"
 #include <stdlib.h>
 #include <string.h>
-
+#include <sys/types.h>
+#include <sys/sysctl.h>
 @implementation spoknMessage
 @synthesize spokndelegateP;
 @synthesize status;
@@ -104,6 +105,15 @@
 	if(self.onLineB)
 	{	
 		profileResync();
+		if(sipLoginAttemptStartB==false && actualOnlineB==false)
+		{
+			self->timeOutB = 0;
+			[self startCheckNetwork];
+			sipLoginAttemptStartB = true;
+
+		}
+		
+		
 	}
 	else
 	{
@@ -128,6 +138,13 @@
 	if(self.onLineB)
 	{	
 		profileResync();
+		if(sipLoginAttemptStartB==false && actualOnlineB==false)
+		{
+			self->timeOutB = 0;
+			[self startCheckNetwork];
+			sipLoginAttemptStartB = true;
+			
+		}
 		return 0;
 	}	
 	else
@@ -424,7 +441,7 @@ extern void restartPlayAndRecord();
 		//printf("intrr co");
 		restartPlayAndRecord();
 		setHoldInterface(self->ltpInterfacesP, 0);
-		
+		intrrruptB = 0;
 		
 	}
 	/*else {
@@ -527,10 +544,19 @@ void getProp()
 	
 }
 #endif
+-(void) startTakingEvent
+{
+	self->dontTakeMsg = false;
+}
+
 -(void)alertAction:(NSNotification*)note
 {
 	
 	Boolean lonlineB;
+	if(self->dontTakeMsg)
+	{
+		return;
+	}
 	switch(self->status)
 	{
 		
@@ -726,7 +752,7 @@ void getProp()
 				DoLtpSipLoginInterface(ltpInterfacesP);
 				loginAttemptB = false;
 				[UIApplication sharedApplication] .networkActivityIndicatorVisible = YES;
-				if(self->onLineB==false && loginProtocolP)
+				if(loginProtocolP)
 				{	
 					[self popLoginView];
 				}
@@ -751,6 +777,7 @@ void getProp()
 			[alertP show];
 			[alertP release];
 			sipLoginAttemptStartB = 0;
+			ltpInterfacesP->LogoutSendB = 0;
 			
 		}	
 			break;
@@ -769,12 +796,15 @@ void getProp()
 						if(uaLoginSuccessB==0)
 						{	
 							loginAttemptB = YES;   
+							ReStartUAThread();
 							profileResync();
 						}	
 					#endif   
 					
 				
 				}
+			self->dontTakeMsg = false;
+			//self->onLineB = false;
 			[dialviewP setStatusText:_STATUS_CONNECTING_ :nil :START_LOGIN :0 :self->lineID];
 			[loginProtocolP startloginIndicator];
 			[spoknViewControllerP startProgress];
@@ -812,6 +842,10 @@ void getProp()
 			}
 			else
 			{
+				if(loginProtocolP)
+				{	
+					[self popLoginView];
+				}
 				[ spoknViewControllerP cancelProgress];
 			}
 			self->onLineB = true;
@@ -820,8 +854,9 @@ void getProp()
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];
 			//[self performSelectorOnMainThread : @ selector(popLoginView: ) withObject:nil waitUntilDone:YES];
+			profileResync();
 			#ifndef _UA_LOGIN_FIRST_ 
-				profileResync();
+				
 			#else
 				[ spoknViewControllerP cancelProgress];
 			#endif
@@ -864,6 +899,8 @@ void getProp()
 								[dialviewP setStatusText: _STATUS_AUTHENTICATION_FAILED_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
 							}	
 							break;
+					case NO_WIFI_OR_DATA_NETWORK_REACHEBLE: 
+						uaLoginSuccessB = false;
 					case LOGIN_STATUS_NO_ACCESS:
 							loginProgressStart = 0;
 							[loginProtocolP stoploginIndicator];
@@ -906,8 +943,9 @@ void getProp()
 							[dialviewP setStatusText: _STATUS_OFFLINE_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
 						}
 				}
-			if(uaLoginSuccessB)//mean call back is allowed ,http online
+			if(uaLoginSuccessB  )//mean call back is allowed ,http online
 			{
+				loginProgressStart = 0;
 				self->onLineB = true;
 				[self updateSpoknView:0];
 				[vmsviewP setcomposeStatus:1 ];
@@ -1049,9 +1087,11 @@ void getProp()
 					//printf("\n inttrrept come");
 					restartPlayAndRecord();
 					setHoldInterface(self->ltpInterfacesP, 0);
+					intrrruptB = 0;
 					
 					break;
 				case 1:
+					intrrruptB = 1;
 					setHoldInterface(self->ltpInterfacesP, 1);
 					[VmsProtocolP	VmsStopRequest];
 					if(callOnB)
@@ -1168,7 +1208,14 @@ void getProp()
 					}
 					[nsTimerP invalidate];
 					nsTimerP = nil;
+					TerminateUAThread();
+					self->onLineB = false;
+					self->actualOnlineB=false;
+					self->uaLoginSuccessB=false;
+					self->sipLoginAttemptStartB=false;
+					self->dontTakeMsg = true;
 					
+					ltpInterfacesP->firstTimeLoginB = true;
 					loginViewP = [[LoginViewController alloc] initWithNibName:@"loginview" bundle:[NSBundle mainBundle]];
 					loginViewP.ltpInterfacesP  = ltpInterfacesP;
 					[loginViewP setObject:self];
@@ -1662,11 +1709,11 @@ int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lon
 	
 	NSAutoreleasePool *autoreleasePool = [[ NSAutoreleasePool alloc ] init];
 	spoknDelP = (SpoknAppDelegate *)userData;
-	if(spoknDelP.inbackgroundModeB)
+	/*if(spoknDelP.inbackgroundModeB)
 	{
 	
 		printf("\nspokn %d %d",type,llineID);
-	}
+	}*/
 	if( pthread_main_np() ){
 		[spoknDelP setLtpInfo:type :valSubLong :llineID :otherinfoP];
 		[spoknDelP sendMessage:spoknDelP];
@@ -1814,6 +1861,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		if (range.location !=NSNotFound)
 		{
 				ipadB = 1;
+				iphoneHighResolationB = 1;
 		}
 		
 		
@@ -1825,13 +1873,17 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		double x;
 		x = [versionP doubleValue];
 		
-		if(x>=3.2 && x<3.3)
+		if(x>=3.2)
 		{
-			ipadB = 1;
+			if(x<3.3)
+			{	
+				ipadB = 1;
+			}	
+			iphoneHighResolationB = 1;
 		}
 		
 	}
-	SetDeviceDetail("Spokn","1.1.3","iphone",osVerP,osModelP,uniqueIDCharP);
+	SetDeviceDetail("Spokn",CLIENT_VERSION,"iphone",osVerP,osModelP,uniqueIDCharP);
 
 }
 
@@ -1894,7 +1946,60 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 
 }
+- (BOOL) checkForHighResolution
+{
+	return self->iphoneHighResolationB;
+}
+- (BOOL) checkForIpad 
+{
+	return self->ipadB;
+	
+}/*
+-(void) setPjsipBufferSize
+{
+	
+	
+	size_t size=0;
+	sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+	if(size>0)
+	{	
+		char *machine = malloc(size);
+		int numVersion=0;
+		memset(machine,0,size);
+		
+		if(machine)
+		{	
+			char *ver;
+			sysctlbyname("hw.machine", machine, &size, NULL, 0);
+			ver = machine;
+			while(*ver)
+			{
+				if(*ver>='0' && *ver<='9')
+				{
+					numVersion=numVersion*10+ (*ver-48);
+				}
+				ver++;	
+			}
+			printf("version name %s number %d",machine,numVersion);
+			free(machine);
+			if(numVersion<12)
+			{
+				set_sizeof_buffer(30);
+			}
+			else {
+				set_sizeof_buffer(30);
+			}
 
+		}	
+	}
+	
+	
+	
+	
+	
+	
+}
+*/
 #define _PUSH_NOTIFICATION_
 #ifdef _PUSH_NOTIFICATION_
 #pragma mark PUSH NOTIFICATIONS
@@ -1928,12 +2033,6 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 */
 
-- (BOOL) checkForIpad 
-{
-	return self->ipadB;
-
-}
-
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
 	[self profileResynFromApp];//profile Resyn
@@ -1949,8 +2048,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	- (void)applicationDidFinishLaunching:(UIApplication *)application {    
 			
 #endif
-		
-	
+		outCallType = 1;	
+		//[self setPjsipBufferSize ];
 	application.applicationIconBadgeNumber = 0;
 	if(setDeviceID==0)
 	{	
@@ -2368,7 +2467,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 	
 	int count;
-	printf("\napplicationWillTerminate  tese\n");
+//	printf("\napplicationWillTerminate  tese\n");
 	[[NSUserDefaults standardUserDefaults] setInteger:getStunSettingInterface(ltpInterfacesP)+1  forKey:@"stunserversetting"];
 	count = newVMailCount();
 	if(count)
@@ -2746,16 +2845,48 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	char *nameP;
 	Boolean retB = false;
 	char typeP[30];
-	char *resultCharP;
-	//struct AddressBook *addressP;
-	resultCharP = NormalizeNumber(noCharP,0);
+	char *resultCharP=0;
+	if(actualOnlineB==false &&outCallType==1 )
+	{
+		if(self.onLineB)
+		{	
+			if(self->loginProgressStart)
+			{	
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _USER_OFFLINE_ 
+																   message: [ NSString stringWithString:_USER_OFFLINE_MESSAGE_ ]
+																  delegate: nil
+														 cancelButtonTitle: nil
+														 otherButtonTitles: _OK_, nil
+									  ];
+				[ alert show ];
+				[alert release];
+				return retB;
+			}
+			else {
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_SERVER_UNREACHABLE_ 
+																message:VOIP_CALL_NOT_POSSIBLE
+															   delegate:nil 
+													  cancelButtonTitle:nil 
+													  otherButtonTitles:_OK_, nil];
+				[alert show];
+				[alert release];
+				return retB;
+				
+			}
+		}	
+
+				
+		
 	
-	if(outCallType==2 || outCallType==3 && actualOnlineB==false)
+	}
+	//struct AddressBook *addressP;
+	
+	
+	if(outCallType==2 || outCallType==3)
 	{
 	
-		free(resultCharP);
-		resultCharP = 0;
-		return 1;
+		
+		return retB;
 	}
 	
 	
@@ -2805,7 +2936,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			return retB;
 		}
 		
-		
+		resultCharP = NormalizeNumber(noCharP,0);
 		//tempStringP = [[NSMutableString alloc] init] ;
 		
 		nameP = [self getNameAndTypeFromNumber:resultCharP :typeP :0];
@@ -2873,7 +3004,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	
 	}
-	free(resultCharP);
+	if(resultCharP)
+	{	
+		free(resultCharP);
+	}	
 	return retB;
 		
 	
@@ -3221,7 +3355,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			logOut(ltpInterfacesP,false);
 			SetConnection( ltpInterfacesP,0);
 			
-			alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
+			alertNotiFication(ALERT_OFFLINE,0,NO_WIFI_OR_DATA_NETWORK_REACHEBLE,(long)self,0);
 		//	[vmsviewP setcomposeStatus:0 ];
             break;
         }		
@@ -3305,7 +3439,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
        // statusString= [NSString stringWithFormat: @"%@, Connection Required %d", statusString,netStatus];
 		SetConnection( ltpInterfacesP,0);
 		
-		alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
+		alertNotiFication(ALERT_OFFLINE,0,NO_WIFI_OR_DATA_NETWORK_REACHEBLE,(long)self,0);
 		wifiavailable = NO;
 		
     }
@@ -3337,10 +3471,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		 */
 	}
 	
-	void keepAliveHandler() 
-	{
-	
-	}
+		
 	- (void)applicationDidEnterBackground:(UIApplication *)application {
 		
 	#ifndef _LTP_
@@ -3348,7 +3479,17 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			nsTimerP = nil;
 			
 	#endif
-		
+		int count;
+		count = newVMailCount();
+		if(count)
+		{	
+			application.applicationIconBadgeNumber = count;
+			
+		}
+		else
+		{
+			application.applicationIconBadgeNumber = 0;
+		}
 		
 		
 		/*
@@ -3372,7 +3513,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 					[application clearKeepAliveTimeout];
 					bg_task = 	 [application beginBackgroundTaskWithExpirationHandler: ^{
 						dispatch_async(dispatch_get_main_queue(), ^{
-							printf("\nI am going to expire\n");
+							//printf("\nI am going to expire\n");
 							[application endBackgroundTask:bg_task];
 							
 						});
@@ -3388,7 +3529,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				[application clearKeepAliveTimeout];
 				bg_task = 	 [application beginBackgroundTaskWithExpirationHandler: ^{
 					dispatch_async(dispatch_get_main_queue(), ^{
-						printf("\nI am going to expire\n");
+						//printf("\nI am going to expire\n");
 						[application endBackgroundTask:bg_task];
 						
 					});
@@ -3401,18 +3542,18 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 		
 		}
-		printf("\nbackground time %lf ",[application backgroundTimeRemaining] );
+	//	printf("\nbackground time %lf ",[application backgroundTimeRemaining] );
 		[ application setKeepAliveTimeout:600 handler:^{
 		
-			printf("\n hello mukesh where are u");
+			//printf("\n hello mukesh where are u");
 		} ];
 		
-		NSLog(@"Application entered background state.");
+		//NSLog(@"Application entered background state.");
 		// UIBackgroundTaskIdentifier bgTask is instance variable
 			
 		bg_task = 	 [application beginBackgroundTaskWithExpirationHandler: ^{
 			dispatch_async(dispatch_get_main_queue(), ^{
-				printf("\nI am going to expire\n");
+				//printf("\nI am going to expire\n");
 				//[application endBackgroundTask:bg_task];
 				
 			});
@@ -3450,6 +3591,19 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		 Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
 		 */
 		inbackgroundModeB = false;
+		if(intrrruptB)
+		{
+			intrrruptB = 0;
+			if(callOnB)
+			{
+				AudioSessionSetActive(true);
+				//printf("\n inttrrept come");
+				restartPlayAndRecord();
+				setHoldInterface(self->ltpInterfacesP, 0);
+				intrrruptB = 0;
+				
+			}
+		}
 	}
 	
 	
@@ -3474,13 +3628,15 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 												  userInfo: nil
 					
 												   repeats: YES];
+			profileResync();
+			
 		}	
 #endif
 		
 		
 		
 	}
-	- (void)scheduleAlarmForDate:(NSString*)msgStringP
+	- (void)sendIncommingPushNotification:(NSString*)msgStringP
 	{
 		UIApplication* app = [UIApplication sharedApplication];
 		NSArray*    oldNotifications = [app scheduledLocalNotifications];
@@ -3489,21 +3645,27 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		//newDate = [theDate dateByAddingTimeInterval:2];
 		
 		// Clear out the old notification before scheduling a new one.
+		
 		if ([oldNotifications count] > 0)
 			[app cancelAllLocalNotifications];
 		
 		// Create a new notification
-		UILocalNotification* alarm = [[[UILocalNotification alloc] init] autorelease];
-		if (alarm)
+		Class UInotificationTest =  NSClassFromString(@"UILocalNotification");
+		if(UInotificationTest)	
 		{
+
+			UILocalNotification* alarm = [[[UInotificationTest alloc] init] autorelease];
+			if (alarm)
+			{
 			//alarm.fireDate = newDate;
 			//alarm.timeZone = [NSTimeZone defaultTimeZone];
-			alarm.repeatInterval = 0;
+				alarm.repeatInterval = 0;
 			//alarm.soundName = @"alarmsound.caf";
-			alarm.alertBody = msgStringP;
+				alarm.alertBody = msgStringP;
 			
 			//[app scheduleLocalNotification:alarm];
-			[app presentLocalNotificationNow:alarm];
+				[app presentLocalNotificationNow:alarm];
+			}	
 		}
 	}
 #endif

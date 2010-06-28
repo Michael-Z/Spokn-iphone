@@ -24,6 +24,7 @@
 #import <UIKit/UIKit.h>
 #import "Ltptimer.h"
 #import "LtpInterface.h"
+#pragma pack(4)  
 @protocol LoginProtocol
 
 @optional
@@ -46,6 +47,7 @@
 	LtpInterfaceType *ltpInterfacesP;
 	UIActivityIndicatorView *loginactivityIndicator;
 	IBOutlet UITableView *tableView;
+	int dontSendLoginB;
 	
 	
 }
