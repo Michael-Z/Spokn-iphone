@@ -83,7 +83,7 @@ typedef struct IncommingCallType
 			int LogoutSendB;
 			int firstTimeLoginB;
 			short int blankData[160];//blank data
-			
+			char userAgent[100];
 		}LtpInterfaceType;
 	void  setLtpUserName(LtpInterfaceType *ltpInterfaceP,char *unameCharP);
 	char* getLtpUserName(LtpInterfaceType *ltpInterfaceP);
@@ -125,10 +125,11 @@ Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId);
 	void shiftToConferenceCallInterface(LtpInterfaceType *ltpInterfaceP,int oldLineId);
 	void setPrivateCallInterface(LtpInterfaceType *ltpInterfaceP,int lineid);
 	int  showErrorOnTimeOut(LtpInterfaceType *ltpInterfaceP);
-void setStunSettingIngetface(LtpInterfaceType *ltpInterfaceP, int stunB);
+	void setStunSettingIngetface(LtpInterfaceType *ltpInterfaceP, int stunB);
 	int  getStunSettingInterface(LtpInterfaceType *ltpInterfaceP);
-int SendLoginPacket(LtpInterfaceType *ltpInterfaceP);
-int DoLtpSipLoginInterface(LtpInterfaceType *ltpInterfaceP);
+	int SendLoginPacket(LtpInterfaceType *ltpInterfaceP);
+	int DoLtpSipLoginInterface(LtpInterfaceType *ltpInterfaceP);
+	void setUserAgent(LtpInterfaceType *ltpInterfaceP,char* luserAgent);		
 //void set_sizeof_buffer(int size);
 //int get_sizeof_buffer();
 #endif

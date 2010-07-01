@@ -188,7 +188,7 @@
 	if(lrandowVariable==0)
 	{	
 		lrandowVariable = time(0);//get random variable
-		lrandowVariable = lrandowVariable&0x1FFF;
+		lrandowVariable = lrandowVariable;
 		[[NSUserDefaults standardUserDefaults] setInteger:lrandowVariable forKey:@"random_variable"];
 	
 	}
@@ -1883,6 +1883,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 		
 	}
+	[self enableSip];
+	sprintf(self->userAgent,"spokn version=%s,OsVersion=%s,OsModel=%s,UniqueID=%ld",CLIENT_VERSION,osVerP,osModelP,(long)self->randowVariable);
+	
 	SetDeviceDetail("Spokn",CLIENT_VERSION,"iphone",osVerP,osModelP,uniqueIDCharP);
 
 }
@@ -2216,11 +2219,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		if(ltpTimerP)
 		{	
-			ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable);
+			ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
 		}
 		else
 		{
-			ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable);
+			ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
 		}
 #ifdef _LTP_
 		if(self->sipOnB)
@@ -2288,6 +2291,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 												 selector:@selector(ProximityChange:)
 													 name:UIDeviceProximityStateDidChangeNotification
 												   object:device];
+		
+		setUserAgent(ltpInterfacesP,self->userAgent);
 		
 }
 -(void)registerUnregisterOriantation:(BOOL)registerB

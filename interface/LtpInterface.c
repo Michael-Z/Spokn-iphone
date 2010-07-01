@@ -516,7 +516,7 @@ void *createThread(void *spoknP)
 	ltpInterfaceP = (LtpInterfaceType *)spoknP;
 	ltpInterfaceP->pjsipThreadStartB = 1;
 	errorstring[0] = 0;
-	if(sip_spokn_pj_config(ltpInterfaceP->ltpObjectP,errorstring)==1)
+	if(sip_spokn_pj_config(ltpInterfaceP->ltpObjectP,ltpInterfaceP->userAgent,errorstring)==1)
 	{
 		
 		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN,0,0,ltpInterfaceP->userData,0);
@@ -826,6 +826,10 @@ void shiftToConferenceCallInterface(LtpInterfaceType *ltpInterfaceP,int oldLineI
 void setPrivateCallInterface(LtpInterfaceType *ltpInterfaceP,int lineid)
 {
 	return setPrivateCall(ltpInterfaceP->ltpObjectP,lineid);
+}
+void setUserAgent(LtpInterfaceType *ltpInterfaceP,char*userAgentP)
+{
+	strcpy(ltpInterfaceP->userAgent,userAgentP);
 }
 /*void set_sizeof_buffer(int size)
 {

@@ -194,7 +194,7 @@ typedef struct CallNumberType
 	Boolean sipLoginAttemptStartB;
 	int intrrruptB;
 	Boolean dontTakeMsg;
-	
+	char userAgent[100];
 
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
