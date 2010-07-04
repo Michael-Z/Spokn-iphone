@@ -195,6 +195,7 @@ typedef struct CallNumberType
 	int intrrruptB;
 	Boolean dontTakeMsg;
 	char userAgent[100];
+	Boolean applicationLoadedB;
 
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
@@ -223,7 +224,7 @@ typedef struct CallNumberType
 -(void) setPjsipBufferSize;
 
 #endif
-
+-(void)	applicationInit:(id)application;
 /*
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, assign) IBOutlet DialviewController *dialviewP;

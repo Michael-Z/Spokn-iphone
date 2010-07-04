@@ -2003,6 +2003,258 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 }
 */
+-(void)	applicationInit:(id)applicationP
+{
+	
+	UIApplication *application;
+	application = applicationP;
+	outCallType = 1;
+	//[self setPjsipBufferSize ];
+	application.applicationIconBadgeNumber = 0;
+	if(setDeviceID==0)
+	{	
+		[self setDeviceInforation:@" "];
+	}		
+	
+	UIDevice* device = [UIDevice currentDevice];
+	isBackgroundSupported = NO;
+	if ([device respondsToSelector:@selector(isMultitaskingSupported)])
+		isBackgroundSupported = device.multitaskingSupported;	
+	// Override point for customization after application launch
+	//CGRect screenBounds = [ [ UIScreen mainScreen ] bounds ];
+	
+	//self.window = [ [ [ UIWindow alloc ] initWithFrame: screenBounds ] autorelease ];
+	//viewController = [ [ spoknviewcontroller alloc ] init ];
+	
+	//[ window addSubview: viewController.view ];
+	//[ window addSubview: viewController->usernameP ];
+	//[ window addSubview: viewController->passwordP ];
+	prvCtlP = 0;	
+	wifiavailable = NO;
+	urlSendP = nil;
+	//char *userNameCharP;
+	//char *passwordCharP;
+	animation = 1;
+	NSMutableArray *viewControllers;
+	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	dialviewP = [[DialviewController alloc] initWithNibName:@"dialview" bundle:[NSBundle mainBundle]];
+	contactviewP = [[ContactViewController alloc] initWithNibName:@"contact" bundle:[NSBundle mainBundle]];
+	vmsviewP = [[VmailViewController alloc] initWithNibName:@"vmailview" bundle:[NSBundle mainBundle]];
+	callviewP = [[CalllogViewController alloc] initWithNibName:@"calllog" bundle:[NSBundle mainBundle]];
+	
+	
+	
+	
+	spoknViewControllerP = [[SpoknViewController alloc] initWithNibName:@"spoknviewcontroller" bundle:[NSBundle mainBundle]];	
+	vmsP = 0;
+	//dialNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: dialviewP ];
+	contactNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: contactviewP ];
+	[contactviewP release];
+	vmsNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: vmsviewP ];
+	[vmsviewP release];
+	calllogNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: callviewP ];
+	[callviewP release];
+	
+	
+	spoknViewNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: spoknViewControllerP ];
+	[spoknViewControllerP release];
+	[spoknViewControllerP setObject:self];
+	[dialviewP setObject:self];
+	[contactviewP setObject:self];
+	contactviewP.uaObject = GETCONTACTLIST;
+	contactviewP.contactTabControllerB	= YES;
+	[contactviewP setObjType:GETCONTACTLIST];
+	
+	
+	
+	//vmsviewP.uaObject = GETVMAILLIST;
+	[vmsviewP setObjType:GETVMAILLIST];
+	
+	[vmsviewP setObject:self];
+	//callviewP.uaObject = GETCALLLOGLIST;
+	[callviewP setObject:self];
+	[callviewP setObjType:GETCALLLOGLIST];
+	
+	//now inin variable of incomming class
+	
+	
+	
+#ifdef _TEST_MEMORY_
+	testP = [[testingview alloc] initWithNibName:@"testingview" bundle:[NSBundle mainBundle]];
+	testNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: testP ];
+	[testP release];				
+#endif
+	
+	viewControllers = [[NSMutableArray alloc] init];
+	//[viewControllers addObject:loginViewP];
+	[viewControllers addObject:contactNavigationController];
+	[contactNavigationController release];
+	
+	[viewControllers addObject:calllogNavigationController];
+	[calllogNavigationController release];
+	
+	
+	[viewControllers addObject:dialviewP];
+	[dialviewP release];
+	
+	[viewControllers addObject:vmsNavigationController];
+	[vmsNavigationController release];
+	
+	[viewControllers addObject:spoknViewNavigationController];
+	[spoknViewNavigationController release];
+	
+#ifdef _TEST_MEMORY_
+	[viewControllers addObject:testNavigationController];
+	[testNavigationController release];
+	
+#endif
+	tabBarController = [ [ UITabBarController alloc ] init ];
+	
+	tabBarController.viewControllers = viewControllers;
+	[viewControllers release];
+	
+	
+	
+	tabBarController.delegate = self; 	
+	[window addSubview:tabBarController.view];
+	
+	
+	//tabBarController.selectedViewController = spoknViewNavigationController;//dialviewP;
+	[calllogNavigationController.tabBarItem initWithTitle:@"Calls" image:[UIImage imageNamed:_TAB_CALLS_PNG_] tag:2];
+	[vmsNavigationController.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:_TAB_VMS_PNG_] tag:4];
+	
+	
+	/*int majorver =0,minor1ver=0,minor2ver=0;
+	 GetOsVersion(&majorver,&minor1ver,&minor2ver);
+	 if(majorver>=3 && minor1ver>0 )
+	 {
+	 self->blueTooth = true;
+	 }
+	 else
+	 {
+	 self->blueTooth = false;
+	 }*/
+	self->blueTooth = false;
+	//setProp();
+	//getProp();	
+	
+	{	
+		int setIndex;
+		setIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"tabBarIndex"];
+		
+		if(setIndex>0)
+		{
+			if(shifttovmsTab)
+			{
+				tabBarController.selectedIndex = 3;	//VMS tab
+				[vmsviewP startProgress];
+			}
+			else
+			{
+				setIndex--;
+				tabBarController.selectedIndex = setIndex;
+			}
+		}
+		else
+		{
+			tabBarController.selectedIndex = 4;//spokn tab
+		}
+		//[[NSUserDefaults standardUserDefaults] synchronize];
+	}
+	//	[self startRutine];
+	[ window makeKeyAndVisible ];
+	self->firstTimeB = 1;
+	
+	[self enableEdge];
+	[self enableSip];
+	
+	
+	ltpTimerP = nil;	
+#ifndef _OWN_THREAD_
+	ltpTimerP = [[LtpTimer alloc] init];
+#endif	
+	
+	if(ltpTimerP)
+	{	
+		ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
+	}
+	else
+	{
+		ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
+	}
+#ifdef _LTP_
+	if(self->sipOnB)
+	{	
+		setLtpServer(ltpInterfacesP,"www.spokn.com");
+	}
+	else
+	{
+		setLtpServer(ltpInterfacesP,"www.spokn.com");
+	}
+#else
+	setLtpServer(ltpInterfacesP,"www.spokn.com");
+#endif	
+	
+	int stunServer;
+	stunServer = [[NSUserDefaults standardUserDefaults] integerForKey:@"stunserversetting"];
+	if(stunServer)
+	{
+		stunServer--;
+		setStunSettingIngetface(ltpInterfacesP, stunServer);
+		
+	}
+	//start ua 
+	UACallBackType uaCallback = {0};
+	uaCallback.uData = self;
+	uaCallback.pathFunPtr = GetPathFunction;
+	uaCallback.creatorDirectoryFunPtr = CreateDirectoryFunction;
+	uaCallback.alertNotifyP = alertNotiFication;
+	
+	UACallBackInit(&uaCallback,ltpInterfacesP->ltpObjectP);
+	uaInit();
+	
+	dialviewP.ltpInterfacesP  = ltpInterfacesP;
+	
+	contactviewP.ltpInterfacesP = ltpInterfacesP;
+	vmsviewP.ltpInterfacesP = ltpInterfacesP;
+	//callviewP.ltpInterfacesP = ltpInterfacesP;
+	
+	//tabBarController.selectedViewController = dialviewP;
+	
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	[nc addObserver:self selector:@selector(alertAction:) name:@"ALERTNOTIFICATION" object:nil];
+	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	//[nc postNotificationName:@"DEQUEUEAUDIO" object:idP userInfo:nil];
+	cdrLoad();
+	[NSTimer scheduledTimerWithTimeInterval: 1
+	 
+									 target: self
+	 
+								   selector: @selector(openRscTimer:)
+	 
+								   userInfo: nil
+	 
+									repeats: YES];
+	
+	device = [UIDevice currentDevice];
+	device.batteryMonitoringEnabled = YES;
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(onCharging:)
+												 name:UIDeviceBatteryStateDidChangeNotification
+											   object:device];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(ProximityChange:)
+												 name:UIDeviceProximityStateDidChangeNotification
+											   object:device];
+	
+	setUserAgent(ltpInterfacesP,self->userAgent);
+	
+	
+	
+}
+
 #define _PUSH_NOTIFICATION_
 #ifdef _PUSH_NOTIFICATION_
 #pragma mark PUSH NOTIFICATIONS
@@ -2051,251 +2303,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	- (void)applicationDidFinishLaunching:(UIApplication *)application {    
 			
 #endif
-		outCallType = 1;	
-		//[self setPjsipBufferSize ];
-	application.applicationIconBadgeNumber = 0;
-	if(setDeviceID==0)
-	{	
-		[self setDeviceInforation:@" "];
-	}		
-
-		UIDevice* device = [UIDevice currentDevice];
-		isBackgroundSupported = NO;
-		if ([device respondsToSelector:@selector(isMultitaskingSupported)])
-			isBackgroundSupported = device.multitaskingSupported;	
-    // Override point for customization after application launch
-	//CGRect screenBounds = [ [ UIScreen mainScreen ] bounds ];
-	
-	//self.window = [ [ [ UIWindow alloc ] initWithFrame: screenBounds ] autorelease ];
-	//viewController = [ [ spoknviewcontroller alloc ] init ];
-	
-	//[ window addSubview: viewController.view ];
-	//[ window addSubview: viewController->usernameP ];
-	//[ window addSubview: viewController->passwordP ];
-	prvCtlP = 0;	
-	wifiavailable = NO;
-	urlSendP = nil;
-	//char *userNameCharP;
-	//char *passwordCharP;
-	animation = 1;
-	NSMutableArray *viewControllers;
-	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	dialviewP = [[DialviewController alloc] initWithNibName:@"dialview" bundle:[NSBundle mainBundle]];
-	contactviewP = [[ContactViewController alloc] initWithNibName:@"contact" bundle:[NSBundle mainBundle]];
-	vmsviewP = [[VmailViewController alloc] initWithNibName:@"vmailview" bundle:[NSBundle mainBundle]];
-	callviewP = [[CalllogViewController alloc] initWithNibName:@"calllog" bundle:[NSBundle mainBundle]];
-	
-	
-
-	
-	spoknViewControllerP = [[SpoknViewController alloc] initWithNibName:@"spoknviewcontroller" bundle:[NSBundle mainBundle]];	
-	vmsP = 0;
-	//dialNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: dialviewP ];
-	contactNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: contactviewP ];
-	[contactviewP release];
-	vmsNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: vmsviewP ];
-	[vmsviewP release];
-	calllogNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: callviewP ];
-	[callviewP release];
-	
-	
-	spoknViewNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: spoknViewControllerP ];
-	[spoknViewControllerP release];
-	[spoknViewControllerP setObject:self];
-	[dialviewP setObject:self];
-	[contactviewP setObject:self];
-	contactviewP.uaObject = GETCONTACTLIST;
-	contactviewP.contactTabControllerB	= YES;
-	[contactviewP setObjType:GETCONTACTLIST];
-	
-	
-	
-	//vmsviewP.uaObject = GETVMAILLIST;
-	[vmsviewP setObjType:GETVMAILLIST];
-
-	[vmsviewP setObject:self];
-	//callviewP.uaObject = GETCALLLOGLIST;
-	[callviewP setObject:self];
-	[callviewP setObjType:GETCALLLOGLIST];
-	
-	//now inin variable of incomming class
-		
-
-	
-	#ifdef _TEST_MEMORY_
-		testP = [[testingview alloc] initWithNibName:@"testingview" bundle:[NSBundle mainBundle]];
-		testNavigationController = [ [ UINavigationController alloc ] initWithRootViewController: testP ];
-		[testP release];				
-	#endif
-	
-	viewControllers = [[NSMutableArray alloc] init];
-	//[viewControllers addObject:loginViewP];
-	[viewControllers addObject:contactNavigationController];
-	[contactNavigationController release];
-	
-	[viewControllers addObject:calllogNavigationController];
-	[calllogNavigationController release];
-
-
-	[viewControllers addObject:dialviewP];
-	[dialviewP release];
-	
-	[viewControllers addObject:vmsNavigationController];
-	[vmsNavigationController release];
-	
-	[viewControllers addObject:spoknViewNavigationController];
-	[spoknViewNavigationController release];
-	
-	#ifdef _TEST_MEMORY_
-	[viewControllers addObject:testNavigationController];
-	[testNavigationController release];
-
-	#endif
-	tabBarController = [ [ UITabBarController alloc ] init ];
-	
-	tabBarController.viewControllers = viewControllers;
-	[viewControllers release];
-	
-	
-	
-	tabBarController.delegate = self; 	
-	[window addSubview:tabBarController.view];
-	
-		
-	//tabBarController.selectedViewController = spoknViewNavigationController;//dialviewP;
-	[calllogNavigationController.tabBarItem initWithTitle:@"Calls" image:[UIImage imageNamed:_TAB_CALLS_PNG_] tag:2];
-	[vmsNavigationController.tabBarItem initWithTitle:@"VMS" image:[UIImage imageNamed:_TAB_VMS_PNG_] tag:4];
-		
-	
-	/*int majorver =0,minor1ver=0,minor2ver=0;
-	GetOsVersion(&majorver,&minor1ver,&minor2ver);
-	if(majorver>=3 && minor1ver>0 )
-	{
-		self->blueTooth = true;
-	}
-	else
-	{
-		self->blueTooth = false;
-	}*/
-	self->blueTooth = false;
-	//setProp();
-	//getProp();	
-		
-		{	
-			int setIndex;
-			setIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"tabBarIndex"];
+		firstTimeB = 1;
+		applicationLoadedB = 0;
+		[self applicationInit:application];
 			
-			if(setIndex>0)
-			{
-				if(shifttovmsTab)
-				{
-					tabBarController.selectedIndex = 3;	//VMS tab
-					[vmsviewP startProgress];
-				}
-				else
-				{
-					setIndex--;
-					tabBarController.selectedIndex = setIndex;
-				}
-			}
-			else
-			{
-				tabBarController.selectedIndex = 4;//spokn tab
-			}
-			//[[NSUserDefaults standardUserDefaults] synchronize];
-		}
-			//	[self startRutine];
-		[ window makeKeyAndVisible ];
-		self->firstTimeB = 1;
-
-		[self enableEdge];
-		[self enableSip];
-		
-		
-		ltpTimerP = nil;	
-#ifndef _OWN_THREAD_
-		ltpTimerP = [[LtpTimer alloc] init];
-#endif	
-		
-		if(ltpTimerP)
-		{	
-			ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
-		}
-		else
-		{
-			ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
-		}
-#ifdef _LTP_
-		if(self->sipOnB)
-		{	
-			setLtpServer(ltpInterfacesP,"www.spokn.com");
-		}
-		else
-		{
-			setLtpServer(ltpInterfacesP,"www.spokn.com");
-		}
-#else
-		setLtpServer(ltpInterfacesP,"www.spokn.com");
-#endif	
-		
-		int stunServer;
-		stunServer = [[NSUserDefaults standardUserDefaults] integerForKey:@"stunserversetting"];
-		if(stunServer)
-		{
-			stunServer--;
-			setStunSettingIngetface(ltpInterfacesP, stunServer);
-		
-		}
-		//start ua 
-		UACallBackType uaCallback = {0};
-		uaCallback.uData = self;
-		uaCallback.pathFunPtr = GetPathFunction;
-		uaCallback.creatorDirectoryFunPtr = CreateDirectoryFunction;
-		uaCallback.alertNotifyP = alertNotiFication;
-		
-		UACallBackInit(&uaCallback,ltpInterfacesP->ltpObjectP);
-		uaInit();
-		
-		dialviewP.ltpInterfacesP  = ltpInterfacesP;
-		
-		contactviewP.ltpInterfacesP = ltpInterfacesP;
-		vmsviewP.ltpInterfacesP = ltpInterfacesP;
-		//callviewP.ltpInterfacesP = ltpInterfacesP;
-		
-		//tabBarController.selectedViewController = dialviewP;
-		
-		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-		[nc addObserver:self selector:@selector(alertAction:) name:@"ALERTNOTIFICATION" object:nil];
-		//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-		//[nc postNotificationName:@"DEQUEUEAUDIO" object:idP userInfo:nil];
-		cdrLoad();
-		[NSTimer scheduledTimerWithTimeInterval: 2
-		 
-										 target: self
-		 
-									   selector: @selector(openRscTimer:)
-		 
-									   userInfo: nil
-		 
-										repeats: YES];
-		
-		device = [UIDevice currentDevice];
-		device.batteryMonitoringEnabled = YES;
-
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(onCharging:)
-													 name:UIDeviceBatteryStateDidChangeNotification
-												   object:device];
-		
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(ProximityChange:)
-													 name:UIDeviceProximityStateDidChangeNotification
-												   object:device];
-		
-		setUserAgent(ltpInterfacesP,self->userAgent);
-		
 }
--(void)registerUnregisterOriantation:(BOOL)registerB
+	-(void)registerUnregisterOriantation:(BOOL)registerB
 {
 	UIDevice *device = [UIDevice currentDevice];
 	prioximityB = 0;
@@ -3616,9 +3629,15 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		/*
 		 Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 		 */
+	/*if(applicationLoadedB==false)
+	{	
+		[self applicationInit:application];
+		applicationLoadedB = true;
+	}	
+		*/
 		inbackgroundModeB = false;
 		
-#ifndef _LTP_
+#ifndef _LTP_COMPILE_
 		
 		if(onLineB)
 		{	
