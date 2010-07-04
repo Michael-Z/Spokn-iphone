@@ -470,6 +470,9 @@ int  getStunSettingInterface(LtpInterfaceType *ltpInterfaceP)
 int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 {
 	
+	//
+	applicationEnd();
+
 	DeInitAudio( ltpInterfaceP->playbackP,false);
 	DeInitAudio( ltpInterfaceP->recordP,false);
 	ltpInterfaceP->playbackP = 0;
