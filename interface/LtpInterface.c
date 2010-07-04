@@ -326,9 +326,9 @@ void *PollThread(void *PollThreadP)
 			break;
 		}
 		
-		if(gP->connectionActiveByte==0)
+		if(gP->connectionActiveByte==0 || gP->firstTimeLoginB==true)
 		{
-			sleep(1);
+			sleep(2);
 			continue;
 		}
 		else

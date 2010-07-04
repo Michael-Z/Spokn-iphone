@@ -30,8 +30,11 @@
 
 //Specifies if application mode is developer or user. Events will not be tracked for developer mode
 // Comment following line when not in developer mode
-#define DEVELOPER_MODE
+#if TARGET_IPHONE_SIMULATOR == 1
 
+	
+	#define DEVELOPER_MODE
+#endif
 id sharedEventTracker;
 
 

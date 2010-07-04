@@ -144,7 +144,6 @@
 		8B59A63010998423003BF3EA /* GTokenFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62710998423003BF3EA /* GTokenFieldCell.m */; };
 		8B59A68E109987FB003BF3EA /* pickerviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */; };
 		8B59A68F109987FB003BF3EA /* pickerviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */; };
-		8B5F7B3611DB1E3000151D95 /* libilbccodec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B5F7B3511DB1E3000151D95 /* libilbccodec-arm-apple-darwin9.a */; };
 		8B61B2171132A8A7003D6164 /* contactlookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B61B2161132A8A7003D6164 /* contactlookup.m */; };
 		8B61B2181132A8A7003D6164 /* contactlookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B61B2161132A8A7003D6164 /* contactlookup.m */; };
 		8B72CA1211412FA5002C7E70 /* ringtone.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8B72CA1111412FA5002C7E70 /* ringtone.wav */; };
@@ -366,14 +365,14 @@
 		8BC51C50110863A200EC6597 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C4F110863A200EC6597 /* AVFoundation.framework */; };
 		8BC51C51110863A200EC6597 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C4F110863A200EC6597 /* AVFoundation.framework */; };
 		8BC568FC10BE9A590083F77D /* dialview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BC568FB10BE9A590083F77D /* dialview.xib */; };
+		8BC8912611DCCC3400350111 /* Merge-Calls.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC8912411DCCC3400350111 /* Merge-Calls.png */; };
+		8BC8912711DCCC3400350111 /* Swap-Calls.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BC8912511DCCC3400350111 /* Swap-Calls.png */; };
 		8BCA77351043C3E90018419C /* customcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCA77341043C3E90018419C /* customcell.m */; };
 		8BCB06B21083020A00468EC7 /* custombutton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB06B11083020A00468EC7 /* custombutton.m */; };
 		8BCB127E119994B200F5390D /* Discousure-Indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB1278119994B200F5390D /* Discousure-Indicator.png */; };
 		8BCB127F119994B200F5390D /* End-Conf-Call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB1279119994B200F5390D /* End-Conf-Call.png */; };
-		8BCB1280119994B200F5390D /* Merge-Calls.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB127A119994B200F5390D /* Merge-Calls.png */; };
 		8BCB1281119994B200F5390D /* Phone-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB127B119994B200F5390D /* Phone-Icon.png */; };
 		8BCB1282119994B200F5390D /* Private-Conf-Call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB127C119994B200F5390D /* Private-Conf-Call.png */; };
-		8BCB1283119994B200F5390D /* Swap-Calls.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BCB127D119994B200F5390D /* Swap-Calls.png */; };
 		8BCEEAEE104ACC87001DF4AC /* overlayviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */; };
 		8BCEEB2D104AD235001DF4AC /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCEEB2C104AD235001DF4AC /* OverlayView.xib */; };
 		8BD0C5571121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C5551121459B00D05D74 /* 6_deleteconfirm_302_45_normal.png */; };
@@ -524,7 +523,6 @@
 		8B59A68B109987FB003BF3EA /* pickerviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = pickerviewcontroller.xib; sourceTree = "<group>"; };
 		8B59A68C109987FB003BF3EA /* pickerviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pickerviewcontroller.m; sourceTree = "<group>"; };
 		8B59A68D109987FB003BF3EA /* pickerviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pickerviewcontroller.h; sourceTree = "<group>"; };
-		8B5F7B3511DB1E3000151D95 /* libilbccodec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libilbccodec-arm-apple-darwin9.a"; path = "../pjproject15/third_party/lib/libilbccodec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B61B2151132A8A7003D6164 /* contactlookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactlookup.h; sourceTree = "<group>"; };
 		8B61B2161132A8A7003D6164 /* contactlookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactlookup.m; sourceTree = "<group>"; };
 		8B72CA1111412FA5002C7E70 /* ringtone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtone.wav; sourceTree = "<group>"; };
@@ -675,16 +673,16 @@
 		8BC51C401108633600EC6597 /* spoknaudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknaudio.m; sourceTree = "<group>"; };
 		8BC51C4F110863A200EC6597 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8BC568FB10BE9A590083F77D /* dialview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = dialview.xib; sourceTree = "<group>"; };
+		8BC8912411DCCC3400350111 /* Merge-Calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Merge-Calls.png"; sourceTree = "<group>"; };
+		8BC8912511DCCC3400350111 /* Swap-Calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Swap-Calls.png"; sourceTree = "<group>"; };
 		8BCA77331043C3E90018419C /* customcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customcell.h; sourceTree = "<group>"; };
 		8BCA77341043C3E90018419C /* customcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customcell.m; sourceTree = "<group>"; };
 		8BCB06B01083020A00468EC7 /* custombutton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = custombutton.h; sourceTree = "<group>"; };
 		8BCB06B11083020A00468EC7 /* custombutton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = custombutton.m; sourceTree = "<group>"; };
 		8BCB1278119994B200F5390D /* Discousure-Indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Discousure-Indicator.png"; sourceTree = "<group>"; };
 		8BCB1279119994B200F5390D /* End-Conf-Call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "End-Conf-Call.png"; sourceTree = "<group>"; };
-		8BCB127A119994B200F5390D /* Merge-Calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Merge-Calls.png"; sourceTree = "<group>"; };
 		8BCB127B119994B200F5390D /* Phone-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Phone-Icon.png"; sourceTree = "<group>"; };
 		8BCB127C119994B200F5390D /* Private-Conf-Call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Private-Conf-Call.png"; sourceTree = "<group>"; };
-		8BCB127D119994B200F5390D /* Swap-Calls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Swap-Calls.png"; sourceTree = "<group>"; };
 		8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = overlayviewcontroller.m; sourceTree = "<group>"; };
 		8BCEEAED104ACC87001DF4AC /* overlayviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = overlayviewcontroller.h; sourceTree = "<group>"; };
 		8BCEEB2C104AD235001DF4AC /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
@@ -765,7 +763,6 @@
 				8BE79E401186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */,
 				8BE79E421186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a in Frameworks */,
 				8BEDE4DB11BE6CA600F813B0 /* libGoogleAnalytics.a in Frameworks */,
-				8B5F7B3611DB1E3000151D95 /* libilbccodec-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1145,7 +1142,6 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
-				8B5F7B3511DB1E3000151D95 /* libilbccodec-arm-apple-darwin9.a */,
 				8BE79E411186EE15008C1DE3 /* libportaudio-i386-apple-darwin9.a */,
 				8BE79E3F1186EDFD008C1DE3 /* libpjmedia-audiodev-i386-apple-darwin9.a */,
 				8BB1F6261186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a */,
@@ -1288,13 +1284,13 @@
 		8BCB1277119994B200F5390D /* Conference_Icons */ = {
 			isa = PBXGroup;
 			children = (
+				8BC8912411DCCC3400350111 /* Merge-Calls.png */,
+				8BC8912511DCCC3400350111 /* Swap-Calls.png */,
 				8BF41D9611B64266007EAEBC /* End_big_conf_call.png */,
 				8BCB1278119994B200F5390D /* Discousure-Indicator.png */,
 				8BCB1279119994B200F5390D /* End-Conf-Call.png */,
-				8BCB127A119994B200F5390D /* Merge-Calls.png */,
 				8BCB127B119994B200F5390D /* Phone-Icon.png */,
 				8BCB127C119994B200F5390D /* Private-Conf-Call.png */,
-				8BCB127D119994B200F5390D /* Swap-Calls.png */,
 			);
 			name = Conference_Icons;
 			path = rsc/Conference_Icons;
@@ -1522,12 +1518,12 @@
 				8BDAED65119199BE00DB14B2 /* 11_declinecall_36_18.png in Resources */,
 				8BCB127E119994B200F5390D /* Discousure-Indicator.png in Resources */,
 				8BCB127F119994B200F5390D /* End-Conf-Call.png in Resources */,
-				8BCB1280119994B200F5390D /* Merge-Calls.png in Resources */,
 				8BCB1281119994B200F5390D /* Phone-Icon.png in Resources */,
 				8BCB1282119994B200F5390D /* Private-Conf-Call.png in Resources */,
-				8BCB1283119994B200F5390D /* Swap-Calls.png in Resources */,
 				8BF41D9711B64266007EAEBC /* End_big_conf_call.png in Resources */,
 				8B140C4211CA1814004ACB15 /* spokn-Info.plist in Resources */,
+				8BC8912611DCCC3400350111 /* Merge-Calls.png in Resources */,
+				8BC8912711DCCC3400350111 /* Swap-Calls.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1813,8 +1809,8 @@
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "029A38C9-B406-4D61-BCC3-3B65C702829C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "029A38C9-B406-4D61-BCC3-3B65C702829C";
+				PROVISIONING_PROFILE = "685B9CA5-6922-4A37-9264-29080B21B5C5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "685B9CA5-6922-4A37-9264-29080B21B5C5";
 				SDKROOT = iphoneos4.0;
 				SKIP_INSTALL = NO;
 			};
@@ -2300,8 +2296,8 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "029A38C9-B406-4D61-BCC3-3B65C702829C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "029A38C9-B406-4D61-BCC3-3B65C702829C";
+				PROVISIONING_PROFILE = "685B9CA5-6922-4A37-9264-29080B21B5C5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "685B9CA5-6922-4A37-9264-29080B21B5C5";
 				SDKROOT = iphoneos4.0;
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
