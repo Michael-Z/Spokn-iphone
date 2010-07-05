@@ -81,6 +81,7 @@ typedef struct IncommingCallType
 			int valChange;
 			int pjsipThreadStartB;
 			int LogoutSendB;
+			Boolean stopAutioQueueImidateB;
 			int firstTimeLoginB;
 			short int blankData[160];//blank data
 			char userAgent[100];
@@ -129,7 +130,8 @@ Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId);
 	int  getStunSettingInterface(LtpInterfaceType *ltpInterfaceP);
 	int SendLoginPacket(LtpInterfaceType *ltpInterfaceP);
 	int DoLtpSipLoginInterface(LtpInterfaceType *ltpInterfaceP);
-	void setUserAgent(LtpInterfaceType *ltpInterfaceP,char* luserAgent);		
+	void setUserAgent(LtpInterfaceType *ltpInterfaceP,char* luserAgent);	
+	void HangupAllCall(LtpInterfaceType *ltpInterfaceP);
 //void set_sizeof_buffer(int size);
 //int get_sizeof_buffer();
 #endif

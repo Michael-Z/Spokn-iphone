@@ -78,7 +78,7 @@
 	NSString *numberStrP;
 	char *normalizeNoCharP=0;
 	ABMultiValueRef name1 ;
-	if(nameStringP==0 || typeP==0 || recordID==0)
+	if(nameStringP==0 || typeP==0 || recordID==0 || laddressRef == 0)
 	{
 		return 1;
 	}
@@ -770,7 +770,7 @@ titleForHeaderInSection:(NSInteger)section
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	[ownerobject startRutine];
+	//[ownerobject startRutine];
 	refreshB = 0;
 	searchbar = [[UISearchBar alloc] init];
 	searchbar.delegate = self;

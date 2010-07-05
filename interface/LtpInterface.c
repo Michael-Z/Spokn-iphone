@@ -212,7 +212,7 @@ int openSoundInterface(void *udata,int isFullDuplex)
 {
 	LtpInterfaceType *ltpInterfaceP;
 	ltpInterfaceP = (LtpInterfaceType *)udata;
-	if(ltpInterfaceP->ltpObjectP->sipOnB || ltpInterfaceP->playbackP)
+	if(ltpInterfaceP->ltpObjectP->sipOnB || ltpInterfaceP->playbackP ||ltpInterfaceP->stopAutioQueueImidateB==true)
 	{
 		return 0;
 	}
@@ -254,9 +254,14 @@ void closeSoundInterface(void *udata)
 	{
 		return ;
 	}
-	StopAudio(ltpInterfaceP->recordP,false);
+	/*if(ltpInterfaceP->stopAutioQueueImidateB)
+	{
+		removeAudioQueueListener(ltpInterfaceP->recordP);
+		removeAudioQueueListener(ltpInterfaceP->playbackP);
+	}*/
+	StopAudio(ltpInterfaceP->recordP,ltpInterfaceP->stopAutioQueueImidateB);
 	
-	StopAudio(ltpInterfaceP->playbackP,false);
+	StopAudio(ltpInterfaceP->playbackP,ltpInterfaceP->stopAutioQueueImidateB);
 		return ;
 }
 int  CallBackUI(void *uData,Boolean playBackB)
@@ -344,7 +349,7 @@ void *PollThread(void *PollThreadP)
 			}
 			
 			
-			
+			/*
 			
 			if(gP->currentTime==0)
 			{
@@ -364,10 +369,11 @@ void *PollThread(void *PollThreadP)
 					}	
 				}
 				
-			}
+			}*/
 			if(DoPolling(gP)!=0)
 			{	
 				//sleep(1);
+				gP->pthreadstopB = false;
 				break;
 				
 			}
@@ -467,6 +473,12 @@ int  getStunSettingInterface(LtpInterfaceType *ltpInterfaceP)
 {
 	return ltpInterfaceP->ltpObjectP->stunB;
 }
+void HangupAllCall(LtpInterfaceType *ltpInterfaceP)
+{
+	ltpInterfaceP->stopAutioQueueImidateB = true;
+	ltpHangup(ltpInterfaceP->ltpObjectP,-1);//
+	
+}
 int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 {
 	
@@ -557,9 +569,10 @@ int SendLoginPacket(LtpInterfaceType *ltpInterfaceP)
 	}
 	else {
 		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
+		return 0;
 	}
 
-	return 0;
+	return 1;
 
 
 }

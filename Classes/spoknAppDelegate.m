@@ -743,7 +743,8 @@ void getProp()
 			break;
 		case  ATTEMPT_LOGIN:
 			
-			SendLoginPacket(self->ltpInterfacesP);
+			SendLoginPacket(self->ltpInterfacesP);//==0)
+			
 			break;
 		case UA_LOGIN_SUCCESSFULL:	
 			if(loginAttemptB)
@@ -810,7 +811,7 @@ void getProp()
 			[spoknViewControllerP startProgress];
 			break;
 		case ALERT_ONLINE://login
-			
+			stopCircularRingB = 1;
 			[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
 			loginProgressStart = 0;
 			[vmsviewP setcomposeStatus:1 ];
@@ -872,6 +873,7 @@ void getProp()
 			#endif
 			break;
 		case ALERT_OFFLINE:
+			stopCircularRingB = 1;
 			sipLoginAttemptStartB = 0;
 			[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
 			[ spoknViewControllerP cancelProgress];
@@ -1189,7 +1191,10 @@ void getProp()
 					[UIApplication sharedApplication] .networkActivityIndicatorVisible = YES;
 				break;
 				case END_THREAD:
-					[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
+					if(stopCircularRingB)
+					{	
+						[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
+					}	
 				break;
 				
 					
@@ -1941,7 +1946,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	loadMissCall();
 	[callviewP setMissCallCount];
 	
-	addressRef = ABAddressBookCreate();
+	
 	
 	pthread_t pt;
 	pthread_create(&pt, 0,ThreadForContactLookup,self);	
@@ -2008,6 +2013,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	UIApplication *application;
 	application = applicationP;
+	addressRef = ABAddressBookCreate();
 	outCallType = 1;
 	//[self setPjsipBufferSize ];
 	application.applicationIconBadgeNumber = 0;
@@ -2138,31 +2144,6 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//setProp();
 	//getProp();	
 	
-	{	
-		int setIndex;
-		setIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"tabBarIndex"];
-		
-		if(setIndex>0)
-		{
-			if(shifttovmsTab)
-			{
-				tabBarController.selectedIndex = 3;	//VMS tab
-				[vmsviewP startProgress];
-			}
-			else
-			{
-				setIndex--;
-				tabBarController.selectedIndex = setIndex;
-			}
-		}
-		else
-		{
-			tabBarController.selectedIndex = 4;//spokn tab
-		}
-		//[[NSUserDefaults standardUserDefaults] synchronize];
-	}
-	//	[self startRutine];
-	[ window makeKeyAndVisible ];
 	self->firstTimeB = 1;
 	
 	[self enableEdge];
@@ -2226,6 +2207,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	//[nc postNotificationName:@"DEQUEUEAUDIO" object:idP userInfo:nil];
 	cdrLoad();
+		
+	
 	[NSTimer scheduledTimerWithTimeInterval: 1
 	 
 									 target: self
@@ -2250,6 +2233,34 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 											   object:device];
 	
 	setUserAgent(ltpInterfacesP,self->userAgent);
+	
+	{	
+		int setIndex;
+		setIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"tabBarIndex"];
+		
+		if(setIndex>0)
+		{
+			if(shifttovmsTab)
+			{
+				tabBarController.selectedIndex = 3;	//VMS tab
+				[vmsviewP startProgress];
+			}
+			else
+			{
+				setIndex--;
+				tabBarController.selectedIndex = setIndex;
+			}
+		}
+		else
+		{
+			tabBarController.selectedIndex = 4;//spokn tab
+		}
+		//[[NSUserDefaults standardUserDefaults] synchronize];
+	}
+	//	[self startRutine];
+	[ window makeKeyAndVisible ];
+	
+	
 	
 	
 	
@@ -2303,8 +2314,15 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	- (void)applicationDidFinishLaunching:(UIApplication *)application {    
 			
 #endif
+		/*struct tm *tmP=0;
+		//struct tm tmP1,tmP2;
+		time_t timeP;
+		timeP = time(0);
+		tmP = localtime(&timeP);
+		printf(" appstart %2d:%2d:%2d",tmP->tm_hour,tmP->tm_min,tmP->tm_sec);*/
 		firstTimeB = 1;
 		applicationLoadedB = 0;
+		self->endAppB = 0;
 		[self applicationInit:application];
 			
 }
@@ -2480,76 +2498,97 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 	}
 }
+-(void)endApplication:(UIApplication *)application
+	{
+		
+		int count;
+		if(self->endAppB)
+			return;
+		
+		self->endAppB = true;
+		//	printf("\napplicationWillTerminate  tese\n");
+		[[NSUserDefaults standardUserDefaults] setInteger:getStunSettingInterface(ltpInterfacesP)+1  forKey:@"stunserversetting"];
+		count = newVMailCount();
+		if(count)
+		{	
+			application.applicationIconBadgeNumber = count;
+			
+		}
+		else
+		{
+			application.applicationIconBadgeNumber = 0;
+		}
+		
+		
+		
+#ifndef _LTP_
+		[nsTimerP invalidate];
+		nsTimerP = nil;
+#endif
+		[[NSUserDefaults standardUserDefaults] setInteger:[tabBarController selectedIndex]+1  forKey:@"tabBarIndex"];
+		
+		if(contactlookupP)
+		{	
+			[contactlookupP release];
+			contactlookupP = 0;
+		}
+		else
+		{
+			if(intiallookupP)
+			{
+				[intiallookupP appTerminate];
+				intiallookupP = 0;
+			}
+			
+		}
+		[devicePushTokenStrP release];
+		devicePushTokenStrP = nil;
+		[ltpTimerP stopTimer ];
+		ltpTimerP = 0;
+		HangupAllCall(ltpInterfacesP);
+		logOut(ltpInterfacesP,false);
+		if(onoffSip)
+		{
+			sleep(2);
+		}
+		endLtp(ltpInterfacesP);
+		saveMissCall();
+		[self stopCheckNetwork];
+		[tabBarController release];
+		[self destroyRing];
+		if(srvMsgCharP)
+		{	
+			free(srvMsgCharP);
+			srvMsgCharP = 0;
+		}
+		[urlSendP release];
+		SetSpeakerOnOrOff(0,true);
+		if(self->globalAddressP)
+		{
+			[self->globalAddressP release];
+			self->globalAddressP =0;
+			
+		}
+		//[contactNavigationController release];
+		//[vmsNavigationController release];
+		//[calllogNavigationController release];
+		//[dialviewP release];
+		/*
+		struct tm *tmP=0;
+		//struct tm tmP1,tmP2;
+		time_t timeP;
+		timeP = time(0);
+		tmP = localtime(&timeP);
+		printf(" appstop %2d:%2d:%2d",tmP->tm_hour,tmP->tm_min,tmP->tm_sec);
+		*/
+		
+	
+	}
 	
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-	
-	int count;
-//	printf("\napplicationWillTerminate  tese\n");
-	[[NSUserDefaults standardUserDefaults] setInteger:getStunSettingInterface(ltpInterfacesP)+1  forKey:@"stunserversetting"];
-	count = newVMailCount();
-	if(count)
-	{	
-		application.applicationIconBadgeNumber = count;
+	[self endApplication:application];
 		
-	}
-	else
-	{
-		application.applicationIconBadgeNumber = 0;
-	}
-	
-	
-	
-	#ifndef _LTP_
-		[nsTimerP invalidate];
-		nsTimerP = nil;
-	#endif
-	[[NSUserDefaults standardUserDefaults] setInteger:[tabBarController selectedIndex]+1  forKey:@"tabBarIndex"];
-	
-	if(contactlookupP)
-	{	
-		[contactlookupP release];
-		contactlookupP = 0;
-	}
-	else
-	{
-		if(intiallookupP)
-		{
-			[intiallookupP appTerminate];
-			intiallookupP = 0;
-		}
-		
-	}
-	[devicePushTokenStrP release];
-	devicePushTokenStrP = nil;
-	[ltpTimerP stopTimer ];
-	logOut(ltpInterfacesP,false);
-	endLtp(ltpInterfacesP);
-	saveMissCall();
-	[self stopCheckNetwork];
-	[tabBarController release];
-	[self destroyRing];
-	if(srvMsgCharP)
-	{	
-		free(srvMsgCharP);
-		srvMsgCharP = 0;
-	}
-	[urlSendP release];
-	SetSpeakerOnOrOff(0,true);
-	if(self->globalAddressP)
-	{
-		[self->globalAddressP release];
-		self->globalAddressP =0;
-		
-	}
-	//[contactNavigationController release];
-	//[vmsNavigationController release];
-	//[calllogNavigationController release];
-	//[dialviewP release];
-	
-	
-	
-	
 
 	
 
@@ -3492,6 +3531,13 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 	- (void)applicationDidEnterBackground:(UIApplication *)application {
 		
+	
+		if(self->isBackgroundSupported==NO)
+		{
+			[self endApplication:application];
+			return;
+		}
+
 	#ifndef _LTP_
 			[nsTimerP invalidate];
 			nsTimerP = nil;

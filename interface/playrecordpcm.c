@@ -530,6 +530,12 @@ void AudioSessionInterruptionListenerClient(
 		
 	}
 }
+void removeAudioQueueListener(AQCallbackStruct *aqcP)
+{
+	AudioQueueRemovePropertyListener(aqcP->queue,kAudioQueueProperty_IsRunning,AudioQueuePropertyListenerFunction,aqcP);
+	
+
+}
 int CreateSoundThread(int OutB,AQCallbackStruct *aqcP,Boolean sampleDataB,int samplesize)
 {
 	UInt32 err;

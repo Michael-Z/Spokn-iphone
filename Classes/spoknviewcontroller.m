@@ -274,7 +274,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[ownerobject startRutine];
+	//[ownerobject startRutine];
 	nameInt = 0;
 	statusInt = 0;
 	//[buybuttonCtlP retain];

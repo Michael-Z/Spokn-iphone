@@ -1200,7 +1200,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[ownerobject startRutine];
+	//[ownerobject startRutine];
 	//[self retain];
 	//activeImageP =[ [UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:_VMS_OUT_ACTIVE_PNG_ ofType:@"png" inDirectory:@"/"]]];
 	

@@ -181,6 +181,7 @@ typedef struct CallNumberType
 	int randowVariable;
 	Boolean inbackgroundModeB;
 	Boolean isBackgroundSupported;
+	Boolean endAppB;
 #ifdef __IPHONE_4_0
 	UIBackgroundTaskIdentifier bg_task;	
 	//@public
@@ -196,7 +197,7 @@ typedef struct CallNumberType
 	Boolean dontTakeMsg;
 	char userAgent[100];
 	Boolean applicationLoadedB;
-
+	Boolean stopCircularRingB;
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 
