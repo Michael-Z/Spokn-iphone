@@ -1195,6 +1195,8 @@ void getProp()
 					{	
 						[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
 					}	
+					[vmsviewP cancelProgress];
+					[self updateSpoknView:0];
 				break;
 				
 					
@@ -3534,7 +3536,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 		if(self->isBackgroundSupported==NO)
 		{
-			[self endApplication:application];
+			//[self endApplication:application];
 			return;
 		}
 
