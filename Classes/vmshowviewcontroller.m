@@ -727,6 +727,11 @@
 	{
 		deleteButton.enabled = NO;
 	}
+	#ifdef __IPHONE_3_0
+		[UIDevice currentDevice].proximityMonitoringEnabled = YES;
+	#else
+		[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
+	#endif
 	
 
 }
