@@ -57,7 +57,7 @@
  */
 @implementation ContactViewController
 
-@synthesize ltpInterfacesP;
+
 @synthesize  uaObject;
 @synthesize parentView;
 @synthesize addcallDelegate;

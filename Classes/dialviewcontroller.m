@@ -37,7 +37,7 @@
 @implementation DialviewController
 const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'};
 //static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-@synthesize ltpInterfacesP;
+
 @synthesize currentView;
 @synthesize addcallDelegate;
 
@@ -197,7 +197,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	{
 		char *numbercharP;
 		numbercharP = (char*)[string cStringUsingEncoding:NSUTF8StringEncoding];
-		SendDTMF(ltpInterfacesP,0,numbercharP);
+		SendDTMF(ownerobject.ltpInterfacesP,0,numbercharP);
 	
 	}
 	return YES;
@@ -330,7 +330,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 }
 -(void) LogoutPressed {
 	
-	logOut(ltpInterfacesP,true);
+	logOut(ownerobject.ltpInterfacesP,true);
 	//statusLabelP. textAlignment=UITextAlignmentCenter;
 	//[statusLabelP setText:@""];
 	[self.navigationItem.leftBarButtonItem initWithTitle: @"Login" style:UIBarButtonItemStylePlain
@@ -612,7 +612,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		
 		if(currentView==1)
 		{	
-			hangLtpInterface(ltpInterfacesP,0);
+			hangLtpInterface(ownerobject.ltpInterfacesP,0);
 			//[self dismissKeyboard:numberFieldP];
 			currentView = 0;
 		//	[hangUpButtonP setTitle:@"Vms" forState:UIControlStateNormal];
@@ -806,7 +806,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 					mainstatusLabelP.text = callingstringP;
 					[activityIndicator stopAnimating];
 				#endif
-				unameP = getLtpUserName(ltpInterfacesP);
+				unameP = getLtpUserName(ownerobject.ltpInterfacesP);
 				if(unameP && strlen(unameP)>0)
 				{	
 					

@@ -25,7 +25,6 @@
 #import "SpoknAppDelegate.h"
 #include "alertmessages.h"
 @implementation AddEditcontactViewController
-@synthesize ltpInterfacesP;
 -(void)setObject:(id) object 
 {
 	self->ownerobject = object;

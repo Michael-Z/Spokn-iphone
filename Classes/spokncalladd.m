@@ -169,7 +169,7 @@
 		[contactP setObject:ownerobject];
 		contactP.uaObject = GETCONTACTLIST;
 		[contactP setObjType:GETCONTACTLIST];
-		contactP.ltpInterfacesP =ownerobject.ltpInterfacesP;
+		
 		//navBarShow = NO;
 		
 		
@@ -198,7 +198,7 @@
 		[contactP setObject:ownerobject];
 		contactP.uaObject = GETCONTACTLIST;
 		[contactP setObjType:GETCONTACTLIST];
-		contactP.ltpInterfacesP =ownerobject.ltpInterfacesP;
+		
 		tmpCtl = [ [ UINavigationController alloc ] initWithRootViewController: contactP ] ;
 		tmpCtl.delegate =self;
 		[contactP release];

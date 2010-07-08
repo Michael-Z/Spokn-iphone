@@ -29,7 +29,7 @@
 #include "alertmessages.h"
 @implementation LoginViewController
 
-@synthesize ltpInterfacesP;
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
@@ -82,10 +82,10 @@
 	tableView.dataSource = self;
 	tableView.backgroundColor = [[UIColor clearColor] autorelease];
 	self->tableView.scrollEnabled = NO;
-	if(ltpInterfacesP)
+	if(ownerobject.ltpInterfacesP)
 	{	
-		unameP = getLtpUserName(ltpInterfacesP);
-		passwordP = getLtpPassword(ltpInterfacesP);
+		unameP = getLtpUserName(ownerobject.ltpInterfacesP);
+		passwordP = getLtpPassword(ownerobject.ltpInterfacesP);
 		uNameStringP = [[NSString alloc] initWithUTF8String:unameP];
 		passwordStringP = [[NSString alloc] initWithUTF8String:passwordP];
 		usernameFieldP.text = uNameStringP;
@@ -237,7 +237,7 @@
 	if(userNamecharP && passwordcharP)
 	{	
 		char *uNameCharP;
-		uNameCharP = getLtpUserName(ltpInterfacesP);
+		uNameCharP = getLtpUserName(ownerobject.ltpInterfacesP);
 		if(uNameCharP)
 		{
 			if(strcmp(uNameCharP,userNamecharP)!=0)
@@ -247,11 +247,11 @@
 			free(uNameCharP);
 		}
 		[ownerobject startTakingEvent];
-		setLtpUserName(ltpInterfacesP,userNamecharP);
-		setLtpPassword(ltpInterfacesP,passwordcharP);
+		setLtpUserName(ownerobject.ltpInterfacesP,userNamecharP);
+		setLtpPassword(ownerobject.ltpInterfacesP,passwordcharP);
 		usernameFieldP.selected = FALSE;
 		passwordFieldP.selected = FALSE;
-		DoLtpLogin(ltpInterfacesP);
+		DoLtpLogin(ownerobject.ltpInterfacesP);
 
 		//[self->ownerobject changeView];
 		//[self->ownerobject popLoginView];

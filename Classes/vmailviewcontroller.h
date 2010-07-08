@@ -34,7 +34,7 @@
 	IBOutlet UITableView *tableView;
 	SpoknAppDelegate *ownerobject;	
 	UAObjectType uaObject;
-	LtpInterfaceType *ltpInterfacesP;
+	
 	CellObjectContainer *cellofvmsP;
 	UIImage  *activeImageP;
 	UIImage  *dileverImageP;
@@ -73,5 +73,5 @@
 - (void) doRefresh ;
 -(void)startProgress;
 -(void)cancelProgress;
-@property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
+
 @end

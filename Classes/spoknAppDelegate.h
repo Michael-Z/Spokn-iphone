@@ -299,7 +299,7 @@ changed:(BOOL)changed;
 -(int)getIncommingLineID;
 
 -(void)onOrientationChangeApp:(NSNotification *)notification;
-
+-(void)checkChangesInSetting;
 -(void)retianThisObject:(id)retainObject;
 - (BOOL) checkForHighResolution;	
 -(void) startTakingEvent;

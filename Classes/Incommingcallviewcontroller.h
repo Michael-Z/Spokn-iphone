@@ -37,7 +37,7 @@
 	IBOutlet CustomButton *declineP;//ans button
 	IBOutlet UIView *topViewP;
 	IBOutlet UIView *bottomViewP;
-	LtpInterfaceType *ltpInterfacesP;
+	
 	//NSString *textProP;
 	NSString *statusStrP;
 	NSString *nameStrP;
@@ -50,7 +50,7 @@
 }
 
 
-@property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
+
 
 -(IBAction)Accept:(id)sender;
 -(IBAction)Reject:(id)sender;

@@ -41,13 +41,13 @@
 	IBOutlet UITextField *spoknIdFieldP;
 
 	SpoknAppDelegate *ownerobject;
-	LtpInterfaceType *ltpInterfacesP;
+	
 	int contactID;
 
 	
 
 }
-@property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
+
 -(void)setObject:(id) object ;
 -(void)setContactDetail:(struct AddressBook *)addrP;
 -(IBAction)doneClicked;

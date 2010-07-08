@@ -54,7 +54,7 @@
 	UIView *tempview;
 	//NSMutableArray *fileList;
 	SpoknAppDelegate *ownerobject;
-	LtpInterfaceType *ltpInterfacesP;
+	
 	UAObjectType uaObject;
 	NSMutableArray *sectionArray;
 	NSMutableArray *searchArray;
@@ -87,7 +87,7 @@
 
 }
 @property(readwrite,assign) id<AddCallProtocol> addcallDelegate;
-@property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
+
 @property(readwrite,assign) Boolean  contactTabControllerB;
 
 @property (readwrite,assign) UAObjectType uaObject;

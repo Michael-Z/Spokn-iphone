@@ -52,7 +52,7 @@
 	IBOutlet Keypadview *keypadmain;
 	
 	SpoknAppDelegate *ownerobject;
-	LtpInterfaceType *ltpInterfacesP;
+	
 	IBOutlet UIActivityIndicatorView *activityIndicator;
 	//UISegmentedControl *segmentedControl;
 	int status;
@@ -84,7 +84,7 @@
 
 @property(readwrite,assign,setter=setAddCall) id<AddCallProtocol> addcallDelegate;
 
-@property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
+
 @property(readwrite,assign) int currentView;
 -(void)setIncreaseHeight:(int)lheight;
 

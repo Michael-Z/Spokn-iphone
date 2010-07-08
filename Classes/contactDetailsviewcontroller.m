@@ -1624,7 +1624,7 @@ titleForHeaderInSection:(NSInteger)section
 }
 - (CGFloat)tableView:(UITableView *)ltableView heightForHeaderInSection:(NSInteger)section{
 	
-	printf("\nheight %d",sectionArray[section].sectionheight);
+	//printf("\nheight %d",sectionArray[section].sectionheight);
 	return sectionArray[section].sectionheight;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

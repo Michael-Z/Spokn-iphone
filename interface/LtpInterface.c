@@ -483,6 +483,7 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 {
 	
 	//
+	Boolean clearProfileB = false;
 	applicationEnd();
 
 	DeInitAudio( ltpInterfaceP->playbackP,false);
@@ -513,6 +514,10 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 		sip_pj_DeInit(ltpInterfaceP->ltpObjectP);
 		ltpInterfaceP->pjsipStartB = false;
 	}
+	if (ltpInterfaceP->ltpObjectP->ltpUserid[0]==0)
+	{
+		clearProfileB = true;
+	}
 	if(terminateThread()==0)
 	{	
 		free(ltpInterfaceP->ltpObjectP);
@@ -522,7 +527,12 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 		/* destroys the mutex */
 	ltpInterfaceP->pthreadstopB = true;
 		pthread_mutex_destroy(&mutex);
-		return 0;
+	free(ltpInterfaceP);
+	if(clearProfileB)
+	{
+		profileClear();
+	}
+	return 0;
 }
 void *createThread(void *spoknP)
 {

@@ -1213,6 +1213,7 @@ void getProp()
 					{
 						break;//already in login view
 					}
+					[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
 					[nsTimerP invalidate];
 					nsTimerP = nil;
 					TerminateUAThread();
@@ -1224,7 +1225,7 @@ void getProp()
 					
 					ltpInterfacesP->firstTimeLoginB = true;
 					loginViewP = [[LoginViewController alloc] initWithNibName:@"loginview" bundle:[NSBundle mainBundle]];
-					loginViewP.ltpInterfacesP  = ltpInterfacesP;
+					
 					[loginViewP setObject:self];
 					if(animation)
 					{
@@ -1363,7 +1364,7 @@ void getProp()
 	//[tabBarController dismissModalViewControllerAnimated:NO];
 	inCommingCallViewP = [[IncommingCallViewController alloc] initWithNibName:@"incommingcall" bundle:[NSBundle mainBundle]];
 	[inCommingCallViewP initVariable];
-	inCommingCallViewP.ltpInterfacesP = ltpInterfacesP;
+	
 	[inCommingCallViewP setObject:self];
 	[inCommingCallViewP setIncommingData:self->incommingCallList[self->lineID]];
 	
@@ -2196,11 +2197,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	UACallBackInit(&uaCallback,ltpInterfacesP->ltpObjectP);
 	uaInit();
 	
-	dialviewP.ltpInterfacesP  = ltpInterfacesP;
-	
-	contactviewP.ltpInterfacesP = ltpInterfacesP;
-	vmsviewP.ltpInterfacesP = ltpInterfacesP;
-	//callviewP.ltpInterfacesP = ltpInterfacesP;
+		//callviewP.ltpInterfacesP = ltpInterfacesP;
 	
 	//tabBarController.selectedViewController = dialviewP;
 	
@@ -2267,7 +2264,168 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	
 }
-
+-(void)checkChangesInSetting
+{
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	[prefs synchronize];
+	NSString *toogleValue;
+	Boolean reStartEveryThingB = false;
+	int newValue;
+	toogleValue = [prefs stringForKey:@"route_prefrence"];
+	if(toogleValue)
+	{	
+		newValue = ![toogleValue intValue];//this value are reverse
+	}
+	else
+	{
+		newValue = 1;
+	}
+	if(newValue!=self->onoffSip)
+	{
+		reStartEveryThingB = true;
+	}
+	if(reStartEveryThingB==false)
+	{	
+		toogleValue = [prefs stringForKey:@"key_prefrence"];
+		if(toogleValue)
+		{	
+			newValue = ![toogleValue intValue];//this value are reverse
+		}
+		else
+		{
+			newValue = 1;
+		}
+		if(newValue!=self->edgevalue)
+		{
+			reStartEveryThingB = true;
+		}
+	}	
+	
+	if(reStartEveryThingB==false)
+	{	
+			
+		toogleValue = [prefs stringForKey:@"analyst_prefrence"];
+		if(toogleValue)
+		{	
+			newValue = ![toogleValue intValue];//this value are reverse
+		}
+		else
+		{
+			newValue = 1;
+		}
+		if(onoffAnalytics!=newValue)
+		{
+			#ifdef _ANALYST_
+				{
+					GEventTracker *geventTP;
+					geventTP = [GEventTracker sharedInstance];
+					geventTP.showTrakerB = self->onoffAnalytics;
+					[geventTP startEventTracker];
+					[geventTP trackEvent:@"SPOKN" action:@"APPLICATION LAUNCH" label:@"LAUNCH"];
+				}	
+			#endif	
+			
+		
+		}
+	}	
+	if(reStartEveryThingB)//restart thread
+	{
+		//first send logout and then relogin on new setting
+		HangupAllCall(ltpInterfacesP);
+		[self logOut:false];
+		//logOut(ltpInterfacesP,false);
+		if(onoffSip)
+		{
+			sleep(2);
+		}
+		endLtp(ltpInterfacesP);
+		saveMissCall();
+		[self stopCheckNetwork];
+		[self enableEdge];
+		[self enableSip];
+		[self enableAnalytics];
+		
+		uaLoginSuccessB = 0;
+		ltpTimerP = nil;	
+#ifndef _OWN_THREAD_
+		ltpTimerP = [[LtpTimer alloc] init];
+#endif	
+		
+		if(ltpTimerP)
+		{	
+			ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
+		}
+		else
+		{
+			ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
+		}
+#ifdef _LTP_
+		if(self->sipOnB)
+		{	
+			setLtpServer(ltpInterfacesP,"www.spokn.com");
+		}
+		else
+		{
+			setLtpServer(ltpInterfacesP,"www.spokn.com");
+		}
+#else
+		setLtpServer(ltpInterfacesP,"www.spokn.com");
+#endif	
+		
+		int stunServer;
+		stunServer = [[NSUserDefaults standardUserDefaults] integerForKey:@"stunserversetting"];
+		if(stunServer)
+		{
+			stunServer--;
+			setStunSettingIngetface(ltpInterfacesP, stunServer);
+			
+		}
+		//start ua 
+		UACallBackType uaCallback = {0};
+		uaCallback.uData = self;
+		uaCallback.pathFunPtr = GetPathFunction;
+		uaCallback.creatorDirectoryFunPtr = CreateDirectoryFunction;
+		uaCallback.alertNotifyP = alertNotiFication;
+		
+		UACallBackInit(&uaCallback,ltpInterfacesP->ltpObjectP);
+		uaInit();
+		cdrLoad();
+		[self enableAnalytics];	
+#ifdef _ANALYST_
+		{
+			GEventTracker *geventTP;
+			geventTP = [GEventTracker sharedInstance];
+			geventTP.showTrakerB = self->onoffAnalytics;
+			[geventTP startEventTracker];
+			[geventTP trackEvent:@"SPOKN" action:@"APPLICATION LAUNCH" label:@"LAUNCH"];
+		}	
+#endif	
+		
+		loginAttemptB = false;
+		[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
+		if(loginProtocolP==nil)
+		{	
+			if(DoLtpLogin(ltpInterfacesP))//mean error ask dial to load login view
+			{
+				animation = 0;
+				alertNotiFication(LOAD_VIEW,0,LOAD_LOGIN_VIEW,(unsigned long)self,0);
+			}
+		}
+		
+		
+		//[self createRing];
+		//SetSpeakerOnOrOff(0,true);
+		//[vmsviewP setcomposeStatus:1 ];
+		//SetAudioSessionPropertyListener(self,MyAudioSessionPropertyListener);
+		[self newBadgeArrived:vmsNavigationController];	
+		loadMissCall();
+		[callviewP setMissCallCount];
+		
+	}
+	
+	
+	
+}
 #define _PUSH_NOTIFICATION_
 #ifdef _PUSH_NOTIFICATION_
 #pragma mark PUSH NOTIFICATIONS
@@ -2486,6 +2644,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[spoknViewNavigationController popToRootViewControllerAnimated:NO];
 		uaLoginSuccessB = 0;
 		
+		
 	}
 	[vmsviewP setcomposeStatus:0 ];
 	logOut(ltpInterfacesP,clearAllB);
@@ -2513,8 +2672,21 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		count = newVMailCount();
 		if(count)
 		{	
-			application.applicationIconBadgeNumber = count;
-			
+			char *userNameP = getLtpUserName(ltpInterfacesP);
+			char *passwordCharP = getLtpPassword(ltpInterfacesP);
+			if(userNameP&&passwordCharP)
+			{	
+				if(strlen(userNameP)==0 || strlen(passwordCharP)== 0 )
+				{
+					application.applicationIconBadgeNumber = 0;
+				}
+				else
+				{
+					application.applicationIconBadgeNumber = count;
+				}
+				free(userNameP);
+				free(passwordCharP);
+			}	
 		}
 		else
 		{
@@ -3195,7 +3367,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	[contactP setObject:self];
 	contactP.uaObject = GETCONTACTLIST;
 	[contactP setObjType:GETCONTACTLIST];
-	contactP.ltpInterfacesP = ltpInterfacesP;
+	
 	[contactP setReturnVariable:navObject :lselectedContactP :resultP];
 	[ [navObject navigationController] pushViewController:contactP animated: YES ];
 	[contactP release];
@@ -3574,6 +3746,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			{	
 				if(strlen(userNameP)==0 || strlen(passwordCharP)== 0 )
 				{
+					application.applicationIconBadgeNumber = 0;
 					free(userNameP);
 					free(passwordCharP);
 					[application clearKeepAliveTimeout];
@@ -3656,6 +3829,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		/*
 		 Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
 		 */
+		if(self->isBackgroundSupported==YES)
+		{	
+			[self checkChangesInSetting ];
+		}	
 		inbackgroundModeB = false;
 		if(intrrruptB)
 		{

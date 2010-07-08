@@ -44,7 +44,6 @@
 	IBOutlet UIButton *dividorlineP;
 	//LtpTimer *ltpTimerP;
 	SpoknAppDelegate * ownerobject;
-	LtpInterfaceType *ltpInterfacesP;
 	UIActivityIndicatorView *loginactivityIndicator;
 	IBOutlet UITableView *tableView;
 	int dontSendLoginB;
@@ -53,7 +52,7 @@
 }
 
 
-@property(readwrite,assign) LtpInterfaceType *ltpInterfacesP;
+
 
 -(void)setObject:(id) object ;
 -(IBAction)loginLtp:(id)sender;

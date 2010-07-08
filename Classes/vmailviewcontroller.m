@@ -32,7 +32,7 @@
 #include "alertmessages.h"
 #import "GEventTracker.h"
 @implementation VmailViewController
-@synthesize ltpInterfacesP;
+
 
 - (void) handleTimer: (id) timer
 {
