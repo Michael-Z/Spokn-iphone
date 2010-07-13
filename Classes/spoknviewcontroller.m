@@ -30,12 +30,16 @@
 #define SECTION_HEIGHT 14
 #import  "AddeditcellController.h"
 #import "WebViewController.h"
+#import "clicktocall.h"
 #include "ua.h"
 #import "alertmessages.h"
 #import "GEventTracker.h"
 #define SPOKNCOLOR [UIColor colorWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0]
 #define ROW_HEIGHT 42
-
+static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+"abcdefghijklmnopqrstuvwxyz"
+"0123456789"
+"+/";
 
 @implementation SpoknViewController
 // Build a section/row list 
@@ -335,12 +339,13 @@
 		buybuttonCtlP.enabled = NO;
 		aboutbuttonCtlP.enabled = NO;
 	}
-/*	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithTitle:@"Buy Credits" 
-											   style:UIBarButtonItemStylePlain 
-											   target:self 
-											   action:@selector(buyCredit:)] autorelease];*/
-	
+	#ifdef _CLICK_TO_CALL_
+	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
+											  initWithTitle:@"Prefrences" 
+											  style:UIBarButtonItemStylePlain 
+											  target:self 
+											  action:@selector(prefrences:)] autorelease];
+	#endif
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*buyCreditsButton = [[UIButton alloc] init];
 	// The default size for the save button is 49x30 pixels
@@ -1296,6 +1301,12 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[uiActionSheetgP showInView:[ownerobject tabBarController].view];
 }
 
+-(void)prefrences:(id)sender
+{
+
+	[self showcallbackView];
+}
+
 -(void)aboutPage:(id)sender
 {
 #ifdef _ANALYST_
@@ -1371,12 +1382,43 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	}
 	*/
 }
+
+-(void) showcallbackView
+{
+	clicktocall    *callbackViewP;
+	
+	callbackViewP = [[clicktocall alloc] initWithNibName:@"clicktocall" bundle:[NSBundle mainBundle]];
+	//loginViewP.ltpInterfacesP  = ltpInterfacesP;
+	[callbackViewP setObject:self->ownerobject];
+	[callbackViewP modelViewB:YES];
+	UINavigationController *tmpCtl;
+	tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: callbackViewP ] autorelease];
+	if(tmpCtl)
+	{	
+		
+		[ownerobject.tabBarController presentModalViewController:tmpCtl animated:YES];
+	}	
+	
+	//[tabBarController presentModalViewController:callbackViewP animated:YES];
+	//[ [self navigationController] pushViewController:callbackViewP animated: YES ];
+	
+	if([callbackViewP retainCount]>1)
+		[callbackViewP release];
+	
+}
+
+
 #pragma mark ACTIONSHEET
 
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
 	[ownerobject retianThisObject:actionSheet];
+	#ifdef _CLICK_TO_CALL_
+		uiActionSheetgP = nil;
+	#endif
+	
 }
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	switch(buttonIndex)
@@ -1414,7 +1456,250 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 			break;
 	}
 	[actionSheet release];
-	
+}
 
+int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
+{
+    unsigned triad;
+	
+    for (triad = 0; triad < s_len; triad += 3)
+    {
+		unsigned long int sr;
+		unsigned byte;
+		
+		for (byte = 0; (byte<3)&&(triad+byte<s_len); ++byte)
+		{
+			sr <<= 8;
+			sr |= (*(src+triad+byte) & 0xff);
+		}
+		
+		sr <<= (6-((8*byte)%6))%6; /*shift left to next 6bit alignment*/
+		
+		if (d_len < 4) return 1; /* error - dest too short */
+		
+		*(dst+0) = *(dst+1) = *(dst+2) = *(dst+3) = '=';
+		switch(byte)
+		{
+			case 3:
+				*(dst+3) = base64[sr&0x3f];
+				sr >>= 6;
+			case 2:
+				*(dst+2) = base64[sr&0x3f];
+				sr >>= 6;
+			case 1:
+				*(dst+1) = base64[sr&0x3f];
+				sr >>= 6;
+				*(dst+0) = base64[sr&0x3f];
+		}
+		dst += 4; d_len -= 4;
+    }
+	
+    return 0;
+	
+}
+
+-(void) CallBackMe:(NSString*)apartynumberP bparty:(NSString*)bpartynumberP  
+{
+	//OLD
+	//static char* HOST_CLICK_TO_CALL = "bb.spokn.com";
+	//static int PORT_CLICK_TO_CALL = 80;
+	//static char* URN_CLICK_TO_CALL = "/cgi-bin/click2call.cgi/1.0/call";
+	
+	//NEW
+	//public static final String HOST_CLICK_TO_CALL = "api.spokn.com";
+	//public static final int PORT_CLICK_TO_CALL = 80;
+	//public static final String URN_CLICK_TO_CALL = "/c2c/1.0/call";
+	
+	NSMutableString	*loginString;
+	NSMutableString	*passwordString;
+	NSMutableString	*dataStr;
+	NSMutableString	*authenticationString;
+	
+	
+	loginString = [NSMutableString stringWithString:@"5678910"];
+	passwordString = [NSMutableString stringWithString:@"mayank1234"];
+	
+	dataStr = (NSMutableString*)[@"" stringByAppendingFormat:@"%@:%@", loginString, passwordString];
+	
+    NSData *encodeData = [dataStr dataUsingEncoding:NSUTF8StringEncoding];
+	
+	char encodeArray[512];
+	
+    memset(encodeArray, '\0', sizeof(encodeArray));
+	
+    // Base64 Encode username and password
+    encode([encodeData length], (char *)[encodeData bytes], sizeof(encodeArray), encodeArray);
+	
+	// dataStr = (NSMutableString*)[NSString stringWithCString:encodeArray length:strlen(encodeArray)];
+	dataStr = (NSMutableString*)[[NSString alloc] initWithCString:encodeArray length:strlen(encodeArray)];
+    authenticationString = (NSMutableString*)[@"" stringByAppendingFormat:@"Basic %@", dataStr];
+	
+	
+	//prepar request
+	//NSString *urlString = [NSString stringWithFormat:@"http://bb.spokn.com/cgi-bin/click2call.cgi/1.0/call"];
+	NSString *urlString = [NSString stringWithFormat:@"http://api.spokn.com/c2c/1.0/call"];
+	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+	[request setURL:[NSURL URLWithString:urlString]];
+	[request setHTTPMethod:@"POST"];
+	
+	//set headers
+	NSString *contentType = [NSString stringWithFormat:@"application/x-www-form-urlencoded"];
+	[request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+	
+	NSString *contentType1 = [[NSString alloc]initWithString: authenticationString];
+	[request addValue:contentType1 forHTTPHeaderField:@"Authorization"];
+	[contentType1 release]; 
+	[dataStr release];
+	
+	//create the body
+	NSMutableData *postBody = [NSMutableData data];
+	[postBody appendData:[[NSString stringWithString:@"aparty="] dataUsingEncoding:NSASCIIStringEncoding]];
+	[postBody appendData:[[NSString stringWithFormat:@"%@",apartynumberP] dataUsingEncoding:NSUTF8StringEncoding]];
+	[postBody appendData:[[NSString stringWithString:@"&bparty="] dataUsingEncoding:NSASCIIStringEncoding]];
+	[postBody appendData:[[NSString stringWithFormat:@"%@",bpartynumberP] dataUsingEncoding:NSUTF8StringEncoding]];
+	[postBody appendData:[[NSString stringWithFormat:@"&maxretries=0"] dataUsingEncoding:NSASCIIStringEncoding]];
+	[postBody appendData:[[NSString stringWithFormat:@"&duration=60"] dataUsingEncoding:NSASCIIStringEncoding]];
+	
+	//post
+	[request setHTTPBody:postBody];
+	
+	
+	//get response
+	NSHTTPURLResponse* urlResponse = nil;
+	NSString *serverMessage;
+	NSError *error = [[NSError alloc] init];  
+	NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
+	//NSLog(@"\n\n%@\n\n", error);
+	NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	NSLog(@"\n Response Code: %d\n", [urlResponse statusCode]);
+	if ([urlResponse statusCode] == 200 || [urlResponse statusCode] == 0 || [urlResponse statusCode] == 400) 
+	{
+		NSLog(@"\n\n%@\n\n", result);
+		
+		//*************Optional****************
+		NSString *searchMessage = @"<c:desc>";
+		NSString *searchMessageEnd = @"</c:desc>";
+		NSRange range1 = [result rangeOfString:searchMessage];
+		if (range1.location != NSNotFound ) 
+		{	
+			serverMessage = [result substringFromIndex:range1.location + searchMessage.length];
+			NSRange range2 = [serverMessage rangeOfString:searchMessageEnd];
+			if(range2.location != NSNotFound)
+			{
+				serverMessage = [serverMessage substringToIndex:range2.location];
+				NSLog(@"\n\n%@\n\n", serverMessage);
+			}	
+		}
+		//*************************************
+		
+		NSString *searchCode = @"<c:code>";
+		NSRange range = [result rangeOfString:searchCode];
+		if (range.location != NSNotFound) 
+		{
+			NSString * resultvalueP;
+			int code;
+			resultvalueP = [result substringFromIndex:range.location + searchCode.length];
+			NSLog(@"\n\n%@\n\n", resultvalueP);
+			code = [resultvalueP intValue];
+			NSLog(@"\n\n%d\n\n", code);
+			switch(code)
+			{
+					/*	case 100://Resource Not Found
+					 {	
+					 NSLog(@"Resource Not Found");
+					 }	
+					 break;*/
+					
+					
+				case 200://Request Sucessful
+				{	
+					NSLog(@"Request Sucessful");
+				}	
+					break;
+					
+				case 101://Auth Failed
+				{	
+					NSLog(@"Invalid Spokn Id or Password");
+				}	
+					break;
+					
+				case 102://Invalid Input
+				{	
+					NSLog(@"Invalid Input");
+				}	
+					break;
+					
+					
+				case 103://Bad aparty
+				{	
+					NSLog(@"Bad aparty.");
+				}	
+					break;
+					
+					
+				case 104://Bad bparty
+				{	
+					NSLog(@"Bad bparty.");
+				}	
+					break;
+					
+					/*		case 104://Request Failed
+					 {	
+					 NSLog(@"Request failed due to internal server error.");
+					 }	
+					 break;*/
+					
+				case 105://Billing details cannot be retrived
+				{	
+					NSLog(@"Billing details cannot be retrived.");
+				}	
+					break;
+					
+				case 106://aparty not supported
+				{	
+					NSLog(@"aparty not supported.");
+				}	
+					break;
+					
+				case 107://bparty not supported
+				{	
+					NSLog(@"bparty not supported");
+				}	
+					break;
+					
+				case 108://No credits to make a call
+				{	
+					NSLog(@"Not enough credits to make call.");
+				}	
+					break;
+					
+				default:
+					NSLog(@"Call failed due to an unknown error.");
+					break;
+					
+					
+					
+			}
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:serverMessage message:[NSString stringWithFormat:@"%d", code] delegate:self cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+			
+			[alert show];
+		}
+	}
+	else if ([urlResponse statusCode] == 404)
+	{
+		NSLog(@"Not Found");
+	}
+	else if ([urlResponse statusCode] == 415)
+	{
+		NSLog(@"Unsupported Media Type");
+	}
+	else if ([urlResponse statusCode] == 401)
+	{
+		NSLog(@"Unauthorized");
+	}
+	else if ([urlResponse statusCode] == 500)
+	{
+		NSLog(@"Internal Server Error");
+	}
 }
 @end

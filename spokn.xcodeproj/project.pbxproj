@@ -48,6 +48,8 @@
 		32DF1FD3112EC4D00052C56D /* 132x52-hide-keypad-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */; };
 		32DF1FD4112EC4D00052C56D /* 132x52-hide-keypad-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */; };
 		32EE820410A5B71A00B0BAAD /* contact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE820310A5B71A00B0BAAD /* contact.xib */; };
+		73BD60E211EB403C00D4E167 /* clicktocall.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BD60E011EB403B00D4E167 /* clicktocall.m */; };
+		73BD60E311EB403C00D4E167 /* clicktocall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73BD60E111EB403C00D4E167 /* clicktocall.xib */; };
 		8B140C4211CA1814004ACB15 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B140C4111CA1814004ACB15 /* spokn-Info.plist */; };
 		8B16790D108F36A3004D18C0 /* testingview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B16790A108F36A3004D18C0 /* testingview.xib */; };
 		8B16790E108F36A3004D18C0 /* testingview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B16790B108F36A3004D18C0 /* testingview.m */; };
@@ -457,6 +459,9 @@
 		32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-normal.png"; path = "rsc/keypad/132x52-hide-keypad-normal.png"; sourceTree = SOURCE_ROOT; };
 		32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-pressed.png"; path = "rsc/keypad/132x52-hide-keypad-pressed.png"; sourceTree = SOURCE_ROOT; };
 		32EE820310A5B71A00B0BAAD /* contact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contact.xib; sourceTree = "<group>"; };
+		73BD60DF11EB403B00D4E167 /* clicktocall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clicktocall.h; sourceTree = "<group>"; };
+		73BD60E011EB403B00D4E167 /* clicktocall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = clicktocall.m; sourceTree = "<group>"; };
+		73BD60E111EB403C00D4E167 /* clicktocall.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = clicktocall.xib; sourceTree = "<group>"; };
 		8B140C4111CA1814004ACB15 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B16790A108F36A3004D18C0 /* testingview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = testingview.xib; sourceTree = "<group>"; };
 		8B16790B108F36A3004D18C0 /* testingview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testingview.m; sourceTree = "<group>"; };
@@ -903,6 +908,9 @@
 				8BB617F8118ECBEA0039E696 /* conferenceviewcontroller.xib */,
 				8BA6E96111928F6400435756 /* callmanagement.h */,
 				8BA6E96211928F6400435756 /* callmanagement.m */,
+				73BD60DF11EB403B00D4E167 /* clicktocall.h */,
+				73BD60E011EB403B00D4E167 /* clicktocall.m */,
+				73BD60E111EB403C00D4E167 /* clicktocall.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1524,6 +1532,7 @@
 				8B140C4211CA1814004ACB15 /* spokn-Info.plist in Resources */,
 				8BC8912611DCCC3400350111 /* Merge-Calls.png in Resources */,
 				8BC8912711DCCC3400350111 /* Swap-Calls.png in Resources */,
+				73BD60E311EB403C00D4E167 /* clicktocall.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1692,6 +1701,7 @@
 				8BB617F9118ECBEA0039E696 /* conferenceviewcontroller.m in Sources */,
 				8BA6E96311928F6400435756 /* callmanagement.m in Sources */,
 				8BEDE4DA11BE6CA600F813B0 /* GEventTracker.m in Sources */,
+				73BD60E211EB403C00D4E167 /* clicktocall.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1821,8 +1831,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: rishi saxena (24B3PCMBZR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: rishi saxena (24B3PCMBZR)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;
@@ -2309,8 +2319,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: rishi saxena (24B3PCMBZR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: rishi saxena (24B3PCMBZR)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2330,8 +2340,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "685B9CA5-6922-4A37-9264-29080B21B5C5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "685B9CA5-6922-4A37-9264-29080B21B5C5";
+				PROVISIONING_PROFILE = "029A38C9-B406-4D61-BCC3-3B65C702829C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "029A38C9-B406-4D61-BCC3-3B65C702829C";
 				SDKROOT = iphoneos4.0;
 			};
 			name = Release;

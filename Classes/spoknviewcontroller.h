@@ -64,6 +64,7 @@ typedef struct ImageNameType
 	int statusInt;
 	int nameInt;
 	UIActionSheet *uiActionSheetgP;
+	UIActionSheet *uiActionSheetgPrefrenceP;
 	char *gtitelCharP,*gspoknCharP,*gspoknLoginId,*gforwardCharP;
 	int gstatusInt,gsubStatus,gforwardOn;
 	Boolean loadB;
@@ -86,4 +87,7 @@ typedef struct ImageNameType
 -(void)startforwardactivityIndicator;
 -(void)stopforwardactivityIndicator;
 -(void)startProgress;
+-(void) CallBackMe:(NSString*)apartynumberP bparty:(NSString*)bpartynumberP ; 
+-(void)prefrences:(id)sender;
+-(void) showcallbackView;
 @end

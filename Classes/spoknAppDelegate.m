@@ -3162,6 +3162,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	return returnCharP;
 		
 }
+-(void) setoutCallTypeProtocol:(int)type
+{
+	outCallType = type;
+}
 //text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ()<>-./"]];
 -(Boolean)makeCall:(char *)noCharP
 {
@@ -3214,7 +3218,16 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 	
 		
-		return retB;
+		NSString *callbackP;
+		NSString *callerP;
+		callerP = (NSString*) [[NSUserDefaults standardUserDefaults] objectForKey:@"callbacknumber"];
+		NSLog(@"aparty= %@",callerP);
+		callbackP = [[NSString alloc] initWithUTF8String:noCharP] ;
+		[spoknViewControllerP CallBackMe:callerP bparty:callbackP];
+		[callbackP release];
+		free(resultCharP);
+		resultCharP = 0;
+		return 1;
 	}
 	
 	
