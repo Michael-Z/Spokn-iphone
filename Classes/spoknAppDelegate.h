@@ -223,6 +223,7 @@ typedef struct CallNumberType
 -(void)endCall;
 - (BOOL) checkForHighResolution;
 -(void) setPjsipBufferSize;
+-(void) setoutCallTypeProtocol:(int)type;
 
 #endif
 -(void)	applicationInit:(id)application;
