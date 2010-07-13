@@ -1321,6 +1321,12 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	
 	[WebViewControllerviewP setObject:self->ownerobject];
 	char * tempurl;
+	#ifdef _PJSIP_LOG_
+		if(ownerobject.onLogB==1)
+		{	
+			[ WebViewControllerviewP showLog];
+		}
+	#endif
 	tempurl = getSupportPage();
 	urlAddress = [[NSString alloc] initWithUTF8String:tempurl];
 	free(tempurl);

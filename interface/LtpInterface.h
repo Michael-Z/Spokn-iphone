@@ -132,6 +132,7 @@ Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId);
 	int DoLtpSipLoginInterface(LtpInterfaceType *ltpInterfaceP);
 	void setUserAgent(LtpInterfaceType *ltpInterfaceP,char* luserAgent);	
 	void HangupAllCall(LtpInterfaceType *ltpInterfaceP);
+	void setLogFile(LtpInterfaceType *ltpInterfaceP,int onB);
 //void set_sizeof_buffer(int size);
 //int get_sizeof_buffer();
 #endif

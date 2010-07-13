@@ -388,6 +388,31 @@ void *PollThread(void *PollThreadP)
 	return NULL;
 	
 }
+extern char* GetPathFunction();
+void setLogFile(LtpInterfaceType *ltpInterfaceP,int onB)
+{
+	char *pathP=0,*filePathP=0;
+	if(ltpInterfaceP==0)
+		return ;
+	if(onB)
+	{
+		pathP = GetPathFunction();
+		filePathP = malloc(400);
+		sprintf(filePathP,"%s/%s",pathP,"logtext.txt");
+		setLog(ltpInterfaceP->ltpObjectP, true,filePathP );
+		free(pathP);
+		free(filePathP);
+		
+	}
+	else {
+		setLog(ltpInterfaceP->ltpObjectP, false,0 );
+	}
+
+	
+		
+	
+
+}
 LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNotiCallbackP,unsigned long userData,int randomVariable)
 {
 	LtpCallBackType localLtpCallBackType;
@@ -417,6 +442,7 @@ LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNo
 			free(ltpInterfaceP);
 			return NULL;
 		}
+		
 		ltpInterfaceP->ltpObjectP->nextCallSession = 0xffff & ticks();
 		ltpInterfaceP->ltpObjectP->nextMsgID = 0xffff & ticks();
 		ltpInterfaceP->ltpObjectP->forceProxy = 0;

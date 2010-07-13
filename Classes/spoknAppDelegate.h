@@ -198,6 +198,7 @@ typedef struct CallNumberType
 	char userAgent[100];
 	Boolean applicationLoadedB;
 	Boolean stopCircularRingB;
+	int onLogB;
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 
@@ -250,6 +251,7 @@ typedef struct CallNumberType
 @property (nonatomic, assign) UITabBarController *tabBarController;
 @property (nonatomic,assign) DialviewController    *dialviewP; 
 @property(nonatomic,assign)Boolean inbackgroundModeB;
+@property(nonatomic,assign)int onLogB;
 //@property (nonatomic, retain) IBOutlet spoknviewcontroller *viewController;
 //add delegate
 -(void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController;
@@ -303,6 +305,8 @@ changed:(BOOL)changed;
 -(void)retianThisObject:(id)retainObject;
 - (BOOL) checkForHighResolution;	
 -(void) startTakingEvent;
+-(int)sendLogFile;
+-(void) enableLog;
 #ifdef G4_DEFINE	
 #ifdef __IPHONE_4_0	
 - (void)sendIncommingPushNotification:(NSString*)msgStringP;

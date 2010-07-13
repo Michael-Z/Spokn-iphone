@@ -31,6 +31,7 @@
 {
 	[super init];
 	modalB = NO;
+	showLogB = 0;
 	return self;
 
 }
@@ -39,6 +40,7 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         // Custom initialization
 		modalB = NO;
+		showLogB = 0;
 	}
     return self;
 }
@@ -65,7 +67,10 @@
 	}	
 	//[urlToLoadP retain];
 }
-
+-(void)showLog
+{
+	showLogB = 1;
+}
 -(IBAction)donePressed
 {
 	
@@ -73,7 +78,34 @@
 	
 	[self  dismissModalViewControllerAnimated:YES];
 }
+-(IBAction)sendLogPressed
+{
+	int er = [ownerobject sendLogFile];
+	if(er==0)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn Log" 
+														message:@"Spokn log has been uploaded sucessfully to Spokn server."
+													   delegate:nil 
+											  cancelButtonTitle:nil 
+											  otherButtonTitles:_OK_, nil];
+		[alert show];
+		[alert release];
+		
+	}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn Log"  
+														message:[NSString stringWithFormat:@"Failed to send spokn log(error=%d)",er]
+													   delegate:nil 
+											  cancelButtonTitle:nil 
+											  otherButtonTitles:_OK_, nil];
+		[alert show];
+		[alert release];
+		
+	}
 
+	
+	//[self  dismissModalViewControllerAnimated:YES];
+}
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -86,7 +118,15 @@
 		
 	
 	}
+	if(showLogB)
+	{
 	
+		self.navigationItem.leftBarButtonItem = [ [ [ UIBarButtonItem alloc ]
+													initWithTitle:@"Send Log" style:UIBarButtonItemStyleDone
+													target: self
+													action: @selector(sendLogPressed) ] autorelease ];
+	
+	}
 	 accountswebView.delegate = self;
 	 //uiActionSheetP = [[UIActionSheet alloc] initWithTitle:@"Loading..." delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
 	// uiActionSheetP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;

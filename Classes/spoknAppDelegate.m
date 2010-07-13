@@ -91,6 +91,65 @@
 @synthesize dialviewP;
 @synthesize globalAddressP;
 @synthesize inbackgroundModeB;
+@synthesize onLogB;
+-(int)sendLogFile
+{
+	char *fileP;
+	fileP = getLogFile(self->ltpInterfacesP->ltpObjectP);
+	if(fileP)
+	{
+		char*userP = getLtpUserName(self->ltpInterfacesP);
+		NSMutableURLRequest *request;
+		NSError *nsP=0;
+		char passP[20];
+		if(self->actualOnlineB)
+		{
+			strcpy(passP,"pass");
+		}
+		else {
+			strcpy(passP,"failed");
+		}
+
+		NSString *urlString = @"http://sandbox.spokn.com/siplogdump.php";
+		
+		//NSString *urlString = @"http://192.168.173.122/~mukesh/quickest.php";
+		
+		//NSString *urlString = @"http://192.168.175.102/~tasvir/logfile.php";
+		NSString *filename = [NSString stringWithUTF8String:fileP];
+		request= [[[NSMutableURLRequest alloc] init] autorelease];
+		[request setURL:[NSURL URLWithString:urlString]];
+		[request setHTTPMethod:@"POST"];
+		NSString *boundary = @"---------------------------14737809831466499882746641449";
+		NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+		[request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+		NSMutableData *postbody = [NSMutableData data];
+		[postbody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+		[postbody appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%s\";filename=\"%s_%s_%@\"\r\n","uploadedfile",userP,passP, @"iphone_log.txt"] dataUsingEncoding:NSUTF8StringEncoding]];
+		[postbody appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+		NSData *tmpDataP = [NSData dataWithContentsOfFile:filename];
+		[postbody appendData:[NSData dataWithData:tmpDataP]];
+		//NSString *returnString1 = [[NSString alloc] initWithData:tmpDataP encoding:NSUTF8StringEncoding];
+		//NSLog(@"\n%@\n re\n",returnString1);
+
+		[postbody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+		[request setHTTPBody:postbody];
+		
+		NSData *returnData ;
+		returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&nsP];
+		//NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+		//NSLog(@"\n\nResult %@\n\n",returnString);
+		free(userP);
+		if(returnData==nil)
+		{
+			
+			return [nsP code];
+				
+		}
+		return 0;
+	}
+	return 1;
+
+}
 -(void)retianThisObject:(id)retainObject
 {
 
@@ -158,6 +217,22 @@
 	}
 	return 1;
 }
+-(void) enableLog
+{
+	NSString *toogleValue;
+	toogleValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"key_logfile"];
+	if(toogleValue)
+	{	
+		self->onLogB = [toogleValue intValue];//this value are reverse
+	}
+	else
+	{
+		self->onLogB = 0;
+	}
+	printf("%d",self->onLogB);
+}
+
+
 -(void) enableEdge
 {
 	NSString *toogleValue;
@@ -2151,7 +2226,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	[self enableEdge];
 	[self enableSip];
-	
+	[self enableLog];
 	
 	ltpTimerP = nil;	
 #ifndef _OWN_THREAD_
@@ -2161,11 +2236,14 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(ltpTimerP)
 	{	
 		ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
+		
 	}
 	else
 	{
 		ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
+		
 	}
+	setLogFile(ltpInterfacesP,self->onLogB);
 #ifdef _LTP_
 	if(self->sipOnB)
 	{	
@@ -2300,7 +2378,23 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			reStartEveryThingB = true;
 		}
 	}	
-	
+	if(reStartEveryThingB==false)
+	{	
+		toogleValue = [prefs stringForKey:@"key_logfile"];
+		if(toogleValue)
+		{	
+			newValue = [toogleValue intValue];//this value are reverse
+		}
+		else
+		{
+			newValue = 0;
+		}
+		printf("restart %d",self->onLogB);
+		if(newValue!=self->onLogB)
+		{
+			reStartEveryThingB = true;
+		}
+	}	
 	if(reStartEveryThingB==false)
 	{	
 			
@@ -2344,6 +2438,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[self enableEdge];
 		[self enableSip];
 		[self enableAnalytics];
+		[self enableLog];
 		
 		uaLoginSuccessB = 0;
 		ltpTimerP = nil;	
@@ -2359,6 +2454,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		{
 			ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
 		}
+		setLogFile(ltpInterfacesP,self->onLogB);
 #ifdef _LTP_
 		if(self->sipOnB)
 		{	
@@ -2480,6 +2576,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		timeP = time(0);
 		tmP = localtime(&timeP);
 		printf(" appstart %2d:%2d:%2d",tmP->tm_hour,tmP->tm_min,tmP->tm_sec);*/
+		self->onLogB = 1;
 		firstTimeB = 1;
 		applicationLoadedB = 0;
 		self->endAppB = 0;

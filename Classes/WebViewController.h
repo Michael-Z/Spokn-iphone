@@ -33,9 +33,11 @@
 	NSString *urlToLoadP;
 	Boolean nowebB;//if true mean we need to downloaded from web
 	Boolean modalB;
+	Boolean showLogB;
 	
 }
 @property (nonatomic, retain) UIWebView *accountswebView;
+-(void)showLog;
 -(void)setObject:(id) object;
 -(void)setData:(NSString*)urlP web:(Boolean)lwebB :(NSString*)title;
 -(void)modelViewB:(Boolean)lmodalB;

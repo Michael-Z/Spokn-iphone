@@ -1778,8 +1778,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_OPENMP_SUPPORT = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1809,8 +1809,8 @@
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "685B9CA5-6922-4A37-9264-29080B21B5C5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "685B9CA5-6922-4A37-9264-29080B21B5C5";
+				PROVISIONING_PROFILE = "46BF5F96-1C2E-4696-9692-8749367F8917";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "46BF5F96-1C2E-4696-9692-8749367F8917";
 				SDKROOT = iphoneos4.0;
 				SKIP_INSTALL = NO;
 			};
@@ -1848,8 +1848,8 @@
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "685B9CA5-6922-4A37-9264-29080B21B5C5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "685B9CA5-6922-4A37-9264-29080B21B5C5";
+				PROVISIONING_PROFILE = "A4744C40-497B-4B49-BB59-8DE0B4008FA1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A4744C40-497B-4B49-BB59-8DE0B4008FA1";
 			};
 			name = Release;
 		};
@@ -2155,8 +2155,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "7AF3B196-5409-4A76-97A6-B27C29ADDE0B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7AF3B196-5409-4A76-97A6-B27C29ADDE0B";
+				PROVISIONING_PROFILE = "46BF5F96-1C2E-4696-9692-8749367F8917";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "46BF5F96-1C2E-4696-9692-8749367F8917";
 				SDKROOT = iphoneos4.0;
 			};
 			name = Distribution;
@@ -2193,8 +2193,8 @@
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "7AF3B196-5409-4A76-97A6-B27C29ADDE0B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7AF3B196-5409-4A76-97A6-B27C29ADDE0B";
+				PROVISIONING_PROFILE = "46BF5F96-1C2E-4696-9692-8749367F8917";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "46BF5F96-1C2E-4696-9692-8749367F8917";
 			};
 			name = Distribution;
 		};
@@ -2274,8 +2274,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = 4.2;
@@ -2296,8 +2296,8 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "685B9CA5-6922-4A37-9264-29080B21B5C5";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "685B9CA5-6922-4A37-9264-29080B21B5C5";
+				PROVISIONING_PROFILE = "46BF5F96-1C2E-4696-9692-8749367F8917";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "46BF5F96-1C2E-4696-9692-8749367F8917";
 				SDKROOT = iphoneos4.0;
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
