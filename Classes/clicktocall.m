@@ -16,7 +16,6 @@
 @implementation clicktocall
 @synthesize tableView;
 
-
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
@@ -93,6 +92,7 @@
 	}
 	
 	[AddeditcellControllerviewP setData:apartyNoCharP value:"Enter forward number." placeHolder:"Number" title:"Aparty" returnValue:&viewResult];
+	printf("result %d ",viewResult);
 	
 	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
 	
@@ -121,20 +121,29 @@
 		
 		
 	}
+	NSString *nsP;
+	nsP = [[NSUserDefaults standardUserDefaults] stringForKey:@"callbacknumber"];
+	if(nsP)
+	{
+		[labelAparty setText:nsP];
+	}
 	
+
 	[tableView reloadData];		
 }
 
 - (void)viewWillAppear:(BOOL)animated  
 {  
 	[super viewWillAppear:animated];
-	/*	if(apartyNoCharP)
-	 {
-	 NSString *stringStrP;
-	 [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:apartyNoCharP] forKey:@"callbacknumber"]; 
-	 [[NSUserDefaults standardUserDefaults] synchronize];
-	 }	
-	 */	
+	if(viewResult)
+	{
+		 if(strlen(apartyNoCharP)==0)
+		 {
+			 [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:apartyNoCharP] forKey:@"callbacknumber"]; 
+			 [[NSUserDefaults standardUserDefaults] synchronize];
+		 }
+	}
+	printf("new result %d ",viewResult);
 	if(strlen(apartyNoCharP)>0)
 	{
 		NSString *stringStrP;
@@ -151,6 +160,7 @@
 		if(nsP)
 		{
 			[labelAparty setText:nsP];
+			[tableView reloadData];
 		}
 	}
 	
@@ -205,13 +215,14 @@
 	
 	[sectionHeaders release];
 	[labelconnectionType release];
+	[number release];
 	[labelAparty release];
 	if(apartyNoCharP)
 	{	
 		free(apartyNoCharP);
 	}
 }
-
+#pragma mark Actionsheet methods
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
 {
 	[actionSheet release];

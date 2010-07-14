@@ -246,6 +246,20 @@
 		self->edgevalue = 1;
 	}
 }
+
+-(void) getCallType
+{
+	int toogleValue;
+	toogleValue = [[NSUserDefaults standardUserDefaults] integerForKey:@"protocoltypeIndex"];
+	if(toogleValue)
+	{	
+		self->outCallType = toogleValue;
+	}
+	else
+	{
+		self->outCallType = 1;
+	}
+}
 -(void) enableSip
 {
 	NSString *toogleValue;
@@ -2092,7 +2106,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	UIApplication *application;
 	application = applicationP;
 	addressRef = ABAddressBookCreate();
-	outCallType = 1;
+	//outCallType = 1;
+	[self getCallType ];
 	//[self setPjsipBufferSize ];
 	application.applicationIconBadgeNumber = 0;
 	if(setDeviceID==0)
@@ -2523,7 +2538,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 }
 #define _PUSH_NOTIFICATION_
-#ifdef _PUSH_NOTIFICATION_
+//#ifdef _PUSH_NOTIFICATION_
 #pragma mark PUSH NOTIFICATIONS
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 	
@@ -2561,15 +2576,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 
 
-#pragma mark STARTING POINT
+//#pragma mark STARTING POINT
 - (void)applicationDidFinishLaunching:(UIApplication *)application { 
 	[[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 	//[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-#else
-	- (void)applicationDidFinishLaunching:(UIApplication *)application {    
-			
-#endif
+
 		/*struct tm *tmP=0;
 		//struct tm tmP1,tmP2;
 		time_t timeP;
@@ -2694,6 +2706,33 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 	}	
 }
+	
+#pragma mark Actionsheet methods
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet
+{
+	
+	
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+		if(actionSheet.tag == 1)//call
+		{
+			switch(buttonIndex)
+			{
+				case 0:
+					[self makeSipCallOrCallBack:numberToCall callType:1];
+					break;
+				case 1:
+					[self makeSipCallOrCallBack:numberToCall callType:2];
+					break;
+					
+			
+			}
+			
+		
+		}
+}	
 /*
 #pragma mark PUSH NOTIFICATIONS
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -3169,6 +3208,38 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 //text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ()<>-./"]];
 -(Boolean)makeCall:(char *)noCharP
 {
+	if(outCallType==1|| outCallType==2)
+	{	
+		return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+	}	
+	else {
+		if(actualOnlineB==false)
+		{
+			return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+		}
+		else {
+			//show action sheet
+			strcpy(numberToCall,noCharP);
+			UIActionSheet *uiappActionSheetgP=0;
+			uiappActionSheetgP= [[[UIActionSheet alloc] 
+							  initWithTitle: @"Please select your prefrences" 
+							  delegate:self
+							  cancelButtonTitle:_CANCEL_ 
+							  destructiveButtonTitle:nil
+							  otherButtonTitles:@"Sip",@"CallBack", nil]autorelease];
+			uiappActionSheetgP.tag = 1;
+			uiappActionSheetgP.actionSheetStyle = UIBarStyleBlackTranslucent;
+			[uiappActionSheetgP showInView:[self tabBarController].view];
+			return 0;
+		}
+
+	}
+	return true;
+
+}
+	
+	-(Boolean)makeSipCallOrCallBack:(char *)noCharP callType:(int) loutCallType
+{
 	//NSMutableString *tempStringP;
 	NSString *strP;
 	NSString *strtypP;
@@ -3178,7 +3249,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	Boolean retB = false;
 	char typeP[30];
 	char *resultCharP=0;
-	if(actualOnlineB==false &&outCallType==1 )
+	if(actualOnlineB==false &&loutCallType==1 )
 	{
 		if(self.onLineB)
 		{	
@@ -3214,9 +3285,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//struct AddressBook *addressP;
 	
 	
-	if(outCallType==2 || outCallType==3)
+	if(loutCallType==2 || loutCallType==3)
 	{
 	
+		
+		
 		
 		NSString *callbackP;
 		NSString *callerP;

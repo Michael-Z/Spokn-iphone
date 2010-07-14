@@ -842,6 +842,8 @@
 		else {
 			
 				[self->ownerobject makeCall:cdrP->userid];
+				[self->tableView deselectRowAtIndexPath : indexPath animated:YES];
+				
 				[self->ownerobject changeView];
 		}
 	}

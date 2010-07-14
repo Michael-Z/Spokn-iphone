@@ -341,7 +341,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	}
 	#ifdef _CLICK_TO_CALL_
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
-											  initWithTitle:@"Prefrences" 
+											  initWithTitle:@"Call Setting" 
 											  style:UIBarButtonItemStylePlain 
 											  target:self 
 											  action:@selector(prefrences:)] autorelease];
@@ -353,7 +353,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	
 	// Center the text vertically and horizontally
 	buyCreditsButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-	buyCreditsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+	buyCreditsButton.contentHkorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
 	
 	UIImage *buttonBackground;
 	UIImage *buttonBackgroundPressed;
@@ -1500,24 +1500,17 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 
 -(void) CallBackMe:(NSString*)apartynumberP bparty:(NSString*)bpartynumberP  
 {
-	//OLD
-	//static char* HOST_CLICK_TO_CALL = "bb.spokn.com";
-	//static int PORT_CLICK_TO_CALL = 80;
-	//static char* URN_CLICK_TO_CALL = "/cgi-bin/click2call.cgi/1.0/call";
-	
-	//NEW
-	//public static final String HOST_CLICK_TO_CALL = "api.spokn.com";
-	//public static final int PORT_CLICK_TO_CALL = 80;
-	//public static final String URN_CLICK_TO_CALL = "/c2c/1.0/call";
-	
 	NSMutableString	*loginString;
 	NSMutableString	*passwordString;
 	NSMutableString	*dataStr;
 	NSMutableString	*authenticationString;
-	
-	
-	loginString = [NSMutableString stringWithString:@"5678910"];
-	passwordString = [NSMutableString stringWithString:@"mayank1234"];
+	char *unameCharP,*passwordCharP;
+	unameCharP = getLtpUserName(ownerobject.ltpInterfacesP);
+	passwordCharP = getLtpPassword(ownerobject.ltpInterfacesP);
+	loginString = [NSMutableString stringWithUTF8String:unameCharP];
+	passwordString = [NSMutableString stringWithUTF8String:passwordCharP];
+	free(unameCharP);
+	free(passwordCharP);
 	
 	dataStr = (NSMutableString*)[@"" stringByAppendingFormat:@"%@:%@", loginString, passwordString];
 	
@@ -1530,13 +1523,11 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
     // Base64 Encode username and password
     encode([encodeData length], (char *)[encodeData bytes], sizeof(encodeArray), encodeArray);
 	
-	// dataStr = (NSMutableString*)[NSString stringWithCString:encodeArray length:strlen(encodeArray)];
 	dataStr = (NSMutableString*)[[NSString alloc] initWithCString:encodeArray length:strlen(encodeArray)];
     authenticationString = (NSMutableString*)[@"" stringByAppendingFormat:@"Basic %@", dataStr];
 	
 	
 	//prepar request
-	//NSString *urlString = [NSString stringWithFormat:@"http://bb.spokn.com/cgi-bin/click2call.cgi/1.0/call"];
 	NSString *urlString = [NSString stringWithFormat:@"http://api.spokn.com/c2c/1.0/call"];
 	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
 	[request setURL:[NSURL URLWithString:urlString]];
@@ -1563,19 +1554,25 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 	//post
 	[request setHTTPBody:postBody];
 	
-	
 	//get response
 	NSHTTPURLResponse* urlResponse = nil;
 	NSString *serverMessage;
-	NSError *error = [[NSError alloc] init];  
+	NSError *error = 0;  
 	NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
 	//NSLog(@"\n\n%@\n\n", error);
+	
+	if(responseData==nil) //|| urlResponse==nil)
+	{
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Callback request failed" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+		[alert show];
+		return;
+	}
+	
 	NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-	NSLog(@"\n Response Code: %d\n", [urlResponse statusCode]);
+	//NSLog(@"\n Response Code: %d\n", [urlResponse statusCode]);
 	if ([urlResponse statusCode] == 200 || [urlResponse statusCode] == 0 || [urlResponse statusCode] == 400) 
 	{
-		NSLog(@"\n\n%@\n\n", result);
-		
+		//NSLog(@"\n result:%@\n\n", result);
 		//*************Optional****************
 		NSString *searchMessage = @"<c:desc>";
 		NSString *searchMessageEnd = @"</c:desc>";
@@ -1587,7 +1584,7 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 			if(range2.location != NSNotFound)
 			{
 				serverMessage = [serverMessage substringToIndex:range2.location];
-				NSLog(@"\n\n%@\n\n", serverMessage);
+				//NSLog(@"\n\n%@\n\n", serverMessage);
 			}	
 		}
 		//*************************************
@@ -1599,17 +1596,15 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 			NSString * resultvalueP;
 			int code;
 			resultvalueP = [result substringFromIndex:range.location + searchCode.length];
-			NSLog(@"\n\n%@\n\n", resultvalueP);
 			code = [resultvalueP intValue];
-			NSLog(@"\n\n%d\n\n", code);
+			//NSLog(@"\n\n%d\n\n", code);
 			switch(code)
 			{
-					/*	case 100://Resource Not Found
-					 {	
-					 NSLog(@"Resource Not Found");
-					 }	
-					 break;*/
-					
+				/*	case 100://Resource Not Found
+				 {	
+				 NSLog(@"Resource Not Found");
+				 }	
+				 break;*/
 					
 				case 200://Request Sucessful
 				{	
@@ -1643,11 +1638,11 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 				}	
 					break;
 					
-					/*		case 104://Request Failed
-					 {	
-					 NSLog(@"Request failed due to internal server error.");
-					 }	
-					 break;*/
+				/*		case 104://Request Failed
+				 {	
+				 NSLog(@"Request failed due to internal server error.");
+				 }	
+				 break;*/
 					
 				case 105://Billing details cannot be retrived
 				{	
@@ -1680,26 +1675,34 @@ int encode(unsigned s_len, char *src, unsigned d_len, char *dst)
 					
 					
 			}
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:serverMessage message:[NSString stringWithFormat:@"%d", code] delegate:self cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-			
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:serverMessage message:[NSString stringWithFormat:@"%d", code] delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 			[alert show];
 		}
 	}
 	else if ([urlResponse statusCode] == 404)
 	{
-		NSLog(@"Not Found");
+		//NSLog(@"Not Found");
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Resource not found at server" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+		[alert show];
 	}
 	else if ([urlResponse statusCode] == 415)
 	{
-		NSLog(@"Unsupported Media Type");
+		//NSLog(@"Unsupported Media Type");
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unsupported Media Type" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+		[alert show];
 	}
 	else if ([urlResponse statusCode] == 401)
 	{
-		NSLog(@"Unauthorized");
+		//NSLog(@"Unauthorized");
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unauthorized" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+		[alert show];
 	}
 	else if ([urlResponse statusCode] == 500)
 	{
-		NSLog(@"Internal Server Error");
+		//NSLog(@"Internal Server Error");
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Internal Server Error" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+		[alert show];
 	}
+	[result release];
 }
 @end

@@ -459,7 +459,6 @@
 		32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-normal.png"; path = "rsc/keypad/132x52-hide-keypad-normal.png"; sourceTree = SOURCE_ROOT; };
 		32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-pressed.png"; path = "rsc/keypad/132x52-hide-keypad-pressed.png"; sourceTree = SOURCE_ROOT; };
 		32EE820310A5B71A00B0BAAD /* contact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contact.xib; sourceTree = "<group>"; };
-		73BD60DF11EB403B00D4E167 /* clicktocall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clicktocall.h; sourceTree = "<group>"; };
 		73BD60E011EB403B00D4E167 /* clicktocall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = clicktocall.m; sourceTree = "<group>"; };
 		73BD60E111EB403C00D4E167 /* clicktocall.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = clicktocall.xib; sourceTree = "<group>"; };
 		8B140C4111CA1814004ACB15 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
@@ -666,6 +665,7 @@
 		8BA9F5DF1026E50D0082B6AE /* calllog.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = calllog.xib; sourceTree = "<group>"; };
 		8BAAB29D1042DA1800F3EE73 /* DECODE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DECODE.c; path = ../lib/gsm/DECODE.c; sourceTree = SOURCE_ROOT; };
 		8BAD7A731121C07600ABBCC9 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		8BAF18A511ED92F300B8D31B /* clicktocall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clicktocall.h; sourceTree = "<group>"; };
 		8BB1F6241186C9DC00BCB3AD /* libportaudio-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libportaudio-arm-apple-darwin9.a"; path = "../pjproject15/third_party/lib/libportaudio-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BB1F6261186C9FA00BCB3AD /* libpjmedia-audiodev-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-arm-apple-darwin9.a"; path = "../pjproject15/pjmedia/lib/libpjmedia-audiodev-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8BB617F6118ECBEA0039E696 /* conferenceviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conferenceviewcontroller.h; sourceTree = "<group>"; };
@@ -829,6 +829,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8BAF18A511ED92F300B8D31B /* clicktocall.h */,
 				8B61B2151132A8A7003D6164 /* contactlookup.h */,
 				8B61B2161132A8A7003D6164 /* contactlookup.m */,
 				8B957292111C52BF00761EDB /* TTSearchlightLabel.h */,
@@ -908,7 +909,6 @@
 				8BB617F8118ECBEA0039E696 /* conferenceviewcontroller.xib */,
 				8BA6E96111928F6400435756 /* callmanagement.h */,
 				8BA6E96211928F6400435756 /* callmanagement.m */,
-				73BD60DF11EB403B00D4E167 /* clicktocall.h */,
 				73BD60E011EB403B00D4E167 /* clicktocall.m */,
 				73BD60E111EB403C00D4E167 /* clicktocall.xib */,
 			);
@@ -1831,8 +1831,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
-				CODE_SIGN_IDENTITY = "iPhone Developer: rishi saxena (24B3PCMBZR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: rishi saxena (24B3PCMBZR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = spokn_Prefix.pch;

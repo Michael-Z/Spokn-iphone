@@ -96,7 +96,7 @@ typedef struct CallNumberType
 
 
 @class IncommingCallViewController;
-@interface SpoknAppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate> {
+@interface SpoknAppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate,UIActionSheetDelegate> {
   //  @public
 	UIWindow *window;
 	
@@ -199,6 +199,7 @@ typedef struct CallNumberType
 	Boolean applicationLoadedB;
 	Boolean stopCircularRingB;
 	int onLogB;
+	char numberToCall[100];
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 
@@ -224,9 +225,10 @@ typedef struct CallNumberType
 -(void)endCall;
 - (BOOL) checkForHighResolution;
 -(void) setPjsipBufferSize;
--(void) setoutCallTypeProtocol:(int)type;
+
 
 #endif
+-(void) setoutCallTypeProtocol:(int)type;
 -(void)	applicationInit:(id)application;
 /*
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -308,6 +310,7 @@ changed:(BOOL)changed;
 -(void) startTakingEvent;
 -(int)sendLogFile;
 -(void) enableLog;
+-(Boolean)makeSipCallOrCallBack:(char *)noCharP callType:(int) loutCallType;
 #ifdef G4_DEFINE	
 #ifdef __IPHONE_4_0	
 - (void)sendIncommingPushNotification:(NSString*)msgStringP;

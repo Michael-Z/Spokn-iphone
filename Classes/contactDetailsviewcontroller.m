@@ -1482,6 +1482,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 				if(strstr( sectionArray[section].dataforSection[row].elementP,"@")==0)
 				{	
 					[addcallDelegate makeCall:sectionArray[section].dataforSection[row].elementP];
+					[self->tableView deselectRowAtIndexPath : newIndexPath animated:YES];
 				
 				}
 			}
