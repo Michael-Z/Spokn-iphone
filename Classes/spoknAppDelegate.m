@@ -518,7 +518,10 @@
 	
 }
 extern void restartPlayAndRecord();
+void restartPlayAndRecord()
+{
 
+}
 
 - (void) handleIntrrept: (id) timer
 {
