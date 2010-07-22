@@ -83,8 +83,8 @@
 	int er = [ownerobject sendLogFile];
 	if(er==0)
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn Log" 
-														message:@"Spokn log has been uploaded sucessfully to Spokn server."
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn" 
+														message:@"Log file has been sent sucessfully."
 													   delegate:nil 
 											  cancelButtonTitle:nil 
 											  otherButtonTitles:_OK_, nil];
@@ -93,8 +93,8 @@
 		
 	}
 	else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn Log"  
-														message:[NSString stringWithFormat:@"Failed to send spokn log(error=%d)",er]
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn"  
+														message:[NSString stringWithFormat:@"Failed to send log file(error=%d)",er]
 													   delegate:nil 
 											  cancelButtonTitle:nil 
 											  otherButtonTitles:_OK_, nil];

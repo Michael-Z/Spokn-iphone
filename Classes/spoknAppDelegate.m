@@ -92,6 +92,7 @@
 @synthesize globalAddressP;
 @synthesize inbackgroundModeB;
 @synthesize onLogB;
+@synthesize osversionDouble;
 -(int)sendLogFile
 {
 	char *fileP;
@@ -670,6 +671,17 @@ void getProp()
 				loginGprsB = false;
 				
 			}
+			else
+			{
+				if(loginAttemptB)	
+				{
+					[loginProtocolP stoploginIndicator];
+					[loginProtocolP cleartextField];
+					[dialviewP setStatusText: @"Authentication failed" :nil :ALERT_OFFLINE :HOST_NAME_NOT_FOUND_ERROR :0 ];
+					loginGprsB = false;
+				
+				}
+			}	
 			break;
 			
 			break;
@@ -1939,6 +1951,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	char *osVerP=0;
 	char *osModelP=0;
 	char *uniqueIDCharP=0;
+	self->osversionDouble = [versionP doubleValue];
 	osVerP = (char*)[versionP cStringUsingEncoding:NSUTF8StringEncoding];
 	osModelP = (char*)[model cStringUsingEncoding:NSUTF8StringEncoding];
 	if(deviceTokenP)
@@ -3206,11 +3219,20 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 -(void) setoutCallTypeProtocol:(int)type
 {
+#ifndef _CLICK_TO_CALL_
+	outCallType = 1;
+#else
 	outCallType = type;
+#endif
+	
+	
 }
 //text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ()<>-./"]];
 -(Boolean)makeCall:(char *)noCharP
 {
+	#ifndef _CLICK_TO_CALL_
+	outCallType = 1;
+	#endif
 	if(outCallType==1|| outCallType==2)
 	{	
 		return [self makeSipCallOrCallBack:noCharP callType:outCallType];

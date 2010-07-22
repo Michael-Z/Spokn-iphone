@@ -32,7 +32,7 @@
 // Comment following line when not in developer mode
 #if TARGET_IPHONE_SIMULATOR == 1
 
-	
+	//PA_SIMULATOR
 	#define DEVELOPER_MODE
 #endif
 id sharedEventTracker;

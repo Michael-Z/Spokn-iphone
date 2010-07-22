@@ -2,13 +2,14 @@
 // Prefix header for all source files of the 'spokn' target in the 'spokn' project
 //
 #define _MACOS_	
-#define _CLICK_TO_CALL_
+//#define _CLICK_TO_CALL_
 #define _CALLBACKLTP_
 #define _strdup strdup
+#define GOOGLE_ID @"UA-10360983-5"
 #include "stdlib.h"
 #import <Availability.h>
 #define _PJSIP_LOG_ 
-#define CLIENT_VERSION "1.2.0"
+#define CLIENT_VERSION "1.2.1"
 // #define _TEST_MEMORY_
 #ifdef __OBJC__
 	#import <Foundation/Foundation.h>

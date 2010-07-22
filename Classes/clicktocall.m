@@ -62,7 +62,8 @@
 {
 	
 	NSString *num;
-	num = [labelAparty text];
+	num = [[labelAparty text] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" _$!<>+."]];
+	NSLog(@" num = %@",num);
 	if(num){
 	[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:num] forKey:@"callbacknumber"]; 
 	//[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:apartyNoCharP] forKey:@"callbacknumber"]; 

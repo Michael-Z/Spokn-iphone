@@ -200,6 +200,7 @@ typedef struct CallNumberType
 	Boolean stopCircularRingB;
 	int onLogB;
 	char numberToCall[100];
+	double osversionDouble;
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 
@@ -255,6 +256,7 @@ typedef struct CallNumberType
 @property (nonatomic,assign) DialviewController    *dialviewP; 
 @property(nonatomic,assign)Boolean inbackgroundModeB;
 @property(nonatomic,assign)int onLogB;
+@property(nonatomic,assign)double osversionDouble;
 //@property (nonatomic, retain) IBOutlet spoknviewcontroller *viewController;
 //add delegate
 -(void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController;

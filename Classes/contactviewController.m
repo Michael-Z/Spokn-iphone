@@ -732,13 +732,23 @@ titleForHeaderInSection:(NSInteger)section
 -(void) keyboardWillShow:(NSNotification *) note
 {
     UITabBar *tabP;
+	NSString *objsP=0;
 	if(viewDidLodadedB==false || viewOnB==false)
 	{
 		return;
 	}
+	if(ownerobject.osversionDouble>=3.2)
+	{
+			objsP = @"UIKeyboardFrameEndUserInfoKey";
+	}
+	else {
+		
+		objsP = @"UIKeyboardBoundsUserInfoKey";
+	}
+
 	//tableframe = self->tableView.frame;
 	CGRect r  = tableframe, t;
-    [[note.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &t];
+    [[note.userInfo valueForKey:objsP] getValue: &t];
 	//printf("\n height %.2f",t.size.height);
 	r.size.height -=  t.size.height;
 	if(ownerobject.tabBarController.modalViewController==0)
