@@ -93,7 +93,7 @@
 @synthesize inbackgroundModeB;
 @synthesize onLogB;
 @synthesize osversionDouble;
--(int)sendLogFile
+-(int)sendLogFile:(NSString **)stringP
 {
 	char *fileP;
 	fileP = getLogFile(self->ltpInterfacesP->ltpObjectP);
@@ -110,14 +110,62 @@
 		else {
 			strcpy(passP,"failed");
 		}
-
-		NSString *urlString = @"http://sandbox.spokn.com/siplogdump.php";
+	//	char*filescriptNameP=  getlogfilescript();
+		
+	/*	
+		NSString *urlString = [NSString stringWithUTF8String:filescriptNameP];
+		if(filescriptNameP)
+		{
+			free(filescriptNameP);
+			filescriptNameP = 0;
+		}
+		*/
+		NSMutableString	*loginString;
+		NSMutableString	*passwordString;
+		NSMutableString	*dataStr;
+		NSMutableString	*authenticationString;
+				
+		
+		NSString *urlString = @"https://www.spokn.com/siplogdump.php";
 		
 		//NSString *urlString = @"http://192.168.173.122/~mukesh/quickest.php";
 		
 		//NSString *urlString = @"http://192.168.175.102/~tasvir/logfile.php";
 		NSString *filename = [NSString stringWithUTF8String:fileP];
 		request= [[[NSMutableURLRequest alloc] init] autorelease];
+		
+		
+		char *passwordCharP;
+		
+		passwordCharP = getLtpPassword(ltpInterfacesP);
+		loginString = [NSMutableString stringWithUTF8String:userP];
+		passwordString = [NSMutableString stringWithUTF8String:passwordCharP];
+		free(passwordCharP);
+		
+		dataStr = (NSMutableString*)[@"" stringByAppendingFormat:@"%@:%@", loginString, passwordString];
+		
+		NSData *encodeData = [dataStr dataUsingEncoding:NSUTF8StringEncoding];
+		
+		char encodeArray[512];
+		
+		memset(encodeArray, '\0', sizeof(encodeArray));
+		
+		// Base64 Encode username and password
+		encode([encodeData length], (char *)[encodeData bytes], sizeof(encodeArray), encodeArray);
+		
+		dataStr = (NSMutableString*)[[NSString alloc] initWithCString:encodeArray length:strlen(encodeArray)];
+		authenticationString = (NSMutableString*)[@"" stringByAppendingFormat:@"Basic %@", dataStr];
+		
+		NSString *contentType1 = [[NSString alloc]initWithString: authenticationString];
+		[request addValue:contentType1 forHTTPHeaderField:@"Authorization"];
+		[contentType1 release]; 
+		[dataStr release];
+		
+		
+		
+		
+		
+		
 		[request setURL:[NSURL URLWithString:urlString]];
 		[request setHTTPMethod:@"POST"];
 		NSString *boundary = @"---------------------------14737809831466499882746641449";
@@ -146,6 +194,7 @@
 			return [nsP code];
 				
 		}
+		*stringP = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
 		return 0;
 	}
 	return 1;

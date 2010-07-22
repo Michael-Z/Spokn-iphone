@@ -80,16 +80,18 @@
 }
 -(IBAction)sendLogPressed
 {
-	int er = [ownerobject sendLogFile];
+	NSString *msgP = nil;
+	int er = [ownerobject sendLogFile:&msgP];
 	if(er==0)
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spokn" 
-														message:@"Log file has been sent sucessfully."
+														message:msgP
 													   delegate:nil 
 											  cancelButtonTitle:nil 
 											  otherButtonTitles:_OK_, nil];
 		[alert show];
 		[alert release];
+		[msgP release];
 		
 	}
 	else {

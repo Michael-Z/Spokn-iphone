@@ -310,7 +310,7 @@ changed:(BOOL)changed;
 -(void)retianThisObject:(id)retainObject;
 - (BOOL) checkForHighResolution;	
 -(void) startTakingEvent;
--(int)sendLogFile;
+-(int)sendLogFile:(NSString **)stringP;
 -(void) enableLog;
 -(Boolean)makeSipCallOrCallBack:(char *)noCharP callType:(int) loutCallType;
 #ifdef G4_DEFINE	
