@@ -3811,7 +3811,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	{
 		SetConnection( ltpInterfacesP,0);
 		alertNotiFication(ALERT_OFFLINE,0,LOGIN_STATUS_NO_ACCESS,(long)self,0);
-		wifiavailable = NO;
+	//	wifiavailable = NO;
 		
 	
 	}
