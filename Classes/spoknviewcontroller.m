@@ -184,7 +184,7 @@
 		[forwardactivityIndicator setCenter:CGPointMake(270.0f, 21.0f)];
 		[forwardactivityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
 		forwardactivityIndicator.tag = 8;
-		
+		functioncallB = false;
 		//[switchView addTarget:self action:@selector(switchChange) forControlEvents:UIControlEventValueChanged];
 		//cell.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"spoknlog" ofType:@"png" inDirectory:@"/"]];
 		
@@ -377,7 +377,7 @@
 	loadB = true;
 	
 	//[ownerobject updateSpoknView:self];
-	if(functioncallB)
+	if(functioncallB==true)
 	{	
 		[self setDetails:gtitelCharP :gstatusInt :gsubStatus :gbalance :gforwardCharP :gspoknCharP forwardOn:gforwardOn spoknID:gspoknLoginId];
 	}
@@ -577,6 +577,10 @@
 		
 		
 	}	
+	if(titleCharP==nil)
+	{
+		titleCharP = "\0";
+	}
 	stringStrP = [[NSString alloc] initWithUTF8String:titleCharP ];
 	
 	if(stringStrP.length >0)

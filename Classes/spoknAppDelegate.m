@@ -194,7 +194,10 @@
 			return [nsP code];
 				
 		}
-		*stringP = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+		if(stringP)
+		{	
+			*stringP = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+		}	
 		return 0;
 	}
 	return 1;
