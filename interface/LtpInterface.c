@@ -562,12 +562,14 @@ int	  endLtp(LtpInterfaceType *ltpInterfaceP)
 }
 void *createThread(void *spoknP)
 {
-	char errorstring[50]; 
+	char errorstring[50];
+	int er;
 	LtpInterfaceType *ltpInterfaceP;
 	ltpInterfaceP = (LtpInterfaceType *)spoknP;
 	ltpInterfaceP->pjsipThreadStartB = 1;
 	errorstring[0] = 0;
-	if(sip_spokn_pj_config(ltpInterfaceP->ltpObjectP,ltpInterfaceP->userAgent,errorstring)==1)
+	er = sip_spokn_pj_config(ltpInterfaceP->ltpObjectP,ltpInterfaceP->userAgent,errorstring);
+	if(er==0)
 	{
 		
 		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN,0,0,ltpInterfaceP->userData,0);
@@ -576,7 +578,7 @@ void *createThread(void *spoknP)
 	}
 	else
 	{
-		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN_ERROR,0,0,ltpInterfaceP->userData,strdup(errorstring));
+		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN_ERROR,er,0,ltpInterfaceP->userData,strdup(errorstring));
 		
 	}
 	ltpInterfaceP->pjsipThreadStartB =0;

@@ -514,7 +514,7 @@
 */
 -(void)setDetails:(char *)titleCharP :(int )lstatusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward spoknID:(char*)spoknLoginId
 {
-	balance = balance/100;
+	
 	char s1[20];
 	NSString *stringStrP;
 	
@@ -577,6 +577,7 @@
 		
 		
 	}	
+	balance = balance/100;
 	if(titleCharP==nil)
 	{
 		titleCharP = "\0";
@@ -1333,7 +1334,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[WebViewControllerviewP setObject:self->ownerobject];
 	char * tempurl;
 	#ifdef _PJSIP_LOG_
-		if(ownerobject.onLogB==1)
+		if(ownerobject.onLogB==1 && ownerobject.onoffSip==1)
 		{	
 			[ WebViewControllerviewP showLog];
 		}

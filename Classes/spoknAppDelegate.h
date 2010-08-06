@@ -256,6 +256,8 @@ typedef struct CallNumberType
 @property (nonatomic,assign) DialviewController    *dialviewP; 
 @property(nonatomic,assign)Boolean inbackgroundModeB;
 @property(nonatomic,assign)int onLogB;
+@property(nonatomic,assign)int onoffSip;
+
 @property(nonatomic,assign)double osversionDouble;
 //@property (nonatomic, retain) IBOutlet spoknviewcontroller *viewController;
 //add delegate

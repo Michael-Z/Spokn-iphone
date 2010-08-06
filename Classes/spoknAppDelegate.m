@@ -93,6 +93,7 @@
 @synthesize inbackgroundModeB;
 @synthesize onLogB;
 @synthesize osversionDouble;
+@synthesize onoffSip;
 -(int)sendLogFile:(NSString **)stringP
 {
 	char *fileP;
@@ -935,6 +936,22 @@ void getProp()
 			[alertP release];
 			sipLoginAttemptStartB = 0;
 			ltpInterfacesP->LogoutSendB = 0;
+			stopCircularRingB = 1;
+			sipLoginAttemptStartB = 0;
+			[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
+			[ spoknViewControllerP cancelProgress];
+			self->onLineB = false;
+			self->timeOutB = 0;
+			actualOnlineB = 0;
+			self->subID =  NO_SIP_AVAILABLE;
+			self->status =  ALERT_OFFLINE;
+			[self updateSpoknView:0];
+			//[dialviewP setStatusText: _STATUS_NO_ACCESS_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
+			if(uaLoginSuccessB  )//mean call back is allowed ,http online
+			{
+				loginProgressStart = 0;
+				self->onLineB = true;
+			}	
 			
 		}	
 			break;
@@ -1037,6 +1054,7 @@ void getProp()
 			self->onLineB = false;
 			self->timeOutB = 0;
 			actualOnlineB = 0;
+			
 			//logOut(ltpInterfacesP,false);
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];

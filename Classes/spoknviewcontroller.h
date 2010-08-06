@@ -76,7 +76,7 @@ typedef struct ImageNameType
 -(void)buyCredit:(id)sender;
 -(void)aboutPage:(id)sender;
 -(void)setObject:(id) object ;
--(void)setDetails:(char *)titleCharP :(int )statusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward spoknID:(char*)spoknLoginId;
+-(void)setDetails:(char *)titleCharP :(int )lstatusInt :(int)subStatus :(float) balance :(char *)lforwardNoCharP :(char *)spoknCharP forwardOn:(int)forward spoknID:(char*)spoknLoginId;
 - (IBAction)switchChange:(UISwitch*)sender;
 -(void)startProgress;
 -(void)showForwardNoScreen;
