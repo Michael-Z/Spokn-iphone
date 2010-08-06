@@ -701,6 +701,10 @@ void getProp()
 	Boolean lonlineB;
 	if(self->dontTakeMsg)
 	{
+		if(self->status==ATTEMPT_LOGIN_ERROR)
+		{
+			ResetPortChecking(ltpInterfacesP);
+		}
 		return;
 	}
 	switch(self->status)
@@ -898,8 +902,12 @@ void getProp()
 			}	
 			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 			break;
-		case  ATTEMPT_LOGIN:
+		case ATTEMPT_LOGIN_ON_OPEN_PORT:
 			
+			
+	
+		case  ATTEMPT_LOGIN:
+			self->ltpInterfacesP->pjsipThreadStartB =0;
 			SendLoginPacket(self->ltpInterfacesP);//==0)
 			
 			break;
@@ -945,13 +953,17 @@ void getProp()
 			actualOnlineB = 0;
 			self->subID =  NO_SIP_AVAILABLE;
 			self->status =  ALERT_OFFLINE;
-			[self updateSpoknView:0];
+			ResetPortChecking(ltpInterfacesP);
+			
+			self->ltpInterfacesP->pjsipThreadStartB =0;
+			
 			//[dialviewP setStatusText: _STATUS_NO_ACCESS_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
 			if(uaLoginSuccessB  )//mean call back is allowed ,http online
 			{
 				loginProgressStart = 0;
 				self->onLineB = true;
 			}	
+			[self updateSpoknView:0];
 			
 		}	
 			break;

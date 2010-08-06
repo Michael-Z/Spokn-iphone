@@ -426,6 +426,7 @@ LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNo
 	ltpInterfaceP->ltpReceType.bufferLength = MAXDATA;
 	ltpInterfaceP->userData = userData;
 	ltpInterfaceP->alertNotifyP =  alertNotiCallbackP;
+	ltpInterfaceP->checkPortAgainB = 1;
 	if(sipOnB==false)
 	{
 		er = restartSocket(&ltpInterfaceP->socketID);
@@ -571,12 +572,12 @@ void *createThread(void *spoknP)
 	er = sip_spokn_pj_config(ltpInterfaceP->ltpObjectP,ltpInterfaceP->userAgent,errorstring);
 	if(er==0)
 	{
-		
+		ltpInterfaceP->checkPortAgainB = 1;
+		ltpInterfaceP->pjsipThreadStartB =0;
 		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN,0,0,ltpInterfaceP->userData,0);
 
-		
 	}
-	else
+	else	
 	{
 		ltpInterfaceP->alertNotifyP(ATTEMPT_LOGIN_ERROR,er,0,ltpInterfaceP->userData,strdup(errorstring));
 		
@@ -598,8 +599,30 @@ void startThreadLogin(LtpInterfaceType *ltpInterfaceP)
 	}
 
 }
+void ResetPortChecking(LtpInterfaceType *ltpInterfaceP)
+{
+	ltpInterfaceP->LogoutSendB = 0;
+	
+	ltpInterfaceP->pjsipThreadStartB =0;
+	ltpInterfaceP->checkPortAgainB = 1;
+	
+}
+
 int SendLoginPacket(LtpInterfaceType *ltpInterfaceP)
 {
+	char errorstring[50];
+	
+	if(ltpInterfaceP->pjsipThreadStartB)
+	{
+		return 1;
+	}
+	if(ltpInterfaceP->checkPortAgainB)
+	{
+		ltpInterfaceP->checkPortAgainB = 0;
+		ltpInterfaceP->pjsipThreadStartB = 1;
+		sip_IsPortOpen(ltpInterfaceP->ltpObjectP,errorstring,false);
+		return 1;
+	}
 	if(ltpInterfaceP->LogoutSendB) 
 	{
 		//sip_pj_DeInit(ltpInterfaceP->ltpObjectP);
@@ -690,6 +713,7 @@ int logOut(LtpInterfaceType *ltpInterfaceP,Boolean clearAllB)
 {
 	if(ltpInterfaceP)
 	{	
+		ltpInterfaceP->checkPortAgainB = 1;
 		if(ltpInterfaceP->pjsipThreadStartB==false || ltpInterfaceP->ltpObjectP->sipOnB==false)
 		{	
 			ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGOUT);

@@ -81,6 +81,7 @@ typedef struct IncommingCallType
 			int valChange;
 			int pjsipThreadStartB;
 			int LogoutSendB;
+			Boolean checkPortAgainB;
 			Boolean stopAutioQueueImidateB;
 			int firstTimeLoginB;
 			short int blankData[160];//blank data
@@ -133,6 +134,7 @@ Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId);
 	void setUserAgent(LtpInterfaceType *ltpInterfaceP,char* luserAgent);	
 	void HangupAllCall(LtpInterfaceType *ltpInterfaceP);
 	void setLogFile(LtpInterfaceType *ltpInterfaceP,int onB);
+void ResetPortChecking(LtpInterfaceType *ltpInterfaceP); 
 //void set_sizeof_buffer(int size);
 //int get_sizeof_buffer();
 #endif
