@@ -39,7 +39,7 @@
 	NSString* countryCode;
 	countrylist *countrylispP;
 	id <clicktocallProtocol> clicktocallProtocolP;
-	NSString *content;
+	
 	
 	/*For Asynchronous request*/
 	NSMutableData *responseAsyncData;

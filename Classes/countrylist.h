@@ -19,10 +19,10 @@
 
 }
 @property (nonatomic, readwrite) NSInteger code;
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *secondaryname;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *secondaryname;
 @property (nonatomic, readwrite) NSInteger number;
-@property (nonatomic, retain) NSString *area;
+@property (nonatomic, copy) NSString *area;
 
 
 @end

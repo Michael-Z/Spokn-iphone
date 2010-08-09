@@ -68,11 +68,11 @@
 	
 	//make a file name to write the data to using the documents directory:
 	NSString *fileName = [NSString stringWithFormat:@"%@/newcountrylist.txt", documentsDirectory];
-	content = [[NSString alloc] initWithContentsOfFile:fileName
+	return  [[NSString alloc] initWithContentsOfFile:fileName
 										  usedEncoding:nil
 												 error:nil];
 	
-	return content;
+	
 	
 }
 
@@ -100,59 +100,19 @@
 	int timestamp;
 	timestamp = [[NSUserDefaults standardUserDefaults] integerForKey:@"Timestamp"];
 	
-	NSString *urlString = [NSString stringWithFormat:@"http://api.spokn.com/accesslines?time=%d",timestamp];
+	NSString *urlString = [NSString stringWithFormat:@"http://api.spokn.com/accesslines?time=%d",0];
 	
 	NSURLRequest *urlRequest = [[NSURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NO timeoutInterval:30.0] retain];
     
 	// Note: An NSOperation creates an autorelease pool, but doesn't schedule a run loop
 	// Create the connection and schedule it on a run loop under our namespaced run mode
-	NSURLConnection *rssConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+	NSURLConnection *rssConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:NO];
 	
 	//[rssConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 	[rssConnection start];
-	
-	// Keep running the loop until the download has finished
-	//while (!finished && ![self isCancelled])
-	while (!finished)
-	{			
-		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-								 beforeDate:[NSDate dateWithTimeIntervalSinceNow:30.0]];
-	}
-	
-	[rssConnection release];
+    [rssConnection release];
 	[urlRequest release], urlRequest = nil;
-	
-	// if (connectionError && ![self isCancelled]) 
-	if (connectionError) 
-	{
-		NSString *errorMsg = [connectionError localizedDescription];
-		// errorMsg = [@"0" stringByAppendingString:@"Please check your network settings"];
-		// [handler performSelectorOnMainThread:@selector(onFailure:) withObject:errorMsg waitUntilDone:NO];
-	}
-	// else if(!finished && [self isCancelled])
-	// else if(!finished)
-	// {
-	// [handler performSelectorOnMainThread:@selector(onFailure:) withObject:nil waitUntilDone:NO];
-	// }
-	else
-	{
-		// NSString *response = [[NSString alloc] initWithData:responseAsyncData encoding:NSASCIIStringEncoding];
-		// response = [[@"0" stringByAppendingString:[response autorelease]] retain];
-		// [handler performSelectorOnMainThread:@selector(onSuccess:) withObject:response waitUntilDone:NO];
-		// [response release],	response = nil;
-		NSString *xmlDataFromChannelSchemes;
-		NSString *result = [[NSString alloc] initWithData:responseAsyncData encoding:NSASCIIStringEncoding];
-		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:result];
-		NSData *xmlDataInNSData = [xmlDataFromChannelSchemes dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-		xmlParser = [[NSXMLParser alloc] initWithData:xmlDataInNSData];
-		[xmlParser setDelegate:self];
-		[xmlParser parse];
-		[xmlParser release];
-		[xmlDataFromChannelSchemes release];
-		[result release];
-		[responseAsyncData release];
-	}
-	
+
 	
 }
 
@@ -161,10 +121,16 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {	
 	
-	responseAsyncData = [[NSMutableData alloc] initWithLength:0];
+	
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	
+	if(responseAsyncData==nil)
+	{	
+		responseAsyncData = [[NSMutableData alloc] initWithLength:0];
+	}	
+	
 	
 	[responseAsyncData appendData:data];
 }
@@ -172,12 +138,28 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 	
 	connectionError = [error retain];
-	finished = YES;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	
-	finished = YES;
+	if(responseAsyncData)
+	{
+		NSString *xmlDataFromChannelSchemes;
+		NSString *result = [[NSString alloc] initWithData:responseAsyncData encoding:NSASCIIStringEncoding];
+		//NSLog(@"\n result:%@\n\n", result);
+		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:result];
+		NSData *xmlDataInNSData = [xmlDataFromChannelSchemes dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+		xmlParser = [[NSXMLParser alloc] initWithData:xmlDataInNSData];
+		[xmlParser setDelegate:self];
+		[xmlParser parse];
+		[pickerView reloadAllComponents];
+		[xmlParser release];
+		[xmlDataFromChannelSchemes release];
+		[result release];
+		[responseAsyncData release];
+		responseAsyncData = nil;
+	}	
+	
 }
 
 -(void)callthroughApiSynchronous
@@ -261,7 +243,7 @@
 		NSString *data;
 		data = [self getTextFromFile];
   		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:data];
-		[content release];
+		
 		if(result != nil)
 		{
 			[result release];
@@ -365,9 +347,9 @@
 	}
 		
 	//For Synchronous Request
-	[self callthroughApiSynchronous];
+	//[self callthroughApiSynchronous];
 	//For Synchronous Request
-	//	[self callthroughApiAsynchronous];
+		[self callthroughApiAsynchronous];
 	
 	[tableView reloadData];		
 }
@@ -517,8 +499,8 @@
 		{	
 			[labelconnectionType setText:@"Call-through"];
 			[ownerobject setoutCallTypeProtocol:index];
-			[self callthroughApiSynchronous];
-			//[self callthroughApiAsynchronous];
+			//[self callthroughApiSynchronous];
+			[self callthroughApiAsynchronous];
 			//[self performSelectorOnMainThread : @ selector(callthroughApi) withObject:nil waitUntilDone:NO];
 			//[NSThread detachNewThreadSelector:@selector(callthroughApi) toTarget:[self class] withObject:nil];
 			pickerView.hidden = NO;
