@@ -2676,6 +2676,16 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 //#pragma mark STARTING POINT
 - (void)applicationDidFinishLaunching:(UIApplication *)application { 
+	
+	/*	
+	 NSLocale *locale = [NSLocale currentLocale];
+	 NSString *countryCode = [locale objectForKey: NSLocaleCountryCode];
+	 NSLog(@"%@",countryCode);
+	 NSString *countryName = [locale displayNameForKey: NSLocaleCountryCode	value: countryCode];
+	 NSLog(@"%@",countryName);
+	 
+	 */
+	
 	[[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 	//[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
@@ -3309,12 +3319,47 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	
 }
+-(void)setcallthroughData:(id)objectP
+{
+	
+	countrylispP = objectP;
+	[countrylispP retain];
+//	NSLog(@"\n %@ : %i :%@  :%i\n", countrylispP.name, countrylispP.code,countrylispP.secondaryname,countrylispP.number);
+}
 //text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ()<>-./"]];
 -(Boolean)makeCall:(char *)noCharP
 {
 	#ifndef _CLICK_TO_CALL_
 	outCallType = 1;
 	#endif
+	if(outCallType==4)
+	{
+		/*		spoknid*pin*bpartyno.
+		 where
+		 spoknid : seven digit spokn id
+		 e.g. 1234567
+		 pin : 1st 5 digit(md5(pwd))
+		 e.g. md5(vel) = d41d8cd98f00b204e9800998ecf8427e
+		 1st 5 digit of md5 = d41d8
+		 replace a = 6, b = 5, c = 4, d = 3, e = 2, f = 1(digit more than 9 subtract it with 16)
+		 so the pin = 34138
+		 bpartyno = 919821988975*/
+		char *unameCharP=0;
+		char *encryptypasswordCharP=0;
+		char number[50];
+		NSString *finalnumber;
+		unameCharP = getLtpUserName(ltpInterfacesP);
+		encryptypasswordCharP = getencryptedPassword();
+		sprintf(number,"tel:%i,,%s%s%s",(int)countrylispP.number,unameCharP,encryptypasswordCharP,noCharP);
+		finalnumber = [[NSString alloc] initWithUTF8String:number];
+		//NSLog(@"final number : %@",finalnumber);
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:finalnumber]];
+		free(unameCharP);
+		free(encryptypasswordCharP);
+		[finalnumber release];
+		
+		return 0;
+	}
 	if(outCallType==1|| outCallType==2)
 	{	
 		return [self makeSipCallOrCallBack:noCharP callType:outCallType];

@@ -10,11 +10,13 @@
 #import  "AddeditcellController.h"
 #import "alertmessages.h"
 #import "spoknAppDelegate.h"
+#import "countrylist.h"
 #define SPOKNCOLOR [UIColor colorWithRed:63/255.0 green:90/255.0 blue:139/255.0 alpha:1.0]
 #define ROW_HEIGHT 42
 
 @implementation clicktocall
 @synthesize tableView;
+@synthesize clicktocallProtocolP;
 
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -41,12 +43,45 @@
     return self;
 }
 
+//Method writes a string to a text file
+-(void) writeToTextFile:(NSString *)lcontent
+{
+	//get the documents directory:
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	
+	//make a file name to write the data to using the documents directory:
+	NSString *fileName = [NSString stringWithFormat:@"%@/newcountrylist.txt",documentsDirectory];
+	
+	//save content to the documents directory
+	[lcontent writeToFile:fileName 
+			   atomically:NO 
+				 encoding:NSStringEncodingConversionAllowLossy 
+					error:nil];
+	
+}
+-(NSString *) getTextFromFile
+{
+	//get the documents directory:
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	
+	//make a file name to write the data to using the documents directory:
+	NSString *fileName = [NSString stringWithFormat:@"%@/newcountrylist.txt", documentsDirectory];
+	content = [[NSString alloc] initWithContentsOfFile:fileName
+										  usedEncoding:nil
+												 error:nil];
+	
+	return content;
+	
+}
+
+
 -(char*) gecallbackNumber
 {
 	
 	NSString *nsP;
 	nsP=(NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"callbacknumber"]; 
-	NSLog(@"NUMBER=%@",nsP);
 	//nsP = [[NSUserDefaults standardUserDefaults] stringForKey:@"callbacknumber"];
 	if(nsP)
 		return (char*)([nsP  cStringUsingEncoding:NSUTF8StringEncoding]);
@@ -56,19 +91,217 @@
 -(void)setObject:(id) object 
 {
 	self->ownerobject = object;
+	self->clicktocallProtocolP = object;
 }
+
+-(void)callthroughApiAsynchronous
+{
+	/****************Asynchronous Request**********************/
+	int timestamp;
+	timestamp = [[NSUserDefaults standardUserDefaults] integerForKey:@"Timestamp"];
+	
+	NSString *urlString = [NSString stringWithFormat:@"http://api.spokn.com/accesslines?time=%d",timestamp];
+	
+	NSURLRequest *urlRequest = [[NSURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NO timeoutInterval:30.0] retain];
+    
+	// Note: An NSOperation creates an autorelease pool, but doesn't schedule a run loop
+	// Create the connection and schedule it on a run loop under our namespaced run mode
+	NSURLConnection *rssConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+	
+	//[rssConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+	[rssConnection start];
+	
+	// Keep running the loop until the download has finished
+	//while (!finished && ![self isCancelled])
+	while (!finished)
+	{			
+		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+								 beforeDate:[NSDate dateWithTimeIntervalSinceNow:30.0]];
+	}
+	
+	[rssConnection release];
+	[urlRequest release], urlRequest = nil;
+	
+	// if (connectionError && ![self isCancelled]) 
+	if (connectionError) 
+	{
+		NSString *errorMsg = [connectionError localizedDescription];
+		// errorMsg = [@"0" stringByAppendingString:@"Please check your network settings"];
+		// [handler performSelectorOnMainThread:@selector(onFailure:) withObject:errorMsg waitUntilDone:NO];
+	}
+	// else if(!finished && [self isCancelled])
+	// else if(!finished)
+	// {
+	// [handler performSelectorOnMainThread:@selector(onFailure:) withObject:nil waitUntilDone:NO];
+	// }
+	else
+	{
+		// NSString *response = [[NSString alloc] initWithData:responseAsyncData encoding:NSASCIIStringEncoding];
+		// response = [[@"0" stringByAppendingString:[response autorelease]] retain];
+		// [handler performSelectorOnMainThread:@selector(onSuccess:) withObject:response waitUntilDone:NO];
+		// [response release],	response = nil;
+		NSString *xmlDataFromChannelSchemes;
+		NSString *result = [[NSString alloc] initWithData:responseAsyncData encoding:NSASCIIStringEncoding];
+		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:result];
+		NSData *xmlDataInNSData = [xmlDataFromChannelSchemes dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+		xmlParser = [[NSXMLParser alloc] initWithData:xmlDataInNSData];
+		[xmlParser setDelegate:self];
+		[xmlParser parse];
+		[xmlParser release];
+		[xmlDataFromChannelSchemes release];
+		[result release];
+		[responseAsyncData release];
+	}
+	
+	
+}
+
+
+#pragma mark NSURLConnection Delegate Methods
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {	
+	
+	responseAsyncData = [[NSMutableData alloc] initWithLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	
+	[responseAsyncData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	
+	connectionError = [error retain];
+	finished = YES;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+	
+	finished = YES;
+}
+
+-(void)callthroughApiSynchronous
+{
+	int timestamp;
+	timestamp = [[NSUserDefaults standardUserDefaults] integerForKey:@"Timestamp"];
+	printf("timestamp=%d",timestamp);
+	//prepar request
+	NSString *urlString = [NSString stringWithFormat:@"http://api.spokn.com/accesslines?time=%d",timestamp];
+	NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+	[request setURL:[NSURL URLWithString:urlString]];
+	[request setHTTPMethod:@"GET"];
+	
+	//set headers
+	NSString *contentType = [NSString stringWithFormat:@"application/x-www-form-urlencoded"];
+	[request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+	
+	//get response
+	NSHTTPURLResponse* urlResponse = nil;
+	//NSString *serverMessage;
+	NSError *error = 0;  
+	NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
+	//NSLog(@"\n\n%@\n\n", error);
+	
+	if(responseData==nil) //|| urlResponse==nil)
+	{
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Call-through request failed" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+		[alert show];
+		return; 
+	}
+	
+	NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+	NSLog(@"\n Response Code: %d\n", [urlResponse statusCode]);
+	if ([urlResponse statusCode] == 304)
+	{
+		NSLog(@"\n Response Code: %d\n", [urlResponse statusCode]);
+	}	
+	if ([urlResponse statusCode] == 200) 
+	{
+		NSLog(@"\n result:%@\n\n", result);
+	}
+	else if ([urlResponse statusCode] == 404)
+	{
+		//NSLog(@"Not Found");
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Resource not found at server" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+		[alert show];
+	}
+	else if ([urlResponse statusCode] == 415)
+	{
+		//NSLog(@"Unsupported Media Type");
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unsupported Media Type" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+		[alert show];
+	}
+	else if ([urlResponse statusCode] == 401)
+	{
+		//NSLog(@"Unauthorized");
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unauthorized" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+		[alert show];
+	}
+	else if ([urlResponse statusCode] == 500)
+	{
+		//NSLog(@"Internal Server Error");
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Internal Server Error" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+		[alert show];
+	}
+	
+	NSString *xmlDataFromChannelSchemes;
+/*	
+	 NSError *fileError = 0;
+	 NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countrylist" ofType:@"txt"];
+	 NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&fileError];
+	 if(fileError)
+	 {
+	 fileContents = @"";
+	 }	
+	 xmlDataFromChannelSchemes = [[NSString alloc] initWithString:fileContents];
+*/
+
+	if ([urlResponse statusCode] == 304)
+	{
+		NSString *data;
+		data = [self getTextFromFile];
+  		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:data];
+		[content release];
+		if(result != nil)
+		{
+			[result release];
+		}	
+	}
+	else
+	{
+		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:result];
+		[self writeToTextFile:result];
+		if(result != nil)
+		{
+			[result release];
+		}
+	}
+	
+	
+	NSData *xmlDataInNSData = [xmlDataFromChannelSchemes dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	xmlParser = [[NSXMLParser alloc] initWithData:xmlDataInNSData];
+	[xmlParser setDelegate:self];
+	[xmlParser parse];
+	[xmlParser release];
+	[xmlDataFromChannelSchemes release];
+	
+	
+}
+
+
 
 -(IBAction)donePressed
 {
 	
-	NSString *num;
-	num = [[labelAparty text] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" _$!<>+."]];
-	NSLog(@" num = %@",num);
-	if(num){
-	[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:num] forKey:@"callbacknumber"]; 
-	//[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:apartyNoCharP] forKey:@"callbacknumber"]; 
-	[[NSUserDefaults standardUserDefaults] synchronize];
+	char *tempP=0;
+	char *newNoP=0;
+	tempP = (char*)[[labelAparty text]  cStringUsingEncoding:NSUTF8StringEncoding];
+	newNoP = NormalizeNumber(tempP,1);
+	if(newNoP){
+		[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:newNoP] forKey:@"callbacknumber"]; 
+		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
+	free(newNoP);
 	[self  dismissModalViewControllerAnimated:YES];
 }
 
@@ -108,9 +341,11 @@
 	tableView.delegate = self;
 	tableView.dataSource = self;
 	protocolType = 0;
+	pickerView.delegate = self;
+	pickerView.dataSource = self;
 	apartyNoCharP = malloc(100);
 	memset(apartyNoCharP,0,100);
-	sectionHeaders = [[NSMutableArray alloc] initWithObjects:@"Protocol",@"Callback Number",nil];
+	sectionHeaders = [[NSMutableArray alloc] initWithObjects:@"Protocol",@"Callback Number",@"Choose Call-through line of:",nil];
 	
 	
 	if(modalB)
@@ -128,31 +363,39 @@
 	{
 		[labelAparty setText:nsP];
 	}
+		
+	//For Synchronous Request
+	[self callthroughApiSynchronous];
+	//For Synchronous Request
+	//	[self callthroughApiAsynchronous];
 	
-
 	[tableView reloadData];		
 }
 
 - (void)viewWillAppear:(BOOL)animated  
 {  
 	[super viewWillAppear:animated];
+	char *newNoP;
 	if(viewResult)
 	{
-		 if(strlen(apartyNoCharP)==0)
-		 {
-			 [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:apartyNoCharP] forKey:@"callbacknumber"]; 
-			 [[NSUserDefaults standardUserDefaults] synchronize];
-		 }
+		if(strlen(apartyNoCharP)==0)
+		{
+			newNoP = NormalizeNumber(apartyNoCharP,1);
+			[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:newNoP] forKey:@"callbacknumber"]; 
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			free(newNoP);
+		}
 	}
-	printf("new result %d ",viewResult);
 	if(strlen(apartyNoCharP)>0)
 	{
 		NSString *stringStrP;
-		[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:apartyNoCharP] forKey:@"callbacknumber"]; 
+		newNoP = NormalizeNumber(apartyNoCharP,1);
+		[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:newNoP] forKey:@"callbacknumber"]; 
 		[[NSUserDefaults standardUserDefaults] synchronize];
-		stringStrP = [[NSString alloc] initWithUTF8String:apartyNoCharP ];
+		stringStrP = [[NSString alloc] initWithUTF8String:newNoP ];
 		[labelAparty setText:stringStrP];
 		[stringStrP release];
+		free(newNoP);
 	}
 	else 
 	{
@@ -185,7 +428,9 @@
 		}
 		
 	}
-	
+	printf("protocol type %d",protocolType);
+	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
+	[pickerView selectRow:[prefs integerForKey:@"picker_row"] inComponent:0 animated:YES];
 	[tableView reloadData];
 } 
 
@@ -222,6 +467,7 @@
 	{	
 		free(apartyNoCharP);
 	}
+	[arrayCountries release];
 }
 #pragma mark Actionsheet methods
 - (void)actionSheetCancel:(UIActionSheet *)actionSheet
@@ -248,6 +494,7 @@
 			NSLog(@"sip");
 			[labelconnectionType setText:@"SIP"];
 			[ownerobject setoutCallTypeProtocol:index];
+			pickerView.hidden = YES;
 		}	
 			break;
 		case 2://mean CallBack
@@ -255,6 +502,7 @@
 			NSLog(@"CallBack");
 			[labelconnectionType setText:@"CALLBACK"];
 			[ownerobject setoutCallTypeProtocol:index];
+			pickerView.hidden = YES;
 		}	
 			break;
 			
@@ -262,9 +510,21 @@
 		{	
 			[labelconnectionType setText:@"BOTH"];
 			[ownerobject setoutCallTypeProtocol:index];
+			pickerView.hidden = YES;
 		}	
 			break;	
-			
+		case 4://mean Both
+		{	
+			[labelconnectionType setText:@"Call-through"];
+			[ownerobject setoutCallTypeProtocol:index];
+			[self callthroughApiSynchronous];
+			//[self callthroughApiAsynchronous];
+			//[self performSelectorOnMainThread : @ selector(callthroughApi) withObject:nil waitUntilDone:NO];
+			//[NSThread detachNewThreadSelector:@selector(callthroughApi) toTarget:[self class] withObject:nil];
+			pickerView.hidden = NO;
+		}	
+			break;
+		
 		default:
 			break;
 	}	
@@ -272,6 +532,15 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	[tableView reloadData];
 }
+
+-(void)setcallthroughObj:(countrylist *)tempObj
+{
+	[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:tempObj.secondaryname] forKey:@"city_name"]; 
+	[[NSUserDefaults standardUserDefaults] setInteger:tempObj.number forKey:@"city_number"]; 
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	[clicktocallProtocolP setcallthroughData:tempObj];
+}
+
 #pragma mark Table view methods
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 30.0f;
@@ -287,7 +556,12 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 2;
+	if (pickerView.hidden==TRUE) {
+		return 2;
+	}
+	else {
+		return 3;
+	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -296,7 +570,13 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 50;
+	NSInteger section = [indexPath section];
+	if (section ==2) {
+		return -5;
+	}
+	else {
+		return 50;
+	}
 	
 }
 - (UITableViewCell *)tableView:(UITableView *)ltableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -354,7 +634,7 @@
 						  delegate:self
 						  cancelButtonTitle:_CANCEL_ 
 						  destructiveButtonTitle:nil
-						  otherButtonTitles:@"Sip",@"CallBack",@"Both", nil];
+						  otherButtonTitles:@"Sip",@"CallBack",@"Both",@"Call-through", nil];
 		
 		uiActionSheetgP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
 		[uiActionSheetgP showInView:[ownerobject tabBarController].view];
@@ -365,4 +645,91 @@
 	}
 	[ltableView deselectRowAtIndexPath : indexPath animated:YES];
 }
+#pragma mark Pickerview methods
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)thePickerView {
+	
+	return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)thePickerView numberOfRowsInComponent:(NSInteger)component {
+	
+	return [arrayCountries count];
+}
+- (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+	countrylist *tempP;
+	NSString * strP;
+    tempP = [arrayCountries objectAtIndex:row];
+	strP = [[NSString alloc] initWithFormat:@"%@-%i ",tempP.secondaryname,tempP.number];
+	//NSLog(@"\n: %@ : %i :%@  :%i\n", tempP.name, tempP.code,tempP.secondaryname,tempP.number);
+	return strP;
+}
+- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+	
+	if(row > 0)
+	{	
+		[self setcallthroughObj:[arrayCountries objectAtIndex:row]];
+		[[NSUserDefaults standardUserDefaults] setInteger:row forKey:@"picker_row"];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		
+	}
+}	
+#pragma mark xmlParser methods
+/* Called when the parser runs into an open tag (<tag>) */ 
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName 	attributes:(NSDictionary *)attributeDict 
+{
+	if([elementName isEqualToString:@"spokn"])
+	{
+		arrayCountries = [[NSMutableArray alloc] init];
+	}
+	else if([elementName isEqualToString:@"time"])
+	{
+		int timestamp;
+		timestamp = [[attributeDict objectForKey:@"value"] integerValue];
+		//		printf("timestamp=%d",timestamp);
+		[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:[attributeDict objectForKey:@"value"]] forKey:@"Timestamp"]; 
+		[[NSUserDefaults standardUserDefaults] synchronize];
+	}	
+	else if([elementName isEqualToString:@"country"])
+	{
+		countryName = [[NSString alloc] initWithString:[attributeDict objectForKey:@"name"]];
+		countryCode = [[NSString alloc] initWithString:[attributeDict objectForKey:@"code"]];
+		
+		
+	}	
+	else if([elementName isEqualToString:@"area"])
+	{
+		countrylispP = [[countrylist alloc] init];
+		countrylispP.name = self->countryName;			
+		countrylispP.code = [self->countryCode integerValue];
+		countrylispP.secondaryname = [attributeDict objectForKey:@"name"];
+		countrylispP.number = [[attributeDict objectForKey:@"number"] integerValue];
+		//NSLog(@"\nname: %@ code: %i\n", countrylispP.name, countrylispP.code);
+		
+	}
+	
+}
+
+
+/* Called when the parser runs into a close tag (</tag>). */
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName 
+{
+	if([elementName isEqualToString:@"spokn"])
+	{
+		return;
+	}
+	else if([elementName isEqualToString:@"area"])
+	{
+		[arrayCountries addObject:countrylispP];
+		[countrylispP release];
+		countrylispP = nil;
+	}	
+	else if([elementName isEqualToString:@"country"])
+	{
+		[countryName release];
+		[countryCode release];
+	}	
+	
+}
+
+
 @end

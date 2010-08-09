@@ -67,7 +67,9 @@
 		7322D22811EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22411EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a */; };
 		7322D22911EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22511EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a */; };
 		73BD60E211EB403C00D4E167 /* clicktocall.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BD60E011EB403B00D4E167 /* clicktocall.m */; };
-		73BD60E311EB403C00D4E167 /* clicktocall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73BD60E111EB403C00D4E167 /* clicktocall.xib */; };
+		73D7CFD3120FE80100E0110C /* countrylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7CFD2120FE80100E0110C /* countrylist.m */; };
+		73D7D003120FEDB400E0110C /* clicktocall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73D7D002120FEDB400E0110C /* clicktocall.xib */; };
+		73D7D05F120FF7D400E0110C /* countrylist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 73D7D05E120FF7D400E0110C /* countrylist.txt */; };
 		8B140C4211CA1814004ACB15 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B140C4111CA1814004ACB15 /* spokn-Info.plist */; };
 		8B16790D108F36A3004D18C0 /* testingview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B16790A108F36A3004D18C0 /* testingview.xib */; };
 		8B16790E108F36A3004D18C0 /* testingview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B16790B108F36A3004D18C0 /* testingview.m */; };
@@ -449,7 +451,11 @@
 		7322D22411EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-ua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D22511EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		73BD60E011EB403B00D4E167 /* clicktocall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = clicktocall.m; sourceTree = "<group>"; };
-		73BD60E111EB403C00D4E167 /* clicktocall.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = clicktocall.xib; sourceTree = "<group>"; };
+		73D7CFD1120FE80100E0110C /* countrylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countrylist.h; sourceTree = "<group>"; };
+		73D7CFD2120FE80100E0110C /* countrylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countrylist.m; sourceTree = "<group>"; };
+		73D7D002120FEDB400E0110C /* clicktocall.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = clicktocall.xib; sourceTree = "<group>"; };
+		73D7D05E120FF7D400E0110C /* countrylist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countrylist.txt; sourceTree = SOURCE_ROOT; };
+		73D7D0A7121000C600E0110C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8B140C4111CA1814004ACB15 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B16790A108F36A3004D18C0 /* testingview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = testingview.xib; sourceTree = "<group>"; };
 		8B16790B108F36A3004D18C0 /* testingview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testingview.m; sourceTree = "<group>"; };
@@ -517,7 +523,6 @@
 		8B413C4C1075ED71005A400F /* spoknviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknviewcontroller.h; sourceTree = "<group>"; };
 		8B413C4D1075ED71005A400F /* spoknviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknviewcontroller.m; sourceTree = "<group>"; };
 		8B413C4E1075ED71005A400F /* spoknviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = spoknviewcontroller.xib; sourceTree = "<group>"; };
-		8B41519A11EF2FCD00608996 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8B47D82F10720BA400EEEF61 /* callviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = callviewcontroller.h; sourceTree = "<group>"; };
 		8B47D83010720BA400EEEF61 /* callviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = callviewcontroller.m; sourceTree = "<group>"; };
 		8B4FD511117DCF4700FEAFDF /* TB-recent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "TB-recent.png"; path = "rsc/TB-recent.png"; sourceTree = "<group>"; };
@@ -772,7 +777,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8BAF18A511ED92F300B8D31B /* clicktocall.h */,
 				8B61B2151132A8A7003D6164 /* contactlookup.h */,
 				8B61B2161132A8A7003D6164 /* contactlookup.m */,
 				8B957292111C52BF00761EDB /* TTSearchlightLabel.h */,
@@ -852,8 +856,11 @@
 				8BB617F8118ECBEA0039E696 /* conferenceviewcontroller.xib */,
 				8BA6E96111928F6400435756 /* callmanagement.h */,
 				8BA6E96211928F6400435756 /* callmanagement.m */,
+				8BAF18A511ED92F300B8D31B /* clicktocall.h */,
 				73BD60E011EB403B00D4E167 /* clicktocall.m */,
-				73BD60E111EB403C00D4E167 /* clicktocall.xib */,
+				73D7D002120FEDB400E0110C /* clicktocall.xib */,
+				73D7CFD1120FE80100E0110C /* countrylist.h */,
+				73D7CFD2120FE80100E0110C /* countrylist.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -889,7 +896,6 @@
 				8B9302A21011EEBE004BDA41 /* common */,
 				32CA4F630368D1EE00C91783 /* spokn_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				8B41519A11EF2FCD00608996 /* Entitlements.plist */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1155,9 +1161,11 @@
 		8B9302A21011EEBE004BDA41 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				73D7D05E120FF7D400E0110C /* countrylist.txt */,
 				8B9302A91011EEBE004BDA41 /* src */,
 				8B9302CB1011EF6E004BDA41 /* gsm */,
 				8B9302A31011EEBE004BDA41 /* include */,
+				73D7D0A7121000C600E0110C /* Entitlements.plist */,
 			);
 			name = common;
 			path = ../lib/common;
@@ -1476,7 +1484,8 @@
 				8B140C4211CA1814004ACB15 /* spokn-Info.plist in Resources */,
 				8BC8912611DCCC3400350111 /* Merge-Calls.png in Resources */,
 				8BC8912711DCCC3400350111 /* Swap-Calls.png in Resources */,
-				73BD60E311EB403C00D4E167 /* clicktocall.xib in Resources */,
+				73D7D003120FEDB400E0110C /* clicktocall.xib in Resources */,
+				73D7D05F120FF7D400E0110C /* countrylist.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1646,6 +1655,7 @@
 				8BA6E96311928F6400435756 /* callmanagement.m in Sources */,
 				8BEDE4DA11BE6CA600F813B0 /* GEventTracker.m in Sources */,
 				73BD60E211EB403C00D4E167 /* clicktocall.m in Sources */,
+				73D7CFD3120FE80100E0110C /* countrylist.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1731,7 +1741,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/lib/common/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = NO;
@@ -1774,7 +1784,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/lib/common/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				COPY_PHASE_STRIP = YES;
@@ -2119,7 +2129,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/lib/common/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
@@ -2190,7 +2200,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/lib/common/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;

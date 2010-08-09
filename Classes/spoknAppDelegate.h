@@ -28,6 +28,7 @@
 #import "Reachability.h"
 #include "playrecordpcm.h"
 #import "spoknaudio.h"
+#import "clicktocall.h"
 @class LoginViewController;
 
 @class DialviewController;
@@ -38,6 +39,7 @@
 @class CalllogViewController;
 @class AddEditcontactViewController;
 @class Contactlookup;
+@class countrylist;
 #define G4_DEFINE
 #include "vmsplayrecord.h"
 #import "vmshowviewcontroller.h"
@@ -67,6 +69,7 @@
 @class VmailViewController;
 @class SpoknViewController;
 @class testingview;
+@class clicktocall;
 typedef struct CallNumberType
 {
 	char number[100];
@@ -96,7 +99,7 @@ typedef struct CallNumberType
 
 
 @class IncommingCallViewController;
-@interface SpoknAppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate,UIActionSheetDelegate> {
+@interface SpoknAppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate,UIActionSheetDelegate,clicktocallProtocol> {
   //  @public
 	UIWindow *window;
 	
@@ -201,6 +204,8 @@ typedef struct CallNumberType
 	int onLogB;
 	char numberToCall[100];
 	double osversionDouble;
+	countrylist *countrylispP;
+	int callthroughNumber;
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 
@@ -315,6 +320,7 @@ changed:(BOOL)changed;
 -(int)sendLogFile:(NSString **)stringP;
 -(void) enableLog;
 -(Boolean)makeSipCallOrCallBack:(char *)noCharP callType:(int) loutCallType;
+-(void)setcallthroughData:(id)objectP;
 #ifdef G4_DEFINE	
 #ifdef __IPHONE_4_0	
 - (void)sendIncommingPushNotification:(NSString*)msgStringP;
