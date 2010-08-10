@@ -142,9 +142,39 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 	
-	NSString *errorMsg = [error localizedDescription];
-	NSLog(@"\n errorMsg:%@\n\n", errorMsg);
-	status = 1500;
+	//NSString *errorMsg = [error localizedDescription];
+	//NSLog(@"\n errorMsg:%@\n\n", errorMsg);
+	NSString *data;
+	NSString *xmlDataFromChannelSchemes;
+	data = [self getTextFromFile];
+	//NSLog(@"\n data:%@\n\n", data);
+	if(data)
+	{	
+		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:data];
+	}
+	else 
+	{
+		NSError *fileError = 0;
+		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countrylist" ofType:@"txt"];
+		NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&fileError];
+		if(fileError)
+		{
+			fileContents = @"";
+		}	
+		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:fileContents];
+	}
+	
+	NSData *xmlDataInNSData = [xmlDataFromChannelSchemes dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	xmlParser = [[NSXMLParser alloc] initWithData:xmlDataInNSData];
+	[xmlParser setDelegate:self];
+	[xmlParser parse];
+	[pickerView reloadAllComponents];
+	[xmlParser release];
+	[xmlDataFromChannelSchemes release];
+	[responseAsyncData release];
+	responseAsyncData = nil;
+	
+	
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection 
@@ -177,7 +207,22 @@
 			NSString *data;
 			data = [self getTextFromFile];
 			//NSLog(@"\n data:%@\n\n", data);
-			xmlDataFromChannelSchemes = [[NSString alloc] initWithString:data];
+			if(data)
+			{	
+				xmlDataFromChannelSchemes = [[NSString alloc] initWithString:data];
+			}
+			else 
+			{
+				NSError *fileError = 0;
+				NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countrylist" ofType:@"txt"];
+				NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&fileError];
+				if(fileError)
+				{
+					fileContents = @"";
+				}	
+				xmlDataFromChannelSchemes = [[NSString alloc] initWithString:fileContents];
+			}
+
 			NSData *xmlDataInNSData = [xmlDataFromChannelSchemes dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 			xmlParser = [[NSXMLParser alloc] initWithData:xmlDataInNSData];
 			[xmlParser setDelegate:self];
@@ -189,22 +234,29 @@
 			responseAsyncData = nil;
 
 		}
-		else
+/*		else
 		{
 			NSString *titleP=0,*msgP=0;
 			//	NSLog(@"Connection Sucessful %i", status);
 			switch(status)
 			{
-				case 200:
-					break;
-				case 304:
-					titleP = @"Connection Sucessful";
-					msgP = @"NEW DATA";
-					break;
-				case 415:
+				case 404:
 					titleP = @"Request failed";
 					msgP = @"Resource not found at server";
+				case 415:
+					titleP = @"Request failed";
+					msgP = @"Unsupported Media Type";	
+				case 401:
+					titleP = @"Request failed";
+					msgP = @"Unauthorized";
+				case 500:
+					titleP = @"Request failed";
+					msgP = @"Internal Server Error";
+					break;
 					
+				default:
+					titleP = @"Request failed";
+					msgP = @"Unknown Server Error";
 					break;
 					
 			}
@@ -212,34 +264,9 @@
 			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:titleP message:msgP delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 			[alert show];
 			
-			
-			if (status == 404)
-			{
-				UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Resource not found at server" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-				[alert show];
-			}
-			else if (status == 415)
-			{
-				UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unsupported Media Type" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-				[alert show];
-			}
-			else if (status == 401)
-			{
-				UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unauthorized" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-				[alert show];
-			}
-			else if (status == 500)
-			{
-				UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Internal Server Error" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-				[alert show];
-			}
-			
-		
-		
-		}
+		}            */
 		
 	}
-
 	
 }
 
@@ -490,7 +517,7 @@
 		}
 		
 	}
-	printf("protocol type %d",protocolType);
+	//printf("protocol type %d",protocolType);
 	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
 	[pickerView selectRow:[prefs integerForKey:@"picker_row"] inComponent:0 animated:YES];
 	[tableView reloadData];
@@ -553,7 +580,7 @@
 	{
 		case 1://mean SIP
 		{	
-			NSLog(@"sip");
+			//NSLog(@"sip");
 			[labelconnectionType setText:@"SIP"];
 			[ownerobject setoutCallTypeProtocol:index];
 			pickerView.hidden = YES;
@@ -561,7 +588,7 @@
 			break;
 		case 2://mean CallBack
 		{	
-			NSLog(@"CallBack");
+			//NSLog(@"CallBack");
 			[labelconnectionType setText:@"CALLBACK"];
 			[ownerobject setoutCallTypeProtocol:index];
 			pickerView.hidden = YES;
@@ -748,7 +775,7 @@
 	{
 		int timestamp;
 		timestamp = [[attributeDict objectForKey:@"value"] integerValue];
-		//		printf("timestamp=%d",timestamp);
+
 		[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:[attributeDict objectForKey:@"value"]] forKey:@"Timestamp"]; 
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}	
