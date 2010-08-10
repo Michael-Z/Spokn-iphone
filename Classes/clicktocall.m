@@ -100,7 +100,7 @@
 	int timestamp;
 	timestamp = [[NSUserDefaults standardUserDefaults] integerForKey:@"Timestamp"];
 	
-	NSString *urlString = [NSString stringWithFormat:@"http://api.spokn.com/accesslines?time=%d",0];
+	NSString *urlString = [NSString stringWithFormat:@"http://api.spokn.com/accesslines?time=%d",timestamp];
 	
 	NSURLRequest *urlRequest = [[NSURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NO timeoutInterval:30.0] retain];
     
@@ -121,7 +121,45 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {	
 	
-	
+	if ([response isKindOfClass:[NSHTTPURLResponse class]])
+	{
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+       
+		status = [httpResponse statusCode];
+	//	NSLog(@"Connection Sucessful %i", status);
+		if (status == 200)
+		{
+            NSLog(@"Connection Sucessful %i", status);
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Connection Sucessful" message:@"NEW DATA" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+			[alert show];
+ 		} 
+	    else if (status == 304)
+		{
+            NSLog(@"Connection Sucessful NO DATA %i", status);
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Connection Sucessful" message:@"NO NEW DATA" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+			[alert show];
+ 		} 
+		else if (status == 404)
+		{
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Resource not found at server" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+			[alert show];
+		}
+		else if (status == 415)
+		{
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unsupported Media Type" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+			[alert show];
+		}
+		else if (status == 401)
+		{
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unauthorized" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+			[alert show];
+		}
+		else if (status == 500)
+		{
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Internal Server Error" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+			[alert show];
+		}
+	}	
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
@@ -137,16 +175,20 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 	
-	connectionError = [error retain];
+	NSString *errorMsg = [error localizedDescription];
+	NSLog(@"\n errorMsg:%@\n\n", errorMsg);
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection 
+{
 	
+	NSString *xmlDataFromChannelSchemes;
+
 	if(responseAsyncData)
 	{
-		NSString *xmlDataFromChannelSchemes;
 		NSString *result = [[NSString alloc] initWithData:responseAsyncData encoding:NSASCIIStringEncoding];
 		//NSLog(@"\n result:%@\n\n", result);
+		[self writeToTextFile:result];
 		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:result];
 		NSData *xmlDataInNSData = [xmlDataFromChannelSchemes dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
 		xmlParser = [[NSXMLParser alloc] initWithData:xmlDataInNSData];
@@ -158,7 +200,30 @@
 		[result release];
 		[responseAsyncData release];
 		responseAsyncData = nil;
-	}	
+	}
+	else
+	{
+		
+		if (status == 304)
+		{
+			NSString *data;
+			data = [self getTextFromFile];
+			//NSLog(@"\n data:%@\n\n", data);
+			xmlDataFromChannelSchemes = [[NSString alloc] initWithString:data];
+			NSData *xmlDataInNSData = [xmlDataFromChannelSchemes dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+			xmlParser = [[NSXMLParser alloc] initWithData:xmlDataInNSData];
+			[xmlParser setDelegate:self];
+			[xmlParser parse];
+			[pickerView reloadAllComponents];
+			[xmlParser release];
+			[xmlDataFromChannelSchemes release];
+			[responseAsyncData release];
+			responseAsyncData = nil;
+
+		}
+		
+	}
+
 	
 }
 
@@ -308,7 +373,6 @@
 	}
 	
 	[AddeditcellControllerviewP setData:apartyNoCharP value:"Enter forward number." placeHolder:"Number" title:"Aparty" returnValue:&viewResult];
-	printf("result %d ",viewResult);
 	
 	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
 	
@@ -349,7 +413,7 @@
 	//For Synchronous Request
 	//[self callthroughApiSynchronous];
 	//For Synchronous Request
-		[self callthroughApiAsynchronous];
+	//[self callthroughApiAsynchronous];
 	
 	[tableView reloadData];		
 }
@@ -641,7 +705,8 @@
 	countrylist *tempP;
 	NSString * strP;
     tempP = [arrayCountries objectAtIndex:row];
-	strP = [[NSString alloc] initWithFormat:@"%@-%i ",tempP.secondaryname,tempP.number];
+	//strP = [[NSString alloc] initWithFormat:@"%@-%i ",tempP.secondaryname,tempP.number];
+	strP = [[NSString alloc] initWithFormat:@"%@-%@-%i ",tempP.name,tempP.secondaryname,tempP.number];
 	//NSLog(@"\n: %@ : %i :%@  :%i\n", tempP.name, tempP.code,tempP.secondaryname,tempP.number);
 	return strP;
 }

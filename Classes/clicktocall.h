@@ -43,8 +43,8 @@
 	
 	/*For Asynchronous request*/
 	NSMutableData *responseAsyncData;
-	BOOL finished;
 	NSError  *connectionError;
+	int status;
 }
 @property(nonatomic,assign) UITableView *tableView;
 @property(nonatomic,assign) id <clicktocallProtocol> clicktocallProtocolP;
