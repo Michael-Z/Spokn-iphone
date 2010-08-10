@@ -142,7 +142,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 	
-	//NSString *errorMsg = [error localizedDescription];
+	/*//NSString *errorMsg = [error localizedDescription];
 	//NSLog(@"\n errorMsg:%@\n\n", errorMsg);
 	NSString *data;
 	NSString *xmlDataFromChannelSchemes;
@@ -175,7 +175,8 @@
 	responseAsyncData = nil;
 	
 	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
-	[pickerView selectRow:[prefs integerForKey:@"picker_row"] inComponent:0 animated:YES];
+	[pickerView selectRow:[prefs integerForKey:@"picker_row"] inComponent:0 animated:YES];*/
+	[self connectionDidFinishLoading:nil];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection 
@@ -203,7 +204,7 @@
 	else
 	{
 		
-		if (status == 304)
+	//	if (status == 304)
 		{
 			NSString *data;
 			data = [self getTextFromFile];
@@ -280,11 +281,19 @@
 		countrylist *tempCountrylist;
 		//tempCountrylist = [[countrylist alloc] init];
 		tempCountrylist = [arrayCountries objectAtIndex:[prefs integerForKey:@"picker_row"]];
-		if([tempCountrylist.secondaryname isEqualToString:cityName] && (tempCountrylist.number  == cityNumber))
+		if(tempCountrylist)
 		{	
-			[self setcallthroughObj:[arrayCountries objectAtIndex:[prefs integerForKey:@"picker_row"]]];
+			if([tempCountrylist.secondaryname isEqualToString:cityName] && (tempCountrylist.number  == cityNumber))
+			{	
+				[self setcallthroughObj:[arrayCountries objectAtIndex:[prefs integerForKey:@"picker_row"]]];
+			}
+			else
+			{
+				tempCountrylist = nil;
+			}
 		}
-		else
+		
+		if(tempCountrylist==nil)
 		{
 			NSEnumerator * enumerator = [arrayCountries objectEnumerator];
 			countrylist *tempCountrylistP;
@@ -643,6 +652,7 @@
 			[labelconnectionType setText:@"Call-through"];
 			[ownerobject setoutCallTypeProtocol:index];
 			//[self callthroughApiSynchronous];
+			[self connectionDidFinishLoading:nil];
 			[self callthroughApiAsynchronous];
 			//[self performSelectorOnMainThread : @ selector(callthroughApi) withObject:nil waitUntilDone:NO];
 			//[NSThread detachNewThreadSelector:@selector(callthroughApi) toTarget:[self class] withObject:nil];
