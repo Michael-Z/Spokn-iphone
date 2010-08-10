@@ -174,7 +174,8 @@
 	[responseAsyncData release];
 	responseAsyncData = nil;
 	
-	
+	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
+	[pickerView selectRow:[prefs integerForKey:@"picker_row"] inComponent:0 animated:YES];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection 
@@ -267,7 +268,44 @@
 		}            */
 		
 	}
-	
+	NSString *cityName;
+	int cityNumber;
+	cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"city_name"];
+	cityNumber = [[NSUserDefaults standardUserDefaults] integerForKey:@"city_number"];
+	if(cityName && cityNumber)
+	{
+		//NSLog(@"%@-%i",cityName,cityNumber);
+		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
+		[pickerView selectRow:[prefs integerForKey:@"picker_row"] inComponent:0 animated:YES];
+		countrylist *tempCountrylist;
+		//tempCountrylist = [[countrylist alloc] init];
+		tempCountrylist = [arrayCountries objectAtIndex:[prefs integerForKey:@"picker_row"]];
+		if([tempCountrylist.secondaryname isEqualToString:cityName] && (tempCountrylist.number  == cityNumber))
+		{	
+			[self setcallthroughObj:[arrayCountries objectAtIndex:[prefs integerForKey:@"picker_row"]]];
+		}
+		else
+		{
+			NSEnumerator * enumerator = [arrayCountries objectEnumerator];
+			countrylist *tempCountrylistP;
+			int row;
+			
+			while(tempCountrylistP = [enumerator nextObject])
+			{
+				//NSLog(@"%@-%i",tempCountrylistP.secondaryname,tempCountrylistP.number);
+				if([tempCountrylistP.secondaryname isEqualToString:cityName] && (tempCountrylistP.number  == cityNumber))
+				{	
+					row = [arrayCountries indexOfObject:tempCountrylistP];
+					if(row>-1)
+					{	
+						[self setcallthroughObj:[arrayCountries objectAtIndex:row]];
+						[[NSUserDefaults standardUserDefaults] setInteger:row forKey:@"picker_row"];
+						[[NSUserDefaults standardUserDefaults] synchronize];
+					}	 
+				}	
+			}
+		}
+	}
 }
 
 -(void)callthroughApiSynchronous
@@ -518,8 +556,6 @@
 		
 	}
 	//printf("protocol type %d",protocolType);
-	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
-	[pickerView selectRow:[prefs integerForKey:@"picker_row"] inComponent:0 animated:YES];
 	[tableView reloadData];
 } 
 
@@ -755,7 +791,7 @@
 }
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
 	
-	if(row > 0)
+	if(row > -1)
 	{	
 		[self setcallthroughObj:[arrayCountries objectAtIndex:row]];
 		[[NSUserDefaults standardUserDefaults] setInteger:row forKey:@"picker_row"];
