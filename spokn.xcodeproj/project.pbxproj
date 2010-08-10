@@ -455,11 +455,11 @@
 		73D7CFD2120FE80100E0110C /* countrylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countrylist.m; sourceTree = "<group>"; };
 		73D7D002120FEDB400E0110C /* clicktocall.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = clicktocall.xib; sourceTree = "<group>"; };
 		73D7D05E120FF7D400E0110C /* countrylist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countrylist.txt; sourceTree = SOURCE_ROOT; };
-		73D7D0A7121000C600E0110C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8B140C4111CA1814004ACB15 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B16790A108F36A3004D18C0 /* testingview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = testingview.xib; sourceTree = "<group>"; };
 		8B16790B108F36A3004D18C0 /* testingview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testingview.m; sourceTree = "<group>"; };
 		8B16790C108F36A3004D18C0 /* testingview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testingview.h; sourceTree = "<group>"; };
+		8B1A1E601211243100FCFF28 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8B1AE7431120625600A957EA /* 5_done_270_45_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_done_270_45_normal.png; sourceTree = "<group>"; };
 		8B1AE7441120625600A957EA /* 5_done_270_45_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_done_270_45_pressed.png; sourceTree = "<group>"; };
 		8B1AE7471120625600A957EA /* 5_record_270_45_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_record_270_45_normal.png; sourceTree = "<group>"; };
@@ -916,6 +916,7 @@
 				32C15BDD1158A9C200689F56 /* child.plist */,
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				8B1A1E601211243100FCFF28 /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1165,7 +1166,6 @@
 				8B9302A91011EEBE004BDA41 /* src */,
 				8B9302CB1011EF6E004BDA41 /* gsm */,
 				8B9302A31011EEBE004BDA41 /* include */,
-				73D7D0A7121000C600E0110C /* Entitlements.plist */,
 			);
 			name = common;
 			path = ../lib/common;
@@ -1741,7 +1741,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/lib/common/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = NO;
@@ -1784,7 +1784,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/lib/common/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				COPY_PHASE_STRIP = YES;
@@ -2129,7 +2129,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/lib/common/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
@@ -2200,7 +2200,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/lib/common/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;

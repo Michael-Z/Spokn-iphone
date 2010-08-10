@@ -126,41 +126,8 @@
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
        
 		status = [httpResponse statusCode];
-	//	NSLog(@"Connection Sucessful %i", status);
-		if (status == 200)
-		{
-            NSLog(@"Connection Sucessful %i", status);
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Connection Sucessful" message:@"NEW DATA" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-			[alert show];
- 		} 
-	    else if (status == 304)
-		{
-            NSLog(@"Connection Sucessful NO DATA %i", status);
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Connection Sucessful" message:@"NO NEW DATA" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-			[alert show];
- 		} 
-		else if (status == 404)
-		{
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Resource not found at server" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-			[alert show];
-		}
-		else if (status == 415)
-		{
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unsupported Media Type" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-			[alert show];
-		}
-		else if (status == 401)
-		{
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unauthorized" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-			[alert show];
-		}
-		else if (status == 500)
-		{
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Internal Server Error" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-			[alert show];
-		}
-	}	
-}
+	}
+}	
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	
@@ -177,6 +144,7 @@
 	
 	NSString *errorMsg = [error localizedDescription];
 	NSLog(@"\n errorMsg:%@\n\n", errorMsg);
+	status = 1500;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection 
@@ -220,6 +188,54 @@
 			[responseAsyncData release];
 			responseAsyncData = nil;
 
+		}
+		else
+		{
+			NSString *titleP=0,*msgP=0;
+			//	NSLog(@"Connection Sucessful %i", status);
+			switch(status)
+			{
+				case 200:
+					break;
+				case 304:
+					titleP = @"Connection Sucessful";
+					msgP = @"NEW DATA";
+					break;
+				case 415:
+					titleP = @"Request failed";
+					msgP = @"Resource not found at server";
+					
+					break;
+					
+			}
+			
+			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:titleP message:msgP delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+			[alert show];
+			
+			
+			if (status == 404)
+			{
+				UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Resource not found at server" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+				[alert show];
+			}
+			else if (status == 415)
+			{
+				UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unsupported Media Type" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+				[alert show];
+			}
+			else if (status == 401)
+			{
+				UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unauthorized" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+				[alert show];
+			}
+			else if (status == 500)
+			{
+				UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Internal Server Error" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+				[alert show];
+			}
+			
+		
+		
 		}
 		
 	}
