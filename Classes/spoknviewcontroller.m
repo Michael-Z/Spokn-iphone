@@ -924,7 +924,7 @@ titleForHeaderInSection:(NSInteger)section
 - (UITableViewCell *)tableView:(UITableView *)ltableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSInteger row = [indexPath row];
 	NSInteger section = [indexPath section];
-    
+    CGRect rectlabel;
 	NSString *CellIdentifier = nil;
     UILabel *label1;
 	UILabel *label2;
@@ -1027,9 +1027,25 @@ titleForHeaderInSection:(NSInteger)section
 			if(statusInt)
 			{	
 				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+				rectlabel = label2.frame;
+				if(rectlabel.origin.x>160)
+				{	
+					rectlabel.origin.x = 160;
+					label2.frame = rectlabel;
+				
+				}
 			}
 			else
 			{
+				rectlabel = label2.frame;
+				if(rectlabel.origin.x<170)
+				{	
+					rectlabel.origin.x = 170;
+					label2.frame = rectlabel;
+					
+				}
+				
+				
 				cell.accessoryType = UITableViewCellAccessoryNone;
 				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 			}
@@ -1117,15 +1133,33 @@ titleForHeaderInSection:(NSInteger)section
 		{
 			
 			//label2 = labelBalance ;
+			label2 = labelBalance ;
 			if(statusInt)
 			{	
 				cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+				rectlabel = label2.frame;
+				if(rectlabel.origin.x>160)
+				{	
+					rectlabel.origin.x = 160;
+					label2.frame = rectlabel;
+					
+				}
 			}
 			else
 			{
+				rectlabel = label2.frame;
+				if(rectlabel.origin.x<170)
+				{	
+					rectlabel.origin.x = 170;
+					label2.frame = rectlabel;
+					
+				}
+				
+				
 				cell.accessoryType = UITableViewCellAccessoryNone;
 				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 			}
+			
 		}
 		else if([temp isEqualToString:@"Forwarding to"])
 		{

@@ -1094,7 +1094,21 @@ void getProp()
 							[loginProtocolP stoploginIndicator];
 							if(loginProtocolP)//mean login screen is on
 							{
-								[dialviewP setStatusText: _STATUS_NO_ACCESS_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
+								#ifdef _CALL_THROUGH_
+								if(loginProtocolP)
+								{	
+									[self popLoginView];
+								//	[dialviewP setStatusText: _STATUS_NO_ACCESS_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
+								}
+								#else
+								if(loginProtocolP)
+								{	
+									//[self popLoginView];
+									[dialviewP setStatusText: _STATUS_NO_ACCESS_ :nil :ALERT_OFFLINE :self->subID :self->lineID];
+								}
+								#endif
+								
+								
 							}	
 							break;
 					case LOGIN_STATUS_TIMEDOUT:

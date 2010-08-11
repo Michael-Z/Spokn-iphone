@@ -299,13 +299,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>46</integer>
+									<integer>65</integer>
 									<integer>6</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 382}, {229, 683}}</string>
+							<string>{{0, 1091}, {229, 683}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -342,7 +342,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>spoknAppDelegate.m</string>
+								<string>spoknviewcontroller.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -350,11 +350,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>spoknAppDelegate.m</string>
+										<string>spoknviewcontroller.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>8B8EB6F212117F07006567CD</string>
+										<string>8BABFAF41212B7510080FFFD</string>
 										<key>history</key>
 										<array>
 											<string>8B46A2A811EF5AA70020424C</string>
@@ -387,7 +387,6 @@
 											<string>8BBA86CB11F9A90300D1AA01</string>
 											<string>8BBA86CC11F9A90300D1AA01</string>
 											<string>8B921FCB11F9BB4A009E0643</string>
-											<string>8B921FCD11F9BB4A009E0643</string>
 											<string>8B921FCF11F9BB4A009E0643</string>
 											<string>8B17CAA612081C7D00E29F1C</string>
 											<string>8B17CADA12081E4D00E29F1C</string>
@@ -401,7 +400,6 @@
 											<string>8B2F3CD1120C290700625AFF</string>
 											<string>8B2F3CE2120C2BC900625AFF</string>
 											<string>8B2F3CE3120C2BC900625AFF</string>
-											<string>8BEE0744120FEBF1004264B4</string>
 											<string>8BEE0781120FF299004264B4</string>
 											<string>8BEE0782120FF299004264B4</string>
 											<string>8BEE07A5120FF75A004264B4</string>
@@ -422,7 +420,9 @@
 											<string>8B1A1E71121128B900FCFF28</string>
 											<string>8B8EB6D91211798E006567CD</string>
 											<string>8B8EB6F012117F07006567CD</string>
-											<string>8B8EB6F112117F07006567CD</string>
+											<string>8BABFAC81212B2750080FFFD</string>
+											<string>8BABFAC91212B2750080FFFD</string>
+											<string>8BABFAE21212B54D0080FFFD</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -434,14 +434,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1189, 487}}</string>
+								<string>{{0, 0}, {1189, 481}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 136 1440 742 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>487pt</string>
+							<string>481pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -454,14 +454,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 492}, {1189, 209}}</string>
+								<string>{{0, 486}, {1189, 215}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 136 1440 742 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>209pt</string>
+							<string>215pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -480,9 +480,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>8B8EB6DC1211798E006567CD</string>
+				<string>8BABFAA212129D790080FFFD</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>8B8EB6DD1211798E006567CD</string>
+				<string>8BABFAA312129D790080FFFD</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -623,7 +623,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>303136519.59710097</real>
+	<real>303216465.1875</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
@@ -638,9 +638,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>8B8EB6E21211798E006567CD</string>
-		<string>8B8EB6E31211798E006567CD</string>
+		<string>8BABFAB012129E090080FFFD</string>
+		<string>8BABFAB112129E090080FFFD</string>
 		<string>1CD10A99069EF8BA00B06720</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>8BE79E181186E8EC008C1DE3</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/mukesh/mygit/iphone/spokn.xcodeproj</string>
@@ -725,7 +726,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>8BE79E181186E8EC008C1DE3</string>
-				<string>8B8EB6C01211764B006567CD</string>
+				<string>8BABFA93121281280080FFFD</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -845,13 +846,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>8B8EB6C51211788D006567CD</string>
+				<string>8BABFAA412129D790080FFFD</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>8B8EB6C61211788D006567CD</string>
-				<string>8B8EB6C71211788D006567CD</string>
-				<string>8B8EB6C81211788D006567CD</string>
-				<string>8B8EB6C91211788D006567CD</string>
-				<string>8B8EB6CA1211788D006567CD</string>
+				<string>8BABFAA512129D790080FFFD</string>
+				<string>8BABFAA612129D790080FFFD</string>
+				<string>8BABFAA712129D790080FFFD</string>
+				<string>8BABFAA812129D790080FFFD</string>
+				<string>8BABFAA912129D790080FFFD</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -885,7 +886,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>playrecordpcm.c</string>
+										<string>spoknAppDelegate.h</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -941,8 +942,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>8BF306EE1211602A001FD381</string>
-				<string>8BF306EF1211602A001FD381</string>
+				<string>8BABFA97121281280080FFFD</string>
+				<string>8BABFA98121281280080FFFD</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -1007,7 +1008,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>8B8EB6CB1211788D006567CD</string>
+				<string>8BABFAAA12129D790080FFFD</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
