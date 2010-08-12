@@ -3460,7 +3460,6 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		NSString *callbackP;
 		NSString *callerP;
 		callerP = (NSString*) [[NSUserDefaults standardUserDefaults] objectForKey:@"callbacknumber"];
-		NSLog(@"aparty= %@",callerP);
 		callbackP = [[NSString alloc] initWithUTF8String:noCharP] ;
 		[spoknViewControllerP CallBackMe:callerP bparty:callbackP];
 		[callbackP release];

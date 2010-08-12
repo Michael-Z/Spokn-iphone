@@ -15,14 +15,14 @@
 @synthesize name;
 @synthesize secondaryname; 
 @synthesize number; 
-@synthesize area;
+//@synthesize area;
 
 
 - (void) dealloc
 {
 	[name release];
 	[secondaryname release];
-	[area release];
+	//[area release];
 	[super dealloc];
 }
 

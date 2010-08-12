@@ -141,41 +141,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	
-	/*//NSString *errorMsg = [error localizedDescription];
-	//NSLog(@"\n errorMsg:%@\n\n", errorMsg);
-	NSString *data;
-	NSString *xmlDataFromChannelSchemes;
-	data = [self getTextFromFile];
-	//NSLog(@"\n data:%@\n\n", data);
-	if(data)
-	{	
-		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:data];
-	}
-	else 
-	{
-		NSError *fileError = 0;
-		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countrylist" ofType:@"txt"];
-		NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&fileError];
-		if(fileError)
-		{
-			fileContents = @"";
-		}	
-		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:fileContents];
-	}
-	
-	NSData *xmlDataInNSData = [xmlDataFromChannelSchemes dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	xmlParser = [[NSXMLParser alloc] initWithData:xmlDataInNSData];
-	[xmlParser setDelegate:self];
-	[xmlParser parse];
-	[pickerView reloadAllComponents];
-	[xmlParser release];
-	[xmlDataFromChannelSchemes release];
-	[responseAsyncData release];
-	responseAsyncData = nil;
-	
-	NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
-	[pickerView selectRow:[prefs integerForKey:@"picker_row"] inComponent:0 animated:YES];*/
+
 	[self connectionDidFinishLoading:nil];
 }
 
@@ -279,7 +245,6 @@
 		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
 		[pickerView selectRow:[prefs integerForKey:@"picker_row"] inComponent:0 animated:YES];
 		countrylist *tempCountrylist;
-		//tempCountrylist = [[countrylist alloc] init];
 		tempCountrylist = [arrayCountries objectAtIndex:[prefs integerForKey:@"picker_row"]];
 		if(tempCountrylist)
 		{	
@@ -310,13 +275,13 @@
 						[self setcallthroughObj:[arrayCountries objectAtIndex:row]];
 						[[NSUserDefaults standardUserDefaults] setInteger:row forKey:@"picker_row"];
 						[[NSUserDefaults standardUserDefaults] synchronize];
-					}	 
+					}
 				}	
 			}
 		}
 	}
 }
-
+/*
 -(void)callthroughApiSynchronous
 {
 	int timestamp;
@@ -382,7 +347,7 @@
 	}
 	
 	NSString *xmlDataFromChannelSchemes;
-/*	
+	
 	 NSError *fileError = 0;
 	 NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countrylist" ofType:@"txt"];
 	 NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&fileError];
@@ -391,7 +356,7 @@
 	 fileContents = @"";
 	 }	
 	 xmlDataFromChannelSchemes = [[NSString alloc] initWithString:fileContents];
-*/
+
 
 	if ([urlResponse statusCode] == 304)
 	{
@@ -424,7 +389,7 @@
 	
 	
 }
-
+*/
 
 
 -(IBAction)donePressed
@@ -790,14 +755,44 @@
 	
 	return [arrayCountries count];
 }
+/*
 - (NSString *)pickerView:(UIPickerView *)thePickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	countrylist *tempP;
 	NSString * strP;
     tempP = [arrayCountries objectAtIndex:row];
 	//strP = [[NSString alloc] initWithFormat:@"%@-%i ",tempP.secondaryname,tempP.number];
-	strP = [[NSString alloc] initWithFormat:@"%@-%@-%i ",tempP.name,tempP.secondaryname,tempP.number];
-	//NSLog(@"\n: %@ : %i :%@  :%i\n", tempP.name, tempP.code,tempP.secondaryname,tempP.number);
-	return strP;
+	strP = [[NSString alloc] initWithFormat:@"   %@ - %@ - (+%i) ",[tempP.name capitalizedString],[tempP.secondaryname capitalizedString],tempP.code];
+	//NSLog(@"\n: %@ : %i :%@  :%i\n", tempP.name, tempP.code,tempP.secondaryname,tempP.number);  
+	return strP;  
+}
+*/
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)viewP
+{
+	UILabel *label;
+	if ([viewP isKindOfClass:[UILabel class]] == YES)
+	{
+
+		label = (UILabel*)viewP;
+	}
+	else 
+	{
+		CGRect LabelFrame1 = CGRectMake(0, 0, 320, 50);
+		label = [[UILabel alloc] initWithFrame:LabelFrame1];
+		label.textAlignment = UITextAlignmentLeft;
+		label.tag = 1;
+		label.adjustsFontSizeToFitWidth = FALSE;
+		label.font = [UIFont systemFontOfSize:16];
+		label.textColor = SPOKNCOLOR;
+	}
+
+	countrylist *tempP;
+	NSString * strP;
+    tempP = [arrayCountries objectAtIndex:row];
+	strP = [[NSString alloc] initWithFormat:@"   %@ - %@ - (+%i) ",[tempP.name capitalizedString],[tempP.secondaryname capitalizedString],tempP.code];
+	label.text = strP;
+	[strP release];
+ 
+	return label;
 }
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
 	
@@ -808,7 +803,7 @@
 		[[NSUserDefaults standardUserDefaults] synchronize];
 		
 	}
-}	
+}
 #pragma mark xmlParser methods
 /* Called when the parser runs into an open tag (<tag>) */ 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName 	attributes:(NSDictionary *)attributeDict 
