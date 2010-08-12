@@ -510,7 +510,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	
 	
 	
-	if(ownerobject.onLineB)
+	//if(ownerObject.onLineB)
 	{	
 		#ifdef _ANALYST_
 			[[GEventTracker sharedInstance] trackEvent:@"SPOKN" action:@"CALL" label:@"OUT-CALL"];
@@ -556,7 +556,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		}
 
 	}
-	else
+	/*else
 	{
 		char *numbercharP;
 		numbercharP = (char*)[[numberlebelP text] cStringUsingEncoding:NSUTF8StringEncoding];
@@ -598,7 +598,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		//[self dismissKeyboard:numberFieldP];
 
 		
-	}
+	}*/
 }
 -(IBAction)vmsShow:(id)sender
 {

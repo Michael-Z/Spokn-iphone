@@ -996,6 +996,9 @@ void getProp()
 			[spoknViewControllerP startProgress];
 			break;
 		case ALERT_ONLINE://login
+			#ifdef _CALL_THROUGH_
+					self->onlyCallThrough = 0;
+			#endif
 			stopCircularRingB = 1;
 			[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
 			loginProgressStart = 0;
@@ -1066,7 +1069,9 @@ void getProp()
 			self->onLineB = false;
 			self->timeOutB = 0;
 			actualOnlineB = 0;
-			
+			#ifdef _CALL_THROUGH_
+				self->onlyCallThrough = 0;
+			#endif
 			//logOut(ltpInterfacesP,false);
 			//[self performSelectorOnMainThread : @ selector(updateSpoknView: ) withObject:nil waitUntilDone:YES];
 			[self updateSpoknView:0];
@@ -1095,6 +1100,7 @@ void getProp()
 							if(loginProtocolP)//mean login screen is on
 							{
 								#ifdef _CALL_THROUGH_
+								self->onlyCallThrough = 1;
 								if(loginProtocolP)
 								{	
 									[self popLoginView];
@@ -2062,15 +2068,22 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		uniqueIDCharP="\0";
 	}
 	ipadB = 0;
+	ipadOrIpod = 0;
 	if(model)
 	{
 		NSRange range={0,0};
+		range = [model rangeOfString:@"iPod" options:NSCaseInsensitiveSearch];
+		if (range.location !=NSNotFound)
+		{
+			ipadOrIpod = 1;
+		}
 		
 		range = [model rangeOfString:@"iPad" options:NSCaseInsensitiveSearch];
 		if (range.location !=NSNotFound)
 		{
-				ipadB = 1;
-				iphoneHighResolationB = 1;
+			ipadB = 1;
+			iphoneHighResolationB = 1;
+			ipadOrIpod = 1;
 		}
 		
 		
@@ -3335,10 +3348,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 }
 -(void)setcallthroughData:(id)objectP
 {
-	
+	[countrylispP release];
 	countrylispP = objectP;
 	[countrylispP retain];
-//	NSLog(@"\n %@ : %i :%@  :%i\n", countrylispP.name, countrylispP.code,countrylispP.secondaryname,countrylispP.number);
+   // NSLog(@"\n %@ : %i :%@  :%i\n", countrylispP.name, countrylispP.code,countrylispP.secondaryname,countrylispP.number);
 }
 //text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ()<>-./"]];
 -(Boolean)makeCall:(char *)noCharP
@@ -3346,7 +3359,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	#ifndef _CLICK_TO_CALL_
 	outCallType = 1;
 	#endif
+	#ifdef _CALL_THROUGH_
+	if(outCallType==4 ||  self->onlyCallThrough==1)
+	#else
 	if(outCallType==4)
+	#endif	
 	{
 		/*		spoknid*pin*bpartyno.
 		 where
@@ -3358,13 +3375,49 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		 replace a = 6, b = 5, c = 4, d = 3, e = 2, f = 1(digit more than 9 subtract it with 16)
 		 so the pin = 34138
 		 bpartyno = 919821988975*/
+		if(self->ipadOrIpod)
+		{
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+															   message: [ NSString stringWithString:@"call through is only work on iphone." ]
+															  delegate: nil
+													 cancelButtonTitle: nil
+													 otherButtonTitles: _OK_, nil
+								  ];
+			[ alert show ];
+			[alert release];
+			return 0;
+			
+		
+		}
 		char *unameCharP=0;
 		char *encryptypasswordCharP=0;
 		char number[50];
 		NSString *finalnumber;
+		if(countrylispP==nil)
+		{
+			countrylispP = [countrylist getCallThroughSavedObject ];
+			if(countrylispP==nil)
+			{
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+																   message: [ NSString stringWithString:@"Please select callthrough country." ]
+																  delegate: nil
+														 cancelButtonTitle: nil
+														 otherButtonTitles: _OK_, nil
+									  ];
+				[ alert show ];
+				[alert release];
+				
+				
+				return 0;
+			
+			}
+		
+		}
+		
+		
 		unameCharP = getLtpUserName(ltpInterfacesP);
 		encryptypasswordCharP = getencryptedPassword();
-		sprintf(number,"tel:%i,,%s%s%s",(int)countrylispP.number,unameCharP,encryptypasswordCharP,noCharP);
+		sprintf(number,"tel:%i%i,,%s%s%s",(int)countrylispP.code,(int)countrylispP.number,unameCharP,encryptypasswordCharP,noCharP);
 		finalnumber = [[NSString alloc] initWithUTF8String:number];
 		//NSLog(@"final number : %@",finalnumber);
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:finalnumber]];

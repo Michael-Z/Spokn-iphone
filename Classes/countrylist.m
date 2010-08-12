@@ -25,6 +25,22 @@
 	//[area release];
 	[super dealloc];
 }
++(countrylist*)getCallThroughSavedObject
+{
+	countrylist *contP;
+	int lcode;
+	lcode = [[NSUserDefaults standardUserDefaults] integerForKey:@"country_code"];
+	if(lcode==0)
+	{
+		return nil;
+	}
+	contP = [[countrylist alloc]init];
+	contP.name = [[NSUserDefaults standardUserDefaults] stringForKey:@"city_name"];
+	contP.code = lcode;
+	contP.number = [[NSUserDefaults standardUserDefaults] integerForKey:@"city_number"];
+	return contP;
+	
+}
 
 
 

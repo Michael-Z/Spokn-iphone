@@ -11,7 +11,7 @@
 #import "countrylist.h"
 
 @protocol clicktocallProtocol<NSObject>
-@required
+
 -(void)setcallthroughData:(id)objectP;
 @end
 
@@ -53,7 +53,6 @@
 -(void)addCallbacknumber;
 - (void)setprotocolType:(int)index;
 -(char*) gecallbackNumber;
--(void)callthroughApiSynchronous;
 -(void)setcallthroughObj:(countrylist *)tempObj;
 -(void)callthroughApiAsynchronous;
 

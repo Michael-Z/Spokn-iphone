@@ -106,11 +106,11 @@
     
 	// Note: An NSOperation creates an autorelease pool, but doesn't schedule a run loop
 	// Create the connection and schedule it on a run loop under our namespaced run mode
-	NSURLConnection *rssConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:NO];
+	NSURLConnection *rssConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
 	
 	//[rssConnection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-	[rssConnection start];
-    [rssConnection release];
+	//[rssConnection start];
+	[rssConnection release];
 	[urlRequest release], urlRequest = nil;
 
 	
@@ -627,9 +627,13 @@
 		
 		default:
 			break;
+			
 	}	
-	[[NSUserDefaults standardUserDefaults] setInteger:index  forKey:@"protocoltypeIndex"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+	if(index>=1 && index<5)
+	{	
+		[[NSUserDefaults standardUserDefaults] setInteger:index  forKey:@"protocoltypeIndex"];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+	}	
 	[tableView reloadData];
 }
 
@@ -637,6 +641,7 @@
 {
 	[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:tempObj.secondaryname] forKey:@"city_name"]; 
 	[[NSUserDefaults standardUserDefaults] setInteger:tempObj.number forKey:@"city_number"]; 
+	[[NSUserDefaults standardUserDefaults] setInteger:tempObj.code forKey:@"country_code"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	[clicktocallProtocolP setcallthroughData:tempObj];
 }
@@ -788,7 +793,7 @@
 	countrylist *tempP;
 	NSString * strP;
     tempP = [arrayCountries objectAtIndex:row];
-	strP = [[NSString alloc] initWithFormat:@"   %@ - %@ - (+%i) ",[tempP.name capitalizedString],[tempP.secondaryname capitalizedString],tempP.code];
+	strP = [[NSString alloc] initWithFormat:@"   %@ - %@ (+%i) ",[tempP.name capitalizedString],[tempP.secondaryname capitalizedString],tempP.code];
 	label.text = strP;
 	[strP release];
  
@@ -846,6 +851,7 @@
 {
 	if([elementName isEqualToString:@"spokn"])
 	{
+		//[arrayCountries sortUsingSelector:]
 		return;
 	}
 	else if([elementName isEqualToString:@"area"])

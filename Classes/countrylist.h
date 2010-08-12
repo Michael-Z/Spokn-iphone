@@ -14,15 +14,15 @@
 	NSString *name;
 	NSString *secondaryname;
 	NSInteger code;
-	NSInteger number;
+	NSUInteger number;
 	//NSString *area;
 
 }
 @property (nonatomic, readwrite) NSInteger code;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *secondaryname;
-@property (nonatomic, readwrite) NSInteger number;
+@property (nonatomic, readwrite) NSUInteger number;
 //@property (nonatomic, copy) NSString *area;
-
++(countrylist*)getCallThroughSavedObject;
 
 @end

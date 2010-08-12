@@ -206,6 +206,11 @@ typedef struct CallNumberType
 	double osversionDouble;
 	countrylist *countrylispP;
 	int callthroughNumber;
+	#ifdef _CALL_THROUGH_
+	int onlyCallThrough;
+	
+	#endif
+	int ipadOrIpod;
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 
