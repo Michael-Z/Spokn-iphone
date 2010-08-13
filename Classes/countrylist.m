@@ -20,6 +20,8 @@
 
 - (void) dealloc
 {
+	[number release];
+	[code release];
 	[name release];
 	[secondaryname release];
 	//[area release];
@@ -28,16 +30,16 @@
 +(countrylist*)getCallThroughSavedObject
 {
 	countrylist *contP;
-	int lcode;
-	lcode = [[NSUserDefaults standardUserDefaults] integerForKey:@"country_code"];
-	if(lcode==0)
+	NSString *lcode;
+	lcode = [[NSUserDefaults standardUserDefaults] stringForKey:@"country_code"];
+	if(lcode==nil)
 	{
 		return nil;
 	}
 	contP = [[countrylist alloc]init];
 	contP.name = [[NSUserDefaults standardUserDefaults] stringForKey:@"city_name"];
 	contP.code = lcode;
-	contP.number = [[NSUserDefaults standardUserDefaults] integerForKey:@"city_number"];
+	contP.number = [[NSUserDefaults standardUserDefaults] stringForKey:@"city_number"];
 	return contP;
 	
 }

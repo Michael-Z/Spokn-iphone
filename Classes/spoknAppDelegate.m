@@ -3391,6 +3391,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 		char *unameCharP=0;
 		char *encryptypasswordCharP=0;
+		char *countrycodeCharP=0;
+		char *countrynumberCharP=0;
 		char number[50];
 		NSString *finalnumber;
 		if(countrylispP==nil)
@@ -3417,7 +3419,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		unameCharP = getLtpUserName(ltpInterfacesP);
 		encryptypasswordCharP = getencryptedPassword();
-		sprintf(number,"tel:%i%i,,%s%s%s",(int)countrylispP.code,(int)countrylispP.number,unameCharP,encryptypasswordCharP,noCharP);
+		countrycodeCharP = (char*)[countrylispP.code cStringUsingEncoding:NSUTF8StringEncoding];
+		countrynumberCharP = (char*)[countrylispP.number cStringUsingEncoding:NSUTF8StringEncoding];
+		sprintf(number,"tel:%s%s,,%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,noCharP);
 		finalnumber = [[NSString alloc] initWithUTF8String:number];
 		//NSLog(@"final number : %@",finalnumber);
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:finalnumber]];

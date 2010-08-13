@@ -236,19 +236,19 @@
 		
 	}
 	NSString *cityName;
-	int cityNumber;
+	NSString * cityNumber;
 	cityName = [[NSUserDefaults standardUserDefaults] stringForKey:@"city_name"];
-	cityNumber = [[NSUserDefaults standardUserDefaults] integerForKey:@"city_number"];
+	cityNumber = [[NSUserDefaults standardUserDefaults] stringForKey:@"city_number"];
 	if(cityName && cityNumber)
 	{
-		//NSLog(@"%@-%i",cityName,cityNumber);
+		//NSLog(@"%@-%@",cityName,cityNumber);
 		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
 		[pickerView selectRow:[prefs integerForKey:@"picker_row"] inComponent:0 animated:YES];
 		countrylist *tempCountrylist;
 		tempCountrylist = [arrayCountries objectAtIndex:[prefs integerForKey:@"picker_row"]];
 		if(tempCountrylist)
 		{	
-			if([tempCountrylist.secondaryname isEqualToString:cityName] && (tempCountrylist.number  == cityNumber))
+			if([tempCountrylist.secondaryname isEqualToString:cityName] && ([tempCountrylist.number  isEqualToString:cityNumber]))
 			{	
 				[self setcallthroughObj:[arrayCountries objectAtIndex:[prefs integerForKey:@"picker_row"]]];
 			}
@@ -266,8 +266,8 @@
 			
 			while(tempCountrylistP = [enumerator nextObject])
 			{
-				//NSLog(@"%@-%i",tempCountrylistP.secondaryname,tempCountrylistP.number);
-				if([tempCountrylistP.secondaryname isEqualToString:cityName] && (tempCountrylistP.number  == cityNumber))
+				//NSLog(@"%@-%@",tempCountrylistP.secondaryname,tempCountrylistP.number);
+				if([tempCountrylistP.secondaryname isEqualToString:cityName] && ([tempCountrylist.number  isEqualToString:cityNumber]))
 				{	
 					row = [arrayCountries indexOfObject:tempCountrylistP];
 					if(row>-1)
@@ -275,6 +275,10 @@
 						[self setcallthroughObj:[arrayCountries objectAtIndex:row]];
 						[[NSUserDefaults standardUserDefaults] setInteger:row forKey:@"picker_row"];
 						[[NSUserDefaults standardUserDefaults] synchronize];
+					}
+					else
+					{
+						[self setcallthroughObj:[arrayCountries objectAtIndex:0]];
 					}
 				}	
 			}
@@ -640,8 +644,8 @@
 -(void)setcallthroughObj:(countrylist *)tempObj
 {
 	[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:tempObj.secondaryname] forKey:@"city_name"]; 
-	[[NSUserDefaults standardUserDefaults] setInteger:tempObj.number forKey:@"city_number"]; 
-	[[NSUserDefaults standardUserDefaults] setInteger:tempObj.code forKey:@"country_code"];
+	[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:tempObj.number] forKey:@"city_number"]; 
+	[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:tempObj.code] forKey:@"country_code"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 	[clicktocallProtocolP setcallthroughData:tempObj];
 }
@@ -793,7 +797,7 @@
 	countrylist *tempP;
 	NSString * strP;
     tempP = [arrayCountries objectAtIndex:row];
-	strP = [[NSString alloc] initWithFormat:@"   %@ - %@ (+%i) ",[tempP.name capitalizedString],[tempP.secondaryname capitalizedString],tempP.code];
+	strP = [[NSString alloc] initWithFormat:@"   %@ - %@ (+%@) ",[tempP.name capitalizedString],[tempP.secondaryname capitalizedString],tempP.code];
 	label.text = strP;
 	[strP release];
  
@@ -836,10 +840,10 @@
 	{
 		countrylispP = [[countrylist alloc] init];
 		countrylispP.name = self->countryName;			
-		countrylispP.code = [self->countryCode integerValue];
+		countrylispP.code = self->countryCode;
 		countrylispP.secondaryname = [attributeDict objectForKey:@"name"];
-		countrylispP.number = [[attributeDict objectForKey:@"number"] integerValue];
-		//NSLog(@"\nname: %@ code: %i\n", countrylispP.name, countrylispP.code);
+		countrylispP.number = [attributeDict objectForKey:@"number"];
+		//NSLog(@"\nname: %@ code: %@\n", countrylispP.code, countrylispP.number);
 		
 	}
 	
