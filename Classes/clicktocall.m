@@ -857,7 +857,9 @@
 {
 	if([elementName isEqualToString:@"spokn"])
 	{
-		//[arrayCountries sortUsingSelector:]
+		NSSortDescriptor *alphaDesc = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(compare:)];
+		[arrayCountries sortUsingDescriptors:[NSMutableArray arrayWithObjects:alphaDesc, nil]];	
+		[alphaDesc release], alphaDesc = nil;
 		return;
 	}
 	else if([elementName isEqualToString:@"area"])
