@@ -517,7 +517,7 @@
 	
 	char s1[20];
 	NSString *stringStrP;
-	
+	printf("\ntitle %s",titleCharP);
 	if(loadB==false)
 	{	
 		functioncallB = true;
@@ -649,6 +649,11 @@
 			default:
 				[labelStatus setText:_STATUS_OFFLINE_];	
 		}
+			if(ownerobject.onlyCallThrough)
+			{
+				[labelStatus setText:_STATUS_OFFLINE_CALL_THROUGH];	
+			}
+			
 			//[self stopforwardactivityIndicator];
 			self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 													   initWithTitle:SIGN_IN_TEXT 

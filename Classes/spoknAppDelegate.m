@@ -94,6 +94,10 @@
 @synthesize onLogB;
 @synthesize osversionDouble;
 @synthesize onoffSip;
+#ifdef _CALL_THROUGH_
+
+@synthesize onlyCallThrough;
+#endif
 -(int)sendLogFile:(NSString **)stringP
 {
 	char *fileP;
@@ -1100,7 +1104,7 @@ void getProp()
 							if(loginProtocolP)//mean login screen is on
 							{
 								#ifdef _CALL_THROUGH_
-								self->onlyCallThrough = 1;
+								
 								if(loginProtocolP)
 								{	
 									[self popLoginView];
@@ -1116,6 +1120,11 @@ void getProp()
 								
 								
 							}	
+						#ifdef _CALL_THROUGH_
+							self->onlyCallThrough = 1;
+							[self updateSpoknView:0];
+						#endif
+
 							break;
 					case LOGIN_STATUS_TIMEDOUT:
 						self->timeOutB = 1;
@@ -2713,6 +2722,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	 
 	 */
 	
+	
 	[[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 	//[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
@@ -2861,6 +2871,16 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				case 1:
 					[self makeSipCallOrCallBack:numberToCall callType:2];
 					break;
+				case 2:
+				{
+					int tmpN;
+					tmpN = outCallType;
+					outCallType = 3;
+					[self makeCall:numberToCall];
+					outCallType = tmpN;
+					
+				}	break;
+
 					
 			
 			}
@@ -3360,9 +3380,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	outCallType = 1;
 	#endif
 	#ifdef _CALL_THROUGH_
-	if(outCallType==4 ||  self->onlyCallThrough==1)
+	if(outCallType==3 ||  self->onlyCallThrough==1)
 	#else
-	if(outCallType==4)
+	if(outCallType==3)
 	#endif	
 	{
 		/*		spoknid*pin*bpartyno.
@@ -3421,9 +3441,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		encryptypasswordCharP = getencryptedPassword();
 		countrycodeCharP = (char*)[countrylispP.code cStringUsingEncoding:NSUTF8StringEncoding];
 		countrynumberCharP = (char*)[countrylispP.number cStringUsingEncoding:NSUTF8StringEncoding];
-		sprintf(number,"tel:%s%s,,%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,noCharP);
+		sprintf(number,"tel:+%s%s,,%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,noCharP);
 		finalnumber = [[NSString alloc] initWithUTF8String:number];
-		//NSLog(@"final number : %@",finalnumber);
+		NSLog(@"final number : %@",finalnumber);
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:finalnumber]];
 		free(unameCharP);
 		free(encryptypasswordCharP);
@@ -3449,7 +3469,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 							  delegate:self
 							  cancelButtonTitle:_CANCEL_ 
 							  destructiveButtonTitle:nil
-							  otherButtonTitles:@"Sip",@"CallBack", nil]autorelease];
+							  otherButtonTitles:@"Sip",@"CallBack",@"CallThrough", nil]autorelease];
 			uiappActionSheetgP.tag = 1;
 			uiappActionSheetgP.actionSheetStyle = UIBarStyleBlackTranslucent;
 			[uiappActionSheetgP showInView:[self tabBarController].view];

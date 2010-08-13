@@ -241,6 +241,7 @@
 	cityNumber = [[NSUserDefaults standardUserDefaults] stringForKey:@"city_number"];
 	if(cityName && cityNumber)
 	{
+		
 		//NSLog(@"%@-%@",cityName,cityNumber);
 		NSUserDefaults * prefs = [NSUserDefaults standardUserDefaults];
 		[pickerView selectRow:[prefs integerForKey:@"picker_row"] inComponent:0 animated:YES];
@@ -609,14 +610,15 @@
 		}	
 			break;
 			
-		case 3://mean Both
+		case 4://mean all
 		{	
-			[labelconnectionType setText:@"BOTH"];
+			[labelconnectionType setText:@"All"];
 			[ownerobject setoutCallTypeProtocol:index];
-			pickerView.hidden = YES;
+			[self callthroughApiAsynchronous];
+			pickerView.hidden = NO;
 		}	
 			break;	
-		case 4://mean Both
+		case 3://mean callthrough
 		{	
 			[labelconnectionType setText:@"Call-through"];
 			[ownerobject setoutCallTypeProtocol:index];
@@ -743,7 +745,7 @@
 						  delegate:self
 						  cancelButtonTitle:_CANCEL_ 
 						  destructiveButtonTitle:nil
-						  otherButtonTitles:@"Sip",@"CallBack",@"Both",@"Call-through", nil];
+						  otherButtonTitles:@"Sip",@"CallBack",@"Call-through",@"All", nil];
 		
 		uiActionSheetgP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
 		[uiActionSheetgP showInView:[ownerobject tabBarController].view];

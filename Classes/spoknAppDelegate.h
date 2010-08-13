@@ -250,6 +250,12 @@ typedef struct CallNumberType
 @property (nonatomic, assign) IBOutlet CalllogViewController *callviewP;
 
 */
+#ifdef _CALL_THROUGH_
+ 
+@property (nonatomic, assign) int onlyCallThrough;
+#endif
+
+
 @property(nonatomic,assign) ABPeoplePickerNavigationController *globalAddressP;
 @property (nonatomic, assign) Boolean blueTooth;
 @property (nonatomic, assign) ABAddressBookRef addressRef;
