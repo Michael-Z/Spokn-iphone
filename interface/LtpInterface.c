@@ -909,6 +909,14 @@ void setUserAgent(LtpInterfaceType *ltpInterfaceP,char*userAgentP)
 {
 	strcpy(ltpInterfaceP->userAgent,userAgentP);
 }
+void setCallbackCdr(LtpInterfaceType *ltpInterfaceP,char*userP,time_t time)
+{
+	if(strlen(userP)>0)
+	{	
+		
+		cdrAdd(userP, (time_t) time, 0, CALLTYPE_OUT,0 ,0 );
+	}
+}
 /*void set_sizeof_buffer(int size)
 {
 	gsizeBuffer = size;

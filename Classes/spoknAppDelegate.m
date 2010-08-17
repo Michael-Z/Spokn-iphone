@@ -3436,12 +3436,18 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		}
 		
-		
+		NSTimeInterval time;
+		//char *contactNameP = 0;
+		//char type[100];
 		unameCharP = getLtpUserName(ltpInterfacesP);
 		encryptypasswordCharP = getencryptedPassword();
 		countrycodeCharP = (char*)[countrylispP.code cStringUsingEncoding:NSUTF8StringEncoding];
 		countrynumberCharP = (char*)[countrylispP.number cStringUsingEncoding:NSUTF8StringEncoding];
 		sprintf(number,"tel:+%s%s,,%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,noCharP);
+		time = [[NSDate date] timeIntervalSince1970];
+		//contactNameP = [self getNameAndTypeFromNumber:noCharP :type :0];
+		setCallbackCdr(ltpInterfacesP,noCharP,time);
+		[self refreshallViews];
 		finalnumber = [[NSString alloc] initWithUTF8String:number];
 		NSLog(@"final number : %@",finalnumber);
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:finalnumber]];
@@ -3533,15 +3539,20 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 		
 		
-		
+		NSTimeInterval time;
 		NSString *callbackP;
 		NSString *callerP;
 		callerP = (NSString*) [[NSUserDefaults standardUserDefaults] objectForKey:@"callbacknumber"];
 		callbackP = [[NSString alloc] initWithUTF8String:noCharP] ;
 		[spoknViewControllerP CallBackMe:callerP bparty:callbackP];
+		time = [[NSDate date] timeIntervalSince1970];
+		setCallbackCdr(ltpInterfacesP,noCharP,time);
 		[callbackP release];
-		free(resultCharP);
-		resultCharP = 0;
+		if(resultCharP)
+		{	
+			free(resultCharP);
+			resultCharP = 0;
+		}
 		return 1;
 	}
 	
