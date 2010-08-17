@@ -3547,6 +3547,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[spoknViewControllerP CallBackMe:callerP bparty:callbackP];
 		time = [[NSDate date] timeIntervalSince1970];
 		setCallbackCdr(ltpInterfacesP,noCharP,time);
+		[self refreshallViews];
 		[callbackP release];
 		if(resultCharP)
 		{	
