@@ -3052,6 +3052,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+	[countrylispP release];
+	countrylispP = nil;
 	[self endApplication:application];
 		
 
@@ -3437,23 +3439,31 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		}
 		
 		NSTimeInterval time;
+		char *resultCharP = 0;
 		//char *contactNameP = 0;
 		//char type[100];
+		resultCharP = NormalizeNumber(noCharP,0);
 		unameCharP = getLtpUserName(ltpInterfacesP);
 		encryptypasswordCharP = getencryptedPassword();
 		countrycodeCharP = (char*)[countrylispP.code cStringUsingEncoding:NSUTF8StringEncoding];
 		countrynumberCharP = (char*)[countrylispP.number cStringUsingEncoding:NSUTF8StringEncoding];
-		sprintf(number,"tel:+%s%s,,%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,noCharP);
+		sprintf(number,"tel:+%s%s,,%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,resultCharP);
 		time = [[NSDate date] timeIntervalSince1970];
 		//contactNameP = [self getNameAndTypeFromNumber:noCharP :type :0];
-		setCallbackCdr(ltpInterfacesP,noCharP,time);
+	
+		setCallbackCdr(ltpInterfacesP,resultCharP,time);
 		[self refreshallViews];
 		finalnumber = [[NSString alloc] initWithUTF8String:number];
-		NSLog(@"final number : %@",finalnumber);
+		//NSLog(@"final number : %@",finalnumber);
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:finalnumber]];
 		free(unameCharP);
 		free(encryptypasswordCharP);
 		[finalnumber release];
+		if(resultCharP)
+		{
+			free(resultCharP);
+			resultCharP = 0;
+		}
 		
 		return 0;
 	}
@@ -3543,7 +3553,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		NSString *callbackP;
 		NSString *callerP;
 		callerP = (NSString*) [[NSUserDefaults standardUserDefaults] objectForKey:@"callbacknumber"];
-		callbackP = [[NSString alloc] initWithUTF8String:noCharP] ;
+		resultCharP = NormalizeNumber(noCharP,0);
+		callbackP = [[NSString alloc] initWithUTF8String:resultCharP] ;
 		[spoknViewControllerP CallBackMe:callerP bparty:callbackP];
 		time = [[NSDate date] timeIntervalSince1970];
 		setCallbackCdr(ltpInterfacesP,noCharP,time);
