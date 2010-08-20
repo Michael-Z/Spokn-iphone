@@ -66,6 +66,7 @@
 		7322D22711EDDFD0000583F8 /* libpjsip-simple-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22311EDDFD0000583F8 /* libpjsip-simple-arm-apple-darwin9.a */; };
 		7322D22811EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22411EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a */; };
 		7322D22911EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22511EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a */; };
+		73B0150D121E7C8100DB8CF0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B0150C121E7C8100DB8CF0 /* Reachability.m */; };
 		73BD60E211EB403C00D4E167 /* clicktocall.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BD60E011EB403B00D4E167 /* clicktocall.m */; };
 		73D7CFD3120FE80100E0110C /* countrylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7CFD2120FE80100E0110C /* countrylist.m */; };
 		73D7D003120FEDB400E0110C /* clicktocall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73D7D002120FEDB400E0110C /* clicktocall.xib */; };
@@ -304,7 +305,6 @@
 		8B964A6010CBE3BC00CB00DB /* AddeditcellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */; };
 		8B964A6110CBE3BC00CB00DB /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD86B4107F5222008FD911 /* WebViewController.m */; };
 		8B964A6210CBE3BC00CB00DB /* custombutton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB06B11083020A00468EC7 /* custombutton.m */; };
-		8B964A6310CBE3BC00CB00DB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3E2EF1084D100008CB625 /* Reachability.m */; };
 		8B964A6410CBE3BC00CB00DB /* testingview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B16790B108F36A3004D18C0 /* testingview.m */; };
 		8B964A6610CBE3BC00CB00DB /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A61F10998423003BF3EA /* Contact.m */; };
 		8B964A6710CBE3BC00CB00DB /* ContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59A62110998423003BF3EA /* ContactCell.m */; };
@@ -363,7 +363,6 @@
 		8BD982EC10C400E0002793BE /* callviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD982EB10C400E0002793BE /* callviewcontroller.xib */; };
 		8BDAED65119199BE00DB14B2 /* 11_declinecall_36_18.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BDAED64119199BE00DB14B2 /* 11_declinecall_36_18.png */; };
 		8BDDE49A115B319B00FC4BA3 /* sipandltpwrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BDDE499115B319B00FC4BA3 /* sipandltpwrapper.c */; };
-		8BE3E2F11084D100008CB625 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE3E2EF1084D100008CB625 /* Reachability.m */; };
 		8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */; };
 		8BE47B08112BB54D00421DFE /* 280x52-end-call-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B06112BB54D00421DFE /* 280x52-end-call-normal.png */; };
 		8BE47B09112BB54D00421DFE /* 280x52-end-call-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */; };
@@ -450,6 +449,9 @@
 		7322D22311EDDFD0000583F8 /* libpjsip-simple-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-simple-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-simple-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D22411EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-ua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D22511EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		73B0150B121E7C8100DB8CF0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		73B0150C121E7C8100DB8CF0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		73B0153E121E805A00DB8CF0 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		73BD60E011EB403B00D4E167 /* clicktocall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = clicktocall.m; sourceTree = "<group>"; };
 		73D7CFD1120FE80100E0110C /* countrylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countrylist.h; sourceTree = "<group>"; };
 		73D7CFD2120FE80100E0110C /* countrylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countrylist.m; sourceTree = "<group>"; };
@@ -677,8 +679,6 @@
 		8BDAED64119199BE00DB14B2 /* 11_declinecall_36_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 11_declinecall_36_18.png; path = "rsc/Spokn buttons n icons/11_declinecall_36_18.png"; sourceTree = "<group>"; };
 		8BDDE499115B319B00FC4BA3 /* sipandltpwrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sipandltpwrapper.c; sourceTree = "<group>"; };
 		8BDDE49B115B31A900FC4BA3 /* sipandltpwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sipandltpwrapper.h; sourceTree = "<group>"; };
-		8BE3E2EF1084D100008CB625 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		8BE3E2F01084D100008CB625 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8BE47B06112BB54D00421DFE /* 280x52-end-call-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "280x52-end-call-normal.png"; path = "rsc/280x52-end-call-normal.png"; sourceTree = SOURCE_ROOT; };
 		8BE47B07112BB54D00421DFE /* 280x52-end-call-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "280x52-end-call-pressed.png"; path = "rsc/280x52-end-call-pressed.png"; sourceTree = SOURCE_ROOT; };
@@ -690,7 +690,6 @@
 		8BF6E46B115C8B8F009DF9CD /* button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-bg.png"; path = "rsc/button-bg.png"; sourceTree = "<group>"; };
 		8BF729B2103562B400C124B0 /* spoknalert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknalert.h; sourceTree = "<group>"; };
 		8BF729B3103562B400C124B0 /* spoknalert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknalert.m; sourceTree = "<group>"; };
-		8BF8B7D312140800009C192F /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		F249AAB5106F6A340024AE84 /* keypadview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keypadview.h; sourceTree = "<group>"; };
 		F249AAB6106F6A340024AE84 /* keypadview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = keypadview.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -777,6 +776,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				73B0150B121E7C8100DB8CF0 /* Reachability.h */,
+				73B0150C121E7C8100DB8CF0 /* Reachability.m */,
 				8B61B2151132A8A7003D6164 /* contactlookup.h */,
 				8B61B2161132A8A7003D6164 /* contactlookup.m */,
 				8B957292111C52BF00761EDB /* TTSearchlightLabel.h */,
@@ -788,8 +789,6 @@
 				8B16790A108F36A3004D18C0 /* testingview.xib */,
 				8B16790B108F36A3004D18C0 /* testingview.m */,
 				8B16790C108F36A3004D18C0 /* testingview.h */,
-				8BE3E2EF1084D100008CB625 /* Reachability.m */,
-				8BE3E2F01084D100008CB625 /* Reachability.h */,
 				8B7BEA9E107DF29E00BD7411 /* AddeditcellController.m */,
 				8B7BEA9F107DF29E00BD7411 /* AddeditcellController.h */,
 				8BCEEAEC104ACC87001DF4AC /* overlayviewcontroller.m */,
@@ -916,7 +915,7 @@
 				32C15BDD1158A9C200689F56 /* child.plist */,
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8BF8B7D312140800009C192F /* Entitlements.plist */,
+				73B0153E121E805A00DB8CF0 /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1632,7 +1631,6 @@
 				8B7BEAA0107DF29E00BD7411 /* AddeditcellController.m in Sources */,
 				8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */,
 				8BCB06B21083020A00468EC7 /* custombutton.m in Sources */,
-				8BE3E2F11084D100008CB625 /* Reachability.m in Sources */,
 				8B16790E108F36A3004D18C0 /* testingview.m in Sources */,
 				8B59A62C10998423003BF3EA /* Contact.m in Sources */,
 				8B59A62D10998423003BF3EA /* ContactCell.m in Sources */,
@@ -1656,6 +1654,7 @@
 				8BEDE4DA11BE6CA600F813B0 /* GEventTracker.m in Sources */,
 				73BD60E211EB403C00D4E167 /* clicktocall.m in Sources */,
 				73D7CFD3120FE80100E0110C /* countrylist.m in Sources */,
+				73B0150D121E7C8100DB8CF0 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1704,7 +1703,6 @@
 				8B964A6010CBE3BC00CB00DB /* AddeditcellController.m in Sources */,
 				8B964A6110CBE3BC00CB00DB /* WebViewController.m in Sources */,
 				8B964A6210CBE3BC00CB00DB /* custombutton.m in Sources */,
-				8B964A6310CBE3BC00CB00DB /* Reachability.m in Sources */,
 				8B964A6410CBE3BC00CB00DB /* testingview.m in Sources */,
 				8B964A6610CBE3BC00CB00DB /* Contact.m in Sources */,
 				8B964A6710CBE3BC00CB00DB /* ContactCell.m in Sources */,
@@ -1741,7 +1739,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = NO;
@@ -1784,7 +1782,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				COPY_PHASE_STRIP = YES;
@@ -2129,7 +2127,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
@@ -2200,7 +2198,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
