@@ -34,6 +34,12 @@
 #import "spokncalladd.h"
 #define MAX_ROW_HIGHT 42
 //self.navigationItem.leftBarButtonItem.enabled = YES;
+@interface ContactDetailsViewController (Private)
+- (void)menuControllerWillHide:(NSNotification *)notification;
+- (void)menuControllerWillShow:(NSNotification *)notification;
+- (void)menuControllerDidShow:(NSNotification *)notification;
+@end
+
 @implementation ContactDetailsViewController
 @synthesize contactDetailsProtocolP;
 @synthesize addcallDelegate;
@@ -949,6 +955,18 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(menuControllerWillHide:)
+												 name:UIMenuControllerWillHideMenuNotification
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(menuControllerWillShow:)
+												 name:UIMenuControllerWillShowMenuNotification
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+											 selector:@selector(menuControllerDidShow:)
+												 name:UIMenuControllerDidShowMenuNotification
+											   object:nil];
 //	animationB = NO;
 	alertgP = 0;
 	[sectionViewP addSubview:userNameP];
@@ -1406,6 +1424,7 @@
 	{
 			cell.accessoryType = UITableViewCellAccessoryNone;
 	}
+	cell.delegate = self;
 	//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	//cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	[CellIdentifier release];
@@ -1465,9 +1484,28 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	
 	return UITableViewCellEditingStyleNone;
 }
+- (void)copy:(id)sender {
+    //UIPasteboard *gpBoard = [UIPasteboard generalPasteboard];
+	//NSLog(@"SENDER : copied : %@",gpBoard.string);
+	[[UIPasteboard generalPasteboard] setString:nil];
+	//[gpBoard setValue:[self text] forPasteboardType:@"public.utf8-plain-text"];
+}
 
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+	BOOL answer = NO;
+	
+	if (action == @selector(copy:))
+		answer = YES;
+	return answer;
+}
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
 {
+	
+	if (showingEditMenu) {
+		return;
+	}
+	
 	int row = [newIndexPath row];
 	int section = [newIndexPath section];
 
@@ -2208,8 +2246,45 @@ titleForHeaderInSection:(NSInteger)section
 
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[super viewDidUnload];
 }
 
+#pragma mark Notification Handlers
+
+- (void)menuControllerWillHide:(NSNotification *)notification {
+	showingEditMenu = NO;
+	[self->tableView deselectRowAtIndexPath:[self->tableView indexPathForSelectedRow] animated:YES];
+}
+
+- (void)menuControllerWillShow:(NSNotification *)notification {
+	showingEditMenu = YES;
+	self->tableView.scrollEnabled = NO;
+}
+
+- (void)menuControllerDidShow:(NSNotification *)notification {
+	self->tableView.scrollEnabled = YES;
+}
+
+- (void)showSelectMenuForCell:(SpoknUITableViewCell *)cell 
+{
+	if ([cell isHighlighted])
+	{
+		UIMenuController *sharedMenu = [UIMenuController sharedMenuController];
+		[cell becomeFirstResponder];
+		[sharedMenu setTargetRect:cell.frame inView:self.view];
+		[sharedMenu setMenuVisible:YES animated:YES];
+		// Select cell so it doesn't become un-highlighted if finger moves off it while showing edit menu
+		[self->tableView selectRowAtIndexPath:[self->tableView indexPathForCell:cell] animated:NO scrollPosition:UITableViewScrollPositionNone];
+	}
+}
+
+
+#pragma mark Delegates (CopyableTableViewCell)
+- (void)spoknUITableViewCell:(SpoknUITableViewCell *)spoknUITableViewCell willHighlight:(BOOL)highlighted {
+	if (highlighted)
+		[self performSelector:@selector(showSelectMenuForCell:) withObject:spoknUITableViewCell afterDelay:1.0];
+}
 
 - (void)dealloc {
 	if(alertgP)

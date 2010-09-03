@@ -3971,7 +3971,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	hostReach = [[Reachability reachabilityWithHostName: @"www.spokn.com"] retain];
 	//hostReach = [[Reachability reachabilityWithAddress:&addr] retain];
-	[hostReach startNotifer];
+	[hostReach startNotifier];
 	//[self updateReachabilityStatus: hostReach];
 
 	//wifiReach = [[Reachability reachabilityForLocalWiFi] retain];

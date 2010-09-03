@@ -3,7 +3,7 @@
  File: Reachability.m
  Abstract: Basic demonstration of how to use the SystemConfiguration Reachablity APIs.
  
- Version: 2.0
+ Version: 2.2
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple Inc.
  ("Apple") in consideration of your agreement to the following terms, and your
@@ -41,7 +41,7 @@
  CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF
  APPLE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  
- Copyright (C) 2009 Apple Inc. All Rights Reserved.
+ Copyright (C) 2010 Apple Inc. All Rights Reserved.
  
 */
 
@@ -68,14 +68,9 @@ static void PrintReachabilityFlags(SCNetworkReachabilityFlags    flags, const ch
 			
 			(flags & kSCNetworkReachabilityFlagsTransientConnection)  ? 't' : '-',
 			(flags & kSCNetworkReachabilityFlagsConnectionRequired)   ? 'c' : '-',
-			#ifdef kSCNetworkReachabilityFlagsConnectionOnTraffic
-				(flags & kSCNetworkReachabilityFlagsConnectionOnTraffic)  ? 'C' : '-',
-			#endif
+			(flags & kSCNetworkReachabilityFlagsConnectionOnTraffic)  ? 'C' : '-',
 			(flags & kSCNetworkReachabilityFlagsInterventionRequired) ? 'i' : '-',
-			#ifdef kSCNetworkReachabilityFlagsConnectionOnDemand
-
-				(flags & kSCNetworkReachabilityFlagsConnectionOnDemand)   ? 'D' : '-',
-			#endif
+			(flags & kSCNetworkReachabilityFlagsConnectionOnDemand)   ? 'D' : '-',
 			(flags & kSCNetworkReachabilityFlagsIsLocalAddress)       ? 'l' : '-',
 			(flags & kSCNetworkReachabilityFlagsIsDirect)             ? 'd' : '-',
 			comment
@@ -102,7 +97,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 	[myPool release];
 }
 
-- (BOOL) startNotifer
+- (BOOL) startNotifier
 {
 	BOOL retVal = NO;
 	SCNetworkReachabilityContext	context = {0, self, NULL, NULL, NULL};
@@ -116,7 +111,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 	return retVal;
 }
 
-- (void) stopNotifer
+- (void) stopNotifier
 {
 	if(reachabilityRef!= NULL)
 	{
@@ -126,7 +121,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 
 - (void) dealloc
 {
-	[self stopNotifer];
+	[self stopNotifier];
 	if(reachabilityRef!= NULL)
 	{
 		CFRelease(reachabilityRef);
@@ -177,7 +172,6 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 
 + (Reachability*) reachabilityForLocalWiFi;
 {
-	[super init];
 	struct sockaddr_in localWifiAddress;
 	bzero(&localWifiAddress, sizeof(localWifiAddress));
 	localWifiAddress.sin_len = sizeof(localWifiAddress);
@@ -223,12 +217,8 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 		//  then we'll assume (for now) that your on Wi-Fi
 		retVal = ReachableViaWiFi;
 	}
-	#ifndef kSCNetworkReachabilityFlagsConnectionOnDemand	
-	#define kSCNetworkReachabilityFlagsConnectionOnDemand 1<<5
-	#endif
-	#ifndef kSCNetworkReachabilityFlagsConnectionOnTraffic
-	#define kSCNetworkReachabilityFlagsConnectionOnTraffic	 1<<3 
-	#endif
+	
+	
 	if ((((flags & kSCNetworkReachabilityFlagsConnectionOnDemand ) != 0) ||
 		(flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0))
 	{

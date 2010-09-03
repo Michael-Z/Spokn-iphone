@@ -34,6 +34,10 @@
 
 #pragma pack(4)  
 
+@interface UILabel (Clipboard)
+- (BOOL) canBecomeFirstResponder;
+@end
+
 @protocol AddCallProtocol;
 
 @interface DialviewController : UIViewController<UITextFieldDelegate, KeypadProtocol,ShowContactCallOnDelegate> {
@@ -50,7 +54,7 @@
 	IBOutlet UIButton *backButtonP;
 	IBOutlet UIButton *backgroundButtonP;
 	IBOutlet Keypadview *keypadmain;
-	
+	CGPoint holdPoint;
 	SpoknAppDelegate *ownerobject;
 	
 	IBOutlet UIActivityIndicatorView *activityIndicator;

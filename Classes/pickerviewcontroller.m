@@ -31,7 +31,7 @@
 #import "contactviewcontroller.h"
 #import "spoknAppDelegate.h"
 #include "alertmessages.h"
-
+#import "contactlookup.h"
 @implementation MyLabel
 @synthesize upDateProtocolP;
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -812,19 +812,20 @@
 			{	
 				if([SpoknAppDelegate emailValidate:text]==NO)
 				{	
+					
+					NSString *text2 = [text stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"+_()-.,*#<>!"]] ;
+					NSString *text1 = [text2 stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
+					
+					if(text1!=0 && [text1 length]!=0)
+					{
+						//txtDestNo.text = @" ";
+						return YES;
 						
-						NSString *text1 = [text stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
-						
-						if(text1!=0 && [text1 length]!=0)
-						{
-							//txtDestNo.text = @" ";
-							return YES;
-							
-						}
-											
+					}
+					
 				}
 			}	
-					
+			
 			[self update_txtDestNo:@""];
 			
 			return NO;
@@ -850,8 +851,8 @@
 			if([SpoknAppDelegate emailValidate:text]==NO)
 			{	
 				
-				NSString *text1 = [text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>+1234567890"]];
-				
+				//NSString *text1 = [text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>+1234567890"]];
+				NSString *text1 = [text stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" +_()-.,*#$!<>1234567890"]] ;
 				
 				if(text1!=0 && [text1 length]!=0)
 				{

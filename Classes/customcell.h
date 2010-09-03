@@ -99,11 +99,19 @@
 
 @end
 
+@class SpoknUITableViewCell;
+@protocol SpoknUITableViewCellDelegate
+- (void)spoknUITableViewCell:(SpoknUITableViewCell *)spoknUITableViewCell willHighlight:(BOOL)highlighted;
+@end
+
 @interface SpoknUITableViewCell : UITableViewCell
 {
-	
+	id<SpoknUITableViewCellDelegate> delegate;
 	SpoknSubCell *spoknSubCellP;
+	CGPoint holdPoint;
 }
+
+@property (assign, nonatomic) id<SpoknUITableViewCellDelegate> delegate;
 -(void) resizeFrame;
 -(void) setAutoResize:(BOOL)onB;
 -(void) tablecellsetEdit:(int)leditB :(int)needsdisplayB;

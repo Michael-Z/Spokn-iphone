@@ -84,7 +84,7 @@ typedef enum ViewTypeEnum
 @end
 @protocol AddCallProtocol;
 
-@interface ContactDetailsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,ContactDeailsProtocol> {
+@interface ContactDetailsViewController : UIViewController<SpoknUITableViewCellDelegate,UITableViewDataSource, UITableViewDelegate,UIActionSheetDelegate,ContactDeailsProtocol> {
 	IBOutlet UILabel *userNameP;
 	IBOutlet UITableView *tableView;
 	IBOutlet UIView *viewP;
@@ -137,6 +137,7 @@ typedef enum ViewTypeEnum
 	UIAlertView *alertgP;
 	UIActionSheet *uiActionSheetgP;
 	int orignalheight;
+	BOOL showingEditMenu;
 	
 }
 @property (nonatomic, assign) id<AddCallProtocol>addcallDelegate;
