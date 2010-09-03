@@ -36,7 +36,7 @@
 
 @interface UILabel (Clipboard)
 - (BOOL) canBecomeFirstResponder;
-@end0
+@end
 
 @protocol AddCallProtocol;
 

@@ -89,6 +89,31 @@
 @end
 @implementation SpoknUITableViewCell
 @synthesize  spoknSubCellP;
+@synthesize delegate;
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+	if (delegate)
+		[delegate spoknUITableViewCell:self willHighlight:highlighted];
+	[super setHighlighted:highlighted animated:animated];
+	spoknSubCellP.selectedVar = highlighted;
+}
+
+- (BOOL)canBecomeFirstResponder {
+	return YES;
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+	if (action == @selector(copy:)) {
+		return YES;
+	} else {
+		return NO;
+	}
+}
+
+- (void)copy:(id)sender {
+	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+	[pasteboard setString:self.textLabel.text];
+}
+
 -(void) tablecellsetEdit:(int)leditB :(int)needsdisplayB 
 {
 	[spoknSubCellP subcellsetEdit:leditB];
@@ -161,12 +186,6 @@
 	[spoknSubCellP release];
 	[super dealloc];
 
-}
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
-{
-	[super setHighlighted:highlighted animated:animated];
-	spoknSubCellP.selectedVar = highlighted;
-	
 }
 - (void)drawRect:(CGRect)rect
 {
