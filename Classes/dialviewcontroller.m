@@ -33,7 +33,14 @@
 #import <AudioToolbox/AudioToolbox.h>
 #include "alertmessages.h"
 #import "GEventTracker.h"
+@implementation UILabel (Clipboard)
 
+- (BOOL) canBecomeFirstResponder
+{
+    return YES;
+}
+
+@end
 @implementation DialviewController
 const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'};
 //static SystemSoundID sounds[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -185,12 +192,111 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 {
 	
 }
+
+
+
+- (void)showMenu {
+	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+	[center addObserver:self selector:@selector(reset) name:UIMenuControllerWillHideMenuNotification object:nil];
+	
+	// bring up editing menu.
+	UIMenuController *theMenu = [UIMenuController sharedMenuController];
+	theMenu.arrowDirection = UIMenuControllerArrowUp;
+	CGRect myFrame = [[numberlebelP superview] frame];
+	CGRect selectionRect = CGRectMake(holdPoint.x, myFrame.origin.y+50, 0, 0);
+	
+	[numberlebelP setNeedsDisplayInRect:selectionRect];
+	[theMenu setTargetRect:selectionRect inView:numberlebelP];
+	[theMenu setMenuVisible:YES animated:YES];
+	
+	// do a bit of highlighting to clarify what will be copied, specifically
+	//_bgColor = [UIColor greenColor];//[self backgroundColor];
+	//[_bgColor retain];
+	//[self setBackgroundColor:[UIColor blackColor]];
+}
+- (void)reset {
+	//[self setBackgroundColor:_bgColor];
+	// unsubscribe!
+	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+	[center removeObserver:self name:UIMenuControllerWillHideMenuNotification object:nil];
+	
+}
+- (void)copy:(id)sender {
+    //UIPasteboard *gpBoard = [UIPasteboard generalPasteboard];
+	//NSLog(@"SENDER : copied : %@",gpBoard.string);
+	[[UIPasteboard generalPasteboard] setString:numberlebelP.text];
+	//[gpBoard setValue:[self text] forPasteboardType:@"public.utf8-plain-text"];
+}
+
+- (void)paste:(id)sender {
+	UIPasteboard *gpBoard = [UIPasteboard generalPasteboard];
+	//NSLog(@"%@",gpBoard.string);
+	NSString *tempText;
+	tempText =  gpBoard.string;
+	if(tempText != nil)
+	{	
+		statusLabel1P.hidden = YES;
+		statusLabel2P.hidden = YES;
+		[numberlebelP setText:tempText];
+		[[UIPasteboard generalPasteboard] setString:@""];
+	}
+	
+}	
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+	BOOL answer = NO;
+	
+	if (action == @selector(copy:))
+		answer = YES;
+	if (action == @selector(paste:))
+		answer = YES;
+	return answer;
+}
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showMenu) object:nil];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showMenu) object:nil];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showMenu) object:nil];
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	[super touchesBegan:touches withEvent:event];
-//	[self dismissKeyboard:numberFieldP];
+	if ([numberlebelP canBecomeFirstResponder])
+	{
+		[numberlebelP becomeFirstResponder];
+		UITouch *touch = [touches anyObject];
+		holdPoint = [touch locationInView:self.view];
+		//NSLog(@"[%@] touchesBegan (%i,%i)",  [self class],(NSInteger) holdPoint.x, (NSInteger) holdPoint.y);
+		NSInteger y = (NSInteger) holdPoint.y;
+		if(y<75)
+		{	
+			[self performSelector:@selector(showMenu) withObject:nil afterDelay:0.8f];
+		}	
+	}
 	
-}
+	/*	
+	 for (UITouch *touch in [touches allObjects])
+	 {
+	 //	UITouch *touch = [touches anyObject];
+	 //GET THE FINGER LOCATION ON THE SCREEN
+	 CGPoint location = [touch locationInView:self.view];
+	 
+	 //REPORT THE TOUCH
+	 NSLog(@"[%@] touchesBegan (%i,%i)",  [self class],(NSInteger) location.x, (NSInteger) location.y);
+	 
+	 //SEND TOUCH TO THE SURVEYED viewController
+	 [self touchesBegan:touches withEvent:event];  
+	 
+	 }
+	 */	
+}	
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text
 {
 	if(currentView==1)//mean call is on, send dtmp tone
@@ -403,6 +509,8 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	//printf("\n dial view dealloc");
 	//[statusLabelP release];
 	//[numberFieldP release];
+	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+	[center removeObserver:self name:UIMenuControllerWillHideMenuNotification object:nil];
     [super dealloc];
 }
 -(void)setObject:(id) object 
