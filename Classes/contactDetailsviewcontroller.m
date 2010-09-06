@@ -1484,21 +1484,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	
 	return UITableViewCellEditingStyleNone;
 }
-- (void)copy:(id)sender {
-    //UIPasteboard *gpBoard = [UIPasteboard generalPasteboard];
-	//NSLog(@"SENDER : copied : %@",gpBoard.string);
-	[[UIPasteboard generalPasteboard] setString:nil];
-	//[gpBoard setValue:[self text] forPasteboardType:@"public.utf8-plain-text"];
-}
 
-
-- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-	BOOL answer = NO;
-	
-	if (action == @selector(copy:))
-		answer = YES;
-	return answer;
-}
 - (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)newIndexPath
 {
 	
@@ -2254,7 +2240,6 @@ titleForHeaderInSection:(NSInteger)section
 
 - (void)menuControllerWillHide:(NSNotification *)notification {
 	showingEditMenu = NO;
-	[self->tableView deselectRowAtIndexPath:[self->tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)menuControllerWillShow:(NSNotification *)notification {
@@ -2279,11 +2264,22 @@ titleForHeaderInSection:(NSInteger)section
 	}
 }
 
-
 #pragma mark Delegates (CopyableTableViewCell)
 - (void)spoknUITableViewCell:(SpoknUITableViewCell *)spoknUITableViewCell willHighlight:(BOOL)highlighted {
 	if (highlighted)
 		[self performSelector:@selector(showSelectMenuForCell:) withObject:spoknUITableViewCell afterDelay:1.0];
+}
+
+- (void)spoknUITableviewCellCopy
+{
+	NSIndexPath * index = [self->tableView indexPathForSelectedRow];
+	int row = [index row];
+	int section = [index section];
+	char * temp ;
+	temp = sectionArray[section].dataforSection[row].elementP;
+	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+	[pasteboard setString:[NSString stringWithUTF8String:temp]];
+	[self->tableView deselectRowAtIndexPath:[self->tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)dealloc {

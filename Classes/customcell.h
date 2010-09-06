@@ -102,6 +102,7 @@
 @class SpoknUITableViewCell;
 @protocol SpoknUITableViewCellDelegate
 - (void)spoknUITableViewCell:(SpoknUITableViewCell *)spoknUITableViewCell willHighlight:(BOOL)highlighted;
+- (void)spoknUITableviewCellCopy;
 @end
 
 @interface SpoknUITableViewCell : UITableViewCell
