@@ -92,7 +92,9 @@
 @synthesize delegate;
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
 	if (delegate)
+	{	
 		[delegate spoknUITableViewCell:self willHighlight:highlighted];
+	}
 	[super setHighlighted:highlighted animated:animated];
 	spoknSubCellP.selectedVar = highlighted;
 }
@@ -110,8 +112,10 @@
 }
 
 - (void)copy:(id)sender {
-	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-	[pasteboard setString:self.textLabel.text];
+	if (delegate)
+	{	
+		[delegate spoknUITableviewCellCopy];
+	}
 }
 
 -(void) tablecellsetEdit:(int)leditB :(int)needsdisplayB 
