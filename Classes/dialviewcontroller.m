@@ -33,6 +33,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #include "alertmessages.h"
 #import "GEventTracker.h"
+#import "contactlookup.h"
 @implementation UILabel (Clipboard)
 
 - (BOOL) canBecomeFirstResponder
@@ -238,7 +239,7 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 		statusLabel1P.hidden = YES;
 		statusLabel2P.hidden = YES;
 		[numberlebelP setText:tempText];
-		[[UIPasteboard generalPasteboard] setString:@""];
+		//[[UIPasteboard generalPasteboard] setString:@""];
 	}
 	
 }	
@@ -638,11 +639,22 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 			}
 			return;
 		}
+		NSString *text1 = [[numberlebelP text] stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" +_()-.,*#$!<>1234567890"]] ;
+		
+		if(text1!=0 && [text1 length]!=0)
+		{
+			numberlebelP.text = @"";
+			statusLabel1P.hidden = NO;
+			statusLabel2P.hidden = NO;
+			return;
+		}
 		strcpy(lastTypeNo,numbercharP);
 		SetAddressBookDetails(ownerobject.ltpInterfacesP,0,0);
+		
 		if(addcallDelegate==nil)
 		{	
 		
+			
 			if([ownerobject makeCall:numbercharP])
 			{	
 				currentView = 1;

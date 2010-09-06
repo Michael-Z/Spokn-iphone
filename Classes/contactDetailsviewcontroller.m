@@ -2270,16 +2270,18 @@ titleForHeaderInSection:(NSInteger)section
 		[self performSelector:@selector(showSelectMenuForCell:) withObject:spoknUITableViewCell afterDelay:1.0];
 }
 
-- (void)spoknUITableviewCellCopy
+- (NSString*)spoknUITableviewCellCopy
 {
 	NSIndexPath * index = [self->tableView indexPathForSelectedRow];
 	int row = [index row];
 	int section = [index section];
 	char * temp ;
 	temp = sectionArray[section].dataforSection[row].elementP;
-	UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-	[pasteboard setString:[NSString stringWithUTF8String:temp]];
 	[self->tableView deselectRowAtIndexPath:[self->tableView indexPathForSelectedRow] animated:YES];
+	if(temp)
+	return [NSString stringWithUTF8String:temp];
+	return nil;
+	
 }
 
 - (void)dealloc {

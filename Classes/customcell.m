@@ -114,7 +114,14 @@
 - (void)copy:(id)sender {
 	if (delegate)
 	{	
-		[delegate spoknUITableviewCellCopy];
+		NSString *strP;
+		strP = [delegate spoknUITableviewCellCopy];
+		if(strP)
+		{	
+			UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+			[pasteboard setString:strP];
+		}
+
 	}
 }
 

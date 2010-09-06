@@ -26,7 +26,7 @@
 #import "contactDetailsviewcontroller.h"
 #include "ua.h"
 #include "alertmessages.h"
-
+#import "contactlookup.h"
 @implementation AddeditcellController
 
 -(void) shiftToRoot: (id)lrootObject :(Boolean ) rootB
@@ -81,6 +81,26 @@
 						 ];
 				break;
 				*/
+			case UIKeyboardTypeNumberPad:              // A number pad (0-9). Suitable for PIN entry.
+			case UIKeyboardTypePhonePad:
+			{
+				NSString *nsP;
+				nsP = [txtField text];
+				if(nsP)
+				{
+					//NSString *text1 = [text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"_$!<>+1234567890"]];
+					NSString *text1 = [nsP stringByRemovingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" +_()-.,*#$!<>1234567890"]] ;
+					
+					if(text1!=0 && [text1 length]!=0)
+					{
+						return;
+					}
+						
+				
+				}
+				
+			}
+				break;
 			case UIKeyboardTypeEmailAddress:		
 				if([SpoknAppDelegate emailValidate:[txtField text]]==NO)
 				{	
