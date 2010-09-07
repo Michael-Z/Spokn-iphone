@@ -2240,6 +2240,7 @@ titleForHeaderInSection:(NSInteger)section
 
 - (void)menuControllerWillHide:(NSNotification *)notification {
 	showingEditMenu = NO;
+	[self->tableView deselectRowAtIndexPath:[self->tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void)menuControllerWillShow:(NSNotification *)notification {
@@ -2257,7 +2258,8 @@ titleForHeaderInSection:(NSInteger)section
 	{
 		UIMenuController *sharedMenu = [UIMenuController sharedMenuController];
 		[cell becomeFirstResponder];
-		[sharedMenu setTargetRect:cell.frame inView:self.view];
+		sharedMenu.arrowDirection = UIMenuControllerArrowDown;
+ 		[sharedMenu setTargetRect:cell.frame inView:self.view];
 		[sharedMenu setMenuVisible:YES animated:YES];
 		// Select cell so it doesn't become un-highlighted if finger moves off it while showing edit menu
 		[self->tableView selectRowAtIndexPath:[self->tableView indexPathForCell:cell] animated:NO scrollPosition:UITableViewScrollPositionNone];
