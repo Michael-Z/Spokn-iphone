@@ -476,10 +476,51 @@ LtpInterfaceType *	  startLtp(Boolean sipOnB,AlertNotificationCallbackP  alertNo
 	#endif	
 		sip_set_randomVariable(ltpInterfaceP->ltpObjectP,randomVariable);
 		SetAudioTypeLocal((void*)userData,3);
+		
+		//setVpnCallback();
 		return ltpInterfaceP;
 	}
 	return NULL;
 }
+
+int startOpenVpn(LtpInterfaceType *ltpInterfaceP,char *myPath,char *rscpathCharP)
+{
+	#ifdef _OPEN_VPN_
+		char *newFolder; 
+		FILE *fp;
+
+		//myPath = GetPathFunction(0);
+		newFolder = malloc(strlen(myPath)+100);
+		sprintf(newFolder,"%s/Spokn",myPath);
+		CreateDirectoryFunction(0, newFolder);
+		
+		sprintf(newFolder,"%s/Spokn/dev",myPath);
+		CreateDirectoryFunction(0, newFolder);
+		sprintf(newFolder,"%s/Spokn/dev/tun0",myPath);
+		fp = fopen(newFolder,"wb");
+		if(fp)
+		{
+			fclose(fp);
+		}
+		else {
+			return 0;
+		}
+		
+		
+		sprintf(newFolder,"%s/Spokn/net",myPath);
+		CreateDirectoryFunction(0, newFolder);
+		sprintf(newFolder,"%s/Spokn",myPath);
+		setDevPath(newFolder);
+		setVpnCallback(ltpInterfaceP->ltpObjectP,newFolder,rscpathCharP);
+		return 1;
+	
+	#else
+	return 0;
+	#endif
+		
+	
+}
+				 
 int  showErrorOnTimeOut(LtpInterfaceType *ltpInterfaceP)
 {
 	/*if(ltpInterfaceP->valChange==0)

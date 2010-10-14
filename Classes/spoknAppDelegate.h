@@ -211,6 +211,8 @@ typedef struct CallNumberType
 	
 	#endif
 	int ipadOrIpod;
+	Boolean openvpnOn;
+	int openvpnConnect;
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 

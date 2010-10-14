@@ -333,10 +333,16 @@
 		8BAAB29E1042DA1800F3EE73 /* DECODE.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BAAB29D1042DA1800F3EE73 /* DECODE.c */; };
 		8BAD7A741121C07600ABBCC9 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 8BAD7A731121C07600ABBCC9 /* about.html */; };
 		8BAD7A751121C07600ABBCC9 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 8BAD7A731121C07600ABBCC9 /* about.html */; };
+		8BB600481250817500B289F2 /* sandbox-ca.crt in Resources */ = {isa = PBXBuildFile; fileRef = 8BB600451250817500B289F2 /* sandbox-ca.crt */; };
+		8BB600491250817500B289F2 /* sandbox.crt in Resources */ = {isa = PBXBuildFile; fileRef = 8BB600461250817500B289F2 /* sandbox.crt */; };
+		8BB6004A1250817500B289F2 /* sandbox.key in Resources */ = {isa = PBXBuildFile; fileRef = 8BB600471250817500B289F2 /* sandbox.key */; };
 		8BB617F9118ECBEA0039E696 /* conferenceviewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB617F7118ECBEA0039E696 /* conferenceviewcontroller.m */; };
 		8BB617FA118ECBEA0039E696 /* conferenceviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BB617F8118ECBEA0039E696 /* conferenceviewcontroller.xib */; };
 		8BBD86B6107F5222008FD911 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD86B4107F5222008FD911 /* WebViewController.m */; };
 		8BBD86B7107F5222008FD911 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBD86B5107F5222008FD911 /* WebViewController.xib */; };
+		8BC30D4A1251E35D00318061 /* libcrypto_arm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC30D481251E35D00318061 /* libcrypto_arm.a */; };
+		8BC30D4B1251E35D00318061 /* libssl_arm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC30D491251E35D00318061 /* libssl_arm.a */; };
+		8BC30D831251E60B00318061 /* libstaticopenvpnssliphone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC30D821251E60B00318061 /* libstaticopenvpnssliphone.a */; };
 		8BC51C411108633600EC6597 /* spoknaudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC51C401108633600EC6597 /* spoknaudio.m */; };
 		8BC51C421108633600EC6597 /* spoknaudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC51C401108633600EC6597 /* spoknaudio.m */; };
 		8BC51C50110863A200EC6597 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC51C4F110863A200EC6597 /* AVFoundation.framework */; };
@@ -362,6 +368,8 @@
 		8BD0C6151121710600D05D74 /* callblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD0C6131121710600D05D74 /* callblue.png */; };
 		8BD982EC10C400E0002793BE /* callviewcontroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD982EB10C400E0002793BE /* callviewcontroller.xib */; };
 		8BDAED65119199BE00DB14B2 /* 11_declinecall_36_18.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BDAED64119199BE00DB14B2 /* 11_declinecall_36_18.png */; };
+		8BDBC4A2124B729700AFDE78 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDBC4A0124B729700AFDE78 /* libcrypto.a */; };
+		8BDBC4A3124B729700AFDE78 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDBC4A1124B729700AFDE78 /* libssl.a */; };
 		8BDDE49A115B319B00FC4BA3 /* sipandltpwrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BDDE499115B319B00FC4BA3 /* sipandltpwrapper.c */; };
 		8BE3E35C1084D340008CB625 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */; };
 		8BE47B08112BB54D00421DFE /* 280x52-end-call-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BE47B06112BB54D00421DFE /* 280x52-end-call-normal.png */; };
@@ -584,7 +592,6 @@
 		8B8BB8A2115A4CC700A66C75 /* vmsplayrecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vmsplayrecord.h; path = interface/vmsplayrecord.h; sourceTree = "<group>"; };
 		8B8BB8A3115A4CC700A66C75 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = windows.h; path = interface/windows.h; sourceTree = "<group>"; };
 		8B8C9CBA1137A11C00120CF5 /* spoknlogo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spoknlogo57.png; path = rsc/spoknlogo57.png; sourceTree = "<group>"; };
-		8B92FF281234BEDD001B10B2 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDetailsviewcontroller.h; sourceTree = "<group>"; };
 		8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDetailsviewcontroller.m; sourceTree = "<group>"; };
 		8B9302661011EDFA004BDA41 /* contactDetails.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contactDetails.xib; sourceTree = "<group>"; };
@@ -648,12 +655,19 @@
 		8BAAB29D1042DA1800F3EE73 /* DECODE.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = DECODE.c; path = ../lib/gsm/DECODE.c; sourceTree = SOURCE_ROOT; };
 		8BAD7A731121C07600ABBCC9 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
 		8BAF18A511ED92F300B8D31B /* clicktocall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clicktocall.h; sourceTree = "<group>"; };
+		8BB600451250817500B289F2 /* sandbox-ca.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "sandbox-ca.crt"; sourceTree = "<group>"; };
+		8BB600461250817500B289F2 /* sandbox.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sandbox.crt; sourceTree = "<group>"; };
+		8BB600471250817500B289F2 /* sandbox.key */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sandbox.key; sourceTree = "<group>"; };
 		8BB617F6118ECBEA0039E696 /* conferenceviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conferenceviewcontroller.h; sourceTree = "<group>"; };
 		8BB617F7118ECBEA0039E696 /* conferenceviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = conferenceviewcontroller.m; sourceTree = "<group>"; };
 		8BB617F8118ECBEA0039E696 /* conferenceviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = conferenceviewcontroller.xib; sourceTree = "<group>"; };
 		8BBD86B3107F5222008FD911 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		8BBD86B4107F5222008FD911 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8BBD86B5107F5222008FD911 /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		8BC30D481251E35D00318061 /* libcrypto_arm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto_arm.a; path = "../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_armv6/lib/libcrypto_arm.a"; sourceTree = SOURCE_ROOT; };
+		8BC30D491251E35D00318061 /* libssl_arm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl_arm.a; path = "../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_armv6/lib/libssl_arm.a"; sourceTree = SOURCE_ROOT; };
+		8BC30D821251E60B00318061 /* libstaticopenvpnssliphone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libstaticopenvpnssliphone.a; path = "../myvpnlibrary/staticopenvpnssl/build/Release-iphoneos/libstaticopenvpnssliphone.a"; sourceTree = SOURCE_ROOT; };
+		8BC30DAA1251E70500318061 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8BC51C3F1108633600EC6597 /* spoknaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spoknaudio.h; sourceTree = "<group>"; };
 		8BC51C401108633600EC6597 /* spoknaudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = spoknaudio.m; sourceTree = "<group>"; };
 		8BC51C4F110863A200EC6597 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -677,6 +691,8 @@
 		8BD0C6131121710600D05D74 /* callblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = callblue.png; sourceTree = "<group>"; };
 		8BD982EB10C400E0002793BE /* callviewcontroller.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = callviewcontroller.xib; sourceTree = "<group>"; };
 		8BDAED64119199BE00DB14B2 /* 11_declinecall_36_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 11_declinecall_36_18.png; path = "rsc/Spokn buttons n icons/11_declinecall_36_18.png"; sourceTree = "<group>"; };
+		8BDBC4A0124B729700AFDE78 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_i386/lib/libcrypto.a"; sourceTree = SOURCE_ROOT; };
+		8BDBC4A1124B729700AFDE78 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_i386/lib/libssl.a"; sourceTree = SOURCE_ROOT; };
 		8BDDE499115B319B00FC4BA3 /* sipandltpwrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sipandltpwrapper.c; sourceTree = "<group>"; };
 		8BDDE49B115B31A900FC4BA3 /* sipandltpwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sipandltpwrapper.h; sourceTree = "<group>"; };
 		8BE3E35B1084D340008CB625 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -745,6 +761,11 @@
 				8B27D93A11F2FEE00090DCF0 /* libresample-i386-apple-darwin9.a in Frameworks */,
 				8B27D93B11F2FEE00090DCF0 /* libspeex-i386-apple-darwin9.a in Frameworks */,
 				8B27D93C11F2FEE00090DCF0 /* libsrtp-i386-apple-darwin9.a in Frameworks */,
+				8BDBC4A2124B729700AFDE78 /* libcrypto.a in Frameworks */,
+				8BDBC4A3124B729700AFDE78 /* libssl.a in Frameworks */,
+				8BC30D4A1251E35D00318061 /* libcrypto_arm.a in Frameworks */,
+				8BC30D4B1251E35D00318061 /* libssl_arm.a in Frameworks */,
+				8BC30D831251E60B00318061 /* libstaticopenvpnssliphone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,6 +898,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				8BB600441250817500B289F2 /* openvpncertificate */,
+				8BDBC4A0124B729700AFDE78 /* libcrypto.a */,
+				8BDBC4A1124B729700AFDE78 /* libssl.a */,
 				8BEDE4D411BE6CA600F813B0 /* Analytics sdk */,
 				8B6609B410A81B74000F8DAE /* siplib */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -915,7 +939,7 @@
 				32C15BDD1158A9C200689F56 /* child.plist */,
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8B92FF281234BEDD001B10B2 /* Entitlements.plist */,
+				8BC30DAA1251E70500318061 /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1240,6 +1264,20 @@
 			path = rsc/docs;
 			sourceTree = "<group>";
 		};
+		8BB600441250817500B289F2 /* openvpncertificate */ = {
+			isa = PBXGroup;
+			children = (
+				8BC30D821251E60B00318061 /* libstaticopenvpnssliphone.a */,
+				8BC30D481251E35D00318061 /* libcrypto_arm.a */,
+				8BC30D491251E35D00318061 /* libssl_arm.a */,
+				8BB600451250817500B289F2 /* sandbox-ca.crt */,
+				8BB600461250817500B289F2 /* sandbox.crt */,
+				8BB600471250817500B289F2 /* sandbox.key */,
+			);
+			name = openvpncertificate;
+			path = ../lib/openvpncertificate;
+			sourceTree = SOURCE_ROOT;
+		};
 		8BCB1277119994B200F5390D /* Conference_Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1337,7 +1375,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "spokn" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1485,6 +1530,9 @@
 				8BC8912711DCCC3400350111 /* Swap-Calls.png in Resources */,
 				73D7D003120FEDB400E0110C /* clicktocall.xib in Resources */,
 				73D7D05F120FF7D400E0110C /* countrylist.txt in Resources */,
+				8BB600481250817500B289F2 /* sandbox-ca.crt in Resources */,
+				8BB600491250817500B289F2 /* sandbox.crt in Resources */,
+				8BB6004A1250817500B289F2 /* sandbox.key in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1769,6 +1817,10 @@
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_i386/lib\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/build/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_armv6/lib\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/build/Release-iphoneos\"",
 				);
 				PRODUCT_NAME = spokn;
 				PROVISIONING_PROFILE = "46BF5F96-1C2E-4696-9692-8749367F8917";
@@ -1808,10 +1860,14 @@
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_i386/lib\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/build/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_armv6/lib\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/build/Release-iphoneos\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "A4744C40-497B-4B49-BB59-8DE0B4008FA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A4744C40-497B-4B49-BB59-8DE0B4008FA1";
+				PROVISIONING_PROFILE = "9A09DBA0-926D-489C-9DCD-545115C90BA3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A09DBA0-926D-489C-9DCD-545115C90BA3";
 			};
 			name = Release;
 		};
@@ -2097,12 +2153,14 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = 4.2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_i386/include",
+					../myvpnlibrary/staticopenvpnssl/openvpn,
 					../pjproject/third_party/speex/include,
 					../pjproject/pjlib/include,
 					"../pjproject/pjlib-util/include",
@@ -2117,8 +2175,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "46BF5F96-1C2E-4696-9692-8749367F8917";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "46BF5F96-1C2E-4696-9692-8749367F8917";
+				PROVISIONING_PROFILE = "B7E5E96C-78DD-42AA-A150-D3FA8469BF84";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7E5E96C-78DD-42AA-A150-D3FA8469BF84";
 				SDKROOT = iphoneos4.0;
 			};
 			name = Distribution;
@@ -2153,10 +2211,14 @@
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_i386/lib\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/build/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_armv6/lib\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/build/Release-iphoneos\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "46BF5F96-1C2E-4696-9692-8749367F8917";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "46BF5F96-1C2E-4696-9692-8749367F8917";
+				PROVISIONING_PROFILE = "B7E5E96C-78DD-42AA-A150-D3FA8469BF84";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B7E5E96C-78DD-42AA-A150-D3FA8469BF84";
 			};
 			name = Distribution;
 		};
@@ -2224,6 +2286,10 @@
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_i386/lib\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/build/Debug-iphonesimulator\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_armv6/lib\"",
+					"\"$(SRCROOT)/../myvpnlibrary/staticopenvpnssl/build/Release-iphoneos\"",
 				);
 				PRODUCT_NAME = spokn;
 				PROVISIONING_PROFILE = "5DC0C13D-FC66-4E19-B677-824F46BE6D51";
@@ -2278,6 +2344,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					../myvpnlibrary/staticopenvpnssl/openvpn,
+					"../myvpnlibrary/staticopenvpnssl/openssl-1.0.0a/openssl_i386/include",
 					../pjproject/third_party/speex/include,
 					../pjproject/pjlib/include,
 					"../pjproject/pjlib-util/include",
@@ -2291,10 +2359,11 @@
 					"../lib/gsm/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "A4744C40-497B-4B49-BB59-8DE0B4008FA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A4744C40-497B-4B49-BB59-8DE0B4008FA1";
-				SDKROOT = iphoneos4.0;
+				PROVISIONING_PROFILE = "9A09DBA0-926D-489C-9DCD-545115C90BA3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A09DBA0-926D-489C-9DCD-545115C90BA3";
+				SDKROOT = iphoneos4.1;
 			};
 			name = Release;
 		};
