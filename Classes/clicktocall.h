@@ -23,9 +23,13 @@
 	UILabel *labelAparty;
 	UILabel *labelconnectionType;
 	UILabel *number;
+	UILabel *pinNumber;
+	UILabel *countryPin;
 	Boolean modalB;
-	int viewResult;
+	int viewResult1;
+	int viewResult2;
 	char *apartyNoCharP;
+	char *pinNoCharP;
 	UIActionSheet *uiActionSheetgP;
 	UIView *customview;
 	UILabel *text;
@@ -55,5 +59,5 @@
 -(char*) gecallbackNumber;
 -(void)setcallthroughObj:(countrylist *)tempObj;
 -(void)callthroughApiAsynchronous;
-
+-(void)addSimPinNumber;
 @end

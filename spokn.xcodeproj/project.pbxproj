@@ -48,6 +48,7 @@
 		32DF1FD3112EC4D00052C56D /* 132x52-hide-keypad-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */; };
 		32DF1FD4112EC4D00052C56D /* 132x52-hide-keypad-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */; };
 		32EE820410A5B71A00B0BAAD /* contact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE820310A5B71A00B0BAAD /* contact.xib */; };
+		7313B4B01268347700E252F5 /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7313B4AF1268347700E252F5 /* libpj-arm-apple-darwin9.a */; };
 		7322D20D11EDDEF7000583F8 /* libg7221codec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D20611EDDEF7000583F8 /* libg7221codec-arm-apple-darwin9.a */; };
 		7322D20E11EDDEF7000583F8 /* libgsmcodec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D20711EDDEF7000583F8 /* libgsmcodec-arm-apple-darwin9.a */; };
 		7322D20F11EDDEF7000583F8 /* libilbccodec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D20811EDDEF7000583F8 /* libilbccodec-arm-apple-darwin9.a */; };
@@ -55,7 +56,6 @@
 		7322D21111EDDEF7000583F8 /* libresample-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D20A11EDDEF7000583F8 /* libresample-arm-apple-darwin9.a */; };
 		7322D21211EDDEF7000583F8 /* libspeex-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D20B11EDDEF7000583F8 /* libspeex-arm-apple-darwin9.a */; };
 		7322D21311EDDEF7000583F8 /* libsrtp-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D20C11EDDEF7000583F8 /* libsrtp-arm-apple-darwin9.a */; };
-		7322D21511EDDF4B000583F8 /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D21411EDDF4B000583F8 /* libpj-arm-apple-darwin9.a */; };
 		7322D21711EDDF69000583F8 /* libpjlib-util-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D21611EDDF69000583F8 /* libpjlib-util-arm-apple-darwin9.a */; };
 		7322D21C11EDDF85000583F8 /* libpjmedia-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D21811EDDF85000583F8 /* libpjmedia-arm-apple-darwin9.a */; };
 		7322D21D11EDDF85000583F8 /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D21911EDDF85000583F8 /* libpjmedia-audiodev-arm-apple-darwin9.a */; };
@@ -66,11 +66,13 @@
 		7322D22711EDDFD0000583F8 /* libpjsip-simple-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22311EDDFD0000583F8 /* libpjsip-simple-arm-apple-darwin9.a */; };
 		7322D22811EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22411EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a */; };
 		7322D22911EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22511EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a */; };
+		739D257E1259EC94006AB025 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739D257D1259EC94006AB025 /* CoreLocation.framework */; };
 		73B0150D121E7C8100DB8CF0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B0150C121E7C8100DB8CF0 /* Reachability.m */; };
 		73BD60E211EB403C00D4E167 /* clicktocall.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BD60E011EB403B00D4E167 /* clicktocall.m */; };
 		73D7CFD3120FE80100E0110C /* countrylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7CFD2120FE80100E0110C /* countrylist.m */; };
 		73D7D003120FEDB400E0110C /* clicktocall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73D7D002120FEDB400E0110C /* clicktocall.xib */; };
 		73D7D05F120FF7D400E0110C /* countrylist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 73D7D05E120FF7D400E0110C /* countrylist.txt */; };
+		73DA3C30125C9DC000D50643 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DA3C2F125C9DC000D50643 /* MapKit.framework */; };
 		8B140C4211CA1814004ACB15 /* spokn-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B140C4111CA1814004ACB15 /* spokn-Info.plist */; };
 		8B16790D108F36A3004D18C0 /* testingview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B16790A108F36A3004D18C0 /* testingview.xib */; };
 		8B16790E108F36A3004D18C0 /* testingview.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B16790B108F36A3004D18C0 /* testingview.m */; };
@@ -431,6 +433,7 @@
 		32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-normal.png"; path = "rsc/keypad/132x52-hide-keypad-normal.png"; sourceTree = SOURCE_ROOT; };
 		32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-pressed.png"; path = "rsc/keypad/132x52-hide-keypad-pressed.png"; sourceTree = SOURCE_ROOT; };
 		32EE820310A5B71A00B0BAAD /* contact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contact.xib; sourceTree = "<group>"; };
+		7313B4AF1268347700E252F5 /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject-1.8/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D20611EDDEF7000583F8 /* libg7221codec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libg7221codec-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libg7221codec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D20711EDDEF7000583F8 /* libgsmcodec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgsmcodec-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libgsmcodec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D20811EDDEF7000583F8 /* libilbccodec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libilbccodec-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libilbccodec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
@@ -438,7 +441,6 @@
 		7322D20A11EDDEF7000583F8 /* libresample-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libresample-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libresample-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D20B11EDDEF7000583F8 /* libspeex-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libspeex-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libspeex-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D20C11EDDEF7000583F8 /* libsrtp-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsrtp-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libsrtp-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
-		7322D21411EDDF4B000583F8 /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D21611EDDF69000583F8 /* libpjlib-util-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-arm-apple-darwin9.a"; path = "../pjproject/pjlib-util/lib/libpjlib-util-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D21811EDDF85000583F8 /* libpjmedia-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjmedia-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D21911EDDF85000583F8 /* libpjmedia-audiodev-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-arm-apple-darwin9.a"; path = "../pjproject/pjmedia/lib/libpjmedia-audiodev-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
@@ -449,6 +451,7 @@
 		7322D22311EDDFD0000583F8 /* libpjsip-simple-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-simple-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-simple-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D22411EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-ua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D22511EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		739D257D1259EC94006AB025 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		73B0150B121E7C8100DB8CF0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		73B0150C121E7C8100DB8CF0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		73BD60E011EB403B00D4E167 /* clicktocall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = clicktocall.m; sourceTree = "<group>"; };
@@ -456,6 +459,8 @@
 		73D7CFD2120FE80100E0110C /* countrylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countrylist.m; sourceTree = "<group>"; };
 		73D7D002120FEDB400E0110C /* clicktocall.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = clicktocall.xib; sourceTree = "<group>"; };
 		73D7D05E120FF7D400E0110C /* countrylist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countrylist.txt; sourceTree = SOURCE_ROOT; };
+		73DA3C2F125C9DC000D50643 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		73EA2C3D125B732800F30F14 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8B140C4111CA1814004ACB15 /* spokn-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "spokn-Info.plist"; sourceTree = "<group>"; };
 		8B16790A108F36A3004D18C0 /* testingview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = testingview.xib; sourceTree = "<group>"; };
 		8B16790B108F36A3004D18C0 /* testingview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testingview.m; sourceTree = "<group>"; };
@@ -584,7 +589,6 @@
 		8B8BB8A2115A4CC700A66C75 /* vmsplayrecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vmsplayrecord.h; path = interface/vmsplayrecord.h; sourceTree = "<group>"; };
 		8B8BB8A3115A4CC700A66C75 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = windows.h; path = interface/windows.h; sourceTree = "<group>"; };
 		8B8C9CBA1137A11C00120CF5 /* spoknlogo57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spoknlogo57.png; path = rsc/spoknlogo57.png; sourceTree = "<group>"; };
-		8B92FF281234BEDD001B10B2 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8B9302641011EDFA004BDA41 /* contactDetailsviewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contactDetailsviewcontroller.h; sourceTree = "<group>"; };
 		8B9302651011EDFA004BDA41 /* contactDetailsviewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contactDetailsviewcontroller.m; sourceTree = "<group>"; };
 		8B9302661011EDFA004BDA41 /* contactDetails.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contactDetails.xib; sourceTree = "<group>"; };
@@ -717,7 +721,6 @@
 				7322D21111EDDEF7000583F8 /* libresample-arm-apple-darwin9.a in Frameworks */,
 				7322D21211EDDEF7000583F8 /* libspeex-arm-apple-darwin9.a in Frameworks */,
 				7322D21311EDDEF7000583F8 /* libsrtp-arm-apple-darwin9.a in Frameworks */,
-				7322D21511EDDF4B000583F8 /* libpj-arm-apple-darwin9.a in Frameworks */,
 				7322D21711EDDF69000583F8 /* libpjlib-util-arm-apple-darwin9.a in Frameworks */,
 				7322D21C11EDDF85000583F8 /* libpjmedia-arm-apple-darwin9.a in Frameworks */,
 				7322D21D11EDDF85000583F8 /* libpjmedia-audiodev-arm-apple-darwin9.a in Frameworks */,
@@ -745,6 +748,9 @@
 				8B27D93A11F2FEE00090DCF0 /* libresample-i386-apple-darwin9.a in Frameworks */,
 				8B27D93B11F2FEE00090DCF0 /* libspeex-i386-apple-darwin9.a in Frameworks */,
 				8B27D93C11F2FEE00090DCF0 /* libsrtp-i386-apple-darwin9.a in Frameworks */,
+				739D257E1259EC94006AB025 /* CoreLocation.framework in Frameworks */,
+				73DA3C30125C9DC000D50643 /* MapKit.framework in Frameworks */,
+				7313B4B01268347700E252F5 /* libpj-arm-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,10 +918,10 @@
 				8BAD7A721121C07600ABBCC9 /* docs */,
 				8B1AE7221120625600A957EA /* spoknbuttonicon */,
 				322FEC6B10EB22AA0086D15B /* Settings.bundle */,
+				73EA2C3D125B732800F30F14 /* Entitlements.plist */,
 				32C15BDD1158A9C200689F56 /* child.plist */,
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8B92FF281234BEDD001B10B2 /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -923,6 +929,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				739D257D1259EC94006AB025 /* CoreLocation.framework */,
 				8B788A1B115B49C200B9D5E7 /* libsqlite3.dylib */,
 				8B788A17115B48A700B9D5E7 /* CFNetwork.framework */,
 				8BC51C4F110863A200EC6597 /* AVFoundation.framework */,
@@ -933,6 +940,7 @@
 				8B9303A51011F11B004BDA41 /* AudioToolbox.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				73DA3C2F125C9DC000D50643 /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1099,6 +1107,7 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
+				7313B4AF1268347700E252F5 /* libpj-arm-apple-darwin9.a */,
 				8B27D93111F2FEE00090DCF0 /* libg7221codec-i386-apple-darwin9.a */,
 				8B27D93211F2FEE00090DCF0 /* libgsmcodec-i386-apple-darwin9.a */,
 				8B27D93311F2FEE00090DCF0 /* libmilenage-i386-apple-darwin9.a */,
@@ -1126,7 +1135,6 @@
 				7322D21A11EDDF85000583F8 /* libpjmedia-codec-arm-apple-darwin9.a */,
 				7322D21B11EDDF85000583F8 /* libpjsdp-arm-apple-darwin9.a */,
 				7322D21611EDDF69000583F8 /* libpjlib-util-arm-apple-darwin9.a */,
-				7322D21411EDDF4B000583F8 /* libpj-arm-apple-darwin9.a */,
 				7322D20611EDDEF7000583F8 /* libg7221codec-arm-apple-darwin9.a */,
 				7322D20711EDDEF7000583F8 /* libgsmcodec-arm-apple-darwin9.a */,
 				7322D20811EDDEF7000583F8 /* libilbccodec-arm-apple-darwin9.a */,
@@ -1337,7 +1345,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "spokn" */;
 			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1739,7 +1754,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = NO;
@@ -1782,7 +1797,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				COPY_PHASE_STRIP = YES;
@@ -1810,8 +1825,8 @@
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
 				);
 				PRODUCT_NAME = spokn;
-				PROVISIONING_PROFILE = "A4744C40-497B-4B49-BB59-8DE0B4008FA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A4744C40-497B-4B49-BB59-8DE0B4008FA1";
+				PROVISIONING_PROFILE = "9A09DBA0-926D-489C-9DCD-545115C90BA3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A09DBA0-926D-489C-9DCD-545115C90BA3";
 			};
 			name = Release;
 		};
@@ -2127,7 +2142,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
@@ -2190,7 +2205,7 @@
 				PREBINDING = NO;
 				PROVISIONING_PROFILE = "5DC0C13D-FC66-4E19-B677-824F46BE6D51";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5DC0C13D-FC66-4E19-B677-824F46BE6D51";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphonesimulator4.1;
 			};
 			name = AppStore;
 		};
@@ -2198,7 +2213,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
@@ -2292,9 +2307,9 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "A4744C40-497B-4B49-BB59-8DE0B4008FA1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A4744C40-497B-4B49-BB59-8DE0B4008FA1";
-				SDKROOT = iphoneos4.0;
+				PROVISIONING_PROFILE = "9A09DBA0-926D-489C-9DCD-545115C90BA3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9A09DBA0-926D-489C-9DCD-545115C90BA3";
+				SDKROOT = iphoneos4.1;
 			};
 			name = Release;
 		};

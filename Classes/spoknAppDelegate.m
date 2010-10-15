@@ -94,6 +94,7 @@
 @synthesize onLogB;
 @synthesize osversionDouble;
 @synthesize onoffSip;
+@synthesize locationManager;
 #ifdef _CALL_THROUGH_
 
 @synthesize onlyCallThrough;
@@ -2722,7 +2723,19 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	 
 	 */
 	
-	
+	self.locationManager = [[CLLocationManager alloc] init];
+	if (locationManager.locationServicesEnabled == NO)
+	{
+        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" message:@"You currently have all location services for this device disabled. If you proceed, you will be asked to confirm whether location services should be reenabled." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [servicesDisabledAlert show];
+        [servicesDisabledAlert release];
+    }
+	self.locationManager.delegate = self; // Tells the location manager to send updates to this object
+	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+	[locationManager startUpdatingLocation];
+	[self performSelector:@selector(stopUpdatingCoreLocation:) withObject:@"Timed Out" afterDelay:180];
+	[locationManager release]; 
+
 	[[UIApplication sharedApplication] setIdleTimerDisabled:NO];
 	//[[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
@@ -2740,7 +2753,97 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		[self applicationInit:application];
 			
 }
-	-(void)registerUnregisterOriantation:(BOOL)registerB
+#pragma mark Core Location methods
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation 
+{
+	NSLog(@"\n\nNEW:%@\n\n", [newLocation description]);
+	NSLog(@"location x:%lf, y:%lf", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+//	NSLog(@"\n%@\n", newLocation.altitude);
+//	NSLog(@"\n%@\n", newLocation.course);
+//	NSLog(@"\n%@\n", newLocation.horizontalAccuracy);
+//	NSLog(@"\n%@\n", newLocation.isAccessibilityElement);
+//	NSLog(@"\n%@\n", newLocation.speed);
+//	NSLog(@"\n%@\n", newLocation.timestamp);
+//	NSLog(@"\n%@\n", newLocation.verticalAccuracy);
+	//if(newLocation.coordinate.latitude && newLocation.coordinate.longitude){
+	geoCoder=[[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
+	geoCoder.delegate = self;
+	[geoCoder start];
+	//}
+}
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error
+{
+	NSLog(@"Reverse Geocoder Errored");
+	
+}
+
+- (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
+{
+	//mPlacemark = placemark;
+	MKPlacemark *myPlacemark = placemark;
+	//citta.text = [placemark locality];
+	//NSLog(@"%@", [placemark locality]);
+	NSLog(@"\n\n\n\n");
+	NSLog(@"country:%@", placemark.country);
+	NSLog(@"countryCode:%@", placemark.countryCode);
+	NSLog(@"locality:%@", placemark.locality);
+	NSLog(@"postalCode:%@", placemark.postalCode);
+	NSLog(@"subLocality:%@", placemark.subLocality);
+	NSLog(@"subAdministrativeArea:%@", placemark.subAdministrativeArea);
+	NSLog(@"subThoroughfare:%@", placemark.subThoroughfare);
+	NSLog(@"thoroughfare:%@", placemark.thoroughfare);
+	NSLog(@"\n\n\n\n");
+
+
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
+{
+	NSLog(@"Error: %@", [error description]);
+	
+//	kCLErrorLocationUnknown  = 0,         // location is currently unknown, but CL will keep trying
+//	kCLErrorDenied,                       // CL access has been denied (eg, user declined location use)
+//	kCLErrorNetwork,                      // general, network-related error
+//	kCLErrorHeadingFailure,               // heading could not be determined
+//	kCLErrorRegionMonitoringDenied,       // Location region monitoring has been denied by the user
+//	kCLErrorRegionMonitoringFailure,      // A registered region cannot be monitored
+//	kCLErrorRegionMonitoringSetupDelayed  // CL could not immediately initialize region monitoring
+	
+	switch ([error code])
+	{
+		case kCLErrorDenied:
+			//[errorString appendFormat:@"%@\n", NSLocalizedString(@"LocationDenied", nil)];
+			break;
+			
+			
+		case kCLErrorLocationUnknown:
+			//[errorString appendFormat:@"%@\n", NSLocalizedString(@"LocationUnknown", nil)];
+			//[self stopUpdatingCoreLocation:nil];
+			break;
+			
+		case kCLErrorNetwork:
+			//[errorString appendFormat:@"%@\n", NSLocalizedString(@"LocationUnknown", nil)];
+			break;
+		
+		case kCLErrorHeadingFailure:
+			//[errorString appendFormat:@"%@\n", NSLocalizedString(@"LocationUnknown", nil)];
+			break;
+			
+		default:
+			//[errorString appendFormat:@"%@ %d\n", NSLocalizedString(@"GenericLocationError", nil), [error code]];
+			break;
+	}
+}
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
+	NSLog(@"did update heading %@", [newHeading description]);
+}
+- (void)stopUpdatingCoreLocation:(NSString *)state
+{
+	[locationManager stopUpdatingLocation];
+	locationManager.delegate = nil;	
+}
+
+-(void)registerUnregisterOriantation:(BOOL)registerB
 {
 	UIDevice *device = [UIDevice currentDevice];
 	prioximityB = 0;

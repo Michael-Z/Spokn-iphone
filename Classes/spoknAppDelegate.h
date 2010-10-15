@@ -22,6 +22,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #include "ltptimer.h"
 #include "LtpInterface.h"
 
@@ -99,7 +100,7 @@ typedef struct CallNumberType
 
 
 @class IncommingCallViewController;
-@interface SpoknAppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate,UIActionSheetDelegate,clicktocallProtocol> {
+@interface SpoknAppDelegate : NSObject <MKReverseGeocoderDelegate,MKMapViewDelegate,CLLocationManagerDelegate,UIApplicationDelegate,UITabBarControllerDelegate,UIActionSheetDelegate,clicktocallProtocol> {
   //  @public
 	UIWindow *window;
 	
@@ -211,6 +212,10 @@ typedef struct CallNumberType
 	
 	#endif
 	int ipadOrIpod;
+	CLLocationManager *locationManager;
+	MKReverseGeocoder *geoCoder;
+	MKPlacemark *mPlacemark;
+	
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 
@@ -273,8 +278,9 @@ typedef struct CallNumberType
 @property(nonatomic,assign)Boolean inbackgroundModeB;
 @property(nonatomic,assign)int onLogB;
 @property(nonatomic,assign)int onoffSip;
-
 @property(nonatomic,assign)double osversionDouble;
+@property (nonatomic, retain) CLLocationManager *locationManager;  
+
 //@property (nonatomic, retain) IBOutlet spoknviewcontroller *viewController;
 //add delegate
 -(void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController;
@@ -332,6 +338,7 @@ changed:(BOOL)changed;
 -(void) enableLog;
 -(Boolean)makeSipCallOrCallBack:(char *)noCharP callType:(int) loutCallType;
 -(void)setcallthroughData:(id)objectP;
+- (void)stopUpdatingCoreLocation:(NSString *)state;
 #ifdef G4_DEFINE	
 #ifdef __IPHONE_4_0	
 - (void)sendIncommingPushNotification:(NSString*)msgStringP;

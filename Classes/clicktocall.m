@@ -23,20 +23,30 @@
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
 		
-		CGRect LabelFrame1 = CGRectMake(20, 6, 117, ROW_HEIGHT-5);
+		CGRect LabelFrame1 = CGRectMake(20, 6, 117, ROW_HEIGHT-10);
 		labelconnectionType = [[UILabel alloc] initWithFrame:LabelFrame1];
 		labelconnectionType.textAlignment = UITextAlignmentLeft;
 		labelconnectionType.tag = 1;
 		
-		CGRect LabelFrame3 = CGRectMake(20, 6, 117, ROW_HEIGHT-5);
+		CGRect LabelFrame3 = CGRectMake(20, 6, 117, ROW_HEIGHT-10);
 		number = [[UILabel alloc] initWithFrame:LabelFrame3];
 		number.textAlignment = UITextAlignmentLeft;
 		number.tag = 3;
 		
-		CGRect LabelFrame2 = CGRectMake(160, 6, 117, ROW_HEIGHT-5);
+		CGRect LabelFrame2 = CGRectMake(160, 6, 117, ROW_HEIGHT-10);
 		labelAparty = [[UILabel alloc] initWithFrame:LabelFrame2];
 		labelAparty.textAlignment = UITextAlignmentRight;
 		labelAparty.tag = 2;
+		
+		CGRect LabelFrame4 = CGRectMake(20, 6, 117, ROW_HEIGHT-10);
+		countryPin = [[UILabel alloc] initWithFrame:LabelFrame4];
+		countryPin.textAlignment = UITextAlignmentLeft;
+		countryPin.tag = 4;
+		
+		CGRect LabelFrame5 = CGRectMake(160, 6, 117, ROW_HEIGHT-10);
+		pinNumber = [[UILabel alloc] initWithFrame:LabelFrame5];
+		pinNumber.textAlignment = UITextAlignmentRight;
+		pinNumber.tag = 5;
 		
 
     }
@@ -424,7 +434,7 @@
 	AddeditcellControllerviewP = [[AddeditcellController alloc]init];
 	[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :NUMBER_RANGE buttonType:1];
 	[AddeditcellControllerviewP setObject:self->ownerobject];
-	viewResult = 0;
+	viewResult1 = 0;
 	char *apartyCharP;
 	apartyCharP = (char*)[[labelAparty text] cStringUsingEncoding:NSUTF8StringEncoding];
 	if(apartyCharP)
@@ -432,7 +442,29 @@
 		strcpy(apartyNoCharP,apartyCharP);
 	}
 	
-	[AddeditcellControllerviewP setData:apartyNoCharP value:"Enter forward number." placeHolder:"Number" title:"Aparty" returnValue:&viewResult];
+	[AddeditcellControllerviewP setData:apartyNoCharP value:"Enter forward number." placeHolder:"Number" title:"Aparty" returnValue:&viewResult1];
+	
+	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
+	
+	[AddeditcellControllerviewP release];
+}
+
+
+-(void)addSimPinNumber
+{
+	AddeditcellController     *AddeditcellControllerviewP;	
+	AddeditcellControllerviewP = [[AddeditcellController alloc]init];
+	[AddeditcellControllerviewP SetkeyBoardType:UIKeyboardTypePhonePad :NUMBER_RANGE buttonType:1];
+	[AddeditcellControllerviewP setObject:self->ownerobject];
+	viewResult2 = 0;
+	char *pinCharP;
+	pinCharP = (char*)[[pinNumber text] cStringUsingEncoding:NSUTF8StringEncoding];
+	if(pinCharP)
+	{
+		strcpy(pinNoCharP,pinCharP);
+	}
+	
+	[AddeditcellControllerviewP setData:pinNoCharP value:"Enter country code." placeHolder:"Number" title:"Pin" returnValue:&viewResult2];
 	
 	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
 	
@@ -451,7 +483,9 @@
 	pickerView.dataSource = self;
 	apartyNoCharP = malloc(100);
 	memset(apartyNoCharP,0,100);
-	sectionHeaders = [[NSMutableArray alloc] initWithObjects:@"Protocol",@"Callback Number",@"Choose Call-through line of:",nil];
+	pinNoCharP = malloc(100);
+	memset(pinNoCharP,0,100);
+	sectionHeaders = [[NSMutableArray alloc] initWithObjects:@"Protocol",@"Callback Number",@"SIM Country Code",@"Choose Call-through line of:",nil];
 	
 	
 	if(modalB)
@@ -482,7 +516,7 @@
 {  
 	[super viewWillAppear:animated];
 	char *newNoP;
-	if(viewResult)
+	if(viewResult1)
 	{
 		if(strlen(apartyNoCharP)==0)
 		{
@@ -513,7 +547,41 @@
 			[tableView reloadData];
 		}
 	}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	char *newNoPin;
+	if(viewResult2)
+	{
+		if(strlen(pinNoCharP)==0)
+		{
+			newNoPin = NormalizeNumber(pinNoCharP,1);
+			[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:newNoPin] forKey:@"pinnumber"]; 
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			free(newNoPin);
+		}
+	}
+	if(strlen(pinNoCharP)>0)
+	{
+		NSString *stringStrP;
+		newNoPin = NormalizeNumber(pinNoCharP,1);
+		[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:newNoPin] forKey:@"pinnumber"]; 
+		[[NSUserDefaults standardUserDefaults] synchronize];
+		stringStrP = [[NSString alloc] initWithUTF8String:newNoPin];
+		[pinNumber setText:stringStrP];
+		[stringStrP release];
+		free(newNoPin);
+	}
+	else 
+	{
+		NSString *nsP;
+		nsP = [[NSUserDefaults standardUserDefaults] stringForKey:@"pinnumber"];
+		if(nsP)
+		{
+			[pinNumber setText:nsP];
+			[tableView reloadData];
+		}
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	if(protocolType)
 	{	[[NSUserDefaults standardUserDefaults] setInteger:protocolType  forKey:@"protocoltypeIndex"];
 		[[NSUserDefaults standardUserDefaults] synchronize];
@@ -571,6 +639,10 @@
 	{	
 		free(apartyNoCharP);
 	}
+	if(pinNoCharP)
+	{
+		free(pinNoCharP);
+	}	
 	[arrayCountries release];
 }
 #pragma mark Actionsheet methods
@@ -654,7 +726,11 @@
 
 #pragma mark Table view methods
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30.0f;
+    return 25.0f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+	return 0.0f;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -668,10 +744,10 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (pickerView.hidden==TRUE) {
-		return 2;
+		return 3;
 	}
 	else {
-		return 3;
+		return 4;
 	}
 }
 
@@ -682,11 +758,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSInteger section = [indexPath section];
-	if (section ==2) {
+	if (section ==3) {
 		return -5;
 	}
 	else {
-		return 50;
+		return 40;
 	}
 	
 }
@@ -727,6 +803,19 @@
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			
 		}
+		if(section==2 && row==0 )
+		{
+			templabel = countryPin;
+			templabel.textColor = SPOKNCOLOR;
+			templabel.text = @"Code";
+			[cell addSubview:templabel];
+			
+			templabel = pinNumber;
+			templabel.textColor = SPOKNCOLOR;
+			[cell addSubview:templabel];
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			
+		}	
 	}	
 	else
 	{
@@ -753,6 +842,10 @@
 	if(section==1 && row==0)
 	{
 		[self addCallbacknumber];
+	}
+	if(section==2 && row==0)
+	{
+		[self addSimPinNumber];
 	}
 	[ltableView deselectRowAtIndexPath : indexPath animated:YES];
 }
