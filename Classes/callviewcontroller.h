@@ -49,6 +49,9 @@
 	IBOutlet UIButton  *bluetoothbuttonP;
 	IBOutlet UIButton  *holdButtonP;
 	IBOutlet UIButton  *addcallButtonP;
+	
+	IBOutlet UIView    *messageviewMenuP;
+	IBOutlet UIButton  *messageTextP;
 
 	
 	UILabel    *name1LabelP;
@@ -86,6 +89,7 @@
 	//IBOutlet UIButton *testP;
 
 	int gchildWillDie;
+	int showMessage;
 }
 -(void)setObject:(id) object ;
 -(void)setParentObject:(id) object ;
@@ -125,4 +129,5 @@
 -(void) addTempId;
 -(void) dismisscontroller:(int)parentB;
 -(int)childWillDie;
+-(void)showMessage;
 @end

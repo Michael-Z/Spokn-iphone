@@ -2783,17 +2783,17 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	MKPlacemark *myPlacemark = placemark;
 	//citta.text = [placemark locality];
 	//NSLog(@"%@", [placemark locality]);
-	NSLog(@"\n\n\n\n");
 	NSLog(@"country:%@", placemark.country);
 	NSLog(@"countryCode:%@", placemark.countryCode);
+	[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:placemark.country] forKey:@"Timestamp"]; 
+	[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:placemark.countryCode] forKey:@"Timestamp"]; 
+	[[NSUserDefaults standardUserDefaults] synchronize];
 	NSLog(@"locality:%@", placemark.locality);
 	NSLog(@"postalCode:%@", placemark.postalCode);
 	NSLog(@"subLocality:%@", placemark.subLocality);
 	NSLog(@"subAdministrativeArea:%@", placemark.subAdministrativeArea);
 	NSLog(@"subThoroughfare:%@", placemark.subThoroughfare);
 	NSLog(@"thoroughfare:%@", placemark.thoroughfare);
-	NSLog(@"\n\n\n\n");
-
 
 }
 

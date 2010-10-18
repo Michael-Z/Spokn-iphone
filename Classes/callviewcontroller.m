@@ -330,6 +330,40 @@ CallViewController *globalCallViewControllerP;
 {
 	self->parentObjectDelegate = object;
 }
+-(void)showMessage
+{
+	if(showMessage)
+	{	
+		self->messageTextP.hidden = YES;
+	}
+	else {
+		self->messageTextP.hidden = NO;
+//		[UIView beginAnimations:nil context:NULL];
+//		[UIView setAnimationDuration:3.0];
+//		
+//		[UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight
+//							   forView:self->messageTextP  cache:YES];
+//		
+//		[UIView commitAnimations];
+//		self->messageTextP.hidden = YES;
+		
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:1.0];
+		[UIView setAnimationDelegate:self];
+		[UIView setAnimationDidStopSelector:@selector(fadeOut:finished:context:)];
+		messageTextP.alpha = 1.0;
+		[UIView commitAnimations];
+		
+	}
+}
+
+-(void)fadeOut:(NSString*)animationID finished:(BOOL)finished context:(void*)context
+{
+	[UIView beginAnimations:nil context:context];
+	[UIView setAnimationDuration:10.0];
+	messageTextP.alpha = 0.0;
+	[UIView commitAnimations];
+}
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
@@ -360,13 +394,17 @@ CallViewController *globalCallViewControllerP;
 		int incommingLineID = [ownerobject getIncommingLineID];
 		if(incommingLineID>=0)
 		{
+			//Means Incoming Call 
 			[callManagmentP addCall:incommingLineID :labelStrP :labeltypeStrP];
 			[callManagmentP callStart:incommingLineID];
+			showMessage = 1;
 		}
 		llineID = alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
 		if(llineID>=0 && incommingLineID <0)
 		{	
+			//Means Outgoing Call 
 			[callManagmentP addCall:llineID :labelStrP :labeltypeStrP];
+			showMessage = 0;
 		}
 		[tableView reloadData];
 		firstTimeB = 0;
@@ -406,7 +444,9 @@ CallViewController *globalCallViewControllerP;
 				
 		
 		}
-	}	
+	}
+	[self showMessage];
+
 	if(refreshViewB)
 	{
 		[self updateTableSubView:NO];
@@ -648,7 +688,6 @@ CallViewController *globalCallViewControllerP;
 		
 	}
 		
-	 
 }
 -(void) startTimer:(int) llineID
 {

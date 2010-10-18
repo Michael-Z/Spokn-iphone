@@ -216,6 +216,10 @@ typedef struct CallNumberType
 	MKReverseGeocoder *geoCoder;
 	MKPlacemark *mPlacemark;
 	
+	NSString *presentCountry;
+	NSString *presentCountryCode;
+
+	
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 
