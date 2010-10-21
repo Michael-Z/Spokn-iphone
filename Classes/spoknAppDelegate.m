@@ -64,6 +64,60 @@
 }
 @end
 
+@implementation countrycodelist
+@synthesize code;
+@synthesize name;
+@synthesize prefix;
+
+-(id) init
+{
+	return [super init];
+}
+- (void) dealloc
+{
+	[code release];
+	[name release];
+	[prefix release];
+	[super dealloc];
+}
+
+@end
+
+
+@implementation geolocationData
+
+@synthesize country;
+@synthesize countryCode;
+@synthesize locality;
+@synthesize postalCode;
+@synthesize subLocality;
+@synthesize subAdministrativeArea;
+@synthesize subThoroughfare;
+@synthesize thoroughfare;
+
+-(id) init
+{
+	return [super init];
+}
+- (void) dealloc
+{
+	[country release];
+	[countryCode release];
+	[locality release];
+	[postalCode release];
+	[subLocality release];
+	[subAdministrativeArea release];
+	[subThoroughfare release];
+	[thoroughfare release];
+	[super dealloc];
+}
+
+@end
+
+
+
+
+
 @implementation SpoknAppDelegate
 /*
 @synthesize window;
@@ -1002,7 +1056,7 @@ void getProp()
 			break;
 		case ALERT_ONLINE://login
 			#ifdef _CALL_THROUGH_
-					self->onlyCallThrough = 0;
+					self->onlyCallThrough = 0;  //Means sip,callback,callthrough all are supported
 			#endif
 			stopCircularRingB = 1;
 			[UIApplication sharedApplication] .networkActivityIndicatorVisible = NO;
@@ -1122,8 +1176,8 @@ void getProp()
 								
 							}	
 						#ifdef _CALL_THROUGH_
-							self->onlyCallThrough = 1;
-							[self updateSpoknView:0];
+							self->onlyCallThrough = 1;    //Means only call-through is supported
+							[self updateSpoknView:0];    
 						#endif
 
 							break;
@@ -2265,6 +2319,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	//[ window addSubview: viewController->passwordP ];
 	prvCtlP = 0;	
 	wifiavailable = NO;
+	gprsavailable = NO;
 	urlSendP = nil;
 	//char *userNameCharP;
 	//char *passwordCharP;
@@ -2733,7 +2788,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	self.locationManager.delegate = self; // Tells the location manager to send updates to this object
 	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	[locationManager startUpdatingLocation];
-	[self performSelector:@selector(stopUpdatingCoreLocation:) withObject:@"Timed Out" afterDelay:180];
+	[self performSelector:@selector(stopUpdatingCoreLocation:) withObject:@"Timed Out" afterDelay:10];
 	[locationManager release]; 
 
 	[[UIApplication sharedApplication] setIdleTimerDisabled:NO];
@@ -2779,22 +2834,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark
 {
-	//mPlacemark = placemark;
-	MKPlacemark *myPlacemark = placemark;
-	//citta.text = [placemark locality];
-	//NSLog(@"%@", [placemark locality]);
-	NSLog(@"country:%@", placemark.country);
-	NSLog(@"countryCode:%@", placemark.countryCode);
-	[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:placemark.country] forKey:@"Timestamp"]; 
-	[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithString:placemark.countryCode] forKey:@"Timestamp"]; 
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	NSLog(@"locality:%@", placemark.locality);
-	NSLog(@"postalCode:%@", placemark.postalCode);
-	NSLog(@"subLocality:%@", placemark.subLocality);
-	NSLog(@"subAdministrativeArea:%@", placemark.subAdministrativeArea);
-	NSLog(@"subThoroughfare:%@", placemark.subThoroughfare);
-	NSLog(@"thoroughfare:%@", placemark.thoroughfare);
-
+	myPlacemark = placemark;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
@@ -2841,6 +2881,23 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 	[locationManager stopUpdatingLocation];
 	locationManager.delegate = nil;	
+	NSLog(@"\n\n\n\n\n");
+	NSLog(@"country:%@", myPlacemark.country);
+	NSLog(@"countryCode:%@", myPlacemark.countryCode);
+	NSLog(@"locality:%@", myPlacemark.locality);
+	NSLog(@"postalCode:%@", myPlacemark.postalCode);
+	NSLog(@"subLocality:%@", myPlacemark.subLocality);
+	NSLog(@"subAdministrativeArea:%@", myPlacemark.subAdministrativeArea);
+	NSLog(@"subThoroughfare:%@", myPlacemark.subThoroughfare);
+	NSLog(@"thoroughfare:%@", myPlacemark.thoroughfare);
+	NSLog(@"\n\n\n\n\n");
+	
+	
+	geodataP = [[geolocationData alloc] init];
+	geodataP.country = myPlacemark.country;
+	geodataP.countryCode = myPlacemark.countryCode;
+	
+	//NSLog(@"country:%@ countryCode:%@",geodataP.country, geodataP.countryCode);
 }
 
 -(void)registerUnregisterOriantation:(BOOL)registerB
@@ -2983,12 +3040,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 					outCallType = tmpN;
 					
 				}	break;
-
-					
-			
 			}
-			
-		
 		}
 }	
 /*
@@ -3028,6 +3080,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 -(void)logOut:(Boolean) clearAllB
 {
+	[arrayCountries release];
 	animation = 1;
 	//popup all tab
 	if(clearAllB)
@@ -3056,6 +3109,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 -(void)endApplication:(UIApplication *)application
 	{
 		
+		[arrayCountries release];
 		int count;
 		if(self->endAppB)
 			return;
@@ -3461,6 +3515,107 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	return returnCharP;
 		
 }
+-(void) checkforRoaming
+{
+	NSString *xmlDataFromChannelSchemes;
+	NSError *fileError = 0;
+	
+	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"countrycodelist" ofType:@"txt"];
+	NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:&fileError];
+	if(fileError)
+	{
+		fileContents = @"";
+	}	
+	xmlDataFromChannelSchemes = [[NSString alloc] initWithString:fileContents];
+	
+	if(xmlDataFromChannelSchemes)
+	{	
+		xmlDataFromChannelSchemes = [[NSString alloc] initWithString:fileContents];
+		//NSLog(@"%@",xmlDataFromChannelSchemes);
+		NSData *xmlDataInNSData = [xmlDataFromChannelSchemes dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+		myxmlParser = [[NSXMLParser alloc] initWithData:xmlDataInNSData];
+		myxmlParser.delegate = self;
+		[myxmlParser parse];
+		//NSLog(@"Error: %@", [myxmlParser.parserError localizedDescription]);
+		[myxmlParser release];
+		[xmlDataFromChannelSchemes release];
+	
+	}	
+	
+	NSString * tempPrefix;
+	tempPrefix = [[NSUserDefaults standardUserDefaults] stringForKey:@"prefix"];
+	//NSLog(@"%@",tempPrefix);
+	
+	countrycodelist *tempCountrycodelistP;
+	NSEnumerator * enumerator = [arrayCountries objectEnumerator];
+	
+	while(tempCountrycodelistP = [enumerator nextObject])
+	{
+		//NSLog(@"%@-%@-%@",tempCountrycodelistP.name,tempCountrycodelistP.code,tempCountrycodelistP.prefix);
+		//NSLog(@"\n%@",tempCountrycodelistP.prefix);
+		if([tempCountrycodelistP.prefix isEqualToString:tempPrefix])
+		{
+			callthroughSupported = 1; //means it is supported
+			printf("\ncallthroughSupported = %d\n",callthroughSupported);
+			if([geodataP.countryCode isEqualToString:tempCountrycodelistP.code])
+			{
+				//he is not in roaming
+				roaming = 0;
+				NSLog(@"local");
+			}
+			else {
+				//he is in roaming
+				roaming = 1;
+				NSLog(@"roaming");
+			}
+			break;
+		}
+	}
+	if(callthroughSupported != 1)
+	{
+		callthroughSupported = 0; //means it is NOT supported
+		printf("\ncallthroughSupported = %d\n",callthroughSupported);
+	}	
+}
+#pragma mark xmlParser methods
+/* Called when the parser runs into an open tag (<tag>) */ 
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName 	attributes:(NSDictionary *)attributeDict 
+{
+	if([elementName isEqualToString:@"spokn"])
+	{
+		arrayCountries = [[NSMutableArray alloc] init];
+	}
+	else if([elementName isEqualToString:@"country"])
+	{
+		countrycodelistP = [[countrycodelist alloc] init];
+		countrycodelistP.name = [attributeDict objectForKey:@"name"];			
+		countrycodelistP.code = [attributeDict objectForKey:@"code"];
+		countrycodelistP.prefix = [attributeDict objectForKey:@"prefix"];
+		//NSLog(@"\nname: %@ code: %@  prefix: %@\n", countrycodelistP.name, countrycodelistP.code,countrycodelistP.prefix);
+	}
+}
+
+
+/* Called when the parser runs into a close tag (</tag>). */
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName 
+{
+	if([elementName isEqualToString:@"spokn"])
+	{
+		NSSortDescriptor *alphaDesc = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES selector:@selector(compare:)];
+		[arrayCountries sortUsingDescriptors:[NSMutableArray arrayWithObjects:alphaDesc, nil]];	
+		[alphaDesc release], alphaDesc = nil;
+		return;
+	}
+	else if([elementName isEqualToString:@"country"])
+	{
+		[arrayCountries addObject:countrycodelistP];
+		[countrycodelistP release];
+		countrycodelistP = nil;
+	}	
+
+}
+
+
 -(void) setoutCallTypeProtocol:(int)type
 {
 #ifndef _CLICK_TO_CALL_
@@ -3481,126 +3636,197 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 //text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ()<>-./"]];
 -(Boolean)makeCall:(char *)noCharP
 {
+	
+	[self checkforRoaming];
 	#ifndef _CLICK_TO_CALL_
 	outCallType = 1;
 	#endif
 	#ifdef _CALL_THROUGH_
 	if(outCallType==3 ||  self->onlyCallThrough==1)
 	#else
-	if(outCallType==3)
+	if(outCallType==3)  //Means call-through is selected
 	#endif	
 	{
-		/*		spoknid*pin*bpartyno.
-		 where
-		 spoknid : seven digit spokn id
-		 e.g. 1234567
-		 pin : 1st 5 digit(md5(pwd))
-		 e.g. md5(vel) = d41d8cd98f00b204e9800998ecf8427e
-		 1st 5 digit of md5 = d41d8
-		 replace a = 6, b = 5, c = 4, d = 3, e = 2, f = 1(digit more than 9 subtract it with 16)
-		 so the pin = 34138
-		 bpartyno = 919821988975*/
-		if(self->ipadOrIpod)
+		return [self makeCallthrough:noCharP callType:outCallType];
+	}
+	if(outCallType==1|| outCallType==2)
+	{	
+		callthroughSupported = -1;
+		return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+	}	
+	else
+	{
+//		if(actualOnlineB==false)
+//		{
+//			callthroughSupported = -1;
+//			return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+//		}
+//		else          // Means "ALL" option is selected as PROTOCOL option
 		{
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-															   message: [ NSString stringWithString:@"call through is only work on iphone." ]
-															  delegate: nil
-													 cancelButtonTitle: nil
-													 otherButtonTitles: _OK_, nil
-								  ];
-			[ alert show ];
-			[alert release];
-			return 0;
 			
-		
-		}
-		char *unameCharP=0;
-		char *encryptypasswordCharP=0;
-		char *countrycodeCharP=0;
-		char *countrynumberCharP=0;
-		char number[50];
-		NSString *finalnumber;
-		if(countrylispP==nil)
-		{
-			countrylispP = [countrylist getCallThroughSavedObject ];
-			if(countrylispP==nil)
+			printf("\nedge=%i\n",self->edgevalue);
+			printf("\nwifiavailable=%i\n",self->wifiavailable);
+			printf("\ngprsavailable=%i\n",self->gprsavailable);
+			printf("\nactualOnline=%i\n",self->actualOnlineB);
+			
+			//First case NO Wifi/GPRS
+			
+			if(self->edgevalue && !wifiavailable && !gprsavailable)
 			{
-				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
-																   message: [ NSString stringWithString:@"Please select callthrough country." ]
+				printf("\n%s\n"," NO NETWORK ");
+				//Tell the user of no connectivity and ask him to use call-through if he has local sim
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"NO NETWORK" 
+																   message: [ NSString stringWithString:@"You can  use call-through feature if you have local sim." ]
 																  delegate: nil
 														 cancelButtonTitle: nil
 														 otherButtonTitles: _OK_, nil
 									  ];
 				[ alert show ];
 				[alert release];
-				
-				
-				return 0;
+			}	
 			
-			}
-		
-		}
-		
-		NSTimeInterval time;
-		char *resultCharP = 0;
-		//char *contactNameP = 0;
-		//char type[100];
-		resultCharP = NormalizeNumber(noCharP,0);
-		unameCharP = getLtpUserName(ltpInterfacesP);
-		encryptypasswordCharP = getencryptedPassword();
-		countrycodeCharP = (char*)[countrylispP.code cStringUsingEncoding:NSUTF8StringEncoding];
-		countrynumberCharP = (char*)[countrylispP.number cStringUsingEncoding:NSUTF8StringEncoding];
-		sprintf(number,"tel:+%s%s,,%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,resultCharP);
-		time = [[NSDate date] timeIntervalSince1970];
-		//contactNameP = [self getNameAndTypeFromNumber:noCharP :type :0];
+			if(self->edgevalue &&  self->gprsavailable &&  !wifiavailable)
+			{
+				//check for Location
+				if(roaming) //He is in roaming
+				{
+					//By default on SIP
+					return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+					
+					//If call quality is  Bad tell the user  to use call-through if he has local sim
+					UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"ROAMING" 
+																	   message: [ NSString stringWithString:@"If call quality is  Bad  you can use call-through if he has local sim but higher charges may Apply." ]
+																	  delegate: nil
+															 cancelButtonTitle: nil
+															 otherButtonTitles: _OK_, nil
+										  ];
+					[ alert show ];
+					[alert release];
+				}
+				else //He is in same country as his SIM
+				{
+					//check if it is spokn number
+					if(strlen(noCharP) == 7)
+					{
+						//Means it is spokn number
+						return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+					}	
+					else //it is not spokn number
+					{
+						
+						
+					}
+
+					
+				}
 	
-		setCallbackCdr(ltpInterfacesP,resultCharP,time);
-		[self refreshallViews];
-		finalnumber = [[NSString alloc] initWithUTF8String:number];
-		//NSLog(@"final number : %@",finalnumber);
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:finalnumber]];
-		free(unameCharP);
-		free(encryptypasswordCharP);
-		[finalnumber release];
-		if(resultCharP)
-		{
-			free(resultCharP);
-			resultCharP = 0;
-		}
+			}
+
 		
-		return 0;
-	}
-	if(outCallType==1|| outCallType==2)
-	{	
-		return [self makeSipCallOrCallBack:noCharP callType:outCallType];
-	}	
-	else {
-		if(actualOnlineB==false)
-		{
-			return [self makeSipCallOrCallBack:noCharP callType:outCallType];
-		}
-		else {
-			//show action sheet
-			strcpy(numberToCall,noCharP);
-			UIActionSheet *uiappActionSheetgP=0;
-			uiappActionSheetgP= [[[UIActionSheet alloc] 
-							  initWithTitle: @"Please select your prefrences" 
-							  delegate:self
-							  cancelButtonTitle:_CANCEL_ 
-							  destructiveButtonTitle:nil
-							  otherButtonTitles:@"Sip",@"CallBack",@"CallThrough", nil]autorelease];
-			uiappActionSheetgP.tag = 1;
-			uiappActionSheetgP.actionSheetStyle = UIBarStyleBlackTranslucent;
-			[uiappActionSheetgP showInView:[self tabBarController].view];
+//			strcpy(numberToCall,noCharP);
+//			UIActionSheet *uiappActionSheetgP=0;
+//			uiappActionSheetgP= [[[UIActionSheet alloc] 
+//							  initWithTitle: @"Please select your prefrences" 
+//							  delegate:self
+//							  cancelButtonTitle:_CANCEL_ 
+//							  destructiveButtonTitle:nil
+//							  otherButtonTitles:@"Sip",@"CallBack",@"CallThrough", nil]autorelease];
+//			uiappActionSheetgP.tag = 1;
+//			uiappActionSheetgP.actionSheetStyle = UIBarStyleBlackTranslucent;
+//			[uiappActionSheetgP showInView:[self tabBarController].view];
+//			callthroughSupported = -1;
 			return 0;
 		}
-
 	}
+	callthroughSupported = -1;
 	return true;
 
 }
+-(Boolean)makeCallthrough:(char *)noCharP callType:(int) loutCallType
+{
+	/*		spoknid*pin*bpartyno.
+	 where
+	 spoknid : seven digit spokn id
+	 e.g. 1234567
+	 pin : 1st 5 digit(md5(pwd))
+	 e.g. md5(vel) = d41d8cd98f00b204e9800998ecf8427e
+	 1st 5 digit of md5 = d41d8
+	 replace a = 6, b = 5, c = 4, d = 3, e = 2, f = 1(digit more than 9 subtract it with 16)
+	 so the pin = 34138
+	 bpartyno = 919821988975*/
+	if(self->ipadOrIpod)
+	{
+		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+														   message: [ NSString stringWithString:@"call through will only work on iphone." ]
+														  delegate: nil
+												 cancelButtonTitle: nil
+												 otherButtonTitles: _OK_, nil
+							  ];
+		[ alert show ];
+		[alert release];
+		callthroughSupported = -1;
+		return 0;
+		
+		
+	}
+	char *unameCharP=0;
+	char *encryptypasswordCharP=0;
+	char *countrycodeCharP=0;
+	char *countrynumberCharP=0;
+	char number[50];
+	NSString *finalnumber;
+	if(countrylispP==nil)
+	{
+		countrylispP = [countrylist getCallThroughSavedObject ];
+		if(countrylispP==nil)
+		{
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+															   message: [ NSString stringWithString:@"Please select callthrough country." ]
+															  delegate: nil
+													 cancelButtonTitle: nil
+													 otherButtonTitles: _OK_, nil
+								  ];
+			[ alert show ];
+			[alert release];
+			
+			callthroughSupported = -1;
+			return 0;
+			
+		}
+		
+	}
 	
-	-(Boolean)makeSipCallOrCallBack:(char *)noCharP callType:(int) loutCallType
+	NSTimeInterval time;
+	char *resultCharP = 0;
+	//char *contactNameP = 0;
+	//char type[100];
+	resultCharP = NormalizeNumber(noCharP,0);
+	unameCharP = getLtpUserName(ltpInterfacesP);
+	encryptypasswordCharP = getencryptedPassword();
+	countrycodeCharP = (char*)[countrylispP.code cStringUsingEncoding:NSUTF8StringEncoding];
+	countrynumberCharP = (char*)[countrylispP.number cStringUsingEncoding:NSUTF8StringEncoding];
+	sprintf(number,"tel:+%s%s,,%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,resultCharP);
+	time = [[NSDate date] timeIntervalSince1970];
+	//contactNameP = [self getNameAndTypeFromNumber:noCharP :type :0];
+	
+	setCallbackCdr(ltpInterfacesP,resultCharP,time);
+	[self refreshallViews];
+	finalnumber = [[NSString alloc] initWithUTF8String:number];
+	//NSLog(@"final number : %@",finalnumber);
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:finalnumber]];
+	free(unameCharP);
+	free(encryptypasswordCharP);
+	[finalnumber release];
+	if(resultCharP)
+	{
+		free(resultCharP);
+		resultCharP = 0;
+	}
+	callthroughSupported = -1;
+	return 0;
+}
+
+-(Boolean)makeSipCallOrCallBack:(char *)noCharP callType:(int) loutCallType
 {
 	//NSMutableString *tempStringP;
 	NSString *strP;
@@ -3686,17 +3912,17 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		return retB;
 		
 	}*/
-	if(!wifiavailable)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_WIFI_ 
-														message:_CHECK_NETWORK_SETTINGS_
-													   delegate:self 
-											  cancelButtonTitle:nil 
-											  otherButtonTitles:_OK_, nil];
-		[alert show];
-		[alert release];
-		return retB;
-	}
+//	if(!wifiavailable)
+//	{
+//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_WIFI_ 
+//														message:_CHECK_NETWORK_SETTINGS_
+//													   delegate:self 
+//											  cancelButtonTitle:nil 
+//											  otherButtonTitles:_OK_, nil];
+//		[alert show];
+//		[alert release];
+//		return retB;
+//	}
 	if(self->onLineB)
 	{	
 		
@@ -4144,15 +4370,15 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
             
         case ReachableViaWWAN:
         {
-          	//connectionRequired = NO;
-			
+   			//connectionRequired = NO;
 			if(connectionRequired==NO)
 			{	 
 				if(self->edgevalue)//if edge is specified
 				{	
 					//#define _TEST_QUALITY_ON_GPRS_ 
 					//#ifdef _TEST_QUALITY_ON_GPRS_
-					wifiavailable = YES;
+					wifiavailable = NO;
+					gprsavailable = YES;
 					if(SetConnection( ltpInterfacesP,2)==0)
 					{	 
 						[spoknViewControllerP startProgress];
@@ -4161,7 +4387,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				}
 				else
 				{
-
+					gprsavailable = NO;
 					wifiavailable = NO;
 					[self logOut:NO];
 				//logOut(ltpInterfacesP,NO);
@@ -4223,7 +4449,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		alertNotiFication(ALERT_OFFLINE,0,NO_WIFI_OR_DATA_NETWORK_REACHEBLE,(long)self,0);
 		wifiavailable = NO;
-		
+		gprsavailable = NO;
     }
    
 	//textField.text= statusString;

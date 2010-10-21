@@ -68,6 +68,7 @@
 		7322D22911EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22511EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a */; };
 		739D257E1259EC94006AB025 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739D257D1259EC94006AB025 /* CoreLocation.framework */; };
 		73B0150D121E7C8100DB8CF0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B0150C121E7C8100DB8CF0 /* Reachability.m */; };
+		73B262AE126DDC9C007028C0 /* countrycodelist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 73B262AD126DDC9C007028C0 /* countrycodelist.txt */; };
 		73BD60E211EB403C00D4E167 /* clicktocall.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BD60E011EB403B00D4E167 /* clicktocall.m */; };
 		73D7CFD3120FE80100E0110C /* countrylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7CFD2120FE80100E0110C /* countrylist.m */; };
 		73D7D003120FEDB400E0110C /* clicktocall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73D7D002120FEDB400E0110C /* clicktocall.xib */; };
@@ -454,6 +455,7 @@
 		739D257D1259EC94006AB025 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		73B0150B121E7C8100DB8CF0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		73B0150C121E7C8100DB8CF0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		73B262AD126DDC9C007028C0 /* countrycodelist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countrycodelist.txt; sourceTree = "<group>"; };
 		73BD60E011EB403B00D4E167 /* clicktocall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = clicktocall.m; sourceTree = "<group>"; };
 		73D7CFD1120FE80100E0110C /* countrylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countrylist.h; sourceTree = "<group>"; };
 		73D7CFD2120FE80100E0110C /* countrylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countrylist.m; sourceTree = "<group>"; };
@@ -897,6 +899,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				73B262AD126DDC9C007028C0 /* countrycodelist.txt */,
 				8B8BB896115A4C7D00A66C75 /* ltpInterface */,
 				8B9302A21011EEBE004BDA41 /* common */,
 				32CA4F630368D1EE00C91783 /* spokn_Prefix.pch */,
@@ -1500,6 +1503,7 @@
 				8BC8912711DCCC3400350111 /* Swap-Calls.png in Resources */,
 				73D7D003120FEDB400E0110C /* clicktocall.xib in Resources */,
 				73D7D05F120FF7D400E0110C /* countrylist.txt in Resources */,
+				73B262AE126DDC9C007028C0 /* countrycodelist.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

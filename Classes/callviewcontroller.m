@@ -324,6 +324,7 @@ CallViewController *globalCallViewControllerP;
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
+	self->messageTextP.hidden = YES;
 	
 }
 -(void)setParentObject:(id) object 

@@ -555,7 +555,7 @@
 		if(strlen(pinNoCharP)==0)
 		{
 			newNoPin = NormalizeNumber(pinNoCharP,1);
-			[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:newNoPin] forKey:@"pinnumber"]; 
+			[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:newNoPin] forKey:@"prefix"]; 
 			[[NSUserDefaults standardUserDefaults] synchronize];
 			free(newNoPin);
 		}
@@ -564,7 +564,7 @@
 	{
 		NSString *stringStrP;
 		newNoPin = NormalizeNumber(pinNoCharP,1);
-		[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:newNoPin] forKey:@"pinnumber"]; 
+		[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithUTF8String:newNoPin] forKey:@"prefix"]; 
 		[[NSUserDefaults standardUserDefaults] synchronize];
 		stringStrP = [[NSString alloc] initWithUTF8String:newNoPin];
 		[pinNumber setText:stringStrP];
@@ -574,7 +574,7 @@
 	else 
 	{
 		NSString *nsP;
-		nsP = [[NSUserDefaults standardUserDefaults] stringForKey:@"pinnumber"];
+		nsP = [[NSUserDefaults standardUserDefaults] stringForKey:@"prefix"];
 		if(nsP)
 		{
 			[pinNumber setText:nsP];

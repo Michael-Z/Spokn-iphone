@@ -79,6 +79,8 @@ typedef struct CallNumberType
 }CallNumberType;
 //
 @class SpoknAppDelegate;
+
+
 @interface spoknMessage:NSObject
 {
 	
@@ -98,9 +100,41 @@ typedef struct CallNumberType
 @end
 
 
+@interface countrycodelist : NSObject
+{
+	NSString *name;
+	NSString *code;
+	NSString *prefix;
+}
+@property (nonatomic, copy) NSString *code;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *prefix;
+@end
+
+@interface geolocationData : NSObject
+{
+	NSString *country;
+	NSString *countryCode;
+	NSString *locality;
+	NSString *postalCode;
+	NSString *subLocality;
+	NSString *subAdministrativeArea;
+	NSString *subThoroughfare;
+	NSString *thoroughfare;
+}
+@property (nonatomic, copy) NSString *country;
+@property (nonatomic, copy) NSString *countryCode;
+@property (nonatomic, copy) NSString *locality;
+@property (nonatomic, copy) NSString *postalCode;
+@property (nonatomic, copy) NSString *subLocality;
+@property (nonatomic, copy) NSString *subAdministrativeArea;
+@property (nonatomic, copy) NSString *subThoroughfare;
+@property (nonatomic, copy) NSString *thoroughfare;
+@end
+
 
 @class IncommingCallViewController;
-@interface SpoknAppDelegate : NSObject <MKReverseGeocoderDelegate,MKMapViewDelegate,CLLocationManagerDelegate,UIApplicationDelegate,UITabBarControllerDelegate,UIActionSheetDelegate,clicktocallProtocol> {
+@interface SpoknAppDelegate : NSObject <MKReverseGeocoderDelegate,MKMapViewDelegate,CLLocationManagerDelegate,UIApplicationDelegate,UITabBarControllerDelegate,UIActionSheetDelegate,clicktocallProtocol,NSXMLParserDelegate> {
   //  @public
 	UIWindow *window;
 	
@@ -143,6 +177,7 @@ typedef struct CallNumberType
 	Reachability* hostReach;
     Reachability* wifiReach;
 	Boolean wifiavailable;
+	Boolean gprsavailable;
 //	SystemSoundID endcallsoundID;
 	//SystemSoundID soundIncommingCallID;
 	//this store address of addressbook
@@ -214,11 +249,20 @@ typedef struct CallNumberType
 	int ipadOrIpod;
 	CLLocationManager *locationManager;
 	MKReverseGeocoder *geoCoder;
-	MKPlacemark *mPlacemark;
+	MKPlacemark *myPlacemark;
+	
+	NSMutableArray *arrayCountries;
+	NSXMLParser *myxmlParser;
+	NSMutableArray *country;
+	NSString* countryName;
+	NSString* countryCode;
 	
 	NSString *presentCountry;
 	NSString *presentCountryCode;
-
+	countrycodelist *countrycodelistP;
+	geolocationData *geodataP;
+	int callthroughSupported;
+	int roaming;				
 	
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
@@ -341,8 +385,10 @@ changed:(BOOL)changed;
 -(int)sendLogFile:(NSString **)stringP;
 -(void) enableLog;
 -(Boolean)makeSipCallOrCallBack:(char *)noCharP callType:(int) loutCallType;
+-(Boolean)makeCallthrough:(char *)noCharP callType:(int) loutCallType;
 -(void)setcallthroughData:(id)objectP;
 - (void)stopUpdatingCoreLocation:(NSString *)state;
+-(void) checkforRoaming;
 #ifdef G4_DEFINE	
 #ifdef __IPHONE_4_0	
 - (void)sendIncommingPushNotification:(NSString*)msgStringP;
