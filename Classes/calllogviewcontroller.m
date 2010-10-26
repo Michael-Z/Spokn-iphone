@@ -498,7 +498,7 @@
 				}
 			}
 			
-			
+				
 			
 			//dispP = [ [displayData alloc] init];
 			dispP.left = 0;

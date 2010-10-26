@@ -78,6 +78,7 @@
 	int invalidUserB;
 	int buttonPressedB;
 	int increaseheight;
+	NSString *textMessageP;
 	#ifdef MAX_TONE
 		SpoknAudio *dtmfTone[MAX_TONE];
 	int prvKey;
@@ -111,4 +112,5 @@
 -(int)callDisconnected:(int )llineID;
 -(int)isCallOn;
 -(CallViewController*)getCallViewController;
+-(void)setStatusTextMessage:(NSString *)strP;
 @end

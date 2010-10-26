@@ -507,6 +507,10 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	{	
 		[callingstringtypeP release];
 	}
+	if(textMessageP)
+	{	
+		[textMessageP release];
+	}
 	//printf("\n dial view dealloc");
 	//[statusLabelP release];
 	//[numberFieldP release];
@@ -1157,10 +1161,12 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 				callViewControllerP = [[CallViewController alloc] initWithNibName:@"callviewcontroller" bundle:[NSBundle mainBundle]];
 				[callViewControllerP setObject:self->ownerobject];
 				[callViewControllerP setParentObject:self];
-				
+				NSLog(@"%@",textMessageP);
+				[callViewControllerP setuserMessage:textMessageP];
 				//callViewControllerP.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 
 				[callViewControllerP setLabel:callingstringP :callingstringtypeP];
+
 				UINavigationController *tmpCtl;
 				tmpCtl = [[ [ UINavigationController alloc ] initWithRootViewController: callViewControllerP ] autorelease];
 				if(tmpCtl)
@@ -1286,6 +1292,9 @@ const static char _keyValues[] = {0, '1', '2', '3', '4', '5', '6', '7', '8', '9'
 	
 
 }
-
+-(void)setStatusTextMessage:(NSString *)strP
+{
+	textMessageP = [[NSString alloc] initWithString:strP];
+}
 
 @end

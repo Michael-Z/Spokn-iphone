@@ -325,11 +325,20 @@ CallViewController *globalCallViewControllerP;
 {
 	[super viewDidDisappear:animated];
 	self->messageTextP.hidden = YES;
+	[text release];
 	
 }
 -(void)setParentObject:(id) object 
 {
 	self->parentObjectDelegate = object;
+}
+-(void)setuserMessage:(NSString*)message
+{
+	if(message)
+	{	
+		text = [[NSString alloc] initWithString:message];
+		//[text retain];
+	}	
 }
 -(void)showMessage
 {
@@ -339,6 +348,7 @@ CallViewController *globalCallViewControllerP;
 	}
 	else {
 		self->messageTextP.hidden = NO;
+		
 //		[UIView beginAnimations:nil context:NULL];
 //		[UIView setAnimationDuration:3.0];
 //		
@@ -368,9 +378,12 @@ CallViewController *globalCallViewControllerP;
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+	[messageTextP setTitle:text forState:UIControlStateNormal];
+	[messageTextP setTitle:text forState:UIControlStateHighlighted];
+	[messageTextP setTitle:text forState:UIControlStateSelected]; 
 	loadedB = true;
 	gchildWillDie = 0;
-		
+		//[self setuserMessage:@"\nPASSED with a good persentage. PASSED\nPASSED\nPASSED\nPASSED\nPASSED\nPASSED\nPASSED"];
 	if(firstTimeB)
 	{	
 	/*	[NSTimer scheduledTimerWithTimeInterval: 4
@@ -463,7 +476,11 @@ CallViewController *globalCallViewControllerP;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	messageTextP.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
+	messageTextP.titleLabel.adjustsFontSizeToFitWidth = TRUE;
+	[messageTextP setTitle:text forState:UIControlStateNormal];
+	[messageTextP setTitle:text forState:UIControlStateHighlighted];
+	[messageTextP setTitle:text forState:UIControlStateSelected]; 
 	CGRect LabelFrame2;
 	LabelFrame2 = callnoLabelP.frame;
 	LabelFrame2.origin.x = 0;

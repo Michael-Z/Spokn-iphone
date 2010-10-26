@@ -30,7 +30,7 @@
 @class ConferenceViewController;
 @class SpoknAppDelegate;
 #pragma pack(4)  
-@interface CallViewController : UIViewController<KeypadProtocol,UIActionSheetDelegate,UITableViewDataSource, UITableViewDelegate,AddCallProtocol> {
+@interface CallViewController : UIViewController<KeypadProtocol,UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate,AddCallProtocol> {
 	IBOutlet UITableView *tableView;
 	IBOutlet UILabel *callnoLabelP;
 	IBOutlet UILabel *callTypeLabelP;
@@ -87,7 +87,7 @@
 		//IBOutlet UIButton *testP;
 	int muteOnB;
 	//IBOutlet UIButton *testP;
-
+	NSString *text;
 	int gchildWillDie;
 	int showMessage;
 }
@@ -130,4 +130,5 @@
 -(void) dismisscontroller:(int)parentB;
 -(int)childWillDie;
 -(void)showMessage;
+-(void)setuserMessage:(NSString*)message;
 @end

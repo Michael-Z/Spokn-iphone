@@ -1599,7 +1599,7 @@ void getProp()
 			
 		
 
-			if(wifiavailable)
+			if(wifiavailable || gprsavailable)
 			{	
 				
 				[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
@@ -3662,7 +3662,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 //			return [self makeSipCallOrCallBack:noCharP callType:outCallType];
 //		}
 //		else          // Means "ALL" option is selected as PROTOCOL option
-		{
+		
 			
 			printf("\nedge=%i\n",self->edgevalue);
 			printf("\nwifiavailable=%i\n",self->wifiavailable);
@@ -3671,7 +3671,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			
 			//First case NO Wifi/GPRS
 			
-			if(self->edgevalue && !wifiavailable && !gprsavailable)
+			if(wifiavailable==NO && gprsavailable==NO)
 			{
 				printf("\n%s\n"," NO NETWORK ");
 				//Tell the user of no connectivity and ask him to use call-through if he has local sim
@@ -3685,7 +3685,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				[alert release];
 			}	
 			
-			if(self->edgevalue &&  self->gprsavailable &&  !wifiavailable)
+			if(gprsavailable==YES &&  wifiavailable==NO)
 			{
 				//check for Location
 				if(roaming) //He is in roaming
@@ -3706,23 +3706,29 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				else //He is in same country as his SIM
 				{
 					//check if it is spokn number
-					if(strlen(noCharP) == 7)
+					if((strlen(noCharP)) <= 7)
 					{
+						CallViewController *tmpObjP;
+						tmpObjP = [dialviewP getCallViewController];
+						[(CallViewController*)tmpObjP setuserMessage:@"SIP"];
 						//Means it is spokn number
-						return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+						return [self makeSipCallOrCallBack:noCharP callType:1];
 					}	
 					else //it is not spokn number
 					{
-						
-						
+						return [self makeCallthrough:noCharP callType:outCallType];
 					}
-
 					
 				}
 	
 			}
 
-		
+			if(self->gprsavailable ||  self->wifiavailable)
+			{
+				//Both network are available 
+				//By defaul it will be on Wifi
+				printf("\n%s\n"," NETWORK AVAILABLE");
+			}	
 //			strcpy(numberToCall,noCharP);
 //			UIActionSheet *uiappActionSheetgP=0;
 //			uiappActionSheetgP= [[[UIActionSheet alloc] 
@@ -3736,8 +3742,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 //			[uiappActionSheetgP showInView:[self tabBarController].view];
 //			callthroughSupported = -1;
 			return 0;
-		}
 	}
+	
 	callthroughSupported = -1;
 	return true;
 
@@ -3805,10 +3811,11 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	encryptypasswordCharP = getencryptedPassword();
 	countrycodeCharP = (char*)[countrylispP.code cStringUsingEncoding:NSUTF8StringEncoding];
 	countrynumberCharP = (char*)[countrylispP.number cStringUsingEncoding:NSUTF8StringEncoding];
-	sprintf(number,"tel:+%s%s,,%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,resultCharP);
+	sprintf(number,"tel:+%s%s,,0%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,resultCharP);
+	printf("\n%s\n",number);
 	time = [[NSDate date] timeIntervalSince1970];
 	//contactNameP = [self getNameAndTypeFromNumber:noCharP :type :0];
-	
+//	[dialviewP setStatusTextMessage:@"Call is routing via  CALLBACK . You will get an incoming call. You  change it by presseing End call. "];
 	setCallbackCdr(ltpInterfacesP,resultCharP,time);
 	[self refreshallViews];
 	finalnumber = [[NSString alloc] initWithUTF8String:number];
@@ -3876,8 +3883,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(loutCallType==2 || loutCallType==3)
 	{
 	
-		
-		
+//		[dialviewP setStatusTextMessage:@"Call is routing via  CALLBACK . You will get an incoming call. You  change it by presseing End call. "];
 		NSTimeInterval time;
 		NSString *callbackP;
 		NSString *callerP;
@@ -3968,7 +3974,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		retB = 1;
 		[SpoknAudio destorySoundUrl:&allSoundP];
 		//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
+		[dialviewP setStatusTextMessage:@"Call is routing via  SIP . You can change it by presseing End call. "];
 		[dialviewP setStatusText:strP :temp1P :TRYING_CALL :0  :0];
+				
 		//[tempStringP release ];
 		[strP release];
 		[strtypP release];
