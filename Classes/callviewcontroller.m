@@ -324,7 +324,7 @@ CallViewController *globalCallViewControllerP;
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
-	self->messageTextP.hidden = YES;
+	self->messageviewMenuP.hidden = YES;
 	[text release];
 	
 }
@@ -337,33 +337,47 @@ CallViewController *globalCallViewControllerP;
 	if(message)
 	{	
 		text = [[NSString alloc] initWithString:message];
-		//[text retain];
 	}	
 }
+
+-(void)hideMessage
+{
+
+	//http://stackoverflow.com/questions/3897279/difference-between-uiview-beginanimationscontext-and-uiview-animatewithdurat
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.2];
+	[UIView setAnimationDelegate:self];
+	[UIView setAnimationDidStopSelector:@selector(fadeOut:finished:context:)];
+	UIViewAnimationOptions options = UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction;
+	
+	[UIView animateWithDuration:0.2 delay:0.0 options:options animations:^
+	 {
+		 messageviewMenuP.alpha = 1.0;
+	 } completion:nil];
+	//messageviewMenuP.alpha = 1.0;
+	[UIView commitAnimations];
+
+	
+}
+
 -(void)showMessage
 {
 	if(showMessage)
 	{	
-		self->messageTextP.hidden = YES;
+		self->messageviewMenuP.hidden = YES;
 	}
-	else {
-		self->messageTextP.hidden = NO;
+	else
+	{
+		self->messageviewMenuP.hidden = NO;
 		
-//		[UIView beginAnimations:nil context:NULL];
-//		[UIView setAnimationDuration:3.0];
-//		
-//		[UIView setAnimationTransition: UIViewAnimationTransitionFlipFromRight
-//							   forView:self->messageTextP  cache:YES];
-//		
-//		[UIView commitAnimations];
-//		self->messageTextP.hidden = YES;
-		
-		[UIView beginAnimations:nil context:NULL];
-		[UIView setAnimationDuration:1.0];
-		[UIView setAnimationDelegate:self];
-		[UIView setAnimationDidStopSelector:@selector(fadeOut:finished:context:)];
-		messageTextP.alpha = 1.0;
-		[UIView commitAnimations];
+		if(messageTimerP==nil)
+		{
+			messageTimerP = [NSTimer scheduledTimerWithTimeInterval: 3
+										 target: self
+									   selector: @selector(hideMessage)
+									   userInfo: nil
+										repeats: NO];
+		}	
 		
 	}
 }
@@ -372,15 +386,15 @@ CallViewController *globalCallViewControllerP;
 {
 	[UIView beginAnimations:nil context:context];
 	[UIView setAnimationDuration:10.0];
-	messageTextP.alpha = 0.0;
+	messageviewMenuP.alpha = 0.0;
 	[UIView commitAnimations];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	[messageTextP setTitle:text forState:UIControlStateNormal];
-	[messageTextP setTitle:text forState:UIControlStateHighlighted];
-	[messageTextP setTitle:text forState:UIControlStateSelected]; 
+//	[messageTextP setTitle:text forState:UIControlStateNormal];
+//	[messageTextP setTitle:text forState:UIControlStateHighlighted];
+//	[messageTextP setTitle:text forState:UIControlStateSelected]; 
 	loadedB = true;
 	gchildWillDie = 0;
 		//[self setuserMessage:@"\nPASSED with a good persentage. PASSED\nPASSED\nPASSED\nPASSED\nPASSED\nPASSED\nPASSED"];
@@ -459,7 +473,7 @@ CallViewController *globalCallViewControllerP;
 		
 		}
 	}
-	[self showMessage];
+
 
 	if(refreshViewB)
 	{
@@ -476,11 +490,17 @@ CallViewController *globalCallViewControllerP;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	messageTextP.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
-	messageTextP.titleLabel.adjustsFontSizeToFitWidth = TRUE;
-	[messageTextP setTitle:text forState:UIControlStateNormal];
-	[messageTextP setTitle:text forState:UIControlStateHighlighted];
-	[messageTextP setTitle:text forState:UIControlStateSelected]; 
+//	messageTextP.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
+//	messageTextP.titleLabel.adjustsFontSizeToFitWidth = TRUE;
+//	[messageTextP setTitle:text forState:UIControlStateNormal];
+//	[messageTextP setTitle:text forState:UIControlStateHighlighted];
+//	[messageTextP setTitle:text forState:UIControlStateSelected]; 
+//	UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"spokncall.png"]];
+//	messageviewMenuP.backgroundColor = background;
+//	[background release];
+	messageTextP.text = text;
+	[self showMessage];
+	protocolMenuP.hidden = TRUE;
 	CGRect LabelFrame2;
 	LabelFrame2 = callnoLabelP.frame;
 	LabelFrame2.origin.x = 0;
@@ -854,7 +874,7 @@ CallViewController *globalCallViewControllerP;
 		[spoknconfP reload];//again reloaded table
 	}	
 	return results;
-}
+} 
 - (void) makeCallTimer: (id) timer
 {
 	[timer invalidate];
@@ -911,6 +931,67 @@ CallViewController *globalCallViewControllerP;
 	}
 	
 	
+
+}
+-(void)hidePortocolView
+{
+	if(self->protocolMenuP.hidden==NO && messageviewMenuP.hidden==YES)
+	{	
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.5];
+		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft 
+							   forView:self->messageviewMenuP cache:YES];
+		[UIView commitAnimations];
+		self->protocolMenuP.hidden = YES;
+		self->messageviewMenuP.hidden = NO;
+		//self->viewMenuP.hidden = YES;
+	}
+}
+-(void)showPortocolView
+{
+	if(self->protocolMenuP.hidden==YES && messageviewMenuP.hidden==NO)
+	{	
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.5];
+		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft 
+							   forView:self->protocolMenuP cache:YES];
+		[UIView commitAnimations];
+		self->protocolMenuP.hidden = NO;
+		self->messageviewMenuP.hidden = YES;
+		//self->viewMenuP.hidden = YES;
+	}
+}
+-(IBAction)sipButtonPressedKey:(id)sender
+{
+	printf("%s","\nSIP");
+	[self hidePortocolView];
+	self->showMessage = 0;
+	//self->viewMenuP.hidden = FALSE;
+	[self showMessage];
+}
+-(IBAction)callthroughButtonPressedKey:(id)sender
+{
+	printf("%s","\nCALL THROUGH");
+	[self hidePortocolView];
+	self->showMessage = 0;
+	//self->viewMenuP.hidden = FALSE;
+	[self showMessage];
+}
+-(IBAction)callbackButtonPressedKey:(id)sender
+{
+	printf("%s","\nCALLBACK");
+	[self hidePortocolView];
+	self->showMessage = 0;
+	//self->viewMenuP.hidden = FALSE;
+	[self showMessage];
+}
+-(IBAction)changePortocolPressedKey:(id)sender
+{
+	//printf("%s","\nCHANGE PROTOCOL");
+	[messageTimerP invalidate]; messageTimerP = nil;
+	[self showPortocolView];
+	self->showMessage = 1;
+	[self showMessage];
 
 }
 -(IBAction)endCallPressedKey:(id)sender

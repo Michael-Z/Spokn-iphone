@@ -51,7 +51,14 @@
 	IBOutlet UIButton  *addcallButtonP;
 	
 	IBOutlet UIView    *messageviewMenuP;
-	IBOutlet UIButton  *messageTextP;
+	IBOutlet UIButton  *messageButtonP;
+	IBOutlet UILabel  *messageTextP;
+	
+	
+	IBOutlet UIView    *protocolMenuP;
+	IBOutlet UIButton  *sipButtonP;
+	IBOutlet UIButton  *callthroughButtonP;
+	IBOutlet UIButton  *callbackButtonP;
 
 	
 	UILabel    *name1LabelP;
@@ -90,6 +97,7 @@
 	NSString *text;
 	int gchildWillDie;
 	int showMessage;
+	NSTimer *messageTimerP;
 }
 -(void)setObject:(id) object ;
 -(void)setParentObject:(id) object ;
@@ -100,6 +108,10 @@
 -(IBAction)keypadPressed:(id)sender;
 -(IBAction)endCallPressed:(id)sender;
 -(IBAction)endCallPressedKey:(id)sender;
+-(IBAction)changePortocolPressedKey:(id)sender;
+-(IBAction)sipButtonPressedKey:(id)sender;
+-(IBAction)callthroughButtonPressedKey:(id)sender;
+-(IBAction)callbackButtonPressedKey:(id)sender;
 -(void) startTimer:(int) lineID;
 -(int)  stopTimer:(int) lineID;
 -(IBAction)HoldPressed:(id)sender;
@@ -131,4 +143,7 @@
 -(int)childWillDie;
 -(void)showMessage;
 -(void)setuserMessage:(NSString*)message;
+-(void)hideMessage;
+-(void)showPortocolView;
+-(void)hidePortocolView;
 @end

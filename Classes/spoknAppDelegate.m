@@ -3844,40 +3844,36 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	Boolean retB = false;
 	char typeP[30];
 	char *resultCharP=0;
-	if(actualOnlineB==false &&loutCallType==1 )
-	{
-		if(self.onLineB)
-		{	
-			if(self->loginProgressStart)
-			{	
-				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _USER_OFFLINE_ 
-																   message: [ NSString stringWithString:_USER_OFFLINE_MESSAGE_ ]
-																  delegate: nil
-														 cancelButtonTitle: nil
-														 otherButtonTitles: _OK_, nil
-									  ];
-				[ alert show ];
-				[alert release];
-				return retB;
-			}
-			else {
-				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_SERVER_UNREACHABLE_ 
-																message:VOIP_CALL_NOT_POSSIBLE
-															   delegate:nil 
-													  cancelButtonTitle:nil 
-													  otherButtonTitles:_OK_, nil];
-				[alert show];
-				[alert release];
-				return retB;
-				
-			}
-		}	
-
-				
-		
-	
-	}
-	//struct AddressBook *addressP;
+	//if(actualOnlineB==false &&loutCallType==1 )
+//	{
+//		if(self.onLineB)
+//		{	
+//			if(self->loginProgressStart)
+//			{	
+//				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _USER_OFFLINE_ 
+//																   message: [ NSString stringWithString:_USER_OFFLINE_MESSAGE_ ]
+//																  delegate: nil
+//														 cancelButtonTitle: nil
+//														 otherButtonTitles: _OK_, nil
+//									  ];
+//				[ alert show ];
+//				[alert release];
+//				return retB;
+//			}
+//			else {
+//				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_SERVER_UNREACHABLE_ 
+//																message:VOIP_CALL_NOT_POSSIBLE
+//															   delegate:nil 
+//													  cancelButtonTitle:nil 
+//													  otherButtonTitles:_OK_, nil];
+//				[alert show];
+//				[alert release];
+//				return retB;
+//				
+//			}
+//		}	
+//	}
+//	//struct AddressBook *addressP;
 	
 	
 	if(loutCallType==2 || loutCallType==3)
@@ -3929,7 +3925,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 //		[alert release];
 //		return retB;
 //	}
-	if(self->onLineB)
+//	if(self->onLineB)
 	{	
 		
 		UInt32 mic, size;
@@ -3989,37 +3985,37 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 		#endif
 	}	
-	else
-	{
-		if(self->loginProgressStart)
-		{	
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _USER_OFFLINE_ 
-															   message: [ NSString stringWithString:_USER_OFFLINE_MESSAGE_ ]
-															  delegate: nil
-													 cancelButtonTitle: nil
-													 otherButtonTitles: _OK_, nil
-								  ];
-			[ alert show ];
-			[alert release];
-		}
-		else
-		{
-			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _NO_NETWORK_
-															   message: [ NSString stringWithString:_CHECK_NETWORK_SETTINGS_ ]
-															  delegate: nil
-													 cancelButtonTitle: nil
-													 otherButtonTitles: _OK_, nil
-								  ];
-			[ alert show ];
-			[alert release];
-			
-		}
+//	else
+//	{
+//		if(self->loginProgressStart)
+//		{	
+//			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _USER_OFFLINE_ 
+//															   message: [ NSString stringWithString:_USER_OFFLINE_MESSAGE_ ]
+//															  delegate: nil
+//													 cancelButtonTitle: nil
+//													 otherButtonTitles: _OK_, nil
+//								  ];
+//			[ alert show ];
+//			[alert release];
+//		}
+//		else
+//		{
+//			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _NO_NETWORK_
+//															   message: [ NSString stringWithString:_CHECK_NETWORK_SETTINGS_ ]
+//															  delegate: nil
+//													 cancelButtonTitle: nil
+//													 otherButtonTitles: _OK_, nil
+//								  ];
+//			[ alert show ];
+//			[alert release];
+//			
+//		}
 		
 	
 	
 	
 	
-	}
+	//}
 	if(resultCharP)
 	{	
 		free(resultCharP);
