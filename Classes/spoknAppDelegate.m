@@ -153,6 +153,8 @@
 
 @synthesize onlyCallThrough;
 #endif
+
+#pragma mark SIP LOGGING START
 -(int)sendLogFile:(NSString **)stringP
 {
 	char *fileP;
@@ -263,6 +265,7 @@
 	return 1;
 
 }
+#pragma mark SIP LOGGING END
 -(void)retianThisObject:(id)retainObject
 {
 
@@ -330,6 +333,7 @@
 	}
 	return 1;
 }
+#pragma mark PLIST VALUES START
 -(void) enableLog
 {
 	NSString *toogleValue;
@@ -410,7 +414,7 @@
 		self->onoffAnalytics = 1;
 	}
 }
-
+#pragma mark PLIST VALUES STOP
 +(BOOL) emailValidate : (NSString *)emailid
 {
 	NSString *localPart;
@@ -446,7 +450,7 @@
 	
 	return YES;
 }
-
+#pragma mark RING_START
 -(void) destroyRing
 {
 	[SpoknAudio destorySoundUrl:&incommingSoundP];
@@ -602,6 +606,8 @@
 	#endif	
 	//[path release];	
 }
+
+#pragma mark RING_END
 -(void) showText:(NSString *)testStringP
 {
 	[dialviewP setStatusText:testStringP :nil :0 :0 :0];
@@ -702,7 +708,7 @@ void getProp()
 //@synthesize viewNavigationController;
 
 
-
+#pragma mark TEST_CALL_START
 
 
 #ifdef _TEST_CALL_
@@ -749,6 +755,8 @@ void getProp()
 	
 }
 #endif
+#pragma mark TEST_CALL_END
+
 -(void) startTakingEvent
 {
 	self->dontTakeMsg = false;
@@ -1599,7 +1607,7 @@ void getProp()
 			
 		
 
-			if(wifiavailable || gprsavailable)
+			if(wifiavailable)
 			{	
 				
 				[spoknViewControllerP setDetails:getTitle() :self->onLineB :self->subID :getBalance() :forwardCharP :getDidNo() forwardOn:result spoknID:unameP];
@@ -3515,6 +3523,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	return returnCharP;
 		
 }
+#pragma mark ROAMING START
 -(void) checkforRoaming
 {
 	NSString *xmlDataFromChannelSchemes;
@@ -3577,7 +3586,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		printf("\ncallthroughSupported = %d\n",callthroughSupported);
 	}	
 }
-#pragma mark xmlParser methods
+
 /* Called when the parser runs into an open tag (<tag>) */ 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName 	attributes:(NSDictionary *)attributeDict 
 {
@@ -3614,7 +3623,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}	
 
 }
-
+#pragma mark ROAMING END
 
 -(void) setoutCallTypeProtocol:(int)type
 {
@@ -3634,6 +3643,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
    // NSLog(@"\n %@ : %i :%@  :%i\n", countrylispP.name, countrylispP.code,countrylispP.secondaryname,countrylispP.number);
 }
 //text1 = [labelStringP stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ()<>-./"]];
+
+#pragma mark CALLING_START
 -(Boolean)makeCall:(char *)noCharP
 {
 	
@@ -3656,13 +3667,31 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}	
 	else
 	{
+/********************************************************************************************************************/	
 //		if(actualOnlineB==false)
 //		{
 //			callthroughSupported = -1;
 //			return [self makeSipCallOrCallBack:noCharP callType:outCallType];
 //		}
-//		else          // Means "ALL" option is selected as PROTOCOL option
-		
+//		else {        // Means "ALL" option is selected as PROTOCOL option
+//		
+//			strcpy(numberToCall,noCharP);
+//			UIActionSheet *uiappActionSheetgP=0;
+//			uiappActionSheetgP= [[[UIActionSheet alloc] 
+//							  initWithTitle: @"Please select your prefrences" 
+//							  delegate:self
+//							  cancelButtonTitle:_CANCEL_ 
+//							  destructiveButtonTitle:nil
+//							  otherButtonTitles:@"Sip",@"CallBack",@"CallThrough", nil]autorelease];
+//			uiappActionSheetgP.tag = 1;
+//			uiappActionSheetgP.actionSheetStyle = UIBarStyleBlackTranslucent;
+//			[uiappActionSheetgP showInView:[self tabBarController].view];
+//			callthroughSupported = -1;
+//			
+//			return 0;
+//			
+//		}
+/********************************************************************************************************************/			
 			
 			printf("\nedge=%i\n",self->edgevalue);
 			printf("\nwifiavailable=%i\n",self->wifiavailable);
@@ -3720,34 +3749,26 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 					}
 					
 				}
-	
+				
 			}
-
+			
 			if(self->gprsavailable ||  self->wifiavailable)
 			{
 				//Both network are available 
 				//By defaul it will be on Wifi
 				printf("\n%s\n"," NETWORK AVAILABLE");
 			}	
-//			strcpy(numberToCall,noCharP);
-//			UIActionSheet *uiappActionSheetgP=0;
-//			uiappActionSheetgP= [[[UIActionSheet alloc] 
-//							  initWithTitle: @"Please select your prefrences" 
-//							  delegate:self
-//							  cancelButtonTitle:_CANCEL_ 
-//							  destructiveButtonTitle:nil
-//							  otherButtonTitles:@"Sip",@"CallBack",@"CallThrough", nil]autorelease];
-//			uiappActionSheetgP.tag = 1;
-//			uiappActionSheetgP.actionSheetStyle = UIBarStyleBlackTranslucent;
-//			[uiappActionSheetgP showInView:[self tabBarController].view];
-//			callthroughSupported = -1;
-			return 0;
+			
+			
+			
+
 	}
 	
 	callthroughSupported = -1;
 	return true;
 
 }
+
 -(Boolean)makeCallthrough:(char *)noCharP callType:(int) loutCallType
 {
 	/*		spoknid*pin*bpartyno.
@@ -3844,36 +3865,36 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	Boolean retB = false;
 	char typeP[30];
 	char *resultCharP=0;
-	//if(actualOnlineB==false &&loutCallType==1 )
-//	{
-//		if(self.onLineB)
-//		{	
-//			if(self->loginProgressStart)
-//			{	
-//				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _USER_OFFLINE_ 
-//																   message: [ NSString stringWithString:_USER_OFFLINE_MESSAGE_ ]
-//																  delegate: nil
-//														 cancelButtonTitle: nil
-//														 otherButtonTitles: _OK_, nil
-//									  ];
-//				[ alert show ];
-//				[alert release];
-//				return retB;
-//			}
-//			else {
-//				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_SERVER_UNREACHABLE_ 
-//																message:VOIP_CALL_NOT_POSSIBLE
-//															   delegate:nil 
-//													  cancelButtonTitle:nil 
-//													  otherButtonTitles:_OK_, nil];
-//				[alert show];
-//				[alert release];
-//				return retB;
-//				
-//			}
-//		}	
-//	}
-//	//struct AddressBook *addressP;
+	if(actualOnlineB==false &&loutCallType==1 )
+	{
+		if(self.onLineB)
+		{	
+			if(self->loginProgressStart)
+			{	
+				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _USER_OFFLINE_ 
+																   message: [ NSString stringWithString:_USER_OFFLINE_MESSAGE_ ]
+																  delegate: nil
+														 cancelButtonTitle: nil
+														 otherButtonTitles: _OK_, nil
+									  ];
+				[ alert show ];
+				[alert release];
+				return retB;
+			}
+			else {
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_SERVER_UNREACHABLE_ 
+																message:VOIP_CALL_NOT_POSSIBLE
+															   delegate:nil 
+													  cancelButtonTitle:nil 
+													  otherButtonTitles:_OK_, nil];
+				[alert show];
+				[alert release];
+				return retB;
+				
+			}
+		}	
+	}
+	//struct AddressBook *addressP;
 	
 	
 	if(loutCallType==2 || loutCallType==3)
@@ -3886,6 +3907,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		callerP = (NSString*) [[NSUserDefaults standardUserDefaults] objectForKey:@"callbacknumber"];
 		resultCharP = NormalizeNumber(noCharP,0);
 		callbackP = [[NSString alloc] initWithUTF8String:resultCharP] ;
+		[dialviewP setStatusText:@"RISHI" :@"SAXENA" :TRYING_CALL :0  :0];
 		[spoknViewControllerP CallBackMe:callerP bparty:callbackP];
 		time = [[NSDate date] timeIntervalSince1970];
 		setCallbackCdr(ltpInterfacesP,noCharP,time);
@@ -3914,18 +3936,18 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		return retB;
 		
 	}*/
-//	if(!wifiavailable)
-//	{
-//		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_WIFI_ 
-//														message:_CHECK_NETWORK_SETTINGS_
-//													   delegate:self 
-//											  cancelButtonTitle:nil 
-//											  otherButtonTitles:_OK_, nil];
-//		[alert show];
-//		[alert release];
-//		return retB;
-//	}
-//	if(self->onLineB)
+	if(!wifiavailable)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_NO_WIFI_ 
+														message:_CHECK_NETWORK_SETTINGS_
+													   delegate:self 
+											  cancelButtonTitle:nil 
+											  otherButtonTitles:_OK_, nil];
+		[alert show];
+		[alert release];
+		return retB;
+	}
+	if(self->onLineB)
 	{	
 		
 		UInt32 mic, size;
@@ -3985,37 +4007,37 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				[[UIApplication sharedApplication] setProximitySensingEnabled:YES];
 		#endif
 	}	
-//	else
-//	{
-//		if(self->loginProgressStart)
-//		{	
-//			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _USER_OFFLINE_ 
-//															   message: [ NSString stringWithString:_USER_OFFLINE_MESSAGE_ ]
-//															  delegate: nil
-//													 cancelButtonTitle: nil
-//													 otherButtonTitles: _OK_, nil
-//								  ];
-//			[ alert show ];
-//			[alert release];
-//		}
-//		else
-//		{
-//			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _NO_NETWORK_
-//															   message: [ NSString stringWithString:_CHECK_NETWORK_SETTINGS_ ]
-//															  delegate: nil
-//													 cancelButtonTitle: nil
-//													 otherButtonTitles: _OK_, nil
-//								  ];
-//			[ alert show ];
-//			[alert release];
-//			
-//		}
+	else
+	{
+		if(self->loginProgressStart)
+		{	
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _USER_OFFLINE_ 
+															   message: [ NSString stringWithString:_USER_OFFLINE_MESSAGE_ ]
+															  delegate: nil
+													 cancelButtonTitle: nil
+													 otherButtonTitles: _OK_, nil
+								  ];
+			[ alert show ];
+			[alert release];
+		}
+		else
+		{
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: _NO_NETWORK_
+															   message: [ NSString stringWithString:_CHECK_NETWORK_SETTINGS_ ]
+															  delegate: nil
+													 cancelButtonTitle: nil
+													 otherButtonTitles: _OK_, nil
+								  ];
+			[ alert show ];
+			[alert release];
+			
+		}
 		
 	
 	
 	
 	
-	//}
+	}
 	if(resultCharP)
 	{	
 		free(resultCharP);
@@ -4041,7 +4063,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 	return true;
 }
-
+#pragma mark CALLING_END
 -(void)tabBarController:(UITabBarController*)tabBarController didSelectViewController:(UIViewController*)viewController
 {
 	
@@ -4076,6 +4098,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 {
 	
 }
+#pragma mark VMS_START
 -(int) vmsPlayStart:(char *)fileName :(unsigned long*) sizeP
 {
 	unsigned long sz = 0; 
@@ -4279,7 +4302,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 
 
 }
-
+#pragma mark VMS_END
 -(void)refreshallViews
 {
 	[vmsviewP doRefresh];
@@ -4381,8 +4404,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				{	
 					//#define _TEST_QUALITY_ON_GPRS_ 
 					//#ifdef _TEST_QUALITY_ON_GPRS_
-					wifiavailable = NO;
+					wifiavailable = YES;
 					gprsavailable = YES;
+					actualwifiavailable = NO;
 					if(SetConnection( ltpInterfacesP,2)==0)
 					{	 
 						[spoknViewControllerP startProgress];
@@ -4393,6 +4417,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 				{
 					gprsavailable = NO;
 					wifiavailable = NO;
+					actualwifiavailable = NO;
 					[self logOut:NO];
 				//logOut(ltpInterfacesP,NO);
 					SetConnection( ltpInterfacesP,0);
@@ -4437,6 +4462,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			 if(connectionRequired==NO)
 			 {	 
 				 wifiavailable = YES;
+				 actualwifiavailable = YES;
 				 if(SetConnection( ltpInterfacesP,2)==0)
 				 {	 
 					 [spoknViewControllerP startProgress];
@@ -4454,6 +4480,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		alertNotiFication(ALERT_OFFLINE,0,NO_WIFI_OR_DATA_NETWORK_REACHEBLE,(long)self,0);
 		wifiavailable = NO;
 		gprsavailable = NO;
+		actualwifiavailable = NO;
     }
    
 	//textField.text= statusString;

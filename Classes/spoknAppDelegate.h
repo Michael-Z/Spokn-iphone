@@ -178,6 +178,7 @@ typedef struct CallNumberType
     Reachability* wifiReach;
 	Boolean wifiavailable;
 	Boolean gprsavailable;
+	Boolean actualwifiavailable;
 //	SystemSoundID endcallsoundID;
 	//SystemSoundID soundIncommingCallID;
 	//this store address of addressbook

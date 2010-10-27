@@ -72,7 +72,6 @@
 		73BD60E211EB403C00D4E167 /* clicktocall.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BD60E011EB403B00D4E167 /* clicktocall.m */; };
 		73C8FBE31276BE7D001419B0 /* 320x480-watermark.png in Resources */ = {isa = PBXBuildFile; fileRef = 73C8FBE21276BE7D001419B0 /* 320x480-watermark.png */; };
 		73C8FC051276CD22001419B0 /* spokncall.png in Resources */ = {isa = PBXBuildFile; fileRef = 73C8FC041276CD22001419B0 /* spokncall.png */; };
-		73C8FC131276D45F001419B0 /* routecontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C8FC121276D45F001419B0 /* routecontroller.m */; };
 		73D7CFD3120FE80100E0110C /* countrylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7CFD2120FE80100E0110C /* countrylist.m */; };
 		73D7D003120FEDB400E0110C /* clicktocall.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73D7D002120FEDB400E0110C /* clicktocall.xib */; };
 		73D7D05F120FF7D400E0110C /* countrylist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 73D7D05E120FF7D400E0110C /* countrylist.txt */; };
@@ -462,8 +461,6 @@
 		73BD60E011EB403B00D4E167 /* clicktocall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = clicktocall.m; sourceTree = "<group>"; };
 		73C8FBE21276BE7D001419B0 /* 320x480-watermark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "320x480-watermark.png"; path = "rsc/Spokn buttons n icons/320x480-watermark.png"; sourceTree = "<group>"; };
 		73C8FC041276CD22001419B0 /* spokncall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spokncall.png; path = rsc/spokncall.png; sourceTree = "<group>"; };
-		73C8FC111276D45F001419B0 /* routecontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = routecontroller.h; sourceTree = "<group>"; };
-		73C8FC121276D45F001419B0 /* routecontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = routecontroller.m; sourceTree = "<group>"; };
 		73D7CFD1120FE80100E0110C /* countrylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = countrylist.h; sourceTree = "<group>"; };
 		73D7CFD2120FE80100E0110C /* countrylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = countrylist.m; sourceTree = "<group>"; };
 		73D7D002120FEDB400E0110C /* clicktocall.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = clicktocall.xib; sourceTree = "<group>"; };
@@ -875,8 +872,6 @@
 				73D7D002120FEDB400E0110C /* clicktocall.xib */,
 				73D7CFD1120FE80100E0110C /* countrylist.h */,
 				73D7CFD2120FE80100E0110C /* countrylist.m */,
-				73C8FC111276D45F001419B0 /* routecontroller.h */,
-				73C8FC121276D45F001419B0 /* routecontroller.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1687,7 +1682,6 @@
 				73BD60E211EB403C00D4E167 /* clicktocall.m in Sources */,
 				73D7CFD3120FE80100E0110C /* countrylist.m in Sources */,
 				73B0150D121E7C8100DB8CF0 /* Reachability.m in Sources */,
-				73C8FC131276D45F001419B0 /* routecontroller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

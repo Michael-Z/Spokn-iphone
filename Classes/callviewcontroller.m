@@ -348,13 +348,13 @@ CallViewController *globalCallViewControllerP;
 	[UIView setAnimationDuration:0.2];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(fadeOut:finished:context:)];
-	UIViewAnimationOptions options = UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction;
-	
-	[UIView animateWithDuration:0.2 delay:0.0 options:options animations:^
-	 {
-		 messageviewMenuP.alpha = 1.0;
-	 } completion:nil];
-	//messageviewMenuP.alpha = 1.0;
+	//UIViewAnimationOptions options = UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction;
+//	
+//	[UIView animateWithDuration:0.2 delay:0.0 options:options animations:^
+//	 {
+//		 messageviewMenuP.alpha = 1.0;
+//	 } completion:nil];
+	messageviewMenuP.alpha = 1.0;
 	[UIView commitAnimations];
 
 	
