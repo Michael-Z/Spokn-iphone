@@ -874,7 +874,7 @@ void getProp()
 			{
 				int majorver =0,minor1ver=0,minor2ver=0;
 				GetOsVersion(&majorver,&minor1ver,&minor2ver);
-				if(majorver>=3 && minor1ver>0 )
+				if((majorver>=3 && minor1ver>0) || majorver>3  )
 				{	
 					
 					self.blueTooth =  blueToothIsOn();
@@ -969,13 +969,23 @@ void getProp()
 			}	
 			//[self performSelectorOnMainThread : @ selector(LoadContactView: ) withObject:callviewP waitUntilDone:YES];
 			break;
+		case ATTEMPT_VPN_CONNECT_SUCCESS:	
+			openvpnConnect = 1;
+			SendLoginPacket(self->ltpInterfacesP);
+			break;
+		
+			
 		case ATTEMPT_LOGIN_ON_OPEN_PORT:
 			
 			
 	
 		case  ATTEMPT_LOGIN:
 			self->ltpInterfacesP->pjsipThreadStartB =0;
-			SendLoginPacket(self->ltpInterfacesP);//==0)
+           
+			if(openvpnConnect>=1 || self->openvpnOn == 0)
+			{	
+				SendLoginPacket(self->ltpInterfacesP);//==0)
+			}
 			
 			break;
 		case UA_LOGIN_SUCCESSFULL:	
@@ -998,7 +1008,11 @@ void getProp()
 			}	
 			
 			break;
+		case ATTEMPT_VPN_CONNECT_EXIT:	
+		case ATTEMPT_VPN_CONNECT_UNSUCCESS:
+			openvpnConnect = 2;
 			
+				
 		case ATTEMPT_LOGIN_ERROR:
 		{	
 			UIAlertView *alertP = [ [ UIAlertView alloc ] initWithTitle: _SIP_LIB_NOT_INIT_ 
@@ -1679,7 +1693,7 @@ void getProp()
 	//printf("\n msg %d %d %d",spoknMsgP->status,spoknMsgP->subID,spoknMsgP->lineID);
 	[spoknMsgP.spokndelegateP setLtpInfo:spoknMsgP.status :spoknMsgP.subID :spoknMsgP.lineID :spoknMsgP.dataP];
 	[spoknMsgP.spokndelegateP alertAction:nil];
-	if(spoknMsgP.status==ALERT_SERVERMSG || spoknMsgP.status==ATTEMPT_LOGIN_ERROR)
+	if(spoknMsgP.status==ALERT_SERVERMSG || spoknMsgP.status==ATTEMPT_LOGIN_ERROR || spoknMsgP.status == ATTEMPT_VPN_CONNECT_UNSUCCESS  || spoknMsgP.status == ATTEMPT_VPN_CONNECT_EXIT)
 	{
 		if(spoknMsgP.dataP)
 		{	
@@ -2082,6 +2096,24 @@ int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lon
 	}
 	
 }
+-(char*)getResourcePath
+{
+	char * returnCharP;
+	const char *dataP;
+	char *p=0;
+	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"sandbox" ofType:@"crt"];
+	
+	dataP = [filePath cStringUsingEncoding:NSUTF8StringEncoding];
+	returnCharP = malloc(strlen(dataP)+10);
+	strcpy(returnCharP,dataP);
+	p = strstr(returnCharP,"/sandbox");
+	if(p)
+	{
+		*p = 0;
+	}
+	printf("\n%s",returnCharP);
+	return 	returnCharP;
+}
 char * GetPathFunction(void *uData)
 {
 	NSString *nsP;
@@ -2449,11 +2481,13 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(ltpTimerP)
 	{	
 		ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
+		self->openvpnOn =  startOpenVpn(ltpInterfacesP,GetPathFunction(0),[self getResourcePath]);
 		
 	}
 	else
 	{
 		ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
+		self->openvpnOn = startOpenVpn(ltpInterfacesP,GetPathFunction(0),[self getResourcePath]);
 		
 	}
 	setLogFile(ltpInterfacesP,self->onLogB);
@@ -2662,10 +2696,12 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		if(ltpTimerP)
 		{	
 			ltpInterfacesP =  ltpTimerP.ltpInterfacesP =  startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
+			self->openvpnOn = startOpenVpn(ltpInterfacesP,GetPathFunction(0),[self getResourcePath]);
 		}
 		else
 		{
 			ltpInterfacesP = startLtp(self->onoffSip,alertNotiFication,(unsigned long)self,self->randowVariable&0x1FFF);
+			self->openvpnOn = startOpenVpn(ltpInterfacesP,GetPathFunction(0),[self getResourcePath]);
 		}
 		setLogFile(ltpInterfacesP,self->onLogB);
 #ifdef _LTP_
@@ -3726,8 +3762,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			return 0;
 			
 		}
-	}
-}	
+	
+	}	
 /********************************************************************************************************************/			
 		
 		//First case NO Wifi/GPRS
@@ -4392,8 +4428,9 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		fclose(fp);
 		if(*noSecP==0)
 		{	
-			
-			return 1;
+			*noSecP= 1;
+			return 0;
+			//return 1;
 			
 		}
 	}	

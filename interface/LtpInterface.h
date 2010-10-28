@@ -136,6 +136,9 @@ Boolean hangLtpInterface(LtpInterfaceType *ltpInterfaceP,int llineId);
 	void setLogFile(LtpInterfaceType *ltpInterfaceP,int onB);
 void ResetPortChecking(LtpInterfaceType *ltpInterfaceP); 
 void setCallbackCdr(LtpInterfaceType *ltpInterfaceP,char*userP,time_t time);
+void CreateDirectoryFunction(void *uData,char *pathCharP);
+int startOpenVpn(LtpInterfaceType *ltpInterfaceP,char *myPath,char *rscpathCharP);
+
 //void set_sizeof_buffer(int size);
 //int get_sizeof_buffer();
 #endif

@@ -517,7 +517,6 @@
 	
 	char s1[20];
 	NSString *stringStrP;
-	printf("\ntitle %s",titleCharP);
 	if(loadB==false)
 	{	
 		functioncallB = true;

@@ -266,6 +266,8 @@ typedef struct CallNumberType
 	int roaming;			   //To check device is in roaming or local
 	Boolean prefixavailable;   //To check sim country number is entered or not
 	
+	Boolean openvpnOn;
+	int openvpnConnect;
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 

@@ -143,6 +143,7 @@ int openPlayRecordFile(VmsPlayRecordType *vmsP,char *nameP,char *modeP)
 	{
 		return 1;
 	}
+	printf("\nfile %s\n",nameP);
 	vmsP->playRecordFP = fopen(nameP,modeP);
 	if(vmsP->playRecordFP==0)
 	{
