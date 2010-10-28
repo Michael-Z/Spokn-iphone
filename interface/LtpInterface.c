@@ -344,7 +344,7 @@ void *PollThread(void *PollThreadP)
 			{	
 				restartSocket(&gP->socketID);
 				
-				ltpLogin(gP->ltpObjectP,CMD_LOGIN);
+				ltpLogin(gP->ltpObjectP,CMD_ACTUAL_LOGIN);
 				gP->connectionActiveByte = 2;
 			}
 			
@@ -670,7 +670,7 @@ int SendLoginPacket(LtpInterfaceType *ltpInterfaceP)
 		ltpInterfaceP->LogoutSendB = 0;
 	}
 	else {
-		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
+		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_ACTUAL_LOGIN);
 		return 0;
 	}
 
@@ -684,7 +684,7 @@ int DoLtpSipLoginInterface(LtpInterfaceType *ltpInterfaceP)
 	if(ltpInterfaceP->ltpObjectP->sipOnB==false)
 	{	
 		restartSocket(&ltpInterfaceP->socketID);
-		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_LOGIN);
+		ltpLogin(ltpInterfaceP->ltpObjectP,CMD_ACTUAL_LOGIN);
 	}
 	else
 	{	

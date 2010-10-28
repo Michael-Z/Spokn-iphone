@@ -2102,7 +2102,10 @@ int alertNotiFication(int type,unsigned int llineID,int valSubLong, unsigned lon
 	const char *dataP;
 	char *p=0;
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"sandbox" ofType:@"crt"];
-	
+	if(filePath==0)
+	{
+		return 0;
+	}
 	dataP = [filePath cStringUsingEncoding:NSUTF8StringEncoding];
 	returnCharP = malloc(strlen(dataP)+10);
 	strcpy(returnCharP,dataP);
