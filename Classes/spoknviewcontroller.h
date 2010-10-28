@@ -87,7 +87,7 @@ typedef struct ImageNameType
 -(void)startforwardactivityIndicator;
 -(void)stopforwardactivityIndicator;
 -(void)startProgress;
--(void) CallBackMe:(NSString*)apartynumberP bparty:(NSString*)bpartynumberP ; 
+-(int) CallBackMe:(NSString*)apartynumberP bparty:(NSString*)bpartynumberP ; 
 -(void)prefrences:(id)sender;
 -(void) showcallbackView;
 @end

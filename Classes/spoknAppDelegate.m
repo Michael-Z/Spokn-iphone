@@ -2785,7 +2785,10 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	 NSLog(@"%@",countryName);
 	 
 	 */
-	
+	self->prefixavailable = FALSE;
+	self->roaming = -1;
+	self->callthroughSupported = -1;
+
 	self.locationManager = [[CLLocationManager alloc] init];
 	if (locationManager.locationServicesEnabled == NO)
 	{
@@ -2819,8 +2822,8 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 #pragma mark Core Location methods
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation 
 {
-	NSLog(@"\n\nNEW:%@\n\n", [newLocation description]);
-	NSLog(@"location x:%lf, y:%lf", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+//	NSLog(@"\n\nNEW:%@\n\n", [newLocation description]);
+//	NSLog(@"location x:%lf, y:%lf", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
 //	NSLog(@"\n%@\n", newLocation.altitude);
 //	NSLog(@"\n%@\n", newLocation.course);
 //	NSLog(@"\n%@\n", newLocation.horizontalAccuracy);
@@ -2892,18 +2895,18 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	NSLog(@"\n\n\n\n\n");
 	NSLog(@"country:%@", myPlacemark.country);
 	NSLog(@"countryCode:%@", myPlacemark.countryCode);
-	NSLog(@"locality:%@", myPlacemark.locality);
-	NSLog(@"postalCode:%@", myPlacemark.postalCode);
-	NSLog(@"subLocality:%@", myPlacemark.subLocality);
-	NSLog(@"subAdministrativeArea:%@", myPlacemark.subAdministrativeArea);
-	NSLog(@"subThoroughfare:%@", myPlacemark.subThoroughfare);
-	NSLog(@"thoroughfare:%@", myPlacemark.thoroughfare);
+//	NSLog(@"locality:%@", myPlacemark.locality);
+//	NSLog(@"postalCode:%@", myPlacemark.postalCode);
+//	NSLog(@"subLocality:%@", myPlacemark.subLocality);
+//	NSLog(@"subAdministrativeArea:%@", myPlacemark.subAdministrativeArea);
+//	NSLog(@"subThoroughfare:%@", myPlacemark.subThoroughfare);
+//	NSLog(@"thoroughfare:%@", myPlacemark.thoroughfare);
 	NSLog(@"\n\n\n\n\n");
 	
 	
 	geodataP = [[geolocationData alloc] init];
 	geodataP.country = myPlacemark.country;
-	geodataP.countryCode = myPlacemark.countryCode;
+	geodataP.countryCode = @"AR";
 	
 	//NSLog(@"country:%@ countryCode:%@",geodataP.country, geodataP.countryCode);
 }
@@ -3551,39 +3554,60 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	}	
 	
-	NSString * tempPrefix;
+	NSString * tempPrefix = nil;
 	tempPrefix = [[NSUserDefaults standardUserDefaults] stringForKey:@"prefix"];
-	//NSLog(@"%@",tempPrefix);
+	NSLog(@"\n sim country code %@",tempPrefix);
+	if([tempPrefix length] == 0)
+	{
+		prefixavailable = FALSE;
+	}
+	else {
+		prefixavailable = TRUE;
+	}
+
 	
 	countrycodelist *tempCountrycodelistP;
 	NSEnumerator * enumerator = [arrayCountries objectEnumerator];
 	
 	while(tempCountrycodelistP = [enumerator nextObject])
 	{
-		//NSLog(@"%@-%@-%@",tempCountrycodelistP.name,tempCountrycodelistP.code,tempCountrycodelistP.prefix);
-		//NSLog(@"\n%@",tempCountrycodelistP.prefix);
 		if([tempCountrycodelistP.prefix isEqualToString:tempPrefix])
 		{
-			callthroughSupported = 1; //means it is supported
-			printf("\ncallthroughSupported = %d\n",callthroughSupported);
+			NSLog(@"\n%@-%@",tempCountrycodelistP.prefix,tempPrefix);
+			//if it enters here that means sim country code is equal to supported callthrough country code 
+			callthroughSupported = 1; //Supported
+			//printf("\ncallthroughSupported = %d\n",callthroughSupported);
 			if([geodataP.countryCode isEqualToString:tempCountrycodelistP.code])
 			{
-				//he is not in roaming
+				NSLog(@"\n%@-%@",geodataP.countryCode,tempCountrycodelistP.code);
+				//if it enters here that means  2 digit country code matches with (sim country number + callthrough country code) 
 				roaming = 0;
-				NSLog(@"local");
 			}
 			else {
+				NSLog(@"\n%@-%@",geodataP.countryCode,tempCountrycodelistP.code);
 				//he is in roaming
 				roaming = 1;
-				NSLog(@"roaming");
 			}
 			break;
 		}
 	}
 	if(callthroughSupported != 1)
 	{
-		callthroughSupported = 0; //means it is NOT supported
-		printf("\ncallthroughSupported = %d\n",callthroughSupported);
+		
+//		if([geodataP.countryCode isEqualToString:tempPrefix])
+//		{
+//			//if it enters here that means geo country code matches with sim country code but there is no callthrough number of this country
+//			roaming = 0; //Local
+//		}
+//		else
+//		{
+//			roaming = 1; //Roaming
+//			
+//		}
+
+		//if it enters here that means sim country code is NOT equal to supported callthrough country code 
+		callthroughSupported = 0; // NOT supported
+		roaming = 1; //Roaming
 	}	
 }
 
@@ -3647,8 +3671,18 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 #pragma mark CALLING_START
 -(Boolean)makeCall:(char *)noCharP
 {
-	
+	//check for current location
 	[self checkforRoaming];
+
+
+	printf("\n edge=%i\n",self->edgevalue);
+	printf("\n wifiavailable=%i\n",self->wifiavailable);
+	printf("\n gprsavailable=%i\n",self->gprsavailable);
+	printf("\n actualOnline=%i\n",self->actualOnlineB);
+	printf("\n actualWiFi=%i\n",self->actualwifiavailable);
+	printf("\n callthroughSupported=%i\n",self->callthroughSupported);
+	printf("\n roaming=%i\n",self->roaming);
+	
 	#ifndef _CLICK_TO_CALL_
 	outCallType = 1;
 	#endif
@@ -3667,105 +3701,144 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	}	
 	else
 	{
+		
 /********************************************************************************************************************/	
-//		if(actualOnlineB==false)
-//		{
-//			callthroughSupported = -1;
-//			return [self makeSipCallOrCallBack:noCharP callType:outCallType];
-//		}
-//		else {        // Means "ALL" option is selected as PROTOCOL option
-//		
-//			strcpy(numberToCall,noCharP);
-//			UIActionSheet *uiappActionSheetgP=0;
-//			uiappActionSheetgP= [[[UIActionSheet alloc] 
-//							  initWithTitle: @"Please select your prefrences" 
-//							  delegate:self
-//							  cancelButtonTitle:_CANCEL_ 
-//							  destructiveButtonTitle:nil
-//							  otherButtonTitles:@"Sip",@"CallBack",@"CallThrough", nil]autorelease];
-//			uiappActionSheetgP.tag = 1;
-//			uiappActionSheetgP.actionSheetStyle = UIBarStyleBlackTranslucent;
-//			[uiappActionSheetgP showInView:[self tabBarController].view];
-//			callthroughSupported = -1;
-//			
-//			return 0;
-//			
-//		}
-/********************************************************************************************************************/			
+		if(actualOnlineB==false)
+		{       
+			callthroughSupported = -1;
+			return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+		}
+		else {        // Means "ALL" option is selected as PROTOCOL option
+		
+			strcpy(numberToCall,noCharP);
+			UIActionSheet *uiappActionSheetgP=0;
+			uiappActionSheetgP= [[[UIActionSheet alloc] 
+							  initWithTitle: @"Please select your prefrences" 
+							  delegate:self
+							  cancelButtonTitle:_CANCEL_ 
+							  destructiveButtonTitle:nil
+							  otherButtonTitles:@"Sip",@"CallBack",@"CallThrough", nil]autorelease];
+			uiappActionSheetgP.tag = 1;
+			uiappActionSheetgP.actionSheetStyle = UIBarStyleBlackTranslucent;
+			[uiappActionSheetgP showInView:[self tabBarController].view];
+			callthroughSupported = -1;
 			
-			printf("\nedge=%i\n",self->edgevalue);
-			printf("\nwifiavailable=%i\n",self->wifiavailable);
-			printf("\ngprsavailable=%i\n",self->gprsavailable);
-			printf("\nactualOnline=%i\n",self->actualOnlineB);
+			return 0;
 			
-			//First case NO Wifi/GPRS
-			
-			if(wifiavailable==NO && gprsavailable==NO)
-			{
-				printf("\n%s\n"," NO NETWORK ");
-				//Tell the user of no connectivity and ask him to use call-through if he has local sim
-				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"NO NETWORK" 
-																   message: [ NSString stringWithString:@"You can  use call-through feature if you have local sim." ]
-																  delegate: nil
-														 cancelButtonTitle: nil
-														 otherButtonTitles: _OK_, nil
-									  ];
-				[ alert show ];
-				[alert release];
-			}	
-			
-			if(gprsavailable==YES &&  wifiavailable==NO)
-			{
-				//check for Location
-				if(roaming) //He is in roaming
-				{
-					//By default on SIP
-					return [self makeSipCallOrCallBack:noCharP callType:outCallType];
-					
-					//If call quality is  Bad tell the user  to use call-through if he has local sim
-					UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"ROAMING" 
-																	   message: [ NSString stringWithString:@"If call quality is  Bad  you can use call-through if he has local sim but higher charges may Apply." ]
-																	  delegate: nil
-															 cancelButtonTitle: nil
-															 otherButtonTitles: _OK_, nil
-										  ];
-					[ alert show ];
-					[alert release];
-				}
-				else //He is in same country as his SIM
-				{
-					//check if it is spokn number
-					if((strlen(noCharP)) <= 7)
-					{
-						CallViewController *tmpObjP;
-						tmpObjP = [dialviewP getCallViewController];
-						[(CallViewController*)tmpObjP setuserMessage:@"SIP"];
-						//Means it is spokn number
-						return [self makeSipCallOrCallBack:noCharP callType:1];
-					}	
-					else //it is not spokn number
-					{
-						return [self makeCallthrough:noCharP callType:outCallType];
-					}
-					
-				}
-				
-			}
-			
-			if(self->gprsavailable ||  self->wifiavailable)
-			{
-				//Both network are available 
-				//By defaul it will be on Wifi
-				printf("\n%s\n"," NETWORK AVAILABLE");
-			}	
-			
-			
-			
-
+		}
 	}
-	
-	callthroughSupported = -1;
-	return true;
+}	
+/********************************************************************************************************************/			
+		
+		//First case NO Wifi/GPRS
+//		if(wifiavailable==NO && gprsavailable==NO)
+//		{
+//			printf("\n%s\n"," NO NETWORK ");
+//			//Tell the user of no connectivity and ask him to use call-through if he has local sim
+//			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"NO NETWORK" 
+//															   message: [ NSString stringWithString:@"You can  use call-through feature if you have local sim." ]
+//															  delegate: nil
+//													 cancelButtonTitle: nil
+//													 otherButtonTitles: _OK_, nil
+//								  ];
+//			[ alert show ];
+//			[alert release];
+//		}	
+//		
+//		if(gprsavailable==YES &&  actualwifiavailable==NO)
+//		{
+//			//check for Location
+//			if(roaming) //He is in roaming
+//			{
+//				//By default on SIP
+//				return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+//				
+//				//If call quality is  Bad tell the user  to use call-through if he has local sim
+//				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"ALERT ROAMING" 
+//																   message: [ NSString stringWithString:@"If call quality is  Bad  you can use call-through if he has local sim but higher charges may Apply." ]
+//																  delegate: nil
+//														 cancelButtonTitle: nil
+//														 otherButtonTitles: _OK_, nil
+//									  ];
+//				[ alert show ];
+//				[alert release];
+//			}
+//			else //He is in same country as his SIM
+//			{
+//				//check if it is spokn number
+//				if((strlen(noCharP)) <= 7)
+//				{
+//					CallViewController *tmpObjP;
+//					tmpObjP = [dialviewP getCallViewController];
+//					[(CallViewController*)tmpObjP setuserMessage:@"SIP"];
+//					//Means it is spokn number
+//					return [self makeSipCallOrCallBack:noCharP callType:1];
+//				}	
+//				else //it is not spokn number
+//				{
+//					if(self->callthroughSupported == 1)
+//					{	
+//						return [self makeCallthrough:noCharP callType:outCallType];
+//					}
+//					else
+//					{
+//							//Means callthrough number not supported
+//							return [self makeSipCallOrCallBack:noCharP callType:2];
+//					}
+//
+//				}
+//				
+//			}
+//			
+//		}
+//		
+//		if(self->actualwifiavailable == YES && self->gprsavailable == YES)
+//		{
+//			//Both network are available 
+//			//By defaul it will be on Wifi
+//			printf("\n%s\n"," NETWORK AVAILABLE");
+//			//check for Location
+//			if(roaming) //He is in roaming
+//			{
+//					
+//				//By default on SIP
+//				return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+//				
+//			}
+//			else
+//			{
+//				//He is in same country as his SIM
+//				//By default on SIP
+//				return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+//			}
+//		}
+//		if(self->actualwifiavailable == YES && self->gprsavailable == NO)
+//		{
+//			printf("rishi");
+//			//check for Location
+//			if(roaming) //He is in roaming
+//			{
+//				
+//				//By default on SIP
+//				return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+//				
+//			}
+//			else
+//			{
+//				//He is in same country as his SIM
+//				//By default on SIP
+//				return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+//			}
+//			
+//		}
+//		
+//		
+//		
+//	}
+//
+//
+//	callthroughSupported = -1;
+//	return true;
 
 }
 
@@ -3796,6 +3869,20 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		
 		
 	}
+	if(self->outCallType==4 && self->prefixavailable == FALSE)
+	{
+		UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+														   message: [ NSString stringWithString:@"Sim country code not entered." ]
+														  delegate: nil
+												 cancelButtonTitle: nil
+												 otherButtonTitles: _OK_, nil
+							  ];
+		[ alert show ];
+		[alert release];
+		callthroughSupported = -1;
+		return 0;
+	
+	}	
 	char *unameCharP=0;
 	char *encryptypasswordCharP=0;
 	char *countrycodeCharP=0;
@@ -3835,8 +3922,6 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	sprintf(number,"tel:+%s%s,,0%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,resultCharP);
 	printf("\n%s\n",number);
 	time = [[NSDate date] timeIntervalSince1970];
-	//contactNameP = [self getNameAndTypeFromNumber:noCharP :type :0];
-//	[dialviewP setStatusTextMessage:@"Call is routing via  CALLBACK . You will get an incoming call. You  change it by presseing End call. "];
 	setCallbackCdr(ltpInterfacesP,resultCharP,time);
 	[self refreshallViews];
 	finalnumber = [[NSString alloc] initWithUTF8String:number];
@@ -3899,16 +3984,31 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	if(loutCallType==2 || loutCallType==3)
 	{
-	
-//		[dialviewP setStatusTextMessage:@"Call is routing via  CALLBACK . You will get an incoming call. You  change it by presseing End call. "];
+		
+		[dialviewP setStatusTextMessage:@"Call is routing via  CALLBACK . You will get an incoming call. You  change it by presseing End call. "];
+		[dialviewP setStatusText:@"RISHI" :@"SAXENA" :TRYING_CALL :0  :0];
 		NSTimeInterval time;
 		NSString *callbackP;
 		NSString *callerP;
+		int result;
 		callerP = (NSString*) [[NSUserDefaults standardUserDefaults] objectForKey:@"callbacknumber"];
 		resultCharP = NormalizeNumber(noCharP,0);
 		callbackP = [[NSString alloc] initWithUTF8String:resultCharP] ;
-		[dialviewP setStatusText:@"RISHI" :@"SAXENA" :TRYING_CALL :0  :0];
-		[spoknViewControllerP CallBackMe:callerP bparty:callbackP];
+		result = [spoknViewControllerP CallBackMe:callerP bparty:callbackP];
+		if(result == 200)
+		{	
+			//CallViewController *tmpObjP;
+			//tmpObjP = [dialviewP getCallViewController];
+			//[(CallViewController*)tmpObjP dismisscontroller:0];
+			
+			
+			//[self->dialviewP->callViewControllerP endCallPressed:nil];
+			
+			//[self endCall:-1];
+			
+			[dialviewP setStatusText: @"end call" :nil :ALERT_CALL_NOT_START :0 :0];
+		
+		}
 		time = [[NSDate date] timeIntervalSince1970];
 		setCallbackCdr(ltpInterfacesP,noCharP,time);
 		[self refreshallViews];

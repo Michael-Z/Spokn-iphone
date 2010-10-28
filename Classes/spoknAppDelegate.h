@@ -262,8 +262,9 @@ typedef struct CallNumberType
 	NSString *presentCountryCode;
 	countrycodelist *countrycodelistP;
 	geolocationData *geodataP;
-	int callthroughSupported;
-	int roaming;				
+	int callthroughSupported;  //To check sim number is there is callthough supported numbers
+	int roaming;			   //To check device is in roaming or local
+	Boolean prefixavailable;   //To check sim country number is entered or not
 	
 }
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;

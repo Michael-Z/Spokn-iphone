@@ -356,8 +356,7 @@ CallViewController *globalCallViewControllerP;
 //	 } completion:nil];
 	messageviewMenuP.alpha = 1.0;
 	[UIView commitAnimations];
-
-	
+		
 }
 
 -(void)showMessage
@@ -427,6 +426,7 @@ CallViewController *globalCallViewControllerP;
 			[callManagmentP callStart:incommingLineID];
 			showMessage = 1;
 		}
+		//Main outgoing calling function
 		llineID = alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
 		if(llineID>=0 && incommingLineID <0)
 		{	
@@ -968,6 +968,7 @@ CallViewController *globalCallViewControllerP;
 	self->showMessage = 0;
 	//self->viewMenuP.hidden = FALSE;
 	[self showMessage];
+	[ownerobject setoutCallTypeProtocol:1];
 }
 -(IBAction)callthroughButtonPressedKey:(id)sender
 {
@@ -976,6 +977,7 @@ CallViewController *globalCallViewControllerP;
 	self->showMessage = 0;
 	//self->viewMenuP.hidden = FALSE;
 	[self showMessage];
+	[ownerobject setoutCallTypeProtocol:4];
 }
 -(IBAction)callbackButtonPressedKey:(id)sender
 {
@@ -984,6 +986,8 @@ CallViewController *globalCallViewControllerP;
 	self->showMessage = 0;
 	//self->viewMenuP.hidden = FALSE;
 	[self showMessage];
+	[ownerobject setoutCallTypeProtocol:2];
+	//[ownerobject makeCall:
 }
 -(IBAction)changePortocolPressedKey:(id)sender
 {

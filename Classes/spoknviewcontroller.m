@@ -1498,7 +1498,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	[actionSheet release];
 }
 
--(void) CallBackMe:(NSString*)apartynumberP bparty:(NSString*)bpartynumberP  
+-(int) CallBackMe:(NSString*)apartynumberP bparty:(NSString*)bpartynumberP  
 {
 	NSMutableString	*loginString;
 	NSMutableString	*passwordString;
@@ -1565,7 +1565,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 	{
 		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Callback request failed" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 		[alert show];
-		return;
+		return 1;
 	}
 	
 	NSString *result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
@@ -1677,6 +1677,7 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 			}
 			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:serverMessage message:[NSString stringWithFormat:@"%d", code] delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 			[alert show];
+			return code;
 		}
 	}
 	else if ([urlResponse statusCode] == 404)
@@ -1684,25 +1685,30 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 		//NSLog(@"Not Found");
 		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Resource not found at server" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 		[alert show];
+		return [urlResponse statusCode];
 	}
 	else if ([urlResponse statusCode] == 415)
 	{
 		//NSLog(@"Unsupported Media Type");
 		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unsupported Media Type" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 		[alert show];
+		return [urlResponse statusCode];
 	}
 	else if ([urlResponse statusCode] == 401)
 	{
 		//NSLog(@"Unauthorized");
 		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Unauthorized" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 		[alert show];
+		return [urlResponse statusCode];
 	}
 	else if ([urlResponse statusCode] == 500)
 	{
 		//NSLog(@"Internal Server Error");
 		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Request failed" message:@"Internal Server Error" delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
 		[alert show];
+		return [urlResponse statusCode];
 	}
 	[result release];
+	return 0;
 }
 @end
