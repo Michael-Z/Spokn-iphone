@@ -3762,8 +3762,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			return 0;
 			
 		}
-	
-	}	
+	}
 /********************************************************************************************************************/			
 		
 		//First case NO Wifi/GPRS
