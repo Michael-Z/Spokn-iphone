@@ -268,7 +268,13 @@ typedef struct CallNumberType
 	
 	Boolean openvpnOn;
 	int openvpnConnect;
+	int currentMethodOfCall;
 }
+
+
+-(int)getCallingMethod;
+-(int)DoCurrentCallMethod:(int)currentMethod :(NSString**)nsP;
+
 -(void)LoadInCommingView:(id)objid:(UIViewController*)perentControllerP;
 -(void) setLtpInfo:(int)ltpstatus :(int)subid :(int)llineID :(void*)dataVoidP; 
 -(void) showText:(NSString *)testStringP;
@@ -393,6 +399,7 @@ changed:(BOOL)changed;
 -(void)setcallthroughData:(id)objectP;
 - (void)stopUpdatingCoreLocation:(NSString *)state;
 -(void) checkforRoaming;
+-(void) setCallType:(int)typeB;
 #ifdef G4_DEFINE	
 #ifdef __IPHONE_4_0	
 - (void)sendIncommingPushNotification:(NSString*)msgStringP;

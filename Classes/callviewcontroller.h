@@ -98,6 +98,7 @@
 	int gchildWillDie;
 	int showMessage;
 	NSTimer *messageTimerP;
+	int RequestIsProcessedB;
 }
 -(void)setObject:(id) object ;
 -(void)setParentObject:(id) object ;

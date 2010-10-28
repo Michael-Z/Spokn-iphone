@@ -1674,8 +1674,8 @@ forRowAtIndexPath:(NSIndexPath *) indexPath
 					
 					
 			}
-			UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:serverMessage message:[NSString stringWithFormat:@"%d", code] delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
-			[alert show];
+			//UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:serverMessage message:[NSString stringWithFormat:@"%d", code] delegate:nil cancelButtonTitle:_OK_ otherButtonTitles: nil] autorelease];
+			//[alert show];
 			return code;
 		}
 	}

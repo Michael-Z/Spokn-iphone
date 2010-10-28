@@ -338,11 +338,89 @@ CallViewController *globalCallViewControllerP;
 	{	
 		text = [[NSString alloc] initWithString:message];
 	}	
+	if(messageTextP)
+	messageTextP.text = text;
 }
 
 -(void)hideMessage
 {
-
+	int callM;
+	int llineID;
+	NSString *nsp = 0;
+	if(self->RequestIsProcessedB==0)
+	{	
+		callM = [ownerobject getCallingMethod];
+		self->RequestIsProcessedB = 1;
+		switch(callM)
+		{
+			case 1:
+				//Main outgoing calling function
+				llineID = alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
+				if(llineID>=0 )
+				{	
+					//Means Outgoing Call 
+					[callManagmentP addCall:llineID :labelStrP :labeltypeStrP];
+					showMessage = 0;
+				}
+				if([callManagmentP getCount]<=0)
+				{
+					[NSTimer scheduledTimerWithTimeInterval: 0.1
+													 target: self
+												   selector: @selector(handleCallEndTimer:)
+												   userInfo: nil
+													repeats: NO];
+					[calltimerP invalidate];
+					calltimerP = nil;
+				}	
+				
+				break;
+			case 2:
+				[ownerobject DoCurrentCallMethod:-1 :&nsp];
+				if(nsp)
+				{
+					[self setuserMessage:nsp];
+				}
+				
+				messageTimerP = [NSTimer scheduledTimerWithTimeInterval: 2
+																 target: self
+															   selector: @selector(hideMessage)
+															   userInfo: nil
+																repeats: NO];
+				[NSTimer scheduledTimerWithTimeInterval: 3
+												 target: self
+											   selector: @selector(handleCallEndTimer:)
+											   userInfo: nil
+												repeats: NO];
+				[calltimerP invalidate];
+				calltimerP = nil;
+				
+				
+				return;
+				break;
+			case 3:
+				[ownerobject DoCurrentCallMethod:-1 :&nsp];
+				if(nsp)
+				{
+					[self setuserMessage:nsp];
+				}
+				
+				messageTimerP = [NSTimer scheduledTimerWithTimeInterval: 2
+																 target: self
+															   selector: @selector(hideMessage)
+															   userInfo: nil
+																repeats: NO];
+				[NSTimer scheduledTimerWithTimeInterval: 3
+												 target: self
+											   selector: @selector(handleCallEndTimer:)
+											   userInfo: nil
+												repeats: NO];
+				[calltimerP invalidate];
+				calltimerP = nil;
+				
+				break;
+		
+		}
+	}
 	//http://stackoverflow.com/questions/3897279/difference-between-uiview-beginanimationscontext-and-uiview-animatewithdurat
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.2];
@@ -426,14 +504,17 @@ CallViewController *globalCallViewControllerP;
 			[callManagmentP callStart:incommingLineID];
 			showMessage = 1;
 		}
-		//Main outgoing calling function
-		llineID = alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
-		if(llineID>=0 && incommingLineID <0)
+		if(showMessage==1)
 		{	
-			//Means Outgoing Call 
-			[callManagmentP addCall:llineID :labelStrP :labeltypeStrP];
-			showMessage = 0;
-		}
+			//Main outgoing calling function
+			llineID = alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
+			if(llineID>=0 && incommingLineID <0)
+			{	
+				//Means Outgoing Call 
+				[callManagmentP addCall:llineID :labelStrP :labeltypeStrP];
+				showMessage = 0;
+			}
+		}	
 		[tableView reloadData];
 		firstTimeB = 0;
 	}
@@ -459,15 +540,19 @@ CallViewController *globalCallViewControllerP;
 	}
 	else
 	{	
-		if([callManagmentP getCount]<=0)
-		{
-			[NSTimer scheduledTimerWithTimeInterval: 0.1
+		
+		if(showMessage==1)
+		{	
+			if([callManagmentP getCount]<=0)
+			{
+				[NSTimer scheduledTimerWithTimeInterval: 0.1
 										 target: self
 									   selector: @selector(handleCallEndTimer:)
 									   userInfo: nil
 										repeats: NO];
-			[calltimerP invalidate];
-			calltimerP = nil;
+				[calltimerP invalidate];
+				calltimerP = nil;
+			}	
 		
 				
 		
@@ -594,6 +679,7 @@ CallViewController *globalCallViewControllerP;
 	[[self navigationController] setNavigationBarHidden:YES animated:NO];
 	endCalledPressed = NO;
 	[self setSpeakerButtonImage];
+	
 	
 	
 }
@@ -891,9 +977,10 @@ CallViewController *globalCallViewControllerP;
 	actualDismissB = NO;
 
 }
+
 -(void)removeCallview
 {
-	//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 	failedCallB = true;
 }
 - (void) handleCallTimer: (id) timer
@@ -968,7 +1055,8 @@ CallViewController *globalCallViewControllerP;
 	self->showMessage = 0;
 	//self->viewMenuP.hidden = FALSE;
 	[self showMessage];
-	[ownerobject setoutCallTypeProtocol:1];
+	//[ownerobject setoutCallTypeProtocol:1];
+	[ownerobject setCallType:1];
 }
 -(IBAction)callthroughButtonPressedKey:(id)sender
 {
@@ -977,7 +1065,8 @@ CallViewController *globalCallViewControllerP;
 	self->showMessage = 0;
 	//self->viewMenuP.hidden = FALSE;
 	[self showMessage];
-	[ownerobject setoutCallTypeProtocol:4];
+	//[ownerobject setoutCallTypeProtocol:4];
+	[ownerobject setCallType:3];
 }
 -(IBAction)callbackButtonPressedKey:(id)sender
 {
@@ -986,8 +1075,9 @@ CallViewController *globalCallViewControllerP;
 	self->showMessage = 0;
 	//self->viewMenuP.hidden = FALSE;
 	[self showMessage];
-	[ownerobject setoutCallTypeProtocol:2];
+	//[ownerobject setoutCallTypeProtocol:2];
 	//[ownerobject makeCall:
+	[ownerobject setCallType:2];
 }
 -(IBAction)changePortocolPressedKey:(id)sender
 {
