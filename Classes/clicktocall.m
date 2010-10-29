@@ -23,7 +23,7 @@
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         // Custom initialization
 		
-		CGRect LabelFrame1 = CGRectMake(20, 6, 117, ROW_HEIGHT-10);
+		CGRect LabelFrame1 = CGRectMake(20, 6, 200, ROW_HEIGHT-10);
 		labelconnectionType = [[UILabel alloc] initWithFrame:LabelFrame1];
 		labelconnectionType.textAlignment = UITextAlignmentLeft;
 		labelconnectionType.tag = 1;
@@ -684,7 +684,7 @@
 			
 		case 4://mean all
 		{	
-			[labelconnectionType setText:@"All"];
+			[labelconnectionType setText:@"Let the App Decide"];
 			[ownerobject setoutCallTypeProtocol:index];
 			[self callthroughApiAsynchronous];
 			pickerView.hidden = NO;
@@ -834,7 +834,7 @@
 						  delegate:self
 						  cancelButtonTitle:_CANCEL_ 
 						  destructiveButtonTitle:nil
-						  otherButtonTitles:@"Sip",@"CallBack",@"Call-through",@"All", nil];
+						  otherButtonTitles:@"Sip",@"CallBack",@"Call-through",@"Let the App Decide", nil];
 		
 		uiActionSheetgP.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
 		[uiActionSheetgP showInView:[ownerobject tabBarController].view];

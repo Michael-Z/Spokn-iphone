@@ -455,6 +455,7 @@
 		7322D22411EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-ua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D22511EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		739D257D1259EC94006AB025 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		739DD112127A924400AFE91C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		73B0150B121E7C8100DB8CF0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		73B0150C121E7C8100DB8CF0 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		73B262AD126DDC9C007028C0 /* countrycodelist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = countrycodelist.txt; sourceTree = "<group>"; };
@@ -510,7 +511,6 @@
 		8B1AEA0F11206A6500A957EA /* vm_icons_outgoing_undelivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_outgoing_undelivered.png; sourceTree = "<group>"; };
 		8B1AEA1011206A6500A957EA /* vmail_out_newHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmail_out_newHigh.png; sourceTree = "<group>"; };
 		8B1AEA1111206A6500A957EA /* vms_out_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vms_out_Active.png; sourceTree = "<group>"; };
-		8B1C77211279D23A00DAEA31 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		8B27D91B11F2FE4D0090DCF0 /* libpj-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin9.a"; path = "../pjproject1.6/pjlib/lib/libpj-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B27D91D11F2FE650090DCF0 /* libpjlib-util-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-i386-apple-darwin9.a"; path = "../pjproject1.6/pjlib-util/lib/libpjlib-util-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B27D91F11F2FE830090DCF0 /* libpjmedia-audiodev-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-i386-apple-darwin9.a"; path = "../pjproject1.6/pjmedia/lib/libpjmedia-audiodev-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
@@ -930,7 +930,7 @@
 				32C15BDD1158A9C200689F56 /* child.plist */,
 				8BAA7D8E109EBD3E0009C8D4 /* Sounds */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8B1C77211279D23A00DAEA31 /* Entitlements.plist */,
+				739DD112127A924400AFE91C /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1766,7 +1766,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = NO;
@@ -1809,7 +1809,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mukesh Sharma (549W85WCYT)";
 				COPY_PHASE_STRIP = YES;
@@ -2154,7 +2154,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;
@@ -2225,7 +2225,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/mygit/iphone/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "~/Documents/mygit/Spokn-iphone/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Geodesic Technology Solutions LTD";
 				COPY_PHASE_STRIP = YES;

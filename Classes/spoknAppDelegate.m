@@ -2945,7 +2945,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	geodataP = [[geolocationData alloc] init];
 	geodataP.country = myPlacemark.country;
-	geodataP.countryCode = @"AR";
+	geodataP.countryCode =myPlacemark.countryCode;
 	
 	//NSLog(@"country:%@ countryCode:%@",geodataP.country, geodataP.countryCode);
 }
@@ -3789,7 +3789,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			if(roaming) //He is in roaming
 			{
 				//By default on SIP
-				return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+				return [self makeSipCallOrCallBack:noCharP callType:1];
 				
 				//If call quality is  Bad tell the user  to use call-through if he has local sim
 				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"ALERT ROAMING" 
@@ -3840,14 +3840,14 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			{
 					
 				//By default on SIP
-				return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+				return [self makeSipCallOrCallBack:noCharP callType:1];
 				
 			}
 			else
 			{
 				//He is in same country as his SIM
 				//By default on SIP
-				return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+				return [self makeSipCallOrCallBack:noCharP callType:1];
 			}
 		}
 		if(self->actualwifiavailable == YES && self->gprsavailable == NO)
@@ -3858,14 +3858,14 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			{
 				
 				//By default on SIP
-				return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+				return [self makeSipCallOrCallBack:noCharP callType:1];
 				
 			}
 			else
 			{
 				//He is in same country as his SIM
 				//By default on SIP
-				return [self makeSipCallOrCallBack:noCharP callType:outCallType];
+				return [self makeSipCallOrCallBack:noCharP callType:1];
 			}
 			
 		}
@@ -3957,7 +3957,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	encryptypasswordCharP = getencryptedPassword();
 	countrycodeCharP = (char*)[countrylispP.code cStringUsingEncoding:NSUTF8StringEncoding];
 	countrynumberCharP = (char*)[countrylispP.number cStringUsingEncoding:NSUTF8StringEncoding];
-	sprintf(number,"tel:+%s%s,,0%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,resultCharP);
+	sprintf(number,"tel:+%s%s,0%s%s%s",countrycodeCharP,countrynumberCharP,unameCharP,encryptypasswordCharP,resultCharP);
 	printf("\n%s\n",number);
 	time = [[NSDate date] timeIntervalSince1970];
 	setCallbackCdr(ltpInterfacesP,resultCharP,time);
@@ -4000,27 +4000,94 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			callbackP = [[NSString alloc] initWithUTF8String:self->callNumber.number] ;
 			self->callNumber.direction = 0;
 			result = [spoknViewControllerP CallBackMe:callerP bparty:callbackP];
-			if(result == 200)
-			{	
-				//CallViewController *tmpObjP;
-				//tmpObjP = [dialviewP getCallViewController];
-				//[(CallViewController*)tmpObjP dismisscontroller:0];
-				
-				
-				//[self->dialviewP->callViewControllerP endCallPressed:nil];
-				
-				//[self endCall:-1];
-				
-				//[dialviewP setStatusText: @"end call" :nil :ALERT_CALL_NOT_START :0 :0];
-				
-			}
 			time = [[NSDate date] timeIntervalSince1970];
 			setCallbackCdr(ltpInterfacesP,self->callNumber.number,time);
 			[self refreshallViews];
 			[callbackP release];
 			if(nsP)
-			*nsP = [NSString stringWithString:@"call back come"];
+			{	
+			//*nsP = [NSString stringWithString:@"call back come"];
 			//[nsP retain]
+				switch(result)
+				{
+						
+					case 200://Request Sucessful
+					{	
+						//NSLog(@"Request Sucessful");
+						*nsP = [NSString stringWithString:@"Request Sucessful"];
+					}	
+						break;
+						
+					case 101://Auth Failed
+					{	
+						//NSLog(@"Invalid Spokn Id or Password");
+						*nsP = [NSString stringWithString:@"Invalid Spokn Id or Password"];
+					}	
+						break;
+						
+					case 102://Invalid Input
+					{	
+						NSLog(@"Invalid Input");
+						*nsP = [NSString stringWithString:@"call back come"];
+					}	
+						break;
+						
+						
+					case 103://Bad aparty
+					{	
+						//NSLog(@"Bad aparty.");
+						*nsP = [NSString stringWithString:@"Bad aparty."];
+					}	
+						break;
+						
+						
+					case 104://Bad bparty
+					{	
+						//NSLog(@"Bad bparty.");
+						*nsP = [NSString stringWithString:@"Bad bparty."];
+					}	
+						break;
+						
+	
+					case 105://Billing details cannot be retrived
+					{	
+						//NSLog(@"Billing details cannot be retrived.");
+						*nsP = [NSString stringWithString:@"Billing details cannot be retrived."];
+					}	
+						break;
+						
+					case 106://aparty not supported
+					{	
+						//NSLog(@"aparty not supported.");
+						*nsP = [NSString stringWithString:@"aparty not supported."];
+					}	
+						break;
+						
+					case 107://bparty not supported
+					{	
+						//NSLog(@"bparty not supported");
+						*nsP = [NSString stringWithString:@"bparty not supported"];
+					}	
+						break;
+						
+					case 108://No credits to make a call
+					{	
+						//NSLog(@"Not enough credits to make call.");
+						*nsP = [NSString stringWithString:@"Not enough credits to make call."];
+					}	
+						break;
+						
+					default:
+					{	
+						//NSLog(@"Call failed due to an unknown error.");
+						*nsP = [NSString stringWithString:@"Call failed due to an unknown error."];
+					}	break;
+						
+						
+						
+				}
+				
+			}	
 		}	
 			break;
 			
@@ -4093,7 +4160,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	if(loutCallType==2 || loutCallType==3)
 	{
 		
-		[dialviewP setStatusTextMessage:@"Call is routing via  CALLBACK . You will get an incoming call. You  change it by presseing End call. "];
+		[dialviewP setStatusTextMessage:@"Call is routing via  CALLBACK . You will get an incoming call. You  change it by presseing Change Protocol Button. "];
 		[dialviewP setStatusText:@"RISHI" :@"SAXENA" :TRYING_CALL :0  :0];
 	
 		int result;
@@ -4176,7 +4243,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		retB = 1;
 		[SpoknAudio destorySoundUrl:&allSoundP];
 		//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
-		[dialviewP setStatusTextMessage:@"Call is routing via  SIP . You can change it by presseing End call. "];
+		[dialviewP setStatusTextMessage:@"Call is routing via  SIP . You can change it by presseing Change Protocol Button. "];
 		[dialviewP setStatusText:strP :temp1P :TRYING_CALL :0  :0];
 				
 		//[tempStringP release ];
