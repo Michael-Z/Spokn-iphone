@@ -3999,6 +3999,18 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			callerP = (NSString*) [[NSUserDefaults standardUserDefaults] objectForKey:@"callbacknumber"];
 			callbackP = [[NSString alloc] initWithUTF8String:self->callNumber.number] ;
 			self->callNumber.direction = 0;
+//			if([callerP length] == 0)
+//			{
+//				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+//																   message: [ NSString stringWithString:@"Callback number is not entered." ]
+//																  delegate: nil
+//														 cancelButtonTitle: nil
+//														 otherButtonTitles: _OK_, nil
+//									  ];
+//				[ alert show ];
+//				[alert release];
+//				return 0;
+//			}  
 			result = [spoknViewControllerP CallBackMe:callerP bparty:callbackP];
 			time = [[NSDate date] timeIntervalSince1970];
 			setCallbackCdr(ltpInterfacesP,self->callNumber.number,time);
@@ -4159,11 +4171,25 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 	
 	if(loutCallType==2 || loutCallType==3)
 	{
+		NSString *callerP;
+		callerP = (NSString*) [[NSUserDefaults standardUserDefaults] objectForKey:@"callbacknumber"];
+		if([callerP length] == 0)
+		{
+			UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"Spokn" 
+															   message: [ NSString stringWithString:@"Callback number is not entered." ]
+															  delegate: nil
+													 cancelButtonTitle: nil
+													 otherButtonTitles: _OK_, nil
+								  ];
+			[ alert show ];
+			[alert release];
+			return 0;
+		} 
 		
 		[dialviewP setStatusTextMessage:@"Call is routing via  CALLBACK . You will get an incoming call. You  change it by presseing Change Protocol Button. "];
 		[dialviewP setStatusText:@"RISHI" :@"SAXENA" :TRYING_CALL :0  :0];
 	
-		int result;
+		//int result;
 		self->currentMethodOfCall = 2;
 		resultCharP = NormalizeNumber(noCharP,0);
 		strcpy(self->callNumber.number,resultCharP);

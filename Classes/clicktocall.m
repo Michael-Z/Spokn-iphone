@@ -464,7 +464,7 @@
 		strcpy(pinNoCharP,pinCharP);
 	}
 	
-	[AddeditcellControllerviewP setData:pinNoCharP value:"Enter country code." placeHolder:"Number" title:"Pin" returnValue:&viewResult2];
+	[AddeditcellControllerviewP setData:pinNoCharP value:"Enter country code." placeHolder:"Number" title:"Sim Country Code" returnValue:&viewResult2];
 	
 	[ [self navigationController] pushViewController:AddeditcellControllerviewP animated: YES ];
 	

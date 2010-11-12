@@ -350,6 +350,7 @@ CallViewController *globalCallViewControllerP;
 	if(self->RequestIsProcessedB==0)
 	{	
 		callM = [ownerobject getCallingMethod];
+		printf("\n\ncall= %d\n\n",callM);
 		self->RequestIsProcessedB = 1;
 		switch(callM)
 		{
@@ -358,7 +359,7 @@ CallViewController *globalCallViewControllerP;
 				llineID = alertNotiFication(CALL_ALERT,0,failedCallB,  (unsigned long)ownerobject,0);
 				if(llineID>=0 )
 				{	
-					//Means Outgoing Call 
+					//Means SIP Call 
 					[callManagmentP addCall:llineID :labelStrP :labeltypeStrP];
 					showMessage = 0;
 				}
@@ -375,6 +376,7 @@ CallViewController *globalCallViewControllerP;
 				
 				break;
 			case 2:
+				//Means Callback
 				[ownerobject DoCurrentCallMethod:-1 :&nsp];
 				if(nsp)
 				{
@@ -980,7 +982,7 @@ CallViewController *globalCallViewControllerP;
 
 -(void)removeCallview
 {
-	[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
+	//[ownerobject.tabBarController dismissModalViewControllerAnimated:YES];
 	failedCallB = true;
 }
 - (void) handleCallTimer: (id) timer
@@ -1057,6 +1059,7 @@ CallViewController *globalCallViewControllerP;
 	[self showMessage];
 	//[ownerobject setoutCallTypeProtocol:1];
 	[ownerobject setCallType:1];
+	[self setuserMessage:@"Call is routing via  SIP . You can change it by presseing Change Protocol Button. "];
 }
 -(IBAction)callthroughButtonPressedKey:(id)sender
 {
@@ -1067,6 +1070,7 @@ CallViewController *globalCallViewControllerP;
 	[self showMessage];
 	//[ownerobject setoutCallTypeProtocol:4];
 	[ownerobject setCallType:3];
+	[self setuserMessage:@"Call is routing via  CALL-THROUGH . Spokn app will terminate and call is going to connect via your GSM network"];
 }
 -(IBAction)callbackButtonPressedKey:(id)sender
 {
@@ -1078,6 +1082,7 @@ CallViewController *globalCallViewControllerP;
 	//[ownerobject setoutCallTypeProtocol:2];
 	//[ownerobject makeCall:
 	[ownerobject setCallType:2];
+	[self setuserMessage:@"Call is routing via  CALLBACK . You will get an incoming call. You  change it by presseing Change Protocol Button. "];
 }
 -(IBAction)changePortocolPressedKey:(id)sender
 {
