@@ -48,7 +48,6 @@
 		32DF1FD3112EC4D00052C56D /* 132x52-hide-keypad-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */; };
 		32DF1FD4112EC4D00052C56D /* 132x52-hide-keypad-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */; };
 		32EE820410A5B71A00B0BAAD /* contact.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32EE820310A5B71A00B0BAAD /* contact.xib */; };
-		7313B4B01268347700E252F5 /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7313B4AF1268347700E252F5 /* libpj-arm-apple-darwin9.a */; };
 		7322D20D11EDDEF7000583F8 /* libg7221codec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D20611EDDEF7000583F8 /* libg7221codec-arm-apple-darwin9.a */; };
 		7322D20E11EDDEF7000583F8 /* libgsmcodec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D20711EDDEF7000583F8 /* libgsmcodec-arm-apple-darwin9.a */; };
 		7322D20F11EDDEF7000583F8 /* libilbccodec-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D20811EDDEF7000583F8 /* libilbccodec-arm-apple-darwin9.a */; };
@@ -66,6 +65,8 @@
 		7322D22711EDDFD0000583F8 /* libpjsip-simple-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22311EDDFD0000583F8 /* libpjsip-simple-arm-apple-darwin9.a */; };
 		7322D22811EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22411EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a */; };
 		7322D22911EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7322D22511EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a */; };
+		7343219C12929A5200F8734C /* libpj-arm-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7343219B12929A5200F8734C /* libpj-arm-apple-darwin9.a */; };
+		734321AD12929B1200F8734C /* libpj-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 734321AC12929B1200F8734C /* libpj-i386-apple-darwin9.a */; };
 		739D257E1259EC94006AB025 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739D257D1259EC94006AB025 /* CoreLocation.framework */; };
 		73B0150D121E7C8100DB8CF0 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B0150C121E7C8100DB8CF0 /* Reachability.m */; };
 		73B262AE126DDC9C007028C0 /* countrycodelist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 73B262AD126DDC9C007028C0 /* countrycodelist.txt */; };
@@ -159,7 +160,6 @@
 		8B1AEA1B11206A6500A957EA /* vm_icons_outgoing_undelivered.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AEA0F11206A6500A957EA /* vm_icons_outgoing_undelivered.png */; };
 		8B1AEA1C11206A6500A957EA /* vmail_out_newHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AEA1011206A6500A957EA /* vmail_out_newHigh.png */; };
 		8B1AEA1D11206A6500A957EA /* vms_out_Active.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B1AEA1111206A6500A957EA /* vms_out_Active.png */; };
-		8B27D91C11F2FE4D0090DCF0 /* libpj-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B27D91B11F2FE4D0090DCF0 /* libpj-i386-apple-darwin9.a */; };
 		8B27D91E11F2FE650090DCF0 /* libpjlib-util-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B27D91D11F2FE650090DCF0 /* libpjlib-util-i386-apple-darwin9.a */; };
 		8B27D92311F2FE830090DCF0 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B27D91F11F2FE830090DCF0 /* libpjmedia-audiodev-i386-apple-darwin9.a */; };
 		8B27D92411F2FE830090DCF0 /* libpjmedia-codec-i386-apple-darwin9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B27D92011F2FE830090DCF0 /* libpjmedia-codec-i386-apple-darwin9.a */; };
@@ -436,7 +436,6 @@
 		32DF1FCB112EC4D00052C56D /* 132x52-hide-keypad-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-normal.png"; path = "rsc/keypad/132x52-hide-keypad-normal.png"; sourceTree = SOURCE_ROOT; };
 		32DF1FCC112EC4D00052C56D /* 132x52-hide-keypad-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "132x52-hide-keypad-pressed.png"; path = "rsc/keypad/132x52-hide-keypad-pressed.png"; sourceTree = SOURCE_ROOT; };
 		32EE820310A5B71A00B0BAAD /* contact.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = contact.xib; sourceTree = "<group>"; };
-		7313B4AF1268347700E252F5 /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject-1.8/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D20611EDDEF7000583F8 /* libg7221codec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libg7221codec-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libg7221codec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D20711EDDEF7000583F8 /* libgsmcodec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgsmcodec-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libgsmcodec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D20811EDDEF7000583F8 /* libilbccodec-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libilbccodec-arm-apple-darwin9.a"; path = "../pjproject/third_party/lib/libilbccodec-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
@@ -454,6 +453,8 @@
 		7322D22311EDDFD0000583F8 /* libpjsip-simple-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-simple-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-simple-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D22411EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsip-ua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsip-ua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		7322D22511EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjsua-arm-apple-darwin9.a"; path = "../pjproject/pjsip/lib/libpjsua-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		7343219B12929A5200F8734C /* libpj-arm-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-arm-apple-darwin9.a"; path = "../pjproject-1.8.5/pjlib/lib/libpj-arm-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
+		734321AC12929B1200F8734C /* libpj-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin9.a"; path = "../pjproject1.6/pjlib/lib/libpj-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		739D257D1259EC94006AB025 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		739DD112127A924400AFE91C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		73B0150B121E7C8100DB8CF0 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -511,7 +512,6 @@
 		8B1AEA0F11206A6500A957EA /* vm_icons_outgoing_undelivered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vm_icons_outgoing_undelivered.png; sourceTree = "<group>"; };
 		8B1AEA1011206A6500A957EA /* vmail_out_newHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vmail_out_newHigh.png; sourceTree = "<group>"; };
 		8B1AEA1111206A6500A957EA /* vms_out_Active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vms_out_Active.png; sourceTree = "<group>"; };
-		8B27D91B11F2FE4D0090DCF0 /* libpj-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpj-i386-apple-darwin9.a"; path = "../pjproject1.6/pjlib/lib/libpj-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B27D91D11F2FE650090DCF0 /* libpjlib-util-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjlib-util-i386-apple-darwin9.a"; path = "../pjproject1.6/pjlib-util/lib/libpjlib-util-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B27D91F11F2FE830090DCF0 /* libpjmedia-audiodev-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-audiodev-i386-apple-darwin9.a"; path = "../pjproject1.6/pjmedia/lib/libpjmedia-audiodev-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
 		8B27D92011F2FE830090DCF0 /* libpjmedia-codec-i386-apple-darwin9.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpjmedia-codec-i386-apple-darwin9.a"; path = "../pjproject1.6/pjmedia/lib/libpjmedia-codec-i386-apple-darwin9.a"; sourceTree = SOURCE_ROOT; };
@@ -737,7 +737,6 @@
 				7322D22711EDDFD0000583F8 /* libpjsip-simple-arm-apple-darwin9.a in Frameworks */,
 				7322D22811EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a in Frameworks */,
 				7322D22911EDDFD0000583F8 /* libpjsua-arm-apple-darwin9.a in Frameworks */,
-				8B27D91C11F2FE4D0090DCF0 /* libpj-i386-apple-darwin9.a in Frameworks */,
 				8B27D91E11F2FE650090DCF0 /* libpjlib-util-i386-apple-darwin9.a in Frameworks */,
 				8B27D92311F2FE830090DCF0 /* libpjmedia-audiodev-i386-apple-darwin9.a in Frameworks */,
 				8B27D92411F2FE830090DCF0 /* libpjmedia-codec-i386-apple-darwin9.a in Frameworks */,
@@ -756,7 +755,8 @@
 				8B27D93C11F2FEE00090DCF0 /* libsrtp-i386-apple-darwin9.a in Frameworks */,
 				739D257E1259EC94006AB025 /* CoreLocation.framework in Frameworks */,
 				73DA3C30125C9DC000D50643 /* MapKit.framework in Frameworks */,
-				7313B4B01268347700E252F5 /* libpj-arm-apple-darwin9.a in Frameworks */,
+				7343219C12929A5200F8734C /* libpj-arm-apple-darwin9.a in Frameworks */,
+				734321AD12929B1200F8734C /* libpj-i386-apple-darwin9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1116,7 +1116,8 @@
 		8B6609B410A81B74000F8DAE /* siplib */ = {
 			isa = PBXGroup;
 			children = (
-				7313B4AF1268347700E252F5 /* libpj-arm-apple-darwin9.a */,
+				734321AC12929B1200F8734C /* libpj-i386-apple-darwin9.a */,
+				7343219B12929A5200F8734C /* libpj-arm-apple-darwin9.a */,
 				8B27D93111F2FEE00090DCF0 /* libg7221codec-i386-apple-darwin9.a */,
 				8B27D93211F2FEE00090DCF0 /* libgsmcodec-i386-apple-darwin9.a */,
 				8B27D93311F2FEE00090DCF0 /* libmilenage-i386-apple-darwin9.a */,
@@ -1133,7 +1134,6 @@
 				8B27D92111F2FE830090DCF0 /* libpjmedia-i386-apple-darwin9.a */,
 				8B27D92211F2FE830090DCF0 /* libpjsdp-i386-apple-darwin9.a */,
 				8B27D91D11F2FE650090DCF0 /* libpjlib-util-i386-apple-darwin9.a */,
-				8B27D91B11F2FE4D0090DCF0 /* libpj-i386-apple-darwin9.a */,
 				7322D22211EDDFD0000583F8 /* libpjsip-arm-apple-darwin9.a */,
 				7322D22311EDDFD0000583F8 /* libpjsip-simple-arm-apple-darwin9.a */,
 				7322D22411EDDFD0000583F8 /* libpjsip-ua-arm-apple-darwin9.a */,
@@ -1796,6 +1796,7 @@
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
+					"\"$(SRCROOT)/../pjproject1.6/pjlib/lib\"",
 				);
 				PRODUCT_NAME = spokn;
 				PROVISIONING_PROFILE = "46BF5F96-1C2E-4696-9692-8749367F8917";
@@ -1835,6 +1836,7 @@
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
+					"\"$(SRCROOT)/../pjproject1.6/pjlib/lib\"",
 				);
 				PRODUCT_NAME = spokn;
 				PROVISIONING_PROFILE = "9A09DBA0-926D-489C-9DCD-545115C90BA3";
@@ -2180,6 +2182,7 @@
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
+					"\"$(SRCROOT)/../pjproject1.6/pjlib/lib\"",
 				);
 				PRODUCT_NAME = spokn;
 				PROVISIONING_PROFILE = "46BF5F96-1C2E-4696-9692-8749367F8917";
@@ -2251,6 +2254,7 @@
 					"\"$(SRCROOT)/../../pjproject/pjsip/lib\"",
 					"\"$(SRCROOT)/../../pjproject/third_party/lib\"",
 					"\"$(SRCROOT)/Analytics sdk/GoogleAnalytics\"",
+					"\"$(SRCROOT)/../pjproject1.6/pjlib/lib\"",
 				);
 				PRODUCT_NAME = spokn;
 				PROVISIONING_PROFILE = "5DC0C13D-FC66-4E19-B677-824F46BE6D51";

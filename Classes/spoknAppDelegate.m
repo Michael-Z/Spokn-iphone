@@ -3710,6 +3710,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 #pragma mark CALLING_START
 -(Boolean)makeCall:(char *)noCharP
 {
+	NSLog(@"\n\n value of stream type %@",kCFStreamNetworkServiceType);
 	//check for current location
 	[self checkforRoaming];
 
@@ -3788,18 +3789,21 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 			//check for Location
 			if(roaming) //He is in roaming
 			{
+//				
+//				//If call quality is  Bad tell the user  to use call-through if he has local sim
+//				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"ALERT ROAMING" 
+//																   message: [ NSString stringWithString:@"If call quality is  Bad  you can use call-through if he has local sim but higher charges may Apply." ]
+//																  delegate: nil
+//														 cancelButtonTitle: nil
+//														 otherButtonTitles: _OK_, nil
+//									  ];
+//				[ alert show ];
+//				[alert release];
+
 				//By default on SIP
 				return [self makeSipCallOrCallBack:noCharP callType:1];
 				
-				//If call quality is  Bad tell the user  to use call-through if he has local sim
-				UIAlertView *alert = [ [ UIAlertView alloc ] initWithTitle: @"ALERT ROAMING" 
-																   message: [ NSString stringWithString:@"If call quality is  Bad  you can use call-through if he has local sim but higher charges may Apply." ]
-																  delegate: nil
-														 cancelButtonTitle: nil
-														 otherButtonTitles: _OK_, nil
-									  ];
-				[ alert show ];
-				[alert release];
+
 			}
 			else //He is in same country as his SIM
 			{
@@ -4187,7 +4191,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		} 
 		
 		[dialviewP setStatusTextMessage:@"Call is routing via  CALLBACK . You will get an incoming call. You  change it by presseing Change Protocol Button. "];
-		[dialviewP setStatusText:@"RISHI" :@"SAXENA" :TRYING_CALL :0  :0];
+		[dialviewP setStatusText:nil :nil :TRYING_CALL :0  :0];
 	
 		//int result;
 		self->currentMethodOfCall = 2;
@@ -4269,7 +4273,14 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		retB = 1;
 		[SpoknAudio destorySoundUrl:&allSoundP];
 		//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
-		[dialviewP setStatusTextMessage:@"Call is routing via  SIP . You can change it by presseing Change Protocol Button. "];
+		if(roaming)
+		{
+			[dialviewP setStatusTextMessage:@" Alert Roaming . Call is routing via  SIP . You can change it by presseing Change Protocol Button. "];
+		}
+		else {
+			[dialviewP setStatusTextMessage:@"Call is routing via  SIP . You can change it by presseing Change Protocol Button. "];
+		}
+
 		[dialviewP setStatusText:strP :temp1P :TRYING_CALL :0  :0];
 				
 		//[tempStringP release ];
