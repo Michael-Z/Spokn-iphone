@@ -4275,7 +4275,7 @@ void CreateDirectoryFunction(void *uData,char *pathCharP)
 		//	retB = callLtpInterface(self->ltpInterfacesP,resultCharP);
 		if(roaming)
 		{
-			[dialviewP setStatusTextMessage:@" Alert Roaming . Call is routing via  SIP . You can change it by presseing Change Protocol Button. "];
+			[dialviewP setStatusTextMessage:@"    Alert Roaming                  Call is routing via  SIP . You can change it by presseing Change Protocol Button. "];
 		}
 		else {
 			[dialviewP setStatusTextMessage:@"Call is routing via  SIP . You can change it by presseing Change Protocol Button. "];

@@ -283,6 +283,15 @@ CallViewController *globalCallViewControllerP;
 	}
 	//[ [UIApplication sharedApplication] setStatusBarHidden:NO];
 	[super viewWillAppear:animated];
+	int incommingLineID = [ownerobject getIncommingLineID];
+	if(incommingLineID>=0)
+	{
+		self->messageviewMenuP.hidden = YES;
+	}
+	else {
+		self->messageviewMenuP.hidden = NO;
+	}
+	
 }
 -(void)sendLtpHang:(int)llineID
 {
